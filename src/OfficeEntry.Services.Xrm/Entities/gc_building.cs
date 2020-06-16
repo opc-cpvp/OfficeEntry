@@ -15,5 +15,7 @@ namespace OfficeEntry.Services.Xrm.Entities
         public string gc_frenchname { get; set; }
         public string gc_timezone { get; set; }
         public double gc_timezoneoffset { get; set; }
+
+        public IList<gc_floor> gc_building_floor { get; set; }
     }
 }
