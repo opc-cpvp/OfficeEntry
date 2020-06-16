@@ -14,7 +14,7 @@ namespace OfficeEntry.API.Controllers
     [ApiController]
     public class LocationController : ControllerBase
     {
-        private ILocationService _locationService;
+        private readonly ILocationService _locationService;
 
         public LocationController(ILocationService locationService)
         {
@@ -22,7 +22,7 @@ namespace OfficeEntry.API.Controllers
         }
 
         // GET: api/<LocationController>
-        [HttpGet]
+        [HttpGet("/api/locations")]
         public Task<IEnumerable<Building>> Get()
         {
             return _locationService.GetBuildingsAsync();
@@ -30,9 +30,9 @@ namespace OfficeEntry.API.Controllers
 
         // GET api/<LocationController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Task<IEnumerable<Floor>> Get(Guid id)
         {
-            return "value";
+            return _locationService.GetFloorsByBuildingAsync(id);
         }
 
         // POST api/<LocationController>

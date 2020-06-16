@@ -35,7 +35,20 @@ namespace OfficeEntry.Services.Xrm
 
         public async Task<IEnumerable<Floor>> GetFloorsByBuildingAsync(Guid buildingId)
         {
-            throw new NotImplementedException();
+            var client = GetODataClient();
+            var floors = await client.For<gc_building>()
+                .Key(buildingId)
+                .NavigateTo(b => b.gc_building_floor)
+                .FindEntriesAsync();
+
+            return floors.Select(f => new Floor
+            {
+                FloorId = f.gc_floorid,
+                BuildingId = buildingId,
+                Capacity = f.gc_capacity,
+                CurrentCapacity = f.gc_currentcapacity,
+                Name = f.gc_englishname
+            });
         }
     }
 }
