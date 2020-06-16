@@ -28,12 +28,12 @@ namespace OfficeEntry.Services.Xrm
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<AccessRequest>> GetAccessRequestsAsync()
+        public async Task<IEnumerable<AccessRequest>> GetAccessRequestsAsync(string username)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<AccessRequest>> GetPendingAccessRequestsAsync()
+        public async Task<IEnumerable<AccessRequest>> GetPendingAccessRequestsAsync(string username)
         {
             throw new NotImplementedException();
         }
