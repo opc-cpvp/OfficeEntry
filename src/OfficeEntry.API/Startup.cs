@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using OfficeEntry.Domain.Contracts;
+using OfficeEntry.Services.Xrm;
 
 namespace OfficeEntry.API
 {
@@ -25,6 +27,8 @@ namespace OfficeEntry.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ILocationService, LocationService>(provider => new LocationService(Configuration["AppSettings:ODataUrl"]));
+
             services.AddControllers();
         }
 

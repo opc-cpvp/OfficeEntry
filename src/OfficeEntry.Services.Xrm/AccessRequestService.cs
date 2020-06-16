@@ -3,13 +3,14 @@ using OfficeEntry.Domain.Contracts;
 using OfficeEntry.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OfficeEntry.Services.Xrm
 {
     public class AccessRequestService : XrmService, IAccessRequestService
     {
-        public AccessRequestService(IConfiguration configuration) :
-            base(configuration)
+        public AccessRequestService(string odataUrl) :
+            base(odataUrl)
         {
         }
 
@@ -28,12 +29,12 @@ namespace OfficeEntry.Services.Xrm
             throw new NotImplementedException();
         }
 
-        public List<AccessRequest> GetAccessRequests()
+        public async Task<IEnumerable<AccessRequest>> GetAccessRequestsAsync()
         {
             throw new NotImplementedException();
         }
 
-        public List<AccessRequest> GetPendingAccessRequests()
+        public async Task<IEnumerable<AccessRequest>> GetPendingAccessRequestsAsync()
         {
             throw new NotImplementedException();
         }

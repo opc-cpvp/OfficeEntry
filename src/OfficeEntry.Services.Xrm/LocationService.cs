@@ -1,24 +1,39 @@
 ﻿using Microsoft.Extensions.Configuration;
 using OfficeEntry.Domain.Contracts;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Services.Xrm.Entities;
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OfficeEntry.Services.Xrm
 {
     public class LocationService : XrmService, ILocationService
     {
-        public LocationService(IConfiguration configuration) :
-            base(configuration)
+        public LocationService(string odataUrl) :
+            base(odataUrl)
         {
         }
 
-        public List<Building> GetBuildings()
+        public async Task<IEnumerable<Building>> GetBuildingsAsync()
         {
-            throw new NotImplementedException();
+            var client = GetODataClient();
+            var buildings = await client.For<gc_building>().FindEntriesAsync();
+
+            return buildings.Select(b => new Building
+            {
+                ID = b.gc_buildingid,
+                Address = b.gc_address,
+                City = b.gc_city,
+                Description = b.gc_englishdescription,
+                Name = b.gc_englishname,
+                Timezone = b.gc_timezone,
+                TimezoneOffset = b.gc_timezoneoffset
+            });
         }
 
-        public List<Floor> GetFloorsByBuilding(Guid buildingId)
+        public async Task<IEnumerable<Floor>> GetFloorsByBuildingAsync(Guid buildingId)
         {
             throw new NotImplementedException();
         }
