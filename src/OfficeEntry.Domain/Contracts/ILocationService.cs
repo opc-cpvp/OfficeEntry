@@ -8,6 +8,7 @@ namespace OfficeEntry.Domain.Contracts
     public interface ILocationService
     {
         public Task<IEnumerable<Building>> GetBuildingsAsync();
+
         public Task<IEnumerable<Floor>> GetFloorsByBuildingAsync(Guid buildingId);
     }
 }
