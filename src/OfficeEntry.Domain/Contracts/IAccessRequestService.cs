@@ -13,9 +13,9 @@ namespace OfficeEntry.Domain.Contracts
 
         public void DenyAccessRequest(Guid accessRequestId);
 
-        public Task<IEnumerable<AccessRequest>> GetAccessRequestsAsync();
+        public Task<IEnumerable<AccessRequest>> GetAccessRequestsAsync(string username);
 
-        public Task<IEnumerable<AccessRequest>> GetPendingAccessRequestsAsync();
+        public Task<IEnumerable<AccessRequest>> GetPendingAccessRequestsAsync(string username);
 
         public void SubmitAccessRequest(AccessRequest accessRequest);
     }
