@@ -1,8 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using OfficeEntry.Domain.Contracts;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Services.Xrm.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace OfficeEntry.Services.Xrm
@@ -15,14 +18,38 @@ namespace OfficeEntry.Services.Xrm
         {
         }
 
-        public async Task<IEnumerable<Contact>> GetContactsByNameAsync(string name)
+        public async Task<IEnumerable<Contact>> GetContactsAsync()
         {
-            throw new NotImplementedException();
+            var client = GetODataClient();
+            var contacts = await client.For<contact>().FindEntriesAsync();
+
+            return contacts.Select(c => new Contact
+            {
+                ID = c.contactid,
+                FirstName = c.firstname,
+                LastName = c.lastname,
+                EmailAddress = c.emailaddress1,
+                PhoneNumber = c.telephone1,
+                Username = c.gc_username
+            });
         }
 
-        public Task<UserSettings> GetUserSettingsAsync()
+        public async Task<UserSettings> GetUserSettingsAsync(string username)
         {
-            throw new NotImplementedException();
+            var client = GetODataClient();
+            var contact = await client.For<contact>()
+                .Filter(c => c.gc_username == username)
+                .Expand(c => c.gc_usersettings)
+                .FindEntryAsync();
+
+            if (contact.gc_usersettings is null)
+                return new UserSettings();
+
+            return new UserSettings
+            {
+                HealthSafety = contact.gc_usersettings.gc_healthsafety,
+                PrivacyStatement = contact.gc_usersettings.gc_privacystatement
+            };
         }
     }
 }
