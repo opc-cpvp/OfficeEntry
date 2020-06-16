@@ -34,23 +34,5 @@ namespace OfficeEntry.API.Controllers
         {
             return _locationService.GetFloorsByBuildingAsync(id);
         }
-
-        // POST api/<LocationController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<LocationController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<LocationController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

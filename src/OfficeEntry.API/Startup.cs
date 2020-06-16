@@ -28,7 +28,9 @@ namespace OfficeEntry.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ILocationService, LocationService>(provider => new LocationService(Configuration["AppSettings:ODataUrl"]));
+            services.AddScoped<IUserService, UserService>(provider => new UserService(Configuration["AppSettings:ODataUrl"]));
 
+            services.AddHttpContextAccessor();
             services.AddControllers();
         }
 
