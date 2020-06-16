@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using OfficeEntry.Domain.Contracts;
+﻿using OfficeEntry.Domain.Contracts;
 using OfficeEntry.Domain.Entities;
 using System;
 using System.Collections.Generic;
