@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\OfficeEntry.Domain\OfficeEntry.Domain.csproj" />
+    <ProjectReference Include="..\OfficeEntry.Services.Xrm\OfficeEntry.Services.Xrm.csproj" />
   </ItemGroup>
 
 

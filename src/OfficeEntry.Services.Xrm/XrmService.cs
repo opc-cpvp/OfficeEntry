@@ -7,16 +7,16 @@ namespace OfficeEntry.Services.Xrm
 {
     public class XrmService
     {
-        private readonly IConfiguration Configuration;
+        public string ODataUrl { get; set; }
 
-        public XrmService(IConfiguration configuration)
+        public XrmService(string odataUrl)
         {
-            Configuration = configuration;
+            ODataUrl = odataUrl;
         }
 
-        public ODataClient GetODataClient(string url)
+        public ODataClient GetODataClient()
         {
-            var uri = new Uri(url);
+            var uri = new Uri(ODataUrl);
             var clientSettings = new ODataClientSettings(uri, CredentialCache.DefaultCredentials) { IgnoreUnmappedProperties = true };
             return new ODataClient(clientSettings);
         }

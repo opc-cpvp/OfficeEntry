@@ -9,5 +9,7 @@ namespace OfficeEntry.Domain.Entities
         public string City { get; set; }
         public string Description { get; set; }
         public string Name { get; set; }
+        public string Timezone { get; set; }
+        public double TimezoneOffset { get; set; }
     }
 }
