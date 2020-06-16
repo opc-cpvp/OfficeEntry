@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Simple.OData.Client;
+﻿using Simple.OData.Client;
 using System;
 using System.Net;
 

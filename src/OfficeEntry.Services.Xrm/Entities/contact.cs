@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OfficeEntry.Services.Xrm.Entities
 {
-    class contact
+    internal class contact
     {
         public string firstname { get; set; }
         public string lastname { get; set; }

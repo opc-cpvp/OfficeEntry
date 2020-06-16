@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace OfficeEntry.Services.Xrm.Entities
 {
-    class gc_building
+    internal class gc_building
     {
         public Guid gc_buildingid { get; set; }
         public string gc_address { get; set; }

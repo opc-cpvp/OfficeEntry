@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OfficeEntry.Services.Xrm.Entities
 {
-    class gc_floor
+    internal class gc_floor
     {
         public Guid gc_floorid { get; set; }
         public gc_building gc_buildingfloorid { get; set; }

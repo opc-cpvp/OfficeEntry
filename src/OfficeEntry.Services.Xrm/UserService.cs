@@ -1,18 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
-using OfficeEntry.Domain.Contracts;
+﻿using OfficeEntry.Domain.Contracts;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Services.Xrm.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace OfficeEntry.Services.Xrm
 {
     public class UserService : XrmService, IUserService
     {
-
         public UserService(string odataUrl) :
             base(odataUrl)
         {
