@@ -8,10 +8,10 @@ namespace OfficeEntry.Domain.Contracts
     public interface IAccessRequestService
     {
         public Task ApproveAccessRequestAsync(Guid accessRequestId);
-        public void CancelAccessRequest(Guid accessRequestId);
-        public void DenyAccessRequest(Guid accessRequestId);
-        public Task<IEnumerable<AccessRequest>> GetAccessRequestsAsync();
-        public Task<IEnumerable<AccessRequest>> GetPendingAccessRequestsAsync();
-        public void SubmitAccessRequest(AccessRequest accessRequest);
+        public Task CancelAccessRequestAsync(Guid accessRequestId);
+        public Task DeclineAccessRequestAsync(Guid accessRequestId);
+        public Task<IEnumerable<AccessRequest>> GetAccessRequestsAsync(string username);
+        public Task<IEnumerable<AccessRequest>> GetPendingAccessRequestsAsync(string username);
+        public Task SubmitAccessRequestAsync(AccessRequest accessRequest);
     }
 }

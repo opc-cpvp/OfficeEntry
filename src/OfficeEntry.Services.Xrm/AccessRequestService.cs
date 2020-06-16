@@ -23,14 +23,22 @@ namespace OfficeEntry.Services.Xrm
                 .UpdateEntryAsync();
         }
 
-        public void CancelAccessRequest(Guid accessRequestId)
+        public async Task CancelAccessRequestAsync(Guid accessRequestId)
         {
-            throw new NotImplementedException();
+            var client = GetODataClient();
+            await client.For<gc_accessrequest>()
+                .Key(accessRequestId)
+                .Set(new { gc_approvalstatus = ApprovalStatus.Cancelled })
+                .UpdateEntryAsync();
         }
 
-        public void DenyAccessRequest(Guid accessRequestId)
+        public async Task DeclineAccessRequestAsync(Guid accessRequestId)
         {
-            throw new NotImplementedException();
+            var client = GetODataClient();
+            await client.For<gc_accessrequest>()
+                .Key(accessRequestId)
+                .Set(new { gc_approvalstatus = ApprovalStatus.Declined })
+                .UpdateEntryAsync();
         }
 
         public async Task<IEnumerable<AccessRequest>> GetAccessRequestsAsync(string username)
@@ -43,7 +51,7 @@ namespace OfficeEntry.Services.Xrm
             throw new NotImplementedException();
         }
 
-        public void SubmitAccessRequest(AccessRequest accessRequest)
+        public async Task SubmitAccessRequestAsync(AccessRequest accessRequest)
         {
             throw new NotImplementedException();
         }
