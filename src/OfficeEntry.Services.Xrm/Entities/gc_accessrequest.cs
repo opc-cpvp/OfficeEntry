@@ -14,5 +14,6 @@ namespace OfficeEntry.Services.Xrm.Entities
         public contact contact { get; set; }
         public contact gc_manager { get; set; }
         public DateTime gc_starttime { get; set; }
+        public ApprovalStatus gc_approvalstatus { get; set; }
     }
 }
