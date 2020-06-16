@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OfficeEntry.Services.Xrm.Entities
 {
-    class gc_accessrequest
+    internal class gc_accessrequest
     {
         public Guid gc_accessrequestid { get; set; }
         public gc_building gc_building { get; set; }

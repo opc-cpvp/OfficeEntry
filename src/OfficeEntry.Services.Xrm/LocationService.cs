@@ -1,10 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
-using OfficeEntry.Domain.Contracts;
+﻿using OfficeEntry.Domain.Contracts;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Services.Xrm.Entities;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OfficeEntry.Services.Xrm

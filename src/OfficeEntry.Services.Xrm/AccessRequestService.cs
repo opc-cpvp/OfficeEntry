@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using OfficeEntry.Domain.Contracts;
+﻿using OfficeEntry.Domain.Contracts;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Services.Xrm.Entities;
 using System;
@@ -34,12 +33,12 @@ namespace OfficeEntry.Services.Xrm
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<AccessRequest>> GetAccessRequestsAsync()
+        public async Task<IEnumerable<AccessRequest>> GetAccessRequestsAsync(string username)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<AccessRequest>> GetPendingAccessRequestsAsync()
+        public async Task<IEnumerable<AccessRequest>> GetPendingAccessRequestsAsync(string username)
         {
             throw new NotImplementedException();
         }
