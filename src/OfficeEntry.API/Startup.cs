@@ -28,8 +28,27 @@ namespace OfficeEntry.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ILocationService, LocationService>(provider => new LocationService(Configuration["AppSettings:ODataUrl"]));
+            services.AddScoped<IAccessRequestService, AccessRequestService>(provider => new AccessRequestService(Configuration["AppSettings:ODataUrl"]));
 
             services.AddControllers();
+
+            // Register the Swagger services
+            services.AddSwaggerDocument(cfg =>
+            {
+                cfg.PostProcess = document =>
+                {
+                    document.Info.Version = "v1";
+                    document.Info.Title = "Office Entry API";
+                    document.Info.Description = "";
+                    document.Info.TermsOfService = "None";
+                    document.Info.Contact = new NSwag.OpenApiContact
+                    {
+                        Name = "Office of the Privacy Commissioner of Canada",
+                        Email = string.Empty,
+                        Url = "https://priv.gc.ca"
+                    };
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +57,10 @@ namespace OfficeEntry.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                // Register the Swagger generator and the Swagger UI middlewares
+                app.UseOpenApi();
+                app.UseSwaggerUi3();
             }
 
             app.UseHttpsRedirection();

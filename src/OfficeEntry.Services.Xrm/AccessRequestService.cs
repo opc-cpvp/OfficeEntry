@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using OfficeEntry.Domain.Contracts;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Services.Xrm.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,9 +15,13 @@ namespace OfficeEntry.Services.Xrm
         {
         }
 
-        public void ApproveAccessRequest(Guid accessRequestId)
+        public async Task ApproveAccessRequestAsync(Guid accessRequestId)
         {
-            throw new NotImplementedException();
+            var client = GetODataClient();
+            await client.For<gc_accessrequest>()
+                .Key(accessRequestId)
+                .Set( new { gc_approvalstatus = ApprovalStatus.Approved })
+                .UpdateEntryAsync();
         }
 
         public void CancelAccessRequest(Guid accessRequestId)
