@@ -1,6 +1,6 @@
 {
-  "name": "OfficeEntry.WebUI",
-  "short_name": "OfficeEntry.WebUI",
+  "name": "Office Entry",
+  "short_name": "Office Entry",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
