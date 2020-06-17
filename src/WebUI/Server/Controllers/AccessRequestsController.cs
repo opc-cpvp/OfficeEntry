@@ -10,12 +10,9 @@ namespace OfficeEntry.WebUI.Server.Controllers
     public class AccessRequestsController : ApiController
     {
         [HttpGet]
-        public async Task<IEnumerable<AccessRequestDto>> Get(CancellationToken cancellationToken)
+        public async Task<IEnumerable<AccessRequestDto>> Get()
         {
-            //return await Mediator.Send(new GetAccessRequestsQuery());
-
-            var handler = new GetAccessRequestsQueryHandler();
-            return await handler.Handle(new GetAccessRequestsQuery(), cancellationToken);
+            return await Mediator.Send(new GetAccessRequestsQuery());
         }
 
         //[HttpPatch]

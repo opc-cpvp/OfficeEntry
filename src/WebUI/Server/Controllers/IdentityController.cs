@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.ValueObjects;
