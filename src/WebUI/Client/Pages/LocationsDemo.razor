@@ -1,0 +1,28 @@
+﻿@page "/locations"
+@using OfficeEntry.Domain.Entities;
+@inject HttpClient Http
+
+<h1>Locations</h1>
+
+@if (buildings == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <ul>
+        @foreach (var building in buildings)
+        {
+            <li>@building.Address</li>
+        }
+    </ul>
+}
+
+@code {
+    private Building[] buildings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        buildings = await Http.GetFromJsonAsync<Building[]>("api/Locations");
+    }
+}

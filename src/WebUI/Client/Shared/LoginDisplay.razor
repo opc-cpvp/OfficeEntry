@@ -1,0 +1,19 @@
+﻿@inject HttpClient Http
+
+@if (name is null)
+{
+    <div>Loading...</div>
+}
+else
+{
+<div>Hello, @name</div>
+}
+
+@code{
+    private string name;
+
+    protected override async Task OnInitializedAsync()
+    {
+        name = await Http.GetStringAsync("api/Identity");
+    }
+}

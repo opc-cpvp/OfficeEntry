@@ -1,0 +1,56 @@
+﻿@implements IDisposable
+@inject ISurveyInterop SurveyInterop
+@inject IJSRuntime JSRuntime
+
+@*<button class="btn btn-primary" @onclick="GetData">Click me!</button>*@
+
+<div id="blazor-survey-wraper">
+</div>
+
+<p>@SurveyResult</p>
+
+@code {
+    [Parameter]
+    public string Id { get; set; } = "surveyElement";
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string SurveyUrl { get; set; }
+
+    private string SurveyResult { get; set; }
+
+    private DotNetObjectReference<Survey> _objectReference;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        _objectReference = DotNetObjectReference.Create(this);
+
+        await JSRuntime.InvokeVoidAsync("interop.survey.register", _objectReference);
+        await JSRuntime.InvokeVoidAsync("interop.survey.init", Id, @Class, SurveyUrl);
+    }
+
+    public async Task GetData()
+    {
+        var surveyData = await JSRuntime.InvokeAsync<object>("interop.survey.data");
+        await JSRuntime.InvokeVoidAsync("ShowAlert", surveyData.ToString());
+    }
+
+    [JSInvokable]
+    public void SetSelectedCountry(string results)
+    {
+        SurveyResult = results;
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        _objectReference?.Dispose();
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "pages": [
+    {
+      "name": "page2",
+      "elements": [
+        {
+          "type": "html",
+          "name": "question10",
+          "html": "<p>The personal information is collected under the authority of the Financial Administration Act. The information is collected, used and disclosed for the purposes of monitoring workplace access and supporting a safe, healthy and gradual return to the workplace in relation to the COVID-19 pandemic.</p>\n\n<p>In the event of a suspected or confirmed case of COVID-19 in the workplace, the information provided through this app enables the Department of Justice to inform persons who may have been impacted, while protecting the privacy of those involved.</p>\n\n<p>The information you provide is protected under the Privacy Act.  Information on this form will be used, disclosed and retained in accordance with the conditions listed in the Standard Personal Information Bank PSE 907.</p>\n\n<p>If you require clarification about this Privacy Act Statement, please contact our Access to Information and Privacy Office at 1-613-907-3700. Please note that you have a right to file a complaint to the Office of the Privacy Commissioner of Canada regarding our handling of your personal information. To do so, please contact the Privacy Commissioner at 1-800-282-1376.</p>"
+        },
+        {
+          "type": "checkbox",
+          "name": "question1",
+          "hideNumber": true,
+          "titleLocation": "hidden",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "I accept the above terms"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
