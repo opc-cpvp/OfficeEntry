@@ -1,6 +1,7 @@
 ﻿using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Infrastructure.Identity;
 using OfficeEntry.Infrastructure.Services;
+using OfficeEntry.Infrastructure.Services.Xrm;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
