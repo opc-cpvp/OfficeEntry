@@ -9,7 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace OfficeEntry.Infrastructure.Services
+namespace OfficeEntry.Infrastructure.Services.Xrm
 {
     public class TermsAndConditionsService : XrmService, ITermsAndConditionsService
     {

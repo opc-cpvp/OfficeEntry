@@ -2,10 +2,10 @@
 using System;
 using System.Net.Http;
 
-namespace OfficeEntry.Infrastructure.Services
+namespace OfficeEntry.Infrastructure.Services.Xrm
 {
     public abstract class XrmService : IDisposable
-    {        
+    {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly HttpClient _httpClient;
         private bool disposedValue;
