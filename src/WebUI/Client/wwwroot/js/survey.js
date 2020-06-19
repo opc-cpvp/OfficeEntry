@@ -22,7 +22,7 @@ interopJS.survey = {
         return JSON.stringify(survey.data, null, 3);
     },
 
-    init: function (id, classStyle, surveyUrl) {
+    init: function (id, classStyle, surveyUrl, data) {
         // Survey
         //     .StylesManager
         //     .applyTheme();  
@@ -82,9 +82,6 @@ interopJS.survey = {
                     .onValueChanged
                     //.add( (s,e) => window.localStorage["surveyjs-blazor"] = survey.data );
                     .add(surveyValueChanged);
-
-                let data = window.localStorage["surveyjs-blazor"];
-                // alert(data);
 
                 if (data) {
                     survey.data = JSON.parse(data);

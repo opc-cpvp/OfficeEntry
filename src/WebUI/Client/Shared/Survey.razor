@@ -22,6 +22,9 @@
     [Parameter]
     public EventCallback<string> OnSurveyCompleted { get; set; }
 
+    [Parameter]
+    public string Data { get; set; }
+
     private string SurveyResult { get; set; }
 
     private DotNetObjectReference<Survey> _objectReference;
@@ -36,7 +39,7 @@
         _objectReference = DotNetObjectReference.Create(this);
 
         await JSRuntime.InvokeVoidAsync("interop.survey.register", _objectReference);
-        await JSRuntime.InvokeVoidAsync("interop.survey.init", Id, @Class, SurveyUrl);
+        await JSRuntime.InvokeVoidAsync("interop.survey.init", Id, @Class, SurveyUrl, Data);
     }
 
     public async Task GetData()
