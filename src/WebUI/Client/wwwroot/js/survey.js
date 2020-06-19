@@ -67,7 +67,7 @@ interopJS.survey = {
                 survey
                     .onComplete
                     .add(function (result) {
-                        dotNet.invokeMethodAsync("SetSelectedCountry", JSON.stringify(result.data, null, 3))
+                        dotNet.invokeMethodAsync("SurveyCompleted", JSON.stringify(result.data, null, 3))
                             .then(data => {
                                 console.log("### surveyjs was sent to .NET.");
                             });

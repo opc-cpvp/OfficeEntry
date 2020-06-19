@@ -1,0 +1,39 @@
+﻿using MediatR;
+using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.ValueObjects;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace OfficeEntry.Application.TermsAndConditions.Queries
+{
+    public class GetHealthAndSafetyMeasuresForCurrentUserQuery : IRequest<bool>
+    {
+    }
+
+    public class GetHealthAndSafetyMeasuresForCurrentUserQueryHandler : IRequestHandler<GetHealthAndSafetyMeasuresForCurrentUserQuery, bool>
+    {
+        private readonly ICurrentUserService _currentUserService;
+        private readonly IDomainUserService _domainUserService;
+        private readonly ITermsAndConditionsService _termsAndConditionsService;
+
+        public GetHealthAndSafetyMeasuresForCurrentUserQueryHandler(ICurrentUserService currentUserService, IDomainUserService domainUserService, ITermsAndConditionsService termsAndConditionsService)
+        {
+            _currentUserService = currentUserService;
+            _domainUserService = domainUserService;
+            _termsAndConditionsService = termsAndConditionsService;
+        }
+
+        public async Task<bool> Handle(GetHealthAndSafetyMeasuresForCurrentUserQuery request, CancellationToken cancellationToken)
+        {
+            var fullname = await _domainUserService.GetUserNameAsync(AdAccount.For(_currentUserService.UserId));
+            var result = await _termsAndConditionsService.GetHealthAndSafetyMeasuresFor(fullname);
+
+            if (!result.Result.Succeeded)
+            {
+
+            }
+
+            return result.IsHealthAndSafetyMeasuresAccepted;
+        }
+    }
+}

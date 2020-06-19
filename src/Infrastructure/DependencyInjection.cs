@@ -20,6 +20,7 @@ namespace OfficeEntry.Infrastructure
             services.AddTransient<IDateTime, DateTimeService>();
 
             services.AddTransient<ILocationService, LocationService>();
+            services.AddTransient<ITermsAndConditionsService, TermsAndConditionsService>();
 
             services.AddTransient<IDomainUserService, DomainUserService>(provider =>
                 new DomainUserService(configuration.GetValue<string>("Domain"))

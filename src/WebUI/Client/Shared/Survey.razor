@@ -19,6 +19,9 @@
     [Parameter]
     public string SurveyUrl { get; set; }
 
+    [Parameter]
+    public EventCallback<string> OnSurveyCompleted { get; set; }
+
     private string SurveyResult { get; set; }
 
     private DotNetObjectReference<Survey> _objectReference;
@@ -43,10 +46,12 @@
     }
 
     [JSInvokable]
-    public void SetSelectedCountry(string results)
+    public async Task SurveyCompleted(string results)
     {
         SurveyResult = results;
         StateHasChanged();
+
+        await OnSurveyCompleted.InvokeAsync(results);
     }
 
     public void Dispose()

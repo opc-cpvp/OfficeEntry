@@ -23,6 +23,7 @@ namespace OfficeEntry.Infrastructure.Services
             Client = new ODataClient(clientSettings);
         }
 
+        protected HttpClient HttpClient => _httpClient;
         protected ODataClient Client { get; private set; }
 
         protected virtual void Dispose(bool disposing)
