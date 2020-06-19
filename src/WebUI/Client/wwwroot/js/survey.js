@@ -22,6 +22,12 @@ interopJS.survey = {
         return JSON.stringify(survey.data, null, 3);
     },
 
+    setData: function (data) {
+        if (data) {
+            survey.data = JSON.parse(data);
+        }        
+    },
+
     init: function (id, classStyle, surveyUrl, data) {
         // Survey
         //     .StylesManager
@@ -85,6 +91,9 @@ interopJS.survey = {
 
                 if (data) {
                     survey.data = JSON.parse(data);
+                }
+                else {
+                    dotNet.invokeMethodAsync("LoadData");
                 }
 
                 var app = new Vue({

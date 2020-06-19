@@ -22,6 +22,16 @@
     [Parameter]
     public EventCallback<string> OnSurveyCompleted { get; set; }
 
+    /// <remarks>
+    /// 0. On survey.js.init
+    /// 1. survey.js invokes <see cref="Survey.OnLoadData"/>
+    /// 2. <see cref="Survey.OnLoadData"/> invokes the <see cref="Survey.OnLoadData"/> handler in the parent component.
+    /// 3. The parent component invokes <see cref="Survey.SetData(string)"/>.
+    /// 4. <see cref="Survey.SetData(string)"/> passes the data to SurveyJS using the survey.js.setData function.
+    /// </remarks>
+    [Parameter]
+    public EventCallback<Survey> OnLoadData { get; set; }
+
     [Parameter]
     public string Data { get; set; }
 
@@ -55,6 +65,17 @@
         StateHasChanged();
 
         await OnSurveyCompleted.InvokeAsync(results);
+    }
+
+    public async Task SetData(string data)
+    {
+        await JSRuntime.InvokeVoidAsync("interop.survey.setData", data);
+    }
+
+    [JSInvokable]
+    public async Task LoadData()
+    {
+        await OnLoadData.InvokeAsync(this);
     }
 
     public void Dispose()

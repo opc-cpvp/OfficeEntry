@@ -13,8 +13,6 @@ namespace OfficeEntry.WebUI.Client.Pages
         [Inject]
         public HttpClient Http { get; set; }
 
-        protected string Data { get; set; } = "{}";
-
         public async Task OnSurveyCompleted(string surveyResult)
         {
             var surveyData = System.Text.Json.JsonSerializer.Deserialize<Rootobject>(surveyResult);
@@ -22,16 +20,6 @@ namespace OfficeEntry.WebUI.Client.Pages
             bool privateActStatementAccepted = surveyData.questionAcceptPaStatement.Any();
 
             await Http.PutAsJsonAsync("api/PrivacyStatement", privateActStatementAccepted);
-        }
-
-        protected override async Task OnInitializedAsync()
-        {
-            var isPrivacyActStatementAccepted = await Http.GetFromJsonAsync<bool>("api/PrivacyStatement");
-
-            if (isPrivacyActStatementAccepted)
-            {
-                Data = "{ \"questionAcceptPaStatement\": [ \"iAcceptPaStatement\" ] }";
-            }
         }
 
         private protected class Rootobject
