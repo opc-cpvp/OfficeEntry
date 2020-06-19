@@ -28,10 +28,10 @@ namespace OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatement
 
         public async Task<bool> Handle(GetPrivacyStatementForCurrentUserQuery request, CancellationToken cancellationToken)
         {
-            var fullname = await _domainUserService.GetUserNameAsync(AdAccount.For(_currentUserService.UserId));
-            var result = await _termsAndConditionsService.GetPrivacyActStatementFor(fullname);
+            var username = _currentUserService.UserId;
+            var result = await _termsAndConditionsService.GetPrivacyActStatementFor(username);
 
-            // TODO: what should we do with the 
+            // TODO: what should we do with the
             if (!result.Result.Succeeded)
             {
 

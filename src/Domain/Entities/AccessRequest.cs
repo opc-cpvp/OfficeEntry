@@ -6,6 +6,7 @@ namespace OfficeEntry.Domain.Entities
     {
         public Guid Id { get; set; }
         public Building Building { get; set; }
+        public Contact Contact { get; set; }
         public string Details { get; set; }
         public DateTime EndTime { get; set; }
         public Floor Floor { get; set; }

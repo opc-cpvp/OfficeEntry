@@ -25,8 +25,8 @@ namespace OfficeEntry.Application.TermsAndConditions.Queries
 
         public async Task<bool> Handle(GetHealthAndSafetyMeasuresForCurrentUserQuery request, CancellationToken cancellationToken)
         {
-            var fullname = await _domainUserService.GetUserNameAsync(AdAccount.For(_currentUserService.UserId));
-            var result = await _termsAndConditionsService.GetHealthAndSafetyMeasuresFor(fullname);
+            var username = _currentUserService.UserId;
+            var result = await _termsAndConditionsService.GetHealthAndSafetyMeasuresFor(username);
 
             if (!result.Result.Succeeded)
             {

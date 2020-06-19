@@ -1,5 +1,6 @@
 ﻿using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,37 +43,12 @@ namespace OfficeEntry.Infrastructure.Services
 
             return floors.Select(f => new Floor
             {
-                FloorId = f.gc_floorid,
+                Id = f.gc_floorid,
                 BuildingId = buildingId,
                 Capacity = f.gc_capacity,
                 CurrentCapacity = f.gc_currentcapacity,
                 Name = f.gc_englishname
             });
-        }
-
-        private protected class gc_building
-        {
-            public Guid gc_buildingid { get; set; }
-            public string gc_address { get; set; }
-            public string gc_city { get; set; }
-            public string gc_englishdescription { get; set; }
-            public string gc_englishname { get; set; }
-            public string gc_frenchdescription { get; set; }
-            public string gc_frenchname { get; set; }
-            public string gc_timezone { get; set; }
-            public double gc_timezoneoffset { get; set; }
-
-            public IList<gc_floor> gc_building_floor { get; set; }
-        }
-
-        private protected class gc_floor
-        {
-            public Guid gc_floorid { get; set; }
-            public gc_building gc_buildingfloorid { get; set; }
-            public int gc_capacity { get; set; }
-            public int gc_currentcapacity { get; set; }
-            public string gc_englishname { get; set; }
-            public string gc_frenchname { get; set; }
         }
     }
 }

@@ -29,9 +29,9 @@ namespace OfficeEntry.Application.TermsAndConditions.Command.UpdatePrivacyStatem
 
         public async Task<Unit> Handle(UpdatePrivacyActStatementForCurrentUserCommand request, CancellationToken cancellationToken)
         {
-            var fullname = await _domainUserService.GetUserNameAsync(AdAccount.For(_currentUserService.UserId));
+            var username = _currentUserService.UserId;
 
-            await _termsAndConditionsService.SetPrivacyActStatementFor(fullname, request.IsPrivacyActStatementAccepted);
+            await _termsAndConditionsService.SetPrivacyActStatementFor(username, request.IsPrivacyActStatementAccepted);
 
             return Unit.Value;
         }
