@@ -25,7 +25,8 @@ interopJS.survey = {
     setData: function (data) {
         if (data) {
             survey.data = JSON.parse(data);
-        }        
+        }
+        // TODO: Set page to 0
     },
 
     init: function (id, classStyle, surveyUrl, data) {
@@ -91,9 +92,6 @@ interopJS.survey = {
 
                 if (data) {
                     survey.data = JSON.parse(data);
-                }
-                else {
-                    dotNet.invokeMethodAsync("LoadData");
                 }
 
                 var app = new Vue({
