@@ -17,13 +17,11 @@ namespace OfficeEntry.Application.TermsAndConditions.Command.UpdatePrivacyStatem
     public class UpdatePrivacyActStatementForCurrentUserCommandHandler : IRequestHandler<UpdatePrivacyActStatementForCurrentUserCommand>
     {
         private readonly ICurrentUserService _currentUserService;
-        private readonly IDomainUserService _domainUserService;
         private readonly ITermsAndConditionsService _termsAndConditionsService;
 
-        public UpdatePrivacyActStatementForCurrentUserCommandHandler(ICurrentUserService currentUserService, IDomainUserService domainUserService, ITermsAndConditionsService termsAndConditionsService)
+        public UpdatePrivacyActStatementForCurrentUserCommandHandler(ICurrentUserService currentUserService, ITermsAndConditionsService termsAndConditionsService)
         {
             _currentUserService = currentUserService;
-            _domainUserService = domainUserService;
             _termsAndConditionsService = termsAndConditionsService;
         }
 

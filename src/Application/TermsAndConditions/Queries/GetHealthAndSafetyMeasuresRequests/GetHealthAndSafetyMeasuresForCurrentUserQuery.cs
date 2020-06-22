@@ -13,13 +13,11 @@ namespace OfficeEntry.Application.TermsAndConditions.Queries.GetHealthAndSafetyM
     public class GetHealthAndSafetyMeasuresForCurrentUserQueryHandler : IRequestHandler<GetHealthAndSafetyMeasuresForCurrentUserQuery, bool>
     {
         private readonly ICurrentUserService _currentUserService;
-        private readonly IDomainUserService _domainUserService;
         private readonly ITermsAndConditionsService _termsAndConditionsService;
 
-        public GetHealthAndSafetyMeasuresForCurrentUserQueryHandler(ICurrentUserService currentUserService, IDomainUserService domainUserService, ITermsAndConditionsService termsAndConditionsService)
+        public GetHealthAndSafetyMeasuresForCurrentUserQueryHandler(ICurrentUserService currentUserService, ITermsAndConditionsService termsAndConditionsService)
         {
             _currentUserService = currentUserService;
-            _domainUserService = domainUserService;
             _termsAndConditionsService = termsAndConditionsService;
         }
 

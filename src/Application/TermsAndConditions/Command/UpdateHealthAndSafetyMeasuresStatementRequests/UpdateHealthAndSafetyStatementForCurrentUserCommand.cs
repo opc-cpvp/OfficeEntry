@@ -20,10 +20,9 @@ namespace OfficeEntry.Application.TermsAndConditions.Command.UpdateHealthAndSafe
         private readonly IDomainUserService _domainUserService;
         private readonly ITermsAndConditionsService _termsAndConditionsService;
 
-        public UpdateHealthAndSafetyMeasuresStatementForCurrentUserCommandHandler(ICurrentUserService currentUserService, IDomainUserService domainUserService, ITermsAndConditionsService termsAndConditionsService)
+        public UpdateHealthAndSafetyMeasuresStatementForCurrentUserCommandHandler(ICurrentUserService currentUserService, ITermsAndConditionsService termsAndConditionsService)
         {
             _currentUserService = currentUserService;
-            _domainUserService = domainUserService;
             _termsAndConditionsService = termsAndConditionsService;
         }
 

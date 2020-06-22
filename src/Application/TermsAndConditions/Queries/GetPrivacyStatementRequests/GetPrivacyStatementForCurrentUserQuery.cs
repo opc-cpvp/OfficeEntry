@@ -16,13 +16,11 @@ namespace OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatement
     public class GetPrivacyStatementForCurrentUserQueryHandler : IRequestHandler<GetPrivacyStatementForCurrentUserQuery, bool>
     {
         private readonly ICurrentUserService _currentUserService;
-        private readonly IDomainUserService _domainUserService;
         private readonly ITermsAndConditionsService _termsAndConditionsService;
 
-        public GetPrivacyStatementForCurrentUserQueryHandler(ICurrentUserService currentUserService, IDomainUserService domainUserService, ITermsAndConditionsService termsAndConditionsService)
+        public GetPrivacyStatementForCurrentUserQueryHandler(ICurrentUserService currentUserService, ITermsAndConditionsService termsAndConditionsService)
         {
             _currentUserService = currentUserService;
-            _domainUserService = domainUserService;
             _termsAndConditionsService = termsAndConditionsService;
         }
 
