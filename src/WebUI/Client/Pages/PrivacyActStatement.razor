@@ -3,7 +3,7 @@
 
 <h1>Privacy Act Statement</h1>
 
-@if (_data is null)
+@if (SurveyData is null)
 {
     <p>Loading...</p>
 }
@@ -12,27 +12,5 @@ else
     <Survey Id="surveyElementPrivacyAct"
             SurveyUrl="sample-data/privacyActStatementSurvey.json"
             OnSurveyCompleted="@OnSurveyCompleted"
-            Data="@_data"/>
-}
-
-@code {
-    private string _data;
-
-    protected override async Task OnInitializedAsync()
-    {
-        var isPrivacyActStatementAccepted = await Http.GetFromJsonAsync<bool>("api/PrivacyStatement");
-
-        //var a = new { questionAcceptPaStatement = new { iAcceptPaStatement = isPrivacyActStatementAccepted } };
-
-        //_data = System.Text.Json.JsonSerializer.Serialize(a);
-
-        if (isPrivacyActStatementAccepted)
-        {
-            _data = "{ \"questionAcceptPaStatement\": [ \"iAcceptPaStatement\" ] }";
-        }
-        else
-        {
-            _data = "{}";
-        }
-    }
+            Data="@SurveyData"/>
 }
