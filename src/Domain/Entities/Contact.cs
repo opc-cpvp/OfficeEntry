@@ -10,5 +10,6 @@ namespace OfficeEntry.Domain.Entities
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
         public string Username { get; set; }
+        public UserSettings UserSettings { get; set; }
     }
 }

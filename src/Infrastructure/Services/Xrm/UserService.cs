@@ -1,5 +1,6 @@
 ﻿using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
+using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 using System;
 using System.Linq;
@@ -8,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm
 {
-    public class ContactsService : XrmService
+    public class UserService : XrmService, IUserService
     {
-        public ContactsService(IHttpClientFactory httpClientFactory)
+        public UserService(IHttpClientFactory httpClientFactory)
             : base(httpClientFactory)
         {
         }
 
-        internal async Task<(Result Result, contact contact)> GetContact(string username)
+        public async Task<(Result Result, Contact Contact)> GetContact(string username)
         {
             var contacts = await Client.For<contact>()
                 .Filter(c => c.gc_username == username)
@@ -27,15 +28,15 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
             if (contacts.Count() == 0)
             {
-                return (Result.Failure(new[] { $"No contacts with username '{username}'." }), default(contact));
+                return (Result.Failure(new[] { $"No contacts with username '{username}'." }), default(Contact));
             }
 
             if (contacts.Count() > 1)
             {
-                return (Result.Failure(new[] { $"More than one contacts with username '{username}'." }), default(contact));
+                return (Result.Failure(new[] { $"More than one contacts with username '{username}'." }), default(Contact));
             }
 
-            return (Result.Success(), contacts.First());
+            return (Result.Success(), contact.Convert(contacts.First()));
         }
 
         public async Task<(Result Result, Guid UserId)> GetUserId(string username)
@@ -45,7 +46,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             if (!result.Succeeded)
                 return (result, default(Guid));
 
-            return (Result.Success(), contact.contactid);
+            return (Result.Success(), contact.Id);
         }
     }
 }

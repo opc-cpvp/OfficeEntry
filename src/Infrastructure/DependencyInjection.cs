@@ -22,7 +22,7 @@ namespace OfficeEntry.Infrastructure
 
             services.AddScoped<ILocationService, LocationService>();
             services.AddScoped<ITermsAndConditionsService, TermsAndConditionsService>();
-            services.AddScoped<ContactsService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IDomainUserService, DomainUserService>(provider =>
                 new DomainUserService(configuration.GetValue<string>("Domain"))

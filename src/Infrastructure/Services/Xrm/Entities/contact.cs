@@ -22,7 +22,8 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
                 LastName = contact.lastname,
                 EmailAddress = contact.emailaddress1,
                 PhoneNumber = contact.telephone1,
-                Username = contact.gc_username
+                Username = contact.gc_username,
+                UserSettings = gc_usersettings.Convert(contact.gc_usersettings)
             };
         }
     }
