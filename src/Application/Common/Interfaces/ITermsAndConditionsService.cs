@@ -9,6 +9,6 @@ namespace OfficeEntry.Application.Common.Interfaces
         Task<Result> SetPrivacyActStatementFor(string username, bool isPrivateActStatementAccepted);
 
         Task<(Result Result, bool IsHealthAndSafetyMeasuresAccepted)> GetHealthAndSafetyMeasuresFor(string username);
-        Task SetHealthAndSafetyMeasuresFor(string username, bool isHealthAndSafetyMeasuresAccepted);
+        Task<Result> SetHealthAndSafetyMeasuresFor(string username, bool isHealthAndSafetyMeasuresAccepted);
     }
 }
