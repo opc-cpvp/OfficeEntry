@@ -1,5 +1,5 @@
 ﻿@page "/access-requests"
-@using OfficeEntry.Application.AccessRequest.Queries.GetAccessRequests;
+@using OfficeEntry.Domain.Entities;
 @inject HttpClient Http
 
 <h1>Access Requests</h1>
@@ -32,12 +32,12 @@ else
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">@accessRequest.Name</h5>
+                        <h5 class="card-title">@accessRequest.Building.Name</h5>
                         <span class="oi circle-x" aria-hidden="true"></span>
 
-                        <p class="card-text">@accessRequest.Location</p>
-                        <p class="card-text">@accessRequest.EntryTime</p>
-                        <p class="card-text"><small class="text-muted">@accessRequest.Status</small></p>
+                        <p class="card-text">@accessRequest.Floor.Name</p>
+                        <p class="card-text">@accessRequest.StartTime</p>
+                        <p class="card-text"><small class="text-muted">@accessRequest.Status.Value</small></p>
                     </div>
                 </div>
             </div>
@@ -117,10 +117,10 @@ else
 
 
 @code {
-    private AccessRequestDto[] accessRequests;
+    private AccessRequest[] accessRequests;
 
     protected override async Task OnInitializedAsync()
     {
-        accessRequests = await Http.GetFromJsonAsync<AccessRequestDto[]>("api/AccessRequests");
+        accessRequests = await Http.GetFromJsonAsync<AccessRequest[]>("api/AccessRequests");
     }
 }

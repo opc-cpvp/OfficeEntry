@@ -20,6 +20,7 @@ namespace OfficeEntry.Infrastructure
         {
             services.AddTransient<IDateTime, DateTimeService>();
 
+            services.AddScoped<IAccessRequestService, AccessRequestService>();
             services.AddScoped<ILocationService, LocationService>();
             services.AddScoped<ITermsAndConditionsService, TermsAndConditionsService>();
             services.AddScoped<IUserService, UserService>();

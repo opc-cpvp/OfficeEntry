@@ -11,6 +11,9 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
 
         public static UserSettings Convert(gc_usersettings userSettings)
         {
+            if (userSettings is null)
+                return null;
+
             return new UserSettings
             {
                 Id = userSettings.gc_usersettingsid,

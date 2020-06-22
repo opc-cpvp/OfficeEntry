@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,40 +10,36 @@ using System.Threading.Tasks;
 
 namespace OfficeEntry.Application.AccessRequest.Queries.GetAccessRequests
 {
-    public class GetAccessRequestsQuery : IRequest<IEnumerable<AccessRequestDto>>
+    public class GetAccessRequestsQuery : IRequest<IEnumerable<Domain.Entities.AccessRequest>>
     {
     }
 
-    public class GetAccessRequestsQueryHandler : IRequestHandler<GetAccessRequestsQuery, IEnumerable<AccessRequestDto>>
+    public class GetAccessRequestsQueryHandler : IRequestHandler<GetAccessRequestsQuery, IEnumerable<Domain.Entities.AccessRequest>>
     {
-        public Task<IEnumerable<AccessRequestDto>> Handle(GetAccessRequestsQuery request, CancellationToken cancellationToken)
+        private readonly ICurrentUserService _currentUserService;
+        private readonly IAccessRequestService _accessRequestService;
+        private readonly IUserService _userService;
+
+        public GetAccessRequestsQueryHandler(ICurrentUserService currentUserService, IAccessRequestService accessRequestService, IUserService userService)
         {
-            ////var rng = new Random();
-
-            ////var vm = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            ////{
-            ////    Date = DateTime.Now.AddDays(index),
-            ////    TemperatureC = rng.Next(-20, 55),
-            ////    Summary = Summaries[rng.Next(Summaries.Length)]
-            ////});
-            ///
-            var vm = Enumerable.Range(1, 5).Select(Index => new AccessRequestDto
-            {
-                Name = "My Name",
-                Location = "30 Victoria",
-                EntryTime = "June 11th, 2020 - 09:00 to 13:00",
-                Status = "Pending"
-            });
-
-            return Task.FromResult(vm);
+            _currentUserService = currentUserService;
+            _accessRequestService = accessRequestService;
+            _userService = userService;
         }
-    }
 
-    public class AccessRequestDto
-    {
-        public string Name { get; set; }
-        public string Location { get; set; }
-        public string EntryTime { get; set; }
-        public string Status { get; set; }
+        public async Task<IEnumerable<Domain.Entities.AccessRequest>> Handle(GetAccessRequestsQuery request, CancellationToken cancellationToken)
+        {
+            var username = _currentUserService.UserId;
+            var userResult = await _userService.GetUserId(username);
+            var result = await _accessRequestService.GetAccessRequestsFor(userResult.UserId);
+
+            // TODO: what should we do with the
+            if (!result.Result.Succeeded)
+            {
+
+            }
+
+            return result.AccessRequests;
+        }
     }
 }
