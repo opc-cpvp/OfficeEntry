@@ -7,15 +7,14 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
     public abstract class XrmService : IDisposable
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly HttpClient _httpClient;
         private bool disposedValue;
 
         public XrmService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
-            _httpClient = _httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
+            HttpClient = _httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
 
-            var clientSettings = new ODataClientSettings(_httpClient)
+            var clientSettings = new ODataClientSettings(HttpClient)
             {
                 IgnoreUnmappedProperties = true
             };
@@ -23,7 +22,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             Client = new ODataClient(clientSettings);
         }
 
-        protected HttpClient HttpClient => _httpClient;
+        protected HttpClient HttpClient { get; }
         protected ODataClient Client { get; private set; }
 
         protected virtual void Dispose(bool disposing)
@@ -33,7 +32,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 if (disposing)
                 {
                     // Dispose managed state (managed objects)
-                    _httpClient?.Dispose();
+                    HttpClient?.Dispose();
                 }
 
                 // Free unmanaged resources (unmanaged objects) and override finalizer

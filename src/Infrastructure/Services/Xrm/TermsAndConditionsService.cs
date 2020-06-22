@@ -13,51 +13,32 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 {
     public class TermsAndConditionsService : XrmService, ITermsAndConditionsService
     {
-        public TermsAndConditionsService(IHttpClientFactory httpClientFactory)
+        private readonly ContactsService _contactsService;
+
+        public TermsAndConditionsService(IHttpClientFactory httpClientFactory, ContactsService contactService)
             : base(httpClientFactory)
         {
+            _contactsService = contactService;
         }
 
         public async Task<(Result Result, bool IsHealthAndSafetyMeasuresAccepted)> GetHealthAndSafetyMeasuresFor(string username)
         {
-            var contacts = await Client.For<contact>()
-                .Filter(c => c.gc_username == username)
-                //.Filter(c => c.fullname == fullname)
-                .Expand(c => c.gc_usersettings)
-                .FindEntriesAsync();
+            var (result, contact) = await _contactsService.GetContact(username);
 
-            if (contacts.Count() == 0)
-            {
-                return (Result.Failure(new[] { $"No contacts with username '{username}'." }), default(bool));
-            }
+            if (!result.Succeeded)
+                return (result, default(bool));
 
-            if (contacts.Count() > 1)
-            {
-                return (Result.Failure(new[] { $"More than one contacts with username '{username}'." }), default(bool));
-            }
-
-            return (Result.Success(), contacts.First()?.gc_usersettings?.gc_healthsafety.HasValue ?? false);
+            return (Result.Success(), contact.gc_usersettings?.gc_healthsafety.HasValue ?? false);
         }
 
         public async Task<(Result Result, bool IsPrivacyActStatementAccepted)> GetPrivacyActStatementFor(string username)
         {
-            var contacts = await Client.For<contact>()
-                .Filter(c => c.gc_username == username)
-                //.Filter(c => c.fullname == fullname)
-                .Expand(c => c.gc_usersettings)
-                .FindEntriesAsync();
+            var (result, contact) = await _contactsService.GetContact(username);
 
-            if (contacts.Count() == 0)
-            {
-                return (Result.Failure(new[] { $"No contacts with username '{username}'." }), default(bool));
-            }
+            if (!result.Succeeded)
+                return (result, default(bool));
 
-            if (contacts.Count() > 1)
-            {
-                return (Result.Failure(new[] { $"More than one contacts with username '{username}'." }), default(bool));
-            }
-
-            return (Result.Success(), contacts.First()?.gc_usersettings?.gc_privacystatement.HasValue ?? false);
+            return (Result.Success(), contact.gc_usersettings?.gc_privacystatement.HasValue ?? false);
         }
 
         public Task SetHealthAndSafetyMeasuresFor(string username, bool isHealthAndSafetyMeasuresAccepted)
@@ -67,23 +48,10 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
         public async Task<Result> SetPrivacyActStatementFor(string username, bool isPrivateActStatementAccepted)
         {
-            var contacts = await Client.For<contact>()
-                .Filter(c => c.gc_username == username)
-                //.Filter(c => c.fullname == fullname)
-                .Expand(c => c.gc_usersettings)
-                .FindEntriesAsync();
+            var (result, contact) = await _contactsService.GetContact(username);
 
-            if (contacts.Count() == 0)
-            {
-                return Result.Failure(new[] { $"No contacts with username '{username}'." });
-            }
-
-            if (contacts.Count() > 1)
-            {
-                return Result.Failure(new[] { $"More than one contacts with username '{username}'." });
-            }
-
-            var contact = contacts.First();
+            if (!result.Succeeded)
+                return (result);
 
             var settings = await (contact.gc_usersettings is null ? Create() : Update(contact.gc_usersettings.gc_usersettingsid));
 
@@ -104,6 +72,12 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             {
                     throw new NotImplementedException();
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _contactsService?.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
