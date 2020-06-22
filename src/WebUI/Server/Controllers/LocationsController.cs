@@ -16,7 +16,6 @@ namespace OfficeEntry.WebUI.Server.Controllers
             return await Mediator.Send(new GetBuildingsQuery());
         }
 
-        // GET api/<LocationController>/5
         [HttpGet("{id}")]
         public async Task<IEnumerable<Floor>> Get(Guid id)
         {

@@ -13,8 +13,8 @@
 					"isRequired": true,
 					"choicesByUrl": {
 						"url": "api/Locations",
-						"valueName": "Id",
-						"titleName": "Name"
+						"valueName": "id",
+						"titleName": "name"
 					}
 				},
 				{
@@ -26,9 +26,9 @@
 					},
 					"isRequired": true,
 					"choicesByUrl": {
-						"url": "api/Locations/{building.Id}",
-						"valueName": "Id",
-						"titleName": "Name"
+						"url": "api/Locations/{building}",
+						"valueName": "id",
+						"titleName": "name"
 					}
 				},
 				{
