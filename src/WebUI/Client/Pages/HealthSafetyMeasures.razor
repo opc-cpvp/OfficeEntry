@@ -4,22 +4,14 @@
 
 <h1>Health & Safety Measures</h1>
 
-<Survey Id="surveyElement"
-        SurveyUrl="sample-data/healthSafetyMeasuresSurvey.json"
-        OnSurveyCompleted="@OnSurveyCompleted"
-        OnLoadData="LoadDataHandler" />
-
-@code {
-    protected async Task LoadDataHandler(Survey sender)
-    {
-        var isHealthAndSafetyMeasuresStatementAccepted = await Http.GetFromJsonAsync<bool>("api/HealthAndSafetyMeasures");
-
-        string data = "";
-        if (isHealthAndSafetyMeasuresStatementAccepted)
-        {
-            data = "{ \"questionAcceptHsmStatement\": [ \"iAcceptHsmStatement\" ] }";
-        }
-
-        await sender.SetData(data);
-    }
+@if (SurveyData is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <Survey Id="surveyElementPrivacyAct"
+            SurveyUrl="sample-data/healthSafetyMeasuresSurvey.json"
+            OnSurveyCompleted="@OnSurveyCompleted"
+            Data="@SurveyData" />
 }
