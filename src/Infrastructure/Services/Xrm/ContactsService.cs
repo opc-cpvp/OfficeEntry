@@ -23,6 +23,8 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 .Expand(c => c.gc_usersettings)
                 .FindEntriesAsync();
 
+            // TODO: Should we replace this with a .Single()?
+
             if (contacts.Count() == 0)
             {
                 return (Result.Failure(new[] { $"No contacts with username '{username}'." }), default(contact));
