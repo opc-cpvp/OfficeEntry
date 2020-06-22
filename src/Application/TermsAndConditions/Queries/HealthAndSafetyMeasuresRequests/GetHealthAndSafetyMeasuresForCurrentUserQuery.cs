@@ -4,7 +4,7 @@ using OfficeEntry.Domain.ValueObjects;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OfficeEntry.Application.TermsAndConditions.Queries
+namespace OfficeEntry.Application.TermsAndConditions.Queries.GetHealthAndSafetyMeasuresRequests
 {
     public class GetHealthAndSafetyMeasuresForCurrentUserQuery : IRequest<bool>
     {
