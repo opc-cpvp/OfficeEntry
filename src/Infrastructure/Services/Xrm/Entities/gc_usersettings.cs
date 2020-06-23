@@ -9,6 +9,8 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
         public DateTime? gc_healthsafety { get; set; }
         public DateTime? gc_privacystatement { get; set; }
 
+        public int statecode { get; set; }
+
         public static UserSettings Convert(gc_usersettings userSettings)
         {
             if (userSettings is null)

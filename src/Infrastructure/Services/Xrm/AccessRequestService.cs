@@ -20,8 +20,9 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
         public async Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetAccessRequestsFor(Guid contactId)
         {
             var accessRequests = await Client.For<gc_accessrequest>()
-                .Filter(a => a.gc_accessrequestsid.contactid == contactId)
-                .Expand(a => new { a.gc_accessrequestsid, a.gc_building, a.gc_floor, a.gc_manager })
+                .Filter(a => a.statecode == (int)StateCode.Active)
+                .Filter(a => a.gc_employee.contactid == contactId)
+                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_contact_visitors })
                 .FindEntriesAsync();
 
             return (Result.Success(), accessRequests.Select(a => gc_accessrequest.Convert(a)));

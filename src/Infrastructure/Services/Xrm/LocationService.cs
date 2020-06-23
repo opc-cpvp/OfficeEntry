@@ -20,7 +20,9 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
         public async Task<IEnumerable<Building>> GetBuildingsAsync()
         {
-            var buildings = await Client.For<gc_building>().FindEntriesAsync();
+            var buildings = await Client.For<gc_building>()
+                .Filter(a => a.statecode == (int)StateCode.Active)
+                .FindEntriesAsync();
 
             return buildings.Select(b => new Building
             {

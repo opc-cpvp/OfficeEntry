@@ -1,12 +1,14 @@
 ﻿using OfficeEntry.Domain.Entities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
 {
     internal class gc_accessrequest
     {
         public Guid gc_accessrequestid { get; set; }
-        public contact gc_accessrequestsid { get; set; }
+        public contact gc_employee { get; set; }
         public AccessReasons gc_reason { get; set; }
         public ApprovalStatus gc_approvalstatus { get; set; }
         public gc_building gc_building { get; set; }
@@ -15,13 +17,15 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
         public gc_floor gc_floor { get; set; }
         public contact gc_manager { get; set; }
         public DateTime gc_starttime { get; set; }
+        public IList<contact> gc_accessrequest_contact_visitors { get; set; }
+        public int statecode { get; set; }
 
         public static AccessRequest Convert(gc_accessrequest accessRequest) {
             return new AccessRequest
             {
                 Id = accessRequest.gc_accessrequestid,
                 Building = gc_building.Convert(accessRequest.gc_building),
-                Contact = contact.Convert(accessRequest.gc_accessrequestsid),
+                Employee = contact.Convert(accessRequest.gc_employee),
                 Details = accessRequest.gc_details,
                 EndTime = accessRequest.gc_endtime,
                 Floor = gc_floor.Convert(accessRequest.gc_floor),
@@ -36,7 +40,8 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
                 {
                     Key = (int)accessRequest.gc_approvalstatus,
                     Value = Enum.GetName(typeof(ApprovalStatus), accessRequest.gc_approvalstatus)
-                }
+                },
+                Visitors = accessRequest.gc_accessrequest_contact_visitors.Select(v => contact.Convert(v)).ToList()
             };
         }
     }

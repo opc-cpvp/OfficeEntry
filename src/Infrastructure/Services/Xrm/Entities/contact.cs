@@ -12,6 +12,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
         public string gc_username { get; set; }
         public gc_usersettings gc_usersettings { get; set; }
         public string telephone1 { get; set; }
+        public int statecode { get; set; }
 
         public static Contact Convert(contact contact)
         {

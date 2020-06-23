@@ -12,6 +12,8 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
         public string gc_englishname { get; set; }
         public string gc_frenchname { get; set; }
 
+        public int statecode { get; set; }
+
         public static Floor Convert(gc_floor floor)
         {
             return new Floor

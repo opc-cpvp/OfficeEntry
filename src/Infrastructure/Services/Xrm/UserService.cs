@@ -43,6 +43,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
         public async Task<(Result Result, IEnumerable<Contact> Contacts)> GetContacts()
         {
             var contacts = await Client.For<contact>()
+                .Filter(b => b.statecode == (int)StateCode.Active)
                 .OrderBy(c => c.lastname)
                 .FindEntriesAsync();
 
