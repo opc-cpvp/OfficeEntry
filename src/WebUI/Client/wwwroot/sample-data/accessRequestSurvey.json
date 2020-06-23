@@ -12,9 +12,9 @@
 					},
 					"isRequired": true,
 					"choicesByUrl": {
-						"url": "api/Locations",
-						"valueName": "Id",
-						"titleName": "Name"
+						"url": "api/locations",
+						"valueName": "id",
+						"titleName": "name"
 					}
 				},
 				{
@@ -26,9 +26,9 @@
 					},
 					"isRequired": true,
 					"choicesByUrl": {
-						"url": "api/Locations/{building.Id}",
-						"valueName": "Id",
-						"titleName": "Name"
+						"url": "api/locations/{building}",
+						"valueName": "id",
+						"titleName": "name"
 					}
 				},
 				{
@@ -75,10 +75,7 @@
 								"fr": "Autre"
 							}
 						}
-					],
-					"choicesByUrl": {
-						"url": "api/"
-					}
+					]
 				},
 				{
 					"type": "comment",
@@ -247,6 +244,7 @@
 					"type": "text",
 					"name": "startDate",
 					"title": "Select a date",
+					"isRequired": true,
 					"inputType": "date",
 					"max": "2999-12-31"
 				}
@@ -259,6 +257,7 @@
 					"type": "dropdown",
 					"name": "startTime",
 					"title": "From",
+					"isRequired": true,
 					"choices": [
 						{
 							"value": "0",
@@ -362,6 +361,7 @@
 					"type": "dropdown",
 					"name": "endTime",
 					"title": "To",
+					"isRequired": true,
 					"validators": [
 						{
 							"type": "expression",
@@ -479,9 +479,9 @@
 					"title": "Manager",
 					"isRequired": true,
 					"choicesByUrl": {
-						"url": "api/Users",
-						"valueName": "Id",
-						"titleName": "FullName"
+						"url": "api/users",
+						"valueName": "id",
+						"titleName": "fullname"
 					}
 				}
 			]
