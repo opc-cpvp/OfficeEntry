@@ -492,7 +492,7 @@
 				{
 					"type": "html",
 					"name": "acknowledgeHealthStatement",
-					"html": "<p><strong>On the day you are scheduled to enter the workplace, cancel your request and DO NOT enter the workplace if ANY of the following apply:</strong></p>\n\n<p>You are feeling ill or experiencing symptoms such as fever, cough, runny nose, sore throat, or difficulty breathing.</p>\n\n<p>You have been tested for, diagnosed with, or suspected of having COVID-19 in the last 14 days.</p>\n\n<p>You have provided care for or had close contact in the last 14 days with a suspected, probable or confirmed case of COVID-19.</p>\n\n<p>You have travelled outside Canada in the last 14 days.</p>"
+					"html": "<p><strong>On the day you are scheduled to enter the workplace, cancel your request and DO NOT enter the workplace if ANY of the following apply:</strong></p>\n\n<ul>\n<li>You are feeling ill or experiencing symptoms such as fever, cough, runny nose, sore throat, or difficulty breathing.</li>\n<li>You have been tested for, diagnosed with, or suspected of having COVID-19 in the last 14 days.</li>\n<li>You have provided care for or had close contact in the last 14 days with a suspected, probable or confirmed case of COVID-19.</li>\n<li>You have travelled outside Canada in the last 14 days.</li>\n</ul>"
 				},
 				{
 					"type": "checkbox",
@@ -520,7 +520,7 @@
 				{
 					"type": "html",
 					"name": "acknowledgeWorkplaceStatement",
-					"html": "<p><strong>While in the workplace:</strong></p>\n\n<p>Comply with all the protocols outlined in the COVID-19 Health & Safety Measures</p>\n\n<p>Remain on the floor for which you obtained approval to access</p>\n\n<p>Submit a new request should you need to access other floors or stay longer</p>\n\n<p>Leave on time</p>"
+					"html": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the COVID-19 Health & Safety Measures</li>\n<li>Remain on the floor for which you obtained approval to access</li>\n<li>Submit a new request should you need to access other floors or stay longer</li>\n<li>Leave on time</li>\n</ul>"
 				},
 				{
 					"type": "checkbox",
