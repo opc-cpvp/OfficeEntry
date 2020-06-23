@@ -481,7 +481,7 @@
 					"choicesByUrl": {
 						"url": "api/users",
 						"valueName": "id",
-						"titleName": "fullname"
+						"titleName": "fullName"
 					}
 				}
 			]
