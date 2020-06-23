@@ -30,39 +30,16 @@ interopJS.survey = {
     },
 
     init: function (id, classStyle, surveyUrl, data) {
-        //Survey.cssType = "bootstrap";
+        // Override the color used style the flip switch
+        Survey.StylesManager.ThemeColors["bootstrap"]["$main-color"] = "#007bff";
 
-        Survey
-            .StylesManager
-            .applyTheme("bootstrap");
+        // Apply bootstrap classes
+        Survey.StylesManager.applyTheme("bootstrap");
 
+        // Override classes to match bootstrap
         Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
         Survey.defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-secondary";
         Survey.defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
-
-        /*var myCss = {
-            html: "",
-            navigationButton: "btn btn-primary",
-            navigation: {
-                complete: ""
-            },
-            "row": "form-group",
-            "text": "form-control",
-            "checkbox": {
-                "root": "sv_qcbc sv_qcbx form-inline",
-                "item": "checkbox",
-                "itemChecked": "checked",
-                "itemInline": "sv_q_checkbox_inline",
-                "itemControl": "",
-                "itemDecorator": "sv-hidden",
-                "label": "",
-                "labelChecked": "",
-                "controlLabel": "",
-                "materialDecorator": "checkbox-material",
-                "other": "sv_q_checkbox_other form-control",
-                "column": "sv_q_select_column"
-            },
-        };*/
 
         fetch(surveyUrl)
             .then(response => response.json())
@@ -73,8 +50,6 @@ interopJS.survey = {
                     .innerHTML = `<div id="${id}" class="${classStyle}"><survey :survey="survey"/></div>`;
 
                 survey = new Survey.Model(json);
-
-                //survey.css = myCss;
 
                 survey
                     .onComplete
