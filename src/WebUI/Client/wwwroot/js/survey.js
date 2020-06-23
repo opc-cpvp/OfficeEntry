@@ -30,12 +30,15 @@ interopJS.survey = {
     },
 
     init: function (id, classStyle, surveyUrl, data) {
-        // Survey
-        //     .StylesManager
-        //     .applyTheme();  
-        Survey.cssType = "bootstrap";
+        //Survey.cssType = "bootstrap";
 
-        var myCss = {
+        Survey
+            .StylesManager
+            .applyTheme("bootstrap");
+
+        Survey.defaultBootstrapCss.navigationButton = "btn btn-primary"
+
+        /*var myCss = {
             html: "",
             navigationButton: "btn btn-primary",
             navigation: {
@@ -57,7 +60,7 @@ interopJS.survey = {
                 "other": "sv_q_checkbox_other form-control",
                 "column": "sv_q_select_column"
             },
-        };
+        };*/
 
         fetch(surveyUrl)
             .then(response => response.json())
@@ -69,7 +72,7 @@ interopJS.survey = {
 
                 survey = new Survey.Model(json);
 
-                survey.css = myCss;
+                //survey.css = myCss;
 
                 survey
                     .onComplete
