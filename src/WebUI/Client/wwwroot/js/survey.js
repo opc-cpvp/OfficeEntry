@@ -36,7 +36,9 @@ interopJS.survey = {
             .StylesManager
             .applyTheme("bootstrap");
 
-        Survey.defaultBootstrapCss.navigationButton = "btn btn-primary"
+        Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
+        Survey.defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-secondary";
+        Survey.defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
 
         /*var myCss = {
             html: "",
