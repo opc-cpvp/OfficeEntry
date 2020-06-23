@@ -3,6 +3,7 @@ using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -37,6 +38,15 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             }
 
             return (Result.Success(), contact.Convert(contacts.First()));
+        }
+
+        public async Task<(Result Result, IEnumerable<Contact> Contacts)> GetContacts()
+        {
+            var contacts = await Client.For<contact>()
+                .OrderBy(c => c.lastname)
+                .FindEntriesAsync();
+
+            return (Result.Success(), contacts.Select(c => contact.Convert(c)));
         }
 
         public async Task<(Result Result, Guid UserId)> GetUserId(string username)
