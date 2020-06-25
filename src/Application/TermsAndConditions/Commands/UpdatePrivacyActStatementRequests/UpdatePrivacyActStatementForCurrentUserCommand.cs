@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OfficeEntry.Application.TermsAndConditions.Command.UpdatePrivacyStatementRequests
+namespace OfficeEntry.Application.TermsAndConditions.Commands.UpdatePrivacyStatementRequests
 {
     public class UpdatePrivacyActStatementForCurrentUserCommand : IRequest
     {

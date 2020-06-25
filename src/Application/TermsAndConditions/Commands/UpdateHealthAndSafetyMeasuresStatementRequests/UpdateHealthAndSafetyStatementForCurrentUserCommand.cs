@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OfficeEntry.Application.TermsAndConditions.Command.UpdateHealthAndSafetyStatementRequests
+namespace OfficeEntry.Application.TermsAndConditions.Commands.UpdateHealthAndSafetyStatementRequests
 {
     public class UpdateHealthAndSafetyMeasuresStatementForCurrentUserCommand : IRequest
     {

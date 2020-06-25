@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using OfficeEntry.Application.TermsAndConditions.Queries;
 using OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatementRequests;
-using OfficeEntry.Application.TermsAndConditions.Command.UpdatePrivacyStatementRequests;
+using OfficeEntry.Application.TermsAndConditions.Commands.UpdatePrivacyStatementRequests;
 
 namespace OfficeEntry.WebUI.Server.Controllers
 {
