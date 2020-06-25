@@ -39,5 +39,30 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
             return (Result.Success(), accessRequests.Select(a => gc_accessrequest.Convert(a)));
         }
+
+        public async Task<Result> CreateAccessRequest(AccessRequest accessRequest)
+        {
+            var request = new gc_accessrequest {
+                gc_accessrequestid = Guid.NewGuid(),
+                gc_name = "new submission",
+                gc_accessreason = (AccessReasons)accessRequest.Reason.Key,
+                gc_approvalstatus = ApprovalStatus.Pending,
+                gc_building = new gc_building { gc_buildingid = accessRequest.Building.Id },
+                gc_details = accessRequest.Details,
+                gc_employee = new contact { contactid = accessRequest.Employee.Id },
+                gc_endtime = accessRequest.EndTime,
+                gc_floor = new gc_floor { gc_floorid = accessRequest.Floor.Id },
+                gc_manager = new contact { contactid = accessRequest.Manager.Id },
+                gc_starttime = accessRequest.StartTime,
+            };
+
+            // TODO: Create / link visitors
+
+            var createAccessRequestRequest = await Client.For<gc_accessrequest>()
+                .Set(request)
+                .InsertEntryAsync();
+
+            return Result.Success();
+        }
     }
 }
