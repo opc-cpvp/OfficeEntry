@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OfficeEntry.Application.AccessRequest.Commands.CreateAccessRequestRequests;
-using OfficeEntry.Application.AccessRequest.Queries.GetAccessRequest;
-using OfficeEntry.Application.AccessRequest.Queries.GetAccessRequests;
+using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
+using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
+using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
+using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests;
 using OfficeEntry.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,10 +24,16 @@ namespace OfficeEntry.WebUI.Server.Controllers
             return await Mediator.Send(new GetAccessRequestQuery { AccessRequestId = id });
         }
 
-        [HttpPost]
-        public async Task Post(AccessRequest accessRequest)
+        [HttpPost("create")]
+        public async Task Create(AccessRequest accessRequest)
         {
             await Mediator.Send(new CreateAccessRequestForCurrentUserCommand { AccessRequest = accessRequest });
+        }
+
+        [HttpPost("update")]
+        public async Task Update(AccessRequest accessRequest)
+        {
+            await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequest });
         }
     }
 }

@@ -52,6 +52,29 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             return (Result.Success(), accessRequests.Select(a => gc_accessrequest.Convert(a)));
         }
 
+        public async Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetManagerAccessRequestsFor(Guid contactId)
+        {
+            var accessRequests = await Client.For<gc_accessrequest>()
+                .Filter(a => a.statecode == (int)StateCode.Active)
+                .Filter(a => a.gc_manager.contactid == contactId)
+                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
+                .FindEntriesAsync();
+
+            accessRequests = accessRequests.ToList();
+
+            foreach (var accessRequest in accessRequests.ToList())
+            {
+                var visitors = await Client.For<gc_accessrequest>()
+                    .Key(accessRequest.gc_accessrequestid)
+                    .NavigateTo(a => a.gc_accessrequest_contact_visitors)
+                    .FindEntriesAsync();
+
+                accessRequest.gc_accessrequest_contact_visitors = visitors.ToList();
+            }
+
+            return (Result.Success(), accessRequests.Select(a => gc_accessrequest.Convert(a)));
+        }
+
         public async Task<Result> CreateAccessRequest(AccessRequest accessRequest)
         {
             var request = new gc_accessrequest {
@@ -73,6 +96,18 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 .InsertEntryAsync();
 
             // TODO: Create / link visitors
+
+            return Result.Success();
+        }
+
+        public async Task<Result> UpdateAccessRequest(AccessRequest accessRequest)
+        {
+            await Client.For<gc_accessrequest>()
+                .Key(accessRequest.Id)
+                .Set(new {
+                    gc_approvalstatus = (ApprovalStatus)accessRequest.Status.Key
+                })
+                .UpdateEntryAsync();
 
             return Result.Success();
         }

@@ -1,16 +1,17 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OfficeEntry.Application.AccessRequest.Commands.CreateAccessRequestRequests
+namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests
 {
     public class CreateAccessRequestForCurrentUserCommand : IRequest
     {
-        public Domain.Entities.AccessRequest AccessRequest { get; set; }
+        public AccessRequest AccessRequest { get; set; }
     }
 
     public class CreateAccessRequestForCurrentUserCommandHandler : IRequestHandler<CreateAccessRequestForCurrentUserCommand>

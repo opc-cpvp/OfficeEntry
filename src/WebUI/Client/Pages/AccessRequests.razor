@@ -117,10 +117,10 @@ else
 
 
 @code {
-    private AccessRequest[] accessRequests;
+    private Domain.Entities.AccessRequest[] accessRequests;
 
     protected override async Task OnInitializedAsync()
     {
-        accessRequests = await Http.GetFromJsonAsync<AccessRequest[]>("api/AccessRequests");
+        accessRequests = await Http.GetFromJsonAsync<Domain.Entities.AccessRequest[]>("api/AccessRequests");
     }
 }

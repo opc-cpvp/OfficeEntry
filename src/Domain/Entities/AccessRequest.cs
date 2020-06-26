@@ -16,5 +16,13 @@ namespace OfficeEntry.Domain.Entities
         public DateTime StartTime { get; set; }
         public OptionSet Status { get; set; }
         public List<Contact> Visitors { get; set; }
+
+        public enum ApprovalStatus
+        {
+            Pending = 948160000,
+            Approved = 948160001,
+            Declined = 948160002,
+            Cancelled = 948160003
+        }
     }
 }

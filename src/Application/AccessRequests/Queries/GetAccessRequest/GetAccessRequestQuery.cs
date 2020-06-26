@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OfficeEntry.Application.AccessRequest.Queries.GetAccessRequest
+namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest
 {
     public class GetAccessRequestQuery : IRequest<Domain.Entities.AccessRequest>
     {

@@ -22,7 +22,7 @@ namespace OfficeEntry.WebUI.Client.Pages
         {
             var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(surveyResult);
 
-            var accessRequest = new AccessRequest
+            var accessRequest = new Domain.Entities.AccessRequest
             {
                 Building = new Building { Id = submission.building },
                 Details = submission.details,
@@ -59,7 +59,7 @@ namespace OfficeEntry.WebUI.Client.Pages
                 }
             }
 
-            await Http.PostAsJsonAsync("api/AccessRequests", accessRequest);
+            await Http.PostAsJsonAsync("api/accessrequests/create", accessRequest);
         }
     }
 }
