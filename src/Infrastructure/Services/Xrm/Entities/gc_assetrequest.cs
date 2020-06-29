@@ -7,6 +7,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
     {
         public string gc_name { get; set; }
         public Guid gc_assetrequestid { get; set; }
+        public gc_accessrequest gc_assetsid { get; set; }
         public Asset gc_asset { get; set; }
         public string gc_other { get; set; }
 

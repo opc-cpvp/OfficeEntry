@@ -77,7 +77,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
         public async Task<Result> CreateAccessRequest(AccessRequest accessRequest)
         {
-            var request = new gc_accessrequest
+            var access = new gc_accessrequest
             {
                 gc_accessrequestid = Guid.NewGuid(),
                 gc_name = $"{accessRequest.Employee.FullName} - {accessRequest.StartTime:yyyy-MM-dd}",
@@ -92,11 +92,28 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 gc_starttime = accessRequest.StartTime
             };
 
-            await Client.For<gc_accessrequest>()
-                .Set(request)
+            access = await Client.For<gc_accessrequest>()
+                .Set(access)
                 .InsertEntryAsync();
 
             // TODO: Create / link visitors
+
+            foreach (var assetRequest in accessRequest.AssetRequests)
+            {
+                var asset = new gc_assetrequest
+                {
+                    gc_assetrequestid = Guid.NewGuid(),
+                    gc_name = $"{access.gc_accessrequestid} - {Enum.GetName(typeof(Domain.Enums.Asset), assetRequest.Asset.Key)}",
+                    gc_assetsid = access,
+                    gc_asset = (Asset)assetRequest.Asset.Key,
+                    gc_other = assetRequest.Other
+                };
+
+                await Client
+                    .For<gc_assetrequest>()
+                    .Set(asset)
+                    .InsertEntryAsync();
+            }
 
             return Result.Success();
         }

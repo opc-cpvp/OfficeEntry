@@ -24,6 +24,7 @@ namespace OfficeEntry.WebUI.Client.Pages
 
             var accessRequest = new Domain.Entities.AccessRequest
             {
+                AssetRequests = new List<AssetRequest>(),
                 Building = new Building { Id = submission.building },
                 Details = submission.details,
                 EndTime = submission.startDate.AddHours(submission.endTime),
@@ -33,10 +34,9 @@ namespace OfficeEntry.WebUI.Client.Pages
                 {
                     Key = submission.reason
                 },
-                StartTime = submission.startDate.AddHours(submission.startTime)
+                StartTime = submission.startDate.AddHours(submission.startTime),
+                Visitors = new List<Contact>()
             };
-
-            accessRequest.Visitors = new List<Contact>();
 
             if (submission.visitors != null)
             {
@@ -57,6 +57,30 @@ namespace OfficeEntry.WebUI.Client.Pages
                         }
                     );
                 }
+            }
+
+            // TODO: implement all assets
+            for (var i = 0; i < submission.chair; i++)
+            {
+                accessRequest.AssetRequests.Add(new AssetRequest
+                {
+                    Asset = new OptionSet
+                    {
+                        Key = (int)Domain.Enums.Asset.Chair
+                    }
+                });
+            }
+
+            if (!string.IsNullOrWhiteSpace(submission.other))
+            {
+                accessRequest.AssetRequests.Add(new AssetRequest
+                {
+                    Asset = new OptionSet
+                    {
+                        Key = (int)Domain.Enums.Asset.Other
+                    },
+                    Other = submission.other
+                });
             }
 
             await Http.PostAsJsonAsync("api/accessrequests/create", accessRequest);
