@@ -40,45 +40,48 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
         public async Task<Result> SetHealthAndSafetyMeasuresFor(string username, bool isHealthAndSafetyMeasuresAccepted)
         {
-            throw new NotImplementedException();
+            var (result, contact) = await _userService.GetContact(username);
 
-            //var contacts = await Client.For<contact>()
-            //    .Filter(c => c.gc_username == username)
-            //    //.Filter(c => c.fullname == fullname)
-            //    .Expand(c => c.gc_usersettings)
-            //    .FindEntriesAsync();
+            if (!result.Succeeded)
+                return (result);
 
-            //if (contacts.Count() == 0)
-            //{
-            //    return Result.Failure(new[] { $"No contacts with username '{username}'." });
-            //}
+            await (contact.UserSettings is null ? Create() : Update(contact.UserSettings.Id));
 
-            //if (contacts.Count() > 1)
-            //{
-            //    return Result.Failure(new[] { $"More than one contacts with username '{username}'." });
-            //}
+            return Result.Success();
 
-            //var contact = contacts.First();
+            async Task<gc_usersettingses> Create()
+            {
+                var userSettings = new gc_usersettingses
+                {
+                    gc_usersettingsid = Guid.NewGuid(),
+                    gc_name = contact.Username,
+                    gc_healthsafety = DateTime.Now
+                };
 
-            //var settings = await(contact.gc_usersettings is null ? Create() : Update(contact.gc_usersettings.gc_usersettingsid));
+                userSettings = await Client
+                    .For<gc_usersettingses>()
+                    .Set(userSettings)
+                    .InsertEntryAsync();
 
-            //await Client
-            //    .For<contact>()
-            //    .Key(contact.contactid)
-            //    .Set(new { _gc_usersettings_value = settings.gc_usersettingsid })
-            //    .UpdateEntryAsync();
+                await Client
+                    .For<contact>()
+                    .Key(contact.Id)
+                    .Set(new { gc_usersettings = userSettings })
+                    .UpdateEntryAsync();
 
-            //return Result.Success();
+                return userSettings;
+            }
 
-            //async Task<gc_usersettings> Create()
-            //{
-            //    throw new NotImplementedException();
-            //}
+            async Task<gc_usersettingses> Update(Guid id)
+            {
+                var userSettings = await Client
+                    .For<gc_usersettingses>()
+                    .Key(id)
+                    .Set(new { gc_healthsafety = DateTime.Now })
+                    .UpdateEntryAsync();
 
-            //async Task<gc_usersettings> Update(Guid id)
-            //{
-            //    throw new NotImplementedException();
-            //}
+                return userSettings;
+            }
         }
 
         public async Task<Result> SetPrivacyActStatementFor(string username, bool isPrivateActStatementAccepted)
