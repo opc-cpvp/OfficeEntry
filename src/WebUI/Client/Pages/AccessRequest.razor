@@ -42,6 +42,11 @@ else
         </table>
     }
 
+    if (IsEmployee)
+    {
+        <button type="button" class="btn btn-danger" @onclick="CancelRequest" disabled="@IsCancelled">Cancel</button>
+    }
+
     if (IsManager)
     {
         <button type="button" class="btn btn-danger" @onclick="DeclineRequest" disabled="@IsDeclined">Decline</button>
@@ -51,10 +56,16 @@ else
 
 @code {
     [Parameter] public Guid Id { get; set; }
+
+    // TODO: Check if the active user is also the employee
+    public bool IsEmployee { get; set; } = true;
+
+    // TODO: Check if the active user is also the manager
     public bool IsManager { get; set; } = true;
 
-    public bool IsDeclined { get { return accessRequest.Status.Key == (int)Domain.Entities.AccessRequest.ApprovalStatus.Declined; } }
     public bool IsApproved { get { return accessRequest.Status.Key == (int)Domain.Entities.AccessRequest.ApprovalStatus.Approved; } }
+    public bool IsCancelled { get { return accessRequest.Status.Key == (int)Domain.Entities.AccessRequest.ApprovalStatus.Cancelled; } }
+    public bool IsDeclined { get { return accessRequest.Status.Key == (int)Domain.Entities.AccessRequest.ApprovalStatus.Declined; } }
 
     private Domain.Entities.AccessRequest accessRequest;
 
@@ -68,6 +79,13 @@ else
         accessRequest.Status.Key = (int)Domain.Entities.AccessRequest.ApprovalStatus.Approved;
         await Http.PostAsJsonAsync("api/accessrequests/update", accessRequest);
         accessRequest.Status.Value = "Approved";
+    }
+
+    private async Task CancelRequest()
+    {
+        accessRequest.Status.Key = (int)Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
+        await Http.PostAsJsonAsync("api/accessrequests/update", accessRequest);
+        accessRequest.Status.Value = "Cancelled";
     }
 
     private async Task DeclineRequest()
