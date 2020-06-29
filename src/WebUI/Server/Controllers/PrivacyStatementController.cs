@@ -1,11 +1,7 @@
-﻿using OfficeEntry.Application.Locations.Queries.GetFloors;
-using OfficeEntry.Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using OfficeEntry.Application.TermsAndConditions.Queries;
-using OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatementRequests;
+﻿using Microsoft.AspNetCore.Mvc;
 using OfficeEntry.Application.TermsAndConditions.Commands.UpdatePrivacyStatementRequests;
+using OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatementRequests;
+using System.Threading.Tasks;
 
 namespace OfficeEntry.WebUI.Server.Controllers
 {

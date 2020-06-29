@@ -21,7 +21,8 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
         public IList<contact> gc_accessrequest_contact_visitors { get; set; }
         public int statecode { get; set; }
 
-        public static AccessRequest Convert(gc_accessrequest accessRequest) {
+        public static AccessRequest Convert(gc_accessrequest accessRequest)
+        {
             return new AccessRequest
             {
                 Id = accessRequest.gc_accessrequestid,

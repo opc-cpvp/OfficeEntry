@@ -1,10 +1,6 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
-using OfficeEntry.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -36,7 +32,6 @@ namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests
             // TODO: what should we do with the
             if (!result.Result.Succeeded)
             {
-
             }
 
             return result.AccessRequests;

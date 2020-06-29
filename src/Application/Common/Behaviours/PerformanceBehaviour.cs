@@ -16,7 +16,7 @@ namespace OfficeEntry.Application.Common.Behaviours
         private readonly IDomainUserService _domainUserService;
 
         public PerformanceBehaviour(
-            ILogger<TRequest> logger, 
+            ILogger<TRequest> logger,
             ICurrentUserService currentUserService,
             IDomainUserService domainUserService)
         {

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using OfficeEntry.Application.Common.Behaviours;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using OfficeEntry.Application.Common.Behaviours;
 using System.Reflection;
 
 namespace OfficeEntry.Application

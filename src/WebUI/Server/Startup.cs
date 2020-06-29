@@ -1,15 +1,12 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Linq;
-using OfficeEntry.Infrastructure;
 using OfficeEntry.Application;
-using OfficeEntry.WebUI.Services;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Infrastructure;
+using OfficeEntry.WebUI.Services;
 
 namespace OfficeEntry.WebUI.Server
 {

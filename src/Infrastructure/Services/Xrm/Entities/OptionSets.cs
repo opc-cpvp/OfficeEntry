@@ -1,6 +1,5 @@
 ﻿namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
 {
-
     public enum AccessReasons
     {
         CriticalWork = 948160000,
@@ -17,6 +16,7 @@
         Declined = 948160002,
         Cancelled = 948160003
     }
+
     public enum StateCode
     {
         Active = 0,

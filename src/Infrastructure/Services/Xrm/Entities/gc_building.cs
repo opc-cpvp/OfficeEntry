@@ -1,7 +1,6 @@
 ﻿using OfficeEntry.Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
 {

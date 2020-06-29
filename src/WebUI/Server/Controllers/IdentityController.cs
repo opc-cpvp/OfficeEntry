@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.ValueObjects;
+using System.Threading.Tasks;
 
 namespace OfficeEntry.WebUI.Server.Controllers
 {

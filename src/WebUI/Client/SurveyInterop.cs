@@ -22,4 +22,3 @@ namespace OfficeEntry.WebUI.Client
         }
     }
 }
-

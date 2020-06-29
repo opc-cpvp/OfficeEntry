@@ -1,546 +1,546 @@
 {
-	"pages": [
-		{
-			"name": "page1",
-			"elements": [
-				{
-					"type": "dropdown",
-					"name": "building",
-					"title": {
-						"default": "Building",
-						"fr": "Édifice"
-					},
-					"isRequired": true,
-					"choicesByUrl": {
-						"url": "api/locations",
-						"valueName": "id",
-						"titleName": "name"
-					}
-				},
-				{
-					"type": "dropdown",
-					"name": "floor",
-					"title": {
-						"default": "Floor",
-						"fr": "Étage"
-					},
-					"isRequired": true,
-					"choicesByUrl": {
-						"url": "api/locations/{building}",
-						"valueName": "id",
-						"titleName": "name"
-					}
-				},
-				{
-					"type": "dropdown",
-					"name": "reason",
-					"title": {
-						"default": "Reason",
-						"fr": "Raison"
-					},
-					"isRequired": true,
-					"choices": [
-						{
-							"value": "948160000",
-							"text": {
-								"default": "Critical Work",
-								"fr": "Travail critique"
-							}
-						},
-						{
-							"value": "948160002",
-							"text": {
-								"default": "Regular Work",
-								"fr": "Travail régulier"
-							}
-						},
-						{
-							"value": "948160001",
-							"text": {
-								"default": "Pickup a Document",
-								"fr": "Récupérer un document"
-							}
-						},
-						{
-							"value": "948160003",
-							"text": {
-								"default": "Pickup Office Equipment",
-								"fr": "Récupérer un matériel de bureau"
-							}
-						},
-						{
-							"value": "948160004",
-							"text": {
-								"default": "Other",
-								"fr": "Autre"
-							}
-						}
-					]
-				},
-				{
-					"type": "comment",
-					"name": "details",
-					"title": {
-						"default": "Details",
-						"fr": "Détails"
-					}
-				},
-				{
-					"type": "boolean",
-					"name": "registerVisitors",
-					"title": {
-						"default": "Do you need to register visitors?",
-						"fr": "Avez-vous besoin d'inscrire des visiteurs?"
-					},
-					"defaultValue": "false",
-					"labelTrue": {
-						"default": "Yes",
-						"fr": "Oui"
-					},
-					"labelFalse": {
-						"default": "No",
-						"fr": "Non"
-					}
-				}
-			]
-		},
-		{
-			"name": "page8",
-			"elements": [
-				{
-					"type": "html",
-					"name": "question1",
-					"html": "<p>Prior to submitting a request, ensure alternatives such as purchasing or delivery of items have been considered and deemed not viable.</p>\n\n<p>If this request relates to a Duty to Accommodate Plan, managers should contact their Labour Relations Advisor for advice and guidance. In the event the employee requires support to retrieve a larger asset related to a DTA (i.e. chair), there is a pick-up and delivery service available through the <a href=\"http://jusnet.justice.gc.ca/eng/work-travail/facil-install/juspace.html\" target=\"_blank\">National Accommodations Division</a> available through the JUSpace link on the JUSnet home page.</p>"
-				}
-			],
-			"visibleIf": "{reason} = 948160003"
-		},
-		{
-			"name": "page9",
-			"elements": [
-				{
-					"type": "text",
-					"name": "chair",
-					"title": "Chair",
-					"defaultValue": "0"
-				},
-				{
-					"type": "text",
-					"name": "laptop",
-					"title": "Laptop",
-					"defaultValue": "0"
-				},
-				{
-					"type": "text",
-					"name": "tablet",
-					"title": "Tablet",
-					"defaultValue": "0"
-				},
-				{
-					"type": "text",
-					"name": "monitor",
-					"title": "Monitor",
-					"defaultValue": "0"
-				},
-				{
-					"type": "text",
-					"name": "dockingStation",
-					"title": "Docking Station",
-					"defaultValue": "0"
-				},
-				{
-					"type": "text",
-					"name": "keyboard",
-					"title": "Keyboard",
-					"defaultValue": "0"
-				},
-				{
-					"type": "text",
-					"name": "mouse",
-					"title": "Mouse",
-					"defaultValue": "0"
-				},
-				{
-					"type": "text",
-					"name": "cables",
-					"title": "Cables",
-					"defaultValue": "0"
-				},
-				{
-					"type": "text",
-					"name": "headset",
-					"title": "Headset",
-					"defaultValue": "0"
-				},
-				{
-					"type": "text",
-					"name": "printer",
-					"title": "Printer",
-					"defaultValue": "0"
-				},
-				{
-					"type": "comment",
-					"name": "other",
-					"title": "Other"
-				}
-			],
-			"visibleIf": "{reason} = 948160003",
-			"questionTitleLocation": "top"
-		},
-		{
-			"name": "page2",
-			"elements": [
-				{
-					"type": "html",
-					"name": "purposeStatement",
-					"html": "<p>As the employee sponsoring visitors, you are responsible for ensuring they understand and follow all COVID-19 Health & Safety Measures while in the workplace.</p>\n\n<p>Note that visitors should be entering only for a legitimate work-related purpose that cannot be done remotely. Do not bring friends or family members.</p>"
-				},
-				{
-					"type": "comment",
-					"name": "purpose",
-					"title": "Purpose of visit",
-					"isRequired": true
-				},
-				{
-					"type": "html",
-					"name": "visitorsStatement",
-					"html": "<p>Register each visitor and include a valid email and phone number. Once approved, visitors will receive an email including the COVID-19 Health & Safety Measures. To avoid delays once on-site, pre-register with the commissionaire/reception.</p>"
-				},
-				{
-					"type": "matrixdynamic",
-					"name": "visitors",
-					"title": "Visitors",
-					"isRequired": true,
-					"columns": [
-						{
-							"name": "name",
-							"title": "Name",
-							"cellType": "text"
-						},
-						{
-							"name": "email",
-							"title": "Email",
-							"cellType": "text",
-							"inputType": "email"
-						},
-						{
-							"name": "telephone",
-							"title": "Telephone",
-							"cellType": "text",
-							"inputType": "tel"
-						}
-					],
-					"rowCount": 1,
-					"minRowCount": 1,
-					"maxRowCount": 10
-				}
-			],
-			"visibleIf": "{registerVisitors} = true"
-		},
-		{
-			"name": "page3",
-			"elements": [
-				{
-					"type": "text",
-					"name": "startDate",
-					"title": "Select a date",
-					"isRequired": true,
-					"inputType": "date",
-					"max": "2999-12-31"
-				}
-			]
-		},
-		{
-			"name": "page4",
-			"elements": [
-				{
-					"type": "dropdown",
-					"name": "startTime",
-					"title": "From",
-					"isRequired": true,
-					"choices": [
-						{
-							"value": "0",
-							"text": "Midnight"
-						},
-						{
-							"value": "1",
-							"text": "1:00 AM"
-						},
-						{
-							"value": "2",
-							"text": "2:00 AM"
-						},
-						{
-							"value": "3",
-							"text": "3:00 AM"
-						},
-						{
-							"value": "4",
-							"text": "4:00 AM"
-						},
-						{
-							"value": "5",
-							"text": "5:00 AM"
-						},
-						{
-							"value": "6",
-							"text": "6:00 AM"
-						},
-						{
-							"value": "7",
-							"text": "7:00 AM"
-						},
-						{
-							"value": "8",
-							"text": "8:00 AM"
-						},
-						{
-							"value": "9",
-							"text": "9:00 AM"
-						},
-						{
-							"value": "10",
-							"text": "10:00 AM"
-						},
-						{
-							"value": "11",
-							"text": "11:00 AM"
-						},
-						{
-							"value": "12",
-							"text": "12:00 PM"
-						},
-						{
-							"value": "13",
-							"text": "1:00 PM"
-						},
-						{
-							"value": "14",
-							"text": "2:00 PM"
-						},
-						{
-							"value": "15",
-							"text": "3:00 PM"
-						},
-						{
-							"value": "16",
-							"text": "4:00 PM"
-						},
-						{
-							"value": "17",
-							"text": "5:00 PM"
-						},
-						{
-							"value": "18",
-							"text": "6:00 PM"
-						},
-						{
-							"value": "19",
-							"text": "7:00 PM"
-						},
-						{
-							"value": "20",
-							"text": "8:00 PM"
-						},
-						{
-							"value": "21",
-							"text": "9:00 PM"
-						},
-						{
-							"value": "22",
-							"text": "10:00 PM"
-						},
-						{
-							"value": "23",
-							"text": "11:00 PM"
-						}
-					]
-				},
-				{
-					"type": "dropdown",
-					"name": "endTime",
-					"title": "To",
-					"isRequired": true,
-					"validators": [
-						{
-							"type": "expression",
-							"text": "To must be greater than From",
-							"expression": "{endTime} > {startTime}"
-						}
-					],
-					"choices": [
-						{
-							"value": "1",
-							"text": "1:00 AM"
-						},
-						{
-							"value": "2",
-							"text": "2:00 AM"
-						},
-						{
-							"value": "3",
-							"text": "3:00 AM"
-						},
-						{
-							"value": "4",
-							"text": "4:00 AM"
-						},
-						{
-							"value": "5",
-							"text": "5:00 AM"
-						},
-						{
-							"value": "6",
-							"text": "6:00 AM"
-						},
-						{
-							"value": "7",
-							"text": "7:00 AM"
-						},
-						{
-							"value": "8",
-							"text": "8:00 AM"
-						},
-						{
-							"value": "9",
-							"text": "9:00 AM"
-						},
-						{
-							"value": "10",
-							"text": "10:00 AM"
-						},
-						{
-							"value": "11",
-							"text": "11:00 AM"
-						},
-						{
-							"value": "12",
-							"text": "12:00 PM"
-						},
-						{
-							"value": "13",
-							"text": "1:00 PM"
-						},
-						{
-							"value": "14",
-							"text": "2:00 PM"
-						},
-						{
-							"value": "15",
-							"text": "3:00 PM"
-						},
-						{
-							"value": "16",
-							"text": "4:00 PM"
-						},
-						{
-							"value": "17",
-							"text": "5:00 PM"
-						},
-						{
-							"value": "18",
-							"text": "6:00 PM"
-						},
-						{
-							"value": "19",
-							"text": "7:00 PM"
-						},
-						{
-							"value": "20",
-							"text": "8:00 PM"
-						},
-						{
-							"value": "21",
-							"text": "9:00 PM"
-						},
-						{
-							"value": "22",
-							"text": "10:00 PM"
-						},
-						{
-							"value": "23",
-							"text": "11:00 PM"
-						},
-						{
-							"value": "24",
-							"text": "Midnight"
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "page5",
-			"elements": [
-				{
-					"type": "dropdown",
-					"name": "manager",
-					"title": "Manager",
-					"isRequired": true,
-					"choicesByUrl": {
-						"url": "api/users",
-						"valueName": "id",
-						"titleName": "fullName"
-					}
-				}
-			]
-		},
-		{
-			"name": "page6",
-			"elements": [
-				{
-					"type": "html",
-					"name": "acknowledgeHealthStatement",
-					"html": "<p><strong>On the day you are scheduled to enter the workplace, cancel your request and DO NOT enter the workplace if ANY of the following apply:</strong></p>\n\n<ul>\n<li>You are feeling ill or experiencing symptoms such as fever, cough, runny nose, sore throat, or difficulty breathing.</li>\n<li>You have been tested for, diagnosed with, or suspected of having COVID-19 in the last 14 days.</li>\n<li>You have provided care for or had close contact in the last 14 days with a suspected, probable or confirmed case of COVID-19.</li>\n<li>You have travelled outside Canada in the last 14 days.</li>\n</ul>"
-				},
-				{
-					"type": "checkbox",
-					"name": "acknowledgeHealth",
-					"isRequired": true,
-					"validators": [
-						{
-							"type": "expression",
-							"expression": "{acknowledgeHealth} = ['acknowledgeHealth']"
-						}
-					],
-					"titleLocation": "hidden",
-					"choices": [
-						{
-							"value": "acknowledgeHealth",
-							"text": "I agree"
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "page7",
-			"elements": [
-				{
-					"type": "html",
-					"name": "acknowledgeWorkplaceStatement",
-					"html": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the COVID-19 Health & Safety Measures</li>\n<li>Remain on the floor for which you obtained approval to access</li>\n<li>Submit a new request should you need to access other floors or stay longer</li>\n<li>Leave on time</li>\n</ul>"
-				},
-				{
-					"type": "checkbox",
-					"name": "acknowledgeWorkplace",
-					"isRequired": true,
-					"validators": [
-						{
-							"type": "expression",
-							"expression": "{acknowledgeWorkplace} = ['acknowledgeWorkplace']"
-						}
-					],
-					"titleLocation": "hidden",
-					"choices": [
-						{
-							"value": "acknowledgeWorkplace",
-							"text": "I agree"
-						}
-					]
-				}
-			]
-		}
-	]
+  "pages": [
+    {
+      "name": "page1",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "building",
+          "title": {
+            "default": "Building",
+            "fr": "Édifice"
+          },
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/locations",
+            "valueName": "id",
+            "titleName": "name"
+          }
+        },
+        {
+          "type": "dropdown",
+          "name": "floor",
+          "title": {
+            "default": "Floor",
+            "fr": "Étage"
+          },
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/locations/{building}",
+            "valueName": "id",
+            "titleName": "name"
+          }
+        },
+        {
+          "type": "dropdown",
+          "name": "reason",
+          "title": {
+            "default": "Reason",
+            "fr": "Raison"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "948160000",
+              "text": {
+                "default": "Critical Work",
+                "fr": "Travail critique"
+              }
+            },
+            {
+              "value": "948160002",
+              "text": {
+                "default": "Regular Work",
+                "fr": "Travail régulier"
+              }
+            },
+            {
+              "value": "948160001",
+              "text": {
+                "default": "Pickup a Document",
+                "fr": "Récupérer un document"
+              }
+            },
+            {
+              "value": "948160003",
+              "text": {
+                "default": "Pickup Office Equipment",
+                "fr": "Récupérer un matériel de bureau"
+              }
+            },
+            {
+              "value": "948160004",
+              "text": {
+                "default": "Other",
+                "fr": "Autre"
+              }
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "details",
+          "title": {
+            "default": "Details",
+            "fr": "Détails"
+          }
+        },
+        {
+          "type": "boolean",
+          "name": "registerVisitors",
+          "title": {
+            "default": "Do you need to register visitors?",
+            "fr": "Avez-vous besoin d'inscrire des visiteurs?"
+          },
+          "defaultValue": "false",
+          "labelTrue": {
+            "default": "Yes",
+            "fr": "Oui"
+          },
+          "labelFalse": {
+            "default": "No",
+            "fr": "Non"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page8",
+      "elements": [
+        {
+          "type": "html",
+          "name": "question1",
+          "html": "<p>Prior to submitting a request, ensure alternatives such as purchasing or delivery of items have been considered and deemed not viable.</p>\n\n<p>If this request relates to a Duty to Accommodate Plan, managers should contact their Labour Relations Advisor for advice and guidance. In the event the employee requires support to retrieve a larger asset related to a DTA (i.e. chair), there is a pick-up and delivery service available through the <a href=\"http://jusnet.justice.gc.ca/eng/work-travail/facil-install/juspace.html\" target=\"_blank\">National Accommodations Division</a> available through the JUSpace link on the JUSnet home page.</p>"
+        }
+      ],
+      "visibleIf": "{reason} = 948160003"
+    },
+    {
+      "name": "page9",
+      "elements": [
+        {
+          "type": "text",
+          "name": "chair",
+          "title": "Chair",
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "laptop",
+          "title": "Laptop",
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "tablet",
+          "title": "Tablet",
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "monitor",
+          "title": "Monitor",
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "dockingStation",
+          "title": "Docking Station",
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "keyboard",
+          "title": "Keyboard",
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "mouse",
+          "title": "Mouse",
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "cables",
+          "title": "Cables",
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "headset",
+          "title": "Headset",
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "printer",
+          "title": "Printer",
+          "defaultValue": "0"
+        },
+        {
+          "type": "comment",
+          "name": "other",
+          "title": "Other"
+        }
+      ],
+      "visibleIf": "{reason} = 948160003",
+      "questionTitleLocation": "top"
+    },
+    {
+      "name": "page2",
+      "elements": [
+        {
+          "type": "html",
+          "name": "purposeStatement",
+          "html": "<p>As the employee sponsoring visitors, you are responsible for ensuring they understand and follow all COVID-19 Health & Safety Measures while in the workplace.</p>\n\n<p>Note that visitors should be entering only for a legitimate work-related purpose that cannot be done remotely. Do not bring friends or family members.</p>"
+        },
+        {
+          "type": "comment",
+          "name": "purpose",
+          "title": "Purpose of visit",
+          "isRequired": true
+        },
+        {
+          "type": "html",
+          "name": "visitorsStatement",
+          "html": "<p>Register each visitor and include a valid email and phone number. Once approved, visitors will receive an email including the COVID-19 Health & Safety Measures. To avoid delays once on-site, pre-register with the commissionaire/reception.</p>"
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "visitors",
+          "title": "Visitors",
+          "isRequired": true,
+          "columns": [
+            {
+              "name": "name",
+              "title": "Name",
+              "cellType": "text"
+            },
+            {
+              "name": "email",
+              "title": "Email",
+              "cellType": "text",
+              "inputType": "email"
+            },
+            {
+              "name": "telephone",
+              "title": "Telephone",
+              "cellType": "text",
+              "inputType": "tel"
+            }
+          ],
+          "rowCount": 1,
+          "minRowCount": 1,
+          "maxRowCount": 10
+        }
+      ],
+      "visibleIf": "{registerVisitors} = true"
+    },
+    {
+      "name": "page3",
+      "elements": [
+        {
+          "type": "text",
+          "name": "startDate",
+          "title": "Select a date",
+          "isRequired": true,
+          "inputType": "date",
+          "max": "2999-12-31"
+        }
+      ]
+    },
+    {
+      "name": "page4",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "startTime",
+          "title": "From",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "0",
+              "text": "Midnight"
+            },
+            {
+              "value": "1",
+              "text": "1:00 AM"
+            },
+            {
+              "value": "2",
+              "text": "2:00 AM"
+            },
+            {
+              "value": "3",
+              "text": "3:00 AM"
+            },
+            {
+              "value": "4",
+              "text": "4:00 AM"
+            },
+            {
+              "value": "5",
+              "text": "5:00 AM"
+            },
+            {
+              "value": "6",
+              "text": "6:00 AM"
+            },
+            {
+              "value": "7",
+              "text": "7:00 AM"
+            },
+            {
+              "value": "8",
+              "text": "8:00 AM"
+            },
+            {
+              "value": "9",
+              "text": "9:00 AM"
+            },
+            {
+              "value": "10",
+              "text": "10:00 AM"
+            },
+            {
+              "value": "11",
+              "text": "11:00 AM"
+            },
+            {
+              "value": "12",
+              "text": "12:00 PM"
+            },
+            {
+              "value": "13",
+              "text": "1:00 PM"
+            },
+            {
+              "value": "14",
+              "text": "2:00 PM"
+            },
+            {
+              "value": "15",
+              "text": "3:00 PM"
+            },
+            {
+              "value": "16",
+              "text": "4:00 PM"
+            },
+            {
+              "value": "17",
+              "text": "5:00 PM"
+            },
+            {
+              "value": "18",
+              "text": "6:00 PM"
+            },
+            {
+              "value": "19",
+              "text": "7:00 PM"
+            },
+            {
+              "value": "20",
+              "text": "8:00 PM"
+            },
+            {
+              "value": "21",
+              "text": "9:00 PM"
+            },
+            {
+              "value": "22",
+              "text": "10:00 PM"
+            },
+            {
+              "value": "23",
+              "text": "11:00 PM"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "endTime",
+          "title": "To",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "text": "To must be greater than From",
+              "expression": "{endTime} > {startTime}"
+            }
+          ],
+          "choices": [
+            {
+              "value": "1",
+              "text": "1:00 AM"
+            },
+            {
+              "value": "2",
+              "text": "2:00 AM"
+            },
+            {
+              "value": "3",
+              "text": "3:00 AM"
+            },
+            {
+              "value": "4",
+              "text": "4:00 AM"
+            },
+            {
+              "value": "5",
+              "text": "5:00 AM"
+            },
+            {
+              "value": "6",
+              "text": "6:00 AM"
+            },
+            {
+              "value": "7",
+              "text": "7:00 AM"
+            },
+            {
+              "value": "8",
+              "text": "8:00 AM"
+            },
+            {
+              "value": "9",
+              "text": "9:00 AM"
+            },
+            {
+              "value": "10",
+              "text": "10:00 AM"
+            },
+            {
+              "value": "11",
+              "text": "11:00 AM"
+            },
+            {
+              "value": "12",
+              "text": "12:00 PM"
+            },
+            {
+              "value": "13",
+              "text": "1:00 PM"
+            },
+            {
+              "value": "14",
+              "text": "2:00 PM"
+            },
+            {
+              "value": "15",
+              "text": "3:00 PM"
+            },
+            {
+              "value": "16",
+              "text": "4:00 PM"
+            },
+            {
+              "value": "17",
+              "text": "5:00 PM"
+            },
+            {
+              "value": "18",
+              "text": "6:00 PM"
+            },
+            {
+              "value": "19",
+              "text": "7:00 PM"
+            },
+            {
+              "value": "20",
+              "text": "8:00 PM"
+            },
+            {
+              "value": "21",
+              "text": "9:00 PM"
+            },
+            {
+              "value": "22",
+              "text": "10:00 PM"
+            },
+            {
+              "value": "23",
+              "text": "11:00 PM"
+            },
+            {
+              "value": "24",
+              "text": "Midnight"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page5",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "manager",
+          "title": "Manager",
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/users",
+            "valueName": "id",
+            "titleName": "fullName"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page6",
+      "elements": [
+        {
+          "type": "html",
+          "name": "acknowledgeHealthStatement",
+          "html": "<p><strong>On the day you are scheduled to enter the workplace, cancel your request and DO NOT enter the workplace if ANY of the following apply:</strong></p>\n\n<ul>\n<li>You are feeling ill or experiencing symptoms such as fever, cough, runny nose, sore throat, or difficulty breathing.</li>\n<li>You have been tested for, diagnosed with, or suspected of having COVID-19 in the last 14 days.</li>\n<li>You have provided care for or had close contact in the last 14 days with a suspected, probable or confirmed case of COVID-19.</li>\n<li>You have travelled outside Canada in the last 14 days.</li>\n</ul>"
+        },
+        {
+          "type": "checkbox",
+          "name": "acknowledgeHealth",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{acknowledgeHealth} = ['acknowledgeHealth']"
+            }
+          ],
+          "titleLocation": "hidden",
+          "choices": [
+            {
+              "value": "acknowledgeHealth",
+              "text": "I agree"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page7",
+      "elements": [
+        {
+          "type": "html",
+          "name": "acknowledgeWorkplaceStatement",
+          "html": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the COVID-19 Health & Safety Measures</li>\n<li>Remain on the floor for which you obtained approval to access</li>\n<li>Submit a new request should you need to access other floors or stay longer</li>\n<li>Leave on time</li>\n</ul>"
+        },
+        {
+          "type": "checkbox",
+          "name": "acknowledgeWorkplace",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{acknowledgeWorkplace} = ['acknowledgeWorkplace']"
+            }
+          ],
+          "titleLocation": "hidden",
+          "choices": [
+            {
+              "value": "acknowledgeWorkplace",
+              "text": "I agree"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

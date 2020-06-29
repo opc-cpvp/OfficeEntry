@@ -1,7 +1,7 @@
-﻿using OfficeEntry.Application.Common.Interfaces;
-using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Http;
+using OfficeEntry.Application.Common.Interfaces;
 using System;
+using System.Security.Claims;
 
 namespace OfficeEntry.WebUI.Services
 {

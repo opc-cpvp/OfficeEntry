@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
-using OfficeEntry.Domain.ValueObjects;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,7 +27,6 @@ namespace OfficeEntry.Application.TermsAndConditions.Queries.GetHealthAndSafetyM
 
             if (!result.Result.Succeeded)
             {
-
             }
 
             return result.IsHealthAndSafetyMeasuresAccepted;

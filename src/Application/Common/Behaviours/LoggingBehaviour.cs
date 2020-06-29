@@ -1,9 +1,9 @@
-﻿using OfficeEntry.Application.Common.Interfaces;
-using MediatR.Pipeline;
+﻿using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
+using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.ValueObjects;
 using System.Threading;
 using System.Threading.Tasks;
-using OfficeEntry.Domain.ValueObjects;
 
 namespace OfficeEntry.Application.Common.Behaviours
 {

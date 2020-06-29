@@ -1,11 +1,8 @@
 ﻿using OfficeEntry.Application.Common.Interfaces;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.DirectoryServices.AccountManagement;
-using System.Threading.Tasks;
 using OfficeEntry.Domain.Exceptions;
 using OfficeEntry.Domain.ValueObjects;
+using System.DirectoryServices.AccountManagement;
+using System.Threading.Tasks;
 
 namespace OfficeEntry.Infrastructure.Identity
 {
@@ -20,7 +17,8 @@ namespace OfficeEntry.Infrastructure.Identity
 
         public async Task<string> GetUserNameAsync(AdAccount adAccount)
         {
-            return await Task.Run(() => {
+            return await Task.Run(() =>
+            {
                 using var AD = new PrincipalContext(ContextType.Domain, _domainName);
                 var userIdentity = UserPrincipal.FindByIdentity(AD, adAccount.Name);
 

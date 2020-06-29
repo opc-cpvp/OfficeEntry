@@ -77,7 +77,8 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
         public async Task<Result> CreateAccessRequest(AccessRequest accessRequest)
         {
-            var request = new gc_accessrequest {
+            var request = new gc_accessrequest
+            {
                 gc_accessrequestid = Guid.NewGuid(),
                 gc_name = "new submission",
                 gc_accessreason = (AccessReasons)accessRequest.Reason.Key,
@@ -104,7 +105,8 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
         {
             await Client.For<gc_accessrequest>()
                 .Key(accessRequest.Id)
-                .Set(new {
+                .Set(new
+                {
                     gc_approvalstatus = (ApprovalStatus)accessRequest.Status.Key
                 })
                 .UpdateEntryAsync();

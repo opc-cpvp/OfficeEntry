@@ -1,7 +1,7 @@
-﻿using OfficeEntry.Application.Locations.Queries.GetBuildings;
+﻿using Microsoft.AspNetCore.Mvc;
+using OfficeEntry.Application.Locations.Queries.GetBuildings;
 using OfficeEntry.Application.Locations.Queries.GetFloors;
 using OfficeEntry.Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

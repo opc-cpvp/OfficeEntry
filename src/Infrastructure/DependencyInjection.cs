@@ -1,12 +1,10 @@
-﻿using OfficeEntry.Application.Common.Interfaces;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Infrastructure.Identity;
 using OfficeEntry.Infrastructure.Services;
 using OfficeEntry.Infrastructure.Services.Xrm;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Simple.OData.Client;
 using System;
 using System.Net;
 using System.Net.Http;

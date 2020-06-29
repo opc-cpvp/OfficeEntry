@@ -1,15 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
-using OfficeEntry.WebUI.Client.Models;
-using System;
-using System.Buffers.Text;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OfficeEntry.Domain.Entities;
-using System.Linq;
-using System.Text.RegularExpressions;
+using OfficeEntry.WebUI.Client.Models;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Net.Http.Json;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace OfficeEntry.WebUI.Client.Pages
 {

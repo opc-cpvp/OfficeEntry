@@ -1,11 +1,6 @@
-﻿using MediatR;
-using OfficeEntry.Application.Common.Interfaces;
+﻿using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
-using OfficeEntry.Domain.Entities;
-using OfficeEntry.Domain.ValueObjects;
-using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 using System;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 

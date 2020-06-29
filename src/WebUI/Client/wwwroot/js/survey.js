@@ -44,7 +44,6 @@ interopJS.survey = {
         fetch(surveyUrl)
             .then(response => response.json())
             .then(json => {
-
                 document
                     .querySelector('#blazor-survey-wraper')
                     .innerHTML = `<div id="${id}" class="${classStyle}"><survey :survey="survey"/></div>`;
