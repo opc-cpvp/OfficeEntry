@@ -10,7 +10,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
         public string lastname { get; set; }
         public string emailaddress1 { get; set; }
         public string gc_username { get; set; }
-        public gc_usersettings gc_usersettings { get; set; }
+        public gc_usersettingses gc_usersettings { get; set; }
         public string telephone1 { get; set; }
         public int statecode { get; set; }
 
@@ -24,7 +24,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
                 EmailAddress = contact.emailaddress1,
                 PhoneNumber = contact.telephone1,
                 Username = contact.gc_username,
-                UserSettings = gc_usersettings.Convert(contact.gc_usersettings)
+                UserSettings = gc_usersettingses.Convert(contact.gc_usersettings)
             };
         }
     }

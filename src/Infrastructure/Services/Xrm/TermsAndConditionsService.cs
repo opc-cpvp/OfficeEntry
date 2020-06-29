@@ -1,5 +1,7 @@
-﻿using OfficeEntry.Application.Common.Interfaces;
+﻿using Microsoft.OData.Edm;
+using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
+using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -81,32 +83,48 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
         public async Task<Result> SetPrivacyActStatementFor(string username, bool isPrivateActStatementAccepted)
         {
-            throw new NotImplementedException();
+            var (result, contact) = await _userService.GetContact(username);
 
-            //var (result, contact) = await _contactsService.GetContact(username);
+            if (!result.Succeeded)
+                return (result);
 
-            //if (!result.Succeeded)
-            //    return (result);
+            await (contact.UserSettings is null ? Create() : Update(contact.UserSettings.Id));
 
-            //var settings = await (contact.gc_usersettings is null ? Create() : Update(contact.gc_usersettings.gc_usersettingsid));
+            return Result.Success();
 
-            //await Client
-            //    .For<contact>()
-            //    .Key(contact.contactid)
-            //    .Set(new { _gc_usersettings_value = settings.gc_usersettingsid })
-            //    .UpdateEntryAsync();
+            async Task<gc_usersettingses> Create()
+            {
+                var userSettings = new gc_usersettingses
+                {
+                    gc_usersettingsid = Guid.NewGuid(),
+                    gc_name = contact.Username,
+                    gc_privacystatement = DateTime.Now
+                };
 
-            //return Result.Success();
+                userSettings = await Client
+                    .For<gc_usersettingses>()
+                    .Set(userSettings)
+                    .InsertEntryAsync();
 
-            //async Task<gc_usersettings> Create()
-            //{
-            //    throw new NotImplementedException();
-            //}
+                await Client
+                    .For<contact>()
+                    .Key(contact.Id)
+                    .Set(new { gc_usersettings = userSettings })
+                    .UpdateEntryAsync();
 
-            //async Task<gc_usersettings> Update(Guid id)
-            //{
-            //        throw new NotImplementedException();
-            //}
+                return userSettings;
+            }
+
+            async Task<gc_usersettingses> Update(Guid id)
+            {
+                var userSettings = await Client
+                    .For<gc_usersettingses>()
+                    .Key(id)
+                    .Set(new { gc_privacystatement = DateTime.Now })
+                    .UpdateEntryAsync();
+
+                return userSettings;
+            }
         }
 
         protected override void Dispose(bool disposing)
