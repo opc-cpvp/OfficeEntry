@@ -1,0 +1,15 @@
+- [ ] i18n
+- [ ] Create contact entities in CRM for each user and populate the username
+- [ ] Verify user settings before allowing the user to submit an access request
+- [ ] Create user settings if they don't exist
+- [ ] Equipment
+  - [ ] Create CRM fields
+  - [ ] Update UI
+- [ ] Submit form
+  - [ ] Select following day by default
+- [ ] Ability to submit feedback
+- [ ] Create dashboard in CRM
+  - [ ] Access Requests / Floor / Building
+- [ ] Ability to set / unset Health and Safety agreement
+- [ ] Ability to unset Privacy agreement
+- [ ] Implement all assets
