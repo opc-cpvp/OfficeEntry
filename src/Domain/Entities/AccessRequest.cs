@@ -6,6 +6,7 @@ namespace OfficeEntry.Domain.Entities
     public class AccessRequest
     {
         public Guid Id { get; set; }
+        public List<AssetRequest> AssetRequests { get; set; }
         public Building Building { get; set; }
         public Contact Employee { get; set; }
         public string Details { get; set; }

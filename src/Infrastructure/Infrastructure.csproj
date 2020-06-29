@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Xrm\Entities\" />
-  </ItemGroup>
-
 </Project>

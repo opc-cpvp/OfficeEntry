@@ -19,6 +19,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
         public AccessReasons gc_accessreason { get; set; }
         public DateTime gc_starttime { get; set; }
         public IList<contact> gc_accessrequest_contact_visitors { get; set; }
+        public IList<gc_assetrequest> gc_accessrequest_assetrequest { get; set; }
         public int statecode { get; set; }
 
         public static AccessRequest Convert(gc_accessrequest accessRequest)
@@ -26,6 +27,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
             return new AccessRequest
             {
                 Id = accessRequest.gc_accessrequestid,
+                AssetRequests = accessRequest.gc_accessrequest_assetrequest.Select(a => gc_assetrequest.Convert(a)).ToList(),
                 Building = gc_building.Convert(accessRequest.gc_building),
                 Employee = contact.Convert(accessRequest.gc_employee),
                 Details = accessRequest.gc_details,

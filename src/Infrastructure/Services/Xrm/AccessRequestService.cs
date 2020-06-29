@@ -21,7 +21,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
         {
             var accessRequest = await Client.For<gc_accessrequest>()
                 .Key(accessRequestId)
-                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_contact_visitors })
+                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_contact_visitors, a.gc_accessrequest_assetrequest })
                 .FindEntryAsync();
 
             return (Result.Success(), gc_accessrequest.Convert(accessRequest));
@@ -32,7 +32,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             var accessRequests = await Client.For<gc_accessrequest>()
                 .Filter(a => a.statecode == (int)StateCode.Active)
                 .Filter(a => a.gc_employee.contactid == contactId)
-                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
+                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_assetrequest })
                 .OrderByDescending(a => a.gc_starttime)
                 .FindEntriesAsync();
 
@@ -56,7 +56,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             var accessRequests = await Client.For<gc_accessrequest>()
                 .Filter(a => a.statecode == (int)StateCode.Active)
                 .Filter(a => a.gc_manager.contactid == contactId)
-                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
+                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_assetrequest })
                 .OrderByDescending(a => a.gc_starttime)
                 .FindEntriesAsync();
 
