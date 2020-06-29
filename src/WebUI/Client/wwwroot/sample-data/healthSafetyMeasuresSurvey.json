@@ -6,7 +6,6 @@
         {
           "type": "html",
           "name": "question2",
-          "hideNumber": true,
           "html": "<p>Under the Canada Labour Code, employees have a duty to follow prescribed procedures with respect to the health and safety of employees, take all reasonable and necessary precautions to ensure the health and safety of themselves and others, and comply with all instructions from the employer concerning the health and safety of employees.</p>\n\n<p>Throughout the COVID-19 pandemic, and until further notice, employees must comply with the following health and safety measures while at Office of the Privacy Commissioner or Canada workplaces.</p>"
         }
       ]
@@ -17,7 +16,6 @@
         {
           "type": "html",
           "name": "Keep a distance of 2m from others",
-          "hideNumber": true,
           "html": "<div class=\"text-center\"><img src=\"/img/0010.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Keep a distance of 2m from others</p>\n\n<p>Adhere to Physical Distancing - maintain a distance of two (2) metres from others whenever possible. When it is not possible to consistently maintain a 2m distance from others, wearing a non-medical mask or face covering is recommended.</p>\n\n<p>Choose another workstation for the day if a workstation within 2m of yours is occupied (N.B. does not apply to enclosed offices or workstations with panel walls taller than 2m).</p>"
         }
       ]
@@ -28,7 +26,6 @@
         {
           "type": "html",
           "name": "question3",
-          "hideNumber": true,
           "html": "<div class=\"text-center\"><img src=\"/img/0003.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Use hand sanitizer before entering</p>\n\n<p>Before entering the building or OPC office area (for regional/DLSU offices), apply hand sanitizing solution which will be made available.</p>"
         }
       ]
@@ -39,7 +36,6 @@
         {
           "type": "html",
           "name": "question4",
-          "hideNumber": true,
           "html": "<div class=\"text-center\"><img src=\"/img/0009.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Comply with signage and occupancy limits</p>\n\n<p>Comply with all directional indicators (corridors, stairwells, entrances, exits, etc.).</p>\n\n<p>Comply with all maximum occupancy limits posted in applicable small spaces (i.e. elevators, meeting rooms, washrooms, kitchenettes, etc.).</p>\n\n<p>Comply with all health and safety signage posted by relevant authorities (Government of Canada Departments and Agencies, Property and Facility Managers, Cleaning Staff, etc.).</p>"
         }
       ]
@@ -50,7 +46,6 @@
         {
           "type": "html",
           "name": "question5",
-          "hideNumber": true,
           "html": "<div class=\"text-center\"><img src=\"/img/0008.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Clean before and after use\n</p>\n\n<p>Comply with the \"Clean Before and After Principle\" - Sanitize with provided wipes any surfaces and shared equipment before and after use (workstations, meeting room tables, countertops, photocopiers, shared office supplies, appliances, etc.).</p>\n\n<p>Follow the \"Clean Desk Principle\" for any workstations used by removing all papers, supplies, personal belongings and other items prior to departing the workplace to permit cleaning.</p>\n\n<p>Focus on using digital documents and avoid sharing paper documents.</p>"
         }
       ]
@@ -61,7 +56,6 @@
         {
           "type": "html",
           "name": "question6",
-          "hideNumber": true,
           "html": "<div class=\"text-center\"><img src=\"/img/0007.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Maintain good preventive practices</p>\n\n<p>Wash hands regularly for at least 20 seconds with soap and warm water, or use of an authorized hand sanitizer, especially prior to eating/drinking and after touching high-touch surfaces (door handles, elevator buttons, shared supplies, etc.).</p>\n\n<p>Use good cough and sneeze etiquette (e.g., sneeze and cough into your sleeve, not your hand).</p>\n\n<p>If you use a tissue, remember to dispose of it in a lined wastebasket as soon as possible and wash your hands afterwards. Where soap and water are not available, use an authorized hand sanitizer.</p>\n\n<p>Avoid close contact with people who are sick.</p>\n\n<p>Use alternative forms of greeting someone other than shaking hands (e.g., a head nod or a wave).</p>"
         }
       ]
@@ -72,7 +66,6 @@
         {
           "type": "html",
           "name": "question7",
-          "hideNumber": true,
           "html": "<div class=\"text-center\"><img src=\"/img/0006.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Stay within approved area and time slot</p>\n\n<p>Remain within the area(s) requested and approved through the workplace access request within the app.</p>\n\n<p>Submit a separate request through the app if access to additional floors is required, or if there is a need to stay longer than the duration of the initial approved request.</p>\n\n<p>Leave on time.</p>"
         }
       ]
@@ -83,7 +76,6 @@
         {
           "type": "html",
           "name": "question8",
-          "hideNumber": true,
           "html": "<div class=\"text-center\"><img src=\"/img/0005.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Respect emergency protocols</p>\n\n<p>In the event of a building evacuation, follow building emergency protocols:</p>\n\n<p>Employees are to exit the premises as quickly as possible using the nearest emergency exit/stairwell, even if physical distancing and directional indicators cannot be followed.</p>\n\n<p>Once outside of the building, physical distancing is to be respected.</p>\n\n<p>Employees who are unable to exit the building using emergency stairwells should self-identify through the Persons Requiring Assistance Program prior to accessing the buildings by contacting ADMIN@priv.gc.ca.</p>"
         }
       ]
@@ -94,7 +86,6 @@
         {
           "type": "html",
           "name": "question9",
-          "hideNumber": true,
           "html": "<div class=\"text-center\"><img src=\"/img/0004.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Report COVID-19 symptoms</p>\n\n<p>If you develop symptoms before accessing the workplace, cancel your request, do not access the workplace, contact your manager and public health authorities as needed.</p>\n\n<p>If you develop symptoms while in the workplace, isolate immediately within the workplace. Inform your manager immediately and escalate if necessary. Go home (avoid using public transit) and follow the advice of local public health authorities.</p>\n\n<p>If you develop symptoms after leaving the workplace, contact your manager if you experience symptoms within 14 days of leaving the workplace.</p>"
         }
       ]
@@ -105,7 +96,6 @@
         {
           "type": "checkbox",
           "name": "questionAcceptHsmStatement",
-          "hideNumber": true,
           "titleLocation": "hidden",
           "choices": [
             {
@@ -117,5 +107,6 @@
       ]
     }
   ],
-  "showCompletedPage": false
+  "showCompletedPage": false,
+  "showQuestionNumbers": "off"
 }

@@ -11,7 +11,6 @@
         {
           "type": "checkbox",
           "name": "questionAcceptPaStatement",
-          "hideNumber": true,
           "titleLocation": "hidden",
           "choices": [
             {
@@ -23,5 +22,6 @@
       ]
     }
   ],
-  "showCompletedPage": false
+  "showCompletedPage": false,
+  "showQuestionNumbers": "off"
 }
