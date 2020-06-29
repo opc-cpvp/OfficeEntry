@@ -27,9 +27,14 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         public async Task<Unit> Handle(CreateAccessRequestForCurrentUserCommand request, CancellationToken cancellationToken)
         {
             var username = _currentUserService.UserId;
-            var userResult = await _userService.GetUserId(username);
+            var contactResult = await _userService.GetContact(username);
 
-            request.AccessRequest.Employee = new Contact { Id = userResult.UserId };
+            request.AccessRequest.Employee = new Contact
+            {
+                Id = contactResult.Contact.Id,
+                FirstName = contactResult.Contact.FirstName,
+                LastName = contactResult.Contact.LastName
+            };
 
             await _accessRequestService.CreateAccessRequest(request.AccessRequest);
 

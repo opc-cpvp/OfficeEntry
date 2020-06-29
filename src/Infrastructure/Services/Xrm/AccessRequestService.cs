@@ -80,7 +80,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             var request = new gc_accessrequest
             {
                 gc_accessrequestid = Guid.NewGuid(),
-                gc_name = "new submission",
+                gc_name = $"{accessRequest.Employee.FullName} - {accessRequest.StartTime:yyyy-MM-dd}",
                 gc_accessreason = (AccessReasons)accessRequest.Reason.Key,
                 gc_approvalstatus = ApprovalStatus.Pending,
                 gc_building = new gc_building { gc_buildingid = accessRequest.Building.Id },
