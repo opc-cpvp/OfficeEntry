@@ -33,6 +33,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 .Filter(a => a.statecode == (int)StateCode.Active)
                 .Filter(a => a.gc_employee.contactid == contactId)
                 .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
+                .OrderByDescending(a => a.gc_starttime)
                 .FindEntriesAsync();
 
             accessRequests = accessRequests.ToList();
@@ -56,6 +57,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 .Filter(a => a.statecode == (int)StateCode.Active)
                 .Filter(a => a.gc_manager.contactid == contactId)
                 .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
+                .OrderByDescending(a => a.gc_starttime)
                 .FindEntriesAsync();
 
             accessRequests = accessRequests.ToList();
