@@ -12,6 +12,9 @@ namespace OfficeEntry.WebUI.Client.Pages
         [Inject]
         public HttpClient Http { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         protected string SurveyData { get; set; }
 
         public async Task OnSurveyCompleted(string surveyResult)
@@ -21,6 +24,8 @@ namespace OfficeEntry.WebUI.Client.Pages
             bool privateActStatementAccepted = surveyData.questionAcceptPaStatement.Any();
 
             await Http.PutAsJsonAsync("api/PrivacyStatement", privateActStatementAccepted);
+
+            NavigationManager.NavigateTo("/");
         }
 
         protected override async Task OnInitializedAsync()

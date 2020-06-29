@@ -19,7 +19,7 @@ namespace OfficeEntry.WebUI.Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<AccessRequest> Get(Guid id)
+        public async Task<AccessRequestViewModel> Get(Guid id)
         {
             return await Mediator.Send(new GetAccessRequestQuery { AccessRequestId = id });
         }

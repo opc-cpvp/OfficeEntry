@@ -25,7 +25,7 @@ namespace OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatement
             var username = _currentUserService.UserId;
             var result = await _termsAndConditionsService.GetPrivacyActStatementFor(username);
 
-            // TODO: what should we do with the
+            // TODO: what should we do with the result
             if (!result.Result.Succeeded)
             {
             }

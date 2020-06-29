@@ -17,14 +17,12 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
         {
         }
 
-        public async Task<(Result Result, AccessRequest AccessRequest)> GetAccessRequestFor(Guid contactId, Guid accessRequestId)
+        public async Task<(Result Result, AccessRequest AccessRequest)> GetAccessRequest(Guid accessRequestId)
         {
             var accessRequest = await Client.For<gc_accessrequest>()
                 .Key(accessRequestId)
                 .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_contact_visitors })
                 .FindEntryAsync();
-
-            // TODO: Ensure that the user is only able to view the request if they're the employee / manager
 
             return (Result.Success(), gc_accessrequest.Convert(accessRequest));
         }

@@ -6,8 +6,6 @@
 <div id="blazor-survey-wraper">
 </div>
 
-<p>@SurveyResult</p>
-
 @code {
     [Parameter]
     public string Id { get; set; } = "surveyElement";
@@ -23,8 +21,6 @@
 
     [Parameter]
     public string Data { get; set; }
-
-    private string SurveyResult { get; set; }
 
     private DotNetObjectReference<Survey> _objectReference;
 
@@ -55,9 +51,6 @@
     [JSInvokable]
     public async Task SurveyCompleted(string results)
     {
-        SurveyResult = results;
-        StateHasChanged();
-
         await OnSurveyCompleted.InvokeAsync(results);
     }
 

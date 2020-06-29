@@ -15,6 +15,9 @@ namespace OfficeEntry.WebUI.Client.Pages
         [Inject]
         public HttpClient Http { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         public async Task OnSurveyCompleted(string surveyResult)
         {
             var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(surveyResult);
@@ -57,6 +60,8 @@ namespace OfficeEntry.WebUI.Client.Pages
             }
 
             await Http.PostAsJsonAsync("api/accessrequests/create", accessRequest);
+
+            NavigationManager.NavigateTo("/access-requests");
         }
     }
 }

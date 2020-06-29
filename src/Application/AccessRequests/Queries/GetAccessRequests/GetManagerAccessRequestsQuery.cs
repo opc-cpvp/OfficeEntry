@@ -29,7 +29,7 @@ namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests
             var userResult = await _userService.GetUserId(username);
             var result = await _accessRequestService.GetManagerAccessRequestsFor(userResult.UserId);
 
-            // TODO: what should we do with the
+            // TODO: what should we do with the result
             if (!result.Result.Succeeded)
             {
             }

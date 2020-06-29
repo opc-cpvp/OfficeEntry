@@ -57,11 +57,8 @@ else
 @code {
     [Parameter] public Guid Id { get; set; }
 
-    // TODO: Check if the active user is also the employee
-    public bool IsEmployee { get; set; } = true;
-
-    // TODO: Check if the active user is also the manager
-    public bool IsManager { get; set; } = true;
+    public bool IsEmployee { get; set; }
+    public bool IsManager { get; set; }
 
     public bool IsApproved { get { return accessRequest.Status.Key == (int)Domain.Entities.AccessRequest.ApprovalStatus.Approved; } }
     public bool IsCancelled { get { return accessRequest.Status.Key == (int)Domain.Entities.AccessRequest.ApprovalStatus.Cancelled; } }
@@ -71,7 +68,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        accessRequest = await Http.GetFromJsonAsync<Domain.Entities.AccessRequest>($"api/AccessRequests/{Id}");
+        var result = await Http.GetFromJsonAsync<OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest.AccessRequestViewModel>($"api/AccessRequests/{Id}");
+        IsEmployee = result.IsEmployee;
+        IsManager = result.IsManager;
+        accessRequest = result.AccessRequest;
     }
 
     private async Task ApproveRequest()

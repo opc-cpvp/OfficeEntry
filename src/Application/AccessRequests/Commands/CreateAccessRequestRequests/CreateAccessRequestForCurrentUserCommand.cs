@@ -29,8 +29,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             var username = _currentUserService.UserId;
             var userResult = await _userService.GetUserId(username);
 
-            // TODO: Should this be set here?
-            request.AccessRequest.Employee = new Domain.Entities.Contact { Id = userResult.UserId };
+            request.AccessRequest.Employee = new Contact { Id = userResult.UserId };
 
             await _accessRequestService.CreateAccessRequest(request.AccessRequest);
 

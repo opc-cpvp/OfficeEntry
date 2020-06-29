@@ -8,7 +8,7 @@ namespace OfficeEntry.Application.Common.Interfaces
 {
     public interface IAccessRequestService
     {
-        Task<(Result Result, AccessRequest AccessRequest)> GetAccessRequestFor(Guid contactId, Guid accessRequestId);
+        Task<(Result Result, AccessRequest AccessRequest)> GetAccessRequest(Guid accessRequestId);
 
         Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetAccessRequestsFor(Guid contactId);
 

@@ -257,6 +257,7 @@
           "type": "dropdown",
           "name": "startTime",
           "title": "From",
+          "defaultValue": "9",
           "isRequired": true,
           "choices": [
             {
@@ -361,6 +362,7 @@
           "type": "dropdown",
           "name": "endTime",
           "title": "To",
+          "defaultValue": "17",
           "isRequired": true,
           "validators": [
             {
@@ -497,6 +499,7 @@
         {
           "type": "checkbox",
           "name": "acknowledgeHealth",
+          "titleLocation": "hidden",
           "isRequired": true,
           "validators": [
             {
@@ -504,7 +507,6 @@
               "expression": "{acknowledgeHealth} = ['acknowledgeHealth']"
             }
           ],
-          "titleLocation": "hidden",
           "choices": [
             {
               "value": "acknowledgeHealth",
@@ -525,6 +527,7 @@
         {
           "type": "checkbox",
           "name": "acknowledgeWorkplace",
+          "titleLocation": "hidden",
           "isRequired": true,
           "validators": [
             {
@@ -532,7 +535,6 @@
               "expression": "{acknowledgeWorkplace} = ['acknowledgeWorkplace']"
             }
           ],
-          "titleLocation": "hidden",
           "choices": [
             {
               "value": "acknowledgeWorkplace",
@@ -542,5 +544,6 @@
         }
       ]
     }
-  ]
+  ],
+  "showCompletedPage": false
 }

@@ -23,7 +23,7 @@ namespace OfficeEntry.Application.Users.Queries.GetContactsRequests
         {
             var result = await _userService.GetContacts();
 
-            // TODO: what should we do with the
+            // TODO: what should we do with the result
             if (!result.Result.Succeeded)
             {
             }
