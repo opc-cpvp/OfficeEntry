@@ -1,3 +1,28 @@
 ﻿@page "/"
+@page "/en"
+@page "/fr"
 
-<h1>Office Entry</h1>
+@inject IStringLocalizer<Index> Localizer
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<h1>@Localizer["Office Entry"]</h1>
+
+<button class="btn btn-primary" @onclick="SetLanguageToFrench">Français</button>
+<button class="btn btn-primary" @onclick="SetLanguageToEnglish">English</button>
+
+@code {
+    public async Task SetLanguageToFrench()
+    {
+        await JSRuntime.InvokeVoidAsync("blazorCulture.set", "fr-CA");
+
+        NavigationManager.NavigateTo("/fr", forceLoad: true);
+    }
+
+    public async Task SetLanguageToEnglish()
+    {
+        await JSRuntime.InvokeVoidAsync("blazorCulture.set", "en-CA");
+
+        NavigationManager.NavigateTo("/en", forceLoad: true);
+    }
+} 

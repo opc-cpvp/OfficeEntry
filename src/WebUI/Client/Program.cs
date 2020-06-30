@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.JSInterop;
 using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -17,7 +19,20 @@ namespace OfficeEntry.WebUI.Client
 
             builder.Services.AddSurvey();
 
-            await builder.Build().RunAsync();
+            //builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+            builder.Services.AddLocalization();
+
+            var host = builder.Build();
+            var jsInterop = host.Services.GetRequiredService<IJSRuntime>();
+            var result = await jsInterop.InvokeAsync<string>("blazorCulture.get");
+            if (result != null)
+            {
+                var culture = new CultureInfo(result);
+                CultureInfo.DefaultThreadCurrentCulture = culture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
+            }
+
+            await host.RunAsync();  
         }
     }
 
