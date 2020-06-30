@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
 using System;
 using System.Globalization;
@@ -19,9 +20,11 @@ namespace OfficeEntry.WebUI.Client
 
             builder.Services.AddSurvey();
 
-            //builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-            builder.Services.AddLocalization();
+            ////builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+            ////builder.Services.AddLocalization();
+            builder.Services.AddLocalizationWithoutForceLoad();
 
+            // Get last Culture
             var host = builder.Build();
             var jsInterop = host.Services.GetRequiredService<IJSRuntime>();
             var result = await jsInterop.InvokeAsync<string>("blazorCulture.get");
@@ -38,6 +41,16 @@ namespace OfficeEntry.WebUI.Client
 
     public static class DependencyInjection
     {
+        /// <remarks>
+        /// By making the IStringLocalizerFactory be a transient service, no need to reload the application to change the language.
+        /// TODO: Figure out what is the impact of this change.
+        /// https://github.com/dotnet/aspnetcore/blob/5a0526dfd991419d5bce0d8ea525b50df2e37b04/src/Localization/Localization/src/LocalizationServiceCollectionExtensions.cs
+        /// </remarks>
+        public static IServiceCollection AddLocalizationWithoutForceLoad(this IServiceCollection services)
+            => services
+            .AddTransient<IStringLocalizerFactory, ResourceManagerStringLocalizerFactory>()
+            .AddTransient(typeof(IStringLocalizer<>), typeof(StringLocalizer<>));
+
         public static IServiceCollection AddSurvey(this IServiceCollection services)
             => services.AddSingleton<ISurveyInterop, SurveyInterop>();
     }

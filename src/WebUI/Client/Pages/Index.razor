@@ -2,6 +2,8 @@
 @page "/en"
 @page "/fr"
 
+@using System.Globalization
+
 @inject IStringLocalizer<Index> Localizer
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
@@ -16,13 +18,21 @@
     {
         await JSRuntime.InvokeVoidAsync("blazorCulture.set", "fr-CA");
 
-        NavigationManager.NavigateTo("/fr", forceLoad: true);
+        var culture = new CultureInfo("fr-CA");
+        CultureInfo.DefaultThreadCurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+        NavigationManager.NavigateTo("/fr", forceLoad: false);
     }
 
     public async Task SetLanguageToEnglish()
     {
         await JSRuntime.InvokeVoidAsync("blazorCulture.set", "en-CA");
 
-        NavigationManager.NavigateTo("/en", forceLoad: true);
+        var culture = new CultureInfo("en-CA");
+        CultureInfo.DefaultThreadCurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+        NavigationManager.NavigateTo("/en", forceLoad: false);
     }
 } 
