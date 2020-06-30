@@ -8,6 +8,9 @@ using System.Net.Http.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+using System.Linq;
+using OfficeEntry.Domain.Enums;
+
 namespace OfficeEntry.WebUI.Client.Pages
 {
     public abstract class SubmitAccessRequestBase : ComponentBase
@@ -59,17 +62,16 @@ namespace OfficeEntry.WebUI.Client.Pages
                 }
             }
 
-            // TODO: implement all assets
-            for (var i = 0; i < submission.chair; i++)
-            {
-                accessRequest.AssetRequests.Add(new AssetRequest
-                {
-                    Asset = new OptionSet
-                    {
-                        Key = (int)Domain.Enums.Asset.Chair
-                    }
-                });
-            }
+            accessRequest.AssetRequests.AddRange(Repeat((int)Asset.Chair, submission.chair));
+            accessRequest.AssetRequests.AddRange(Repeat((int)Asset.Laptop, submission.laptop));
+            accessRequest.AssetRequests.AddRange(Repeat((int)Asset.Tablet, submission.tablet));
+            accessRequest.AssetRequests.AddRange(Repeat((int)Asset.Monitor, submission.monitor));
+            accessRequest.AssetRequests.AddRange(Repeat((int)Asset.DockingStation, submission.dockingStation));
+            accessRequest.AssetRequests.AddRange(Repeat((int)Asset.Keyboard, submission.keyboard));
+            accessRequest.AssetRequests.AddRange(Repeat((int)Asset.Mouse, submission.mouse));
+            accessRequest.AssetRequests.AddRange(Repeat((int)Asset.Cables, submission.cables));
+            accessRequest.AssetRequests.AddRange(Repeat((int)Asset.Headset, submission.headset));
+            accessRequest.AssetRequests.AddRange(Repeat((int)Asset.Printer, submission.printer));
 
             if (!string.IsNullOrWhiteSpace(submission.other))
             {
@@ -77,7 +79,7 @@ namespace OfficeEntry.WebUI.Client.Pages
                 {
                     Asset = new OptionSet
                     {
-                        Key = (int)Domain.Enums.Asset.Other
+                        Key = (int)Asset.Other
                     },
                     Other = submission.other
                 });
@@ -86,6 +88,15 @@ namespace OfficeEntry.WebUI.Client.Pages
             await Http.PostAsJsonAsync("api/accessrequests/create", accessRequest);
 
             NavigationManager.NavigateTo("/access-requests");
+
+            static IEnumerable<AssetRequest> Repeat(int value, int count)
+                => Enumerable.Repeat(new AssetRequest
+                    {
+                        Asset = new OptionSet
+                        {
+                            Key = value
+                        }
+                    }, count);
         }
     }
 }
