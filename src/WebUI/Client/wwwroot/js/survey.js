@@ -69,6 +69,8 @@ interopJS.survey = {
                     //.add( (s,e) => window.localStorage["surveyjs-blazor"] = survey.data );
                     .add(surveyValueChanged);
 
+                survey.locale = window.localStorage['BlazorCulture'] === "fr-CA" ? "fr" : "en";
+
                 if (data) {
                     survey.data = JSON.parse(data);
                 }

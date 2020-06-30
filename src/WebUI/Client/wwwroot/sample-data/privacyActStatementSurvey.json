@@ -6,7 +6,10 @@
         {
           "type": "html",
           "name": "questionPaStatement",
-          "html": "<p>The personal information is collected under the authority of the Financial Administration Act. The information is collected, used and disclosed for the purposes of monitoring workplace access and supporting a safe, healthy and gradual return to the workplace in relation to the COVID-19 pandemic.</p>\n\n<p>In the event of a suspected or confirmed case of COVID-19 in the workplace, the information provided through this app enables the Department of Justice to inform persons who may have been impacted, while protecting the privacy of those involved.</p>\n\n<p>The information you provide is protected under the Privacy Act.  Information on this form will be used, disclosed and retained in accordance with the conditions listed in the Standard Personal Information Bank PSE 907.</p>\n\n<p>If you require clarification about this Privacy Act Statement, please contact our Access to Information and Privacy Office at 1-613-907-3700. Please note that you have a right to file a complaint to the Office of the Privacy Commissioner of Canada regarding our handling of your personal information. To do so, please contact the Privacy Commissioner at 1-800-282-1376.</p>"
+          "html": {
+            "en": "<p>The personal information is collected under the authority of the Financial Administration Act. The information is collected, used and disclosed for the purposes of monitoring workplace access and supporting a safe, healthy and gradual return to the workplace in relation to the COVID-19 pandemic.</p>\n\n<p>In the event of a suspected or confirmed case of COVID-19 in the workplace, the information provided through this app enables the Department of Justice to inform persons who may have been impacted, while protecting the privacy of those involved.</p>\n\n<p>The information you provide is protected under the Privacy Act.  Information on this form will be used, disclosed and retained in accordance with the conditions listed in the Standard Personal Information Bank PSE 907.</p>\n\n<p>If you require clarification about this Privacy Act Statement, please contact our Access to Information and Privacy Office at 1-613-907-3700. Please note that you have a right to file a complaint to the Office of the Privacy Commissioner of Canada regarding our handling of your personal information. To do so, please contact the Privacy Commissioner at 1-800-282-1376.</p>",
+            "fr": "<p>Les renseignements personnels sont recueillis en vertu de la Loi sur la gestion des finances publiques. Les renseignements sont collectées, utilisées et divulguées dans le but de surveiller l'accès au lieu de travail et d'assurer un retour sécuritaire, sain et progressif aux lieux de travail suite à la pandémie de COVID-19.</p>\n\n<p>En cas de soupçon ou de confirmation d'un cas de COVID-19 sur le lieu de travail, les renseignements fournies via cette application permettent au ministère de la Justice d'informer les personnes susceptibles d'avoir été impactées, tout en protégeant la vie privée des personnes impliquées.</p>\n\n<p>Les renseignements que vous fournissez sont protégées par la Loi sur la protection des renseignements personnels. Les renseignements contenues dans ce formulaire seront utilisées, divulguées et conservées conformément aux conditions énumérées dans le fichier standard de renseignements personnels PSE 907.</p>\n\n<p>Si vous avez besoin d'éclaircissements sur cette déclaration de la Loi sur la protection des renseignements personnels, veuillez communiquer avec notre Bureau d'accès à l'information et de la protection des renseignements personnels au 1-613-907-3700. Veuillez noter que vous avez le droit de déposer une plainte auprès du Commissariat à la protection de la vie privée du Canada concernant notre traitement de vos renseignements personnels. Pour ce faire, veuillez communiquer avec le Commissaire à la protection de la vie privée au 1-800-282-1376.</p>"
+          }
         },
         {
           "type": "checkbox",
@@ -15,7 +18,10 @@
           "choices": [
             {
               "value": "iAcceptPaStatement",
-              "text": "I accept the above terms"
+              "text": {
+                "en": "I accept the above terms",
+                "fr": "J'accepte les conditions ci-dessus"
+              }        
             }
           ]
         }
