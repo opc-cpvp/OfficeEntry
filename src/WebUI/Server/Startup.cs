@@ -30,8 +30,7 @@ namespace OfficeEntry.WebUI.Server
 
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddControllers();
 
             services
                 .AddAuthentication(Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme)
@@ -57,6 +56,13 @@ namespace OfficeEntry.WebUI.Server
                 app.UseHsts();
             }
 
+            var supportedCultures = new[] { "en-CA", "fr-CA" };
+            var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+
+            app.UseRequestLocalization(localizationOptions);
+
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
@@ -68,7 +74,6 @@ namespace OfficeEntry.WebUI.Server
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });
