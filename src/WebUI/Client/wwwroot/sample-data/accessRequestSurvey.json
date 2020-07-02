@@ -231,7 +231,7 @@
           "name": "purposeStatement",
           "html": {
             "default": "<p>As the employee sponsoring visitors, you are responsible for ensuring they understand and follow all COVID-19 Health & Safety Measures while in the workplace.</p>\n\n<p>Note that visitors should be entering only for a legitimate work-related purpose that cannot be done remotely. Do not bring friends or family members.</p>",
-            "fr": "<p>n tant qu'employé parrainant des visiteurs, vous êtes responsable de vous assurer qu'ils comprennent et respectent toutes les mesures de santé et de sécurité COVID-19 sur le lieu de travail.</p>\n\n<p>Notez que les visiteurs ne doivent entrer que pour des besoins légitimes liés au travail qui ne peuvent pas être effectués à distance. N'amenez pas d'amis ou de membres de votre famille.</p>"
+            "fr": "<p>En tant qu'employé parrainant des visiteurs, vous êtes responsable de vous assurer qu'ils comprennent et respectent toutes les mesures de santé et de sécurité COVID-19 sur le lieu de travail.</p>\n\n<p>Notez que les visiteurs ne doivent entrer que pour des besoins légitimes liés au travail qui ne peuvent pas être effectués à distance. N'amenez pas d'amis ou de membres de votre famille.</p>"
           }
         },
         {
