@@ -31,6 +31,7 @@ namespace OfficeEntry.WebUI.Server
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             services.AddControllers();
+            services.AddRazorPages();
 
             services
                 .AddAuthentication(Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme)
@@ -74,6 +75,7 @@ namespace OfficeEntry.WebUI.Server
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });
