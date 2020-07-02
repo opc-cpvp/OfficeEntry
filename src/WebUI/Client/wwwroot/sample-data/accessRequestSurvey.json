@@ -124,67 +124,100 @@
         {
           "type": "text",
           "name": "chair",
-          "title": "Chair",
+          "title": {
+            "default": "Chair",
+            "fr": "Chaise"
+          },
           "defaultValue": "0"
         },
         {
           "type": "text",
           "name": "laptop",
-          "title": "Laptop",
+          "title": {
+            "default": "Laptop",
+            "fr": "Portable"
+          },
           "defaultValue": "0"
         },
         {
           "type": "text",
           "name": "tablet",
-          "title": "Tablet",
+          "title": {
+            "default": "Tablet",
+            "fr": "Tablette"
+          },
           "defaultValue": "0"
         },
         {
           "type": "text",
           "name": "monitor",
-          "title": "Monitor",
+          "title": {
+            "default": "Monitor",
+            "fr": "Moniteur"
+          },
           "defaultValue": "0"
         },
         {
           "type": "text",
           "name": "dockingStation",
-          "title": "Docking Station",
+          "title": {
+            "default": "Docking Station",
+            "fr": "Station d'accueil pour ordinateur portable"
+          },
           "defaultValue": "0"
         },
         {
           "type": "text",
           "name": "keyboard",
-          "title": "Keyboard",
+          "title": {
+            "default": "Keyboard",
+            "fr": "Clavier"
+          },
           "defaultValue": "0"
         },
         {
           "type": "text",
           "name": "mouse",
-          "title": "Mouse",
+          "title": {
+            "default": "Mouse",
+            "fr": "Souris"
+          },
           "defaultValue": "0"
         },
         {
           "type": "text",
           "name": "cables",
-          "title": "Cables",
+          "title": {
+            "default": "Cables",
+            "fr": "Câbles"
+          },
           "defaultValue": "0"
         },
         {
           "type": "text",
           "name": "headset",
-          "title": "Headset",
+          "title": {
+            "default": "Headset",
+            "fr": "Casque d'écoute"
+          },
           "defaultValue": "0"
         },
         {
           "type": "text",
           "name": "printer",
-          "title": "Printer",
+          "title": {
+            "default": "Printer",
+            "fr": "Imprimante"
+          },
           "defaultValue": "0"
         },
         {
           "type": "comment",
           "name": "other",
-          "title": "Other"
+          "title": {
+            "default": "Other",
+            "fr": "Autre"
+          }
         }
       ],
       "visibleIf": "{reason} = 948160003",
@@ -246,7 +279,7 @@
               "title": {
                 "default": "Telephone",
                 "fr": "Téléphone"
-              }
+              },
               "cellType": "text",
               "inputType": "tel"
             }
@@ -267,7 +300,7 @@
           "title": {
             "default": "Select a date",
             "fr": "Choisissez une date"
-          }
+          },
           "isRequired": true,
           "inputType": "date",
           "max": "2999-12-31"
@@ -472,7 +505,7 @@
               "text": {
                 "default": "To must be greater than From",
                 "fr": "« À » doit être plus grand que « De »"
-              }
+              },
               "expression": "{endTime} > {startTime}"
             }
           ],
@@ -708,7 +741,10 @@
         {
           "type": "html",
           "name": "acknowledgeWorkplaceStatement",
-          "html": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the COVID-19 Health & Safety Measures</li>\n<li>Remain on the floor for which you obtained approval to access</li>\n<li>Submit a new request should you need to access other floors or stay longer</li>\n<li>Leave on time</li>\n</ul>"
+          "html": {
+            "default": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the COVID-19 Health & Safety Measures</li>\n<li>Remain on the floor for which you obtained approval to access</li>\n<li>Submit a new request should you need to access other floors or stay longer</li>\n<li>Leave on time</li>\n</ul>",
+            "fr": "<p><strong>En milieu de travail:</strong></p>\n\n<ul>\n<li>Se conformer à tous les protocoles décrits dans les mesures de santé et de sécurité COVID-19</li>\n<li>Restez à l'étage pour lequel vous avez obtenu l'autorisation d'accès</li>\n<li>Soumettez une nouvelle demande si vous avez besoin d'accéder à d'autres étages ou de rester plus longtemps</li>\n<li>Quittez à l'heure prévue</li>\n</ul>"
+          }
         },
         {
           "type": "checkbox",
@@ -724,7 +760,10 @@
           "choices": [
             {
               "value": "acknowledgeWorkplace",
-              "text": "I agree"
+              "text": {
+                "default": "I agree",
+                "fr": "Je suis d'accord"
+              }
             }
           ]
         }
