@@ -1,4 +1,4 @@
-{
+ï»¿{
   "pages": [
     {
       "name": "page1",
@@ -8,7 +8,7 @@
           "name": "building",
           "title": {
             "default": "Building",
-            "fr": "Édifice"
+            "fr": "Ã‰difice"
           },
           "isRequired": true,
           "choicesByUrl": {
@@ -22,7 +22,7 @@
           "name": "floor",
           "title": {
             "default": "Floor",
-            "fr": "Étage"
+            "fr": "Ã‰tage"
           },
           "isRequired": true,
           "choicesByUrl": {
@@ -51,21 +51,21 @@
               "value": "948160002",
               "text": {
                 "default": "Regular Work",
-                "fr": "Travail régulier"
+                "fr": "Travail rÃ©gulier"
               }
             },
             {
               "value": "948160001",
               "text": {
                 "default": "Pickup a Document",
-                "fr": "Récupérer un document"
+                "fr": "RÃ©cupÃ©rer un document"
               }
             },
             {
               "value": "948160003",
               "text": {
                 "default": "Pickup Office Equipment",
-                "fr": "Récupérer un matériel de bureau"
+                "fr": "RÃ©cupÃ©rer un matÃ©riel de bureau"
               }
             },
             {
@@ -82,7 +82,7 @@
           "name": "details",
           "title": {
             "default": "Details",
-            "fr": "Détails"
+            "fr": "DÃ©tails"
           }
         },
         {
@@ -112,7 +112,7 @@
           "name": "question1",
           "html": {
             "default": "<p>Prior to submitting a request, ensure alternatives such as purchasing or delivery of items have been considered and deemed not viable.</p>\n\n<p>If this request relates to a Duty to Accommodate Plan, managers should contact their Labour Relations Advisor for advice and guidance. In the event the employee requires support to retrieve a larger asset related to a DTA (i.e. chair), there is a pick-up and delivery service available through the <a href=\"http://jusnet.justice.gc.ca/eng/work-travail/facil-install/juspace.html\" target=\"_blank\">National Accommodations Division</a> available through the JUSpace link on the JUSnet home page.</p>",
-            "fr": "<p>Avant de soumettre une demande, assurez-vous que des alternatives telles que l'achat ou la livraison d'articles ont été envisagées et jugées non viables.</p>\n\n<p>Si cette demande concerne un régime d’obligation d’adaptation, les gestionnaires devraient communiquer avec leur conseiller en relations de travail pour obtenir des conseils et des directives. Dans le cas où l'employé a besoin d'aide pour récupérer un item plus important lié à un DTA (c.-à-d. une chaise), un service de collecte et de livraison est disponible via la <a href=\"http://jusnet.justice.gc.ca/fra/work-travail/facil-install/juspace.html\" target=\"_blank\">Division de l'hébergement national</a> disponible par le lien JUSpace sur la page d'accueil de JUSnet."
+            "fr": "<p>Avant de soumettre une demande, assurez-vous que des alternatives telles que l'achat ou la livraison d'articles ont Ã©tÃ© envisagÃ©es et jugÃ©es non viables.</p>\n\n<p>Si cette demande concerne un rÃ©gime dâ€™obligation dâ€™adaptation, les gestionnaires devraient communiquer avec leur conseiller en relations de travail pour obtenir des conseils et des directives. Dans le cas oÃ¹ l'employÃ© a besoin d'aide pour rÃ©cupÃ©rer un item plus important liÃ© Ã  un DTA (c.-Ã -d. une chaise), un service de collecte et de livraison est disponible via la <a href=\"http://jusnet.justice.gc.ca/fra/work-travail/facil-install/juspace.html\" target=\"_blank\">Division de l'hÃ©bergement national</a> disponible par le lien JUSpace sur la page d'accueil de JUSnet."
           }
         }
       ],
@@ -189,7 +189,7 @@
           "name": "cables",
           "title": {
             "default": "Cables",
-            "fr": "Câbles"
+            "fr": "CÃ¢bles"
           },
           "defaultValue": "0"
         },
@@ -198,7 +198,7 @@
           "name": "headset",
           "title": {
             "default": "Headset",
-            "fr": "Casque d'écoute"
+            "fr": "Casque d'Ã©coute"
           },
           "defaultValue": "0"
         },
@@ -231,7 +231,7 @@
           "name": "purposeStatement",
           "html": {
             "default": "<p>As the employee sponsoring visitors, you are responsible for ensuring they understand and follow all COVID-19 Health & Safety Measures while in the workplace.</p>\n\n<p>Note that visitors should be entering only for a legitimate work-related purpose that cannot be done remotely. Do not bring friends or family members.</p>",
-            "fr": "<p>n tant qu'employé parrainant des visiteurs, vous êtes responsable de vous assurer qu'ils comprennent et respectent toutes les mesures de santé et de sécurité COVID-19 sur le lieu de travail.</p>\n\n<p>Notez que les visiteurs ne doivent entrer que pour des besoins légitimes liés au travail qui ne peuvent pas être effectués à distance. N'amenez pas d'amis ou de membres de votre famille.</p>"
+            "fr": "<p>En tant qu'employÃ© parrainant des visiteurs, vous Ãªtes responsable de vous assurer qu'ils comprennent et respectent toutes les mesures de santÃ© et de sÃ©curitÃ© COVID-19 sur le lieu de travail.</p>\n\n<p>Notez que les visiteurs ne doivent entrer que pour des besoins lÃ©gitimes liÃ©s au travail qui ne peuvent pas Ãªtre effectuÃ©s Ã  distance. N'amenez pas d'amis ou de membres de votre famille.</p>"
           }
         },
         {
@@ -248,7 +248,7 @@
           "name": "visitorsStatement",
           "html": {
             "default": "<p>Register each visitor and include a valid email and phone number. Once approved, visitors will receive an email including the COVID-19 Health & Safety Measures. To avoid delays once on-site, pre-register with the commissionaire/reception.</p>",
-            "fr": "<p>Enregistrez chaque visiteur et incluez un e-mail et un numéro de téléphone valides. Une fois approuvé, les visiteurs recevront un e-mail contenant les mesures de santé et de sécurité COVID-19. Pour éviter les retards une fois sur place, pré-enregistrez-vous auprès du commissionnaire / réception.</p>"
+            "fr": "<p>Enregistrez chaque visiteur et incluez un e-mail et un numÃ©ro de tÃ©lÃ©phone valides. Une fois approuvÃ©, les visiteurs recevront un e-mail contenant les mesures de santÃ© et de sÃ©curitÃ© COVID-19. Pour Ã©viter les retards une fois sur place, prÃ©-enregistrez-vous auprÃ¨s du commissionnaire / rÃ©ception.</p>"
           }
         },
         {
@@ -278,7 +278,7 @@
               "name": "telephone",
               "title": {
                 "default": "Telephone",
-                "fr": "Téléphone"
+                "fr": "TÃ©lÃ©phone"
               },
               "cellType": "text",
               "inputType": "tel"
@@ -495,7 +495,7 @@
           "name": "endTime",
           "title": {
             "default": "To",
-            "fr": "À"
+            "fr": "Ã€"
           },
           "defaultValue": "17",
           "isRequired": true,
@@ -504,7 +504,7 @@
               "type": "expression",
               "text": {
                 "default": "To must be greater than From",
-                "fr": "« À » doit être plus grand que « De »"
+                "fr": "Â« Ã€ Â» doit Ãªtre plus grand que Â« De Â»"
               },
               "expression": "{endTime} > {startTime}"
             }
@@ -709,7 +709,7 @@
           "name": "acknowledgeHealthStatement",
           "html": {
             "default": "<p><strong>On the day you are scheduled to enter the workplace, cancel your request and DO NOT enter the workplace if ANY of the following apply:</strong></p>\n\n<ul>\n<li>You are feeling ill or experiencing symptoms such as fever, cough, runny nose, sore throat, or difficulty breathing.</li>\n<li>You have been tested for, diagnosed with, or suspected of having COVID-19 in the last 14 days.</li>\n<li>You have provided care for or had close contact in the last 14 days with a suspected, probable or confirmed case of COVID-19.</li>\n<li>You have travelled outside Canada in the last 14 days.</li>\n</ul>",
-            "fr": "<p><strong>Le jour où vous devez entrer sur le lieu de travail, annulez votre demande et n'entrez PAS dans le lieu de travail si l'une des conditions suivantes s'applique:</strong></p>\n\n<ul>\n<li>Vous vous sentez malade ou présentez des symptômes tels que fièvre, toux, écoulement nasal, mal de gorge ou difficulté à respirer.</li>\n<li>Vous avez été testé, diagnostiqué ou soupçonné d'être atteint de COVID-19 au cours des 14 derniers jours.</li>\n<li>Vous avez soigné ou eu des contacts étroits au cours des 14 derniers jours avec un cas suspect, probable ou confirmé de COVID-19.</li>\n<li>Vous avez voyagé à l'extérieur du Canada au cours des 14 derniers jours.</li>"
+            "fr": "<p><strong>Le jour oÃ¹ vous devez entrer sur le lieu de travail, annulez votre demande et n'entrez PAS dans le lieu de travail si l'une des conditions suivantes s'applique:</strong></p>\n\n<ul>\n<li>Vous vous sentez malade ou prÃ©sentez des symptÃ´mes tels que fiÃ¨vre, toux, Ã©coulement nasal, mal de gorge ou difficultÃ© Ã  respirer.</li>\n<li>Vous avez Ã©tÃ© testÃ©, diagnostiquÃ© ou soupÃ§onnÃ© d'Ãªtre atteint de COVID-19 au cours des 14 derniers jours.</li>\n<li>Vous avez soignÃ© ou eu des contacts Ã©troits au cours des 14 derniers jours avec un cas suspect, probable ou confirmÃ© de COVID-19.</li>\n<li>Vous avez voyagÃ© Ã  l'extÃ©rieur du Canada au cours des 14 derniers jours.</li>"
           }
         },
         {
@@ -743,7 +743,7 @@
           "name": "acknowledgeWorkplaceStatement",
           "html": {
             "default": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the COVID-19 Health & Safety Measures</li>\n<li>Remain on the floor for which you obtained approval to access</li>\n<li>Submit a new request should you need to access other floors or stay longer</li>\n<li>Leave on time</li>\n</ul>",
-            "fr": "<p><strong>En milieu de travail:</strong></p>\n\n<ul>\n<li>Se conformer à tous les protocoles décrits dans les mesures de santé et de sécurité COVID-19</li>\n<li>Restez à l'étage pour lequel vous avez obtenu l'autorisation d'accès</li>\n<li>Soumettez une nouvelle demande si vous avez besoin d'accéder à d'autres étages ou de rester plus longtemps</li>\n<li>Quittez à l'heure prévue</li>\n</ul>"
+            "fr": "<p><strong>En milieu de travail:</strong></p>\n\n<ul>\n<li>Se conformer Ã  tous les protocoles dÃ©crits dans les mesures de santÃ© et de sÃ©curitÃ© COVID-19</li>\n<li>Restez Ã  l'Ã©tage pour lequel vous avez obtenu l'autorisation d'accÃ¨s</li>\n<li>Soumettez une nouvelle demande si vous avez besoin d'accÃ©der Ã  d'autres Ã©tages ou de rester plus longtemps</li>\n<li>Quittez Ã  l'heure prÃ©vue</li>\n</ul>"
           }
         },
         {
