@@ -18,11 +18,20 @@
 </head>
 
 <body>
-    <app>Loading...</app>
+    <app>
+        <div class="d-flex justify-content-center">
+            T&eacute;l&eacute;chargement en cours...<br />Loading...            
+            <div class="spinner-border" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+    </app>
 
     <div id="blazor-error-ui">
+        Une erreur non gérée s'est produite.
+        <br />
         An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
+        <a href="" class="reload">Recharger<br />Reload</a>
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
