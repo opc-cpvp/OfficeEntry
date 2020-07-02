@@ -1,38 +1,52 @@
-﻿@page "/"
-@page "/en"
-@page "/fr"
+﻿@layout LanguageLayout
+
+@page "/"
+@page "/s"
 
 @using System.Globalization
 
-@inject IStringLocalizer<Index> Localizer
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
 
-<h1>@Localizer["Office Entry"]</h1>
+<div class="text-center">
 
-<button class="btn btn-primary" @onclick="SetLanguageToFrench">Français</button>
-<button class="btn btn-primary" @onclick="SetLanguageToEnglish">English</button>
+    <h1>Commissariat à la protection de la vie privée du Canada / Office of the Privacy Commissioner</h1>
 
+    <button class="btn btn-primary" @onclick="SetLanguageToFrench">Français</button>
+    <button class="btn btn-primary" @onclick="SetLanguageToEnglish">English</button>
+</div>
 @code {
+    protected override async Task OnInitializedAsync()
+    {
+        var uri = NavigationManager.Uri.Replace(NavigationManager.BaseUri, "");
+
+        if (uri != "s")
+        {
+            var result = await JSRuntime.InvokeAsync<string>("blazorCulture.get");
+
+            if (!(result is null))
+            {
+                if (result == "fr-CA")
+                    NavigationManager.NavigateTo("/access-requests", forceLoad: false);
+                else if (result == "en-CA")
+                    NavigationManager.NavigateTo("/access-requests", forceLoad: false);
+            }
+        }
+
+        await base.OnInitializedAsync();
+    }
+
     public async Task SetLanguageToFrench()
     {
         await JSRuntime.InvokeVoidAsync("blazorCulture.set", "fr-CA");
 
-        var culture = new CultureInfo("fr-CA");
-        CultureInfo.DefaultThreadCurrentCulture = culture;
-        CultureInfo.DefaultThreadCurrentUICulture = culture;
-
-        NavigationManager.NavigateTo("/fr", forceLoad: false);
+        NavigationManager.NavigateTo("/", forceLoad: true);
     }
 
     public async Task SetLanguageToEnglish()
     {
         await JSRuntime.InvokeVoidAsync("blazorCulture.set", "en-CA");
 
-        var culture = new CultureInfo("en-CA");
-        CultureInfo.DefaultThreadCurrentCulture = culture;
-        CultureInfo.DefaultThreadCurrentUICulture = culture;
-
-        NavigationManager.NavigateTo("/en", forceLoad: false);
+        NavigationManager.NavigateTo("/", forceLoad: true);
     }
-} 
+}

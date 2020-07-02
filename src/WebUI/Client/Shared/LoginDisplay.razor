@@ -1,12 +1,13 @@
 ﻿@inject HttpClient Http
+@inject IStringLocalizer<Index> Localizer
 
 @if (name is null)
 {
-    <div>Loading...</div>
+    <Loading />
 }
 else
 {
-    <div>Hello, @name</div>
+    <div>@Localizer["Hello, "]@name</div>
 }
 
 @code{

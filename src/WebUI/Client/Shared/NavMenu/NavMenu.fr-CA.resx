@@ -117,7 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Approve Requests" xml:space="preserve">
+    <value>Approuver une demande</value>
+  </data>
+  <data name="Health &amp; Safety Measures" xml:space="preserve">
+    <value>Mesures de santé et de sécurité</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="My Requests" xml:space="preserve">
+    <value>Mes demandes</value>
+  </data>
   <data name="Office Entry" xml:space="preserve">
     <value>Entrée au bureau</value>
+  </data>
+  <data name="Privacy Act Statement" xml:space="preserve">
+    <value>Protection des renseignements personnels</value>
+  </data>
+  <data name="Submit Access Request" xml:space="preserve">
+    <value>Soumettre une demande</value>
   </data>
 </root>
