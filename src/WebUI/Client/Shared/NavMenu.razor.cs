@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OfficeEntry.WebUI.Client.Shared.NavMenu
+namespace OfficeEntry.WebUI.Client.Shared
 {
     public partial class NavMenu : ComponentBase
     {
