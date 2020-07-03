@@ -10,7 +10,7 @@ namespace OfficeEntry.WebUI.Client.Shared.NavMenu
     public partial class NavMenu : ComponentBase
     {
         [Inject]
-        IStringLocalizer<NavMenu> Localizer { get; set; }
+        IStringLocalizer<App> Localizer { get; set; }
 
         private bool collapseNavMenu = true;
 
