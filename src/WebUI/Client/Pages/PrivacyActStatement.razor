@@ -1,7 +1,9 @@
 ﻿@page "/privacy-act-statement"
 @inherits PrivacyActStatementBase
 
-<h1>Privacy Act Statement</h1>
+@inject IStringLocalizer<PrivacyActStatement> Localizer
+
+<h1>@Localizer["Privacy Act Statement"]</h1>
 
 @if (SurveyData is null)
 {
@@ -13,4 +15,9 @@ else
             SurveyUrl="sample-data/privacyActStatementSurvey.json"
             OnSurveyCompleted="@OnSurveyCompleted"
             Data="@SurveyData" />
+}
+
+@if (SurveyCompleted)
+{
+    <Loading />
 }

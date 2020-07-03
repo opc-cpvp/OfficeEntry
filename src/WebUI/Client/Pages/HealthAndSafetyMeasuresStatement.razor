@@ -1,7 +1,9 @@
 ﻿@page "/health-and-safety-measures"
 @inherits HealthAndSafetyMeasuresStatementBase
 
-<h1>Health & Safety Measures</h1>
+@inject IStringLocalizer<HealthAndSafetyMeasuresStatement> Localizer
+
+<h1>@Localizer["Health & Safety Measures"]</h1>
 
 @if (SurveyData is null)
 {
@@ -13,4 +15,9 @@ else
             SurveyUrl="sample-data/healthSafetyMeasuresSurvey.json"
             OnSurveyCompleted="@OnSurveyCompleted"
             Data="@SurveyData" />
+}
+
+@if (SurveyCompleted)
+{
+    <Loading />
 }

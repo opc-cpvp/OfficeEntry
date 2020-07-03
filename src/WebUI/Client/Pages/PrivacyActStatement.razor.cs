@@ -17,8 +17,12 @@ namespace OfficeEntry.WebUI.Client.Pages
 
         protected string SurveyData { get; set; }
 
+        public bool SurveyCompleted { get; set; }
+
         public async Task OnSurveyCompleted(string surveyResult)
         {
+            SurveyCompleted = true;
+
             var surveyData = JsonSerializer.Deserialize<PrivacyActStatementSurveyData>(surveyResult);
 
             bool privateActStatementAccepted = surveyData.questionAcceptPaStatement.Any();
