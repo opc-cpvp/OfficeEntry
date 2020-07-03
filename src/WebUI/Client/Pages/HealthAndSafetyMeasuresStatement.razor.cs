@@ -15,10 +15,14 @@ namespace OfficeEntry.WebUI.Client.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
+        public bool SurveyCompleted { get; set; }
+
         protected string SurveyData { get; set; }
 
         public async Task OnSurveyCompleted(string surveyResult)
         {
+            SurveyCompleted = true;
+
             var surveyData = JsonSerializer.Deserialize<HealthAndSafetyMeasuresStatementSurveyData>(surveyResult);
 
             bool healthAndSafetyMeasuresAccepted = surveyData.questionAcceptHsmStatement.Any();

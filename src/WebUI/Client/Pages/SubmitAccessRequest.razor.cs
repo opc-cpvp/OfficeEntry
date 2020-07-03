@@ -21,8 +21,12 @@ namespace OfficeEntry.WebUI.Client.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
+        public bool SurveyCompleted { get; set; }
+
         public async Task OnSurveyCompleted(string surveyResult)
         {
+            SurveyCompleted = true;
+
             var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(surveyResult);
 
             var accessRequest = new Domain.Entities.AccessRequest

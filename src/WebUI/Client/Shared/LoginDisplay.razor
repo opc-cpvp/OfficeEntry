@@ -1,5 +1,5 @@
 ﻿@inject HttpClient Http
-@inject IStringLocalizer<Index> Localizer
+@inject IStringLocalizer<LoginDisplay> Localizer
 
 @if (name is null)
 {
@@ -7,7 +7,7 @@
 }
 else
 {
-    <div>@Localizer["Hello, "]@name</div>
+    <div>@Localizer["Hello,"] @name</div>
 }
 
 @code{

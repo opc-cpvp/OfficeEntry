@@ -1,9 +1,9 @@
 ﻿@page "/access-requests/{id:guid}"
 @page "/review-access-requests/{id:guid}"
-@using OfficeEntry.Domain.Entities;
-@inject HttpClient Http
 
-<h1>Review</h1>
+@inject IStringLocalizer<AccessRequest> Localizer
+
+<h1>@Localizer["Review"]</h1>
 
 @if (accessRequest == null)
 {
@@ -13,20 +13,20 @@ else
 {
     <h2>@accessRequest.Employee.FullName</h2>
     <p>@accessRequest.Building.Name, @accessRequest.Floor.Name</p>
-    <p>@accessRequest.StartTime.ToString("MMMM dd, yyyy") - @accessRequest.StartTime.ToString("h:mm tt") to @accessRequest.EndTime.ToString("h:mm tt")</p>
-    <p><strong>Status:</strong> @accessRequest.Status.Value</p>
-    <p><strong>Reason:</strong> @accessRequest.Reason.Value</p>
-    <p><strong>Details:</strong> @accessRequest.Details</p>
+    <p class="card-text">@accessRequest.StartTime.ToString(Localizer["MMMM dd, yyyy"]) - @Localizer["From"] @accessRequest.StartTime.ToString(Localizer["h:mm tt"]) @Localizer["To"] @accessRequest.EndTime.ToString(Localizer["h:mm tt"])</p>
+    <p><strong>@Localizer["Status:"]</strong> @accessRequest.Status.Value</p>
+    <p><strong>@Localizer["Reason:"]</strong> @Localizer[accessRequest.Status.Value]</p>
+    <p><strong>@Localizer["Details:"]</strong> @accessRequest.Details</p>
 
     if (accessRequest.Visitors.Any())
     {
-        <p><strong>Visitors:</strong></p>
+        <p><strong>@Localizer["Visitors:"]</strong></p>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Telephone</th>
+                    <th scope="col">@Localizer["Name"]</th>
+                    <th scope="col">@Localizer["Email"]</th>
+                    <th scope="col">@Localizer["Telephone"]</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,54 +44,12 @@ else
 
     if (IsEmployee)
     {
-        <button type="button" class="btn btn-danger" @onclick="CancelRequest" disabled="@IsCancelled">Cancel</button>
+        <button type="button" class="btn btn-danger" @onclick="CancelRequest" disabled="@IsCancelled">@Localizer["Cancel"]</button>
     }
 
     if (IsManager)
     {
-        <button type="button" class="btn btn-danger" @onclick="DeclineRequest" disabled="@IsDeclined">Decline</button>
-        <button type="button" class="btn btn-success" @onclick="ApproveRequest" disabled="@IsApproved">Approve</button>
-    }
-}
-
-@code {
-    [Parameter] public Guid Id { get; set; }
-
-    public bool IsEmployee { get; set; }
-    public bool IsManager { get; set; }
-
-    public bool IsApproved { get { return accessRequest.Status.Key == (int)Domain.Entities.AccessRequest.ApprovalStatus.Approved; } }
-    public bool IsCancelled { get { return accessRequest.Status.Key == (int)Domain.Entities.AccessRequest.ApprovalStatus.Cancelled; } }
-    public bool IsDeclined { get { return accessRequest.Status.Key == (int)Domain.Entities.AccessRequest.ApprovalStatus.Declined; } }
-
-    private Domain.Entities.AccessRequest accessRequest;
-
-    protected override async Task OnInitializedAsync()
-    {
-        var result = await Http.GetFromJsonAsync<OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest.AccessRequestViewModel>($"api/AccessRequests/{Id}");
-        IsEmployee = result.IsEmployee;
-        IsManager = result.IsManager;
-        accessRequest = result.AccessRequest;
-    }
-
-    private async Task ApproveRequest()
-    {
-        accessRequest.Status.Key = (int)Domain.Entities.AccessRequest.ApprovalStatus.Approved;
-        await Http.PostAsJsonAsync("api/accessrequests/update", accessRequest);
-        accessRequest.Status.Value = "Approved";
-    }
-
-    private async Task CancelRequest()
-    {
-        accessRequest.Status.Key = (int)Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
-        await Http.PostAsJsonAsync("api/accessrequests/update", accessRequest);
-        accessRequest.Status.Value = "Cancelled";
-    }
-
-    private async Task DeclineRequest()
-    {
-        accessRequest.Status.Key = (int)Domain.Entities.AccessRequest.ApprovalStatus.Declined;
-        await Http.PostAsJsonAsync("api/accessrequests/update", accessRequest);
-        accessRequest.Status.Value = "Declined";
+        <button type="button" class="btn btn-danger" @onclick="DeclineRequest" disabled="@IsDeclined">@Localizer["Decline"]</button>
+        <button type="button" class="btn btn-success" @onclick="ApproveRequest" disabled="@IsApproved">@Localizer["Approve"]</button>
     }
 }

@@ -1,8 +1,15 @@
 ﻿@page "/submit-access-request"
 @inherits SubmitAccessRequestBase
 
-<h1>Submit Access Request</h1>
+@inject IStringLocalizer<SubmitAccessRequest> Localizer
+
+<h1>@Localizer["Submit Access Request"]</h1>
 
 <Survey Id="surveyElementSubmitAccessRequest"
         SurveyUrl="sample-data/accessRequestSurvey.json"
         OnSurveyCompleted="@OnSurveyCompleted" />
+
+@if (SurveyCompleted)
+{
+    <Loading />
+}
