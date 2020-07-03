@@ -37,7 +37,7 @@ namespace OfficeEntry.WebUI.Client
 
             builder.Services.AddSurvey();
 
-            builder.Services.AddLocalization();
+            builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             host = builder.Build();
 
