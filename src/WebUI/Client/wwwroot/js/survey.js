@@ -29,6 +29,11 @@ interopJS.survey = {
         // TODO: Set page to 0
     },
 
+    getNextDayDate: function () {
+        let today = new Date();
+        return new Date(today.setDate(today.getDate() + 1)).toLocaleDateString("fr-CA");
+    },
+
     init: function (id, classStyle, surveyUrl, data) {
         // Override the color used style the flip switch
         Survey.StylesManager.ThemeColors["bootstrap"]["$main-color"] = "#007bff";
@@ -63,6 +68,14 @@ interopJS.survey = {
                     //alert("surveyValueChanged");
                     window.localStorage["surveyjs-blazor"] = JSON.stringify(survey.data, null, 3);
                 };
+
+                survey
+                    .onAfterRenderQuestion
+                    .add((sender, options) => {
+                        if (options.question.name === "startDate") {
+                            options.question.defaultValue = this.getNextDayDate();
+                        }
+                    });
 
                 survey
                     .onValueChanged
