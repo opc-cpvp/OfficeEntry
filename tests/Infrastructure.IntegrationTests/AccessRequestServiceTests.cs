@@ -32,7 +32,7 @@ namespace OfficeEntry.Infrastructure.IntegrationTests
         }
 
         [Fact]
-        public async Task Create_access_resquest_no_asset_and_no_visitorsAsync()
+        public async Task Create_access_resquest_no_asset_and_no_visitors()
         {
             var accessRequest = new AccessRequest
             {
@@ -59,7 +59,7 @@ namespace OfficeEntry.Infrastructure.IntegrationTests
         }
 
         [Fact]
-        public async Task Create_access_resquest_with_asset_and_no_visitorsAsync()
+        public async Task Create_access_resquest_with_asset_and_no_visitors()
         {
             var accessRequest = new AccessRequest
             {
@@ -94,7 +94,7 @@ namespace OfficeEntry.Infrastructure.IntegrationTests
         }
 
         [Fact]
-        public async Task Create_access_resquest_no_asset_and_one_visitorAsync()
+        public async Task Create_access_resquest_no_asset_and_one_visitor()
         {
             var accessRequest = new AccessRequest
             {
@@ -124,7 +124,7 @@ namespace OfficeEntry.Infrastructure.IntegrationTests
         }
 
         [Fact]
-        public async Task Create_access_resquest_no_asset_and_two_visitorsAsync()
+        public async Task Create_access_resquest_no_asset_and_two_visitors()
         {
             var accessRequest = new AccessRequest
             {
@@ -155,7 +155,7 @@ namespace OfficeEntry.Infrastructure.IntegrationTests
         }
 
         [Fact]
-        public async Task Create_access_resquest_with_assets_and_two_visitorsAsync()
+        public async Task Create_access_resquest_with_assets_and_two_visitors()
         {
             var accessRequest = new AccessRequest
             {
