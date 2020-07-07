@@ -3,7 +3,7 @@
 ## Must have
 
 - [ ] i18n
-  - [ ] Surveys
+  - [X] Surveys
     - [X] PA
     - [X] H&S
     - [X] Submission
@@ -12,10 +12,10 @@
 - [ ] Create contact entities in CRM for each user and populate the username
 - [ ] Verify user settings before allowing the user to submit an access request
 - [ ] Create user settings if they don't exist
-- [ ] Equipment
+- [X] Equipment
   - [X] Create CRM fields
-  - [ ] Update UI
-  - [ ] Insert Assets
+  - [X] Update UI
+  - [X] Insert Assets
 - [ ] Submit form
   - [X] Select following day by default
   - [ ] Check floor/area capacity before submitting
