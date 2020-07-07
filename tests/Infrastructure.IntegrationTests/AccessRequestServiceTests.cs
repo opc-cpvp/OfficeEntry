@@ -213,7 +213,7 @@ namespace OfficeEntry.Infrastructure.IntegrationTests
 
         public void Dispose()
         {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method above.
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' above.
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
