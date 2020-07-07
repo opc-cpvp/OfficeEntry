@@ -161,7 +161,7 @@ namespace OfficeEntry.Infrastructure.IntegrationTests
             {
                 Id = Guid.NewGuid(),
 
-                Details = "This is a fake access request (no asset, two visitors)",
+                Details = "This is a fake access request (with asset, two visitors)",
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now.AddHours(5),
                 Reason = new OptionSet { Key = 948_160_000 },

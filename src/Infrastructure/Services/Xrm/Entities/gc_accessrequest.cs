@@ -31,11 +31,11 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
         public contact gc_manager { get; set; }
         public AccessReasons gc_accessreason { get; set; }
         public DateTime gc_starttime { get; set; }
-        //public IList<contact> gc_accessrequest_contact_visitors { get; set; } = new List<contact>();
+        public IList<contact> gc_accessrequest_contact_visitors { get; set; } = new List<contact>();
         public IList<gc_assetrequest> gc_accessrequest_assetrequest { get; set; } = new List<gc_assetrequest>();
         public int statecode { get; set; }
 
-        public IList<gc_accessrequest_contact_visitor> gc_accessrequest_contact_visitors { get; set; } = new List<gc_accessrequest_contact_visitor>();
+        //public IList<gc_accessrequest_contact_visitor> gc_accessrequest_contact_visitors { get; set; } = new List<gc_accessrequest_contact_visitor>();
 
         public static AccessRequest Convert(gc_accessrequest accessRequest)
         {
@@ -60,7 +60,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
                     Key = (int)accessRequest.gc_approvalstatus,
                     Value = Enum.GetName(typeof(ApprovalStatus), accessRequest.gc_approvalstatus)
                 },
-                //Visitors = accessRequest.gc_accessrequest_contact_visitors.Select(v => contact.Convert(v)).ToList()
+                Visitors = accessRequest.gc_accessrequest_contact_visitors.Select(v => contact.Convert(v)).ToList()
             };
         }
 

@@ -1,8 +1,11 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.Entities;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using static OfficeEntry.Domain.Entities.AccessRequest;
 
 namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest
 {
@@ -39,9 +42,26 @@ namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest
 
             return new AccessRequestViewModel
             {
+                Id = result.AccessRequest.Id,
                 IsEmployee = result.AccessRequest.Employee.Id == userResult.UserId,
                 IsManager = result.AccessRequest.Manager.Id == userResult.UserId,
-                AccessRequest = result.AccessRequest
+                EmployeeName = result.AccessRequest.Employee.FullName,
+                ManagerName = result.AccessRequest.Manager.FullName,
+                Building = result.AccessRequest.Building.Name,
+                Floor = result.AccessRequest.Floor.Name,
+                Details = result.AccessRequest.Details,
+                StartTime = result.AccessRequest.StartTime,
+                EndTime = result.AccessRequest.EndTime,
+                Reason = result.AccessRequest.Reason.Value.ToString(),
+                Status = (ApprovalStatus)result.AccessRequest.Status.Key,
+
+                Visitors = result.AccessRequest.Visitors.Select(x => new Visitor
+                {
+                    FullName = x.FullName,
+                    EmailAddress = x.EmailAddress,
+                    PhoneNumber = x.PhoneNumber
+                }).ToArray(),
+                AssetRequests = new AssetRequest[0]
             };
         }
     }
