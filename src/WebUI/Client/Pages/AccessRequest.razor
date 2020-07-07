@@ -11,11 +11,11 @@
 }
 else
 {
-    <h2>@accessRequest.Employee.FullName</h2>
-    <p>@accessRequest.Building.Name, @accessRequest.Floor.Name</p>
+    <h2>@accessRequest.EmployeeName</h2>
+    <p>@accessRequest.Building, @accessRequest.Floor</p>
     <p class="card-text">@accessRequest.StartTime.ToString(Localizer["MMMM dd, yyyy"]) - @Localizer["From"] @accessRequest.StartTime.ToString(Localizer["h:mm tt"]) @Localizer["To"] @accessRequest.EndTime.ToString(Localizer["h:mm tt"])</p>
-    <p><strong>@Localizer["Status:"]</strong> @accessRequest.Status.Value</p>
-    <p><strong>@Localizer["Reason:"]</strong> @Localizer[accessRequest.Status.Value]</p>
+    <p><strong>@Localizer["Status:"]</strong> @accessRequest.Status.ToString()</p>
+    <p><strong>@Localizer["Reason:"]</strong> @Localizer[accessRequest.Reason]</p>
     <p><strong>@Localizer["Details:"]</strong> @accessRequest.Details</p>
 
     if (accessRequest.Visitors.Any())
