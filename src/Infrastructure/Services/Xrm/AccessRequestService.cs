@@ -1,4 +1,5 @@
-﻿using OfficeEntry.Application.Common.Interfaces;
+﻿using Newtonsoft.Json.Linq;
+using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
@@ -6,15 +7,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm
 {
     public class AccessRequestService : XrmService, IAccessRequestService
     {
+        public readonly IHttpClientFactory _httpClientFactory;
+
         public AccessRequestService(IHttpClientFactory httpClientFactory)
             : base(httpClientFactory)
         {
+            _httpClientFactory = httpClientFactory;
         }
 
         public async Task<(Result Result, AccessRequest AccessRequest)> GetAccessRequest(Guid accessRequestId)
@@ -77,45 +82,106 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
         public async Task<Result> CreateAccessRequest(AccessRequest accessRequest)
         {
-            var access = new gc_accessrequest
-            {
-                gc_accessrequestid = Guid.NewGuid(),
-                gc_name = $"{accessRequest.Employee.FullName} - {accessRequest.StartTime:yyyy-MM-dd}",
-                gc_accessreason = (AccessReasons)accessRequest.Reason.Key,
-                gc_approvalstatus = ApprovalStatus.Pending,
-                gc_building = new gc_building { gc_buildingid = accessRequest.Building.Id },
-                gc_details = accessRequest.Details,
-                gc_employee = new contact { contactid = accessRequest.Employee.Id },
-                gc_endtime = accessRequest.EndTime,
-                gc_floor = new gc_floor { gc_floorid = accessRequest.Floor.Id },
-                gc_manager = new contact { contactid = accessRequest.Manager.Id },
-                gc_starttime = accessRequest.StartTime
-            };
+            var access = gc_accessrequest.MapFrom(accessRequest);
+            access.gc_accessrequestid = Guid.NewGuid();
 
             access = await Client.For<gc_accessrequest>()
                 .Set(access)
                 .InsertEntryAsync();
 
-            // TODO: Create / link visitors
+            var visitors = await GetContactForVisitors().ToListAsync();
 
-            foreach (var assetRequest in accessRequest.AssetRequests)
-            {
-                var asset = new gc_assetrequest
-                {
-                    gc_assetrequestid = Guid.NewGuid(),
-                    gc_name = $"{access.gc_accessrequestid} - {Enum.GetName(typeof(Domain.Enums.Asset), assetRequest.Asset.Key)}",
-                    gc_assetsid = access,
-                    gc_asset = (Asset)assetRequest.Asset.Key,
-                    gc_other = assetRequest.Other
-                };
+            await AssociateAccessRequestWithVisitors(access, visitors);
 
-                await Client
-                    .For<gc_assetrequest>()
-                    .Set(asset)
-                    .InsertEntryAsync();
-            }
+            await InsertAssetRequests();
 
             return Result.Success();
+
+            async Task InsertAssetRequests()
+            {
+                var assetRequests = accessRequest
+                    .AssetRequests
+                    .Select(assetRequest => new gc_assetrequest
+                    {
+                        gc_assetrequestid = Guid.NewGuid(),
+                        gc_name           = $"{access.gc_accessrequestid} - {Enum.GetName(typeof(Domain.Enums.Asset), assetRequest.Asset.Key)}",
+                        gc_assetsid       = access,
+                        gc_asset          = (Asset)assetRequest.Asset.Key,
+                        gc_other          = assetRequest.Other
+                    });
+
+                foreach (var assetRequest in assetRequests)
+                {
+                    await Client
+                        .For<gc_assetrequest>()
+                        .Set(assetRequests)
+                        .InsertEntryAsync();
+                }
+            }
+            
+            async IAsyncEnumerable<contact> GetContactForVisitors()
+            {
+                var visitors = accessRequest.Visitors.Select(x => contact.MapFrom(x)).ToList();
+
+                foreach (var visitor in visitors)
+                {
+                    var contacts = await Client.For<contact>()
+                        .Filter(x => x.emailaddress1 == visitor.emailaddress1)
+                        .FindEntriesAsync();
+
+                    var contact = contacts.FirstOrDefault();
+
+                    // If no contact has been found, let's create it.
+                    if (contact is null)
+                    {
+                        visitor.contactid = Guid.NewGuid();
+
+                        contact = await Client.For<contact>()
+                            .Set(visitor)
+                            .InsertEntryAsync();
+                    }
+
+                    yield return contact;
+                }
+            }
+
+            /// <remarks>
+            /// Unfortunately, this is the only supported way of associating existing entity instances.
+            /// 
+            /// For more information, please see:
+            /// https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/webapi/samples/basic-operations-csharp
+            /// https://himbap.com/blog/?p=2063
+            /// </remarks>
+            async Task AssociateAccessRequestWithVisitors(gc_accessrequest accessRequest, IEnumerable<contact> visitors)
+            {
+                using var httpClient = _httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
+
+                httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+                httpClient.DefaultRequestHeaders.Add("OData-MaxVersion", "4.0");
+                httpClient.DefaultRequestHeaders.Add("OData-Version", "4.0");
+
+                var accessRequestId = accessRequest.gc_accessrequestid.ToString("D");
+
+                var relationshipObjects = visitors
+                    .Select(x => x.contactid.ToString("D"))
+                    .Select(id => new JObject
+                    {
+                    { "@odata.id", new Uri(httpClient.BaseAddress + $"contacts({id})") }
+                    })
+                    .Select(x => x.ToString());
+
+                foreach (var relationshipObject in relationshipObjects)
+                {
+                    using var content = new StringContent(relationshipObject.ToString(), Encoding.UTF8, "application/json");
+
+                    using var response = await httpClient.PostAsync($"gc_accessrequests({accessRequestId})/gc_accessrequest_contact_visitors/$ref", content);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        throw new Exception(response.ToString());
+                    }
+                }
+            }
         }
 
         public async Task<Result> UpdateAccessRequest(AccessRequest accessRequest)

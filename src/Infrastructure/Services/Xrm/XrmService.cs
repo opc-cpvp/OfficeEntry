@@ -16,6 +16,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
             var clientSettings = new ODataClientSettings(HttpClient)
             {
+                MetadataDocument = MetadataDocument.Value,
                 IgnoreUnmappedProperties = true
             };
 

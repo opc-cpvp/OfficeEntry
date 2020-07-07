@@ -231,3 +231,4 @@ _Pvt_Extensions
 .fake/
 
 appsettings.Development.json
+MetadataDocument.xml

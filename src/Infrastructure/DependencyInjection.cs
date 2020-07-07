@@ -6,6 +6,7 @@ using OfficeEntry.Infrastructure.Identity;
 using OfficeEntry.Infrastructure.Services;
 using OfficeEntry.Infrastructure.Services.Xrm;
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -38,6 +39,16 @@ namespace OfficeEntry.Infrastructure
                 {
                     Credentials = new CredentialCache { { serviceDeskUri, "NTLM", CredentialCache.DefaultNetworkCredentials } }
                 });
+
+                //if (configuration.GetValue<bool>("RefreshMetadataDocument"))
+                //{                   
+                //    var xml = new XrmServiceCache(IHttpClientFactory)
+                //}
+
+                if (File.Exists(configuration.GetValue<string>("MetadataDocument")))
+                {
+                    MetadataDocument.Value = File.ReadAllText(configuration.GetValue<string>("MetadataDocument"));
+                }
             }
 
             services.AddAuthentication()

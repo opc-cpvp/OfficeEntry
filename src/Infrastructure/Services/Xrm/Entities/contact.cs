@@ -27,5 +27,15 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
                 UserSettings = gc_usersettingses.Convert(contact.gc_usersettings)
             };
         }
+
+        public static contact MapFrom(Contact x)
+        {
+            return new contact
+            {
+                firstname = x.FirstName,
+                lastname = x.LastName,
+                emailaddress1 = x.EmailAddress.ToLower()
+            };
+        }
     }
 }
