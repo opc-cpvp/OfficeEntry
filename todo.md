@@ -18,6 +18,7 @@
   - [ ] Insert Assets
 - [ ] Submit form
   - [X] Select following day by default
+  - [ ] Check floor/area capacity before submitting
 - [ ] Ability to submit feedback
 - [ ] Create dashboard in CRM
   - [ ] Access Requests / Floor / Building
