@@ -126,6 +126,9 @@
   <data name="Approved" xml:space="preserve">
     <value>Approvée</value>
   </data>
+  <data name="Asset and equipment:" xml:space="preserve">
+    <value>Matériel de bureau:</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuler</value>
   </data>
@@ -171,6 +174,15 @@
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
   </data>
+  <data name="No asset and equipment." xml:space="preserve">
+    <value>Pas de matériel de bureau.</value>
+  </data>
+  <data name="No visitors." xml:space="preserve">
+    <value>Pas de visiteurs.</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
   <data name="Office Entry" xml:space="preserve">
     <value>Entrée au bureau</value>
   </data>
@@ -200,6 +212,9 @@
   </data>
   <data name="To" xml:space="preserve">
     <value>à</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="Visitors:" xml:space="preserve">
     <value>Visiteurs:</value>

@@ -114,7 +114,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 {
                     await Client
                         .For<gc_assetrequest>()
-                        .Set(assetRequests)
+                        .Set(assetRequest)
                         .InsertEntryAsync();
                 }
             }

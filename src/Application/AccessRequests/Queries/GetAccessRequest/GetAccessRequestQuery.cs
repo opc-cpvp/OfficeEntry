@@ -61,7 +61,7 @@ namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest
                     EmailAddress = x.EmailAddress,
                     PhoneNumber = x.PhoneNumber
                 }).ToArray(),
-                AssetRequests = new AssetRequest[0]
+                AssetRequests = result.AccessRequest.AssetRequests.ToArray()
             };
         }
     }

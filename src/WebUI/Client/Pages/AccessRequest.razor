@@ -41,6 +41,37 @@ else
             </tbody>
         </table>
     }
+    else
+    {
+        <p><strong>@Localizer["No visitors."]</strong></p>
+    }
+
+    if (accessRequest.AssetRequests.Any())
+    {
+        <p><strong>@Localizer["Asset and equipment:"]</strong></p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+
+                    <th scope="col">@Localizer["Type"]</th>
+                    <th scope="col">@Localizer["Notes"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var asset in accessRequest.AssetRequests.OrderBy(x => x.Asset.Value))
+                {
+                    <tr>
+                        <td>@asset.Asset.Value</td>
+                        <td>@asset.Other</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p><strong>@Localizer["No asset and equipment."]</strong></p>
+    }
 
     if (IsEmployee)
     {
