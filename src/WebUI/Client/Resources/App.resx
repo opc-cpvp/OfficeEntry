@@ -120,11 +120,38 @@
   <data name="Approve Requests" xml:space="preserve">
     <value>Approve Requests</value>
   </data>
+  <data name="Cables" xml:space="preserve">
+    <value>Cables</value>
+  </data>
+  <data name="Chair" xml:space="preserve">
+    <value>Chair</value>
+  </data>
+  <data name="CriticalWork" xml:space="preserve">
+    <value>Critical Work</value>
+  </data>
+  <data name="DockingStation" xml:space="preserve">
+    <value>Docking Station</value>
+  </data>
+  <data name="Headset" xml:space="preserve">
+    <value>Headset</value>
+  </data>
   <data name="Health &amp; Safety Measures" xml:space="preserve">
     <value>Health &amp; Safety Measures</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>Keyboard</value>
+  </data>
+  <data name="Laptop" xml:space="preserve">
+    <value>Laptop</value>
+  </data>
+  <data name="Monitor" xml:space="preserve">
+    <value>Monitor</value>
+  </data>
+  <data name="Mouse" xml:space="preserve">
+    <value>Mouse</value>
   </data>
   <data name="My Requests" xml:space="preserve">
     <value>My Requests</value>
@@ -132,10 +159,28 @@
   <data name="Office Entry" xml:space="preserve">
     <value>Office Entry</value>
   </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="PickUpADocument" xml:space="preserve">
+    <value>Pickup a Document</value>
+  </data>
+  <data name="PickUpOfficeEquipment" xml:space="preserve">
+    <value>Pickup Office Equipment</value>
+  </data>
+  <data name="Printer" xml:space="preserve">
+    <value>Printer</value>
+  </data>
   <data name="Privacy Act Statement" xml:space="preserve">
     <value>Privacy Act Statement</value>
   </data>
+  <data name="RegularWork" xml:space="preserve">
+    <value>Regular Work</value>
+  </data>
   <data name="Submit Access Request" xml:space="preserve">
     <value>Submit Access Request</value>
+  </data>
+  <data name="Tablet" xml:space="preserve">
+    <value>Tablet</value>
   </data>
 </root>

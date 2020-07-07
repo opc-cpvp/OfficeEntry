@@ -129,11 +129,20 @@
   <data name="Asset and equipment:" xml:space="preserve">
     <value>Matériel de bureau:</value>
   </data>
+  <data name="Cables" xml:space="preserve">
+    <value>Câbles</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuler</value>
   </data>
   <data name="Cancelled" xml:space="preserve">
     <value>Annulée</value>
+  </data>
+  <data name="Chair" xml:space="preserve">
+    <value>Chaise</value>
+  </data>
+  <data name="CriticalWork" xml:space="preserve">
+    <value>Travail critique</value>
   </data>
   <data name="Decline" xml:space="preserve">
     <value>Refuser</value>
@@ -144,6 +153,9 @@
   <data name="Details:" xml:space="preserve">
     <value>Détails:</value>
   </data>
+  <data name="DockingStation" xml:space="preserve">
+    <value>Station d'accueil pour ordinateur portable</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Courriel</value>
   </data>
@@ -152,6 +164,9 @@
   </data>
   <data name="h:mm tt" xml:space="preserve">
     <value>HH:mm</value>
+  </data>
+  <data name="Headset" xml:space="preserve">
+    <value>Casque d'écoute</value>
   </data>
   <data name="Health &amp; Safety Measures" xml:space="preserve">
     <value>Mesures de santé et de sécurité relatives</value>
@@ -162,11 +177,23 @@
   <data name="Home" xml:space="preserve">
     <value>Accueil</value>
   </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>Clavier</value>
+  </data>
+  <data name="Laptop" xml:space="preserve">
+    <value>Portable</value>
+  </data>
   <data name="Loading..." xml:space="preserve">
     <value>Téléchargement en cours...</value>
   </data>
   <data name="MMMM dd, yyyy" xml:space="preserve">
     <value>le d MMMM yyyy</value>
+  </data>
+  <data name="Monitor" xml:space="preserve">
+    <value>Moniteur</value>
+  </data>
+  <data name="Mouse" xml:space="preserve">
+    <value>Souris</value>
   </data>
   <data name="My Requests" xml:space="preserve">
     <value>Mes demandes</value>
@@ -186,14 +213,29 @@
   <data name="Office Entry" xml:space="preserve">
     <value>Entrée au bureau</value>
   </data>
+  <data name="Other" xml:space="preserve">
+    <value>Autre</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>En attente</value>
+  </data>
+  <data name="PickUpADocument" xml:space="preserve">
+    <value>Récupérer un document</value>
+  </data>
+  <data name="PickUpOfficeEquipment" xml:space="preserve">
+    <value>Récupérer un matériel de bureau</value>
+  </data>
+  <data name="Printer" xml:space="preserve">
+    <value>Imprimante</value>
   </data>
   <data name="Privacy Act Statement" xml:space="preserve">
     <value>Protection des renseignements personnels</value>
   </data>
   <data name="Reason:" xml:space="preserve">
     <value>Raison:</value>
+  </data>
+  <data name="RegularWork" xml:space="preserve">
+    <value>Travail régulier</value>
   </data>
   <data name="Review" xml:space="preserve">
     <value>Revue</value>
@@ -206,6 +248,9 @@
   </data>
   <data name="Submit Access Request" xml:space="preserve">
     <value>Soumettre une demande</value>
+  </data>
+  <data name="Tablet" xml:space="preserve">
+    <value>Tablette</value>
   </data>
   <data name="Telephone" xml:space="preserve">
     <value>Téléphone</value>
