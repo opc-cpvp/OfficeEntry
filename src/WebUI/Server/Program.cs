@@ -7,6 +7,7 @@ namespace OfficeEntry.WebUI.Server
     {
         public static void Main(string[] args)
         {
+            // testing
             CreateHostBuilder(args).Build().Run();
         }
 
