@@ -114,7 +114,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 {
                     await Client
                         .For<gc_assetrequest>()
-                        .Set(assetRequests)
+                        .Set(assetRequest)
                         .InsertEntryAsync();
                 }
             }
@@ -166,7 +166,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                     .Select(x => x.contactid.ToString("D"))
                     .Select(id => new JObject
                     {
-                    { "@odata.id", new Uri(httpClient.BaseAddress + $"contacts({id})") }
+                        { "@odata.id", new Uri(httpClient.BaseAddress + $"contacts({id})") }
                     })
                     .Select(x => x.ToString());
 

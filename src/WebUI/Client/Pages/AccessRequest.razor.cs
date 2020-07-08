@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,39 +20,36 @@ namespace OfficeEntry.WebUI.Client.Pages
         public bool IsEmployee { get; set; }
         public bool IsManager { get; set; }
 
-        public bool IsApproved => accessRequest.Status.Key == (int)Domain.Entities.AccessRequest.ApprovalStatus.Approved;
-        public bool IsCancelled => accessRequest.Status.Key == (int)Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
-        public bool IsDeclined => accessRequest.Status.Key == (int)Domain.Entities.AccessRequest.ApprovalStatus.Declined;
+        public bool IsApproved => accessRequest.Status  == Domain.Entities.AccessRequest.ApprovalStatus.Approved;
+        public bool IsCancelled => accessRequest.Status == Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
+        public bool IsDeclined => accessRequest.Status  == Domain.Entities.AccessRequest.ApprovalStatus.Declined;
 
-        private Domain.Entities.AccessRequest accessRequest;
+        private AccessRequestViewModel accessRequest;
 
         protected override async Task OnInitializedAsync()
         {
-            var result = await Http.GetFromJsonAsync<Application.AccessRequests.Queries.GetAccessRequest.AccessRequestViewModel>($"api/AccessRequests/{Id}");
+            var result = await Http.GetFromJsonAsync<AccessRequestViewModel>($"api/AccessRequests/{Id}");
             IsEmployee = result.IsEmployee;
             IsManager = result.IsManager;
-            accessRequest = result.AccessRequest;
+            accessRequest = result;
         }
 
         private async Task ApproveRequest()
         {
-            accessRequest.Status.Key = (int)Domain.Entities.AccessRequest.ApprovalStatus.Approved;
+            accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Approved;
             await Http.PostAsJsonAsync("api/accessrequests/update", accessRequest);
-            accessRequest.Status.Value = "Approved";
         }
 
         private async Task CancelRequest()
         {
-            accessRequest.Status.Key = (int)Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
+            accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
             await Http.PostAsJsonAsync("api/accessrequests/update", accessRequest);
-            accessRequest.Status.Value = "Cancelled";
         }
 
         private async Task DeclineRequest()
         {
-            accessRequest.Status.Key = (int)Domain.Entities.AccessRequest.ApprovalStatus.Declined;
+            accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Declined;
             await Http.PostAsJsonAsync("api/accessrequests/update", accessRequest);
-            accessRequest.Status.Value = "Declined";
         }
     }
 }
