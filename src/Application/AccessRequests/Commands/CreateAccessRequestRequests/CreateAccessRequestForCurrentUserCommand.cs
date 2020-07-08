@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,7 +18,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         private readonly ICurrentUserService _currentUserService;
         private readonly IUserService _userService;
 
-        public CreateAccessRequestForCurrentUserCommandHandler(IAccessRequestService accessRequestService, ICurrentUserService currentUserService, IUserService userService)
+        public CreateAccessRequestForCurrentUserCommandHandler(IAccessRequestService accessRequestService, ICurrentUserService currentUserService, ILocationService locationService, IUserService userService)
         {
             _accessRequestService = accessRequestService;
             _currentUserService = currentUserService;
@@ -28,6 +29,11 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         {
             var username = _currentUserService.UserId;
             var contactResult = await _userService.GetContact(username);
+
+            if (contactResult.Contact?.UserSettings?.HealthSafety == null || contactResult.Contact?.UserSettings?.PrivacyStatement == null)
+            {
+                throw new Exception("Can't create an access request without accepting Privacy Act statement and Health and Safety measures");
+            }
 
             request.AccessRequest.Employee = new Contact
             {
