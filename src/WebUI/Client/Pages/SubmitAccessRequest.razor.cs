@@ -23,6 +23,32 @@ namespace OfficeEntry.WebUI.Client.Pages
 
         public bool SurveyCompleted { get; set; }
 
+        public bool IsLoaded { get; set; }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender)
+            {
+                return;
+            }
+
+            var isPrivacyActStatementAccepted = await Http.GetFromJsonAsync<bool>("api/PrivacyStatement");
+            var isHealthAndSafetyStatementAccepted = await Http.GetFromJsonAsync<bool>("api/HealthAndSafetyMeasures");
+
+            if (!isPrivacyActStatementAccepted)
+            {
+                NavigationManager.NavigateTo("/privacy-act-statement");
+            }
+            if (!isHealthAndSafetyStatementAccepted)
+            {
+                NavigationManager.NavigateTo("/health-and-safety-measures");
+            }
+
+            IsLoaded = true;
+
+            StateHasChanged();
+        }
+
         public async Task OnSurveyCompleted(string surveyResult)
         {
             SurveyCompleted = true;
