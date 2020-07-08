@@ -18,7 +18,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         private readonly ICurrentUserService _currentUserService;
         private readonly IUserService _userService;
 
-        public CreateAccessRequestForCurrentUserCommandHandler(IAccessRequestService accessRequestService, ICurrentUserService currentUserService, ILocationService locationService, IUserService userService)
+        public CreateAccessRequestForCurrentUserCommandHandler(IAccessRequestService accessRequestService, ICurrentUserService currentUserService, IUserService userService)
         {
             _accessRequestService = accessRequestService;
             _currentUserService = currentUserService;
