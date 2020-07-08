@@ -26,9 +26,6 @@ namespace OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestReq
 
         public async Task<Unit> Handle(UpdateAccessRequestCommand request, CancellationToken cancellationToken)
         {
-            var username = _currentUserService.UserId;
-            var userResult = await _userService.GetUserId(username);
-
             await _accessRequestService.UpdateAccessRequest(request.AccessRequest);
 
             return Unit.Value;
