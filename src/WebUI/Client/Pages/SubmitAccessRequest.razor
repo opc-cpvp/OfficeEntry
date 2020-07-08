@@ -5,19 +5,11 @@
 
 <h1>@Localizer["Submit Access Request"]</h1>
 
+<Survey Id="surveyElementSubmitAccessRequest"
+        SurveyUrl="sample-data/accessRequestSurvey.json"
+        OnSurveyCompleted="@OnSurveyCompleted" />
 
 @if (SurveyCompleted)
 {
     <Loading />
-}
-
-@if (!IsLoaded)
-{
-    <Loading />
-}
-else
-{
-    <Survey Id="surveyElementSubmitAccessRequest"
-            SurveyUrl="sample-data/accessRequestSurvey.json"
-            OnSurveyCompleted="@OnSurveyCompleted" />
 }

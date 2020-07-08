@@ -34,11 +34,11 @@ namespace OfficeEntry.WebUI.Client.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            var isHealthAndSafetyStatementAccepted = await Http.GetFromJsonAsync<bool>("api/HealthAndSafetyMeasures");
+            var isPrivacyActStatementAccepted = await Http.GetFromJsonAsync<bool>("api/HealthAndSafetyMeasures");
 
             var surveyData = new HealthAndSafetyMeasuresStatementSurveyData
             {
-                questionAcceptHsmStatement = isHealthAndSafetyStatementAccepted
+                questionAcceptHsmStatement = isPrivacyActStatementAccepted
                     ? new string[] { "iAcceptHsmStatement" }
                     : new string[0]
             };
