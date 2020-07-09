@@ -37,19 +37,38 @@ namespace OfficeEntry.WebUI.Client.Pages
         private async Task ApproveRequest()
         {
             accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Approved;
-            await Http.PostAsJsonAsync("api/accessrequests/update", accessRequest);
+
+            var accessRequestMessage = new Domain.Entities.AccessRequest
+            {
+                Id = accessRequest.Id,
+                Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
+            };
+            await Http.PostAsJsonAsync("api/accessrequests/update", accessRequestMessage);
         }
 
         private async Task CancelRequest()
         {
             accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
-            await Http.PostAsJsonAsync("api/accessrequests/update", accessRequest);
+
+            var accessRequestMessage = new Domain.Entities.AccessRequest
+            {
+                Id = accessRequest.Id,
+                Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
+            };
+            await Http.PostAsJsonAsync("api/accessrequests/update", accessRequestMessage);
         }
 
         private async Task DeclineRequest()
         {
             accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Declined;
-            await Http.PostAsJsonAsync("api/accessrequests/update", accessRequest);
+
+            var accessRequestMessage = new Domain.Entities.AccessRequest
+            {
+                Id = accessRequest.Id,
+                Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
+            };
+
+            await Http.PostAsJsonAsync("api/accessrequests/update", accessRequestMessage);
         }
     }
 }

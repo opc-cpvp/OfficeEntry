@@ -11,7 +11,7 @@
   - [ ] Server side
 - [ ] Create contact entities in CRM for each user and populate the username
 - [ ] Verify user settings before allowing the user to submit an access request
-- [ ] Create user settings if they don't exist
+- [X] Create user settings if they don't exist
 - [X] Equipment
   - [X] Create CRM fields
   - [X] Update UI
