@@ -10,5 +10,7 @@ namespace OfficeEntry.Application.Common.Interfaces
         public Task<IEnumerable<Building>> GetBuildingsAsync();
 
         public Task<IEnumerable<Floor>> GetFloorsByBuildingAsync(Guid buildingId);
+
+        public Task<int> GetCapacityByFloorAsync(Guid floorId);
     }
 }
