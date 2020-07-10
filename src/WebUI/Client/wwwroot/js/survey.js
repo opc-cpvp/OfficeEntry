@@ -80,7 +80,8 @@ interopJS.survey = {
                 survey
                     .onCurrentPageChanged
                     .add((survey, options) => {
-                    dotNet.invokeMethodAsync("PageChanged", options.newCurrentPage.name);
+
+                    dotNet.invokeMethodAsync("PageChanged", JSON.stringify(survey.data, null, 3), options.newCurrentPage.name);
                 });
 
                 survey
