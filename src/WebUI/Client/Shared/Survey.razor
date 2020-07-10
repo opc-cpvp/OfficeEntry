@@ -19,7 +19,7 @@
     public EventCallback<string> OnSurveyCompleted { get; set; }
 
     [Parameter]
-    public EventCallback<string> OnPageChanged { get; set; }
+    public EventCallback<(string surveuData, string newCurrentPageNames)> OnPageChanged { get; set; }
 
     [Parameter]
     public string Data { get; set; }
@@ -57,9 +57,9 @@
     }
 
     [JSInvokable]
-    public async Task PageChanged(string newCurrentPageName)
+    public async Task PageChanged(string surveyData, string newCurrentPageName)
     {
-        await OnPageChanged.InvokeAsync(newCurrentPageName);
+        await OnPageChanged.InvokeAsync((surveyData, newCurrentPageName));
     }
 
     public void Dispose()

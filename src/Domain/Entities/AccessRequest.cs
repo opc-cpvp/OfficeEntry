@@ -16,7 +16,7 @@ namespace OfficeEntry.Domain.Entities
         public OptionSet Reason { get; set; }
         public DateTime StartTime { get; set; }
         public OptionSet Status { get; set; }
-        public List<Contact> Visitors { get; set; }
+        public List<Contact> Visitors { get; set; } = new List<Contact>();
 
         public enum ApprovalStatus
         {

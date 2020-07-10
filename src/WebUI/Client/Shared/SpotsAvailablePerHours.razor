@@ -1,5 +1,7 @@
-﻿@implements IDisposable
-@inject IJSRuntime JSRuntime
+﻿@inject IJSRuntime JSRuntime
+
+@using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour
+@using System.Globalization
 
 <div id="blazor-spotsAvailablePerHours-wraper">
 </div>
@@ -13,9 +15,7 @@
     public string Class { get; set; } = "";
 
     [Parameter]
-    public string Data { get; set; }
-
-    //private DotNetObjectReference<SpotsAvailablePerHours> _objectReference;
+    public CurrentCapacity[] Data { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -24,14 +24,18 @@
             return;
         }
 
-        //_objectReference = DotNetObjectReference.Create(this);
+        var t = Data
+            .Where(x => x.Hour >= 7 && x.Hour <= 17)
+            .Select(x => new object[]
+            {
+                CultureInfo.DefaultThreadCurrentUICulture.TwoLetterISOLanguageName == "en"
+                ? x.Hour == 12 ? "Noon" : x.Hour > 12 ? (x.Hour - 12) + "PM" : x.Hour + "AM"
+                : x.Hour == 12 ? "Midi" : x.Hour + "h",
+            x.SpotsReserved,
+            x.Capacity - x.SpotsReserved,
+            ""
+            }).ToArray();
 
-        //await JSRuntime.InvokeVoidAsync("interop.spotsAvailablePerHours.register", _objectReference);
-        await JSRuntime.InvokeVoidAsync("interop.spotsAvailablePerHours.init", Id, @Class, System.Globalization.CultureInfo.DefaultThreadCurrentUICulture.TwoLetterISOLanguageName, Data);
-    }
-
-    public void Dispose()
-    {
-        //_objectReference?.Dispose();
+        await JSRuntime.InvokeVoidAsync("interop.spotsAvailablePerHours.init", Id, @Class, CultureInfo.DefaultThreadCurrentUICulture.TwoLetterISOLanguageName, t);
     }
 }

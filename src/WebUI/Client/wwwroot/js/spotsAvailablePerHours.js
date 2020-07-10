@@ -1,7 +1,10 @@
 ﻿var interopJS = interopJS || {}
 
 interopJS.spotsAvailablePerHours = {
-    init: function (id, classStyle, languageCode, data) {
+    chartData : null,
+    init: function (id, classStyle, languageCode, capacities) {
+
+        chartData = capacities;
 
         document
             .querySelector('#blazor-spotsAvailablePerHours-wraper')
@@ -11,26 +14,14 @@ interopJS.spotsAvailablePerHours = {
         google.charts.setOnLoadCallback(drawStuff);
 
         function drawStuff() {
-            var data = google.visualization.arrayToDataTable([
-                [
-                    languageCode === "en" ? 'Spots available per hour' : 'Places disponibles par heure',
-                    languageCode === "en" ? 'Spots reserved'           : 'Places réservés',
-                    languageCode === "en" ? 'Spots available'          : 'Places disponibles',
-                    { role: 'annotation' }
-                ],
-                // todo: replace fake data with data argument
-                [languageCode === "en" ?  "7AM" :  '7h' , 10, 24, ''],
-                [languageCode === "en" ?  "8AM" :  '8h' , 16, 22, ''],
-                [languageCode === "en" ?  "9AM" :  '9h' , 16, 22, ''],
-                [languageCode === "en" ? "10AM" : '10h' , 16, 22, ''],
-                [languageCode === "en" ? "11AM" : '11h' , 16, 22, ''],
-                [languageCode === "en" ? "12PM" : '12h' , 16, 22, ''],
-                [languageCode === "en" ?  "1PM" : '13h' , 28, 19, ''],
-                [languageCode === "en" ?  "2PM" : '14h' , 28, 19, ''],
-                [languageCode === "en" ?  "3PM" : '15h' , 28, 19, ''],
-                [languageCode === "en" ?  "4PM" : '16h' , 28, 19, ''],
-                [languageCode === "en" ?  "5PM" : '17h' , 28, 19, ''],
-            ]);
+            let array1 = [[
+                languageCode === "en" ? 'Spots available per hour' : 'Places disponibles par heure',
+                languageCode === "en" ? 'Spots reserved' : 'Places réservés',
+                languageCode === "en" ? 'Spots available' : 'Places disponibles',
+                { role: 'annotation' }
+            ]];
+            let array3 = array1.concat(chartData);
+            var data = google.visualization.arrayToDataTable(array3);
 
             var options = {
                 //legend: { position: 'top', maxLines: 3 },
