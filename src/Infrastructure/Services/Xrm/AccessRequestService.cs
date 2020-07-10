@@ -22,13 +22,49 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             _httpClientFactory = httpClientFactory;
         }
 
+        public async Task<IEnumerable<AccessRequest>> GetApprovedOrPendingAccessRequestsByFloor(Guid floorId)
+        {
+         
+            var accessRequests = await Client.For<gc_accessrequest>()
+                .Filter(a => a.gc_floor.gc_floorid == floorId)
+                .Expand(a => new { a.gc_accessrequest_contact_visitors })
+                .FindEntriesAsync();
+
+            var approvedAndPendingAccessRequests = new List<gc_accessrequest>();
+
+            foreach(var accessRequest in accessRequests.ToList())
+            {
+                // TODO filer request status in db query
+                if (accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Approved || accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Pending)
+                {
+                    var visitors = await Client.For<gc_accessrequest>()
+                   .Key(accessRequest.gc_accessrequestid)
+                   .NavigateTo(a => a.gc_accessrequest_contact_visitors)
+                   .FindEntriesAsync();
+
+                    accessRequest.gc_accessrequest_contact_visitors = visitors.ToList();
+
+                    approvedAndPendingAccessRequests.Add(accessRequest);
+                }              
+            }
+
+            return approvedAndPendingAccessRequests.Select(f => new AccessRequest
+            {
+                Id = f.gc_accessrequestid,
+                StartTime = f.gc_starttime,
+                EndTime = f.gc_endtime,
+                Status = new OptionSet { Value = f.gc_approvalstatus.ToString() },
+                Visitors = f.gc_accessrequest_contact_visitors.Select(v => contact.Convert(v)).ToList()
+            });
+        }
+
         public async Task<(Result Result, AccessRequest AccessRequest)> GetAccessRequest(Guid accessRequestId)
         {
             var accessRequest = await Client.For<gc_accessrequest>()
                 .Key(accessRequestId)
                 .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_contact_visitors, a.gc_accessrequest_assetrequest })
                 .FindEntryAsync();
-
+        
             return (Result.Success(), gc_accessrequest.Convert(accessRequest));
         }
 

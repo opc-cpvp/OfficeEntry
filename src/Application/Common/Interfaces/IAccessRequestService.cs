@@ -17,5 +17,7 @@ namespace OfficeEntry.Application.Common.Interfaces
         Task<Result> CreateAccessRequest(AccessRequest accessRequest);
 
         Task<Result> UpdateAccessRequest(AccessRequest accessRequest);
+
+        Task<IEnumerable<AccessRequest>> GetApprovedOrPendingAccessRequestsByFloor(Guid floorId);
     }
 }
