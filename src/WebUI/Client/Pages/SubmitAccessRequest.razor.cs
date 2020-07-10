@@ -25,6 +25,8 @@ namespace OfficeEntry.WebUI.Client.Pages
 
         public bool IsLoaded { get; set; }
 
+        public bool ShowSpotsAvailablePerHours { get; set; }
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (!firstRender)
@@ -121,12 +123,17 @@ namespace OfficeEntry.WebUI.Client.Pages
 
             static IEnumerable<AssetRequest> Repeat(int value, int count)
                 => Enumerable.Repeat(new AssetRequest
+                {
+                    Asset = new OptionSet
                     {
-                        Asset = new OptionSet
-                        {
-                            Key = value
-                        }
-                    }, count);
+                        Key = value
+                    }
+                }, count);
+        }
+
+        public async Task OnPageChanged(string newCurrentPageName)
+        {
+            await Task.Run(() => ShowSpotsAvailablePerHours = newCurrentPageName == "page4");
         }
     }
 }

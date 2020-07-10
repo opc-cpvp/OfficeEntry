@@ -1,0 +1,37 @@
+﻿@implements IDisposable
+@inject IJSRuntime JSRuntime
+
+<div id="blazor-spotsAvailablePerHours-wraper">
+</div>
+
+
+@code {
+    [Parameter]
+    public string Id { get; set; } = "chartElement";
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string Data { get; set; }
+
+    //private DotNetObjectReference<SpotsAvailablePerHours> _objectReference;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        //_objectReference = DotNetObjectReference.Create(this);
+
+        //await JSRuntime.InvokeVoidAsync("interop.spotsAvailablePerHours.register", _objectReference);
+        await JSRuntime.InvokeVoidAsync("interop.spotsAvailablePerHours.init", Id, @Class, System.Globalization.CultureInfo.DefaultThreadCurrentUICulture.TwoLetterISOLanguageName, Data);
+    }
+
+    public void Dispose()
+    {
+        //_objectReference?.Dispose();
+    }
+}

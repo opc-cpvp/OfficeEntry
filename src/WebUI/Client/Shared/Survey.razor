@@ -19,6 +19,9 @@
     public EventCallback<string> OnSurveyCompleted { get; set; }
 
     [Parameter]
+    public EventCallback<string> OnPageChanged { get; set; }
+
+    [Parameter]
     public string Data { get; set; }
 
     private DotNetObjectReference<Survey> _objectReference;
@@ -51,6 +54,12 @@
     public async Task SurveyCompleted(string results)
     {
         await OnSurveyCompleted.InvokeAsync(results);
+    }
+
+    [JSInvokable]
+    public async Task PageChanged(string newCurrentPageName)
+    {
+        await OnPageChanged.InvokeAsync(newCurrentPageName);
     }
 
     public void Dispose()
