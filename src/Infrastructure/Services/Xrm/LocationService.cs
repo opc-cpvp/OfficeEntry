@@ -50,5 +50,14 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 Name = f.gc_englishname
             });
         }
+
+        public async Task<int> GetCapacityByFloorAsync(Guid floorId)
+        {
+            var floor = await Client.For<gc_floor>()
+                .Key(floorId)
+                .FindEntryAsync();
+
+            return floor.gc_capacity;
+        }
     }
 }
