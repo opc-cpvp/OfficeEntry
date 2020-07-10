@@ -16,12 +16,14 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
     {
         private readonly IAccessRequestService _accessRequestService;
         private readonly ICurrentUserService _currentUserService;
+        private readonly ILocationService _locationService;
         private readonly IUserService _userService;
 
-        public CreateAccessRequestForCurrentUserCommandHandler(IAccessRequestService accessRequestService, ICurrentUserService currentUserService, IUserService userService)
+        public CreateAccessRequestForCurrentUserCommandHandler(IAccessRequestService accessRequestService, ICurrentUserService currentUserService, ILocationService locationService, IUserService userService)
         {
             _accessRequestService = accessRequestService;
             _currentUserService = currentUserService;
+            _locationService = locationService;
             _userService = userService;
         }
 
@@ -33,6 +35,29 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             if (contactResult.Contact?.UserSettings?.HealthSafety == null || contactResult.Contact?.UserSettings?.PrivacyStatement == null)
             {
                 throw new Exception("Can't create an access request without accepting Privacy Act statement and Health and Safety measures");
+            }
+
+            var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloor(request.AccessRequest.Floor.Id);
+            int peopleCount = 0;
+
+            foreach(var accessRequest in accessRequests)
+            {               
+                if (
+                (accessRequest.StartTime >= request.AccessRequest.StartTime && accessRequest.StartTime < request.AccessRequest.EndTime) ||
+                (accessRequest.StartTime <= request.AccessRequest.StartTime && accessRequest.EndTime > request.AccessRequest.StartTime)
+                )
+                {
+                    var visitorCount = accessRequest.Visitors.Count;
+                    peopleCount += visitorCount + 1;
+                }                               
+            }
+
+            var capacity = await _locationService.GetCapacityByFloorAsync(request.AccessRequest.Floor.Id);
+
+            var currentCapacity = capacity - peopleCount;
+            if(currentCapacity - (request.AccessRequest.Visitors.Count + 1) < 0)
+            {
+                throw new Exception("Your request exceed the capacity");
             }
 
             request.AccessRequest.Employee = new Contact
