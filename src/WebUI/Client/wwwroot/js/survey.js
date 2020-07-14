@@ -46,6 +46,18 @@ interopJS.survey = {
         Survey.defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-secondary";
         Survey.defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
 
+        async function CapacityValidator() {
+            await dotNet.invokeMethodAsync("CheckCapacity")
+                .then(r => {
+                    this.returnResult(r);
+                });
+        }
+
+        Survey
+            .FunctionFactory
+            .Instance
+            .register("CapacityValidator", CapacityValidator, true);
+            
         fetch(surveyUrl)
             .then(response => response.json())
             .then(json => {
