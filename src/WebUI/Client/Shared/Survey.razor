@@ -53,6 +53,12 @@
         await OnSurveyCompleted.InvokeAsync(results);
     }
 
+    [JSInvokable]
+    public int CheckCapacity()
+    {
+        return 1;
+    }
+
     public void Dispose()
     {
         _objectReference?.Dispose();

@@ -303,7 +303,14 @@
           },
           "isRequired": true,
           "inputType": "date",
-          "max": "2999-12-31"
+          "max": "2999-12-31",
+          "validators": [
+            {
+              "type": "expression",
+              "text": "Capacity exceeded",
+              "expression": "CapacityValidator() = 1"
+            }
+          ]
         }
       ]
     },
