@@ -90,6 +90,13 @@ interopJS.survey = {
                     });
 
                 survey
+                    .onCurrentPageChanged
+                    .add((survey, options) => {
+
+                    dotNet.invokeMethodAsync("PageChanged", JSON.stringify(survey.data, null, 3), options.newCurrentPage.name);
+                });
+
+                survey
                     .onValueChanged
                     //.add( (s,e) => window.localStorage["surveyjs-blazor"] = survey.data );
                     .add(surveyValueChanged);
