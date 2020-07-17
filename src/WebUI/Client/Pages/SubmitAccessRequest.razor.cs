@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 using System.Linq;
 using OfficeEntry.Domain.Enums;
+using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
+using System;
 
 namespace OfficeEntry.WebUI.Client.Pages
 {
@@ -24,6 +26,9 @@ namespace OfficeEntry.WebUI.Client.Pages
         public bool SurveyCompleted { get; set; }
 
         public bool IsLoaded { get; set; }
+
+        public bool ShowSpotsAvailablePerHours { get; set; }
+        public CurrentCapacity[] FloorCapacity { get; set; }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -121,12 +126,35 @@ namespace OfficeEntry.WebUI.Client.Pages
 
             static IEnumerable<AssetRequest> Repeat(int value, int count)
                 => Enumerable.Repeat(new AssetRequest
+                {
+                    Asset = new OptionSet
                     {
-                        Asset = new OptionSet
-                        {
-                            Key = value
-                        }
-                    }, count);
+                        Key = value
+                    }
+                }, count);
+        }
+
+        public async Task OnPageChanged((string data, string newCurrentPageName) p)
+        {
+            (string surveyResult, string newCurrentPageName) = p;
+
+            if (newCurrentPageName == "page4")
+            {
+                var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(surveyResult);
+
+                var floorId = submission.floor;
+                var date = submission.startDate;
+                
+                var results = await Http.GetFromJsonAsync<CurrentCapacity[]>($"api/SpotsAvailablePerHour?floorId={floorId}&date={date}");
+
+                FloorCapacity = results;
+
+                ShowSpotsAvailablePerHours = true;
+
+                return;
+            }
+
+            await Task.Run(() => ShowSpotsAvailablePerHours = newCurrentPageName == "page4");
         }
     }
 }

@@ -16,7 +16,14 @@
 }
 else
 {
+    if (ShowSpotsAvailablePerHours)
+    {
+        <SpotsAvailablePerHours Data="FloorCapacity" />
+    }
+
     <Survey Id="surveyElementSubmitAccessRequest"
             SurveyUrl="sample-data/accessRequestSurvey.json"
-            OnSurveyCompleted="@OnSurveyCompleted" />
+            OnSurveyCompleted="@OnSurveyCompleted"
+            OnPageChanged="@OnPageChanged" />
+
 }
