@@ -303,14 +303,7 @@
           },
           "isRequired": true,
           "inputType": "date",
-          "max": "2999-12-31",
-          "validators": [
-            {
-              "type": "expression",
-              "text": "Capacity exceeded",
-              "expression": "CapacityValidator() = 1"
-            }
-          ]
+          "max": "2999-12-31"
         }
       ]
     },
@@ -514,6 +507,11 @@
                 "fr": "« À » doit être plus grand que « De »"
               },
               "expression": "{endTime} > {startTime}"
+            },
+            {
+              "type": "expression",
+              "text": "Capacity exceeded",
+              "expression": "CapacityValidator() = true"
             }
           ],
           "choices": [

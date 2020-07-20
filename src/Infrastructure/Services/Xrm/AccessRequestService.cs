@@ -24,9 +24,10 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
         public async Task<IEnumerable<AccessRequest>> GetApprovedOrPendingAccessRequestsByFloor(Guid floorId)
         {
-         
+           
             var accessRequests = await Client.For<gc_accessrequest>()
                 .Filter(a => a.gc_floor.gc_floorid == floorId)
+                //.Filter(a => a.gc_starttime.Date == requestDate.Date)
                 .Expand(a => new { a.gc_accessrequest_contact_visitors })
                 .FindEntriesAsync();
 
@@ -53,7 +54,6 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 Id = f.gc_accessrequestid,
                 StartTime = f.gc_starttime,
                 EndTime = f.gc_endtime,
-                Status = new OptionSet { Value = f.gc_approvalstatus.ToString() },
                 Visitors = f.gc_accessrequest_contact_visitors.Select(v => contact.Convert(v)).ToList()
             });
         }

@@ -1,6 +1,10 @@
 ﻿@implements IDisposable
 @inject ISurveyInterop SurveyInterop
 @inject IJSRuntime JSRuntime
+@inject HttpClient Http
+@using OfficeEntry.WebUI.Client.Models
+@using Newtonsoft.Json
+@using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour
 
 <div id="blazor-survey-wraper">
 </div>
@@ -63,9 +67,27 @@
     }
 
     [JSInvokable]
-    public int CheckCapacity()
+    public async Task<bool> HasAvailableCapacity(string surveyData)
     {
-        return 1;
+        var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(surveyData);
+        var floorId = submission.floor;
+        var date = submission.startDate;
+
+        var results = await Http.GetFromJsonAsync<CurrentCapacity[]>($"api/SpotsAvailablePerHour?floorId={floorId}&date={date}");
+
+        for (var i = submission.startTime; i < submission.endTime; i++)
+        {
+            var availableCapacity = results[i].Capacity - results[i].SpotsReserved - (1 + submission.visitors?.Length ?? 0);
+
+            if (availableCapacity < 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+
+
     }
 
     public void Dispose()

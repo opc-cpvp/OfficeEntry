@@ -47,8 +47,8 @@ interopJS.survey = {
         Survey.defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
 
         async function CapacityValidator() {
-            await dotNet.invokeMethodAsync("CheckCapacity")
-                .then(r => {
+            await dotNet.invokeMethodAsync("HasAvailableCapacity", JSON.stringify(survey.data, null, 3))
+                .then(r => {                 
                     this.returnResult(r);
                 });
         }
@@ -83,7 +83,7 @@ interopJS.survey = {
 
                 survey
                     .onAfterRenderQuestion
-                    .add((sender, options) => {
+                    .add((survey, options) => {
                         if (options.question.name === "startDate") {
                             options.question.defaultValue = this.getNextDayDate();
                         }
