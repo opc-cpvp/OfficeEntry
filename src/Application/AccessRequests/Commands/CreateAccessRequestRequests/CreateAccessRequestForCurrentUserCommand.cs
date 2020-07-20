@@ -1,5 +1,7 @@
 ﻿using MediatR;
+using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using System;
 using System.Threading;
@@ -19,12 +21,15 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         private readonly ILocationService _locationService;
         private readonly IUserService _userService;
 
-        public CreateAccessRequestForCurrentUserCommandHandler(IAccessRequestService accessRequestService, ICurrentUserService currentUserService, ILocationService locationService, IUserService userService)
+        private IMediator _mediator;
+
+        public CreateAccessRequestForCurrentUserCommandHandler(IAccessRequestService accessRequestService, ICurrentUserService currentUserService, ILocationService locationService, IUserService userService, IMediator mediator)
         {
             _accessRequestService = accessRequestService;
             _currentUserService = currentUserService;
             _locationService = locationService;
             _userService = userService;
+            _mediator = mediator;
         }
 
         public async Task<Unit> Handle(CreateAccessRequestForCurrentUserCommand request, CancellationToken cancellationToken)
@@ -37,28 +42,20 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 throw new Exception("Can't create an access request without accepting Privacy Act statement and Health and Safety measures");
             }
 
-            var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloor(request.AccessRequest.Floor.Id);
-            int peopleCount = 0;
+            var floorId = request.AccessRequest.Floor.Id;
+            var date = request.AccessRequest.StartTime;
 
-            foreach(var accessRequest in accessRequests)
-            {               
-                if (
-                (accessRequest.StartTime >= request.AccessRequest.StartTime && accessRequest.StartTime < request.AccessRequest.EndTime) ||
-                (accessRequest.StartTime <= request.AccessRequest.StartTime && accessRequest.EndTime > request.AccessRequest.StartTime)
-                )
-                {
-                    var visitorCount = accessRequest.Visitors.Count;
-                    peopleCount += visitorCount + 1;
-                }                               
-            }
+            var results = await _mediator.Send(new GetSpotsAvailablePerHourQuery { FloorId = floorId, SelectedDay = date });
 
-            var capacity = await _locationService.GetCapacityByFloorAsync(request.AccessRequest.Floor.Id);
-
-            var currentCapacity = capacity - peopleCount;
-            if(currentCapacity - (request.AccessRequest.Visitors.Count + 1) < 0)
+            foreach(var result in results)
             {
-                throw new Exception("Your request exceed the capacity");
-            }
+                var availableCapacity = result.Capacity - result.SpotsReserved - (1 + request.AccessRequest.Visitors?.Count ?? 0);
+
+                if (availableCapacity < 0)
+                {
+                    throw new Exception("Your request exceeds the floor capacity");
+                }
+            }      
 
             request.AccessRequest.Employee = new Contact
             {

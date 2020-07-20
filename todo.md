@@ -2,15 +2,15 @@
 
 ## Must have
 
-- [ ] i18n
+- [X] i18n
   - [X] Surveys
     - [X] PA
     - [X] H&S
     - [X] Submission
   - [X] Blazor
-  - [ ] Server side
+  - [X] Server side
 - [ ] Create contact entities in CRM for each user and populate the username
-- [ ] Verify user settings before allowing the user to submit an access request
+- [X] Verify user settings before allowing the user to submit an access request
 - [X] Create user settings if they don't exist
 - [X] Equipment
   - [X] Create CRM fields
@@ -18,19 +18,32 @@
   - [X] Insert Assets
 - [ ] Submit form
   - [X] Select following day by default
-  - [ ] Check floor/area capacity before submitting
-- [ ] Ability to submit feedback
-- [ ] Create dashboard in CRM
-  - [ ] Access Requests / Floor / Building
+  - [X] Check floor/area capacity before submitting
+  - [ ] Display error messages to client
+- [ ] Dynamics
+    - [ ] Emails
+        - [ ] Access Request approval email / cc user
+        - [ ] Confirmation email / cc manager
+    - [ ] Create dashboard in CRM
+        - [ ] Access Requests / Floor / Building
+    - [ ] Workflow
+        - [ ] Send email to admins and commissioner
+
+- [ ] CI/CD
+    - [ ] Build pipelines
+    - [ ] Release pipelines
+    - [ ] Environments
 
 ## Should have
 
 - [ ] State management
 - [ ] Unit tests
+- [ ] Ability to submit feedback
 
 ## Could have
 
-- [ ] Bar chart for times of day / capacity
+- [X] Bar chart for times of day / capacity
+- [ ] Track users directorate
 
 ## Won't have (this time)  
 

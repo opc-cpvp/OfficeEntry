@@ -507,6 +507,11 @@
                 "fr": "« À » doit être plus grand que « De »"
               },
               "expression": "{endTime} > {startTime}"
+            },
+            {
+              "type": "expression",
+              "text": "Capacity exceeded",
+              "expression": "CapacityValidator() = true"
             }
           ],
           "choices": [

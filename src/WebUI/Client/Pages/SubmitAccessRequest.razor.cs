@@ -27,7 +27,7 @@ namespace OfficeEntry.WebUI.Client.Pages
 
         public bool IsLoaded { get; set; }
 
-        public bool ShowSpotsAvailablePerHours { get; set; }
+        public bool ShowSpotsAvailablePerHours { get; set; }      
         public CurrentCapacity[] FloorCapacity { get; set; }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
