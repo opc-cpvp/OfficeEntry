@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{7f934d44-6a35-40a6-9a8d-96f1110858ac}</formid>
+    <IntroducedVersion>0.0.1</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{8cf4d306-3b7a-4b2c-afc7-780f6795cde9}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{61ba1d25-50ee-4fb8-8b5b-619afcc3ef0c}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{746ba87a-3a3a-47bc-8882-8a237ece56f4}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="gc_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{954bb51c-ea55-ec7b-c598-750640017427}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="English Name" languagecode="1033" />
+                        </labels>
+                        <control id="gc_englishname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_englishname" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ee6a67cd-d5be-692d-170d-0965c6e10eb6}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="French Name" languagecode="1033" />
+                        </labels>
+                        <control id="gc_frenchname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_frenchname" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{46b6ddd6-ae8d-11ae-9039-4d9cc23a6ea7}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="English Description" languagecode="1033" />
+                        </labels>
+                        <control id="gc_englishdescription" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_englishdescription" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{821bbb5c-96e4-118c-9053-941ab81c304c}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="French Description" languagecode="1033" />
+                        </labels>
+                        <control id="gc_frenchdescription" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_frenchdescription" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ad5bd621-66b1-1ee8-1c30-4293b5d58a4c}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Address" languagecode="1033" />
+                        </labels>
+                        <control id="gc_address" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_address" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{67c4e695-8526-60bb-6d2b-ceecdc98771a}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="City" languagecode="1033" />
+                        </labels>
+                        <control id="gc_city" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_city" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cc8ed3e0-434a-e8eb-0831-117e3d5cb82c}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Timezone" languagecode="1033" />
+                        </labels>
+                        <control id="gc_timezone" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_timezone" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{03d4accc-ed79-5abe-919e-442903a63b97}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Timezone Offset" languagecode="1033" />
+                        </labels>
+                        <control id="gc_timezoneoffset" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="gc_timezoneoffset" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ee41cb45-031b-c8c6-bed6-1854ac53a8cc}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="Floors (Building Floor)" languagecode="1033" />
+                        </labels>
+                        <control id="subgrid_floors" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{DB3C48E0-705C-496F-B5F0-76136A752DE4}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>gc_building_floor</RelationshipName>
+                            <TargetEntityType>gc_floor</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{DB3C48E0-705C-496F-B5F0-76136A752DE4}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>false</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
