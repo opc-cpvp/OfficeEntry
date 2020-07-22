@@ -1,9 +1,9 @@
-﻿using covid19_office_entry.Domain.Exceptions;
-using covid19_office_entry.Domain.ValueObjects;
+﻿using OfficeEntry.Domain.Exceptions;
+using OfficeEntry.Domain.ValueObjects;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace covid19_office_entry.Domain.UnitTests.ValueObjects
+namespace OfficeEntry.Domain.UnitTests.ValueObjects
 {
     public class AdAccountTests
     {
