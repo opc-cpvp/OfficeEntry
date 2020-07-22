@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityMaps xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityMap>
+    <EntitySource>contact</EntitySource>
+    <EntityTarget>gc_accessrequest</EntityTarget>
+    <AttributeMaps />
+  </EntityMap>
+  <EntityMap>
+    <EntitySource>gc_accessrequest</EntitySource>
+    <EntityTarget>gc_assetrequest</EntityTarget>
+    <AttributeMaps />
+  </EntityMap>
+  <EntityMap>
+    <EntitySource>gc_building</EntitySource>
+    <EntityTarget>gc_accessrequest</EntityTarget>
+    <AttributeMaps />
+  </EntityMap>
+  <EntityMap>
+    <EntitySource>gc_building</EntitySource>
+    <EntityTarget>gc_floor</EntityTarget>
+    <AttributeMaps />
+  </EntityMap>
+  <EntityMap>
+    <EntitySource>gc_floor</EntitySource>
+    <EntityTarget>gc_accessrequest</EntityTarget>
+    <AttributeMaps />
+  </EntityMap>
+  <EntityMap>
+    <EntitySource>gc_usersettings</EntitySource>
+    <EntityTarget>contact</EntityTarget>
+    <AttributeMaps />
+  </EntityMap>
+</EntityMaps>

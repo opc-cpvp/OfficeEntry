@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <returnedtypecode>10021</returnedtypecode>
+    <savedqueryid>{546beef4-191f-43e8-a1e4-f17b7c141294}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" object="10021" jump="gc_name" select="1" icon="1" preview="1">
+        <row name="result" id="gc_buildingid">
+          <cell name="gc_name" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="gc_building">
+          <attribute name="gc_buildingid" />
+          <attribute name="gc_name" />
+          <attribute name="createdon" />
+          <order attribute="gc_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>0.0.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Buildings" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
