@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{88faa62a-71c5-4859-b9c4-32124deb51c4}</formid>
+    <IntroducedVersion>0.0.1</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{f7c3c5e0-774e-46b4-8f29-69419a97c9a7}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{0c575dde-3778-451e-a2d9-cc64b72cda73}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{97ecbe20-fa62-4dc5-b7e6-8811a916ea1d}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="gc_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3aaca9c8-f4ae-4cda-b44b-315322324cb9}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b95b3445-4071-d6a2-8c3d-55559b91e086}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Employee" languagecode="1033" />
+                        </labels>
+                        <control id="gc_employee" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="gc_employee" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3b38e468-5321-552b-d41c-22a87920931b}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Building" languagecode="1033" />
+                        </labels>
+                        <control id="gc_building" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="gc_building" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d0e3b712-29bc-ec3e-5574-e79e39e40ee1}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Floor" languagecode="1033" />
+                        </labels>
+                        <control id="gc_floor" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="gc_floor" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6e5eb6ba-e928-b1d6-4740-94662703a6b3}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Access Reason" languagecode="1033" />
+                        </labels>
+                        <control id="gc_accessreason" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="gc_accessreason" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5224a444-4e63-c8c4-6067-368a90e48919}" showlabel="true" locklevel="0" rowspan="5">
+                        <labels>
+                          <label description="Details" languagecode="1033" />
+                        </labels>
+                        <control id="gc_details" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="gc_details" disabled="false" uniqueid="{e382bea9-7555-65a2-4803-c424a1b08d45}" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{a3c7d2ba-4a13-4a84-b507-ce489e754c67}" showlabel="true" colspan="1" auto="false" rowspan="7">
+                        <labels>
+                          <label description="Visitors" languagecode="1033" />
+                          <label description="Contacts" languagecode="1036" />
+                        </labels>
+                        <control id="subgrid_Visitors" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{00000000-0000-0000-00AA-000010001004}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>gc_accessrequest_contact_visitors</RelationshipName>
+                            <TargetEntityType>contact</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{00000000-0000-0000-00AA-000010001004},{00000000-0000-0000-00AA-000010001003}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId>{E365462F-1DB9-46A8-928D-BEAB1A7A2375}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{dd9d6acb-3eaa-7553-6716-654141593a61}" showlabel="true" colspan="1" auto="false" rowspan="7">
+                        <labels>
+                          <label description="Asset Requests" languagecode="1033" />
+                        </labels>
+                        <control id="subgrid_AssetRequests" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{b9331720-4b3e-0520-5c53-83dcecc2922b}">
+                          <parameters>
+                            <ViewId>{FAC3BE0D-B443-4A77-8D15-3B7CBA3DD774}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>gc_accessrequest_assetrequest</RelationshipName>
+                            <TargetEntityType>gc_assetrequest</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{FAC3BE0D-B443-4A77-8D15-3B7CBA3DD774}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_details" id="{06bd4dd2-3886-9272-ec66-ad162d51d842}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Details" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="section_time" showlabel="true" showbar="false" locklevel="0" id="{12049207-33ab-5b92-d889-2b1c71e0e409}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Time" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{78407c0e-6421-89a5-0aaa-5d0d13ed911c}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Start Time" languagecode="1033" />
+                        </labels>
+                        <control id="gc_starttime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="gc_starttime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a08e107d-d376-2c8d-1b50-ecceb88c5c04}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="End Time" languagecode="1033" />
+                        </labels>
+                        <control id="gc_endtime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="gc_endtime" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{7073a317-e179-4cc8-a0fe-bf67a5dc3e63}" columns="111">
+        <rows>
+          <row>
+            <cell id="{3a02b3ba-805c-11ac-3e52-0e5c95d84d0c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a2e14155-3bc5-4ccb-abc3-e1577a533b02}" showlabel="true" locklevel="0" colspan="1">
+              <labels>
+                <label description="Manager" languagecode="1033" />
+              </labels>
+              <control id="header_gc_manager" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="gc_manager" disabled="false" uniqueid="{b4dd4318-d2c1-a931-8b53-aea57980e8db}">
+                <parameters>
+                  <AutoResolve>true</AutoResolve>
+                  <DisableMru>false</DisableMru>
+                  <DisableQuickFind>false</DisableQuickFind>
+                  <DisableViewPicker>false</DisableViewPicker>
+                  <DefaultViewId>{A2D479C5-53E3-4C69-ADDD-802327E67A0D}</DefaultViewId>
+                  <AllowFilterOff>false</AllowFilterOff>
+                </parameters>
+              </control>
+            </cell>
+            <cell id="{59418940-234e-1d0a-436a-bc62107bdd5c}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Approval Status" languagecode="1033" />
+              </labels>
+              <control id="header_gc_approvalstatus" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="gc_approvalstatus" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
