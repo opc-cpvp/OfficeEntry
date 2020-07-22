@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <returnedtypecode>10024</returnedtypecode>
+    <savedqueryid>{a2d01558-2ecc-ea11-a2e4-005056aa7ac3}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" object="10024" jump="gc_name" select="1" preview="1" icon="1">
+        <row name="result" id="gc_accessrequestid">
+          <cell name="gc_name" width="150" />
+          <cell name="gc_accessreason" width="100" />
+          <cell name="gc_approvalstatus" width="100" />
+          <cell name="gc_endtime" width="100" />
+          <cell name="gc_floor" width="100" />
+          <cell name="gc_starttime" width="100" />
+          <cell name="statecode" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="gc_accessrequest">
+          <attribute name="gc_name" />
+          <attribute name="statecode" />
+          <attribute name="gc_starttime" />
+          <attribute name="gc_floor" />
+          <attribute name="gc_endtime" />
+          <attribute name="gc_approvalstatus" />
+          <attribute name="gc_accessreason" />
+          <order attribute="gc_name" descending="false" />
+          <filter type="and">
+            <condition attribute="gc_approvalstatus" operator="eq" value="948160001" />
+            <condition attribute="gc_building" operator="eq" uiname="655 Bay Street,  Suite 404" uitype="gc_building" value="{65A7447C-40B0-EA11-A2E3-005056AA7AC3}" />
+            <condition attribute="gc_starttime" operator="today" />
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="gc_accessrequestid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>0.0.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Approved Access Requests for Current Day at Bay st" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
