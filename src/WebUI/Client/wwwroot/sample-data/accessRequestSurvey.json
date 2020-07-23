@@ -334,8 +334,8 @@
                 "default": "The request exceeds the available capacity for the chosen time range",
                 "fr":  "La demande excède la capacité disponible pour l'intervalle de temps choisi"
               },
-                "expression": "CapacityValidator() = true"
-              }
+              "expression": "CapacityValidator() = true"
+            }
           ],
           "choices": [
             {
