@@ -49,12 +49,15 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
 
             foreach(var result in results)
             {
-                var availableCapacity = result.Capacity - result.SpotsReserved - (1 + request.AccessRequest.Visitors?.Count ?? 0);
-
-                if (availableCapacity < 0)
+                if(result.Hour >= request.AccessRequest.StartTime.Hour && result.Hour < request.AccessRequest.EndTime.Hour)
                 {
-                    throw new Exception("Your request exceeds the floor capacity");
-                }
+                    var availableCapacity = result.Capacity - result.SpotsReserved - (1 + request.AccessRequest.Visitors?.Count ?? 0);
+
+                    if (availableCapacity < 0)
+                    {
+                        throw new Exception("Your request exceeds the floor capacity");
+                    }
+                }               
             }      
 
             request.AccessRequest.Employee = new Contact
