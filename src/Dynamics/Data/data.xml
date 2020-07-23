@@ -1,0 +1,70 @@
+
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2020-07-23T12:38:55.6728873Z">
+  <entity name="gc_building" displayname="Building">
+    <records>
+      <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
+        <field name="gc_englishdescription" value="OPC HQ" />
+        <field name="gc_englishname" value="30 Victoria Street" />
+        <field name="gc_frenchdescription" value="CPVP SS" />
+        <field name="gc_frenchname" value="30 rue Victoria" />
+        <field name="gc_city" value="gatineau" />
+        <field name="gc_buildingid" value="0663dbac-ddaf-ea11-a2e3-005056aa7ac3" />
+        <field name="gc_address" value="30 rue victoria" />
+        <field name="gc_name" value="30 Victoria" />
+        <field name="statecode" value="0" />
+        <field name="statuscode" value="1" />
+      </record>
+      <record id="65a7447c-40b0-ea11-a2e3-005056aa7ac3">
+        <field name="gc_englishdescription" value="655 Bay Street,  Suite 404" />
+        <field name="gc_englishname" value="655 Bay Street,  Suite 404" />
+        <field name="gc_frenchdescription" value="655 Bay Street,  Suite 404" />
+        <field name="gc_frenchname" value="655 Bay Street,  Suite 404" />
+        <field name="gc_city" value="Toronto" />
+        <field name="gc_buildingid" value="65a7447c-40b0-ea11-a2e3-005056aa7ac3" />
+        <field name="gc_address" value="655 Bay Street,  Suite 404" />
+        <field name="gc_name" value="655 Bay Street,  Suite 404" />
+        <field name="statecode" value="0" />
+        <field name="statuscode" value="1" />
+      </record>
+    </records>
+    <m2mrelationships />
+  </entity>
+  <entity name="gc_floor" displayname="Floor">
+    <records>
+      <record id="aada8dd4-e3af-ea11-a2e3-005056aa7ac3">
+        <field name="gc_frenchname" value="7e &amp;#201;tage" />
+        <field name="gc_floorid" value="aada8dd4-e3af-ea11-a2e3-005056aa7ac3" />
+        <field name="gc_englishname" value="7th Floor" />
+        <field name="gc_currentcapacity" value="10" />
+        <field name="gc_capacity" value="1" />
+        <field name="gc_buildingfloorid" value="0663dbac-ddaf-ea11-a2e3-005056aa7ac3" lookupentity="gc_building" lookupentityname="30 Victoria" />
+        <field name="gc_name" value="7th Floor" />
+        <field name="statecode" value="0" />
+        <field name="statuscode" value="1" />
+      </record>
+      <record id="034d9f76-d0b4-ea11-a2e3-005056aa7ac3">
+        <field name="gc_frenchname" value="8e &amp;#233;tage" />
+        <field name="gc_floorid" value="034d9f76-d0b4-ea11-a2e3-005056aa7ac3" />
+        <field name="gc_englishname" value="8th Floor" />
+        <field name="gc_currentcapacity" value="15" />
+        <field name="gc_capacity" value="15" />
+        <field name="gc_buildingfloorid" value="0663dbac-ddaf-ea11-a2e3-005056aa7ac3" lookupentity="gc_building" lookupentityname="30 Victoria" />
+        <field name="gc_name" value="8th Floor" />
+        <field name="statecode" value="0" />
+        <field name="statuscode" value="1" />
+      </record>
+      <record id="b5bbf3ab-5dcb-ea11-a2e4-005056aa7ac3">
+        <field name="gc_frenchname" value="4e &amp;#233;tage" />
+        <field name="gc_floorid" value="b5bbf3ab-5dcb-ea11-a2e4-005056aa7ac3" />
+        <field name="gc_englishname" value="4th Floor" />
+        <field name="gc_currentcapacity" value="10" />
+        <field name="gc_capacity" value="10" />
+        <field name="gc_buildingfloorid" value="65a7447c-40b0-ea11-a2e3-005056aa7ac3" lookupentity="gc_building" lookupentityname="655 Bay Street,  Suite 404" />
+        <field name="gc_name" value="4th Floor" />
+        <field name="statecode" value="0" />
+        <field name="statuscode" value="1" />
+      </record>
+    </records>
+    <m2mrelationships />
+  </entity>
+</entities>

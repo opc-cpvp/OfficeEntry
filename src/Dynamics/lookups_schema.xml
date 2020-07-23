@@ -1,0 +1,31 @@
+<entities >
+  <entity name="gc_building" displayname="Building" etc="10021" primaryidfield="gc_buildingid" primarynamefield="gc_name" disableplugins="false">
+    <fields>
+      <field displayname="English Description" name="gc_englishdescription" type="string" customfield="true" />
+      <field displayname="English Name" name="gc_englishname" type="string" customfield="true" />
+      <field displayname="French Description" name="gc_frenchdescription" type="string" customfield="true" />
+      <field displayname="French Name" name="gc_frenchname" type="string" customfield="true" />
+      <field displayname="City" name="gc_city" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Building" name="gc_buildingid" type="guid" primaryKey="true" />
+      <field displayname="Address" name="gc_address" type="string" customfield="true" />
+      <field displayname="Name" name="gc_name" type="string" customfield="true" />
+      <field displayname="Status" name="statecode" type="state" />
+      <field displayname="Status Reason" name="statuscode" type="status" />
+      <field displayname="Timezone" name="gc_timezone" type="string" customfield="true" />
+      <field displayname="Timezone Offset" name="gc_timezoneoffset" type="decimal" customfield="true" />
+    </fields>
+  </entity>
+  <entity name="gc_floor" displayname="Floor" etc="10020" primaryidfield="gc_floorid" primarynamefield="gc_name" disableplugins="false">
+    <fields>
+      <field displayname="French Name" name="gc_frenchname" type="string" customfield="true" />
+      <field updateCompare="true" displayname="Floor" name="gc_floorid" type="guid" primaryKey="true" />
+      <field displayname="English Name" name="gc_englishname" type="string" customfield="true" />
+      <field displayname="Current Capacity" name="gc_currentcapacity" type="number" customfield="true" />
+      <field displayname="Capacity" name="gc_capacity" type="number" customfield="true" />
+      <field displayname="Building Floor" name="gc_buildingfloorid" type="entityreference" lookupType="gc_building" customfield="true" />
+      <field displayname="Name" name="gc_name" type="string" customfield="true" />
+      <field displayname="Status" name="statecode" type="state" />
+      <field displayname="Status Reason" name="statuscode" type="status" />
+    </fields>
+  </entity>
+</entities>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityRelationship Name="business_unit_gc_accessrequest" />
+  <EntityRelationship Name="business_unit_gc_assetrequest" />
+  <EntityRelationship Name="business_unit_gc_usersettings" />
+  <EntityRelationship Name="gc_accessrequest_assetrequest" />
+  <EntityRelationship Name="gc_accessrequest_contact_visitors" />
+  <EntityRelationship Name="gc_building_accessrequest_building" />
+  <EntityRelationship Name="gc_building_floor" />
+  <EntityRelationship Name="gc_contact_accessrequest_employee" />
+  <EntityRelationship Name="gc_contact_accessrequest_manager" />
+  <EntityRelationship Name="gc_floor_accessrequest_floor" />
+  <EntityRelationship Name="gc_usersettings_contact_usersettings" />
+  <EntityRelationship Name="lk_gc_accessrequest_createdby" />
+  <EntityRelationship Name="lk_gc_accessrequest_modifiedby" />
+  <EntityRelationship Name="lk_gc_assetrequest_createdby" />
+  <EntityRelationship Name="lk_gc_assetrequest_modifiedby" />
+  <EntityRelationship Name="lk_gc_building_createdby" />
+  <EntityRelationship Name="lk_gc_building_modifiedby" />
+  <EntityRelationship Name="lk_gc_floor_createdby" />
+  <EntityRelationship Name="lk_gc_floor_modifiedby" />
+  <EntityRelationship Name="lk_gc_usersettings_createdby" />
+  <EntityRelationship Name="lk_gc_usersettings_modifiedby" />
+  <EntityRelationship Name="organization_gc_building" />
+  <EntityRelationship Name="organization_gc_floor" />
+  <EntityRelationship Name="owner_gc_accessrequest" />
+  <EntityRelationship Name="owner_gc_assetrequest" />
+  <EntityRelationship Name="owner_gc_usersettings" />
+  <EntityRelationship Name="team_gc_accessrequest" />
+  <EntityRelationship Name="team_gc_assetrequest" />
+  <EntityRelationship Name="team_gc_usersettings" />
+  <EntityRelationship Name="user_gc_accessrequest" />
+  <EntityRelationship Name="user_gc_assetrequest" />
+  <EntityRelationship Name="user_gc_usersettings" />
+</EntityRelationships>
