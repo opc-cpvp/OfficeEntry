@@ -319,6 +319,24 @@
           },
           "defaultValue": "9",
           "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "text": {
+                "default": "To must be greater than From",
+                "fr": "« À » doit être plus grand que « De »"
+              },
+              "expression": "{endTime} > {startTime}"
+            },
+            {
+              "type": "expression",
+              "text": {
+                "default": "The request exceeds the available capacity for the chosen time range",
+                "fr":  "La demande excède la capacité disponible pour l'intervalle de temps choisi"
+              },
+              "expression": "CapacityValidator() = true"
+            }
+          ],
           "choices": [
             {
               "value": "0",
@@ -498,22 +516,6 @@
             "fr": "À"
           },
           "defaultValue": "17",
-          "isRequired": true,
-          "validators": [
-            {
-              "type": "expression",
-              "text": {
-                "default": "To must be greater than From",
-                "fr": "« À » doit être plus grand que « De »"
-              },
-              "expression": "{endTime} > {startTime}"
-            },
-            {
-              "type": "expression",
-              "text": "Capacity exceeded",
-              "expression": "CapacityValidator() = true"
-            }
-          ],
           "choices": [
             {
               "value": "1",
