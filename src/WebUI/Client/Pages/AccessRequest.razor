@@ -13,7 +13,7 @@ else
 {
     <h2>@accessRequest.EmployeeName</h2>
     <p>@accessRequest.Building, @accessRequest.Floor</p>
-    <p class="card-text">@accessRequest.StartTime.ToString(Localizer["MMMM dd, yyyy"]) - @Localizer["From"] @accessRequest.StartTime.ToString(Localizer["h:mm tt"]) @Localizer["To"] @accessRequest.EndTime.ToString(Localizer["h:mm tt"])</p>
+    <p class="card-text">@accessRequest.StartTime.ToString(Localizer["MMMM dd, yyyy"]) - @accessRequest.StartTime.ToString(Localizer["h:mm tt"]) @Localizer["To"] @accessRequest.EndTime.ToString(Localizer["h:mm tt"])</p>
     <p><strong>@Localizer["Status:"]</strong> @Localizer[accessRequest.Status.ToString()]</p>
     <p><strong>@Localizer["Reason:"]</strong> @Localizer[accessRequest.Reason]</p>
     <p><strong>@Localizer["Details:"]</strong> @accessRequest.Details</p>
