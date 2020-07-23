@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{6c42b6fd-4a00-43f5-9cf5-5601a6a2012c}</formid>
+    <IntroducedVersion>0.0.1</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{37b7247b-59c7-4475-9c1d-698cc4549102}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{d36b9d77-70ef-406c-80e1-be03e89ee632}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{4b11d8a2-2dbe-44b1-8369-0c07730baa06}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="gc_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2c249bee-53c9-0901-b58e-9d4918aebd54}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Health Safety" languagecode="1033" />
+                        </labels>
+                        <control id="gc_healthsafety" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="gc_healthsafety" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e5710d1a-a28b-17e8-ad1e-1aada37257d7}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Privacy Statement" languagecode="1033" />
+                        </labels>
+                        <control id="gc_privacystatement" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="gc_privacystatement" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d050b01a-7d36-4b91-aa62-155dc2032d69}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

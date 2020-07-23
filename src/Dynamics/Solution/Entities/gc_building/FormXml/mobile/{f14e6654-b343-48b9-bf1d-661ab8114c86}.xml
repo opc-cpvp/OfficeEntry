@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{f14e6654-b343-48b9-bf1d-661ab8114c86}</formid>
+    <IntroducedVersion>0.0.1</IntroducedVersion>
+    <FormPresentation>0</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab name="general" verticallayout="true" id="{9144e7d6-7470-4693-9b70-84115a7fe558}" IsUserDefined="0">
+          <labels>
+            <label description="" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="account information" showlabel="false" showbar="false" id="{3dc56087-e92a-4e48-b0b7-97405e3e6160}" IsUserDefined="0">
+                  <labels>
+                    <label description="" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{71fd5fb3-a21b-48b0-a09c-a33fec3cf7c4}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="gc_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_name" disabled="false" />
+                      </cell>
+                      <cell id="{556e90c9-af7e-43bc-96d9-5e2f6b39953c}">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                          <label description="Statut" languagecode="1036" />
+                        </labels>
+                        <control id="statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="This is the form that is displayed for the CRM for phones express application." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
