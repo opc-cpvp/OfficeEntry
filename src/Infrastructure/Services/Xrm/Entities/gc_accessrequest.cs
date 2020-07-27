@@ -46,7 +46,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
                 Building = gc_building.Convert(accessRequest.gc_building),
                 Employee = contact.Convert(accessRequest.gc_employee),
                 Details = accessRequest.gc_details,
-                EndTime = accessRequest.gc_endtime,
+                EndTime = accessRequest.gc_endtime.ToLocalTime(),
                 Floor = gc_floor.Convert(accessRequest.gc_floor),
                 Manager = contact.Convert(accessRequest.gc_manager),
                 Reason = new OptionSet
@@ -54,7 +54,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
                     Key = (int)accessRequest.gc_accessreason,
                     Value = Enum.GetName(typeof(AccessReasons), accessRequest.gc_accessreason)
                 },
-                StartTime = accessRequest.gc_starttime,
+                StartTime = accessRequest.gc_starttime.ToLocalTime(),
                 Status = new OptionSet
                 {
                     Key = (int)accessRequest.gc_approvalstatus,

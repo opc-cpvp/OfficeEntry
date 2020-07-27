@@ -16,6 +16,9 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
 
         public static Floor Convert(gc_floor floor)
         {
+            if (floor is null)
+                return null;
+
             return new Floor
             {
                 Id = floor.gc_floorid,

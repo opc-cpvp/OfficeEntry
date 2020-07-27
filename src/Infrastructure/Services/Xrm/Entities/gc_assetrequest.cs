@@ -13,6 +13,9 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
 
         public static AssetRequest Convert(gc_assetrequest assetRequest)
         {
+            if (assetRequest is null)
+                return null;
+
             return new AssetRequest
             {
                 Id = assetRequest.gc_assetrequestid,
