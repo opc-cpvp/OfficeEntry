@@ -64,9 +64,6 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 LastName = contactResult.Contact.LastName
             };
 
-            request.AccessRequest.StartTime = request.AccessRequest.StartTime.ToUniversalTime();
-            request.AccessRequest.EndTime = request.AccessRequest.EndTime.ToUniversalTime();
-
             await _accessRequestService.CreateAccessRequest(request.AccessRequest);
 
             return Unit.Value;
