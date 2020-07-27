@@ -43,7 +43,7 @@ namespace OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHou
                 .Select(x => request.SelectedDay.AddHours(x))
                 .Select(x => new CurrentCapacity
                 {
-                    Hour = x.Hour,                    
+                    Hour = x.Hour,
                     Capacity = capacity,
                     SpotsReserved = GetSumOfSpotsReservedWithinHour(x)
                 });
@@ -51,7 +51,7 @@ namespace OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHou
             int GetSumOfSpotsReservedWithinHour(DateTime hour)
             {
                 var sum = accessRequests
-                    .Where(a => hour >= a.StartTime && hour <= a.EndTime)
+                    .Where(a => hour >= a.StartTime && hour < a.EndTime)
                     .Select(x => x.Visitors.Count + 1)
                     .Sum();
 
