@@ -16,6 +16,9 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
 
         public static Contact Convert(contact contact)
         {
+            if (contact is null)
+                return null;
+
             return new Contact
             {
                 Id = contact.contactid,

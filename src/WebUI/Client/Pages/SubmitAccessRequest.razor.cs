@@ -65,14 +65,14 @@ namespace OfficeEntry.WebUI.Client.Pages
                 AssetRequests = new List<AssetRequest>(),
                 Building = new Building { Id = submission.building },
                 Details = submission.details,
-                EndTime = submission.startDate.AddHours(submission.endTime).ToUniversalTime(),
+                EndTime = submission.startDate.AddHours(submission.endTime),
                 Floor = new Floor { Id = submission.floor },
                 Manager = new Contact { Id = submission.manager },
                 Reason = new OptionSet
                 {
                     Key = submission.reason
                 },
-                StartTime = submission.startDate.AddHours(submission.startTime).ToUniversalTime(),
+                StartTime = submission.startDate.AddHours(submission.startTime),
                 Visitors = new List<Contact>()
             };
 

@@ -55,7 +55,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 {
                     throw new Exception("Your request exceeds the floor capacity");
                 }
-            }      
+            }
 
             request.AccessRequest.Employee = new Contact
             {
@@ -63,6 +63,9 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 FirstName = contactResult.Contact.FirstName,
                 LastName = contactResult.Contact.LastName
             };
+
+            request.AccessRequest.StartTime = request.AccessRequest.StartTime.ToUniversalTime();
+            request.AccessRequest.EndTime = request.AccessRequest.EndTime.ToUniversalTime();
 
             await _accessRequestService.CreateAccessRequest(request.AccessRequest);
 
