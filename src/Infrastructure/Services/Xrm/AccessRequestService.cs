@@ -115,6 +115,9 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             var access = gc_accessrequest.MapFrom(accessRequest);
             access.gc_accessrequestid = Guid.NewGuid();
 
+            access.gc_starttime = access.gc_starttime.ToUniversalTime();
+            access.gc_endtime = access.gc_endtime.ToUniversalTime();
+
             access = await Client.For<gc_accessrequest>()
                 .Set(access)
                 .InsertEntryAsync();
