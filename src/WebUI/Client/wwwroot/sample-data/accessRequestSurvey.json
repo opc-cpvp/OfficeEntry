@@ -84,23 +84,6 @@
             "default": "Details",
             "fr": "Détails"
           }
-        },
-        {
-          "type": "boolean",
-          "name": "registerVisitors",
-          "title": {
-            "default": "Do you need to register visitors?",
-            "fr": "Avez-vous besoin d'inscrire des visiteurs?"
-          },
-          "defaultValue": "false",
-          "labelTrue": {
-            "default": "Yes",
-            "fr": "Oui"
-          },
-          "labelFalse": {
-            "default": "No",
-            "fr": "Non"
-          }
         }
       ]
     },
@@ -227,69 +210,92 @@
       "name": "page2",
       "elements": [
         {
-          "type": "html",
-          "name": "purposeStatement",
-          "html": {
-            "default": "<p>As the employee sponsoring visitors, you are responsible for ensuring they understand and follow all COVID-19 Health & Safety Measures while in the workplace.</p>\n\n<p>Note that visitors should be entering only for a legitimate work-related purpose that cannot be done remotely. Do not bring friends or family members.</p>",
-            "fr": "<p>En tant qu'employé parrainant des visiteurs, vous êtes responsable de vous assurer qu'ils comprennent et respectent toutes les mesures de santé et de sécurité COVID-19 sur le lieu de travail.</p>\n\n<p>Notez que les visiteurs ne doivent entrer que pour des besoins légitimes liés au travail qui ne peuvent pas être effectués à distance. N'amenez pas d'amis ou de membres de votre famille.</p>"
-          }
-        },
-        {
-          "type": "comment",
-          "name": "purpose",
+          "type": "boolean",
+          "name": "registerVisitors",
           "title": {
-            "default": "Purpose of visit",
-            "fr": "Objet de la visite"
+            "default": "Do you need to register visitors?",
+            "fr": "Avez-vous besoin d'inscrire des visiteurs?"
           },
-          "isRequired": true
-        },
-        {
-          "type": "html",
-          "name": "visitorsStatement",
-          "html": {
-            "default": "<p>Register each visitor and include a valid email and phone number. Once approved, visitors will receive an email including the COVID-19 Health & Safety Measures. To avoid delays once on-site, pre-register with the commissionaire/reception.</p>",
-            "fr": "<p>Enregistrez chaque visiteur et incluez un e-mail et un numéro de téléphone valides. Une fois approuvé, les visiteurs recevront un e-mail contenant les mesures de santé et de sécurité COVID-19. Pour éviter les retards une fois sur place, pré-enregistrez-vous auprès du commissionnaire / réception.</p>"
+          "defaultValue": "false",
+          "labelTrue": {
+            "default": "Yes",
+            "fr": "Oui"
+          },
+          "labelFalse": {
+            "default": "No",
+            "fr": "Non"
           }
         },
         {
-          "type": "matrixdynamic",
-          "name": "visitors",
-          "title": "Visitors",
-          "isRequired": true,
-          "columns": [
+          "type": "panel",
+          "name": "panel1",
+          "elements": [
             {
-              "name": "name",
-              "title": {
-                "defauld": "Name",
-                "fr":  "Nom"
-              },
-              "cellType": "text"
+              "type": "html",
+              "name": "purposeStatement",
+              "html": {
+                "default": "<p>As the employee sponsoring visitors, you are responsible for ensuring they understand and follow all COVID-19 Health & Safety Measures while in the workplace.</p>\n\n<p>Note that visitors should be entering only for a legitimate work-related purpose that cannot be done remotely. Do not bring friends or family members.</p>",
+                "fr": "<p>En tant qu'employé parrainant des visiteurs, vous êtes responsable de vous assurer qu'ils comprennent et respectent toutes les mesures de santé et de sécurité COVID-19 sur le lieu de travail.</p>\n\n<p>Notez que les visiteurs ne doivent entrer que pour des besoins légitimes liés au travail qui ne peuvent pas être effectués à distance. N'amenez pas d'amis ou de membres de votre famille.</p>"
+              }
             },
             {
-              "name": "email",
+              "type": "comment",
+              "name": "purpose",
               "title": {
-                "default": "Email",
-                "fr": "Courriel"
+                "default": "Purpose of visit",
+                "fr": "Objet de la visite"
               },
-              "cellType": "text",
-              "inputType": "email"
+              "isRequired": true
             },
             {
-              "name": "telephone",
-              "title": {
-                "default": "Telephone",
-                "fr": "Téléphone"
-              },
-              "cellType": "text",
-              "inputType": "tel"
+              "type": "html",
+              "name": "visitorsStatement",
+              "html": {
+                "default": "<p>Register each visitor and include a valid email and phone number. Once approved, visitors will receive an email including the COVID-19 Health & Safety Measures. To avoid delays once on-site, pre-register with the commissionaire/reception.</p>",
+                "fr": "<p>Enregistrez chaque visiteur et incluez un e-mail et un numéro de téléphone valides. Une fois approuvé, les visiteurs recevront un e-mail contenant les mesures de santé et de sécurité COVID-19. Pour éviter les retards une fois sur place, pré-enregistrez-vous auprès du commissionnaire / réception.</p>"
+              }
+            },
+            {
+              "type": "matrixdynamic",
+              "name": "visitors",
+              "title": "Visitors",
+              "isRequired": true,
+              "columns": [
+                {
+                  "name": "name",
+                  "title": {
+                    "default": "Name",
+                    "fr": "Nom"
+                  },
+                  "cellType": "text"
+                },
+                {
+                  "name": "email",
+                  "title": {
+                    "default": "Email",
+                    "fr": "Courriel"
+                  },
+                  "cellType": "text",
+                  "inputType": "email"
+                },
+                {
+                  "name": "telephone",
+                  "title": {
+                    "default": "Telephone",
+                    "fr": "Téléphone"
+                  },
+                  "cellType": "text",
+                  "inputType": "tel"
+                }
+              ],
+              "rowCount": 1,
+              "minRowCount": 1,
+              "maxRowCount": 10
             }
           ],
-          "rowCount": 1,
-          "minRowCount": 1,
-          "maxRowCount": 10
-        }
-      ],
-      "visibleIf": "{registerVisitors} = true"
+          "visibleIf": "{registerVisitors} = true"
+        }       
+      ]
     },
     {
       "name": "page3",
