@@ -4,6 +4,7 @@ using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -44,21 +45,17 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
 
             var floorId = request.AccessRequest.Floor.Id;
             var date = request.AccessRequest.StartTime;
+            var requestContactCount = (request.AccessRequest.Visitors?.Count ?? 0) + 1;
 
             var results = await _mediator.Send(new GetSpotsAvailablePerHourQuery { FloorId = floorId, SelectedDay = date });
 
-            foreach(var result in results)
-            {
-                if(result.Hour >= request.AccessRequest.StartTime.Hour && result.Hour < request.AccessRequest.EndTime.Hour)
-                {
-                    var availableCapacity = result.Capacity - result.SpotsReserved - (1 + request.AccessRequest.Visitors?.Count ?? 0);
+            var hasAvailableCapacity = results.Where(x => x.Hour >= request.AccessRequest.StartTime.Hour && x.Hour < request.AccessRequest.EndTime.Hour)
+                    .All(x => x.Capacity - x.SpotsReserved - requestContactCount >= 0);
 
-                    if (availableCapacity < 0)
-                    {
-                        throw new Exception("Your request exceeds the floor capacity");
-                    }
-                }               
-            }      
+            if (!hasAvailableCapacity)
+            {
+                throw new Exception("Your request exceeds the floor capacity");
+            }    
 
             request.AccessRequest.Employee = new Contact
             {
