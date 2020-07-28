@@ -9,30 +9,31 @@
     - [X] Submission
   - [X] Blazor
   - [X] Server side
-- [ ] Create contact entities in CRM for each user and populate the username
+- [X] Create contact entities in CRM for each user and populate the username
 - [X] Verify user settings before allowing the user to submit an access request
 - [X] Create user settings if they don't exist
 - [X] Equipment
   - [X] Create CRM fields
   - [X] Update UI
   - [X] Insert Assets
-- [ ] Submit form
+- [X] Submit form
   - [X] Select following day by default
   - [X] Check floor/area capacity before submitting
-  - [ ] Display error messages to client
+  - [X] Display error messages to client
 - [ ] Dynamics
-    - [ ] Emails
-        - [ ] Access Request approval email / cc user
-        - [ ] Confirmation email / cc manager
-    - [ ] Create dashboard in CRM
-        - [ ] Access Requests / Floor / Building
+    - [X] Emails
+        - [X] Access Request approval email / cc user
+        - [X] Confirmation email / cc manager
+    - [X] Create dashboard in CRM
+        - [X] Access Requests / Floor / Building
+        - [ ] Asset Requests / Equipment
     - [ ] Workflow
         - [ ] Send email to admins and commissioner
 
-- [ ] CI/CD
-    - [ ] Build pipelines
-    - [ ] Release pipelines
-    - [ ] Environments
+- [X] CI/CD
+    - [X] Build pipelines
+    - [X] Release pipelines
+    - [X] Environments
 
 ## Should have
 
@@ -44,6 +45,7 @@
 
 - [X] Bar chart for times of day / capacity
 - [ ] Track users directorate
+- [ ] Bilingual Datetime picker
 
 ## Won't have (this time)  
 

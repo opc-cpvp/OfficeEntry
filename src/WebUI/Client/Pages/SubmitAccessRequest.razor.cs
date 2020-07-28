@@ -27,7 +27,7 @@ namespace OfficeEntry.WebUI.Client.Pages
 
         public bool IsLoaded { get; set; }
 
-        public bool ShowSpotsAvailablePerHours { get; set; }      
+        public bool ShowSpotsAvailablePerHours { get; set; }
         public CurrentCapacity[] FloorCapacity { get; set; }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -144,7 +144,7 @@ namespace OfficeEntry.WebUI.Client.Pages
 
                 var floorId = submission.floor;
                 var date = submission.startDate;
-                
+
                 var results = await Http.GetFromJsonAsync<CurrentCapacity[]>($"api/SpotsAvailablePerHour?floorId={floorId}&date={date}");
 
                 FloorCapacity = results;

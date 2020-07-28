@@ -24,7 +24,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
         public async Task<IEnumerable<AccessRequest>> GetApprovedOrPendingAccessRequestsByFloor(Guid floorId)
         {
-           
+
             var accessRequests = await Client.For<gc_accessrequest>()
                 .Filter(a => a.gc_floor.gc_floorid == floorId)
                 //.Filter(a => a.gc_starttime.Date == requestDate.Date)
@@ -46,16 +46,10 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                     accessRequest.gc_accessrequest_contact_visitors = visitors.ToList();
 
                     approvedAndPendingAccessRequests.Add(accessRequest);
-                }              
+                }
             }
 
-            return approvedAndPendingAccessRequests.Select(f => new AccessRequest
-            {
-                Id = f.gc_accessrequestid,
-                StartTime = f.gc_starttime,
-                EndTime = f.gc_endtime,
-                Visitors = f.gc_accessrequest_contact_visitors.Select(v => contact.Convert(v)).ToList()
-            });
+            return approvedAndPendingAccessRequests.Select(f => gc_accessrequest.Convert(f));
         }
 
         public async Task<(Result Result, AccessRequest AccessRequest)> GetAccessRequest(Guid accessRequestId)
@@ -64,7 +58,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 .Key(accessRequestId)
                 .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_contact_visitors, a.gc_accessrequest_assetrequest })
                 .FindEntryAsync();
-        
+
             return (Result.Success(), gc_accessrequest.Convert(accessRequest));
         }
 
@@ -121,6 +115,9 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             var access = gc_accessrequest.MapFrom(accessRequest);
             access.gc_accessrequestid = Guid.NewGuid();
 
+            access.gc_starttime = access.gc_starttime.ToUniversalTime();
+            access.gc_endtime = access.gc_endtime.ToUniversalTime();
+
             access = await Client.For<gc_accessrequest>()
                 .Set(access)
                 .InsertEntryAsync();
@@ -154,7 +151,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                         .InsertEntryAsync();
                 }
             }
-            
+
             async IAsyncEnumerable<contact> GetContactForVisitors()
             {
                 var visitors = accessRequest.Visitors.Select(x => contact.MapFrom(x)).ToList();
@@ -183,7 +180,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
             /// <remarks>
             /// Unfortunately, this is the only supported way of associating existing entity instances.
-            /// 
+            ///
             /// For more information, please see:
             /// https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/webapi/samples/basic-operations-csharp
             /// https://himbap.com/blog/?p=2063

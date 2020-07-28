@@ -20,6 +20,9 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
 
         public static Building Convert(gc_building building)
         {
+            if (building is null)
+                return null;
+
             return new Building
             {
                 Id = building.gc_buildingid,
