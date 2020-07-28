@@ -27,8 +27,8 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 Id = b.gc_buildingid,
                 Address = b.gc_address,
                 City = b.gc_city,
-                Description = b.gc_englishdescription,
-                Name = b.gc_englishname,
+                Description = $"{b.gc_englishdescription} | {b.gc_frenchdescription}",
+                Name = $"{b.gc_englishname} | {b.gc_frenchname}",
                 Timezone = b.gc_timezone,
                 TimezoneOffset = b.gc_timezoneoffset
             });
@@ -47,7 +47,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 BuildingId = buildingId,
                 Capacity = f.gc_capacity,
                 CurrentCapacity = f.gc_currentcapacity,
-                Name = f.gc_englishname
+                Name = $"{f.gc_englishname} | {f.gc_frenchname}"
             });
         }
 
