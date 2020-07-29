@@ -28,14 +28,14 @@
             .Where(x => x.Hour >= 7 && x.Hour <= 17)
             .Select(x => new object[]
             {
-                CultureInfo.DefaultThreadCurrentUICulture.TwoLetterISOLanguageName == "en"
-                ? x.Hour == 12 ? "Noon" : x.Hour > 12 ? (x.Hour - 12) + "PM" : x.Hour + "AM"
-                : x.Hour == 12 ? "Midi" : x.Hour + "h",
+                CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "fr"
+                ? x.Hour == 12 ? "Midi" : x.Hour + "h"
+                : x.Hour == 12 ? "Noon" : x.Hour > 12 ? (x.Hour - 12) + "PM" : x.Hour + "AM",
             x.SpotsReserved,
             x.Capacity - x.SpotsReserved,
             ""
             }).ToArray();
 
-        await JSRuntime.InvokeVoidAsync("interop.spotsAvailablePerHours.init", Id, @Class, CultureInfo.DefaultThreadCurrentUICulture.TwoLetterISOLanguageName, t);
+        await JSRuntime.InvokeVoidAsync("interop.spotsAvailablePerHours.init", Id, @Class, CultureInfo.CurrentCulture.TwoLetterISOLanguageName, t);
     }
 }

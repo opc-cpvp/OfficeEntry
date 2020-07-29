@@ -1,6 +1,7 @@
 ﻿@page "/access-requests"
-@using OfficeEntry.Domain.Entities;
+@using OfficeEntry.Domain.Enums;
 @using OfficeEntry.WebUI.Client.Components.AccessRequestComponents.Card
+@using System.Globalization
 @inject HttpClient Http
 @inject IStringLocalizer<App> Localizer
 
@@ -23,6 +24,15 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        var locale = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+        locale = (locale == Domain.Enums.Locale.French) ? locale : Domain.Enums.Locale.English;
+
         accessRequests = await Http.GetFromJsonAsync<Domain.Entities.AccessRequest[]>("api/AccessRequests");
+
+        foreach (var accessRequest in accessRequests)
+        {
+            accessRequest.Building.Name = (locale == Locale.French) ? accessRequest.Building.FrenchName : accessRequest.Building.EnglishName;
+            accessRequest.Floor.Name = (locale == Locale.French) ? accessRequest.Floor.FrenchName : accessRequest.Floor.EnglishName;
+        }
     }
 }

@@ -27,4 +27,10 @@ namespace OfficeEntry.Domain.Enums
         PickupOfficeEquipment = 948160003,
         Other = 948160004
     }
+
+    public static class Locale
+    {
+        public const string English = "en";
+        public const string French = "fr";
+    }
 }
