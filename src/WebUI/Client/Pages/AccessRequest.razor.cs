@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using System.Globalization;
 
 namespace OfficeEntry.WebUI.Client.Pages
 {
