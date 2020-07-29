@@ -1,4 +1,5 @@
 ﻿{
+  "locale": "en",
   "pages": [
     {
       "name": "page1",
@@ -12,7 +13,7 @@
           },
           "isRequired": true,
           "choicesByUrl": {
-            "url": "api/locations",
+            "url": "api/locations/{locale}",
             "valueName": "id",
             "titleName": "name"
           }
@@ -26,7 +27,7 @@
           },
           "isRequired": true,
           "choicesByUrl": {
-            "url": "api/locations/{building}",
+            "url": "api/locations/{locale}/{building}",
             "valueName": "id",
             "titleName": "name"
           }
@@ -294,7 +295,7 @@
             }
           ],
           "visibleIf": "{registerVisitors} = true"
-        }       
+        }
       ]
     },
     {
@@ -338,7 +339,7 @@
               "type": "expression",
               "text": {
                 "default": "The request exceeds the available capacity for the chosen time range",
-                "fr":  "La demande excède la capacité disponible pour l'intervalle de temps choisi"
+                "fr": "La demande excède la capacité disponible pour l'intervalle de temps choisi"
               },
               "expression": "CapacityValidator() = true"
             }
