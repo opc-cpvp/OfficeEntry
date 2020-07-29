@@ -523,6 +523,7 @@
             "fr": "À"
           },
           "defaultValue": "17",
+          "choicesVisibleIf": "{item} > {startTime}",
           "choices": [
             {
               "value": "1",
