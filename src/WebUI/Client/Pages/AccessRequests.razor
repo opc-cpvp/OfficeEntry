@@ -24,7 +24,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var locale = CultureInfo.DefaultThreadCurrentUICulture.TwoLetterISOLanguageName;
+        var locale = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
         locale = (locale == Domain.Enums.Locale.French) ? locale : Domain.Enums.Locale.English;
 
         accessRequests = await Http.GetFromJsonAsync<Domain.Entities.AccessRequest[]>("api/AccessRequests");
