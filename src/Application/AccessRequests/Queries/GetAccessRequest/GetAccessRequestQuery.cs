@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Enums;
 using System;
 using System.Linq;
 using System.Threading;
@@ -12,6 +13,7 @@ namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest
     public class GetAccessRequestQuery : IRequest<AccessRequestViewModel>
     {
         public Guid AccessRequestId { get; set; }
+        public string Locale { get; set; }
     }
 
     public class GetAccessRequestQueryHandler : IRequestHandler<GetAccessRequestQuery, AccessRequestViewModel>
@@ -47,8 +49,8 @@ namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest
                 IsManager = result.AccessRequest.Manager.Id == userResult.UserId,
                 EmployeeName = result.AccessRequest.Employee.FullName,
                 ManagerName = result.AccessRequest.Manager.FullName,
-                Building = result.AccessRequest.Building.Name,
-                Floor = result.AccessRequest.Floor.Name,
+                Building = (request.Locale == Locale.French) ? result.AccessRequest.Building.FrenchName : result.AccessRequest.Building.EnglishName,
+                Floor = (request.Locale == Locale.French) ? result.AccessRequest.Floor.FrenchName : result.AccessRequest.Floor.EnglishName,
                 Details = result.AccessRequest.Details,
                 StartTime = result.AccessRequest.StartTime,
                 EndTime = result.AccessRequest.EndTime,

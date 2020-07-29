@@ -24,7 +24,8 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
                 Id = floor.gc_floorid,
                 Capacity = floor.gc_capacity,
                 CurrentCapacity = floor.gc_currentcapacity,
-                Name = floor.gc_englishname
+                EnglishName = floor.gc_englishname,
+                FrenchName = floor.gc_frenchname
             };
         }
     }
