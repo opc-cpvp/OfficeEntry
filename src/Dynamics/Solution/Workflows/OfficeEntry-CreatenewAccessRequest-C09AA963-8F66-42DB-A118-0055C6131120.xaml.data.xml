@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Workflow WorkflowId="{c4a813c7-2a7b-476c-918f-2abb5b9b20cf}" Name="Test Access Request" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <XamlFileName>/Workflows/TestAccessRequest-C4A813C7-2A7B-476C-918F-2ABB5B9B20CF.xaml</XamlFileName>
+<Workflow WorkflowId="{c09aa963-8f66-42db-a118-0055c6131120}" Name="Office Entry - Create new Access Request" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/OfficeEntry-CreatenewAccessRequest-C09AA963-8F66-42DB-A118-0055C6131120.xaml</XamlFileName>
   <Type>1</Type>
   <Subprocess>0</Subprocess>
   <Category>0</Category>
   <Mode>0</Mode>
-  <Scope>1</Scope>
-  <OnDemand>0</OnDemand>
-  <TriggerOnUpdateAttributeList>statecode</TriggerOnUpdateAttributeList>
-  <TriggerOnCreate>0</TriggerOnCreate>
+  <Scope>3</Scope>
+  <OnDemand>1</OnDemand>
+  <TriggerOnCreate>1</TriggerOnCreate>
   <TriggerOnDelete>0</TriggerOnDelete>
   <AsyncAutodelete>1</AsyncAutodelete>
   <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
-  <StateCode>0</StateCode>
-  <StatusCode>1</StatusCode>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
   <RunAs>1</RunAs>
   <IsTransacted>1</IsTransacted>
   <IntroducedVersion>0.0.1</IntroducedVersion>
