@@ -1,0 +1,69 @@
+﻿@page "/"
+@namespace OfficeEntry.WebApp.Pages
+
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Office Entry</title>
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/site.css" rel="stylesheet" />
+</head>
+<body>
+
+    @{
+        this.HttpContext.Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+            CookieRequestCultureProvider.MakeCookieValue(
+                new RequestCulture(
+                    CultureInfo.CurrentCulture,
+                    CultureInfo.CurrentUICulture)));
+    }
+
+    <app>
+        <component type="typeof(App)" render-mode="ServerPrerendered" />
+    </app>
+
+    <div id="blazor-error-ui">
+        Une erreur non gérée s'est produite.
+        <br />
+        An unhandled error has occurred.
+        <a href="" class="reload">Recharger<br />Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    @if (Request.Headers.TryGetValue("User-Agent", out var userAgents)
+        && (userAgents.FirstOrDefault() is string userAgent)
+        && System.Text.RegularExpressions.Regex.IsMatch(userAgent, @"MSIE \d|Trident.*rv:"))
+    {
+        <script src="js/blazor.polyfill.min.js"></script>
+    }
+    <script src="_framework/blazor.server.js"></script>
+
+    <script>
+        window.blazorCulture = {
+            get: function () { return window.localStorage['BlazorCulture'] },
+            set: function (value) { window.localStorage['BlazorCulture'] = value; }
+        };
+    </script>
+
+    <script type="text/javascript" src="~/lib/promise-polyfill/polyfill.min.js"></script>
+    <script type="text/javascript" src="~/lib/fetch/fetch.min.js"></script>
+    <script type="text/javascript" src="~/lib/vue/vue.min.js"></script>
+    <script type="text/javascript" src="~/lib/survey-vue/survey.vue.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script src="js/survey.js"></script>
+    <script src="js/spotsAvailablePerHours.js"></script>
+</body>
+</html>

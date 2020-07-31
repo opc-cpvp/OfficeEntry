@@ -1,0 +1,87 @@
+﻿@page "/access-requests/{id:guid}"
+@page "/review-access-requests/{id:guid}"
+
+@inject IStringLocalizer<App> Localizer
+
+<h1>@Localizer["Review"]</h1>
+
+@if (accessRequest == null)
+{
+    <Loading />
+}
+else
+{
+    <h2>@accessRequest.EmployeeName</h2>
+    <p>@accessRequest.Building, @accessRequest.Floor</p>
+    <p class="card-text">@accessRequest.StartTime.ToString(Localizer["MMMM dd, yyyy"]) - @accessRequest.StartTime.ToString(Localizer["h:mm tt"]) @Localizer["To"] @accessRequest.EndTime.ToString(Localizer["h:mm tt"])</p>
+    <p><strong>@Localizer["Status:"]</strong> @Localizer[accessRequest.Status.ToString()]</p>
+    <p><strong>@Localizer["Reason:"]</strong> @Localizer[accessRequest.Reason]</p>
+    <p><strong>@Localizer["Manager:"]</strong> @Localizer[accessRequest.ManagerName]</p>
+    <p><strong>@Localizer["Details:"]</strong> @accessRequest.Details</p>
+
+    if (accessRequest.Visitors.Any())
+    {
+        <p><strong>@Localizer["Visitors:"]</strong></p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">@Localizer["Name"]</th>
+                    <th scope="col">@Localizer["Email"]</th>
+                    <th scope="col">@Localizer["Telephone"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var visitor in accessRequest.Visitors)
+                {
+                    <tr>
+                        <td>@visitor.FullName</td>
+                        <td>@visitor.EmailAddress</td>
+                        <td>@visitor.PhoneNumber</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p><strong>@Localizer["No visitors."]</strong></p>
+    }
+
+    if (accessRequest.AssetRequests.Any())
+    {
+        <p><strong>@Localizer["Asset and equipment:"]</strong></p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+
+                    <th scope="col">@Localizer["Type"]</th>
+                    <th scope="col">@Localizer["Notes"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var asset in accessRequest.AssetRequests.OrderBy(x => x.Asset.Value))
+                {
+                    <tr>
+                        <td>@Localizer[asset.Asset.Value]</td>
+                        <td>@asset.Other</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p><strong>@Localizer["No asset and equipment."]</strong></p>
+    }
+
+    if (IsEmployee)
+    {
+        <button type="button" class="btn btn-danger" @onclick="CancelRequest" disabled="@IsCancelled">@Localizer["Cancel"]</button>
+    }
+
+    if (IsManager)
+    {
+        <button type="button" class="btn btn-danger" @onclick="DeclineRequest" disabled="@IsDeclined">@Localizer["Decline"]</button>
+        <button type="button" class="btn btn-success" @onclick="ApproveRequest" disabled="@IsApproved">@Localizer["Approve"]</button>
+    }
+}
