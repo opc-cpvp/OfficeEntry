@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "fetch@3.1.0",
+      "destination": "wwwroot/lib/fetch/"
+    },
+    {
+      "library": "promise-polyfill@8.1.3",
+      "destination": "wwwroot/lib/promise-polyfill/"
+    },
+    {
+      "library": "vue@2.6.11",
+      "destination": "wwwroot/lib/vue/"
+    },
+    {
+      "library": "survey-vue@1.7.24",
+      "destination": "wwwroot/lib/survey-vue/"
+    }
+  ]
+}

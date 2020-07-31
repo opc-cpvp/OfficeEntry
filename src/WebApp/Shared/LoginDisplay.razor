@@ -1,0 +1,31 @@
+﻿@inject HttpClient Http
+@inject IStringLocalizer<App> Localizer
+
+@inject OfficeEntry.Application.Common.Interfaces.ICurrentUserService currentUserService
+@inject OfficeEntry.Application.Common.Interfaces.IDomainUserService _domainUserService
+
+<AuthorizeView>
+    @if (name is null)
+    {
+        <Loading />
+    }
+    else
+    {
+        <div>@Localizer["Hello,"] @name</div>
+    }
+</AuthorizeView>
+
+@code{
+    private string name;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            name = await _domainUserService.GetUserNameAsync(OfficeEntry.Domain.ValueObjects.AdAccount.For(this.currentUserService.UserId));
+            StateHasChanged();
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}

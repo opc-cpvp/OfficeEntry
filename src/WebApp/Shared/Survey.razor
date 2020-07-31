@@ -1,0 +1,98 @@
+﻿@implements IDisposable
+@inject ISurveyInterop SurveyInterop
+@inject IJSRuntime JSRuntime
+@inject HttpClient Http
+@using OfficeEntry.WebApp.Models
+@using Newtonsoft.Json
+@using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour
+
+<div id="blazor-survey-wraper">
+</div>
+
+@code {
+    [Parameter]
+    public string Id { get; set; } = "surveyElement";
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public string SurveyUrl { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnSurveyCompleted { get; set; }
+
+    [Parameter]
+    public EventCallback<(string surveuData, string newCurrentPageNames)> OnPageChanged { get; set; }
+
+    [Parameter]
+    public string Data { get; set; }
+
+    private DotNetObjectReference<Survey> _objectReference;
+
+    [Inject]
+    public MediatR.IMediator Mediator { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        _objectReference = DotNetObjectReference.Create(this);
+
+        await JSRuntime.InvokeVoidAsync("interop.survey.register", _objectReference);
+        await JSRuntime.InvokeVoidAsync("interop.survey.init", Id, @Class, SurveyUrl, Data);
+    }
+
+    public async Task GetData()
+    {
+        var surveyData = await JSRuntime.InvokeAsync<object>("interop.survey.data");
+        await JSRuntime.InvokeVoidAsync("ShowAlert", surveyData.ToString());
+    }
+
+    public async Task SetData(string data)
+    {
+        await JSRuntime.InvokeVoidAsync("interop.survey.setData", data);
+    }
+
+    [JSInvokable]
+    public async Task SurveyCompleted(string results)
+    {
+        await OnSurveyCompleted.InvokeAsync(results);
+    }
+
+    [JSInvokable]
+    public async Task PageChanged(string surveyData, string newCurrentPageName)
+    {
+        await OnPageChanged.InvokeAsync((surveyData, newCurrentPageName));
+    }
+
+    [JSInvokable]
+    public async Task<bool> HasAvailableCapacity(string surveyData)
+    {
+        var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(surveyData);
+        var floorId = submission.floor;
+        var date = submission.startDate;
+
+        var results = (await Mediator.Send(new GetSpotsAvailablePerHourQuery { FloorId = floorId, SelectedDay = date })).ToArray();
+
+        for (var i = submission.startTime; i < submission.endTime; i++)
+        {
+            var availableCapacity = results[i].Capacity - results[i].SpotsReserved - (1 + submission.visitors?.Length ?? 0);
+
+            if (availableCapacity < 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void Dispose()
+    {
+        _objectReference?.Dispose();
+    }
+}

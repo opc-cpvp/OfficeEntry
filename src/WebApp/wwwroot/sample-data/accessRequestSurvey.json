@@ -1,0 +1,788 @@
+﻿{
+  "pages": [
+    {
+      "name": "page1",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "building",
+          "title": {
+            "default": "Building",
+            "fr": "Édifice"
+          },
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/locations",
+            "valueName": "id",
+            "titleName": "name"
+          }
+        },
+        {
+          "type": "dropdown",
+          "name": "floor",
+          "title": {
+            "default": "Floor",
+            "fr": "Étage"
+          },
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/locations/{building}",
+            "valueName": "id",
+            "titleName": "name"
+          }
+        },
+        {
+          "type": "dropdown",
+          "name": "reason",
+          "title": {
+            "default": "Reason",
+            "fr": "Raison"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "948160000",
+              "text": {
+                "default": "Critical Work",
+                "fr": "Travail critique"
+              }
+            },
+            {
+              "value": "948160002",
+              "text": {
+                "default": "Regular Work",
+                "fr": "Travail régulier"
+              }
+            },
+            {
+              "value": "948160001",
+              "text": {
+                "default": "Pickup a Document",
+                "fr": "Récupérer un document"
+              }
+            },
+            {
+              "value": "948160003",
+              "text": {
+                "default": "Pickup Office Equipment",
+                "fr": "Récupérer un matériel de bureau"
+              }
+            },
+            {
+              "value": "948160004",
+              "text": {
+                "default": "Other",
+                "fr": "Autre"
+              }
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "details",
+          "title": {
+            "default": "Details",
+            "fr": "Détails"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page8",
+      "elements": [
+        {
+          "type": "html",
+          "name": "question1",
+          "html": {
+            "default": "<p>Prior to submitting a request, ensure alternatives such as purchasing or delivery of items have been considered and deemed not viable.</p>\n\n<p>If this request relates to a Duty to Accommodate Plan, managers should contact their Labour Relations Advisor for advice and guidance. In the event the employee requires support to retrieve a larger asset related to a DTA (i.e. chair), there is a pick-up and delivery service available through the <a href=\"http://jusnet.justice.gc.ca/eng/work-travail/facil-install/juspace.html\" target=\"_blank\">National Accommodations Division</a> available through the JUSpace link on the JUSnet home page.</p>",
+            "fr": "<p>Avant de soumettre une demande, assurez-vous que des alternatives telles que l'achat ou la livraison d'articles ont été envisagées et jugées non viables.</p>\n\n<p>Si cette demande concerne un régime d’obligation d’adaptation, les gestionnaires devraient communiquer avec leur conseiller en relations de travail pour obtenir des conseils et des directives. Dans le cas où l'employé a besoin d'aide pour récupérer un item plus important lié à un DTA (c.-à-d. une chaise), un service de collecte et de livraison est disponible via la <a href=\"http://jusnet.justice.gc.ca/fra/work-travail/facil-install/juspace.html\" target=\"_blank\">Division de l'hébergement national</a> disponible par le lien JUSpace sur la page d'accueil de JUSnet."
+          }
+        }
+      ],
+      "visibleIf": "{reason} = 948160003"
+    },
+    {
+      "name": "page9",
+      "elements": [
+        {
+          "type": "text",
+          "name": "chair",
+          "title": {
+            "default": "Chair",
+            "fr": "Chaise"
+          },
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "laptop",
+          "title": {
+            "default": "Laptop",
+            "fr": "Portable"
+          },
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "tablet",
+          "title": {
+            "default": "Tablet",
+            "fr": "Tablette"
+          },
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "monitor",
+          "title": {
+            "default": "Monitor",
+            "fr": "Moniteur"
+          },
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "dockingStation",
+          "title": {
+            "default": "Docking Station",
+            "fr": "Station d'accueil pour ordinateur portable"
+          },
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "keyboard",
+          "title": {
+            "default": "Keyboard",
+            "fr": "Clavier"
+          },
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "mouse",
+          "title": {
+            "default": "Mouse",
+            "fr": "Souris"
+          },
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "cables",
+          "title": {
+            "default": "Cables",
+            "fr": "Câbles"
+          },
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "headset",
+          "title": {
+            "default": "Headset",
+            "fr": "Casque d'écoute"
+          },
+          "defaultValue": "0"
+        },
+        {
+          "type": "text",
+          "name": "printer",
+          "title": {
+            "default": "Printer",
+            "fr": "Imprimante"
+          },
+          "defaultValue": "0"
+        },
+        {
+          "type": "comment",
+          "name": "other",
+          "title": {
+            "default": "Other",
+            "fr": "Autre"
+          }
+        }
+      ],
+      "visibleIf": "{reason} = 948160003",
+      "questionTitleLocation": "top"
+    },
+    {
+      "name": "page2",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "registerVisitors",
+          "title": {
+            "default": "Do you need to register visitors?",
+            "fr": "Avez-vous besoin d'inscrire des visiteurs?"
+          },
+          "defaultValue": "false",
+          "labelTrue": {
+            "default": "Yes",
+            "fr": "Oui"
+          },
+          "labelFalse": {
+            "default": "No",
+            "fr": "Non"
+          }
+        },
+        {
+          "type": "panel",
+          "name": "panel1",
+          "elements": [
+            {
+              "type": "html",
+              "name": "purposeStatement",
+              "html": {
+                "default": "<p>As the employee sponsoring visitors, you are responsible for ensuring they understand and follow all COVID-19 Health & Safety Measures while in the workplace.</p>\n\n<p>Note that visitors should be entering only for a legitimate work-related purpose that cannot be done remotely. Do not bring friends or family members.</p>",
+                "fr": "<p>En tant qu'employé parrainant des visiteurs, vous êtes responsable de vous assurer qu'ils comprennent et respectent toutes les mesures de santé et de sécurité COVID-19 sur le lieu de travail.</p>\n\n<p>Notez que les visiteurs ne doivent entrer que pour des besoins légitimes liés au travail qui ne peuvent pas être effectués à distance. N'amenez pas d'amis ou de membres de votre famille.</p>"
+              }
+            },
+            {
+              "type": "comment",
+              "name": "purpose",
+              "title": {
+                "default": "Purpose of visit",
+                "fr": "Objet de la visite"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "html",
+              "name": "visitorsStatement",
+              "html": {
+                "default": "<p>Register each visitor and include a valid email and phone number. Once approved, visitors will receive an email including the COVID-19 Health & Safety Measures. To avoid delays once on-site, pre-register with the commissionaire/reception.</p>",
+                "fr": "<p>Enregistrez chaque visiteur et incluez un e-mail et un numéro de téléphone valides. Une fois approuvé, les visiteurs recevront un e-mail contenant les mesures de santé et de sécurité COVID-19. Pour éviter les retards une fois sur place, pré-enregistrez-vous auprès du commissionnaire / réception.</p>"
+              }
+            },
+            {
+              "type": "matrixdynamic",
+              "name": "visitors",
+              "title": "Visitors",
+              "isRequired": true,
+              "columns": [
+                {
+                  "name": "name",
+                  "title": {
+                    "default": "Name",
+                    "fr": "Nom"
+                  },
+                  "cellType": "text"
+                },
+                {
+                  "name": "email",
+                  "title": {
+                    "default": "Email",
+                    "fr": "Courriel"
+                  },
+                  "cellType": "text",
+                  "inputType": "email"
+                },
+                {
+                  "name": "telephone",
+                  "title": {
+                    "default": "Telephone",
+                    "fr": "Téléphone"
+                  },
+                  "cellType": "text",
+                  "inputType": "tel"
+                }
+              ],
+              "rowCount": 1,
+              "minRowCount": 1,
+              "maxRowCount": 10
+            }
+          ],
+          "visibleIf": "{registerVisitors} = true"
+        }       
+      ]
+    },
+    {
+      "name": "page3",
+      "elements": [
+        {
+          "type": "text",
+          "name": "startDate",
+          "title": {
+            "default": "Select a date",
+            "fr": "Choisissez une date"
+          },
+          "isRequired": true,
+          "inputType": "date",
+          "max": "2999-12-31"
+        }
+      ]
+    },
+    {
+      "name": "page4",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "startTime",
+          "title": {
+            "default": "From",
+            "fr": "De"
+          },
+          "defaultValue": "9",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "text": {
+                "default": "To must be greater than From",
+                "fr": "« À » doit être plus grand que « De »"
+              },
+              "expression": "{endTime} > {startTime}"
+            },
+            {
+              "type": "expression",
+              "text": {
+                "default": "The request exceeds the available capacity for the chosen time range",
+                "fr":  "La demande excède la capacité disponible pour l'intervalle de temps choisi"
+              },
+              "expression": "CapacityValidator() = true"
+            }
+          ],
+          "choices": [
+            {
+              "value": "0",
+              "text": {
+                "default": "Midnight",
+                "fr": "Minuit"
+              }
+            },
+            {
+              "value": "1",
+              "text": {
+                "default": "1:00 AM",
+                "fr": "1h"
+              }
+            },
+            {
+              "value": "2",
+              "text": {
+                "default": "2:00 AM",
+                "fr": "2h"
+              }
+            },
+            {
+              "value": "3",
+              "text": {
+                "default": "3:00 AM",
+                "fr": "3h"
+              }
+            },
+            {
+              "value": "4",
+              "text": {
+                "default": "4:00 AM",
+                "fr": "4h"
+              }
+            },
+            {
+              "value": "5",
+              "text": {
+                "default": "5:00 AM",
+                "fr": "5h"
+              }
+            },
+            {
+              "value": "6",
+              "text": {
+                "default": "6:00 AM",
+                "fr": "6h"
+              }
+            },
+            {
+              "value": "7",
+              "text": {
+                "default": "7:00 AM",
+                "fr": "7h"
+              }
+            },
+            {
+              "value": "8",
+              "text": {
+                "default": "8:00 AM",
+                "fr": "8h"
+              }
+            },
+            {
+              "value": "9",
+              "text": {
+                "default": "9:00 AM",
+                "fr": "9h"
+              }
+            },
+            {
+              "value": "10",
+              "text": {
+                "default": "10:00 AM",
+                "fr": "10h"
+              }
+            },
+            {
+              "value": "11",
+              "text": {
+                "default": "11:00 AM",
+                "fr": "11h"
+              }
+            },
+            {
+              "value": "12",
+              "text": {
+                "default": "12:00 PM",
+                "fr": "Midi"
+              }
+            },
+            {
+              "value": "13",
+              "text": {
+                "default": "1:00 PM",
+                "fr": "13h"
+              }
+            },
+            {
+              "value": "14",
+              "text": {
+                "default": "2:00 PM",
+                "fr": "14h"
+              }
+            },
+            {
+              "value": "15",
+              "text": {
+                "default": "3:00 PM",
+                "fr": "15h"
+              }
+            },
+            {
+              "value": "16",
+              "text": {
+                "default": "4:00 PM",
+                "fr": "16h"
+              }
+            },
+            {
+              "value": "17",
+              "text": {
+                "default": "5:00 PM",
+                "fr": "17h"
+              }
+            },
+            {
+              "value": "18",
+              "text": {
+                "default": "6:00 PM",
+                "fr": "18h"
+              }
+            },
+            {
+              "value": "19",
+              "text": {
+                "default": "7:00 PM",
+                "fr": "19h"
+              }
+            },
+            {
+              "value": "20",
+              "text": {
+                "default": "8:00 PM",
+                "fr": "20h"
+              }
+            },
+            {
+              "value": "21",
+              "text": {
+                "default": "9:00 PM",
+                "fr": "21h"
+              }
+            },
+            {
+              "value": "22",
+              "text": {
+                "default": "10:00 PM",
+                "fr": "22h"
+              }
+            },
+            {
+              "value": "23",
+              "text": {
+                "default": "11:00 PM",
+                "fr": "23h"
+              }
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "endTime",
+          "title": {
+            "default": "To",
+            "fr": "À"
+          },
+          "defaultValue": "17",
+          "choices": [
+            {
+              "value": "1",
+              "text": {
+                "default": "1:00 AM",
+                "fr": "1h"
+              }
+            },
+            {
+              "value": "2",
+              "text": {
+                "default": "2:00 AM",
+                "fr": "2h"
+              }
+            },
+            {
+              "value": "3",
+              "text": {
+                "default": "3:00 AM",
+                "fr": "3h"
+              }
+            },
+            {
+              "value": "4",
+              "text": {
+                "default": "4:00 AM",
+                "fr": "4h"
+              }
+            },
+            {
+              "value": "5",
+              "text": {
+                "default": "5:00 AM",
+                "fr": "5h"
+              }
+            },
+            {
+              "value": "6",
+              "text": {
+                "default": "6:00 AM",
+                "fr": "6h"
+              }
+            },
+            {
+              "value": "7",
+              "text": {
+                "default": "7:00 AM",
+                "fr": "7h"
+              }
+            },
+            {
+              "value": "8",
+              "text": {
+                "default": "8:00 AM",
+                "fr": "8h"
+              }
+            },
+            {
+              "value": "9",
+              "text": {
+                "default": "9:00 AM",
+                "fr": "9h"
+              }
+            },
+            {
+              "value": "10",
+              "text": {
+                "default": "10:00 AM",
+                "fr": "10h"
+              }
+            },
+            {
+              "value": "11",
+              "text": {
+                "default": "11:00 AM",
+                "fr": "11h"
+              }
+            },
+            {
+              "value": "12",
+              "text": {
+                "default": "12:00 PM",
+                "fr": "Midi"
+              }
+            },
+            {
+              "value": "13",
+              "text": {
+                "default": "1:00 PM",
+                "fr": "13h"
+              }
+            },
+            {
+              "value": "14",
+              "text": {
+                "default": "2:00 PM",
+                "fr": "14h"
+              }
+            },
+            {
+              "value": "15",
+              "text": {
+                "default": "3:00 PM",
+                "fr": "15h"
+              }
+            },
+            {
+              "value": "16",
+              "text": {
+                "default": "4:00 PM",
+                "fr": "16h"
+              }
+            },
+            {
+              "value": "17",
+              "text": {
+                "default": "5:00 PM",
+                "fr": "17h"
+              }
+            },
+            {
+              "value": "18",
+              "text": {
+                "default": "6:00 PM",
+                "fr": "18h"
+              }
+            },
+            {
+              "value": "19",
+              "text": {
+                "default": "7:00 PM",
+                "fr": "19h"
+              }
+            },
+            {
+              "value": "20",
+              "text": {
+                "default": "8:00 PM",
+                "fr": "20h"
+              }
+            },
+            {
+              "value": "21",
+              "text": {
+                "default": "9:00 PM",
+                "fr": "21h"
+              }
+            },
+            {
+              "value": "22",
+              "text": {
+                "default": "10:00 PM",
+                "fr": "22h"
+              }
+            },
+            {
+              "value": "23",
+              "text": {
+                "default": "11:00 PM",
+                "fr": "23h"
+              }
+            },
+            {
+              "value": "24",
+              "text": {
+                "default": "Midnight",
+                "fr": "Minuit"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page5",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "manager",
+          "title": {
+            "default": "Manager",
+            "fr": "Gestionnaire"
+          },
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/users",
+            "valueName": "id",
+            "titleName": "fullName"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page6",
+      "elements": [
+        {
+          "type": "html",
+          "name": "acknowledgeHealthStatement",
+          "html": {
+            "default": "<p><strong>On the day you are scheduled to enter the workplace, cancel your request and DO NOT enter the workplace if ANY of the following apply:</strong></p>\n\n<ul>\n<li>You are feeling ill or experiencing symptoms such as fever, cough, runny nose, sore throat, or difficulty breathing.</li>\n<li>You have been tested for, diagnosed with, or suspected of having COVID-19 in the last 14 days.</li>\n<li>You have provided care for or had close contact in the last 14 days with a suspected, probable or confirmed case of COVID-19.</li>\n<li>You have travelled outside Canada in the last 14 days.</li>\n</ul>",
+            "fr": "<p><strong>Le jour où vous devez entrer sur le lieu de travail, annulez votre demande et n'entrez PAS dans le lieu de travail si l'une des conditions suivantes s'applique:</strong></p>\n\n<ul>\n<li>Vous vous sentez malade ou présentez des symptômes tels que fièvre, toux, écoulement nasal, mal de gorge ou difficulté à respirer.</li>\n<li>Vous avez été testé, diagnostiqué ou soupçonné d'être atteint de COVID-19 au cours des 14 derniers jours.</li>\n<li>Vous avez soigné ou eu des contacts étroits au cours des 14 derniers jours avec un cas suspect, probable ou confirmé de COVID-19.</li>\n<li>Vous avez voyagé à l'extérieur du Canada au cours des 14 derniers jours.</li>"
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "acknowledgeHealth",
+          "titleLocation": "hidden",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{acknowledgeHealth} = ['acknowledgeHealth']"
+            }
+          ],
+          "choices": [
+            {
+              "value": "acknowledgeHealth",
+              "text": {
+                "default": "I agree",
+                "fr": "Je suis d'accord"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page7",
+      "elements": [
+        {
+          "type": "html",
+          "name": "acknowledgeWorkplaceStatement",
+          "html": {
+            "default": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the COVID-19 Health & Safety Measures</li>\n<li>Remain on the floor for which you obtained approval to access</li>\n<li>Submit a new request should you need to access other floors or stay longer</li>\n<li>Leave on time</li>\n</ul>",
+            "fr": "<p><strong>En milieu de travail:</strong></p>\n\n<ul>\n<li>Se conformer à tous les protocoles décrits dans les mesures de santé et de sécurité COVID-19</li>\n<li>Restez à l'étage pour lequel vous avez obtenu l'autorisation d'accès</li>\n<li>Soumettez une nouvelle demande si vous avez besoin d'accéder à d'autres étages ou de rester plus longtemps</li>\n<li>Quittez à l'heure prévue</li>\n</ul>"
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "acknowledgeWorkplace",
+          "titleLocation": "hidden",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "{acknowledgeWorkplace} = ['acknowledgeWorkplace']"
+            }
+          ],
+          "choices": [
+            {
+              "value": "acknowledgeWorkplace",
+              "text": {
+                "default": "I agree",
+                "fr": "Je suis d'accord"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "showCompletedPage": false,
+  "showQuestionNumbers": "off"
+}
