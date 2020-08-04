@@ -13,7 +13,6 @@ namespace OfficeEntry.Application.TermsAndConditions.Commands.UpdateHealthAndSaf
     public class UpdateHealthAndSafetyMeasuresStatementForCurrentUserCommandHandler : IRequestHandler<UpdateHealthAndSafetyMeasuresStatementForCurrentUserCommand>
     {
         private readonly ICurrentUserService _currentUserService;
-        private readonly IDomainUserService _domainUserService;
         private readonly ITermsAndConditionsService _termsAndConditionsService;
 
         public UpdateHealthAndSafetyMeasuresStatementForCurrentUserCommandHandler(ICurrentUserService currentUserService, ITermsAndConditionsService termsAndConditionsService)
