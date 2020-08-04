@@ -17,6 +17,7 @@
     <title>Office Entry</title>
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/jqueryui/jquery-ui.min.css" />
     <link href="css/site.css" rel="stylesheet" />
 </head>
 <body>
@@ -56,14 +57,18 @@
             set: function (value) { window.localStorage['BlazorCulture'] = value; }
         };
     </script>
-
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="~/lib/promise-polyfill/polyfill.min.js"></script>
     <script type="text/javascript" src="~/lib/fetch/fetch.min.js"></script>
     <script type="text/javascript" src="~/lib/vue/vue.min.js"></script>
     <script type="text/javascript" src="~/lib/survey-vue/survey.vue.min.js"></script>
+    <script type="text/javascript" src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/lib/surveyjs-widgets/surveyjs-widgets.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script src="js/survey.js"></script>
     <script src="js/spotsAvailablePerHours.js"></script>
+    <script src="~/js/datepicker-fr.js"></script>
+
 </body>
 </html>
