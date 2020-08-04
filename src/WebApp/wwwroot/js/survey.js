@@ -75,6 +75,9 @@ interopJS.survey = {
                     .querySelector('#blazor-survey-wraper')
                     .innerHTML = "<div id=" + id + " class=" + classStyle + "><survey :survey=\"survey\"/></div>";
 
+                if (json.locale)
+                    json.locale = window.localStorage['BlazorCulture'] === "fr-CA" ? "fr" : "en";
+
                 survey = new Survey.Model(json);
 
                 survey.locale = window.localStorage['BlazorCulture'] === "fr-CA" ? "fr" : "en";

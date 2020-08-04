@@ -16,9 +16,9 @@ interopJS.spotsAvailablePerHours = {
 
         function drawStuff() {
             let array1 = [[
-                languageCode === "en" ? 'Spots available per hour' : 'Places disponibles par heure',
-                languageCode === "en" ? 'Spots reserved' : 'Places réservés',
-                languageCode === "en" ? 'Spots available' : 'Places disponibles',
+                languageCode === "fr" ? 'Places disponibles par heure' : 'Spots available per hour',
+                languageCode === "fr" ? 'Places réservés' : 'Spots reserved',
+                languageCode === "fr" ? 'Places disponibles' : 'Spots available',
                 { role: 'annotation' }
             ]];
             let array3 = array1.concat(chartData);

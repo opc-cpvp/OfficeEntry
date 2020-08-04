@@ -28,10 +28,9 @@
             .Where(x => x.Hour >= 7 && x.Hour <= 17)
             .Select(x => new object[]
             {
-                //CultureInfo.DefaultThreadCurrentUICulture.TwoLetterISOLanguageName == "en"
-                CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "en"
-                ? x.Hour == 12 ? "Noon" : x.Hour > 12 ? (x.Hour - 12) + "PM" : x.Hour + "AM"
-                : x.Hour == 12 ? "Midi" : x.Hour + "h",
+                CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr"
+                ? x.Hour == 12 ? "Midi" : x.Hour + "h"
+                : x.Hour == 12 ? "Noon" : x.Hour > 12 ? (x.Hour - 12) + "PM" : x.Hour + "AM",
             x.SpotsReserved,
             x.Capacity - x.SpotsReserved,
             ""
