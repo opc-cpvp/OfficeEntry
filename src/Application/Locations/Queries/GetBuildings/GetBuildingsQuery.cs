@@ -10,6 +10,7 @@ namespace OfficeEntry.Application.Locations.Queries.GetBuildings
 {
     public class GetBuildingsQuery : IRequest<IEnumerable<Building>>
     {
+        public string Locale { get; set; }
     }
 
     public class GetBuildingsQueryHandler : IRequestHandler<GetBuildingsQuery, IEnumerable<Building>>
@@ -21,14 +22,9 @@ namespace OfficeEntry.Application.Locations.Queries.GetBuildings
             _locationService = locationService;
         }
 
-        public Task<IEnumerable<Building>> Handle(GetBuildingsQuery getBuildingsQuery, object cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<IEnumerable<Building>> Handle(GetBuildingsQuery request, CancellationToken cancellationToken)
         {
-            return _locationService.GetBuildingsAsync();
+            return _locationService.GetBuildingsAsync(request.Locale);
         }
     }
 }

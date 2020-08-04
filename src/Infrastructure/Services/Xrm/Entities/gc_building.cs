@@ -28,8 +28,10 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
                 Id = building.gc_buildingid,
                 Address = building.gc_address,
                 City = building.gc_city,
-                Description = building.gc_englishdescription,
-                Name = building.gc_englishname,
+                EnglishDescription = building.gc_englishdescription,
+                FrenchDescription = building.gc_frenchdescription,
+                EnglishName = building.gc_englishname,
+                FrenchName = building.gc_frenchname,
                 Timezone = building.gc_timezone,
                 TimezoneOffset = building.gc_timezoneoffset
             };
