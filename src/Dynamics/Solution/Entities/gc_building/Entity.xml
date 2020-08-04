@@ -421,7 +421,7 @@
           <Type>decimal</Type>
           <Name>gc_timezoneoffset</Name>
           <LogicalName>gc_timezoneoffset</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
+          <RequiredLevel>required</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
@@ -441,8 +441,8 @@
           <IsSortableEnabled>0</IsSortableEnabled>
           <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
           <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <MinValue>-100000000000</MinValue>
-          <MaxValue>100000000000</MaxValue>
+          <MinValue>-14</MinValue>
+          <MaxValue>14</MaxValue>
           <Accuracy>2</Accuracy>
           <displaynames>
             <displayname description="Timezone Offset" languagecode="1033" />

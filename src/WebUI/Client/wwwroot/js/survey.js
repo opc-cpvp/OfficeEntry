@@ -48,7 +48,7 @@ interopJS.survey = {
 
         async function CapacityValidator() {
             await dotNet.invokeMethodAsync("HasAvailableCapacity", JSON.stringify(survey.data, null, 3))
-                .then(r => {                 
+                .then(r => {
                     this.returnResult(r);
                 });
         }
@@ -57,13 +57,16 @@ interopJS.survey = {
             .FunctionFactory
             .Instance
             .register("CapacityValidator", CapacityValidator, true);
-            
+
         fetch(surveyUrl)
             .then(response => response.json())
             .then(json => {
                 document
                     .querySelector('#blazor-survey-wraper')
                     .innerHTML = `<div id="${id}" class="${classStyle}"><survey :survey="survey"/></div>`;
+
+                if (json.locale)
+                    json.locale = window.localStorage['BlazorCulture'] === "fr-CA" ? "fr" : "en";
 
                 survey = new Survey.Model(json);
 
