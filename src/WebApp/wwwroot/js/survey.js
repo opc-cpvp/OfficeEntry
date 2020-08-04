@@ -31,7 +31,15 @@ interopJS.survey = {
 
     getNextDayDate: function () {
         var today = new Date();
-        return new Date(today.setDate(today.getDate() + 1)).toLocaleDateString("fr-CA");
+        // replace function fixes bug in IE where toLocaleDateString generates unicode characters
+        return new Date(today.setDate(today.getDate() + 1)).toLocaleDateString().replace(/\u200E/g, '');
+    },
+
+    setDatepickerLocale: function (locale) {
+        if (locale === 'fr') {
+            return $.datepicker.setDefaults($.datepicker.regional['fr-CA']);
+        }
+        return $.datepicker.setDefaults($.datepicker.regional['']);
     },
 
     init: function (id, classStyle, surveyUrl, data) {
@@ -69,6 +77,10 @@ interopJS.survey = {
 
                 survey = new Survey.Model(json);
 
+                survey.locale = window.localStorage['BlazorCulture'] === "fr-CA" ? "fr" : "en";
+
+                window.interop.survey.setDatepickerLocale(survey.locale);
+
                 survey
                     .onComplete
                     .add(function(result) {
@@ -88,7 +100,7 @@ interopJS.survey = {
                     .add(function(survey, options) {
                         if (options.question.name === "startDate") {
                             options.question.defaultValue = window.interop.survey.getNextDayDate();
-                        }
+                        }                      
                     });
 
                 survey
@@ -101,8 +113,6 @@ interopJS.survey = {
                 survey
                     .onValueChanged
                     .add(surveyValueChanged);
-
-                survey.locale = window.localStorage['BlazorCulture'] === "fr-CA" ? "fr" : "en";
 
                 if (data) {
                     survey.data = JSON.parse(data);

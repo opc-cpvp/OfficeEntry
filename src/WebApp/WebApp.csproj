@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\jquery-ui\**" />
+    <Content Remove="wwwroot\lib\jquery-ui\**" />
+    <EmbeddedResource Remove="wwwroot\lib\jquery-ui\**" />
+    <None Remove="wwwroot\lib\jquery-ui\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="3.1.5" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="3.1.5" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />

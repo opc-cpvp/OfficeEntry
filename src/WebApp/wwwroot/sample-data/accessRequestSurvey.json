@@ -301,15 +301,15 @@
       "name": "page3",
       "elements": [
         {
-          "type": "text",
+          "type": "datepicker",
           "name": "startDate",
           "title": {
             "default": "Select a date",
             "fr": "Choisissez une date"
           },
           "isRequired": true,
-          "inputType": "date",
-          "max": "2999-12-31"
+          "dateFormat": "mm/dd/yy",
+          "inputType": "date"
         }
       ]
     },
