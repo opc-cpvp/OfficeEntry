@@ -57,10 +57,10 @@
                               <EnableQuickFind>false</EnableQuickFind>
                               <EnableViewPicker>false</EnableViewPicker>
                               <EnableJumpBar>false</EnableJumpBar>
-                              <RecordsPerPage>10</RecordsPerPage>
+                              <RecordsPerPage>12</RecordsPerPage>
                               <ViewId>{43798B3A-9A5F-442E-A6A9-25B4DA2A181A}</ViewId>
                               <IsUserView>false</IsUserView>
-                              <ViewIds />
+                              <ViewIds>{43798B3A-9A5F-442E-A6A9-25B4DA2A181A},{EBEE5CB7-F8D0-EA11-A2E4-005056AA7AC3},{1284E3A8-05D1-EA11-A2E4-005056AA7AC3}</ViewIds>
                               <AutoExpand>Fixed</AutoExpand>
                               <VisualizationId>{09A41049-5DCB-EA11-A2E4-005056AA7AC3}</VisualizationId>
                               <IsUserChart>false</IsUserChart>
@@ -94,7 +94,7 @@
                               <EnableViewPicker>false</EnableViewPicker>
                               <EnableJumpBar>false</EnableJumpBar>
                               <RecordsPerPage>12</RecordsPerPage>
-                              <ViewId>{43798B3A-9A5F-442E-A6A9-25B4DA2A181A}</ViewId>
+                              <ViewId>{EBEE5CB7-F8D0-EA11-A2E4-005056AA7AC3}</ViewId>
                               <IsUserView>false</IsUserView>
                               <ViewIds>{43798B3A-9A5F-442E-A6A9-25B4DA2A181A},{EBEE5CB7-F8D0-EA11-A2E4-005056AA7AC3}</ViewIds>
                               <AutoExpand>Fixed</AutoExpand>
