@@ -7,6 +7,7 @@ using OfficeEntry.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace OfficeEntry.WebApp.Controllers
 {
@@ -21,7 +22,8 @@ namespace OfficeEntry.WebApp.Controllers
         [HttpGet("{id}")]
         public async Task<AccessRequestViewModel> Get(Guid id)
         {
-            return await Mediator.Send(new GetAccessRequestQuery { AccessRequestId = id });
+            var locale = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            return await Mediator.Send(new GetAccessRequestQuery { AccessRequestId = id, Locale = locale });
         }
 
         [HttpPost("create")]

@@ -190,7 +190,7 @@
     <value>Gestionnaire:</value>
   </data>
   <data name="MMMM dd, yyyy" xml:space="preserve">
-    <value>le d MMMM yyyy</value>
+    <value>d MMMM yyyy</value>
   </data>
   <data name="Monitor" xml:space="preserve">
     <value>Moniteur</value>

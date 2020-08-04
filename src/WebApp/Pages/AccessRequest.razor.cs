@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
+using OfficeEntry.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -40,7 +42,10 @@ namespace OfficeEntry.WebApp.Pages
                 return;
             }
 
-            var result = await Mediator.Send(new GetAccessRequestQuery { AccessRequestId = Id });
+            var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+            locale = (locale == Locale.French) ? locale : Locale.English;
+
+            var result = await Mediator.Send(new GetAccessRequestQuery { AccessRequestId = Id, Locale = locale });
             IsEmployee = result.IsEmployee;
             IsManager = result.IsManager;
             accessRequest = result;

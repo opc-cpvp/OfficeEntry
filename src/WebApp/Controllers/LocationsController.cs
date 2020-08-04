@@ -10,16 +10,17 @@ namespace OfficeEntry.WebApp.Controllers
 {
     public class LocationsController : ApiController
     {
-        [HttpGet]
-        public async Task<IEnumerable<Building>> Get()
+
+        [HttpGet("{locale}")]
+        public async Task<IEnumerable<Building>> Get(string locale)
         {
-            return await Mediator.Send(new GetBuildingsQuery());
+            return await Mediator.Send(new GetBuildingsQuery { Locale = locale });
         }
 
-        [HttpGet("{id}")]
-        public async Task<IEnumerable<Floor>> Get(Guid id)
+        [HttpGet("{locale}/{id}")]
+        public async Task<IEnumerable<Floor>> Get(Guid id, string locale)
         {
-            return await Mediator.Send(new GetFloorsQuery { BuildingId = id });
+            return await Mediator.Send(new GetFloorsQuery { BuildingId = id, Locale = locale });
         }
     }
 }

@@ -21,7 +21,7 @@ namespace OfficeEntry.WebApp.Pages
 
             var currentPageUrl = NavigationManager.Uri.Replace(NavigationManager.BaseUri, "");
 
-            if (currentPageUrl == "s")
+            if (currentPageUrl == "entree-splash")
                 return;
 
             var currentCulture = await JSRuntime.InvokeAsync<string>("blazorCulture.get");
