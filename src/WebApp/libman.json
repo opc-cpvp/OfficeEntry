@@ -30,11 +30,7 @@
     },
     {
       "library": "jqueryui@1.12.1",
-      "destination": "wwwroot/lib/jqueryui/",
-      "files": [
-        "jquery-ui.min.js",
-        "jquery-ui.min.css"
-      ]
+      "destination": "wwwroot/lib/jqueryui/"
     }
   ]
 }
