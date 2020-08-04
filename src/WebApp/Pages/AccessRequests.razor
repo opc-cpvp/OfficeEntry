@@ -1,0 +1,16 @@
+﻿@page "/access-requests"
+@using OfficeEntry.WebApp.Components.AccessRequestComponents.Card
+
+<h1>@Localizer["My Requests"]</h1>
+
+@if (_accessRequests is null)
+{
+    <Loading />
+}
+else
+{
+    foreach (var accessRequest in _accessRequests)
+    {
+        <AccessRequestCard AccessRequest="@accessRequest"></AccessRequestCard>
+    }
+}

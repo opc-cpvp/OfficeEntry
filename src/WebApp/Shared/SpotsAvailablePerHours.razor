@@ -1,0 +1,41 @@
+﻿@inject IJSRuntime JSRuntime
+
+@using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour
+@using System.Globalization
+
+<div id="blazor-spotsAvailablePerHours-wraper">
+</div>
+
+
+@code {
+    [Parameter]
+    public string Id { get; set; } = "chartElement";
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public CurrentCapacity[] Data { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        var t = Data
+            .Where(x => x.Hour >= 7 && x.Hour <= 17)
+            .Select(x => new object[]
+            {
+                CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr"
+                ? x.Hour == 12 ? "Midi" : x.Hour + "h"
+                : x.Hour == 12 ? "Noon" : x.Hour > 12 ? (x.Hour - 12) + "PM" : x.Hour + "AM",
+            x.SpotsReserved,
+            x.Capacity - x.SpotsReserved,
+            ""
+            }).ToArray();
+
+    await JSRuntime.InvokeVoidAsync("interop.spotsAvailablePerHours.init", Id, @Class, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, t);
+}
+}

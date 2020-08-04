@@ -1,0 +1,26 @@
+﻿@page "/submit-access-request"
+
+<h1>@Localizer["Submit Access Request"]</h1>
+
+@if (SurveyCompleted)
+{
+    <Loading />
+}
+
+@if (!IsLoaded)
+{
+    <Loading />
+}
+else
+{
+    if (ShowSpotsAvailablePerHours)
+    {
+        <SpotsAvailablePerHours Data="FloorCapacity" />
+    }
+
+    <Survey Id="surveyElementSubmitAccessRequest"
+            SurveyUrl="sample-data/accessRequestSurvey.json"
+            OnSurveyCompleted="@OnSurveyCompleted"
+            OnPageChanged="@OnPageChanged" />
+
+}
