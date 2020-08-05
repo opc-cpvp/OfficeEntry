@@ -32,7 +32,7 @@ interopJS.survey = {
     getNextDayDate: function () {
         var today = new Date();
         // replace function fixes bug in IE where toLocaleDateString generates unicode characters
-        return new Date(today.setDate(today.getDate() + 1)).toLocaleDateString().replace(/\u200E/g, '');
+        return new Date(today.setDate(today.getDate() + 1)).toLocaleDateString("en-US").replace(/\u200E/g, '');
     },
 
     setDatepickerLocale: function (locale) {
