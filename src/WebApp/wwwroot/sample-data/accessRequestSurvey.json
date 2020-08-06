@@ -703,6 +703,10 @@
         {
           "type": "dropdown",
           "name": "manager",
+          "renderAs": "select2",
+          "select2Config": {
+            "theme": "bootstrap4"
+          },
           "title": {
             "default": "Manager",
             "fr": "Gestionnaire"
