@@ -44,7 +44,7 @@ namespace OfficeEntry.WebApp.Pages
 
             StateHasChanged();
 
-            await JSRuntime.InvokeAsync<object>("convertDatatables");
+            await JSRuntime.InvokeAsync<object>("initializeDatatables", locale);
 
             await base.OnAfterRenderAsync(firstRender);
         }
