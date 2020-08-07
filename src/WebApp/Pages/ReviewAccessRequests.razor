@@ -1,17 +1,14 @@
 ﻿@page "/review-access-requests"
 
-@using OfficeEntry.WebApp.Components.AccessRequestComponents.Card
+@using OfficeEntry.WebApp.Shared
 
 <h1>@Localizer["Review Access Requests"]</h1>
 
-@if (accessRequests is null)
+@if (_accessRequests is null)
 {
     <Loading />
 }
 else
 {
-    foreach (var accessRequest in accessRequests)
-    {
-        <AccessRequestCard AccessRequest="@accessRequest"></AccessRequestCard>
-    }
+    <AccessRequestDatatable AccessRequests="@_accessRequests"></AccessRequestDatatable>
 }
