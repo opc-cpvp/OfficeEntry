@@ -129,6 +129,9 @@
   <data name="Asset and equipment:" xml:space="preserve">
     <value>Asset and equipment:</value>
   </data>
+  <data name="Building" xml:space="preserve">
+    <value>Building</value>
+  </data>
   <data name="Cables" xml:space="preserve">
     <value>Cables</value>
   </data>
@@ -144,6 +147,9 @@
   <data name="CriticalWork" xml:space="preserve">
     <value>Critical Work</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="Decline" xml:space="preserve">
     <value>Decline</value>
   </data>
@@ -158,6 +164,9 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="Floor" xml:space="preserve">
+    <value>Floor</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>From</value>
@@ -245,6 +254,9 @@
   </data>
   <data name="Review Access Requests" xml:space="preserve">
     <value>Review Access Requests</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
   </data>
   <data name="Status:" xml:space="preserve">
     <value>Status:</value>

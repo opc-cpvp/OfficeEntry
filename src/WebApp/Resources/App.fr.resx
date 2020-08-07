@@ -129,6 +129,9 @@
   <data name="Asset and equipment:" xml:space="preserve">
     <value>Matériel de bureau:</value>
   </data>
+  <data name="Building" xml:space="preserve">
+    <value>Édifice</value>
+  </data>
   <data name="Cables" xml:space="preserve">
     <value>Câbles</value>
   </data>
@@ -144,6 +147,9 @@
   <data name="CriticalWork" xml:space="preserve">
     <value>Travail critique</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="Decline" xml:space="preserve">
     <value>Refuser</value>
   </data>
@@ -158,6 +164,9 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>Courriel</value>
+  </data>
+  <data name="Floor" xml:space="preserve">
+    <value>Étage</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>de</value>
@@ -245,6 +254,9 @@
   </data>
   <data name="Review Access Requests" xml:space="preserve">
     <value>Approuver les demandes</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Statut</value>
   </data>
   <data name="Status:" xml:space="preserve">
     <value>Statut:</value>
