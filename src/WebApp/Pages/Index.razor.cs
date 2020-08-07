@@ -30,7 +30,8 @@ namespace OfficeEntry.WebApp.Pages
                 return;
 
             var culture = currentCulture;
-            var uri = new Uri(new Uri(NavigationManager.BaseUri), "access-requests")
+            var localizedLandingPage = culture == "fr-CA" ? "demandes-d-acces" : "access-requests";
+            var uri = new Uri(new Uri(NavigationManager.BaseUri), localizedLandingPage)
                 .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
             var query = $"?culture={Uri.EscapeDataString(culture)}&" +
                 $"redirectUri={Uri.EscapeDataString(uri)}";

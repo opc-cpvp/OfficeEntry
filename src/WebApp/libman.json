@@ -33,6 +33,15 @@
       "destination": "wwwroot/lib/jqueryui/"
     },
     {
+      "library": "select2@4.0.13",
+      "destination": "wwwroot/lib/select2/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "@ttskch/select2-bootstrap4-theme@1.4.0",
+      "destination": "wwwroot/lib/ttskch/select2-bootstrap4-theme/"
+    },
+    {
       "library": "datatables@1.10.21",
       "destination": "wwwroot/lib/datatables/"
     }

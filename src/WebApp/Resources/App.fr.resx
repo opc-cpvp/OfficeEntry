@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="access-requests" xml:space="preserve">
+    <value>demandes-d-acces</value>
+  </data>
   <data name="Approve" xml:space="preserve">
     <value>Approuver</value>
   </data>
@@ -183,6 +186,9 @@
   <data name="Health &amp; Safety Measures" xml:space="preserve">
     <value>Mesures de santé et de sécurité relatives</value>
   </data>
+  <data name="health-and-safety-measures" xml:space="preserve">
+    <value>mesures-de-sante-et-de-securite-relatives</value>
+  </data>
   <data name="Hello," xml:space="preserve">
     <value>Bonjour,</value>
   </data>
@@ -246,6 +252,9 @@
   <data name="Privacy Act Statement" xml:space="preserve">
     <value>Protection des renseignements personnels</value>
   </data>
+  <data name="privacy-act-statement" xml:space="preserve">
+    <value>protection-des-renseignements-personnels</value>
+  </data>
   <data name="Reason:" xml:space="preserve">
     <value>Raison:</value>
   </data>
@@ -264,11 +273,17 @@
   <data name="Status" xml:space="preserve">
     <value>Statut</value>
   </data>
+  <data name="review-access-requests" xml:space="preserve">
+    <value>approuver-les-demandes</value>
+  </data>
   <data name="Status:" xml:space="preserve">
     <value>Statut:</value>
   </data>
   <data name="Submit Access Request" xml:space="preserve">
     <value>Soumettre une demande</value>
+  </data>
+  <data name="submit-access-request" xml:space="preserve">
+    <value>soumettre-une-demande</value>
   </data>
   <data name="Tablet" xml:space="preserve">
     <value>Tablette</value>
