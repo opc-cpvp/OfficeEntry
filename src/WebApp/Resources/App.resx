@@ -165,6 +165,9 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>To</value>
+  </data>
   <data name="Floor" xml:space="preserve">
     <value>Floor</value>
   </data>
@@ -254,6 +257,9 @@
   </data>
   <data name="Review Access Requests" xml:space="preserve">
     <value>Review Access Requests</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>From</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
