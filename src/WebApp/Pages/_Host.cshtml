@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="~/lib/ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css" />
     <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="css/site.css" />
-        
+
     <link href="manifest.json" rel="manifest" crossorigin="use-credentials">
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
 </head>
@@ -50,8 +50,8 @@
     </div>
 
     @if (Request.Headers.TryGetValue("User-Agent", out var userAgents)
-    && (userAgents.FirstOrDefault() is string userAgent)
-    && System.Text.RegularExpressions.Regex.IsMatch(userAgent, @"MSIE \d|Trident.*rv:"))
+  && (userAgents.FirstOrDefault() is string userAgent)
+  && System.Text.RegularExpressions.Regex.IsMatch(userAgent, @"MSIE \d|Trident.*rv:"))
     {
         <script src="js/blazor.polyfill.min.js"></script>
         <script type="text/javascript" src="~/lib/promise-polyfill/polyfill.min.js"></script>
@@ -74,6 +74,8 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/lib/datatables-responsive/dataTables.responsive.min.js"></script>
+    <script src="~/lib/font-awesome/js/all.min.js"></script>
 
     <script src="~/js/survey.js"></script>
     <script src="~/js/spotsAvailablePerHours.js"></script>

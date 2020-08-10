@@ -2,7 +2,8 @@
     $('.datatables').DataTable({
         "language": {
             "url": getLanguageJson(locale)
-        }
+        },
+        responsive: true
     });
 };
 

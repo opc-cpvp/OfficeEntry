@@ -44,6 +44,14 @@
     {
       "library": "datatables@1.10.21",
       "destination": "wwwroot/lib/datatables/"
+    },
+    {
+      "library": "datatables-responsive@2.2.5",
+      "destination": "wwwroot/lib/datatables-responsive/"
+    },
+    {
+      "library": "font-awesome@5.14.0",
+      "destination": "wwwroot/lib/font-awesome/"
     }
   ]
 }
