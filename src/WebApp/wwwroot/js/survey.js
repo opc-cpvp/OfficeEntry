@@ -93,7 +93,9 @@ interopJS.survey = {
                 });
             })
             .then(function () {
+                var that = this;
                 console.log("### surveyjs loaded.");
+                // As circular references are not supported, you can't pass "this" back to blazor.
                 dotNet.invokeMethodAsync("SurveyLoaded");
             });;
     }

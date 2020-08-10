@@ -7,7 +7,8 @@ interopJS.accessRequest = {
         return new Date(today.setDate(today.getDate() + 1)).toLocaleDateString("en-US").replace(/\u200E/g, '');
     },
 
-    init: function() {
+    init: function () {
+        // As circular references are not supported, we can't get the survey from blazor.
          window.interop.survey.survey
              .onAfterRenderQuestion
              .add(function(survey, options) {
