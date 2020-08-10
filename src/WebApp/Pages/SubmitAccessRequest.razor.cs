@@ -18,6 +18,8 @@ using OfficeEntry.Application.TermsAndConditions.Queries.GetHealthAndSafetyMeasu
 using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
 using Microsoft.Extensions.Localization;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.JSInterop;
+using OfficeEntry.WebApp.Shared;
 
 namespace OfficeEntry.WebApp.Pages
 {
@@ -33,6 +35,8 @@ namespace OfficeEntry.WebApp.Pages
         public bool IsLoaded { get; set; }
         public bool ShowSpotsAvailablePerHours { get; set; }
         public CurrentCapacity[] FloorCapacity { get; set; }
+
+        [Inject] IJSRuntime JSRuntime { get; set; }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -53,9 +57,14 @@ namespace OfficeEntry.WebApp.Pages
                 NavigationManager.NavigateTo("/health-and-safety-measures");
             }
 
-            IsLoaded = true;
+            IsLoaded = true;          
 
             StateHasChanged();
+        }
+
+        public async Task OnSurveyLoaded(Survey survey)
+        {
+            await JSRuntime.InvokeVoidAsync("interop.accessRequest.init");
         }
 
         public async Task OnSurveyCompleted(string surveyResult)
