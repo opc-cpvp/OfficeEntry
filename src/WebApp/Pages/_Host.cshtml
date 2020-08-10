@@ -50,10 +50,12 @@
     </div>
 
     @if (Request.Headers.TryGetValue("User-Agent", out var userAgents)
-     && (userAgents.FirstOrDefault() is string userAgent)
-     && System.Text.RegularExpressions.Regex.IsMatch(userAgent, @"MSIE \d|Trident.*rv:"))
+    && (userAgents.FirstOrDefault() is string userAgent)
+    && System.Text.RegularExpressions.Regex.IsMatch(userAgent, @"MSIE \d|Trident.*rv:"))
     {
         <script src="js/blazor.polyfill.min.js"></script>
+        <script type="text/javascript" src="~/lib/promise-polyfill/polyfill.min.js"></script>
+        <script type="text/javascript" src="~/lib/fetch/fetch.min.js"></script>
     }
     <script src="_framework/blazor.server.js"></script>
 
@@ -64,8 +66,6 @@
         };
     </script>
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="~/lib/promise-polyfill/polyfill.min.js"></script>
-    <script type="text/javascript" src="~/lib/fetch/fetch.min.js"></script>
     <script type="text/javascript" src="~/lib/vue/vue.min.js"></script>
     <script type="text/javascript" src="~/lib/survey-vue/survey.vue.min.js"></script>
     <script type="text/javascript" src="~/lib/jqueryui/jquery-ui.min.js"></script>
