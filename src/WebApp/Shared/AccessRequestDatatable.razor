@@ -1,0 +1,53 @@
+﻿@inject IStringLocalizer<App> Localizer
+
+@using OfficeEntry.Infrastructure.Services.Xrm.Entities
+
+<table class="table table-striped datatables">
+    <thead>
+        <tr>
+            <th>@Localizer["Date"]</th>
+            <th>@Localizer["StartTime"]</th>
+            <th>@Localizer["EndTime"]</th>
+            <th>@Localizer["Building"]</th>
+            <th>@Localizer["Floor"]</th>
+            <th>@Localizer["Status"]</th>
+            <th>@Localizer["Review"]</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var accessRequest in AccessRequests)
+        {
+            var statusClass = string.Empty;
+            switch ((ApprovalStatus)accessRequest.Status.Key)
+            {
+                case ApprovalStatus.Approved:
+                    statusClass = "text-success";
+                    break;
+                case ApprovalStatus.Pending:
+                    statusClass = "text-secondary";
+                    break;
+                case ApprovalStatus.Cancelled:
+                case ApprovalStatus.Declined:
+                default:
+                    statusClass = "text-danger";
+                    break;
+            }
+
+            <tr>
+                <td>@accessRequest.StartTime.Date.ToString(Localizer["MMMM dd, yyyy"])</td>
+                <td>@accessRequest.StartTime.ToString(Localizer["h:mm tt"])</td>
+                <td>@accessRequest.EndTime.ToString(Localizer["h:mm tt"])</td>
+                <td>@accessRequest.Building.Name</td>
+                <td>@accessRequest.Floor.Name</td>
+                <td class="font-weight-bold @statusClass">@Localizer[accessRequest.Status.Value]</td>
+                <td><a class="btn btn-secondary btn-sm" href="/access-requests/@accessRequest.Id">@Localizer["Review"]</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    [Parameter]
+    public IEnumerable<OfficeEntry.Domain.Entities.AccessRequest> AccessRequests { get; set; }
+}

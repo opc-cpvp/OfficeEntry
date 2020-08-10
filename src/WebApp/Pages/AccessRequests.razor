@@ -1,7 +1,8 @@
 ﻿@page "/access-requests"
 @page "/demandes-d-acces"
 
-@using OfficeEntry.WebApp.Components.AccessRequestComponents.Card
+@using OfficeEntry.Infrastructure.Services.Xrm.Entities
+@using OfficeEntry.WebApp.Shared
 
 <h1>@Localizer["My Requests"]</h1>
 
@@ -11,8 +12,5 @@
 }
 else
 {
-    foreach (var accessRequest in _accessRequests)
-    {
-        <AccessRequestCard AccessRequest="@accessRequest"></AccessRequestCard>
-    }
+    <AccessRequestDatatable AccessRequests="@_accessRequests"></AccessRequestDatatable>
 }

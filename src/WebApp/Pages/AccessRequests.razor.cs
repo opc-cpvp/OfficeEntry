@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
+using Microsoft.JSInterop;
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests;
 using OfficeEntry.Domain.Enums;
 using System;
@@ -14,13 +15,14 @@ using System.Threading.Tasks;
 namespace OfficeEntry.WebApp.Pages
 {
     [Authorize]
-    public partial class AccessRequests : ComponentBase
+    public partial class AccessRequests : ComponentBase, IDisposable
     {
         private Domain.Entities.AccessRequest[] _accessRequests;
 
         [Inject] public HttpClient Http { get; set; }
         [Inject] public IStringLocalizer<App> Localizer { get; set; }
         [Inject] public IMediator Mediator { get; set; }
+        [Inject] public IJSRuntime JSRuntime { get; set; }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -42,7 +44,14 @@ namespace OfficeEntry.WebApp.Pages
 
             StateHasChanged();
 
+            await JSRuntime.InvokeAsync<object>("initializeDatatables", locale);
+
             await base.OnAfterRenderAsync(firstRender);
+        }
+
+        public void Dispose()
+        {
+            JSRuntime.InvokeAsync<object>("destroyDatatables");
         }
     }
 }
