@@ -29,12 +29,6 @@ interopJS.survey = {
         // TODO: Set page to 0
     },
 
-    getNextDayDate: function () {
-        var today = new Date();
-        // replace function fixes bug in IE where toLocaleDateString generates unicode characters
-        return new Date(today.setDate(today.getDate() + 1)).toLocaleDateString("en-US").replace(/\u200E/g, '');
-    },
-
     setDatepickerLocale: function (locale) {
         if (locale === 'fr') {
             return $.datepicker.setDefaults($.datepicker.regional['fr-CA']);
@@ -54,20 +48,6 @@ interopJS.survey = {
         Survey.defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-secondary";
         Survey.defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
 
-        function CapacityValidator() {
-            var that = this;
-
-            return dotNet.invokeMethodAsync("HasAvailableCapacity", JSON.stringify(survey.data, null, 3))
-                .then(function (r) {
-                    return that.returnResult(r);
-                });
-        }
-
-        Survey
-            .FunctionFactory
-            .Instance
-            .register("CapacityValidator", CapacityValidator, true);
-            
         fetch(surveyUrl)
             .then(function (response) { return response.json(); })
             .then(function(json) {
@@ -87,35 +67,19 @@ interopJS.survey = {
                 survey
                     .onComplete
                     .add(function(result) {
-                        dotNet.invokeMethodAsync("SurveyCompleted", JSON.stringify(result.data, null, 3))
+                        dotNet.invokeMethodAsync("SurveyCompleted", JSON.stringify(result.data))
                             .then(function(data) {
                                 console.log("### surveyjs was sent to .NET.");
                             });
                     });
 
-                var surveyValueChanged = function (sender, options) {
-                    //alert("surveyValueChanged");
-                    window.localStorage["surveyjs-blazor"] = JSON.stringify(survey.data, null, 3);
-                };
-
-                survey
-                    .onAfterRenderQuestion
-                    .add(function(survey, options) {
-                        if (options.question.name === "startDate") {
-                            options.question.defaultValue = window.interop.survey.getNextDayDate();
-                        }                      
-                    });
-
                 survey
                     .onCurrentPageChanged
                     .add(function(survey, options) {
-
-                    dotNet.invokeMethodAsync("PageChanged", JSON.stringify(survey.data), options.newCurrentPage.name);
+                        dotNet.invokeMethodAsync("PageChanged", JSON.stringify(survey.data), options.newCurrentPage.name);
                 });
 
-                survey
-                    .onValueChanged
-                    .add(surveyValueChanged);
+                interopJS.survey.survey = survey;
 
                 if (data) {
                     survey.data = JSON.parse(data);
@@ -127,12 +91,14 @@ interopJS.survey = {
                         survey: survey
                     }
                 });
-            });
+            })
+            .then(function () {
+                var that = this;
+                console.log("### surveyjs loaded.");
+                // As circular references are not supported, you can't pass "this" back to blazor.
+                dotNet.invokeMethodAsync("SurveyLoaded");
+            });;
     }
-}
-
-window.ShowAlert = function(message) {
-    alert(message);
 }
 
 window.interop = interopJS;

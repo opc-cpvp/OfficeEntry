@@ -2,7 +2,7 @@
 
 @using OfficeEntry.Infrastructure.Services.Xrm.Entities
 
-<table class="table table-striped datatables">
+<table class="table table-striped datatables responsive nowrap" width="100%">
     <thead>
         <tr>
             <th>@Localizer["Date"]</th>
@@ -11,7 +11,6 @@
             <th>@Localizer["Building"]</th>
             <th>@Localizer["Floor"]</th>
             <th>@Localizer["Status"]</th>
-            <th>@Localizer["Review"]</th>
         </tr>
     </thead>
     <tbody>
@@ -34,18 +33,19 @@
             }
 
             <tr>
-                <td>@accessRequest.StartTime.Date.ToString(Localizer["MMMM dd, yyyy"])</td>
-                <td>@accessRequest.StartTime.ToString(Localizer["h:mm tt"])</td>
-                <td>@accessRequest.EndTime.ToString(Localizer["h:mm tt"])</td>
-                <td>@accessRequest.Building.Name</td>
-                <td>@accessRequest.Floor.Name</td>
-                <td class="font-weight-bold @statusClass">@Localizer[accessRequest.Status.Value]</td>
-                <td><a class="btn btn-secondary btn-sm" href="/access-requests/@accessRequest.Id">@Localizer["Review"]</a></td>
+                <td class="align-middle">
+                    <a class="btn btn-secondary btn-sm mr-2" href="/access-requests/@accessRequest.Id"><i class="fas fa-external-link-alt"></i></a>
+                    @accessRequest.StartTime.Date.ToString(Localizer["MMMM dd, yyyy"])
+                </td>
+                <td class="align-middle">@accessRequest.StartTime.ToString(Localizer["h:mm tt"])</td>
+                <td class="align-middle">@accessRequest.EndTime.ToString(Localizer["h:mm tt"])</td>
+                <td class="align-middle">@accessRequest.Building.Name</td>
+                <td class="align-middle">@accessRequest.Floor.Name</td>
+                <td class="align-middle font-weight-bold @statusClass">@Localizer[accessRequest.Status.Value]</td>
             </tr>
         }
     </tbody>
 </table>
-
 
 @code {
     [Parameter]

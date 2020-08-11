@@ -20,6 +20,9 @@
     public string SurveyUrl { get; set; }
 
     [Parameter]
+    public EventCallback<Survey> OnSurveyLoaded { get; set; }
+
+    [Parameter]
     public EventCallback<string> OnSurveyCompleted { get; set; }
 
     [Parameter]
@@ -89,6 +92,12 @@
         }
 
         return true;
+    }
+
+    [JSInvokable]
+    public async Task SurveyLoaded()
+    {
+        await OnSurveyLoaded.InvokeAsync(this);
     }
 
     public void Dispose()
