@@ -32,7 +32,7 @@ namespace OfficeEntry.WebApp.Pages
         [Inject] public IMediator Mediator { get; set; }
 
         public bool SurveyCompleted { get; set; }
-        public bool IsLoaded { get; set; }
+        public bool Loading { get; set; } = true;
         public bool ShowSpotsAvailablePerHours { get; set; }
         public CurrentCapacity[] FloorCapacity { get; set; }
 
@@ -57,7 +57,7 @@ namespace OfficeEntry.WebApp.Pages
                 NavigationManager.NavigateTo("/health-and-safety-measures");
             }
 
-            IsLoaded = true;          
+            Loading = false;          
 
             StateHasChanged();
         }
