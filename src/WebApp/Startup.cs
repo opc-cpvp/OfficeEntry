@@ -1,21 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OfficeEntry.Application;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Infrastructure;
+using OfficeEntry.WebApp.Area.Identity;
+using OfficeEntry.WebApp.Area.Identity.Services;
 using OfficeEntry.WebApp.Filters;
-using OfficeEntry.WebApp.Services;
 using Serilog;
+using System;
+using System.Net.Http;
 
 namespace OfficeEntry.WebApp
 {
@@ -37,6 +35,7 @@ namespace OfficeEntry.WebApp
 
             services.AddHttpContextAccessor();
 
+            services.AddSingleton<Microsoft.AspNetCore.SignalR.IUserIdProvider, NameUserIdProvider>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             services.AddControllers(option => {
@@ -52,12 +51,18 @@ namespace OfficeEntry.WebApp
             services.AddHealthChecks();
 
             services
-                .AddAuthentication(Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme)
+                .AddAuthentication(options =>
+                {
+                    options.DefaultScheme = NegotiateDefaults.AuthenticationScheme;
+                    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
                 .AddNegotiate(configureOptions =>
                 {
                     configureOptions.PersistNtlmCredentials = true;
                     configureOptions.PersistKerberosCredentials = true;
-                });
+                })
+                .AddCookie();
 
             services.AddScoped<ISurveyInterop, SurveyInterop>();
 
@@ -115,7 +120,8 @@ namespace OfficeEntry.WebApp
             {
                 endpoints.MapHealthChecks("/health");
                 endpoints.MapHealthChecks("/Ready").WithDisplayName("Not a health check");
-                endpoints.MapControllers();
+                //endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
