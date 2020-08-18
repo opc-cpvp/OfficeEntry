@@ -120,7 +120,6 @@ namespace OfficeEntry.WebApp
             {
                 endpoints.MapHealthChecks("/health");
                 endpoints.MapHealthChecks("/Ready").WithDisplayName("Not a health check");
-                //endpoints.MapControllers();
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
