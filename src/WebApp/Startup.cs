@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -50,21 +48,7 @@ namespace OfficeEntry.WebApp
 
             services.AddHealthChecks();
 
-            services
-                .AddAuthentication(options =>
-                {
-                    options.DefaultScheme = NegotiateDefaults.AuthenticationScheme;
-                    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                })
-                .AddNegotiate(configureOptions =>
-                {
-                    configureOptions.PersistNtlmCredentials = true;
-                    configureOptions.PersistKerberosCredentials = true;
-                })
-                .AddCookie();
-
-            services.AddScoped<ISurveyInterop, SurveyInterop>();
+            services.AddNegotiateWithCookieAuthentication();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
