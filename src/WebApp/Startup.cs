@@ -10,8 +10,6 @@ using OfficeEntry.WebApp.Area.Identity;
 using OfficeEntry.WebApp.Area.Identity.Services;
 using OfficeEntry.WebApp.Filters;
 using Serilog;
-using System;
-using System.Net.Http;
 
 namespace OfficeEntry.WebApp
 {
@@ -51,19 +49,7 @@ namespace OfficeEntry.WebApp
             services.AddNegotiateWithCookieAuthentication();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
-
-            services.AddSingleton<HttpClient>(provider =>
-            {
-                string result = null;
-                //var httpClient = new HttpClient() { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) };
-                var httpClient = new HttpClient() { BaseAddress = new Uri(Uri) };
-                httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue(result ?? "en-CA"));
-
-                return httpClient;
-            });
         }
-
-        private static string Uri = "https://localhost:44381";
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,32 +1,27 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
+using Microsoft.JSInterop;
 using Newtonsoft.Json;
+using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
+using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
+using OfficeEntry.Application.TermsAndConditions.Queries.GetHealthAndSafetyMeasuresRequests;
+using OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatementRequests;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Models;
+using OfficeEntry.WebApp.Shared;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Json;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
-using System.Linq;
-using OfficeEntry.Domain.Enums;
-using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
-using System;
-using MediatR;
-using OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatementRequests;
-using OfficeEntry.Application.TermsAndConditions.Queries.GetHealthAndSafetyMeasuresRequests;
-using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
-using Microsoft.Extensions.Localization;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.JSInterop;
-using OfficeEntry.WebApp.Shared;
 
 namespace OfficeEntry.WebApp.Pages
 {
     [Authorize]
     public partial class SubmitAccessRequest : ComponentBase
     {
-        [Inject] public HttpClient Http { get; set; }
         [Inject] public NavigationManager NavigationManager { get; set; }
         [Inject] public IStringLocalizer<App> Localizer { get; set; }
         [Inject] public IMediator Mediator { get; set; }
@@ -57,7 +52,7 @@ namespace OfficeEntry.WebApp.Pages
                 NavigationManager.NavigateTo("/health-and-safety-measures");
             }
 
-            Loading = false;          
+            Loading = false;
 
             StateHasChanged();
         }

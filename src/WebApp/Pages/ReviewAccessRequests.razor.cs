@@ -6,10 +6,8 @@ using Microsoft.JSInterop;
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests;
 using OfficeEntry.Domain.Enums;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Pages
@@ -19,11 +17,9 @@ namespace OfficeEntry.WebApp.Pages
     {
         private Domain.Entities.AccessRequest[] _accessRequests;
 
-        [Inject] public HttpClient Http { get; set; }
         [Inject] public IStringLocalizer<App> Localizer { get; set; }
         [Inject] public IMediator Mediator { get; set; }
         [Inject] public IJSRuntime JSRuntime { get; set; }
-
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
