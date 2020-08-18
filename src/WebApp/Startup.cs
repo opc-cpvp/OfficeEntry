@@ -52,8 +52,6 @@ namespace OfficeEntry.WebApp
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            //services.AddSingleton<HttpClient>();
-
             services.AddSingleton<HttpClient>(provider =>
             {
                 string result = null;
@@ -63,8 +61,6 @@ namespace OfficeEntry.WebApp
 
                 return httpClient;
             });
-
-            //services.AddSingleton<MediatR.IMediator>(provider => );
         }
 
         private static string Uri = "https://localhost:44381";
