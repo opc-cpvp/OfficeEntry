@@ -48,12 +48,12 @@ namespace OfficeEntry.WebApp.Area.Identity.Controllers
                 throw new Exception("invalid return URL");
             }
 
-            if (NegotiateDefaults.AuthenticationScheme == provider)
+            if (NegotiateDefaults.AuthenticationScheme != provider)
             {
-                return await ProcessNegociateLoginAsync(returnUrl);
+                throw new Exception("Invalid authentication provider.");
             }
 
-            throw new Exception("Invalid authentication provider.");
+            return await ProcessNegociateLoginAsync(returnUrl);
         }
 
         /// <summary>
