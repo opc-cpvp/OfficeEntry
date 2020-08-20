@@ -4,6 +4,8 @@
 @inject HttpClient Http
 @using OfficeEntry.WebApp.Models
 @using Newtonsoft.Json
+@using System.Globalization 
+@using OfficeEntry.Domain.Enums
 @using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour
 
 <div id="blazor-survey-wraper">
@@ -43,10 +45,14 @@
             return;
         }
 
+        var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+        locale = (locale == Locale.French) ? locale : Locale.English;
+
         _objectReference = DotNetObjectReference.Create(this);
 
         await JSRuntime.InvokeVoidAsync("interop.survey.register", _objectReference);
         await JSRuntime.InvokeVoidAsync("interop.survey.init", Id, @Class, SurveyUrl, Data);
+        await JSRuntime.InvokeAsync<object>("initializeDatepicker", locale);
     }
 
     public async Task GetData()
