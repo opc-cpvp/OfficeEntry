@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Components;
 using OfficeEntry.Application.TermsAndConditions.Commands.UpdateHealthAndSafetyStatementRequests;
 using OfficeEntry.Application.TermsAndConditions.Queries.GetHealthAndSafetyMeasuresRequests;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -14,9 +12,6 @@ namespace OfficeEntry.WebApp.Pages
     [Authorize]
     public abstract class HealthAndSafetyMeasuresStatementBase : ComponentBase
     {
-        [Inject]
-        public HttpClient Http { get; set; }
-
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
