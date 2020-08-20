@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Exceptions;
 using Serilog.Exceptions.Core;
+using System;
 
 namespace OfficeEntry.WebApp
 {
@@ -28,8 +22,8 @@ namespace OfficeEntry.WebApp
                 .ReadFrom
                 .Configuration(configuration)
                 .Enrich.WithExceptionDetails(new DestructuringOptionsBuilder()
-                    .WithDefaultDestructurers())                
-                .Filter.ByExcluding("RequestPAth = '/health' and StatusCode = 200")
+                    .WithDefaultDestructurers())
+                .Filter.ByExcluding("RequestPath = '/health' and StatusCode = 200")
                 .CreateLogger();
 
             try

@@ -5,11 +5,7 @@ using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequest
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 using OfficeEntry.Domain.Enums;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Pages
@@ -17,9 +13,6 @@ namespace OfficeEntry.WebApp.Pages
     [Authorize]
     public partial class AccessRequest : ComponentBase
     {
-        [Inject]
-        public HttpClient Http { get; set; }
-
         [Parameter]
         public Guid Id { get; set; }
 

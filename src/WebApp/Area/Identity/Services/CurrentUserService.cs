@@ -3,7 +3,7 @@ using OfficeEntry.Application.Common.Interfaces;
 using System;
 using System.Security.Claims;
 
-namespace OfficeEntry.WebApp.Services
+namespace OfficeEntry.WebApp.Area.Identity.Services
 {
     public class CurrentUserService : ICurrentUserService
     {
