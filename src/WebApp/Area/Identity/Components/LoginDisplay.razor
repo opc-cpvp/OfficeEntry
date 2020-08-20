@@ -1,19 +1,18 @@
-﻿@inject HttpClient Http
+﻿@attribute [Authorize]
+
 @inject IStringLocalizer<App> Localizer
 
 @inject OfficeEntry.Application.Common.Interfaces.ICurrentUserService currentUserService
 @inject OfficeEntry.Application.Common.Interfaces.IDomainUserService _domainUserService
 
-<AuthorizeView>
-    @if (name is null)
-    {
-        <Loading />
-    }
-    else
-    {
-        <div>@Localizer["Hello,"] @name</div>
-    }
-</AuthorizeView>
+@if (name is null)
+{
+    <Loading />
+}
+else
+{
+    <div>@Localizer["Hello,"] @name</div>
+}
 
 @code{
     private string name;

@@ -1,20 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OfficeEntry.Application;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Infrastructure;
+using OfficeEntry.WebApp.Area.Identity;
+using OfficeEntry.WebApp.Area.Identity.Services;
 using OfficeEntry.WebApp.Filters;
-using OfficeEntry.WebApp.Services;
 using Serilog;
 
 namespace OfficeEntry.WebApp
@@ -37,6 +31,7 @@ namespace OfficeEntry.WebApp
 
             services.AddHttpContextAccessor();
 
+            services.AddSingleton<Microsoft.AspNetCore.SignalR.IUserIdProvider, NameUserIdProvider>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             services.AddControllers(option => {
@@ -51,34 +46,10 @@ namespace OfficeEntry.WebApp
 
             services.AddHealthChecks();
 
-            services
-                .AddAuthentication(Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme)
-                .AddNegotiate(configureOptions =>
-                {
-                    configureOptions.PersistNtlmCredentials = true;
-                    configureOptions.PersistKerberosCredentials = true;
-                });
-
-            services.AddScoped<ISurveyInterop, SurveyInterop>();
+            services.AddNegotiateWithCookieAuthentication();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
-
-            //services.AddSingleton<HttpClient>();
-
-            services.AddSingleton<HttpClient>(provider =>
-            {
-                string result = null;
-                //var httpClient = new HttpClient() { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) };
-                var httpClient = new HttpClient() { BaseAddress = new Uri(Uri) };
-                httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue(result ?? "en-CA"));
-
-                return httpClient;
-            });
-
-            //services.AddSingleton<MediatR.IMediator>(provider => );
         }
-
-        private static string Uri = "https://localhost:44381";
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -115,7 +86,7 @@ namespace OfficeEntry.WebApp
             {
                 endpoints.MapHealthChecks("/health");
                 endpoints.MapHealthChecks("/Ready").WithDisplayName("Not a health check");
-                endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
