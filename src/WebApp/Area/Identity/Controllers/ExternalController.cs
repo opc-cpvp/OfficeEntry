@@ -100,6 +100,9 @@ namespace OfficeEntry.WebApp.Area.Identity.Controllers
                         { "returnUrl", returnUrl },
                         { "scheme", NegotiateDefaults.AuthenticationScheme },
                     },
+                    ExpiresUtc = new DateTimeOffset(DateTime.UtcNow.AddDays(365)),
+                    AllowRefresh = true,
+                    IsPersistent = true
                 };
 
                 var id = new ClaimsIdentity(NegotiateDefaults.AuthenticationScheme);

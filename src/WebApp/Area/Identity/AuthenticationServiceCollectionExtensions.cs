@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace OfficeEntry.WebApp.Area.Identity
 {
@@ -32,7 +33,10 @@ namespace OfficeEntry.WebApp.Area.Identity
                     configureOptions.PersistNtlmCredentials = true;
                     configureOptions.PersistKerberosCredentials = true;
                 })
-                .AddCookie();
+                .AddCookie(options => {
+                    options.ExpireTimeSpan = TimeSpan.FromDays(365);
+                    options.SlidingExpiration = true;
+                });
 
             services.AddScoped<ISurveyInterop, SurveyInterop>();
         }
