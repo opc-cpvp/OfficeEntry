@@ -17,7 +17,7 @@ namespace OfficeEntry.WebApp.Pages
         [Inject] public NavigationManager NavigationManager { get; set; }
         [Inject] public IMediator Mediator { get; set; }
         [Inject] public ILocalStorageService LocalStorage { get; set; }
-        [Inject] public IStringLocalizer<App> Localizer { get; set; 
+        [Inject] public IStringLocalizer<App> Localizer { get; set; } 
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
