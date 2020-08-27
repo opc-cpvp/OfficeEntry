@@ -233,3 +233,4 @@ _Pvt_Extensions
 appsettings.Development.json
 MetadataDocument.xml
 src/WebApp/wwwroot/lib
+src/WebApp/Logs
