@@ -300,4 +300,19 @@
   <data name="Visitors:" xml:space="preserve">
     <value>Visiteurs:</value>
   </data>
+  <data name="Accept all Terms and Conditions" xml:space="preserve">
+    <value>Avant de soumettre une demande, vous devez accepter les conditions des Mesures de santé et de sécurité relatives et de la Protection des renseignements personnels.</value>
+  </data>
+  <data name="Accept Health and Safety Measures" xml:space="preserve">
+    <value>Avant de soumettre une demande, vous devez accepter les conditions des Mesures de santé et de sécurité relatives.</value>
+  </data>
+  <data name="Accept Privacy Act Statement" xml:space="preserve">
+    <value>Avant de soumettre une demande, vous devez accepter les conditions de la Protection des renseignements personnels.</value>
+  </data>
+  <data name="Terms and Conditions" xml:space="preserve">
+    <value>Modalités et conditions</value>
+  </data>
+  <data name="terms-and-conditions" xml:space="preserve">
+    <value>modalites-et-conditions</value>
+  </data>
 </root>

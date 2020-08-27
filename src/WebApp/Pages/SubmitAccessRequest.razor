@@ -8,21 +8,13 @@
     <Loading />
 }
 
-@if (Loading)
+@if (ShowSpotsAvailablePerHours)
 {
-    <Loading />
+    <SpotsAvailablePerHours Data="FloorCapacity" />
 }
-else
-{
-    if (ShowSpotsAvailablePerHours)
-    {
-        <SpotsAvailablePerHours Data="FloorCapacity" />
-    }
 
-    <Survey Id="surveyElementSubmitAccessRequest"
-            SurveyUrl="sample-data/accessRequestSurvey.json"
-            OnSurveyCompleted="@OnSurveyCompleted"
-            OnPageChanged="@OnPageChanged"
-            OnSurveyLoaded="@OnSurveyLoaded"/>
-
-}
+<Survey Id="surveyElementSubmitAccessRequest"
+        SurveyUrl="sample-data/accessRequestSurvey.json"
+        OnSurveyCompleted="@OnSurveyCompleted"
+        OnPageChanged="@OnPageChanged"
+        OnSurveyLoaded="@OnSurveyLoaded"/>

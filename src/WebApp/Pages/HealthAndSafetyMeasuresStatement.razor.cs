@@ -6,6 +6,7 @@ using OfficeEntry.Application.TermsAndConditions.Queries.GetHealthAndSafetyMeasu
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Blazored.LocalStorage;
 
 namespace OfficeEntry.WebApp.Pages
 {
@@ -17,6 +18,9 @@ namespace OfficeEntry.WebApp.Pages
 
         [Inject]
         public IMediator Mediator { get; set; }
+
+        [Inject]
+        public ILocalStorageService LocalStorage { get; set; }
 
         public bool SurveyCompleted { get; set; }
 
@@ -31,6 +35,8 @@ namespace OfficeEntry.WebApp.Pages
             bool healthAndSafetyMeasuresAccepted = surveyData.questionAcceptHsmStatement.Any();
 
             await Mediator.Send(new UpdateHealthAndSafetyMeasuresStatementForCurrentUserCommand { IsHealthAndSafetyMeasuresAccepted = healthAndSafetyMeasuresAccepted });
+
+            await LocalStorage.SetItemAsync("isHealthAndSafetyMeasuresAccepted", true);
 
             NavigationManager.NavigateTo("/");
         }
