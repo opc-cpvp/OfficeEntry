@@ -6,6 +6,7 @@ using OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatementRequ
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Blazored.LocalStorage;
 
 namespace OfficeEntry.WebApp.Pages
 {
@@ -17,6 +18,9 @@ namespace OfficeEntry.WebApp.Pages
 
         [Inject]
         public IMediator Mediator { get; set; }
+
+        [Inject]
+        public ILocalStorageService LocalStorage { get; set; }
 
         protected string SurveyData { get; set; }
 
@@ -31,6 +35,8 @@ namespace OfficeEntry.WebApp.Pages
             bool privateActStatementAccepted = surveyData.questionAcceptPaStatement.Any();
 
             await Mediator.Send(new UpdatePrivacyActStatementForCurrentUserCommand { IsPrivacyActStatementAccepted = privateActStatementAccepted });
+
+            await LocalStorage.SetItemAsync("isPrivacyActStatementAccepted", true);
 
             NavigationManager.NavigateTo("/");
         }
