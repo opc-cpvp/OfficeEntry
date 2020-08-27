@@ -62,13 +62,39 @@ namespace OfficeEntry.WebApp.Pages
 
         private async Task<bool> HasAcceptedTermsAndConditions()
         {
-            var isPrivacyActStatementAccepted = await Mediator.Send(new GetPrivacyStatementForCurrentUserQuery());
-            await LocalStorage.SetItemAsync("isPrivacyActStatementAccepted", isPrivacyActStatementAccepted);
 
-            var isHealthAndSafetyMeasuresAccepted = await Mediator.Send(new GetHealthAndSafetyMeasuresForCurrentUserQuery());
-            await LocalStorage.SetItemAsync("isHealthAndSafetyMeasuresAccepted", isHealthAndSafetyMeasuresAccepted);
+            var isPrivacyActStatementAccepted = await GetPrivacyActStatement();
+            var isHealthAndSafetyMeasuresAccepted = await GetHealthAndSafetyMeasures();
 
             return (isHealthAndSafetyMeasuresAccepted && isPrivacyActStatementAccepted);
+
+            async Task<bool> GetPrivacyActStatement()
+            {
+                if (!(await LocalStorage.ContainKeyAsync("isPrivacyActStatementAccepted")))
+                {
+                    if(await LocalStorage.GetItemAsync<bool>("isPrivacyActStatementAccepted") == false)
+                    {
+                        var isPrivacyActStatementAccepted = await Mediator.Send(new GetPrivacyStatementForCurrentUserQuery());
+                        await LocalStorage.SetItemAsync("isPrivacyActStatementAccepted", isPrivacyActStatementAccepted);
+                    }                
+                }
+
+                return await LocalStorage.GetItemAsync<bool>("isPrivacyActStatementAccepted");
+            }
+
+            async Task<bool> GetHealthAndSafetyMeasures()
+            {
+                if (!(await LocalStorage.ContainKeyAsync("isHealthAndSafetyMeasuresAccepted")))
+                {
+                    if (await LocalStorage.GetItemAsync<bool>("isHealthAndSafetyMeasuresAccepted") == false)
+                    {
+                        var isHealthAndSafetyMeasuresAccepted = await Mediator.Send(new GetHealthAndSafetyMeasuresForCurrentUserQuery());
+                        await LocalStorage.SetItemAsync("isHealthAndSafetyMeasuresAccepted", isHealthAndSafetyMeasuresAccepted);
+                    }
+                }
+
+                return await LocalStorage.GetItemAsync<bool>("isHealthAndSafetyMeasuresAccepted");
+            }
         }
 
         private async Task<string> GetLocalizedLandingPage(string culture)
