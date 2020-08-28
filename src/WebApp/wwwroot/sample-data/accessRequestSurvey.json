@@ -310,7 +310,10 @@
           },
           "isRequired": true,
           "dateFormat": "mm/dd/yy",
-          "inputType": "date"
+          "inputType": "date",
+          "config": {
+            "minDate": 0
+          }
         }
       ]
     },
