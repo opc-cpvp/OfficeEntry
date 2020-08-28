@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mapping>
+  <FileToFile map="OfficeEntry.Plugins.dll" to="..\..\OfficeEntry.Plugins\bin\Release\net462\OfficeEntry.Plugins.dll" />
+</Mapping>
