@@ -234,3 +234,9 @@ appsettings.Development.json
 MetadataDocument.xml
 src/WebApp/wwwroot/lib
 src/WebApp/Logs
+
+# Ignore unpacked PluginAssemblies except for metadata files
+src/Dynamics/Solution/PluginAssemblies/**/*
+!src/Dynamics/Solution/PluginAssemblies/**/
+src/Dynamics/Solution/PluginAssemblies/**/*.*
+!src/Dynamics/Solution/PluginAssemblies/**/*.data.xml
