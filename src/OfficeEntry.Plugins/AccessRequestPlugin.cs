@@ -32,10 +32,10 @@ namespace OfficeEntry.Plugins
             try
             {
                 // Convert the target entity to an AccessRequest
-                var accessRequest = target.ToEntity<AccessRequest>();
+                var accessRequest = target.ToEntity<gc_accessrequest>();
 
                 // Assign the AccessRequest's ID to the Guid property
-                accessRequest.Guid = accessRequest.AccessRequestId?.ToString("D");
+                accessRequest.gc_guid = accessRequest.gc_accessrequestid?.ToString("D");
 
                 localPluginContext.CurrentUserService.Update(accessRequest);
             }
