@@ -11,8 +11,9 @@ namespace OfficeEntry.Plugins.Entities
 	[EntityLogicalName("gc_accessrequest")]
 	public partial class gc_accessrequest : Entity, INotifyPropertyChanging, INotifyPropertyChanged
 	{
-        public const string EntityLogicalName = "gc_accessrequest";
-        public const int EntityTypeCode = 10024;
+		public const string EntityLogicalName = "gc_accessrequest";
+		public const int EntityTypeCode = 10024;
+		
 		public event PropertyChangedEventHandler PropertyChanged;
 		public event PropertyChangingEventHandler PropertyChanging;
 
