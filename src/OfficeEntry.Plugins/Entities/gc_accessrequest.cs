@@ -18,18 +18,18 @@ namespace OfficeEntry.Plugins.Entities
 
 		private void OnPropertyChanged(string propertyName)
 		{
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
 
 		private void OnPropertyChanging(string propertyName)
 		{
-            PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
-        }
+			PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
+		}
 
 		public gc_accessrequest() :
                 base(EntityLogicalName)
-        {
-        }
+		{
+		}
 
 		[AttributeLogicalName("gc_accessrequestid")]
 		public Guid? gc_accessrequestid
