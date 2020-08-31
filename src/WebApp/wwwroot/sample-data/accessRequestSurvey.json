@@ -708,7 +708,8 @@
           "name": "manager",
           "renderAs": "select2",
           "select2Config": {
-            "theme": "bootstrap4"
+            "theme": "bootstrap4",
+            "placeholder": "Search / Recherche"
           },
           "title": {
             "default": "Manager",

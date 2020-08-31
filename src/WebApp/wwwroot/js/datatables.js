@@ -3,6 +3,7 @@
         "language": {
             "url": getLanguageJson(locale)
         },
+        "bSort": false,
         responsive: true
     });
 };
