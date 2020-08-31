@@ -160,11 +160,6 @@
                   <label description="Regular work" languagecode="1033" />
                 </labels>
               </option>
-              <option value="948160001" Color="#0000ff">
-                <labels>
-                  <label description="Pick up a document" languagecode="1033" />
-                </labels>
-              </option>
               <option value="948160003" Color="#0000ff">
                 <labels>
                   <label description="Pick up office equipment" languagecode="1033" />
