@@ -1040,6 +1040,9 @@
                               <Variable x:TypeArguments="x:Object" Name="SendEmailStep10_60" />
                               <Variable x:TypeArguments="x:Object" Name="SendEmailStep10_61" />
                               <Variable x:TypeArguments="x:Object" Name="SendEmailStep10_62" />
+                              <Variable x:TypeArguments="x:Object" Name="SendEmailStep10_63" />
+                              <Variable x:TypeArguments="x:Object" Name="SendEmailStep10_64" />
+                              <Variable x:TypeArguments="x:Object" Name="SendEmailStep10_65" />
                             </Sequence.Variables>
                             <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" Value="[New Entity(&quot;email&quot;)]" />
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
@@ -1211,7 +1214,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;  La requête d&amp;#39;accès au&amp;amp;nbsp;&amp;lt;span&amp;gt;", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;  La requête d&amp;#39;accès au&amp;amp;nbsp;&amp;lt;span&amp;gt;", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1366,14 +1369,14 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;The access request for  ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;amp;lt;hyperlink&amp;amp;gt;&amp;amp;lt;name&amp;amp;gt;Cliquez ici pour accéder la demande&amp;amp;lt;/name&amp;amp;gt;&amp;amp;lt;value&amp;amp;gt;&amp;lt;span&amp;gt;{&amp;lt;/span&amp;gt;&amp;lt;a href=&amp;#34;&amp;#34;https://eab-oe.partners.collab.gc.ca/demandes-d-acces/&amp;#34;&amp;#34;&amp;gt;https://eab-oe.partners.collab.gc.ca/demandes-d-acces/", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
                                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_34]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:GetEntityProperty Attribute="gc_englishname" Entity="[InputEntities(&quot;related_gc_building#gc_building&quot;)]" EntityName="gc_building" Value="[SendEmailStep10_36]">
+                            <mxswa:GetEntityProperty Attribute="gc_guid" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_36]">
                               <mxswa:GetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -1393,14 +1396,14 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;#44;  ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;/a&amp;gt;&amp;amp;lt;/value&amp;amp;gt;&amp;amp;lt;/hyperlink&amp;amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;The access request for  ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
                                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_37]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:GetEntityProperty Attribute="gc_englishname" Entity="[InputEntities(&quot;related_gc_floor#gc_floor&quot;)]" EntityName="gc_floor" Value="[SendEmailStep10_39]">
+                            <mxswa:GetEntityProperty Attribute="gc_englishname" Entity="[InputEntities(&quot;related_gc_building#gc_building&quot;)]" EntityName="gc_building" Value="[SendEmailStep10_39]">
                               <mxswa:GetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -1420,14 +1423,14 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " from  ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;#44;  ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
                                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_40]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:GetEntityProperty Attribute="gc_starttime" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_42]">
+                            <mxswa:GetEntityProperty Attribute="gc_englishname" Entity="[InputEntities(&quot;related_gc_floor#gc_floor&quot;)]" EntityName="gc_floor" Value="[SendEmailStep10_42]">
                               <mxswa:GetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -1447,14 +1450,14 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " to  ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " from  ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
                                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_43]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:GetEntityProperty Attribute="gc_endtime" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_45]">
+                            <mxswa:GetEntityProperty Attribute="gc_starttime" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_45]">
                               <mxswa:GetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -1474,14 +1477,14 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " was cancelled.&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;strong&amp;gt;Employee: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " to  ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
                                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_46]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:GetEntityProperty Attribute="gc_employee" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_48]">
+                            <mxswa:GetEntityProperty Attribute="gc_endtime" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_48]">
                               <mxswa:GetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -1501,14 +1504,14 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;strong&amp;gt;Access reason: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " was cancelled.&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;strong&amp;gt;Employee: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
                                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_49]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:GetEntityProperty Attribute="gc_accessreason" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_51]">
+                            <mxswa:GetEntityProperty Attribute="gc_employee" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_51]">
                               <mxswa:GetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -1528,14 +1531,14 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;p&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;amp;lt;hyperlink&amp;amp;gt;&amp;amp;lt;name&amp;amp;gt;Cliquez ici pour accéder la demande - Click here to access the request&amp;amp;lt;/name&amp;amp;gt;&amp;amp;lt;value&amp;amp;gt;", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;strong&amp;gt;Access reason: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
                                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_52]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:GetEntityProperty Attribute="!Process_Custom_Attribute_URL_" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_54]">
+                            <mxswa:GetEntityProperty Attribute="gc_accessreason" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_54]">
                               <mxswa:GetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -1555,17 +1558,44 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;lt;/value&amp;amp;gt;&amp;amp;lt;/hyperlink&amp;amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;nbsp;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&amp;amp;lt;hyperlink&amp;amp;gt;&amp;amp;lt;name&amp;amp;gt;Click here to access the request&amp;amp;lt;/name&amp;amp;gt;&amp;amp;lt;value&amp;amp;gt;&amp;lt;span&amp;gt;{&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;a href=&amp;#34;&amp;#34;https://eab-oe.partners.collab.gc.ca/access-requests/&amp;#34;&amp;#34;&amp;gt;https://eab-oe.partners.collab.gc.ca/access-requests/", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
                                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_55]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
+                            <mxswa:GetEntityProperty Attribute="gc_guid" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_57]">
+                              <mxswa:GetEntityProperty.TargetType>
+                                <InArgument x:TypeArguments="s:Type">
+                                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
+                                </InArgument>
+                              </mxswa:GetEntityProperty.TargetType>
+                            </mxswa:GetEntityProperty>
+                            <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+                              <mxswa:ActivityReference.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">SelectFirstNonNull</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { SendEmailStep10_57 }]</InArgument>
+                                <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
+                                </InArgument>
+                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_56]</OutArgument>
+                              </mxswa:ActivityReference.Arguments>
+                            </mxswa:ActivityReference>
+                            <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+                              <mxswa:ActivityReference.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;/a&amp;gt;&amp;lt;span&amp;gt;&amp;amp;lt;/value&amp;amp;gt;&amp;amp;lt;/hyperlink&amp;amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
+                                </InArgument>
+                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_58]</OutArgument>
+                              </mxswa:ActivityReference.Arguments>
+                            </mxswa:ActivityReference>
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">Add</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { SendEmailStep10_17, SendEmailStep10_18, SendEmailStep10_20, SendEmailStep10_21, SendEmailStep10_23, SendEmailStep10_24, SendEmailStep10_26, SendEmailStep10_27, SendEmailStep10_29, SendEmailStep10_30, SendEmailStep10_32, SendEmailStep10_33, SendEmailStep10_34, SendEmailStep10_35, SendEmailStep10_37, SendEmailStep10_38, SendEmailStep10_40, SendEmailStep10_41, SendEmailStep10_43, SendEmailStep10_44, SendEmailStep10_46, SendEmailStep10_47, SendEmailStep10_49, SendEmailStep10_50, SendEmailStep10_52, SendEmailStep10_53, SendEmailStep10_55 }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { SendEmailStep10_17, SendEmailStep10_18, SendEmailStep10_20, SendEmailStep10_21, SendEmailStep10_23, SendEmailStep10_24, SendEmailStep10_26, SendEmailStep10_27, SendEmailStep10_29, SendEmailStep10_30, SendEmailStep10_32, SendEmailStep10_33, SendEmailStep10_34, SendEmailStep10_35, SendEmailStep10_37, SendEmailStep10_38, SendEmailStep10_40, SendEmailStep10_41, SendEmailStep10_43, SendEmailStep10_44, SendEmailStep10_46, SendEmailStep10_47, SendEmailStep10_49, SendEmailStep10_50, SendEmailStep10_52, SendEmailStep10_53, SendEmailStep10_55, SendEmailStep10_56, SendEmailStep10_58 }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1586,10 +1616,10 @@
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
                                 </InArgument>
-                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_56]</OutArgument>
+                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_59]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:SetEntityProperty Attribute="deliveryprioritycode" Entity="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep10_56]">
+                            <mxswa:SetEntityProperty Attribute="deliveryprioritycode" Entity="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep10_59]">
                               <mxswa:SetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
@@ -1603,10 +1633,10 @@
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Boolean" />
                                 </InArgument>
-                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_57]</OutArgument>
+                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_60]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:SetEntityProperty Attribute="directioncode" Entity="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep10_57]">
+                            <mxswa:SetEntityProperty Attribute="directioncode" Entity="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep10_60]">
                               <mxswa:SetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Boolean" />
@@ -1620,10 +1650,10 @@
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Boolean" />
                                 </InArgument>
-                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_58]</OutArgument>
+                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_61]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:SetEntityProperty Attribute="followemailuserpreference" Entity="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep10_58]">
+                            <mxswa:SetEntityProperty Attribute="followemailuserpreference" Entity="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep10_61]">
                               <mxswa:SetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Boolean" />
@@ -1637,10 +1667,10 @@
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
                                 </InArgument>
-                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_59]</OutArgument>
+                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_62]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:SetEntityProperty Attribute="notifications" Entity="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep10_59]">
+                            <mxswa:SetEntityProperty Attribute="notifications" Entity="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep10_62]">
                               <mxswa:SetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
@@ -1654,10 +1684,10 @@
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
                                 </InArgument>
-                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_60]</OutArgument>
+                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_63]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:SetEntityProperty Attribute="prioritycode" Entity="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep10_60]">
+                            <mxswa:SetEntityProperty Attribute="prioritycode" Entity="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep10_63]">
                               <mxswa:SetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
@@ -1671,20 +1701,20 @@
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
                                 </InArgument>
-                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_62]</OutArgument>
+                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_65]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.EntityReference, "transactioncurrency", "Canadian Dollar", SendEmailStep10_62, "Lookup" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.EntityReference, "transactioncurrency", "Canadian Dollar", SendEmailStep10_65, "Lookup" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
                                 </InArgument>
-                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_61]</OutArgument>
+                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_64]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:SetEntityProperty Attribute="transactioncurrencyid" Entity="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep10_61]">
+                            <mxswa:SetEntityProperty Attribute="transactioncurrencyid" Entity="[CreatedEntities(&quot;SendEmailStep10_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep10_64]">
                               <mxswa:SetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
