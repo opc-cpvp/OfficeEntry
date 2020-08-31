@@ -20,6 +20,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ILRepack" Version="2.0.18" />
+    <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.18.1" />
     <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="8.2.0.2" />
     <PackageReference Include="Microsoft.IdentityModel" Version="7.0.0" />
   </ItemGroup>
