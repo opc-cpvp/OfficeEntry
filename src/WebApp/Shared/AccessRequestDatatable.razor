@@ -6,8 +6,7 @@
     <thead>
         <tr>
             <th>@Localizer["Date"]</th>
-            <th>@Localizer["StartTime"]</th>
-            <th>@Localizer["EndTime"]</th>
+            <th>@Localizer["Requestor"]</th>
             <th>@Localizer["Building"]</th>
             <th>@Localizer["Floor"]</th>
             <th>@Localizer["Status"]</th>
@@ -35,10 +34,9 @@
             <tr>
                 <td class="align-middle">
                     <a class="btn btn-secondary btn-sm mr-2" href="/@Localizer["access-requests"]/@accessRequest.Id"><i class="fas fa-external-link-alt"></i></a>
-                    @accessRequest.StartTime.Date.ToString(Localizer["MMMM dd, yyyy"])
+                    @accessRequest.StartTime.Date.ToString(Localizer["MMMM dd, yyyy"]) @accessRequest.StartTime.ToString(Localizer["h:mm tt"]) - @accessRequest.EndTime.ToString(Localizer["h:mm tt"])
                 </td>
-                <td class="align-middle">@accessRequest.StartTime.ToString(Localizer["h:mm tt"])</td>
-                <td class="align-middle">@accessRequest.EndTime.ToString(Localizer["h:mm tt"])</td>
+                <td class="align-middle">@accessRequest.Employee.FullName</td>
                 <td class="align-middle">@accessRequest.Building.Name</td>
                 <td class="align-middle">@accessRequest.Floor.Name</td>
                 <td class="align-middle font-weight-bold @statusClass">@Localizer[accessRequest.Status.Value]</td>
