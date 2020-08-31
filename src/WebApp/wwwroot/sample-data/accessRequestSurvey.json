@@ -56,13 +56,6 @@
               }
             },
             {
-              "value": "948160001",
-              "text": {
-                "default": "Pickup a Document",
-                "fr": "Récupérer un document"
-              }
-            },
-            {
               "value": "948160003",
               "text": {
                 "default": "Pickup Office Equipment",
