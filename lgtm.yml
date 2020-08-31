@@ -1,7 +1,5 @@
 extraction:
   csharp:
     index:
-      all_solutions: true
-      msbuild:
-        configuration: "release"
-        platform: "Any CPU"
+      dotnet:
+        version: 3.1.301
