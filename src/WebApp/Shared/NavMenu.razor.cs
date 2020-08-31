@@ -1,6 +1,8 @@
 ﻿using Blazored.LocalStorage;
+using MediatR;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
+using OfficeEntry.Application.AccessRequests.Queries.GetPendingApprovals;
 using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Shared
@@ -11,6 +13,10 @@ namespace OfficeEntry.WebApp.Shared
         IStringLocalizer<App> Localizer { get; set; }
         [Inject]
         ILocalStorageService LocalStorage { get; set; }
+        [Inject]
+        public IMediator Mediator { get; set; }
+
+        private int pendingApprovals = 0;
 
         private bool collapseNavMenu = true;
 
@@ -18,6 +24,7 @@ namespace OfficeEntry.WebApp.Shared
 
         private bool isPrivacyActStatementAccepted;
         private bool isHealthAndSafetyMeasuresAccepted;
+
         private bool areAllTermsAndConditionsAccepted => isHealthAndSafetyMeasuresAccepted && isPrivacyActStatementAccepted;
 
         private void ToggleNavMenu()
@@ -32,6 +39,8 @@ namespace OfficeEntry.WebApp.Shared
 
             isHealthAndSafetyMeasuresAccepted = await LocalStorage.GetItemAsync<bool>("isHealthAndSafetyMeasuresAccepted");
             isPrivacyActStatementAccepted = await LocalStorage.GetItemAsync<bool>("isPrivacyActStatementAccepted");
+
+            pendingApprovals = await Mediator.Send(new GetPendingApprovalsQuery());
 
             StateHasChanged();
 
