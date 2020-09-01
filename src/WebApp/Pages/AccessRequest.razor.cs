@@ -1,9 +1,11 @@
-﻿using MediatR;
+﻿using Fluxor;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 using OfficeEntry.Domain.Enums;
+using OfficeEntry.WebApp.Store.ApprovalsUseCase;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -11,13 +13,16 @@ using System.Threading.Tasks;
 namespace OfficeEntry.WebApp.Pages
 {
     [Authorize]
-    public partial class AccessRequest : ComponentBase
+    public partial class AccessRequest
     {
         [Parameter]
         public Guid Id { get; set; }
 
         [Inject]
         public IMediator Mediator { get; set; }
+
+        [Inject]
+        private IDispatcher Dispatcher { get; set; }
 
         public bool IsEmployee { get; set; }
         public bool IsManager { get; set; }
@@ -58,6 +63,7 @@ namespace OfficeEntry.WebApp.Pages
                 Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
             };
             await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
+            Dispatcher.Dispatch(new FetchDataAction());
         }
 
         private async Task CancelRequest()
@@ -83,6 +89,7 @@ namespace OfficeEntry.WebApp.Pages
             };
 
             await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
+            Dispatcher.Dispatch(new FetchDataAction());
         }
     }
 }
