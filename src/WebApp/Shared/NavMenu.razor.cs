@@ -3,7 +3,6 @@ using Fluxor;
 using MediatR;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using OfficeEntry.Application.AccessRequests.Queries.GetPendingApprovals;
 using OfficeEntry.WebApp.Store.ApprovalsUseCase;
 using System.Threading.Tasks;
 
