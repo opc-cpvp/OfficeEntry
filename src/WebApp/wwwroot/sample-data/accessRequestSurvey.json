@@ -702,7 +702,8 @@
           "renderAs": "select2",
           "select2Config": {
             "theme": "bootstrap4",
-            "placeholder": "Search / Recherche"
+            "placeholder": "Search / Recherche",
+            "selectOnClose": true
           },
           "title": {
             "default": "Manager",
