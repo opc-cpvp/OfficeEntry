@@ -45,8 +45,6 @@ namespace OfficeEntry.WebApp.Pages
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await base.OnAfterRenderAsync(firstRender);
-
             if (!firstRender)
                 return;
 
@@ -59,6 +57,7 @@ namespace OfficeEntry.WebApp.Pages
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
+            ApprovalsState.StateChanged -= ApprovalsState_StateChanged;
             JSRuntime.InvokeAsync<object>("destroyDatatables");
         }
     }
