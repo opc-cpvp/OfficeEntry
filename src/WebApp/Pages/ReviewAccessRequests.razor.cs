@@ -24,27 +24,36 @@ namespace OfficeEntry.WebApp.Pages
         [Inject] public IMediator Mediator { get; set; }
         [Inject] public IJSRuntime JSRuntime { get; set; }
 
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            ApprovalsState.StateChanged += ApprovalsState_StateChanged;
+        }
+
+        private void ApprovalsState_StateChanged(object sender, ApprovalsState e)
+        {
+            var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+            locale = (locale == Locale.French) ? locale : Locale.English;
+
+            foreach (var accessRequest in e.AccessRequests)
+            {
+                accessRequest.Building.Name = (locale == Locale.French) ? accessRequest.Building.FrenchName : accessRequest.Building.EnglishName;
+                accessRequest.Floor.Name = (locale == Locale.French) ? accessRequest.Floor.FrenchName : accessRequest.Floor.EnglishName;
+            }
+        }
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
+            await base.OnAfterRenderAsync(firstRender);
+
             if (!firstRender)
                 return;
 
             var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             locale = (locale == Locale.French) ? locale : Locale.English;
 
-            //_accessRequests = (await Mediator.Send(new GetManagerAccessRequestsQuery())).ToArray();
-
-            ////foreach (var accessRequest in ApprovalsState.Value.AccessRequests)
-            ////{
-            ////    accessRequest.Building.Name = (locale == Locale.French) ? accessRequest.Building.FrenchName : accessRequest.Building.EnglishName;
-            ////    accessRequest.Floor.Name = (locale == Locale.French) ? accessRequest.Floor.FrenchName : accessRequest.Floor.EnglishName;
-            ////}
-
-            ////StateHasChanged();
-
-            ////await JSRuntime.InvokeAsync<object>("initializeDatatables", locale);
-
-            await base.OnAfterRenderAsync(firstRender);
+            await JSRuntime.InvokeAsync<object>("initializeDatatables", locale);
         }
 
         protected override void Dispose(bool disposing)
