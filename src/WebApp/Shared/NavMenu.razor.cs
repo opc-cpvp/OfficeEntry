@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Shared
 {
-    public partial class NavMenu //: ComponentBase
+    public partial class NavMenu
     {
         [Inject]
         IStringLocalizer<App> Localizer { get; set; }
