@@ -54,8 +54,6 @@ namespace OfficeEntry.WebApp.Shared
             isHealthAndSafetyMeasuresAccepted = await LocalStorage.GetItemAsync<bool>("isHealthAndSafetyMeasuresAccepted");
             isPrivacyActStatementAccepted = await LocalStorage.GetItemAsync<bool>("isPrivacyActStatementAccepted");
 
-            //pendingApprovals = await Mediator.Send(new GetPendingApprovalsQuery());
-
             StateHasChanged();
 
             await base.OnAfterRenderAsync(firstRender);
