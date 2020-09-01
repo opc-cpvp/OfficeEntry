@@ -29,12 +29,6 @@ interopJS.survey = {
         // TODO: Set page to 0
     },
 
-    setDatepickerLocale: function (locale) {
-        if (locale === 'fr') {
-            return $.datepicker.setDefaults($.datepicker.regional['fr-CA']);
-        }
-        return $.datepicker.setDefaults($.datepicker.regional['']);
-    },
 
     init: function (id, classStyle, surveyUrl, data) {
         // Override the color used style the flip switch
@@ -62,7 +56,6 @@ interopJS.survey = {
 
                 survey.locale = window.localStorage['BlazorCulture'] === "fr-CA" ? "fr" : "en";
 
-                window.interop.survey.setDatepickerLocale(survey.locale);
 
                 survey
                     .onComplete
