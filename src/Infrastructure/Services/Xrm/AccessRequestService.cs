@@ -229,18 +229,5 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
             return Result.Success();
         }
-
-        public async Task<(Result Result, int PendingApprovals)> GetPendingApprovalsFor(Guid contactId)
-        {
-            var accessRequests = await Client.For<gc_accessrequest>()
-                .Filter(a => a.statecode == (int)StateCode.Active)
-                .Filter(a => a.gc_manager.contactid == contactId)
-                .FindEntriesAsync();
-
-            accessRequests = accessRequests.ToList();
-            var pendingApprovals = accessRequests.Count(a => a.gc_approvalstatus == ApprovalStatus.Pending);
-
-            return (Result.Success(), pendingApprovals);
-        }
     }
 }
