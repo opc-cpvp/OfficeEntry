@@ -1,4 +1,5 @@
 using Blazored.LocalStorage;
+using Fluxor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -52,6 +53,13 @@ namespace OfficeEntry.WebApp
             services.AddNegotiateWithCookieAuthentication();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddFluxor(options =>
+            {
+                options
+                    .ScanAssemblies(typeof(Program).Assembly)
+                    .UseReduxDevTools();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

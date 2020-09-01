@@ -1,15 +1,17 @@
-﻿@page "/review-access-requests"
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/review-access-requests"
 @page "/approuver-les-demandes"
 
 @using OfficeEntry.WebApp.Shared
 
 <h1>@Localizer["Review Access Requests"]</h1>
 
-@if (_accessRequests is null)
+@if (ApprovalsState.Value.IsLoading)
 {
     <Loading />
 }
 else
 {
-    <AccessRequestDatatable AccessRequests="@_accessRequests"></AccessRequestDatatable>
+    <AccessRequestDatatable AccessRequests="@ApprovalsState.Value.AccessRequests"></AccessRequestDatatable>
 }
