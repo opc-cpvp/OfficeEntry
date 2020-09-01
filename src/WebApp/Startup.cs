@@ -90,6 +90,8 @@ namespace OfficeEntry.WebApp
 
             app.UseRouting();
 
+            app.UseResponseCaching();
+
             app.UseAuthentication();
             app.UseAuthorization();
 
