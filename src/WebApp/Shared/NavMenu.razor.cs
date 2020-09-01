@@ -24,8 +24,6 @@ namespace OfficeEntry.WebApp.Shared
         [Inject]
         private IDispatcher Dispatcher { get; set; }
 
-        //private int pendingApprovals = 0;
-
         private bool collapseNavMenu = true;
 
         private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
