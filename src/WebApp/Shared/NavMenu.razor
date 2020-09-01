@@ -1,4 +1,6 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">@Localizer["Office Entry"]</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
@@ -44,9 +46,9 @@
                     </span>
                     @Localizer["Approve Requests"]
                     @{
-                        if (pendingApprovals > 0)
+                        if (ApprovalsState.Value.PendingApprovals > 0)
                         {
-                            <span>&nbsp;<span class="badge badge-pill badge-danger">@pendingApprovals</span></span>
+                            <span>&nbsp;<span class="badge badge-pill badge-danger">@ApprovalsState.Value.PendingApprovals</span></span>
                         }
                     }
                 </NavLink>
