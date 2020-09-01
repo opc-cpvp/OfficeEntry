@@ -2,10 +2,13 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 using OfficeEntry.Domain.Enums;
-using OfficeEntry.WebApp.Store.ApprovalsUseCase;
+//using OfficeEntry.WebApp.Store.ApprovalsUseCase;
+//using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
+using OfficeEntry.WebApp;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -18,8 +21,14 @@ namespace OfficeEntry.WebApp.Pages
         [Parameter]
         public Guid Id { get; set; }
 
+        [Inject] 
+        public IStringLocalizer<App> Localizer { get; set; }
+
         [Inject]
         public IMediator Mediator { get; set; }
+        
+        [Inject] 
+        public NavigationManager NavigationManager { get; set; }
 
         [Inject]
         private IDispatcher Dispatcher { get; set; }
@@ -63,7 +72,10 @@ namespace OfficeEntry.WebApp.Pages
                 Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
             };
             await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
-            Dispatcher.Dispatch(new FetchDataAction());
+            Dispatcher.Dispatch(new Store.ApprovalsUseCase.FetchDataAction());
+            Dispatcher.Dispatch(new Store.MyAccessRequestsUseCase.FetchDataAction());
+
+            NavigationManager.NavigateTo(Localizer["review-access-requests"]);
         }
 
         private async Task CancelRequest()
@@ -76,6 +88,10 @@ namespace OfficeEntry.WebApp.Pages
                 Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
             };
             await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
+            Dispatcher.Dispatch(new Store.ApprovalsUseCase.FetchDataAction());
+            Dispatcher.Dispatch(new Store.MyAccessRequestsUseCase.FetchDataAction());
+
+            NavigationManager.NavigateTo(Localizer["access-requests"]);
         }
 
         private async Task DeclineRequest()
@@ -89,7 +105,10 @@ namespace OfficeEntry.WebApp.Pages
             };
 
             await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
-            Dispatcher.Dispatch(new FetchDataAction());
+            Dispatcher.Dispatch(new Store.ApprovalsUseCase.FetchDataAction());
+            Dispatcher.Dispatch(new Store.MyAccessRequestsUseCase.FetchDataAction());
+
+            NavigationManager.NavigateTo(Localizer["review-access-requests"]);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Fluxor;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
@@ -23,6 +24,7 @@ namespace OfficeEntry.WebApp.Pages
     public partial class SubmitAccessRequest : ComponentBase
     {
         [Inject] public NavigationManager NavigationManager { get; set; }
+        [Inject] private IDispatcher Dispatcher { get; set; }
         [Inject] public IStringLocalizer<App> Localizer { get; set; }
         [Inject] public IMediator Mediator { get; set; }
 
@@ -105,6 +107,9 @@ namespace OfficeEntry.WebApp.Pages
             }
 
             await Mediator.Send(new CreateAccessRequestForCurrentUserCommand { AccessRequest = accessRequest });
+
+            Dispatcher.Dispatch(new Store.MyAccessRequestsUseCase.FetchDataAction());
+            Dispatcher.Dispatch(new Store.ApprovalsUseCase.FetchDataAction());
 
             NavigationManager.NavigateTo("/access-requests");
 

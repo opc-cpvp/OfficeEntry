@@ -1,0 +1,18 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/access-requests"
+@page "/demandes-d-acces"
+
+@using OfficeEntry.WebApp.Shared
+
+
+<h1>@Localizer["My Requests"]</h1>
+
+@if (MyAccessRequestsState.Value.IsLoading)
+{
+    <Loading />
+}
+else
+{
+    <AccessRequestDatatable AccessRequests="@MyAccessRequestsState.Value.AccessRequests"></AccessRequestDatatable>
+}
