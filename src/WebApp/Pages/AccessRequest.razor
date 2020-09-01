@@ -5,8 +5,6 @@
 @page "/demandes-d-acces/{id:guid}"
 @page "/approuver-les-demandes/{id:guid}"
 
-@inject IStringLocalizer<App> Localizer
-
 <h1>@Localizer["Review"]</h1>
 
 @if (accessRequest is null)
