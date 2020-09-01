@@ -27,35 +27,11 @@ namespace OfficeEntry.WebApp.Pages
         [Inject] public IMediator Mediator { get; set; }
 
         public bool SurveyCompleted { get; set; }
-        public bool Loading { get; set; } = true;
         public bool ShowSpotsAvailablePerHours { get; set; }
         public CurrentCapacity[] FloorCapacity { get; set; }
 
         [Inject] IJSRuntime JSRuntime { get; set; }
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (!firstRender)
-            {
-                return;
-            }
-
-            var isPrivacyActStatementAccepted = await Mediator.Send(new GetPrivacyStatementForCurrentUserQuery());
-            var isHealthAndSafetyStatementAccepted = await Mediator.Send(new GetHealthAndSafetyMeasuresForCurrentUserQuery());
-
-            if (!isPrivacyActStatementAccepted)
-            {
-                NavigationManager.NavigateTo("/privacy-act-statement");
-            }
-            if (!isHealthAndSafetyStatementAccepted)
-            {
-                NavigationManager.NavigateTo("/health-and-safety-measures");
-            }
-
-            Loading = false;
-
-            StateHasChanged();
-        }
 
         public async Task OnSurveyLoaded(Survey survey)
         {

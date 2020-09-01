@@ -21,7 +21,6 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
         {
             var contacts = await Client.For<contact>()
                 .Filter(c => c.gc_username == username)
-                //.Filter(c => c.fullname == fullname)
                 .Expand(c => c.gc_usersettings)
                 .FindEntriesAsync();
 
@@ -43,7 +42,9 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
         public async Task<(Result Result, IEnumerable<Contact> Contacts)> GetContacts()
         {
             var contacts = await Client.For<contact>()
-                .Filter(b => b.statecode == (int)StateCode.Active)
+                .Filter(c => c.statecode == (int)StateCode.Active)
+                .Filter(c => c.gc_username != null)
+                .Filter(c => !(c.gc_username.Contains("scanner") || c.gc_username.Contains("student")))
                 .OrderBy(c => c.lastname)
                 .FindEntriesAsync();
 

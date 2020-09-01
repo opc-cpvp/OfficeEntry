@@ -56,13 +56,6 @@
               }
             },
             {
-              "value": "948160001",
-              "text": {
-                "default": "Pickup a Document",
-                "fr": "Récupérer un document"
-              }
-            },
-            {
               "value": "948160003",
               "text": {
                 "default": "Pickup Office Equipment",
@@ -310,7 +303,10 @@
           },
           "isRequired": true,
           "dateFormat": "mm/dd/yy",
-          "inputType": "date"
+          "inputType": "date",
+          "config": {
+            "minDate": 0
+          }
         }
       ]
     },
@@ -705,7 +701,8 @@
           "name": "manager",
           "renderAs": "select2",
           "select2Config": {
-            "theme": "bootstrap4"
+            "theme": "bootstrap4",
+            "placeholder": "Search / Recherche"
           },
           "title": {
             "default": "Manager",
