@@ -15,11 +15,6 @@
 		.then(function (data) {
 			datepicker.regional["fr-CA"] = data;
 		});
-
-	datepicker.setDefaults(datepicker.regional["fr-CA"]);
-
-	return datepicker.regional["fr-CA"];
-
 }));
 
 var initializeDatepicker = function (locale) {
