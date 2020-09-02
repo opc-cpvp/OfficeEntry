@@ -1,13 +1,13 @@
 ﻿using OfficeEntry.Domain.Entities;
 using System.Collections.Generic;
 
-namespace OfficeEntry.WebApp.Store.ApprovalsUseCase
+namespace OfficeEntry.WebApp.Store.ManagerApprovalsUseCase
 {
-    public class FetchDataResultAction
+    public class GetManagerApprovalsResultAction
     {
         public IReadOnlyList<AccessRequest> AccessRequests { get; }
 
-        public FetchDataResultAction(IReadOnlyList<AccessRequest> accessRequests)
+        public GetManagerApprovalsResultAction(IReadOnlyList<AccessRequest> accessRequests)
         {
             AccessRequests = accessRequests;
         }

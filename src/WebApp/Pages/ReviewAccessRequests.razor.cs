@@ -4,12 +4,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
-using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests;
 using OfficeEntry.Domain.Enums;
-using OfficeEntry.WebApp.Store.ApprovalsUseCase;
-using System;
+using OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
 using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Pages
@@ -18,7 +15,7 @@ namespace OfficeEntry.WebApp.Pages
     public partial class ReviewAccessRequests
     {
         [Inject]
-        private IState<ApprovalsState> ApprovalsState { get; set; }
+        private IState<ManagerApprovalsState> ApprovalsState { get; set; }
 
         [Inject] public IStringLocalizer<App> Localizer { get; set; }
         [Inject] public IMediator Mediator { get; set; }
@@ -31,7 +28,7 @@ namespace OfficeEntry.WebApp.Pages
             ApprovalsState.StateChanged += ApprovalsState_StateChanged;
         }
 
-        private void ApprovalsState_StateChanged(object sender, ApprovalsState e)
+        private void ApprovalsState_StateChanged(object sender, ManagerApprovalsState e)
         {
             var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             locale = (locale == Locale.French) ? locale : Locale.English;

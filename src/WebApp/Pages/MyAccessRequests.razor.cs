@@ -3,13 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
-using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests;
 using OfficeEntry.Domain.Enums;
-using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Fluxor.Blazor.Web.Components;
 using Fluxor;
 using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
 
@@ -18,8 +15,6 @@ namespace OfficeEntry.WebApp.Pages
     [Authorize]
     public partial class MyAccessRequests
     {
-        //private Domain.Entities.AccessRequest[] _accessRequests;
-
         [Inject] private IState<MyAccessRequestsState> MyAccessRequestsState { get; set; }
         [Inject] private IDispatcher Dispatcher { get; set; }
         [Inject] public IStringLocalizer<App> Localizer { get; set; }
@@ -34,7 +29,7 @@ namespace OfficeEntry.WebApp.Pages
 
             if (!MyAccessRequestsState.Value.AccessRequests.Any())
             {
-                Dispatcher.Dispatch(new FetchDataAction());
+                Dispatcher.Dispatch(new GetMyAccessRequestsAction());
             }
         }
 
