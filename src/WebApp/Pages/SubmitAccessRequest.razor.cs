@@ -7,12 +7,12 @@ using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
 using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
-using OfficeEntry.Application.TermsAndConditions.Queries.GetHealthAndSafetyMeasuresRequests;
-using OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatementRequests;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Models;
 using OfficeEntry.WebApp.Shared;
+using OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
+using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -108,8 +108,8 @@ namespace OfficeEntry.WebApp.Pages
 
             await Mediator.Send(new CreateAccessRequestForCurrentUserCommand { AccessRequest = accessRequest });
 
-            Dispatcher.Dispatch(new Store.MyAccessRequestsUseCase.FetchDataAction());
-            Dispatcher.Dispatch(new Store.ApprovalsUseCase.FetchDataAction());
+            Dispatcher.Dispatch(new GetMyAccessRequestsAction());
+            Dispatcher.Dispatch(new GetManagerApprovalsAction());
 
             NavigationManager.NavigateTo("/access-requests");
 
