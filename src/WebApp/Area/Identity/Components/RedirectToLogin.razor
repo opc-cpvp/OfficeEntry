@@ -1,9 +1,26 @@
 ﻿@inject NavigationManager Navigation
 @code {
-    protected override void OnAfterRender(bool firstRender)
+    protected override void OnInitialized()
     {
-        var returnUrl = Navigation.Uri[Navigation.BaseUri.Length..];
+        #if DEBUG
+        try
+        {
+        #endif
+            NavigateToExternalLogin();
+        #if DEBUG
+        }
+        catch (Microsoft.AspNetCore.Components.NavigationException e)
+        {
+        }
+        #endif
+    }
 
-        Navigation.NavigateTo($"external/login?returnUrl=/{returnUrl}", forceLoad: true);
+    private void NavigateToExternalLogin()
+    {
+        var baseUriRange = Navigation.BaseUri.Length..;
+        var returnUrl = System.Net.WebUtility.UrlEncode(Navigation.Uri[baseUriRange]);
+        var uri = $"{Navigation.BaseUri}external/login?returnUrl=/{returnUrl}";
+
+        Navigation.NavigateTo(uri, forceLoad: true);
     }
 }
