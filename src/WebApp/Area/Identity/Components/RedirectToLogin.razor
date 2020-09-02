@@ -1,18 +1,9 @@
-﻿@inject NavigationManager Navigation
+@inject NavigationManager Navigation
+
 @code {
-    protected override void OnInitialized()
+    protected override void OnAfterRender(bool firstRender)
     {
-        #if DEBUG
-        try
-        {
-        #endif
-            NavigateToExternalLogin();
-        #if DEBUG
-        }
-        catch (Microsoft.AspNetCore.Components.NavigationException e)
-        {
-        }
-        #endif
+        NavigateToExternalLogin();
     }
 
     private void NavigateToExternalLogin()
