@@ -7,6 +7,9 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
+    var isIE = Request.Headers.TryGetValue("User-Agent", out var userAgents)
+        && (userAgents.FirstOrDefault() is string userAgent)
+        && System.Text.RegularExpressions.Regex.IsMatch(userAgent, @"MSIE \d|Trident.*rv:");
 }
 
 <!DOCTYPE html>
@@ -49,9 +52,7 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    @if (Request.Headers.TryGetValue("User-Agent", out var userAgents)
- && (userAgents.FirstOrDefault() is string userAgent)
- && System.Text.RegularExpressions.Regex.IsMatch(userAgent, @"MSIE \d|Trident.*rv:"))
+    @if (isIE)
     {
         <script src="js/blazor.polyfill.min.js"></script>
         <script type="text/javascript" src="~/lib/promise-polyfill/polyfill.min.js"></script>
@@ -78,6 +79,10 @@
     <script src="~/js/datepicker.js"></script>
     <script src="~/js/datatables.js"></script>
 
-    <script>navigator.serviceWorker.register('service-worker.js');</script>
+    @if (!isIE)
+    {
+        <script>navigator.serviceWorker.register('service-worker.js');</script>
+    }
+
 </body>
 </html>

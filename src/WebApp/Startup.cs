@@ -56,9 +56,7 @@ namespace OfficeEntry.WebApp
 
             services.AddFluxor(options =>
             {
-                options
-                    .ScanAssemblies(typeof(Program).Assembly)
-                    .UseReduxDevTools();
+                options.ScanAssemblies(typeof(Program).Assembly);
             });
         }
 
