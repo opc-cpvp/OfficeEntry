@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OfficeEntry.WebApp.Store.ApprovalsUseCase
+namespace OfficeEntry.WebApp.Store.ManagerApprovalsUseCase
 {
-    public class ApprovalsState
+    public class ManagerApprovalsState
     {
         public bool IsLoading { get; }
 
@@ -12,7 +12,7 @@ namespace OfficeEntry.WebApp.Store.ApprovalsUseCase
 
         public int PendingApprovals { get; }
 
-        public ApprovalsState(bool isLoading, IReadOnlyList<AccessRequest> accessRequests)
+        public ManagerApprovalsState(bool isLoading, IReadOnlyList<AccessRequest> accessRequests)
         {
             IsLoading = isLoading;
 
