@@ -17,7 +17,7 @@ namespace OfficeEntry.WebApp.Pages
         [Inject] public NavigationManager NavigationManager { get; set; }
         [Inject] public IMediator Mediator { get; set; }
         [Inject] public ILocalStorageService LocalStorage { get; set; }
-        [Inject] public IStringLocalizer<App> Localizer { get; set; } 
+        [Inject] public IStringLocalizer<App> Localizer { get; set; }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -60,54 +60,20 @@ namespace OfficeEntry.WebApp.Pages
             NavigationManager.NavigateTo("/", forceLoad: true);
         }
 
-        private async Task<bool> HasAcceptedTermsAndConditions()
+        private async Task<bool> IsTermsAndConditionsAccepted()
         {
+            // Should I call Dispatcher?
+            var isHealthAndSafetyMeasuresAccepted = await Mediator.Send(new GetHealthAndSafetyMeasuresForCurrentUserQuery());
+            var isPrivacyActStatementAccepted = await Mediator.Send(new GetPrivacyStatementForCurrentUserQuery());
 
-            var isPrivacyActStatementAccepted = await GetPrivacyActStatement();
-            var isHealthAndSafetyMeasuresAccepted = await GetHealthAndSafetyMeasures();
-
-            return (isHealthAndSafetyMeasuresAccepted && isPrivacyActStatementAccepted);
-
-            async Task<bool> GetPrivacyActStatement()
-            {
-                if (!(await LocalStorage.ContainKeyAsync("isPrivacyActStatementAccepted")))
-                {
-                    if(await LocalStorage.GetItemAsync<bool>("isPrivacyActStatementAccepted") == false)
-                    {
-                        var isPrivacyActStatementAccepted = await Mediator.Send(new GetPrivacyStatementForCurrentUserQuery());
-                        await LocalStorage.SetItemAsync("isPrivacyActStatementAccepted", isPrivacyActStatementAccepted);
-                    }                
-                }
-
-                return await LocalStorage.GetItemAsync<bool>("isPrivacyActStatementAccepted");
-            }
-
-            async Task<bool> GetHealthAndSafetyMeasures()
-            {
-                if (!(await LocalStorage.ContainKeyAsync("isHealthAndSafetyMeasuresAccepted")))
-                {
-                    if (await LocalStorage.GetItemAsync<bool>("isHealthAndSafetyMeasuresAccepted") == false)
-                    {
-                        var isHealthAndSafetyMeasuresAccepted = await Mediator.Send(new GetHealthAndSafetyMeasuresForCurrentUserQuery());
-                        await LocalStorage.SetItemAsync("isHealthAndSafetyMeasuresAccepted", isHealthAndSafetyMeasuresAccepted);
-                    }
-                }
-
-                return await LocalStorage.GetItemAsync<bool>("isHealthAndSafetyMeasuresAccepted");
-            }
+            return isHealthAndSafetyMeasuresAccepted && isPrivacyActStatementAccepted;
         }
 
         private async Task<string> GetLocalizedLandingPage(string culture)
         {
-            var hasAcceptedTermsAndConditions = await HasAcceptedTermsAndConditions();
-
             CultureInfo.CurrentUICulture = new CultureInfo(culture);
 
-            if (!hasAcceptedTermsAndConditions)
-            {               
-                return Localizer.GetString("terms-and-conditions");
-            }
-            return Localizer.GetString("access-requests");
+            return !(await IsTermsAndConditionsAccepted()) ? Localizer.GetString("terms-and-conditions") : Localizer.GetString("access-requests");        
         }
     }
 }

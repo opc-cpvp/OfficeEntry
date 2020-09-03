@@ -2,11 +2,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using OfficeEntry.Application.TermsAndConditions.Commands.UpdatePrivacyStatementRequests;
-using OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatementRequests;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Blazored.LocalStorage;
+using Fluxor;
+using OfficeEntry.WebApp.Store.TermsAndConditionsUseCase;
+using OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatementRequests;
 
 namespace OfficeEntry.WebApp.Pages
 {
@@ -17,10 +18,10 @@ namespace OfficeEntry.WebApp.Pages
         public NavigationManager NavigationManager { get; set; }
 
         [Inject]
-        public IMediator Mediator { get; set; }
+        private IDispatcher Dispatcher { get; set; }
 
         [Inject]
-        public ILocalStorageService LocalStorage { get; set; }
+        public IMediator Mediator { get; set; }
 
         protected string SurveyData { get; set; }
 
@@ -36,7 +37,7 @@ namespace OfficeEntry.WebApp.Pages
 
             await Mediator.Send(new UpdatePrivacyActStatementForCurrentUserCommand { IsPrivacyActStatementAccepted = privateActStatementAccepted });
 
-            await LocalStorage.SetItemAsync("isPrivacyActStatementAccepted", true);
+            Dispatcher.Dispatch(new GetTermsAndConditionsAction());
 
             NavigationManager.NavigateTo("/");
         }

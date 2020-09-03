@@ -18,7 +18,7 @@
                 @Localizer["Home"]
             </NavLink>
         </li>
-        @if (areAllTermsAndConditionsAccepted)
+        @if (!!TermsAndConditionsState.Value.IsHealthAndSafetyMeasuresStatementAccepted && !!TermsAndConditionsState.Value.IsPrivacyActStatementAccepted)
         {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="@Localizer["submit-access-request"]">
