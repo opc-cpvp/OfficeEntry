@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="/" xml:space="preserve">
+    <value>fr/</value>
+    <comment>URI</comment>
+  </data>
   <data name="Accept all Terms and Conditions" xml:space="preserve">
     <value>Before submitting an access request you must accept the Health and Safety measures and the Privacy Act Statement.</value>
   </data>
@@ -127,7 +131,8 @@
     <value>Before submitting an access request you must accept the Privacy Act Statement.</value>
   </data>
   <data name="access-requests" xml:space="preserve">
-    <value>access-requests</value>
+    <value>en/access-requests</value>
+    <comment>URI</comment>
   </data>
   <data name="Approve" xml:space="preserve">
     <value>Approve</value>
@@ -196,16 +201,18 @@
     <value>Health &amp; Safety Measures</value>
   </data>
   <data name="health-and-safety-measures" xml:space="preserve">
-    <value>health-and-safety-measures</value>
+    <value>en/health-and-safety-measures</value>
+    <comment>URI</comment>
   </data>
   <data name="Hello," xml:space="preserve">
     <value>Hello,</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
-  </data>
   <data name="Keyboard" xml:space="preserve">
     <value>Keyboard</value>
+  </data>
+  <data name="LanguageToggle" xml:space="preserve">
+    <value>Français</value>
+    <comment>URI</comment>
   </data>
   <data name="Laptop" xml:space="preserve">
     <value>Laptop</value>
@@ -227,6 +234,10 @@
   </data>
   <data name="My Requests" xml:space="preserve">
     <value>My Requests</value>
+  </data>
+  <data name="my-access-requests" xml:space="preserve">
+    <value>en/my-access-requests</value>
+    <comment>URI</comment>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -262,7 +273,8 @@
     <value>Privacy Act Statement</value>
   </data>
   <data name="privacy-act-statement" xml:space="preserve">
-    <value>privacy-act-statement</value>
+    <value>en/privacy-act-statement</value>
+    <comment>URI</comment>
   </data>
   <data name="Reason:" xml:space="preserve">
     <value>Reason:</value>
@@ -280,7 +292,8 @@
     <value>Review Access Requests</value>
   </data>
   <data name="review-access-requests" xml:space="preserve">
-    <value>review-access-requests</value>
+    <value>en/review-access-requests</value>
+    <comment>URI</comment>
   </data>
   <data name="StartTime" xml:space="preserve">
     <value>From</value>
@@ -295,7 +308,8 @@
     <value>Submit Access Request</value>
   </data>
   <data name="submit-access-request" xml:space="preserve">
-    <value>submit-access-request</value>
+    <value>en/submit-access-request</value>
+    <comment>URI</comment>
   </data>
   <data name="Tablet" xml:space="preserve">
     <value>Tablet</value>
@@ -307,7 +321,8 @@
     <value>Terms and Conditions</value>
   </data>
   <data name="terms-and-conditions" xml:space="preserve">
-    <value>terms-and-conditions</value>
+    <value>en/terms-and-conditions</value>
+    <comment>URI</comment>
   </data>
   <data name="To" xml:space="preserve">
     <value>to</value>
