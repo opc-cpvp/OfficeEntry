@@ -702,7 +702,7 @@
           "renderAs": "select2",
           "select2Config": {
             "theme": "bootstrap4",
-            "placeholder": "Search / Recherche",
+            "placeholder": "Recherche / Search",
             "selectOnClose": true
           },
           "title": {

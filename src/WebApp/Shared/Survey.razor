@@ -52,6 +52,7 @@
         await JSRuntime.InvokeVoidAsync("interop.survey.register", _objectReference);
         await JSRuntime.InvokeVoidAsync("interop.survey.init", Id, @Class, SurveyUrl, Data);
         await JSRuntime.InvokeAsync<object>("initializeDatepicker", locale);
+        await JSRuntime.InvokeAsync<object>("initializeSelect2", locale);
     }
 
     public async Task GetData()
