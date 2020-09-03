@@ -3,13 +3,15 @@
 interopJS.survey = {
     dotNet: null,
     survey: null,
+    locale: null,
 
     save: function(name, value) {
         window.localStorage["surveyjs-blazor"] = value;
     },
 
-    register: function(dotNetReference) {
+    register: function(dotNetReference, locale) {
         dotNet = dotNetReference;
+        this.locale = locale;
     },
 
     dispose: function(_) {
@@ -31,6 +33,8 @@ interopJS.survey = {
 
 
     init: function (id, classStyle, surveyUrl, data) {
+        var that = this;
+
         // Override the color used style the flip switch
         Survey.StylesManager.ThemeColors["bootstrap"]["$main-color"] = "#007bff";
 
@@ -50,12 +54,11 @@ interopJS.survey = {
                     .innerHTML = "<div id=" + id + " class=" + classStyle + "><survey :survey=\"survey\"/></div>";
 
                 if (json.locale)
-                    json.locale = window.localStorage['BlazorCulture'] === "fr-CA" ? "fr" : "en";
+                    json.locale = that.locale;
 
                 survey = new Survey.Model(json);
 
-                survey.locale = window.localStorage['BlazorCulture'] === "fr-CA" ? "fr" : "en";
-
+                survey.locale = that.locale;
 
                 survey
                     .onComplete

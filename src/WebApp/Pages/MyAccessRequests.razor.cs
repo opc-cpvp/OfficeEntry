@@ -55,9 +55,9 @@ namespace OfficeEntry.WebApp.Pages
             }
 
             var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-            locale = (locale == Locale.French) ? locale : Locale.English;            
+            locale = (locale == Locale.French) ? locale : Locale.English;
 
-            await JSRuntime.InvokeAsync<object>("initializeDatatables", locale);          
+            await JSRuntime.InvokeAsync<object>("initializeDatatables", locale);
         }
 
         protected override void Dispose(bool disposing)
