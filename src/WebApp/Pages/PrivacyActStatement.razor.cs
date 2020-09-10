@@ -1,30 +1,27 @@
-﻿using MediatR;
+﻿using Fluxor;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using OfficeEntry.Application.TermsAndConditions.Commands.UpdatePrivacyStatementRequests;
 using OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatementRequests;
+using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Blazored.LocalStorage;
 
 namespace OfficeEntry.WebApp.Pages
 {
     [Authorize]
-    public abstract class PrivacyActStatementBase : ComponentBase
+    public partial class PrivacyActStatement
     {
-        [Inject]
-        public NavigationManager NavigationManager { get; set; }
-
-        [Inject]
-        public IMediator Mediator { get; set; }
-
-        [Inject]
-        public ILocalStorageService LocalStorage { get; set; }
+        [Inject] public NavigationManager NavigationManager { get; set; }
+        [Inject] public IMediator Mediator { get; set; }
+        [Inject] public IStringLocalizer<App> Localizer { get; set; }
+        [Inject] public IDispatcher Dispatcher { get; set; }
 
         protected string SurveyData { get; set; }
-
-        public bool SurveyCompleted { get; set; }
+        protected bool SurveyCompleted { get; set; }
 
         public async Task OnSurveyCompleted(string surveyResult)
         {
@@ -36,9 +33,9 @@ namespace OfficeEntry.WebApp.Pages
 
             await Mediator.Send(new UpdatePrivacyActStatementForCurrentUserCommand { IsPrivacyActStatementAccepted = privateActStatementAccepted });
 
-            await LocalStorage.SetItemAsync("isPrivacyActStatementAccepted", true);
+            Dispatcher.Dispatch(new GetMyTermsAndConditions());
 
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo(Localizer["my-access-requests"]);
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)

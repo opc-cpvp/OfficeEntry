@@ -1,32 +1,16 @@
-﻿@page "/terms-and-conditions"
-@page "/modalites-et-conditions"
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/en/terms-and-conditions"
+@page "/fr/modalites-et-conditions"
 
 
 <h1>@Localizer["Terms and Conditions"]</h1>
 
-@if (isHealthAndSafetyMeasuresAccepted is null || isPrivacyActStatementAccepted is null)
+@if (MyTermsAndConditionsState.Value.IsLoading)
 {
     <Loading />
 }
 else
 {
-    @if (isHealthAndSafetyMeasuresAccepted == false && isPrivacyActStatementAccepted == false)
-    {
-        <p>@Localizer["Accept all Terms and Conditions"]</p>
-        <NavLink class="nav-link" href="@Localizer["health-and-safety-measures"]">@Localizer["Health & Safety Measures"]</NavLink>
-        <NavLink class="nav-link" href="@Localizer["privacy-act-statement"]">@Localizer["Privacy Act Statement"]</NavLink>
-    }
-    else if (isHealthAndSafetyMeasuresAccepted == false)
-    {
-        <p>@Localizer["Accept Health and Safety Measures"]</p>
-        <NavLink class="nav-link" href="@Localizer["health-and-safety-measures"]">@Localizer["Health & Safety Measures"]</NavLink>
-    }
-
-    else if (isPrivacyActStatementAccepted == false)
-    {
-        <p>@Localizer["Accept Privacy Act Statement"]</p>
-        <NavLink class="nav-link" href="@Localizer["privacy-act-statement"]">@Localizer["Privacy Act Statement"]</NavLink>
-    }
+    <TermsAndConditionsCard />
 }
-
-

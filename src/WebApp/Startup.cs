@@ -1,4 +1,4 @@
-using Blazored.LocalStorage;
+    using Blazored.LocalStorage;
 using Fluxor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using OfficeEntry.Application;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Infrastructure;
+using OfficeEntry.WebApp.Area.Localization;
 using OfficeEntry.WebApp.Area.Identity;
 using OfficeEntry.WebApp.Area.Identity.Services;
 using OfficeEntry.WebApp.Filters;
@@ -58,6 +59,8 @@ namespace OfficeEntry.WebApp
             {
                 options.ScanAssemblies(typeof(Program).Assembly);
             });
+
+            services.AddSingleton<Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler, TrackingCircuitHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,12 +77,7 @@ namespace OfficeEntry.WebApp
                 app.UseHsts();
             }
 
-            var supportedCultures = new[] { "en-CA", "fr-CA" };
-            var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
-                .AddSupportedCultures(supportedCultures)
-                .AddSupportedUICultures(supportedCultures);
-
-            app.UseRequestLocalization(localizationOptions);
+            app.UseUrlLocalizationRequestLocalization();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

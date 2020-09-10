@@ -1,0 +1,36 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h2 class="display-4">@Localizer["Terms and Conditions"]</h2>
+
+        <p class="lead">@Localizer["Accept all Terms and Conditions"]</p>
+
+        <p class="lead">
+            <a class="nav-link" href="@Localizer["health-and-safety-measures"]">
+                @if (MyTermsAndConditionsState.Value.IsHealthAndSafetyMeasuresAccepted)
+                {
+                    <i class="fas fa-check" style="color: green;"></i>
+                }
+                else
+                {
+                    <i class="fas fa-exclamation-triangle" style="color: orange;"></i>
+                }
+                @Localizer["Health & Safety Measures"]
+            </a>
+        </p>
+        <p class="lead">
+            <a class="nav-link" href="@Localizer["privacy-act-statement"]">
+                @if (MyTermsAndConditionsState.Value.IsPrivacyActStatementAccepted)
+                {
+                    <i class="fas fa-check" style="color: green;"></i>
+                }
+                else
+                {
+                    <i class="fas fa-exclamation-triangle" style="color: orange;"></i>
+                }
+                @Localizer["Privacy Act Statement"]
+            </a>
+        </p>
+    </div>
+</div>
