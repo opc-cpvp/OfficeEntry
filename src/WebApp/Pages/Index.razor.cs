@@ -1,19 +1,13 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
-using OfficeEntry.Application.TermsAndConditions.Queries.GetHealthAndSafetyMeasuresRequests;
-using OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatementRequests;
-using System;
-using System.Threading.Tasks;
-using Blazored.LocalStorage;
-using Microsoft.Extensions.Localization;
-using System.Globalization;
 
 namespace OfficeEntry.WebApp.Pages
 {
     [Authorize]
-    public partial class Index : ComponentBase
+    public partial class Index
     {
+        private bool loading = true;
+
         [Inject] public NavigationManager NavigationManager { get; set; }
 
         protected override void OnInitialized()
@@ -24,15 +18,16 @@ namespace OfficeEntry.WebApp.Pages
             {
                 case "en":
                     SetLanguageToEnglish();
-                    break;
+                    return;
                 case "fr":
                     SetLanguageToFrench();
-                    break;
+                    return;
                 default:
                     break;
             }
 
             base.OnInitialized();
+            loading = false;
         }
 
         public void SetLanguageToFrench()

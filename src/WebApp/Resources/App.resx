@@ -327,6 +327,9 @@
   <data name="To" xml:space="preserve">
     <value>to</value>
   </data>
+  <data name="To start using this app, please read and agree to the following:" xml:space="preserve">
+    <value>To start using this app, please read and agree to the following:</value>
+  </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>

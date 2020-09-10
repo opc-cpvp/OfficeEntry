@@ -44,7 +44,7 @@ namespace OfficeEntry.WebApp.Area.Localization
 
                 var segments = context.Request.Path.Value.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
 
-                if (segments.Length > 1 && segments[0].Length == 2)
+                if (segments.Length >= 1 && segments[0].Length == 2)
                 {
                     currentCulture = segments[0];
                 }

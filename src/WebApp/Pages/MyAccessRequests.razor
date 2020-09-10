@@ -8,11 +8,16 @@
 
 <h1>@Localizer["My Requests"]</h1>
 
-@if (MyAccessRequestsState.Value.IsLoading)
+@if (MyAccessRequestsState.Value.IsLoading || MyTermsAndConditionsState.Value.IsLoading)
 {
     <Loading />
 }
 else
 {
-    <AccessRequestDatatable AccessRequests="@MyAccessRequestsState.Value.AccessRequests"></AccessRequestDatatable>
+    if (!MyTermsAndConditionsState.Value.AreTermsAndConditionsAccepted)
+    {
+        <TermsAndConditionsCard />
+    }
+
+    <AccessRequestDatatable AccessRequests="@MyAccessRequestsState.Value.AccessRequests" />
 }

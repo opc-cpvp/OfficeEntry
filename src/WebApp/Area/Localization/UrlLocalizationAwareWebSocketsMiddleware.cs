@@ -163,7 +163,7 @@ namespace OfficeEntry.WebApp.Area.Localization
 
             var refererSegments = uri.LocalPath.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
 
-            if (refererSegments.Length > 1 && refererSegments[0].Length == 2)
+            if (refererSegments.Length >= 1 && refererSegments[0].Length == 2)
             {
                 var culture = refererSegments[0];
                 return culture;

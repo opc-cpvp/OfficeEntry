@@ -1,9 +1,7 @@
-﻿@page "/en/privacy-act-statement"
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/en/privacy-act-statement"
 @page "/fr/protection-des-renseignements-personnels"
-
-@inherits PrivacyActStatementBase
-
-@inject IStringLocalizer<App> Localizer
 
 <h1>@Localizer["Privacy Act Statement"]</h1>
 
