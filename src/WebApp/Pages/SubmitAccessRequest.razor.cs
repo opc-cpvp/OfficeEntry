@@ -111,7 +111,7 @@ namespace OfficeEntry.WebApp.Pages
             Dispatcher.Dispatch(new GetMyAccessRequestsAction());
             Dispatcher.Dispatch(new GetManagerApprovalsAction());
 
-            NavigationManager.NavigateTo("/access-requests");
+            NavigationManager.NavigateTo(Localizer["my-access-requests"]);
 
             static IEnumerable<AssetRequest> Repeat(int value, int count)
                 => Enumerable.Repeat(new AssetRequest

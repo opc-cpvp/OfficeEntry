@@ -9,14 +9,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Fluxor;
 using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
+using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
 
 namespace OfficeEntry.WebApp.Pages
 {
     [Authorize]
     public partial class MyAccessRequests
     {
-        [Inject] private IState<MyAccessRequestsState> MyAccessRequestsState { get; set; }
-        [Inject] private IDispatcher Dispatcher { get; set; }
+        [Inject] public IState<MyAccessRequestsState> MyAccessRequestsState { get; set; }
+        [Inject] public IState<MyTermsAndConditionsState> MyTermsAndConditionsState { get; set; }
+        [Inject] public IDispatcher Dispatcher { get; set; }
         [Inject] public IStringLocalizer<App> Localizer { get; set; }
         [Inject] public IMediator Mediator { get; set; }
         [Inject] public IJSRuntime JSRuntime { get; set; }
@@ -55,9 +57,9 @@ namespace OfficeEntry.WebApp.Pages
             }
 
             var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-            locale = (locale == Locale.French) ? locale : Locale.English;            
+            locale = (locale == Locale.French) ? locale : Locale.English;
 
-            await JSRuntime.InvokeAsync<object>("initializeDatatables", locale);          
+            await JSRuntime.InvokeAsync<object>("initializeDatatables", locale);
         }
 
         protected override void Dispose(bool disposing)

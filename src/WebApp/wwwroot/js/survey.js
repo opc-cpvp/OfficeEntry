@@ -3,22 +3,24 @@
 interopJS.survey = {
     dotNet: null,
     survey: null,
+    locale: null,
 
-    save: function(name, value) {
+    save: function (name, value) {
         window.localStorage["surveyjs-blazor"] = value;
     },
 
-    register: function(dotNetReference) {
+    register: function (dotNetReference, locale) {
         dotNet = dotNetReference;
+        this.locale = locale;
     },
 
-    dispose: function(_) {
+    dispose: function (_) {
         document
             .querySelector('#blazor-survey-wraper')
             .innerHTML = "";
     },
 
-    data: function(_) {
+    data: function (_) {
         return JSON.stringify(survey.data, null, 3);
     },
 
@@ -31,6 +33,8 @@ interopJS.survey = {
 
 
     init: function (id, classStyle, surveyUrl, data) {
+        var that = this;
+
         // Override the color used style the flip switch
         Survey.StylesManager.ThemeColors["bootstrap"]["$main-color"] = "#007bff";
 
@@ -44,33 +48,32 @@ interopJS.survey = {
 
         fetch(surveyUrl)
             .then(function (response) { return response.json(); })
-            .then(function(json) {
+            .then(function (json) {
                 document
                     .querySelector('#blazor-survey-wraper')
                     .innerHTML = "<div id=" + id + " class=" + classStyle + "><survey :survey=\"survey\"/></div>";
 
                 if (json.locale)
-                    json.locale = window.localStorage['BlazorCulture'] === "fr-CA" ? "fr" : "en";
+                    json.locale = that.locale;
 
                 survey = new Survey.Model(json);
 
-                survey.locale = window.localStorage['BlazorCulture'] === "fr-CA" ? "fr" : "en";
-
+                survey.locale = that.locale;
 
                 survey
                     .onComplete
-                    .add(function(result) {
+                    .add(function (result) {
                         dotNet.invokeMethodAsync("SurveyCompleted", JSON.stringify(result.data))
-                            .then(function(data) {
+                            .then(function (data) {
                                 console.log("### surveyjs was sent to .NET.");
                             });
                     });
 
                 survey
                     .onCurrentPageChanged
-                    .add(function(survey, options) {
+                    .add(function (survey, options) {
                         dotNet.invokeMethodAsync("PageChanged", JSON.stringify(survey.data), options.newCurrentPage.name);
-                });
+                    });
 
                 interopJS.survey.survey = survey;
 
