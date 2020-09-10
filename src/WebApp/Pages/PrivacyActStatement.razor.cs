@@ -12,7 +12,7 @@ using OfficeEntry.Application.TermsAndConditions.Queries.GetPrivacyStatementRequ
 namespace OfficeEntry.WebApp.Pages
 {
     [Authorize]
-    public abstract class PrivacyActStatementBase : ComponentBase
+    public partial class PrivacyActStatement
     {
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -22,6 +22,9 @@ namespace OfficeEntry.WebApp.Pages
 
         [Inject]
         public IMediator Mediator { get; set; }
+
+        [Inject]
+        private IState<TermsAndConditionsState> TermsAndConditionsState { get; set; }
 
         protected string SurveyData { get; set; }
 

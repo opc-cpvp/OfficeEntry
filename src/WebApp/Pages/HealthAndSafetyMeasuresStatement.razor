@@ -1,13 +1,11 @@
 ﻿@page "/health-and-safety-measures"
 @page "/mesures-de-sante-et-de-securite-relatives"
 
-@inherits HealthAndSafetyMeasuresStatementBase
-
 @inject IStringLocalizer<App> Localizer
 
 <h1>@Localizer["Health & Safety Measures"]</h1>
 
-@if (SurveyData is null)
+@if (SurveyData is null || TermsAndConditionsState.Value.IsLoading)
 {
     <Loading />
 }

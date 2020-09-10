@@ -12,7 +12,7 @@ using OfficeEntry.WebApp.Store.TermsAndConditionsUseCase;
 namespace OfficeEntry.WebApp.Pages
 {
     [Authorize]
-    public abstract class HealthAndSafetyMeasuresStatementBase : ComponentBase
+    public partial class HealthAndSafetyMeasuresStatement
     {
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -22,6 +22,9 @@ namespace OfficeEntry.WebApp.Pages
 
         [Inject]
         public IMediator Mediator { get; set; }
+        
+        [Inject] 
+        private IState<TermsAndConditionsState> TermsAndConditionsState { get; set; }
 
         public bool SurveyCompleted { get; set; }
 

@@ -1,13 +1,13 @@
-﻿@page "/privacy-act-statement"
-@page "/protection-des-renseignements-personnels"
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
-@inherits PrivacyActStatementBase
+@page "/privacy-act-statement"
+@page "/protection-des-renseignements-personnels"
 
 @inject IStringLocalizer<App> Localizer
 
 <h1>@Localizer["Privacy Act Statement"]</h1>
 
-@if (SurveyData is null)
+@if (SurveyData is null || TermsAndConditionsState.Value.IsLoading)
 {
     <Loading />
 }
