@@ -21,7 +21,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
         public async Task<TermsAndConditions> GetTermsAndConditionsFor(string username)
         {
-            var (result, contact) = await _userService.GetContact(username);
+            var (_, contact) = await _userService.GetContact(username);
 
             return new TermsAndConditions()
             {
