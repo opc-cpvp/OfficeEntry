@@ -19,12 +19,11 @@
       "destination": "wwwroot/lib/survey-vue/"
     },
     {
-      "provider": "unpkg",
-      "library": "surveyjs-widgets@1.7.24",
+      "provider": "jsdelivr",
+      "library": "surveyjs-widgets@1.8.0",
       "destination": "wwwroot/lib/surveyjs-widgets/"
     },
     {
-      "provider": "unpkg",
       "library": "jquery@3.5.1",
       "destination": "wwwroot/lib/jquery/"
     },
@@ -37,7 +36,7 @@
       "destination": "wwwroot/lib/select2/"
     },
     {
-      "provider": "unpkg",
+      "provider": "jsdelivr",
       "library": "@ttskch/select2-bootstrap4-theme@1.4.0",
       "destination": "wwwroot/lib/ttskch/select2-bootstrap4-theme/"
     },
