@@ -3,8 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using OfficeEntry.Application.TermsAndConditions.Commands.UpdateHealthAndSafetyStatementRequests;
-using OfficeEntry.Application.TermsAndConditions.Queries.GetHealthAndSafetyMeasuresRequests;
+using OfficeEntry.Application.User.Commands.UpdateHealthAndSafetyStatementRequests;
 using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
 using System.Linq;
 using System.Text.Json;
@@ -18,6 +17,7 @@ namespace OfficeEntry.WebApp.Pages
         [Inject] public NavigationManager NavigationManager { get; set; }
         [Inject] public IMediator Mediator { get; set; }
         [Inject] public IStringLocalizer<App> Localizer { get; set; }
+        [Inject] public IState<MyTermsAndConditionsState> MyTermsAndConditionsState { get; set; }
         [Inject] public IDispatcher Dispatcher { get; set; }
 
         protected bool SurveyCompleted { get; set; }
@@ -38,24 +38,44 @@ namespace OfficeEntry.WebApp.Pages
             NavigationManager.NavigateTo(Localizer["my-access-requests"]);
         }
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        protected override void Dispose(bool disposing)
         {
-            if (firstRender)
+            MyTermsAndConditionsState.StateChanged -= MyTermsAndConditionsState_StateChanged;
+            base.Dispose(disposing);
+        }
+
+        protected override void OnInitialized()
+        {
+            if (!MyTermsAndConditionsState.Value.IsLoading)
             {
-                var isHealthAndSafetyStatementAccepted = await Mediator.Send(new GetHealthAndSafetyMeasuresForCurrentUserQuery());
-
-                var surveyData = new HealthAndSafetyMeasuresStatementSurveyData
-                {
-                    questionAcceptHsmStatement = isHealthAndSafetyStatementAccepted
-                        ? new string[] { "iAcceptHsmStatement" }
-                        : new string[0]
-                };
-
-                SurveyData = JsonSerializer.Serialize(surveyData);
-                StateHasChanged();
+                SetSurveyData(MyTermsAndConditionsState.Value.IsHealthAndSafetyMeasuresAccepted);
             }
 
-            await base.OnAfterRenderAsync(firstRender);
+            MyTermsAndConditionsState.StateChanged += MyTermsAndConditionsState_StateChanged;
+            base.OnInitialized();
+        }
+
+        private void MyTermsAndConditionsState_StateChanged(object sender, MyTermsAndConditionsState e)
+        {
+            if (e.IsLoading)
+            {
+                return;
+            }
+
+            SetSurveyData(e.IsHealthAndSafetyMeasuresAccepted);
+            StateHasChanged();
+        }
+
+        private void SetSurveyData(bool isHealthAndSafetyMeasuresAccepted)
+        {
+            var surveyData = new HealthAndSafetyMeasuresStatementSurveyData
+            {
+                questionAcceptHsmStatement = isHealthAndSafetyMeasuresAccepted
+                    ? new string[] { "iAcceptHsmStatement" }
+                    : new string[0]
+            };
+
+            SurveyData = JsonSerializer.Serialize(surveyData);
         }
 
         private protected class HealthAndSafetyMeasuresStatementSurveyData

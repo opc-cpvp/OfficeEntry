@@ -3,7 +3,7 @@ using OfficeEntry.Application.Common.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OfficeEntry.Application.TermsAndConditions.Commands.UpdatePrivacyStatementRequests
+namespace OfficeEntry.Application.User.Commands.UpdatePrivacyStatementRequests
 {
     public class UpdatePrivacyActStatementForCurrentUserCommand : IRequest
     {

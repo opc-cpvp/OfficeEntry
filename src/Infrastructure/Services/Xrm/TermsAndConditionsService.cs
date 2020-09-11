@@ -1,6 +1,7 @@
 ﻿using Microsoft.OData.Edm;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
+using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 using System;
 using System.Net.Http;
@@ -18,24 +19,15 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             _userService = contactService;
         }
 
-        public async Task<(Result Result, bool IsHealthAndSafetyMeasuresAccepted)> GetHealthAndSafetyMeasuresFor(string username)
+        public async Task<TermsAndConditions> GetTermsAndConditionsFor(string username)
         {
             var (result, contact) = await _userService.GetContact(username);
 
-            if (!result.Succeeded)
-                return (result, default(bool));
-
-            return (Result.Success(), contact.UserSettings?.HealthSafety.HasValue ?? false);
-        }
-
-        public async Task<(Result Result, bool IsPrivacyActStatementAccepted)> GetPrivacyActStatementFor(string username)
-        {
-            var (result, contact) = await _userService.GetContact(username);
-
-            if (!result.Succeeded)
-                return (result, default(bool));
-
-            return (Result.Success(), contact.UserSettings?.PrivacyStatement.HasValue ?? false);
+            return new TermsAndConditions()
+            {
+                IsHealthAndSafetyMeasuresAccepted = contact.UserSettings?.HealthSafety.HasValue ?? false,
+                IsPrivacyActStatementAccepted = contact.UserSettings?.PrivacyStatement.HasValue ?? false,
+            };
         }
 
         public async Task<Result> SetHealthAndSafetyMeasuresFor(string username, bool isHealthAndSafetyMeasuresAccepted)
@@ -132,8 +124,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
 
         protected override void Dispose(bool disposing)
         {
-            var d = _userService as IDisposable;
-            d?.Dispose();
+            (_userService as IDisposable)?.Dispose();
 
             base.Dispose(disposing);
         }
