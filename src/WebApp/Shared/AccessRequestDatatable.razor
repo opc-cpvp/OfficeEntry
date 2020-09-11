@@ -16,6 +16,8 @@
         @foreach (var accessRequest in AccessRequests)
         {
             var statusClass = string.Empty;
+            var tdClass = "align-middle";
+
             switch ((ApprovalStatus)accessRequest.Status.Key)
             {
                 case ApprovalStatus.Approved:
@@ -23,6 +25,7 @@
                     break;
                 case ApprovalStatus.Pending:
                     statusClass = "text-secondary";
+                    tdClass += " font-weight-bold";
                     break;
                 case ApprovalStatus.Cancelled:
                 case ApprovalStatus.Declined:
@@ -32,13 +35,13 @@
             }
 
             <tr>
-                <td class="align-middle">
+                <td class="@tdClass">
                     <a class="btn btn-secondary btn-sm mr-2" href="/@Localizer["access-requests"]/@accessRequest.Id"><i class="fas fa-external-link-alt"></i></a>
                     @accessRequest.StartTime.Date.ToString(Localizer["MMMM dd, yyyy"]) @accessRequest.StartTime.ToString(Localizer["h:mm tt"]) - @accessRequest.EndTime.ToString(Localizer["h:mm tt"])
                 </td>
-                <td class="align-middle">@accessRequest.Employee.FullName</td>
-                <td class="align-middle">@accessRequest.Building.Name</td>
-                <td class="align-middle">@accessRequest.Floor.Name</td>
+                <td class="@tdClass">@accessRequest.Employee.FullName</td>
+                <td class="@tdClass">@accessRequest.Building.Name</td>
+                <td class="@tdClass">@accessRequest.Floor.Name</td>
                 <td class="align-middle font-weight-bold @statusClass">@Localizer[accessRequest.Status.Value]</td>
             </tr>
         }
