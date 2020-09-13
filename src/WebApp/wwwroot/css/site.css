@@ -59,7 +59,7 @@ app {
     }
 
     .sidebar .oi {
-        width: 2rem;
+        /*width: 2rem;*/
         font-size: 1.1rem;
         vertical-align: text-top;
         top: -2px;
@@ -148,6 +148,15 @@ app {
     .main .top-row a, .main .top-row .btn-link {
         margin-left: 0;
     }
+
+    .sidenav-footer {
+        display: flex;
+        flex-shrink: 0;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        height: 5rem;
+        text-align: right;
+    }
 }
 
 @media (min-width: 768px) {
@@ -180,4 +189,29 @@ app {
         /* Never collapse the sidebar for wide screens */
         display: block;
     }
+
+    .sidenav-footer {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        height: 5rem;
+        position: fixed;
+        bottom: 0;
+        color: white;
+        text-align: center;
+    }
+}
+
+.sidenav-footer-content {
+    color: white;
+}
+
+/*.sidenav-footer-content::before, .sidenav-footer-content::after {
+    box-sizing: border-box;
+}*/
+
+.sidenav-footer-subtitle {
+}
+
+.sidenav-footer-title {
 }
