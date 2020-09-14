@@ -18,11 +18,12 @@ namespace OfficeEntry.WebApp
                 //.AddEnvironmentVariables(prefix: "OfficeEntry__")
                 .Build();
 
+            var assemblyVersion = typeof(Program).Assembly.GetName().Version.ToString();
+
             Log.Logger = new LoggerConfiguration()
-                .ReadFrom
-                .Configuration(configuration)
-                .Enrich.WithExceptionDetails(new DestructuringOptionsBuilder()
-                    .WithDefaultDestructurers())
+                .ReadFrom.Configuration(configuration)
+                .Enrich.WithProperty("Version", assemblyVersion)
+                .Enrich.WithExceptionDetails(new DestructuringOptionsBuilder().WithDefaultDestructurers())
                 .Filter.ByExcluding("RequestPath = '/health' and StatusCode = 200")
                 .CreateLogger();
 

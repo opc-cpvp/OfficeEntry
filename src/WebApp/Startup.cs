@@ -1,4 +1,4 @@
-    using Blazored.LocalStorage;
+using Blazored.LocalStorage;
 using Fluxor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,9 +8,9 @@ using Microsoft.Extensions.Hosting;
 using OfficeEntry.Application;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Infrastructure;
-using OfficeEntry.WebApp.Area.Localization;
 using OfficeEntry.WebApp.Area.Identity;
 using OfficeEntry.WebApp.Area.Identity.Services;
+using OfficeEntry.WebApp.Area.Localization;
 using OfficeEntry.WebApp.Filters;
 using Serilog;
 
@@ -82,6 +82,7 @@ namespace OfficeEntry.WebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseRequestLogContext();
             app.UseSerilogRequestLogging();
 
             app.UseRouting();
