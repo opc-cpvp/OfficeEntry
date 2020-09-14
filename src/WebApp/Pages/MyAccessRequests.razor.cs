@@ -49,24 +49,20 @@ namespace OfficeEntry.WebApp.Pages
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await base.OnAfterRenderAsync(firstRender);
-
             if (!firstRender)
-            {
                 return;
-            }
 
             var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             locale = (locale == Locale.French) ? locale : Locale.English;
 
-            await JSRuntime.InvokeAsync<object>("initializeDatatables", locale);
+            await JSRuntime.InvokeVoidAsync("interop.datatables.init", locale);
         }
 
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
             MyAccessRequestsState.StateChanged -= MyAccessRequestsState_StateChanged;
-            JSRuntime.InvokeAsync<object>("destroyDatatables");
+            JSRuntime.InvokeVoidAsync("interop.datatables.destroy");
         }
     }
 }

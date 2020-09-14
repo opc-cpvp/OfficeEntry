@@ -48,14 +48,14 @@ namespace OfficeEntry.WebApp.Pages
             var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             locale = (locale == Locale.French) ? locale : Locale.English;
 
-            await JSRuntime.InvokeAsync<object>("initializeDatatables", locale);
+            await JSRuntime.InvokeVoidAsync("interop.datatables.init", locale);
         }
 
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
             ApprovalsState.StateChanged -= ApprovalsState_StateChanged;
-            JSRuntime.InvokeAsync<object>("destroyDatatables");
+            JSRuntime.InvokeVoidAsync("interop.datatables.destroy");
         }
     }
 }
