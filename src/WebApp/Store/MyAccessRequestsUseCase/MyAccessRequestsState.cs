@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace OfficeEntry.WebApp.Store.MyAccessRequestsUseCase
 {
-
     public class MyAccessRequestsState
     {
         public bool IsLoading { get; }
