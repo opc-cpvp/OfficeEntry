@@ -20,13 +20,13 @@ namespace OfficeEntry.WebApp.Pages
         [Parameter]
         public Guid Id { get; set; }
 
-        [Inject] 
+        [Inject]
         public IStringLocalizer<App> Localizer { get; set; }
 
         [Inject]
         public IMediator Mediator { get; set; }
-        
-        [Inject] 
+
+        [Inject]
         public NavigationManager NavigationManager { get; set; }
 
         [Inject]
@@ -90,7 +90,7 @@ namespace OfficeEntry.WebApp.Pages
             Dispatcher.Dispatch(new GetManagerApprovalsAction());
             Dispatcher.Dispatch(new GetMyAccessRequestsAction());
 
-            NavigationManager.NavigateTo(Localizer["access-requests"]);
+            NavigationManager.NavigateTo(Localizer["my-access-requests"]);
         }
 
         private async Task DeclineRequest()
