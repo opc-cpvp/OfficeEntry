@@ -3,7 +3,7 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "fetch@3.1.0",
+      "library": "fetch@3.4.1",
       "destination": "wwwroot/lib/fetch/"
     },
     {
@@ -11,16 +11,16 @@
       "destination": "wwwroot/lib/promise-polyfill/"
     },
     {
-      "library": "vue@2.6.11",
+      "library": "vue@2.6.12",
       "destination": "wwwroot/lib/vue/"
     },
     {
-      "library": "survey-vue@1.7.24",
+      "library": "survey-vue@1.8.2",
       "destination": "wwwroot/lib/survey-vue/"
     },
     {
       "provider": "jsdelivr",
-      "library": "surveyjs-widgets@1.8.0",
+      "library": "surveyjs-widgets@1.8.2",
       "destination": "wwwroot/lib/surveyjs-widgets/"
     },
     {
