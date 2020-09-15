@@ -288,7 +288,7 @@
             }
           ],
           "visibleIf": "{registerVisitors} = true"
-        }       
+        }
       ]
     },
     {
@@ -335,7 +335,7 @@
               "type": "expression",
               "text": {
                 "default": "The request exceeds the available capacity for the chosen time range",
-                "fr":  "La demande excède la capacité disponible pour l'intervalle de temps choisi"
+                "fr": "La demande excède la capacité disponible pour l'intervalle de temps choisi"
               },
               "expression": "CapacityValidator() = true"
             }
@@ -519,6 +519,7 @@
             "fr": "À"
           },
           "defaultValue": "17",
+          "isRequired": true,
           "choicesVisibleIf": "{item} > {startTime}",
           "choices": [
             {
