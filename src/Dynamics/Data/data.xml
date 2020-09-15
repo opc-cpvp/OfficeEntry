@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2020-08-12T20:02:24.9731201Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2020-09-15T19:43:55.3478534Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -48,8 +48,8 @@
         <field name="gc_frenchname" value="8e &amp;#233;tage" />
         <field name="gc_floorid" value="034d9f76-d0b4-ea11-a2e3-005056aa7ac3" />
         <field name="gc_englishname" value="8th floor" />
-        <field name="gc_currentcapacity" value="15" />
-        <field name="gc_capacity" value="15" />
+        <field name="gc_currentcapacity" value="50" />
+        <field name="gc_capacity" value="50" />
         <field name="gc_buildingfloorid" value="0663dbac-ddaf-ea11-a2e3-005056aa7ac3" lookupentity="gc_building" lookupentityname="30 Victoria Street" />
         <field name="gc_name" value="8th floor" />
         <field name="statecode" value="0" />
@@ -59,8 +59,8 @@
         <field name="gc_frenchname" value="4e &amp;#233;tage" />
         <field name="gc_floorid" value="b5bbf3ab-5dcb-ea11-a2e4-005056aa7ac3" />
         <field name="gc_englishname" value="4th floor" />
-        <field name="gc_currentcapacity" value="10" />
-        <field name="gc_capacity" value="10" />
+        <field name="gc_currentcapacity" value="3" />
+        <field name="gc_capacity" value="3" />
         <field name="gc_buildingfloorid" value="65a7447c-40b0-ea11-a2e3-005056aa7ac3" lookupentity="gc_building" lookupentityname="655 Bay Street,  Suite 404" />
         <field name="gc_name" value="4th floor" />
         <field name="statecode" value="0" />
