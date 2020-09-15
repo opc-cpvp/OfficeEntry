@@ -20,6 +20,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
         public async Task<(Result Result, Contact Contact)> GetContact(string username)
         {
             var contacts = await Client.For<contact>()
+                .Filter(c => c.statecode == (int)StateCode.Active)
                 .Filter(c => c.gc_username == username)
                 .Expand(c => c.gc_usersettings)
                 .FindEntriesAsync();
