@@ -9,7 +9,7 @@
           "name": "building",
           "title": {
             "default": "Building",
-            "fr": "Édifice"
+            "fr": "Immeuble"
           },
           "isRequired": true,
           "choicesByUrl": {
@@ -44,22 +44,15 @@
             {
               "value": "948160000",
               "text": {
-                "default": "Critical Work",
+                "default": "Critical work",
                 "fr": "Travail critique"
               }
             },
             {
               "value": "948160002",
               "text": {
-                "default": "Regular Work",
+                "default": "Regular work",
                 "fr": "Travail régulier"
-              }
-            },
-            {
-              "value": "948160003",
-              "text": {
-                "default": "Pickup Office Equipment",
-                "fr": "Récupérer un matériel de bureau"
               }
             },
             {
@@ -80,125 +73,6 @@
           }
         }
       ]
-    },
-    {
-      "name": "page8",
-      "elements": [
-        {
-          "type": "html",
-          "name": "question1",
-          "html": {
-            "default": "<p>Prior to submitting a request, ensure alternatives such as purchasing or delivery of items have been considered and deemed not viable.</p>\n\n<p>If this request relates to a Duty to Accommodate Plan, managers should contact their Labour Relations Advisor for advice and guidance. In the event the employee requires support to retrieve a larger asset related to a DTA (i.e. chair), there is a pick-up and delivery service available through the <a href=\"http://jusnet.justice.gc.ca/eng/work-travail/facil-install/juspace.html\" target=\"_blank\">National Accommodations Division</a> available through the JUSpace link on the JUSnet home page.</p>",
-            "fr": "<p>Avant de soumettre une demande, assurez-vous que des alternatives telles que l'achat ou la livraison d'articles ont été envisagées et jugées non viables.</p>\n\n<p>Si cette demande concerne un régime d’obligation d’adaptation, les gestionnaires devraient communiquer avec leur conseiller en relations de travail pour obtenir des conseils et des directives. Dans le cas où l'employé a besoin d'aide pour récupérer un item plus important lié à un DTA (c.-à-d. une chaise), un service de collecte et de livraison est disponible via la <a href=\"http://jusnet.justice.gc.ca/fra/work-travail/facil-install/juspace.html\" target=\"_blank\">Division de l'hébergement national</a> disponible par le lien JUSpace sur la page d'accueil de JUSnet."
-          }
-        }
-      ],
-      "visibleIf": "{reason} = 948160003"
-    },
-    {
-      "name": "page9",
-      "elements": [
-        {
-          "type": "text",
-          "name": "chair",
-          "title": {
-            "default": "Chair",
-            "fr": "Chaise"
-          },
-          "defaultValue": "0"
-        },
-        {
-          "type": "text",
-          "name": "laptop",
-          "title": {
-            "default": "Laptop",
-            "fr": "Portable"
-          },
-          "defaultValue": "0"
-        },
-        {
-          "type": "text",
-          "name": "tablet",
-          "title": {
-            "default": "Tablet",
-            "fr": "Tablette"
-          },
-          "defaultValue": "0"
-        },
-        {
-          "type": "text",
-          "name": "monitor",
-          "title": {
-            "default": "Monitor",
-            "fr": "Moniteur"
-          },
-          "defaultValue": "0"
-        },
-        {
-          "type": "text",
-          "name": "dockingStation",
-          "title": {
-            "default": "Docking Station",
-            "fr": "Station d'accueil pour ordinateur portable"
-          },
-          "defaultValue": "0"
-        },
-        {
-          "type": "text",
-          "name": "keyboard",
-          "title": {
-            "default": "Keyboard",
-            "fr": "Clavier"
-          },
-          "defaultValue": "0"
-        },
-        {
-          "type": "text",
-          "name": "mouse",
-          "title": {
-            "default": "Mouse",
-            "fr": "Souris"
-          },
-          "defaultValue": "0"
-        },
-        {
-          "type": "text",
-          "name": "cables",
-          "title": {
-            "default": "Cables",
-            "fr": "Câbles"
-          },
-          "defaultValue": "0"
-        },
-        {
-          "type": "text",
-          "name": "headset",
-          "title": {
-            "default": "Headset",
-            "fr": "Casque d'écoute"
-          },
-          "defaultValue": "0"
-        },
-        {
-          "type": "text",
-          "name": "printer",
-          "title": {
-            "default": "Printer",
-            "fr": "Imprimante"
-          },
-          "defaultValue": "0"
-        },
-        {
-          "type": "comment",
-          "name": "other",
-          "title": {
-            "default": "Other",
-            "fr": "Autre"
-          }
-        }
-      ],
-      "visibleIf": "{reason} = 948160003",
-      "questionTitleLocation": "top"
     },
     {
       "name": "page2",
@@ -727,7 +601,7 @@
           "name": "acknowledgeHealthStatement",
           "html": {
             "default": "<p><strong>On the day you are scheduled to enter the workplace, cancel your request and DO NOT enter the workplace if ANY of the following apply:</strong></p>\n\n<ul>\n<li>You are feeling ill or experiencing symptoms such as fever, cough, runny nose, sore throat, or difficulty breathing.</li>\n<li>You have been tested for, diagnosed with, or suspected of having COVID-19 in the last 14 days.</li>\n<li>You have provided care for or had close contact in the last 14 days with a suspected, probable or confirmed case of COVID-19.</li>\n<li>You have travelled outside Canada in the last 14 days.</li>\n</ul>",
-            "fr": "<p><strong>Le jour où vous devez entrer sur le lieu de travail, annulez votre demande et n'entrez PAS dans le lieu de travail si l'une des conditions suivantes s'applique:</strong></p>\n\n<ul>\n<li>Vous vous sentez malade ou présentez des symptômes tels que fièvre, toux, écoulement nasal, mal de gorge ou difficulté à respirer.</li>\n<li>Vous avez été testé, diagnostiqué ou soupçonné d'être atteint de COVID-19 au cours des 14 derniers jours.</li>\n<li>Vous avez soigné ou eu des contacts étroits au cours des 14 derniers jours avec un cas suspect, probable ou confirmé de COVID-19.</li>\n<li>Vous avez voyagé à l'extérieur du Canada au cours des 14 derniers jours.</li>"
+            "fr": "<p><strong>Le jour où vous devez entrer sur le lieu de travail, annulez votre demande et n'entrez PAS dans le lieu de travail si l'une des conditions suivantes s'applique:</strong></p>\n\n<ul>\n<li>Vous vous sentez malade ou présentez des symptômes tels que fièvre, toux, écoulement nasal, mal de gorge ou difficulté à respirer.</li>\n<li>Vous avez été testé, diagnostiqué ou soupçonné d'être atteint de COVID-19 au cours des 14 derniers jours.</li>\n<li>Vous avez soigné un cas suspect, probable ou confirmé de COVID-19 ou eu des contacts étroits avec ce dernier au cours des 14 derniers jours.</li>\n<li>Vous avez voyagé à l'extérieur du Canada au cours des 14 derniers jours.</li>"
           }
         },
         {
