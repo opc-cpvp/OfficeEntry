@@ -40,19 +40,6 @@
       ]
     },
     {
-      "name": "page6",
-      "elements": [
-        {
-          "type": "html",
-          "name": "question4",
-          "html": {
-            "default": "<div class=\"text-center\"><img src=\"/img/0009.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Comply with signage and occupancy limits</p>\n\n<p>Comply with all directional indicators (corridors, stairwells, entrances, exits, etc.).</p>\n\n<p>Comply with all maximum occupancy limits posted in applicable small spaces (i.e. elevators, meeting rooms, washrooms, kitchenettes, etc.).</p>\n\n<p>Comply with all health and safety signage posted by relevant authorities (Government of Canada Departments and Agencies, Property and Facility Managers, Cleaning Staff, etc.).</p>",
-            "fr": "<div class=\"text-center\"><img src=\"/img/0009.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Respectez la signalisation et les limites d'occupation</p>\n\n<p>Respectez tous les indicateurs directionnels (couloirs, cages d'escalier, entrées, sorties, etc.).</p>\n\n<p>Respectez toutes les limites d'occupation maximales affichées dans les petits espaces applicables (c.-à-d. ascenseurs, salles de réunion, toilettes, cuisinettes, etc.).</p>\n\n<p>Conformez-vous à tous les panneaux de santé et de sécurité affichés par les autorités compétentes (ministères et organismes du gouvernement du Canada, gestionnaires des biens et des installations, personnel de nettoyage, etc.).</p>"
-          }
-        }
-      ]
-    },
-    {
       "name": "page13",
       "elements": [
         {
@@ -61,6 +48,19 @@
           "html": {
             "default": "<div class=\"text-center\"><img src=\"/img/0011.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Wearing mask\n</p>\n\n<p>Wearing a homemade non-medical mask / facial covering is mandatory when it is not possible to consistently maintain a 2 meters physical distance from others, especially in common areas, elevators, toilets, etc. Wearing a mask or face covering is not mandatory only once the personnel is at their workstation.</p>",
             "fr": "<div class=\"text-center\"><img src=\"/img/0011.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Port du masque\n</p>\n\n<p>Le port d'un masque non médical ou d'un couvre visage fait maison est obligatoire dans le cas où il est impossible de maintenir une distance de 2 mètres entre soi et les autres, en particulier dans les aires communes, les ascenseurs, les toilettes, etc. Le port du masque ou du couvre-visage n'est pas obligatoire une fois que les employés sont à leur poste de travail.</p>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page6",
+      "elements": [
+        {
+          "type": "html",
+          "name": "question4",
+          "html": {
+            "default": "<div class=\"text-center\"><img src=\"/img/0009.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Comply with signage and occupancy limits</p>\n\n<p>Comply with all directional indicators (corridors, stairwells, entrances, exits, etc.).</p>\n\n<p>Comply with all maximum occupancy limits posted in applicable small spaces (i.e. elevators, meeting rooms, washrooms, kitchenettes, etc.).</p>\n\n<p>Comply with all health and safety signage posted by relevant authorities (Government of Canada Departments and Agencies, Property and Facility Managers, Cleaning Staff, etc.).</p>",
+            "fr": "<div class=\"text-center\"><img src=\"/img/0009.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Respectez la signalisation et les limites d'occupation</p>\n\n<p>Respectez tous les indicateurs directionnels (couloirs, cages d'escalier, entrées, sorties, etc.).</p>\n\n<p>Respectez toutes les limites d'occupation maximales affichées dans les petits espaces applicables (c.-à-d. ascenseurs, salles de réunion, toilettes, cuisinettes, etc.).</p>\n\n<p>Conformez-vous à tous les panneaux de santé et de sécurité affichés par les autorités compétentes (ministères et organismes du gouvernement du Canada, gestionnaires des biens et des installations, personnel de nettoyage, etc.).</p>"
           }
         }
       ]
