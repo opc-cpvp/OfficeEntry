@@ -634,8 +634,8 @@
           "type": "html",
           "name": "acknowledgeWorkplaceStatement",
           "html": {
-            "default": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the COVID-19 Health & Safety Measures</li>\n<li>Remain on the floor for which you obtained approval to access</li>\n<li>Submit a new request should you need to access other floors or stay longer</li>\n<li>Leave on time</li>\n</ul>",
-            "fr": "<p><strong>En milieu de travail:</strong></p>\n\n<ul>\n<li>Se conformer à tous les protocoles décrits dans les mesures de santé et de sécurité COVID-19</li>\n<li>Restez à l'étage pour lequel vous avez obtenu l'autorisation d'accès</li>\n<li>Soumettez une nouvelle demande si vous avez besoin d'accéder à d'autres étages ou de rester plus longtemps</li>\n<li>Quittez à l'heure prévue</li>\n</ul>"
+            "default": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the COVID-19 Health & Safety Measures.</li>\n<li>Remain on the floor for which you obtained approval to access.</li>\n<li>Submit a new request should you need to access other floors or stay longer.</li>\n<li>Leave on time.</li>\n</ul>",
+            "fr": "<p><strong>En milieu de travail:</strong></p>\n\n<ul>\n<li>Conformez-vous à tous les protocoles décrits dans les mesures de santé et de sécurité COVID-19.</li>\n<li>Restez à l'étage pour lequel vous avez obtenu l'autorisation d'accès.</li>\n<li>Soumettez une nouvelle demande si vous avez besoin d'accéder à d'autres étages ou de rester plus longtemps.</li>\n<li>Quittez à l'heure prévue.</li>\n</ul>"
           }
         },
         {
