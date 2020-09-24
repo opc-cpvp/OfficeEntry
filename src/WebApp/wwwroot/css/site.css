@@ -215,3 +215,7 @@ app {
 
 .sidenav-footer-title {
 }
+
+.sv_q_required_text {
+    color: red;
+}
