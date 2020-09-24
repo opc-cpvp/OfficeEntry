@@ -1,12 +1,12 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2020-09-15T19:43:55.3478534Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2020-09-22T00:38:25.9790646Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
         <field name="gc_englishdescription" value="OPC HQ" />
         <field name="gc_englishname" value="30 Victoria Street" />
         <field name="gc_frenchdescription" value="CPVP SS" />
-        <field name="gc_frenchname" value="30 rue Victoria" />
+        <field name="gc_frenchname" value="30, rue Victoria" />
         <field name="gc_city" value="Gatineau" />
         <field name="gc_buildingid" value="0663dbac-ddaf-ea11-a2e3-005056aa7ac3" />
         <field name="gc_address" value="30 rue Victoria" />
@@ -18,8 +18,8 @@
       <record id="65a7447c-40b0-ea11-a2e3-005056aa7ac3">
         <field name="gc_englishdescription" value="655 Bay Street,  Suite 404" />
         <field name="gc_englishname" value="655 Bay Street,  Suite 404" />
-        <field name="gc_frenchdescription" value="655 rue Bay,  Suite 404" />
-        <field name="gc_frenchname" value="655 rue Bay,  Suite 404" />
+        <field name="gc_frenchdescription" value="655, rue Bay, bureau 404" />
+        <field name="gc_frenchname" value="655, rue Bay, bureau 404" />
         <field name="gc_city" value="Toronto" />
         <field name="gc_buildingid" value="65a7447c-40b0-ea11-a2e3-005056aa7ac3" />
         <field name="gc_address" value="655 Bay Street,  Suite 404" />
