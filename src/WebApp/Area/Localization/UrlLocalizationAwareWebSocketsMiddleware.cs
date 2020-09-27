@@ -36,8 +36,6 @@ namespace OfficeEntry.WebApp.Area.Localization
          */
 
         private static readonly ConcurrentDictionary<string, string> _cultureByConnectionTokens = new ConcurrentDictionary<string, string>();
-        private static bool _cleanUpRegistered = false;
-        private static readonly object _lock = new object();
         private readonly RequestDelegate _next;
 
         /// <summary>
@@ -52,51 +50,32 @@ namespace OfficeEntry.WebApp.Area.Localization
         }
 
         /// <summary>
-        /// When "closing" the SignalR connection (websocket) clean-up the memory by removing the
-        /// token from the dictionary.
-        /// </summary>
-        private static void CleanUpRegistration(CircuitHandler trackingCircuitHandler)
-        {
-            if (_cleanUpRegistered)
-            {
-                return;
-            }
-
-            lock (_lock)
-            {
-                var handler = (TrackingCircuitHandler)trackingCircuitHandler;
-
-                handler.ConnectionDown += (s, e) => _cultureByConnectionTokens.TryRemove(e.ConnectionToken, out _);
-
-                _cleanUpRegistered = true;
-            }
-        }
-
-        /// <summary>
         /// Handles the requests and returns a Task that represents the execution of the middleware.
         /// </summary>
         /// <param name="httpContext">
         /// The HTTP context reprensenting the request.
-        ///
-        /// NOTE: This parameter is dependency resolved by the service provider using:
-        ///     services.AddSingleton<Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>
         /// </param>
-        /// <param name="trackingCircuitHandler">
-        /// The SignalR circuit handler.
-        ///
-        /// NOTE: This parameter is dependency resolved by the service provider using:
-        ///     services.AddHttpContextAccessor()
-        /// </param>
-        public async Task InvokeAsync(HttpContext httpContext, CircuitHandler trackingCircuitHandler)
+        public async Task InvokeAsync(HttpContext httpContext)
         {
-            CleanUpRegistration(trackingCircuitHandler);
-
-            var segments = httpContext.Request.Path.Value.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            var segments = httpContext
+                .Request
+                .Path
+                .Value
+                .Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
 
             var nextAction = segments switch
             {
-                string[] { Length: 2 } x when x[0] == "_blazor" && x[1] == "negotiate"                      => BlazorNegotiate,
-                string[] { Length: 1 } x when x[0] == "_blazor" && httpContext.Request.QueryString.HasValue => BlazorHeartbeat,
+                string[] { Length: 2 } x
+                    when x[0] == "_blazor" && x[1] == "negotiate"
+                    && httpContext.Request.Method == "POST"
+                    => BlazorNegotiate,
+
+                string[] { Length: 1 } x
+                    when x[0] == "_blazor"
+                    && httpContext.Request.QueryString.HasValue
+                    && httpContext.Request.Method == "GET"
+                    => BlazorHeartbeat,
+
                 _ => _next
             };
 
@@ -118,6 +97,11 @@ namespace OfficeEntry.WebApp.Area.Localization
             CultureInfo.CurrentUICulture = culture;
 
             await _next(httpContext);
+
+            if (httpContext.Response.StatusCode == StatusCodes.Status101SwitchingProtocols)
+            {
+                _cultureByConnectionTokens.TryRemove(connectionToken, out _);
+            }
         }
 
         /// <summary>
