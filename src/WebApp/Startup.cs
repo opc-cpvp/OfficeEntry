@@ -59,8 +59,6 @@ namespace OfficeEntry.WebApp
             {
                 options.ScanAssemblies(typeof(Program).Assembly);
             });
-
-            services.AddSingleton<Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler, TrackingCircuitHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
