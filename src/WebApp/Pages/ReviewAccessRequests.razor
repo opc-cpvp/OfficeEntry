@@ -14,4 +14,9 @@
 else
 {
     <AccessRequestDatatable AccessRequests="@ApprovalsState.Value.AccessRequests"></AccessRequestDatatable>
+
+    <button @onclick="Refresh" class="btn btn-secondary">
+        <span class="oi oi-reload"></span>
+        <span>@Localizer["Refresh the list"]</span>
+    </button>
 }

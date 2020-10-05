@@ -1,6 +1,4 @@
-﻿@inject IStringLocalizer<App> Localizer
-
-@using OfficeEntry.Infrastructure.Services.Xrm.Entities
+﻿@using OfficeEntry.Infrastructure.Services.Xrm.Entities
 
 <table class="table table-striped datatables responsive nowrap" width="100%">
     <thead>
@@ -47,8 +45,3 @@
         }
     </tbody>
 </table>
-
-@code {
-    [Parameter]
-    public IEnumerable<OfficeEntry.Domain.Entities.AccessRequest> AccessRequests { get; set; }
-}

@@ -279,6 +279,9 @@
   <data name="Reason:" xml:space="preserve">
     <value>Reason:</value>
   </data>
+  <data name="Refresh the list" xml:space="preserve">
+    <value>Refresh the list</value>
+  </data>
   <data name="RegularWork" xml:space="preserve">
     <value>Regular Work</value>
   </data>

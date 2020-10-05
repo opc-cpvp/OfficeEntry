@@ -20,14 +20,10 @@ namespace OfficeEntry.WebApp.Pages
         [Inject] public IState<MyTermsAndConditionsState> MyTermsAndConditionsState { get; set; }
         [Inject] public IDispatcher Dispatcher { get; set; }
         [Inject] public IStringLocalizer<App> Localizer { get; set; }
-        [Inject] public IMediator Mediator { get; set; }
-        [Inject] public IJSRuntime JSRuntime { get; set; }
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
-
-            MyAccessRequestsState.StateChanged += MyAccessRequestsState_StateChanged;
 
             if (!MyAccessRequestsState.Value.AccessRequests.Any())
             {
@@ -35,34 +31,9 @@ namespace OfficeEntry.WebApp.Pages
             }
         }
 
-        private void MyAccessRequestsState_StateChanged(object sender, MyAccessRequestsState e)
+        private void Refresh()
         {
-            var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-            locale = (locale == Locale.French) ? locale : Locale.English;
-
-            foreach (var accessRequest in e.AccessRequests)
-            {
-                accessRequest.Building.Name = (locale == Locale.French) ? accessRequest.Building.FrenchName : accessRequest.Building.EnglishName;
-                accessRequest.Floor.Name = (locale == Locale.French) ? accessRequest.Floor.FrenchName : accessRequest.Floor.EnglishName;
-            }
-        }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (!firstRender)
-                return;
-
-            var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-            locale = (locale == Locale.French) ? locale : Locale.English;
-
-            await JSRuntime.InvokeVoidAsync("interop.datatables.init", locale);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-            MyAccessRequestsState.StateChanged -= MyAccessRequestsState_StateChanged;
-            JSRuntime.InvokeVoidAsync("interop.datatables.destroy");
+            Dispatcher.Dispatch(new GetMyAccessRequestsAction());
         }
     }
 }
