@@ -7,6 +7,7 @@ using Microsoft.JSInterop;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Pages
@@ -14,48 +15,23 @@ namespace OfficeEntry.WebApp.Pages
     [Authorize]
     public partial class ReviewAccessRequests
     {
-        [Inject]
-        private IState<ManagerApprovalsState> ApprovalsState { get; set; }
-
+        [Inject] public IState<ManagerApprovalsState> ApprovalsState { get; set; }
+        [Inject] public IDispatcher Dispatcher { get; set; }
         [Inject] public IStringLocalizer<App> Localizer { get; set; }
-        [Inject] public IMediator Mediator { get; set; }
-        [Inject] public IJSRuntime JSRuntime { get; set; }
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
 
-            ApprovalsState.StateChanged += ApprovalsState_StateChanged;
-        }
-
-        private void ApprovalsState_StateChanged(object sender, ManagerApprovalsState e)
-        {
-            var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-            locale = (locale == Locale.French) ? locale : Locale.English;
-
-            foreach (var accessRequest in e.AccessRequests)
+            if (!ApprovalsState.Value.AccessRequests.Any())
             {
-                accessRequest.Building.Name = (locale == Locale.French) ? accessRequest.Building.FrenchName : accessRequest.Building.EnglishName;
-                accessRequest.Floor.Name = (locale == Locale.French) ? accessRequest.Floor.FrenchName : accessRequest.Floor.EnglishName;
+                Dispatcher.Dispatch(new GetManagerApprovalsAction());
             }
         }
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        private void Refresh()
         {
-            if (!firstRender)
-                return;
-
-            var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-            locale = (locale == Locale.French) ? locale : Locale.English;
-
-            await JSRuntime.InvokeVoidAsync("interop.datatables.init", locale);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-            ApprovalsState.StateChanged -= ApprovalsState_StateChanged;
-            JSRuntime.InvokeVoidAsync("interop.datatables.destroy");
+            Dispatcher.Dispatch(new GetManagerApprovalsAction());
         }
     }
 }

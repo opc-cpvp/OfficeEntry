@@ -20,4 +20,9 @@ else
     }
 
     <AccessRequestDatatable AccessRequests="@MyAccessRequestsState.Value.AccessRequests" />
+
+    <button @onclick="Refresh" class="btn btn-secondary">
+        <span class="oi oi-reload"></span>
+        <span>@Localizer["Refresh the list"]</span>
+    </button>
 }

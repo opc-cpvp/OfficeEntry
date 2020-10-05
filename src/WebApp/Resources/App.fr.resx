@@ -335,4 +335,7 @@
   <data name="To start using this app, please read and agree to the following:" xml:space="preserve">
     <value>Pour commencer à utiliser cette application, veuillez lire et accepter les modalités et conditions suivants:</value>
   </data>
+  <data name="Refresh the list" xml:space="preserve">
+    <value>Rafraîchir la liste</value>
+  </data>
 </root>
