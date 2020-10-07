@@ -32,6 +32,8 @@ namespace OfficeEntry.WebApp.Shared
                 accessRequest.Floor.Name = (locale == Locale.French) ? accessRequest.Floor.FrenchName : accessRequest.Floor.EnglishName;
             }
 
+            StateHasChanged();
+
             await JSRuntime.InvokeVoidAsync("interop.datatables.init", locale);
         }
 
