@@ -634,8 +634,8 @@
           "type": "html",
           "name": "acknowledgeWorkplaceStatement",
           "html": {
-            "default": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the COVID-19 Return to the Office - Guide for employees.</li>\n<li>Remain on the floor for which you obtained approval to access, as much as possible.</li>\n<li>Leave on time.</li>\n</ul>",
-            "fr": "<p><strong>En milieu de travail:</strong></p>\n\n<ul>\n<li>Conformez-vous à tous les protocoles décrits dans le Guide des employés sur le retour au bureau.</li>\n<li>Restez à l'étage pour lequel vous avez obtenu l'autorisation d'accès, dans la mesure du possible.</li>\n<li>Quittez à l'heure prévue.</li>\n</ul>"
+            "default": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the health and safety measures section and the Return to the Office - Guide for employees.</li>\n<li>Remain on the floor for which you obtained approval to access, as much as possible.</li>\n<li>Leave on time.</li>\n</ul>",
+            "fr": "<p><strong>En milieu de travail:</strong></p>\n\n<ul>\n<li>Conformez-vous à tous les protocoles décrits dans la section des mesures de santé et de sécurité et dans le Guide des employés sur le retour au bureau.</li>\n<li>Restez à l'étage pour lequel vous avez obtenu l'autorisation d'accès, dans la mesure du possible.</li>\n<li>Quittez à l'heure prévue.</li>\n</ul>"
           }
         },
         {
