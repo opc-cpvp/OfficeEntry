@@ -191,6 +191,13 @@
   <data name="From" xml:space="preserve">
     <value>From</value>
   </data>
+  <data name="Guide for Employees" xml:space="preserve">
+    <value>Guide for Employees</value>
+  </data>
+  <data name="guide-for-employees" xml:space="preserve">
+    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-402771</value>
+    <comment>URL</comment>
+  </data>
   <data name="h:mm tt" xml:space="preserve">
     <value>h:mm tt</value>
   </data>
