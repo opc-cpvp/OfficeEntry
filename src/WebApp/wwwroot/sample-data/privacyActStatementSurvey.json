@@ -14,7 +14,8 @@
         {
           "type": "checkbox",
           "name": "questionAcceptPaStatement",
-          "titleLocation": "hidden",
+          "titleLocation": "hidden",          
+          "isRequired": true,
           "choices": [
             {
               "value": "iAcceptPaStatement",
