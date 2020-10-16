@@ -75,6 +75,12 @@ interopJS.survey = {
                         dotNet.invokeMethodAsync("PageChanged", JSON.stringify(survey.data), options.newCurrentPage.name);
                     });
 
+                survey
+                    .onTextMarkdown
+                    .add(function (survey, options) {
+                        options.html = options.text;
+                    });
+
                 interopJS.survey.survey = survey;
 
                 if (data) {
