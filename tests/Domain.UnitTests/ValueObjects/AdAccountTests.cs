@@ -1,13 +1,13 @@
 ﻿using OfficeEntry.Domain.Exceptions;
 using OfficeEntry.Domain.ValueObjects;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace OfficeEntry.Domain.UnitTests.ValueObjects
 {
     public class AdAccountTests
     {
-        [Test]
+        [Fact]
         public void ShouldHaveCorrectDomainAndName()
         {
             const string accountString = "SSW\\Jason";
@@ -18,7 +18,7 @@ namespace OfficeEntry.Domain.UnitTests.ValueObjects
             account.Name.Should().Be("Jason");
         }
 
-        [Test]
+        [Fact]
         public void ToStringReturnsCorrectFormat()
         {
             const string accountString = "SSW\\Jason";
@@ -30,7 +30,7 @@ namespace OfficeEntry.Domain.UnitTests.ValueObjects
             result.Should().Be(accountString);
         }
 
-        [Test]
+        [Fact]
         public void ImplicitConversionToStringResultsInCorrectString()
         {
             const string accountString = "SSW\\Jason";
@@ -42,7 +42,7 @@ namespace OfficeEntry.Domain.UnitTests.ValueObjects
             result.Should().Be(accountString);
         }
 
-        [Test]
+        [Fact]
         public void ExplicitConversionFromStringSetsDomainAndName()
         {
             const string accountString = "SSW\\Jason";
@@ -53,7 +53,7 @@ namespace OfficeEntry.Domain.UnitTests.ValueObjects
             account.Name.Should().Be("Jason");
         }
 
-        [Test]
+        [Fact]
         public void ShouldThrowAdAccountInvalidExceptionForInvalidAdAccount()
         {
             FluentActions.Invoking(() => (AdAccount)"SSWJason")
