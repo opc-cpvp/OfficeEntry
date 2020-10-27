@@ -17,6 +17,7 @@
           <cell name="gc_floor" width="100" />
           <cell name="gc_starttime" width="100" />
           <cell name="gc_endtime" width="100" />
+          <cell name="gc_manager" width="100" />
           <cell name="gc_approvalstatus" width="100" />
         </row>
       </grid>
@@ -45,6 +46,7 @@
             </condition>
           </filter>
           <attribute name="gc_accessreason" />
+          <attribute name="gc_manager" />
           <attribute name="gc_accessrequestid" />
         </entity>
       </fetch>
