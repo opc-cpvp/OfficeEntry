@@ -12,6 +12,7 @@
       <grid name="resultset" object="10020" jump="gc_name" select="1" icon="1" preview="1">
         <row name="result" id="gc_floorid">
           <cell name="gc_name" width="300" />
+          <cell name="gc_capacity" width="100" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -20,13 +21,14 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="gc_floor">
-          <attribute name="gc_floorid" />
           <attribute name="gc_name" />
           <attribute name="createdon" />
           <order attribute="gc_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="gc_capacity" />
+          <attribute name="gc_floorid" />
         </entity>
       </fetch>
     </fetchxml>
