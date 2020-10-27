@@ -2,14 +2,14 @@
 <savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <savedquery>
     <IsCustomizable>1</IsCustomizable>
-    <CanBeDeleted>0</CanBeDeleted>
+    <CanBeDeleted>1</CanBeDeleted>
     <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>0</isdefault>
     <returnedtypecode>10024</returnedtypecode>
-    <savedqueryid>{e56e99e8-d045-4018-846d-2cde8fb4947a}</savedqueryid>
+    <savedqueryid>{51263312-6b18-eb11-a2e6-005056aa7ac3}</savedqueryid>
     <layoutxml>
-      <grid name="resultset" object="10024" jump="gc_name" select="1" icon="1" preview="1">
+      <grid name="resultset" object="10024" jump="gc_name" select="1" preview="1" icon="1">
         <row name="result" id="gc_accessrequestid">
           <cell name="gc_employee" width="100" />
           <cell name="gc_accessreason" width="100" />
@@ -24,28 +24,33 @@
     </layoutxml>
     <querytype>0</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical">
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
         <entity name="gc_accessrequest">
-          <order attribute="gc_starttime" descending="false" />
-          <order attribute="gc_building" descending="false" />
-          <filter type="and">
-            <condition attribute="statecode" operator="eq" value="1" />
-          </filter>
           <attribute name="gc_starttime" />
+          <attribute name="gc_manager" />
           <attribute name="gc_floor" />
           <attribute name="gc_endtime" />
           <attribute name="gc_employee" />
           <attribute name="gc_building" />
           <attribute name="gc_approvalstatus" />
           <attribute name="gc_accessreason" />
-          <attribute name="gc_manager" />
+          <order attribute="gc_building" descending="false" />
+          <order attribute="gc_starttime" descending="false" />
+          <filter type="and">
+            <filter type="or">
+              <condition attribute="gc_starttime" operator="yesterday" />
+              <condition attribute="gc_starttime" operator="olderthan-x-days" value="1" />
+            </filter>
+            <condition attribute="gc_approvalstatus" operator="eq" value="948160001" />
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
           <attribute name="gc_accessrequestid" />
         </entity>
       </fetch>
     </fetchxml>
-    <IntroducedVersion>0.0.1</IntroducedVersion>
+    <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Inactive Access Requests" languagecode="1033" />
+      <LocalizedName description="Past Approved Access Requests" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

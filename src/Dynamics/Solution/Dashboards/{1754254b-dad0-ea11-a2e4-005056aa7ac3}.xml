@@ -35,9 +35,9 @@
                               <EnableViewPicker>false</EnableViewPicker>
                               <EnableJumpBar>false</EnableJumpBar>
                               <RecordsPerPage>10</RecordsPerPage>
-                              <ViewId>{43798B3A-9A5F-442E-A6A9-25B4DA2A181A}</ViewId>
+                              <ViewId>{BC6C6456-7218-EB11-A2E6-005056AA7AC3}</ViewId>
                               <IsUserView>false</IsUserView>
-                              <ViewIds />
+                              <ViewIds>{01259AAB-7118-EB11-A2E6-005056AA7AC3},{BC6C6456-7218-EB11-A2E6-005056AA7AC3}</ViewIds>
                               <AutoExpand>Fixed</AutoExpand>
                               <VisualizationId>{A67B95BF-5CCB-EA11-A2E4-005056AA7AC3}</VisualizationId>
                               <IsUserChart>false</IsUserChart>
@@ -57,10 +57,10 @@
                               <EnableQuickFind>false</EnableQuickFind>
                               <EnableViewPicker>false</EnableViewPicker>
                               <EnableJumpBar>false</EnableJumpBar>
-                              <RecordsPerPage>12</RecordsPerPage>
-                              <ViewId>{43798B3A-9A5F-442E-A6A9-25B4DA2A181A}</ViewId>
+                              <RecordsPerPage>10</RecordsPerPage>
+                              <ViewId>{01259AAB-7118-EB11-A2E6-005056AA7AC3}</ViewId>
                               <IsUserView>false</IsUserView>
-                              <ViewIds>{43798B3A-9A5F-442E-A6A9-25B4DA2A181A},{EBEE5CB7-F8D0-EA11-A2E4-005056AA7AC3},{1284E3A8-05D1-EA11-A2E4-005056AA7AC3}</ViewIds>
+                              <ViewIds>{01259AAB-7118-EB11-A2E6-005056AA7AC3},{43798B3A-9A5F-442E-A6A9-25B4DA2A181A},{EBEE5CB7-F8D0-EA11-A2E4-005056AA7AC3},{BC6C6456-7218-EB11-A2E6-005056AA7AC3},{1284E3A8-05D1-EA11-A2E4-005056AA7AC3}</ViewIds>
                               <AutoExpand>Fixed</AutoExpand>
                               <VisualizationId>{09A41049-5DCB-EA11-A2E4-005056AA7AC3}</VisualizationId>
                               <IsUserChart>false</IsUserChart>
@@ -82,33 +82,28 @@
                       <row />
                       <row />
                       <row>
-                        <cell colspan="2" rowspan="12" showlabel="false" id="{f4d5452b-be59-4d38-814b-6676b2651a32}" auto="false">
+                        <cell colspan="4" rowspan="12" showlabel="false" id="{ea2eb596-2369-4cd9-9f6d-9bc27692c7e9}" auto="false">
                           <labels>
-                            <label description="Access Requests" languagecode="1033" />
+                            <label description="Access Request" languagecode="1033" />
                           </labels>
-                          <control id="Componenta5622dc" uniqueid="{178e1727-c227-a7c0-d845-674b45183c35}" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <control id="Component86a1f9a" uniqueid="{a461d021-9822-0ea4-2ba3-4b7124eaa6a7}" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                             <parameters>
                               <TargetEntityType>gc_accessrequest</TargetEntityType>
-                              <ChartGridMode>Chart</ChartGridMode>
-                              <EnableQuickFind>false</EnableQuickFind>
-                              <EnableViewPicker>false</EnableViewPicker>
-                              <EnableJumpBar>false</EnableJumpBar>
-                              <RecordsPerPage>12</RecordsPerPage>
-                              <ViewId>{EBEE5CB7-F8D0-EA11-A2E4-005056AA7AC3}</ViewId>
+                              <ChartGridMode>Grid</ChartGridMode>
+                              <EnableQuickFind>true</EnableQuickFind>
+                              <EnableViewPicker>true</EnableViewPicker>
+                              <EnableJumpBar>true</EnableJumpBar>
+                              <RecordsPerPage>8</RecordsPerPage>
+                              <ViewId>{BC6C6456-7218-EB11-A2E6-005056AA7AC3}</ViewId>
                               <IsUserView>false</IsUserView>
-                              <ViewIds>{43798B3A-9A5F-442E-A6A9-25B4DA2A181A},{EBEE5CB7-F8D0-EA11-A2E4-005056AA7AC3}</ViewIds>
+                              <ViewIds />
                               <AutoExpand>Fixed</AutoExpand>
-                              <VisualizationId>{B6EB3387-F8D0-EA11-A2E4-005056AA7AC3}</VisualizationId>
+                              <VisualizationId>{A67B95BF-5CCB-EA11-A2E4-005056AA7AC3}</VisualizationId>
                               <IsUserChart>false</IsUserChart>
                               <EnableChartPicker>false</EnableChartPicker>
                               <RelationshipName />
                             </parameters>
                           </control>
-                        </cell>
-                        <cell colspan="2" rowspan="12" showlabel="false" ispreviewcell="true" id="{ea2eb596-2369-4cd9-9f6d-9bc27692c7e9}">
-                          <labels>
-                            <label description="" languagecode="1033" />
-                          </labels>
                         </cell>
                       </row>
                       <row />
@@ -129,6 +124,7 @@
             </columns>
           </tab>
         </tabs>
+        <controlDescriptions />
       </form>
     </forms>
   </FormXml>
