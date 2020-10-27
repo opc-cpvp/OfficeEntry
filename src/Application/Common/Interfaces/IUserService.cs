@@ -10,7 +10,7 @@ namespace OfficeEntry.Application.Common.Interfaces
     {
         Task<(Result Result, Contact Contact)> GetContact(string username);
 
-        Task<(Result Result, IEnumerable<Contact> Contacts)> GetContacts();
+        Task<(Result Result, IEnumerable<Contact> Contacts)> GetContacts(string excludeUsername);
 
         Task<(Result Result, Guid UserId)> GetUserId(string username);
     }

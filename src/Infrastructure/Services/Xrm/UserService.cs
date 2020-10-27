@@ -40,11 +40,11 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             return (Result.Success(), contact.Convert(contacts.First()));
         }
 
-        public async Task<(Result Result, IEnumerable<Contact> Contacts)> GetContacts()
+        public async Task<(Result Result, IEnumerable<Contact> Contacts)> GetContacts(string excludeUsername)
         {
             var contacts = await Client.For<contact>()
                 .Filter(c => c.statecode == (int)StateCode.Active)
-                .Filter(c => c.gc_username != null)
+                .Filter(c => c.gc_username != null && c.gc_username != excludeUsername)
                 .Filter(c => !(c.gc_username.Contains("scanner") || c.gc_username.Contains("student")))
                 .OrderBy(c => c.lastname)
                 .FindEntriesAsync();
