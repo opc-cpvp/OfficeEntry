@@ -12,16 +12,19 @@ namespace OfficeEntry.Application.Users.Queries.GetContactsRequests
 
     public class GetContactsQueryHandler : IRequestHandler<GetContactsQuery, IEnumerable<Domain.Entities.Contact>>
     {
+        private readonly ICurrentUserService _currentUserService;
         private readonly IUserService _userService;
 
-        public GetContactsQueryHandler(IUserService userService)
+        public GetContactsQueryHandler(ICurrentUserService currentUserService, IUserService userService)
         {
+            _currentUserService = currentUserService;
             _userService = userService;
         }
 
         public async Task<IEnumerable<Domain.Entities.Contact>> Handle(GetContactsQuery request, CancellationToken cancellationToken)
         {
-            var result = await _userService.GetContacts();
+            var excludeUsername = _currentUserService.UserId;
+            var result = await _userService.GetContacts(excludeUsername);
 
             // TODO: what should we do with the result
             if (!result.Result.Succeeded)
