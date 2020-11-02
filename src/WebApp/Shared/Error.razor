@@ -1,0 +1,16 @@
+﻿@inject IStringLocalizer<App> Localizer
+
+@using Microsoft.AspNetCore.Components.Web
+
+<div class="alert alert-danger" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" @onclick="@OnDismissButtonClick">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h3><i class="fas fa-exclamation-triangle"></i>@Localizer["Error Title"]</h3>
+    <p>@((MarkupString)Localizer["Error Message"].ToString())</p>    
+    <a href="" class="reload">@Localizer["Reload"]</a>
+</div>
+
+@code {
+    [Parameter] public EventCallback<MouseEventArgs> OnDismissButtonClick { get; set; }
+}
