@@ -8,7 +8,12 @@
 @using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour
 
 <div id="blazor-survey-wraper">
+    @if (_isErrorActive)
+    {
+        <Error OnDismissButtonClick="HideError"/>
+    }
 </div>
+
 
 @code {
     [Parameter]
@@ -33,6 +38,8 @@
     public string Data { get; set; }
 
     private DotNetObjectReference<Survey> _objectReference;
+
+    private bool _isErrorActive;
 
     [Inject]
     public MediatR.IMediator Mediator { get; set; }
@@ -98,6 +105,22 @@
         }
 
         return true;
+    }
+
+    [JSInvokable]
+
+    public void ShowError()
+    {
+        this._isErrorActive = true;
+        StateHasChanged();
+    }
+
+    [JSInvokable]
+
+    private void HideError()
+    {
+        _isErrorActive = false;
+        StateHasChanged();
     }
 
     [JSInvokable]

@@ -66,13 +66,21 @@ interopJS.survey = {
                         dotNet.invokeMethodAsync("SurveyCompleted", JSON.stringify(result.data))
                             .then(function (data) {
                                 console.log("### surveyjs was sent to .NET.");
+                            })
+                            .catch(function (error) {
+                                console.error(error);
+                                dotNet.invokeMethodAsync("ShowError");
                             });
                     });
 
                 survey
                     .onCurrentPageChanged
                     .add(function (survey, options) {
-                        dotNet.invokeMethodAsync("PageChanged", JSON.stringify(survey.data), options.newCurrentPage.name);
+                        dotNet.invokeMethodAsync("PageChanged", JSON.stringify(survey.data), options.newCurrentPage.name)
+                            .catch(function (error) {
+                                console.error(error);
+                                dotNet.invokeMethodAsync("ShowError");
+                            });
                     });
 
                 survey
@@ -98,7 +106,11 @@ interopJS.survey = {
                 var that = this;
                 console.log("### surveyjs loaded.");
                 // As circular references are not supported, you can't pass "this" back to blazor.
-                dotNet.invokeMethodAsync("SurveyLoaded");
+                dotNet.invokeMethodAsync("SurveyLoaded")
+                    .catch(function (error) {
+                        console.error(error);
+                        dotNet.invokeMethodAsync("ShowError");
+                    });
             });;
     }
 }
