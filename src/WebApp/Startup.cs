@@ -1,3 +1,4 @@
+using Blazor.Polyfill.Server;
 using Blazored.LocalStorage;
 using Fluxor;
 using Microsoft.AspNetCore.Builder;
@@ -59,6 +60,8 @@ namespace OfficeEntry.WebApp
             {
                 options.ScanAssemblies(typeof(Program).Assembly);
             });
+
+            services.AddBlazorPolyfill();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,6 +81,7 @@ namespace OfficeEntry.WebApp
             app.UseUrlLocalizationRequestLocalization();
 
             app.UseHttpsRedirection();
+            app.UseBlazorPolyfill();
             app.UseStaticFiles();
 
             app.UseRequestLogContext();
