@@ -107,8 +107,10 @@ namespace OfficeEntry.WebApp.Area.Identity.Controllers
 
                 var id = new ClaimsIdentity(NegotiateDefaults.AuthenticationScheme);
                 id.AddClaim(new Claim(JwtClaimTypes.Subject, wp.FindFirst(ClaimTypes.PrimarySid).Value));
+#pragma warning disable CA1416
                 id.AddClaim(new Claim(JwtClaimTypes.Name, wp.Identity.Name));
                 id.AddClaim(new Claim(ClaimTypes.Name, wp.Identity.Name));
+#pragma warning restore CA1416
 
                 await HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme,
