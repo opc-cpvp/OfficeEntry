@@ -13,7 +13,10 @@
 }
 else
 {
-    <AccessRequestDatatable AccessRequests="@ApprovalsState.Value.AccessRequests"></AccessRequestDatatable>
+    <AccessRequestDatatable
+        AccessRequests="@ApprovalsState.Value.AccessRequests"
+        DataOrder="@( "[[ 4, \"asc\" ], [ 0, \"desc\" ]]" )">
+    </AccessRequestDatatable>
 
     <button @onclick="Refresh" class="btn btn-secondary">
         <span class="oi oi-reload"></span>

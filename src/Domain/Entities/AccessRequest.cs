@@ -25,5 +25,18 @@ namespace OfficeEntry.Domain.Entities
             Declined = 948160002,
             Cancelled = 948160003
         }
+
+        public int GetStatusOrder()
+            => GetStatusOrder((ApprovalStatus)Status.Key);
+
+        private static int GetStatusOrder(ApprovalStatus status)
+            => status switch
+            {
+                ApprovalStatus.Pending => 1,
+                ApprovalStatus.Approved => 2,
+                ApprovalStatus.Declined => 3,
+                ApprovalStatus.Cancelled => 4,
+                _ => 5
+            };
     }
 }

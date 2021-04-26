@@ -19,7 +19,9 @@ else
         <TermsAndConditionsCard />
     }
 
-    <AccessRequestDatatable AccessRequests="@MyAccessRequestsState.Value.AccessRequests" />
+    <AccessRequestDatatable AccessRequests="@MyAccessRequestsState.Value.AccessRequests"
+                            DataOrder="@( "[[ 0, \"desc\" ], [ 4, \"asc\" ]]" )">
+    </AccessRequestDatatable>
 
     <button @onclick="Refresh" class="btn btn-secondary">
         <span class="oi oi-reload"></span>
