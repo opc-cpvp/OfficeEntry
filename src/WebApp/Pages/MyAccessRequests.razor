@@ -19,7 +19,12 @@ else
         <TermsAndConditionsCard />
     }
 
-    <AccessRequestDatatable AccessRequests="@MyAccessRequestsState.Value.AccessRequests" />
+    // The ordering matches the list order returned by the application layer
+    //     - StartTime
+    //     - Status
+    <AccessRequestDatatable AccessRequests="@MyAccessRequestsState.Value.AccessRequests"
+                            DataOrder="@( "[[ 0, \"desc\" ], [ 4, \"asc\" ]]" )">
+    </AccessRequestDatatable>
 
     <button @onclick="Refresh" class="btn btn-secondary">
         <span class="oi oi-reload"></span>

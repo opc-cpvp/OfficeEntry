@@ -13,7 +13,13 @@
 }
 else
 {
-    <AccessRequestDatatable AccessRequests="@ApprovalsState.Value.AccessRequests"></AccessRequestDatatable>
+    // The ordering matches the list order returned by the application layer
+    //     - Status
+    //     - StartTime
+    <AccessRequestDatatable
+        AccessRequests="@ApprovalsState.Value.AccessRequests"
+        DataOrder="@( "[[ 4, \"asc\" ], [ 0, \"desc\" ]]" )">
+    </AccessRequestDatatable>
 
     <button @onclick="Refresh" class="btn btn-secondary">
         <span class="oi oi-reload"></span>

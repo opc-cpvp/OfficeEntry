@@ -18,6 +18,9 @@ namespace OfficeEntry.WebApp.Shared
         [Inject] IJSRuntime JSRuntime { get; set; }
         [Inject] public IStringLocalizer<App> Localizer { get; set; }
 
+        [Parameter]
+        public string DataOrder { get; set; } = "[]";
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (!firstRender)
