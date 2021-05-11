@@ -1,5 +1,4 @@
-﻿using Blazored.LocalStorage;
-using Fluxor;
+﻿using Fluxor;
 using MediatR;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
