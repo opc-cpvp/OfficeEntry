@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using System.Threading.Tasks;
-using Blazored.LocalStorage;
 using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
 using Fluxor;
 
@@ -16,6 +15,5 @@ namespace OfficeEntry.WebApp.Pages
         [Inject] public NavigationManager NavigationManager { get; set; }
         [Inject] public IMediator Mediator { get; set; }
         [Inject] public IStringLocalizer<App> Localizer { get; set; }
-        [Inject] public ILocalStorageService LocalStorage { get; set; }
     }
 }

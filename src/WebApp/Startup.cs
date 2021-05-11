@@ -1,5 +1,4 @@
 using Blazor.Polyfill.Server;
-using Blazored.LocalStorage;
 using Fluxor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,8 +46,6 @@ namespace OfficeEntry.WebApp
             });
             services.AddRazorPages();
             services.AddServerSideBlazor();
-
-            services.AddBlazoredLocalStorage();
 
             services.AddHealthChecks();
 

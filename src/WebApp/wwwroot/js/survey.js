@@ -5,10 +5,6 @@ interopJS.survey = {
     survey: null,
     locale: null,
 
-    save: function (name, value) {
-        window.localStorage["surveyjs-blazor"] = value;
-    },
-
     register: function (dotNetReference, locale) {
         dotNet = dotNetReference;
         this.locale = locale;
