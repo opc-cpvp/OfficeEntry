@@ -1,7 +1,9 @@
 using Blazor.Polyfill.Server;
 using Fluxor;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -47,7 +49,8 @@ namespace OfficeEntry.WebApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            services.AddHealthChecks();
+            services.AddHealthChecks()
+                .AddCheck<HealthCheck>("health_check");
 
             services.AddNegotiateWithCookieAuthentication();
 
@@ -93,8 +96,16 @@ namespace OfficeEntry.WebApp
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHealthChecks("/health");
-                endpoints.MapHealthChecks("/Ready").WithDisplayName("Not a health check");
+                // Liveness probes let us know if the app is alive or dead
+                endpoints.MapGet("/liveness", async context =>
+                {
+                    await context.Response.WriteAsync("I'm alive");
+                }).AllowAnonymous();
+
+                // Readiness probes are designed to know when the app is ready
+                // to serve traffic.
+                endpoints.MapHealthChecks("/readiness").AllowAnonymous();
+
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
