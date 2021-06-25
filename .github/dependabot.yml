@@ -1,0 +1,346 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/src/Application"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: FluentValidation.DependencyInjectionExtensions
+    versions:
+    - 10.0.0
+    - 10.0.1
+    - 10.0.2
+    - 10.0.4
+    - 9.4.0
+    - 9.5.0
+    - 9.5.1
+    - 9.5.2
+    - 9.5.3
+    - 9.5.4
+  - dependency-name: FluentValidation
+    versions:
+    - 10.0.0
+    - 10.0.1
+    - 10.0.2
+    - 10.0.3
+    - 9.4.0
+    - 9.5.0
+    - 9.5.1
+    - 9.5.2
+    - 9.5.3
+    - 9.5.4
+  - dependency-name: Microsoft.EntityFrameworkCore
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: AutoMapper.Extensions.Microsoft.DependencyInjection
+    versions:
+    - 8.1.1
+- package-ecosystem: nuget
+  directory: "/src/Domain"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+- package-ecosystem: nuget
+  directory: "/src/Infrastructure"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Simple.OData.Client
+    versions:
+    - 5.21.0
+  - dependency-name: FluentValidation.DependencyInjectionExtensions
+    versions:
+    - 10.0.0
+    - 10.0.1
+    - 10.0.2
+    - 10.0.4
+    - 9.4.0
+    - 9.5.0
+    - 9.5.1
+    - 9.5.2
+    - 9.5.3
+    - 9.5.4
+  - dependency-name: FluentValidation
+    versions:
+    - 10.0.0
+    - 10.0.1
+    - 10.0.2
+    - 10.0.3
+    - 10.0.4
+    - 9.4.0
+    - 9.5.0
+    - 9.5.1
+    - 9.5.2
+    - 9.5.3
+    - 9.5.4
+  - dependency-name: Microsoft.AspNetCore.ApiAuthorization.IdentityServer
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.EntityFrameworkCore
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.EntityFrameworkCore.InMemory
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.AspNetCore.Identity.EntityFrameworkCore
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.EntityFrameworkCore.SqlServer
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: System.Linq.Async
+    versions:
+    - 5.0.0
+  - dependency-name: System.DirectoryServices.AccountManagement
+    versions:
+    - 5.0.0
+- package-ecosystem: nuget
+  directory: "/src/OfficeEntry.Plugins"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.CrmSdk.CoreAssemblies
+    versions:
+    - 9.0.2.29
+    - 9.0.2.32
+    - 9.0.2.33
+  - dependency-name: ILRepack.Lib.MSBuild.Task
+    versions:
+    - 2.0.18.2
+- package-ecosystem: nuget
+  directory: "/src/WebApp"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: FluentValidation.DependencyInjectionExtensions
+    versions:
+    - 10.0.2
+    - 10.0.3
+  - dependency-name: Microsoft.EntityFrameworkCore.InMemory
+    versions:
+    - 5.0.5
+  - dependency-name: Simple.OData.Client
+    versions:
+    - 5.20.1
+  - dependency-name: FluentValidation
+    versions:
+    - 10.0.2
+  - dependency-name: Microsoft.AspNetCore.Identity.EntityFrameworkCore
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.EntityFrameworkCore
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.AspNetCore.ApiAuthorization.IdentityServer
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.Extensions.Localization
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.AspNetCore.Authentication.Negotiate
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.EntityFrameworkCore.SqlServer
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: System.Linq.Async
+    versions:
+    - 5.0.0
+  - dependency-name: System.Net.Http.Json
+    versions:
+    - 5.0.0
+  - dependency-name: System.DirectoryServices.AccountManagement
+    versions:
+    - 5.0.0
+- package-ecosystem: nuget
+  directory: "/tests/Application.UnitTests"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: FluentValidation.DependencyInjectionExtensions
+    versions:
+    - 10.0.0
+    - 10.0.1
+    - 10.0.2
+    - 10.0.3
+    - 10.0.4
+    - 9.4.0
+    - 9.5.0
+    - 9.5.1
+    - 9.5.2
+    - 9.5.3
+    - 9.5.4
+  - dependency-name: FluentValidation
+    versions:
+    - 10.0.0
+    - 10.0.1
+    - 10.0.2
+    - 10.0.3
+    - 10.0.4
+    - 9.4.0
+    - 9.5.0
+    - 9.5.1
+    - 9.5.2
+    - 9.5.3
+    - 9.5.4
+  - dependency-name: Microsoft.EntityFrameworkCore
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.NET.Test.Sdk
+    versions:
+    - 16.8.3
+    - 16.9.1
+    - 16.9.4
+  - dependency-name: Moq
+    versions:
+    - 4.16.0
+    - 4.16.1
+  - dependency-name: AutoMapper.Extensions.Microsoft.DependencyInjection
+    versions:
+    - 8.1.1
+- package-ecosystem: nuget
+  directory: "/tests/Domain.UnitTests"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.NET.Test.Sdk
+    versions:
+    - 16.8.3
+    - 16.9.1
+    - 16.9.4
+- package-ecosystem: nuget
+  directory: "/tests/Infrastructure.IntegrationTests"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Simple.OData.Client
+    versions:
+    - 5.21.0
+  - dependency-name: FluentValidation.DependencyInjectionExtensions
+    versions:
+    - 10.0.0
+    - 10.0.1
+    - 10.0.2
+    - 10.0.3
+    - 10.0.4
+    - 9.4.0
+    - 9.5.0
+    - 9.5.1
+    - 9.5.2
+    - 9.5.3
+    - 9.5.4
+  - dependency-name: FluentValidation
+    versions:
+    - 10.0.4
+  - dependency-name: Microsoft.EntityFrameworkCore.InMemory
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.EntityFrameworkCore
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.AspNetCore.ApiAuthorization.IdentityServer
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.AspNetCore.Identity.EntityFrameworkCore
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.EntityFrameworkCore.SqlServer
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+    versions:
+    - 5.0.2
+    - 5.0.3
+    - 5.0.4
+    - 5.0.5
+  - dependency-name: Moq
+    versions:
+    - 4.16.0
+    - 4.16.1
+  - dependency-name: System.Linq.Async
+    versions:
+    - 5.0.0
+  - dependency-name: System.DirectoryServices.AccountManagement
+    versions:
+    - 5.0.0
