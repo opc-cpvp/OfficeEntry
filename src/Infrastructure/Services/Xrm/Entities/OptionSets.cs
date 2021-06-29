@@ -37,4 +37,11 @@
         Active = 0,
         Inactive = 1
     }
+
+    public enum Shape
+    {
+        Rectangle = 948160000,
+        Circle = 948160001,
+        Polygon = 948160002
+    }
 }

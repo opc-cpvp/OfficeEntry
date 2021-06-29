@@ -29,7 +29,6 @@ namespace OfficeEntry.WebApp.Pages
         [Inject] public IMediator Mediator { get; set; }
 
         public bool SurveyCompleted { get; set; }
-        public bool ShowSpotsAvailablePerHours { get; set; }
         public CurrentCapacity[] FloorCapacity { get; set; }
 
         [Inject] IJSRuntime JSRuntime { get; set; }
@@ -54,6 +53,7 @@ namespace OfficeEntry.WebApp.Pages
                 EndTime = submission.startDate.AddHours(submission.endTime),
                 Floor = new Floor { Id = submission.floor },
                 Manager = new Contact { Id = submission.manager },
+                Office = new Office { Id = submission.office.Single() },
                 Reason = new OptionSet
                 {
                     Key = submission.reason
@@ -66,10 +66,10 @@ namespace OfficeEntry.WebApp.Pages
             {
                 foreach (var visitor in submission.visitors)
                 {
-                    var match = Regex.Match(visitor.name.Trim(), @"^(?<first>[^\s]+)\s*(?<last>.*)$");
+                    var match = Regex.Match(visitor.name.Trim(), @"^(?<first>[^\s]+)\s+(?<last>.*)$");
 
                     var firstName = match.Groups["first"].Value;
-                    var lastName = match.Groups["last"].Value;
+                    var lastName = match.Groups.ContainsKey("last") ? match.Groups["last"].Value : string.Empty;
 
                     accessRequest.Visitors.Add(
                         new Contact
@@ -121,29 +121,6 @@ namespace OfficeEntry.WebApp.Pages
                         Key = value
                     }
                 }, count);
-        }
-
-        public async Task OnPageChanged((string data, string newCurrentPageName) p)
-        {
-            (string surveyResult, string newCurrentPageName) = p;
-
-            if (newCurrentPageName == "page4")
-            {
-                var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(surveyResult);
-
-                var floorId = submission.floor;
-                var date = submission.startDate;
-
-                var results = await Mediator.Send(new GetSpotsAvailablePerHourQuery { FloorId = floorId, SelectedDay = date });
-
-                FloorCapacity = results.ToArray();
-
-                ShowSpotsAvailablePerHours = true;
-
-                return;
-            }
-
-            await Task.Run(() => ShowSpotsAvailablePerHours = newCurrentPageName == "page4");
         }
     }
 }

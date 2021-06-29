@@ -55,7 +55,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             if (!hasAvailableCapacity)
             {
                 throw new Exception("Your request exceeds the floor capacity");
-            }    
+            }
 
             request.AccessRequest.Employee = new Contact
             {

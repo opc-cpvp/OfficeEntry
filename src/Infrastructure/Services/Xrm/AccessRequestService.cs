@@ -26,37 +26,20 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
         {
 
             var accessRequests = await Client.For<gc_accessrequest>()
+                .Filter(a => a.statecode == (int)StateCode.Active)
                 .Filter(a => a.gc_floor.gc_floorid == floorId)
-                //.Filter(a => a.gc_starttime.Date == requestDate.Date)
-                .Expand(a => new { a.gc_accessrequest_contact_visitors })
+                .Filter($"{nameof(gc_accessrequest.gc_approvalstatus)} eq {(int)ApprovalStatus.Approved} or {nameof(gc_accessrequest.gc_approvalstatus)} eq {(int)ApprovalStatus.Pending}")
+                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_office, a.gc_accessrequest_assetrequest, a.gc_accessrequest_contact_visitors })
                 .FindEntriesAsync();
 
-            var approvedAndPendingAccessRequests = new List<gc_accessrequest>();
-
-            foreach(var accessRequest in accessRequests.ToList())
-            {
-                // TODO filer request status in db query
-                if (accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Approved || accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Pending)
-                {
-                    var visitors = await Client.For<gc_accessrequest>()
-                   .Key(accessRequest.gc_accessrequestid)
-                   .NavigateTo(a => a.gc_accessrequest_contact_visitors)
-                   .FindEntriesAsync();
-
-                    accessRequest.gc_accessrequest_contact_visitors = visitors.ToList();
-
-                    approvedAndPendingAccessRequests.Add(accessRequest);
-                }
-            }
-
-            return approvedAndPendingAccessRequests.Select(f => gc_accessrequest.Convert(f));
+            return accessRequests.Select(f => gc_accessrequest.Convert(f));
         }
 
         public async Task<(Result Result, AccessRequest AccessRequest)> GetAccessRequest(Guid accessRequestId)
         {
             var accessRequest = await Client.For<gc_accessrequest>()
                 .Key(accessRequestId)
-                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_contact_visitors, a.gc_accessrequest_assetrequest })
+                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_office, a.gc_accessrequest_assetrequest, a.gc_accessrequest_contact_visitors })
                 .FindEntryAsync();
 
             return (Result.Success(), gc_accessrequest.Convert(accessRequest));
@@ -67,21 +50,9 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             var accessRequests = await Client.For<gc_accessrequest>()
                 .Filter(a => a.statecode == (int)StateCode.Active)
                 .Filter(a => a.gc_employee.contactid == contactId)
-                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_assetrequest })
+                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_office, a.gc_accessrequest_assetrequest, a.gc_accessrequest_contact_visitors })
                 .OrderByDescending(a => a.gc_starttime)
                 .FindEntriesAsync();
-
-            accessRequests = accessRequests.ToList();
-
-            foreach (var accessRequest in accessRequests.ToList())
-            {
-                var visitors = await Client.For<gc_accessrequest>()
-                    .Key(accessRequest.gc_accessrequestid)
-                    .NavigateTo(a => a.gc_accessrequest_contact_visitors)
-                    .FindEntriesAsync();
-
-                accessRequest.gc_accessrequest_contact_visitors = visitors.ToList();
-            }
 
             return (Result.Success(), accessRequests.Select(a => gc_accessrequest.Convert(a)));
         }
@@ -91,21 +62,9 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             var accessRequests = await Client.For<gc_accessrequest>()
                 .Filter(a => a.statecode == (int)StateCode.Active)
                 .Filter(a => a.gc_manager.contactid == contactId)
-                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_assetrequest })
+                .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_office, a.gc_accessrequest_assetrequest, a.gc_accessrequest_contact_visitors })
                 .OrderByDescending(a => a.gc_starttime)
                 .FindEntriesAsync();
-
-            accessRequests = accessRequests.ToList();
-
-            foreach (var accessRequest in accessRequests.ToList())
-            {
-                var visitors = await Client.For<gc_accessrequest>()
-                    .Key(accessRequest.gc_accessrequestid)
-                    .NavigateTo(a => a.gc_accessrequest_contact_visitors)
-                    .FindEntriesAsync();
-
-                accessRequest.gc_accessrequest_contact_visitors = visitors.ToList();
-            }
 
             return (Result.Success(), accessRequests.Select(a => gc_accessrequest.Convert(a)));
         }

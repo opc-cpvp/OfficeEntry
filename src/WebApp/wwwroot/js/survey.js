@@ -42,6 +42,9 @@ interopJS.survey = {
         Survey.defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-secondary";
         Survey.defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
 
+        // Clear the cache for options loaded via RESTful APIs
+        Survey.ChoicesRestfull.clearCache();
+
         fetch(surveyUrl)
             .then(function (response) { return response.json(); })
             .then(function (json) {

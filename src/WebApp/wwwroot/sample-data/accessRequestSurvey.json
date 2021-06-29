@@ -572,17 +572,115 @@
       "name": "page5",
       "elements": [
         {
+          "type": "checkbox",
+          "name": "office30victoria7thfloor",
+          "renderAs": "imagemapster",
+          "imageLink": "/img/buildings/30_victoria/7th_floor.png",
+          "config": {
+            "singleSelect": true,
+            "areas": [
+              {
+                "key": "unavailable",
+                "highlight": false,
+                "staticState": true,
+                "fillColor": "ff0000",
+                "fillOpacity": 0.7
+              }
+            ]
+          },
+          "title": {
+            "default": "Office",
+            "fr": "Bureau"
+          },
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/locations/{locale}/{building}/{floor}?date={startDate}&start={startTime}&end={endTime}",
+            "valueName": "id",
+            "titleName": "name"
+          },
+          "valueName": "office",
+          "visibleIf": "{floor} = 'aada8dd4-e3af-ea11-a2e3-005056aa7ac3'"
+        },
+        {
+          "type": "checkbox",
+          "name": "office30victoria8thfloor",
+          "renderAs": "imagemapster",
+          "imageLink": "/img/buildings/30_victoria/8th_floor.png",
+          "config": {
+            "singleSelect": true,
+            "areas": [
+              {
+                "key": "unavailable",
+                "highlight": false,
+                "staticState": true,
+                "fillColor": "ff0000",
+                "fillOpacity": 0.7
+              }
+            ]
+          },
+          "title": {
+            "default": "Office",
+            "fr": "Bureau"
+          },
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/locations/{locale}/{building}/{floor}?date={startDate}&start={startTime}&end={endTime}",
+            "valueName": "id",
+            "titleName": "name"
+          },
+          "valueName": "office",
+          "visibleIf": "{floor} = '034d9f76-d0b4-ea11-a2e3-005056aa7ac3'"
+        },
+        {
+          "type": "checkbox",
+          "name": "655bay4thfloor",
+          "renderAs": "imagemapster",
+          "imageLink": "/img/buildings/655_bay/4th_floor.png",
+          "config": {
+            "singleSelect": true,
+            "areas": [
+              {
+                "key": "unavailable",
+                "highlight": false,
+                "staticState": true,
+                "fillColor": "ff0000",
+                "fillOpacity": 0.7
+              }
+            ]
+          },
+          "title": {
+            "default": "Office",
+            "fr": "Bureau"
+          },
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/locations/{locale}/{building}/{floor}?date={startDate}&start={startTime}&end={endTime}",
+            "valueName": "id",
+            "titleName": "name"
+          },
+          "valueName": "office",
+          "visibleIf": "{floor} = 'b5bbf3ab-5dcb-ea11-a2e4-005056aa7ac3'"
+        }
+      ]
+    },
+    {
+      "name": "page6",
+      "elements": [
+        {
           "type": "dropdown",
           "name": "manager",
           "renderAs": "select2",
           "select2Config": {
             "theme": "bootstrap4",
-            "placeholder": "Recherche / Search",
             "selectOnClose": true
           },
           "title": {
             "default": "Manager",
             "fr": "Gestionnaire"
+          },
+          "optionsCaption": {
+            "default": "Search",
+            "fr": "Recherche"
           },
           "isRequired": true,
           "choicesByUrl": {
@@ -594,7 +692,7 @@
       ]
     },
     {
-      "name": "page6",
+      "name": "page7",
       "elements": [
         {
           "type": "html",
@@ -628,7 +726,7 @@
       ]
     },
     {
-      "name": "page7",
+      "name": "page8",
       "elements": [
         {
           "type": "html",

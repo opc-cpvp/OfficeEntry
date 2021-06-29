@@ -43,6 +43,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             var floors = await Client.For<gc_building>()
                 .Key(buildingId)
                 .NavigateTo(b => b.gc_building_floor)
+                .Filter(f => f.statecode == (int)StateCode.Active)
                 .FindEntriesAsync();
 
             return floors.Select(f => new Floor
@@ -64,6 +65,17 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
                 .FindEntryAsync();
 
             return floor.gc_capacity;
+        }
+
+        public async Task<IEnumerable<Office>> GetOfficesByFloorAsync(Guid floorId, string locale)
+        {
+            var offices = await Client.For<gc_floor>()
+                .Key(floorId)
+                .NavigateTo(f => f.gc_floor_gc_office_floor)
+                .Filter(o => o.statecode == (int)StateCode.Active)
+                .FindEntriesAsync();
+
+            return offices.Select(o => gc_office.Convert(o));
         }
     }
 }

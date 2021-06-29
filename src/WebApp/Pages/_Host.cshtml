@@ -13,7 +13,7 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="@CultureInfo.CurrentCulture.TwoLetterISOLanguageName">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -63,6 +63,7 @@
     <script type="text/javascript" src="~/lib/survey-vue/survey.vue.min.js"></script>
     <script type="text/javascript" src="~/lib/jqueryui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="~/lib/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/lib/imagemapster/jquery.imagemapster.min.js"></script>
     <script type="text/javascript" src="~/lib/surveyjs-widgets/surveyjs-widgets.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
@@ -71,12 +72,12 @@
     <script src="~/lib/font-awesome/js/all.min.js"></script>
     <script src="~/lib/select2/js/i18n/fr.js"></script>
 
+    <script src="~/js/imagemapster.js"></script>
     <script src="~/js/survey.js"></script>
     <script src="~/js/accessRequest.js"></script>
     <script src="~/js/spotsAvailablePerHours.js"></script>
     <script src="~/js/datepicker.js"></script>
     <script src="~/js/datatables.js"></script>
-    <script src="~/js/select2.js"></script>
 
     <script src="_framework/blazor.server.js"></script>
     <script src="_content/Fluxor.Blazor.Web/scripts/index.js"></script>

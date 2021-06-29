@@ -28,6 +28,13 @@ namespace OfficeEntry.Domain.Enums
         Other = 948160004
     }
 
+    public enum OfficeShape
+    {
+        Rectangle = 948160000,
+        Circle = 948160001,
+        Polygon = 948160002
+    }
+
     public static class Locale
     {
         public const string English = "en";

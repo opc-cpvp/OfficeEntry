@@ -12,6 +12,7 @@ namespace OfficeEntry.Domain.Entities
         public string Details { get; set; }
         public DateTime EndTime { get; set; }
         public Floor Floor { get; set; }
+        public Office Office { get; set; }
         public Contact Manager { get; set; }
         public OptionSet Reason { get; set; }
         public DateTime StartTime { get; set; }

@@ -1,5 +1,6 @@
 ﻿using OfficeEntry.Domain.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
 {
@@ -11,6 +12,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
         public int gc_currentcapacity { get; set; }
         public string gc_englishname { get; set; }
         public string gc_frenchname { get; set; }
+        public IList<gc_office> gc_floor_gc_office_floor { get; set; }
 
         public int statecode { get; set; }
 

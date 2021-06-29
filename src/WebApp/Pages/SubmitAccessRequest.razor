@@ -8,13 +8,7 @@
     <Loading />
 }
 
-@if (ShowSpotsAvailablePerHours)
-{
-    <SpotsAvailablePerHours Data="FloorCapacity" />
-}
-
 <Survey Id="surveyElementSubmitAccessRequest"
         SurveyUrl="sample-data/accessRequestSurvey.json"
         OnSurveyCompleted="@OnSurveyCompleted"
-        OnPageChanged="@OnPageChanged"
         OnSurveyLoaded="@OnSurveyLoaded"/>

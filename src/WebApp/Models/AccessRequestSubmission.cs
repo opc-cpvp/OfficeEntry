@@ -17,6 +17,7 @@ namespace OfficeEntry.WebApp.Models
         public int printer { get; set; }
         public Guid building { get; set; }
         public Guid floor { get; set; }
+        public Guid[] office { get; set; }
         public int reason { get; set; }
         public string details { get; set; }
         public string other { get; set; }

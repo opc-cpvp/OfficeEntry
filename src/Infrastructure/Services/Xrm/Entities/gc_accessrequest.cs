@@ -29,6 +29,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
         public DateTime gc_endtime { get; set; }
         public gc_floor gc_floor { get; set; }
         public contact gc_manager { get; set; }
+        public gc_office gc_office { get; set; }
         public AccessReasons gc_accessreason { get; set; }
         public DateTime gc_starttime { get; set; }
         public IList<contact> gc_accessrequest_contact_visitors { get; set; } = new List<contact>();
@@ -49,6 +50,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
                 EndTime = accessRequest.gc_endtime.ToLocalTime(),
                 Floor = gc_floor.Convert(accessRequest.gc_floor),
                 Manager = contact.Convert(accessRequest.gc_manager),
+                Office = gc_office.Convert(accessRequest.gc_office),
                 Reason = new OptionSet
                 {
                     Key = (int)accessRequest.gc_accessreason,
@@ -77,6 +79,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
                 gc_endtime = accessRequest.EndTime,
                 gc_floor = new gc_floor { gc_floorid = accessRequest.Floor.Id },
                 gc_manager = new contact { contactid = accessRequest.Manager.Id },
+                gc_office = new gc_office { gc_officeid = accessRequest.Office.Id },
                 gc_starttime = accessRequest.StartTime
             };
         }

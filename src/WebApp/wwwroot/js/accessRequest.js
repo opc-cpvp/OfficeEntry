@@ -14,23 +14,22 @@ interopJS.accessRequest = {
              .add(function(survey, options) {
                  if (options.question.name === "startDate") {
                      options.question.defaultValue = window.interop.accessRequest.getNextDayDate();
-                 }                      
+                 }
              });
 
+         function CapacityValidator() {
+            var that = this;
 
-             function CapacityValidator() {
-                var that = this;
-    
-                return dotNet.invokeMethodAsync("HasAvailableCapacity", JSON.stringify(survey.data, null, 3))
-                    .then(function (r) {
-                        return that.returnResult(r);
-                    });
-            }
-    
-            Survey
-                .FunctionFactory
-                .Instance
-                .register("CapacityValidator", CapacityValidator, true);
+            return dotNet.invokeMethodAsync("HasAvailableCapacity", JSON.stringify(survey.data, null, 3))
+                .then(function (r) {
+                    return that.returnResult(r);
+                });
+        }
+
+        Survey
+            .FunctionFactory
+            .Instance
+            .register("CapacityValidator", CapacityValidator, true);
     }
 };
 
