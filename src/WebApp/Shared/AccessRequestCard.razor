@@ -31,7 +31,7 @@
         <div class="col-md-8">
             <div class="card-body">
                 <h5 class="card-title">@AccessRequest.Employee.FullName</h5>
-                <p class="card-text">@AccessRequest.Building.Name, @AccessRequest.Floor.Name</p>
+                <p class="card-text">@AccessRequest.Building.Name, @(string.IsNullOrWhiteSpace(AccessRequest.Office?.Name) ? AccessRequest.Floor.Name : $"{AccessRequest.Floor.Name}, {AccessRequest.Office.Name}")</p>
                 <p class="card-text">@AccessRequest.StartTime.ToString(Localizer["MMMM dd, yyyy"]) - @AccessRequest.StartTime.ToString(Localizer["h:mm tt"]) @Localizer["To"] @AccessRequest.EndTime.ToString(Localizer["h:mm tt"])</p>
                 <p class="card-text">@Localizer["Visitors:"]<strong>@AccessRequest.Visitors.Count()</strong></p>
             </div>

@@ -51,6 +51,7 @@ namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest
                 ManagerName = result.AccessRequest.Manager.FullName,
                 Building = (request.Locale == Locale.French) ? result.AccessRequest.Building.FrenchName : result.AccessRequest.Building.EnglishName,
                 Floor = (request.Locale == Locale.French) ? result.AccessRequest.Floor.FrenchName : result.AccessRequest.Floor.EnglishName,
+                Office = result.AccessRequest.Office?.Name,
                 Details = result.AccessRequest.Details,
                 StartTime = result.AccessRequest.StartTime,
                 EndTime = result.AccessRequest.EndTime,

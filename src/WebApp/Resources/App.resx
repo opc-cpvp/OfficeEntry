@@ -264,6 +264,9 @@
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="Office" xml:space="preserve">
+    <value>Office</value>
+  </data>
   <data name="Office Entry" xml:space="preserve">
     <value>Office Entry</value>
   </data>

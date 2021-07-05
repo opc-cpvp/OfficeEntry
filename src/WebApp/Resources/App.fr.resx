@@ -354,4 +354,7 @@
   <data name="Reload" xml:space="preserve">
     <value>Recharger</value>
   </data>
+  <data name="Office" xml:space="preserve">
+    <value>Bureau</value>
+  </data>
 </root>
