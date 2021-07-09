@@ -11,7 +11,7 @@ update_configs:
       - match:
           dependency_type: "production"
           update_type: "semver:minor"
-  
+
   - package_manager: "dotnet:nuget"
     directory: "/src/Domain"
     update_schedule: "live"
@@ -27,6 +27,10 @@ update_configs:
       - match:
           dependency_type: "production"
           update_type: "semver:minor"
+    ignored_updates:
+      - match:
+          dependency_name: "Simple.OData.Client"
+
 
   - package_manager: "dotnet:nuget"
     directory: "/src/OfficeEntry.Plugins"
