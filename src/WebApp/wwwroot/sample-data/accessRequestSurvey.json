@@ -634,7 +634,7 @@
           "type": "html",
           "name": "acknowledgeWorkplaceStatement",
           "html": {
-            "default": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the health and safety measures section and the Guide for Employees to Access the Work Place During COVID-19.</li>\n<li>Leave on time</li>\n<li>Comply with the Policy on COVID-19 Vaccination for the Core Public Administration</li>\n</ul>",
+            "default": "<p><strong>While in the workplace:</strong></p>\n\n<ul>\n<li>Comply with all the protocols outlined in the health and safety measures section and the Guide for Employees to Access the Work Place During COVID-19</li>\n<li>Leave on time</li>\n<li>Comply with the Policy on COVID-19 Vaccination for the Core Public Administration</li>\n</ul>",
             "fr": "<p><strong>En milieu de travail:</strong></p>\n\n<ul>\n<li>Conformez-vous à tous les protocoles décrits dans la section des mesures de santé et de sécurité et dans le Guide à l'intention des employés pour accéder au lieu de travail durant la COVID-19</li>\n<li>Quittez à l'heure prévue</li>\n<li>Conformez-vous à la Politique sur la vaccination contre la COVID-19 applicable à l'administration publique centrale</li>\n</ul>"
           }
         },
