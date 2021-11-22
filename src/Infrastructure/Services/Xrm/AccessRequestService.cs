@@ -22,34 +22,35 @@ namespace OfficeEntry.Infrastructure.Services.Xrm
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IEnumerable<AccessRequest>> GetApprovedOrPendingAccessRequestsByFloor(Guid floorId)
+        public async Task<IEnumerable<AccessRequest>> GetApprovedOrPendingAccessRequestsByFloor(Guid floorId, DateTime? date = null)
         {
+                var startOfDay = date.Value.Date;
+                var endOfDay = date.Value.AddDays(1).Date.AddSeconds(-1);
 
-            var accessRequests = await Client.For<gc_accessrequest>()
-                .Filter(a => a.gc_floor.gc_floorid == floorId)
-                //.Filter(a => a.gc_starttime.Date == requestDate.Date)
-                .Expand(a => new { a.gc_accessrequest_contact_visitors })
-                .FindEntriesAsync();
+                var accessRequests = await Client.For<gc_accessrequest>()
+                    .Filter(a => a.gc_floor.gc_floorid == floorId && a.gc_starttime >= startOfDay && a.gc_starttime <= endOfDay)
+                    .Expand(a => new { a.gc_accessrequest_contact_visitors })
+                    .FindEntriesAsync();
 
-            var approvedAndPendingAccessRequests = new List<gc_accessrequest>();
+                var approvedAndPendingAccessRequests = new List<gc_accessrequest>();
 
-            foreach(var accessRequest in accessRequests.ToList())
-            {
-                // TODO filer request status in db query
-                if (accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Approved || accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Pending)
+                foreach (var accessRequest in accessRequests.ToList())
                 {
-                    var visitors = await Client.For<gc_accessrequest>()
-                   .Key(accessRequest.gc_accessrequestid)
-                   .NavigateTo(a => a.gc_accessrequest_contact_visitors)
-                   .FindEntriesAsync();
+                    // TODO filer request status in db query
+                    if (accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Approved || accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Pending)
+                    {
+                        var visitors = await Client.For<gc_accessrequest>()
+                       .Key(accessRequest.gc_accessrequestid)
+                       .NavigateTo(a => a.gc_accessrequest_contact_visitors)
+                       .FindEntriesAsync();
 
-                    accessRequest.gc_accessrequest_contact_visitors = visitors.ToList();
+                        accessRequest.gc_accessrequest_contact_visitors = visitors.ToList();
 
-                    approvedAndPendingAccessRequests.Add(accessRequest);
+                        approvedAndPendingAccessRequests.Add(accessRequest);
+                    }
                 }
-            }
 
-            return approvedAndPendingAccessRequests.Select(f => gc_accessrequest.Convert(f));
+                return approvedAndPendingAccessRequests.Select(f => gc_accessrequest.Convert(f));
         }
 
         public async Task<(Result Result, AccessRequest AccessRequest)> GetAccessRequest(Guid accessRequestId)
