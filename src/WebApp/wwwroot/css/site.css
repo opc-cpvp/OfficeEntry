@@ -219,3 +219,7 @@ app {
 .sv_q_required_text {
     color: red;
 }
+
+#blazor-spotsAvailablePerHours-wraper {
+    height: 200px;
+}
