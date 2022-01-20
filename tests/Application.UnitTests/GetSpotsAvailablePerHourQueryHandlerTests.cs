@@ -17,7 +17,7 @@ namespace Application.UnitTests
         public async Task Should_return_0_when_no_access_requests()
         {
             var moq = new Mock<IAccessRequestService>();
-            moq.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloor(It.IsAny<Guid>()))
+            moq.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloor(It.IsAny<Guid>(), It.IsAny<DateTime>()))
                 .ReturnsAsync(() => new AccessRequest[0]);
 
             var mockLocationService = new Mock<ILocationService>();
@@ -39,7 +39,7 @@ namespace Application.UnitTests
         public async Task Should_return_1_when_1_access_requests()
         {
             var moq = new Mock<IAccessRequestService>();
-            moq.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloor(It.IsAny<Guid>()))
+            moq.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloor(It.IsAny<Guid>(), It.IsAny<DateTime>()))
                 .ReturnsAsync(() => new AccessRequest[]
                 {
                     new AccessRequest
@@ -74,7 +74,7 @@ namespace Application.UnitTests
         public async Task Should_return_1_by_hour_when_2_access_requests()
         {
             var moq = new Mock<IAccessRequestService>();
-            moq.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloor(It.IsAny<Guid>()))
+            moq.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloor(It.IsAny<Guid>(), It.IsAny<DateTime>()))
                 .ReturnsAsync(() => new AccessRequest[]
                 {
                     new AccessRequest
@@ -114,7 +114,7 @@ namespace Application.UnitTests
         public async Task Should_return_11_by_hour_when_2_access_requests()
         {
             var moq = new Mock<IAccessRequestService>();
-            moq.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloor(It.IsAny<Guid>()))
+            moq.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloor(It.IsAny<Guid>(), It.IsAny<DateTime>()))
                 .ReturnsAsync(() => new AccessRequest[]
                 {
                     new AccessRequest
@@ -161,7 +161,7 @@ namespace Application.UnitTests
         public async Task Should_return_14_by_hour_when_2_access_requests_today()
         {
             var moq = new Mock<IAccessRequestService>();
-            moq.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloor(It.IsAny<Guid>()))
+            moq.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloor(It.IsAny<Guid>(), It.IsAny<DateTime>()))
                 .ReturnsAsync(() => new AccessRequest[]
                 {
                     new AccessRequest

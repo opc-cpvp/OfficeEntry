@@ -1,44 +1,71 @@
 ﻿var interopJS = interopJS || {}
 
 interopJS.spotsAvailablePerHours = {
-    chartData : null,
-    init: function (id, classStyle, languageCode, capacities) {
-
-        chartData = capacities;
+    chartData: null,
+    init: function (id, title, labels, datasetLabels, datasetsData) {
 
         document
-            .querySelector('#blazor-spotsAvailablePerHours-wraper')
-            .innerHTML = "<div id=" + id + " class=" + classStyle + "></div>";
-            //.innerHTML = `<div id="${id}" class="${classStyle}"></div>`;
+            .querySelector("#blazor-spotsAvailablePerHours-wraper")
+            .innerHTML = '<canvas id="spots-available-per-hours-chart"></canvas>';
 
-        google.charts.load('current', { 'packages': ['bar'] });
-        google.charts.setOnLoadCallback(drawStuff);
+        var ctx = document.getElementById("spots-available-per-hours-chart").getContext("2d");
 
-        function drawStuff() {
-            let array1 = [[
-                languageCode === "fr" ? 'Places disponibles par heure' : 'Spots available per hour',
-                languageCode === "fr" ? 'Places réservés' : 'Spots reserved',
-                languageCode === "fr" ? 'Places disponibles' : 'Spots available',
-                { role: 'annotation' }
-            ]];
-            let array3 = array1.concat(chartData);
-            var data = google.visualization.arrayToDataTable(array3);
-
-            var options = {
-                //legend: { position: 'top', maxLines: 3 },
-                legend: { position: "none" },
-                bar: { groupWidth: '75%' },
-                isStacked: true,
-                series: {
-                    0: { color: 'Black' },
-                    1: { color: 'MediumSeaGreen' },
+        var chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: labels, // responsible for how many bars are gonna show on the chart
+                datasets: [{
+                    label: datasetLabels[0],
+                    data: datasetsData[0],
+                    backgroundColor: "Black",
+                    hoverBackgroundColor: "Black" // Not needed on chart.js version 3
+                }, {
+                    label: datasetLabels[1],
+                    data: datasetsData[1],
+                    backgroundColor: "MediumSeaGreen",
+                    hoverBackgroundColor: "MediumSeaGreen" // Not needed on chart.js version 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    position: "top" // place legend on the top of chart
+                },
+                title: {
+                    display: true,
+                    text: title
+                },
+                ////// TODO: Uncomment when we no longer need to support IE and can update chart.js to version 3
+                ////scales: {
+                ////    x: {
+                ////        stacked: true // this should be set to make the bars stacked
+                ////    },
+                ////    y: {
+                ////        stacked: true, // this also..
+                ////        ticks: {
+                ////            //stepSize: 1
+                ////            beginAtZero: true,
+                ////            callback: function (value) { if (value % 1 === 0) { return value; } }
+                ////        }
+                ////    }
+                ////}
+                // TODO: Remove once we update to version 3 of chart.js
+                scales: {
+                    xAxes: [{
+                        stacked: true
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                        ticks: {
+                            //stepSize: 1
+                            beginAtZero: true,
+                            callback: function (value) { if (value % 1 === 0) { return value; } }
+                        }
+                    }]
                 }
-            };
-
-            var chart = new google.charts.Bar(document.getElementById(id));
-            // Convert the Classic options to Material options.
-            chart.draw(data, google.charts.Bar.convertOptions(options));
-        };
+            }
+        });
     }
 };
 

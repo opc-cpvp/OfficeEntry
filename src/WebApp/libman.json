@@ -51,6 +51,10 @@
     {
       "library": "font-awesome@5.15.1",
       "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "Chart.js@2.9.4",
+      "destination": "wwwroot/lib/chartjs/"
     }
   ]
 }

@@ -6,7 +6,6 @@
 <div id="blazor-spotsAvailablePerHours-wraper">
 </div>
 
-
 @code {
     [Parameter]
     public string Id { get; set; } = "chartElement";
@@ -24,18 +23,42 @@
             return;
         }
 
-        var t = Data
+        var labels = Data
             .Where(x => x.Hour >= 7 && x.Hour <= 17)
             .Select(x => new object[]
             {
                 CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr"
                 ? x.Hour == 12 ? "Midi" : x.Hour + "h"
-                : x.Hour == 12 ? "Noon" : x.Hour > 12 ? (x.Hour - 12) + "PM" : x.Hour + "AM",
-            x.SpotsReserved,
-            x.Capacity - x.SpotsReserved,
-            ""
+                : x.Hour == 12 ? "Noon" : x.Hour > 12 ? (x.Hour - 12) + "PM" : x.Hour + "AM"
             }).ToArray();
 
-    await JSRuntime.InvokeVoidAsync("interop.spotsAvailablePerHours.init", Id, @Class, CultureInfo.CurrentUICulture.TwoLetterISOLanguageName, t);
-}
+        var spotsReserved = Data
+            .Where(x => x.Hour >= 7 && x.Hour <= 17)
+            .Select(x => x.SpotsReserved)
+            .ToArray();
+
+        var spotsAvailable = Data
+          .Where(x => x.Hour >= 7 && x.Hour <= 17)
+          .Select(x => x.Capacity - x.SpotsReserved)
+          .ToArray();
+
+        var datasetsData = new object[] { spotsReserved, spotsAvailable };
+
+        var title = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr"
+            ? "Places disponibles par heure"
+            : "Spots available per hour";
+
+        var datasetLabels = new string[]
+        {
+            CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr"
+                ? "Places réservés"
+                : "Spots reserved",
+
+            CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr"
+                ? "Places disponibles"
+                : "Spots available"
+        };
+
+        await JSRuntime.InvokeVoidAsync("interop.spotsAvailablePerHours.init", Id, title, labels, datasetLabels, datasetsData);      
+    }
 }

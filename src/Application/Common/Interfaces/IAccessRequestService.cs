@@ -18,6 +18,6 @@ namespace OfficeEntry.Application.Common.Interfaces
 
         Task<Result> UpdateAccessRequest(AccessRequest accessRequest);
 
-        Task<IEnumerable<AccessRequest>> GetApprovedOrPendingAccessRequestsByFloor(Guid floorId);
+        Task<IEnumerable<AccessRequest>> GetApprovedOrPendingAccessRequestsByFloor(Guid floorId, DateTime? date = null);
     }
 }

@@ -35,7 +35,7 @@ namespace OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHou
 
         public async Task<IEnumerable<CurrentCapacity>> Handle(GetSpotsAvailablePerHourQuery request, CancellationToken cancellationToken)
         {
-            var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloor(request.FloorId);
+            var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloor(request.FloorId, request.SelectedDay);
             var capacity = await _locationService.GetCapacityByFloorAsync(request.FloorId);
 
             return Enumerable
