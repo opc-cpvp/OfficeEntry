@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using OfficeEntry.Application.User.Commands.UpdatePrivacyStatementRequests;
 using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
+using System;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -55,14 +56,14 @@ namespace OfficeEntry.WebApp.Pages
             base.OnInitialized();
         }
 
-        private void MyTermsAndConditionsState_StateChanged(object sender, MyTermsAndConditionsState e)
+        private void MyTermsAndConditionsState_StateChanged(object sender, EventArgs e)
         {
-            if (e.IsLoading)
+            if (MyTermsAndConditionsState.Value.IsLoading)
             {
                 return;
             }
 
-            SetSurveyData(e.IsPrivacyActStatementAccepted);
+            SetSurveyData(MyTermsAndConditionsState.Value.IsPrivacyActStatementAccepted);
             StateHasChanged();
         }
 
