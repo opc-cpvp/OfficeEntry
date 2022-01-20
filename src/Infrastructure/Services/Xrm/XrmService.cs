@@ -1,6 +1,4 @@
 ﻿using Simple.OData.Client;
-using System;
-using System.Net.Http;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm
 {

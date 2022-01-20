@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.Application.User.Queries.GetTermsAndConditions
 {

@@ -1,7 +1,5 @@
 ﻿using OfficeEntry.Domain.Common;
 using OfficeEntry.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
 
 namespace OfficeEntry.Domain.ValueObjects
 {

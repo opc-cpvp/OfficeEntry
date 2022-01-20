@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Primitives;
+﻿using Microsoft.Extensions.Primitives;
 using Serilog.Context;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp
 {

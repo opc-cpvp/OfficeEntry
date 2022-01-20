@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OfficeEntry.Application.Common.Exceptions
+﻿namespace OfficeEntry.Application.Common.Exceptions
 {
     public class NotFoundException : Exception
     {

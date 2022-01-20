@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace OfficeEntry.Domain.Entities
+﻿namespace OfficeEntry.Domain.Entities
 {
     public class AccessRequest
     {

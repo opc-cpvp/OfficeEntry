@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OfficeEntry.Application.Common.Interfaces
+﻿namespace OfficeEntry.Application.Common.Interfaces
 {
     public interface IDateTime
     {

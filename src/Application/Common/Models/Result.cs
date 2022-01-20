@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace OfficeEntry.Application.Common.Models
+﻿namespace OfficeEntry.Application.Common.Models
 {
     public class Result
     {

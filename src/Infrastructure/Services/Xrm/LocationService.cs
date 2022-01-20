@@ -2,11 +2,6 @@
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm
 {

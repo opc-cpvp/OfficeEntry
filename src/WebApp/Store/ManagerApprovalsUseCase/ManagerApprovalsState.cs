@@ -1,6 +1,4 @@
 ﻿using OfficeEntry.Domain.Entities;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace OfficeEntry.WebApp.Store.ManagerApprovalsUseCase
 {

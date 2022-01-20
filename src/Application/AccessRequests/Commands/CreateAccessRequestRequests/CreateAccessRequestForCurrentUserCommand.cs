@@ -1,12 +1,7 @@
 ﻿using MediatR;
 using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
 using OfficeEntry.Application.Common.Interfaces;
-using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests
 {

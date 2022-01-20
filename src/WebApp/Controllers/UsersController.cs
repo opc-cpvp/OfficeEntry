@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OfficeEntry.Application.Users.Queries.GetContactsRequests;
 using OfficeEntry.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Controllers
 {

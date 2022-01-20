@@ -1,9 +1,5 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests
 {

@@ -1,5 +1,4 @@
 ﻿using OfficeEntry.Domain.Entities;
-using System;
 
 namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest
 {

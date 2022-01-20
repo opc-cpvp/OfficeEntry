@@ -1,14 +1,8 @@
 ﻿using Fluxor;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using Microsoft.JSInterop;
-using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Pages
 {

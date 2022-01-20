@@ -3,10 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace OfficeEntry.Infrastructure.IntegrationTests

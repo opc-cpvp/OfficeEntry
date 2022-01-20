@@ -2,10 +2,7 @@
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+
 using static OfficeEntry.Domain.Entities.AccessRequest;
 
 namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest

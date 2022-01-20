@@ -1,12 +1,7 @@
-﻿using Microsoft.AspNetCore.Components.Server.Circuits;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.WebUtilities;
-using System;
+﻿using Microsoft.AspNetCore.WebUtilities;
 using System.Collections.Concurrent;
 using System.Globalization;
-using System.IO;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Area.Localization
 {

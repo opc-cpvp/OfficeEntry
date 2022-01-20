@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Localization;
-using System;
+﻿using Microsoft.AspNetCore.Localization;
 using System.Globalization;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Area.Localization
 {

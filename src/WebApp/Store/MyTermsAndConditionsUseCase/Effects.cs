@@ -1,7 +1,6 @@
 ﻿using Fluxor;
 using MediatR;
 using OfficeEntry.Application.User.Queries.GetTermsAndConditions;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase
 {

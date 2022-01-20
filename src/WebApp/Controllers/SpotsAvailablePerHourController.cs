@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Controllers
 {

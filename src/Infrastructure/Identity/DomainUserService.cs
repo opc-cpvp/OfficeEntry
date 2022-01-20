@@ -2,7 +2,6 @@
 using OfficeEntry.Domain.Exceptions;
 using OfficeEntry.Domain.ValueObjects;
 using System.DirectoryServices.AccountManagement;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.Infrastructure.Identity
 {

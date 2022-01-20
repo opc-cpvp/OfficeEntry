@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OfficeEntry.Domain.Exceptions
+﻿namespace OfficeEntry.Domain.Exceptions
 {
     public class AdAccountInvalidException : Exception
     {

@@ -1,11 +1,7 @@
-﻿using Microsoft.OData.Edm;
-using OfficeEntry.Application.Common.Interfaces;
+﻿using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm
 {

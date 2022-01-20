@@ -1,7 +1,5 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.Application.User.Commands.UpdatePrivacyStatementRequests
 {

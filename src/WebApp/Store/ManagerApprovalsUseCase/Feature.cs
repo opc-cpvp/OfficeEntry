@@ -1,6 +1,5 @@
 ﻿using Fluxor;
 using OfficeEntry.Domain.Entities;
-using System;
 
 namespace OfficeEntry.WebApp.Store.ManagerApprovalsUseCase
 {

@@ -1,7 +1,4 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
-
-namespace OfficeEntry.Infrastructure.Services.Xrm
+﻿namespace OfficeEntry.Infrastructure.Services.Xrm
 {
     internal class XrmServiceCacher : XrmService
     {

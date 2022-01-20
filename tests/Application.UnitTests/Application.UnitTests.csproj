@@ -4,7 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>OfficeEntry.Application.UnitTests</RootNamespace>
     <AssemblyName>OfficeEntry.Application.UnitTests</AssemblyName>
-
+    <ImplicitUsings>enable</ImplicitUsings>
+    
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

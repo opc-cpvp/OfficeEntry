@@ -5,10 +5,7 @@ using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Infrastructure.Identity;
 using OfficeEntry.Infrastructure.Services;
 using OfficeEntry.Infrastructure.Services.Xrm;
-using System;
-using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Net.Http.Headers;
 
 namespace OfficeEntry.Infrastructure

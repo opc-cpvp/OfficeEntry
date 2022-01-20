@@ -1,8 +1,5 @@
 ﻿using OfficeEntry.Domain.Entities;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
 {

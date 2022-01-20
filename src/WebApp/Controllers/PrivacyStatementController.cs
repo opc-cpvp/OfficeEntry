@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OfficeEntry.Application.User.Commands.UpdatePrivacyStatementRequests;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Controllers
 {

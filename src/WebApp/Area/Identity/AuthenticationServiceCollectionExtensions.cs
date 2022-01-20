@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Negotiate;
-using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace OfficeEntry.WebApp.Area.Identity
 {

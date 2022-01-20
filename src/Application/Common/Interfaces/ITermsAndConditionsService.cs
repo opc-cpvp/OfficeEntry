@@ -1,6 +1,5 @@
 ﻿using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.Application.Common.Interfaces
 {

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using OfficeEntry.Application.Common.Interfaces;
-using System;
+﻿using OfficeEntry.Application.Common.Interfaces;
 using System.Security.Claims;
 
 namespace OfficeEntry.WebApp.Area.Identity.Services

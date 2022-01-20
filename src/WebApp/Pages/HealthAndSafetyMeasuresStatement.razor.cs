@@ -5,10 +5,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using OfficeEntry.Application.User.Commands.UpdateHealthAndSafetyStatementRequests;
 using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
-using System;
-using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Pages
 {

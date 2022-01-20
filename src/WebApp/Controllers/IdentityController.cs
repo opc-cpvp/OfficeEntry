@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.ValueObjects;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Controllers
 {

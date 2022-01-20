@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests;
 using OfficeEntry.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Controllers
 {

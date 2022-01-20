@@ -1,12 +1,6 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using Microsoft.JSInterop;
-using OfficeEntry.Domain.Enums;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using Fluxor;
 using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
 using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;

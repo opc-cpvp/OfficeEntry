@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Logging;
 using OfficeEntry.Application.Locations.Queries.GetBuildings;
-using OfficeEntry.Domain.Entities;
 
 namespace OfficeEntry.WebApp
 {

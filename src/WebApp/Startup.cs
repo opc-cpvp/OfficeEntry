@@ -1,12 +1,5 @@
 using Blazor.Polyfill.Server;
 using Fluxor;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using OfficeEntry.Application;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Infrastructure;

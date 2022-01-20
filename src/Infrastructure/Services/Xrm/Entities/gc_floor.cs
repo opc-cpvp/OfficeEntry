@@ -1,5 +1,4 @@
 ﻿using OfficeEntry.Domain.Entities;
-using System;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
 {

@@ -4,6 +4,7 @@
     <RootNamespace>OfficeEntry.Infrastructure.IntegrationTests</RootNamespace>
     <AssemblyName>OfficeEntry.Infrastructure.IntegrationTests</AssemblyName>
     <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>

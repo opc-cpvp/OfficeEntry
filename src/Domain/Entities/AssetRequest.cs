@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OfficeEntry.Domain.Entities
+﻿namespace OfficeEntry.Domain.Entities
 {
     public class AssetRequest
     {

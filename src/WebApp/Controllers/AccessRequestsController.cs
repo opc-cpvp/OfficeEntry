@@ -4,9 +4,6 @@ using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequest
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests;
 using OfficeEntry.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Globalization;
 
 namespace OfficeEntry.WebApp.Controllers

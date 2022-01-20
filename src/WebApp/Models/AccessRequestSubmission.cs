@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OfficeEntry.WebApp.Models
+﻿namespace OfficeEntry.WebApp.Models
 {
     public class AccessRequestSubmission
     {

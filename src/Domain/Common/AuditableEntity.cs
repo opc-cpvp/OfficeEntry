@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OfficeEntry.Domain.Common
+﻿namespace OfficeEntry.Domain.Common
 {
     public abstract class AuditableEntity
     {

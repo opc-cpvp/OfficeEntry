@@ -1,6 +1,5 @@
 ﻿using IdentityModel;
 using Microsoft.AspNetCore.SignalR;
-using System.Linq;
 
 namespace OfficeEntry.WebApp.Area.Identity
 {

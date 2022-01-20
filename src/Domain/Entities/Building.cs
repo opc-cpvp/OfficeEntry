@@ -1,7 +1,4 @@
-﻿using OfficeEntry.Domain.Enums;
-using System;
-
-namespace OfficeEntry.Domain.Entities
+﻿namespace OfficeEntry.Domain.Entities
 {
     public class Building
     {

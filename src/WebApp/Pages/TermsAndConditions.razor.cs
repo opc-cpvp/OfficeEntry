@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using System.Threading.Tasks;
 using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
 using Fluxor;
 

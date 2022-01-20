@@ -8,9 +8,7 @@ using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
 using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
-using System;
 using System.Globalization;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Pages
 {

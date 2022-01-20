@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OfficeEntry.Domain.Enums
+﻿namespace OfficeEntry.Domain.Enums
 {
     public enum Asset
     {

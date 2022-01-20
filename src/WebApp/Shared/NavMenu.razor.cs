@@ -1,10 +1,8 @@
 ﻿using Fluxor;
-using MediatR;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
 using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.WebApp.Shared
 {

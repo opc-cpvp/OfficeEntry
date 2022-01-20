@@ -1,10 +1,6 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Exceptions;
 using Serilog.Exceptions.Core;
-using System;
 
 namespace OfficeEntry.WebApp
 {

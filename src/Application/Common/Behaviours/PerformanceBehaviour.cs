@@ -3,8 +3,6 @@ using Microsoft.Extensions.Logging;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.ValueObjects;
 using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.Application.Common.Behaviours
 {

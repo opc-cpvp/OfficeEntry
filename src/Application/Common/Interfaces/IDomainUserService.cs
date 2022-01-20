@@ -1,5 +1,4 @@
 ﻿using OfficeEntry.Domain.ValueObjects;
-using System.Threading.Tasks;
 
 namespace OfficeEntry.Application.Common.Interfaces
 {
