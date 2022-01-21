@@ -1,56 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Logging;
 using OfficeEntry.Application.Locations.Queries.GetBuildings;
-using OfficeEntry.Domain.Entities;
 
-namespace OfficeEntry.WebApp
+namespace OfficeEntry.WebApp;
+
+public class HealthCheck : IHealthCheck
 {
-    public class HealthCheck : IHealthCheck
+    private readonly IMediator _mediator;
+    private readonly ILogger<HealthCheck> _logger;
+
+    public HealthCheck(IMediator mediator, ILogger<HealthCheck> logger)
     {
-        private readonly IMediator _mediator;
-        private readonly ILogger<HealthCheck> _logger;
+        _mediator = mediator;
+        _logger = logger;
+    }
 
-        public HealthCheck(IMediator mediator, ILogger<HealthCheck> logger)
+    public async Task<HealthCheckResult> CheckHealthAsync(
+        HealthCheckContext context,
+        CancellationToken cancellationToken = default)
+    {
+        try
         {
-            _mediator = mediator;
-            _logger = logger;
-        }
+            var buildings = await _mediator.Send(new GetBuildingsQuery { Locale = "en" });
 
-        public async Task<HealthCheckResult> CheckHealthAsync(
-            HealthCheckContext context,
-            CancellationToken cancellationToken = default)
-        {
-            try
+            if (buildings is { })
             {
-                var buildings = await _mediator.Send(new GetBuildingsQuery { Locale = "en" });
-
-                if (buildings is { })
-                {
-                    return HealthCheckResult.Healthy("A healthy result.");
-                }
-                else
-                {
-                    _logger.LogError("No buildings found.");
-
-                    return new HealthCheckResult(
-                        context.Registration.FailureStatus,
-                        "No buildings found.");
-                }
+                return HealthCheckResult.Healthy("A healthy result.");
             }
-            catch (Exception ex)
+            else
             {
-                _logger.LogError(ex, "health check - An unhealthy result");
+                _logger.LogError("No buildings found.");
 
                 return new HealthCheckResult(
                     context.Registration.FailureStatus,
-                    "An unhealthy result.");
+                    "No buildings found.");
             }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "health check - An unhealthy result");
+
+            return new HealthCheckResult(
+                context.Registration.FailureStatus,
+                "An unhealthy result.");
         }
     }
 }

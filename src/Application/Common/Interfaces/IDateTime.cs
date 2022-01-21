@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace OfficeEntry.Application.Common.Interfaces;
 
-namespace OfficeEntry.Application.Common.Interfaces
+public interface IDateTime
 {
-    public interface IDateTime
-    {
-        DateTime Now { get; }
-    }
+    DateTime Now { get; }
 }

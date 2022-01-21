@@ -8,106 +8,103 @@ using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
 using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
-using System;
 using System.Globalization;
-using System.Threading.Tasks;
 
-namespace OfficeEntry.WebApp.Pages
+namespace OfficeEntry.WebApp.Pages;
+
+[Authorize]
+public partial class AccessRequest
 {
-    [Authorize]
-    public partial class AccessRequest
+    [Parameter]
+    public Guid Id { get; set; }
+
+    [Inject]
+    public IStringLocalizer<App> Localizer { get; set; }
+
+    [Inject]
+    public IMediator Mediator { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    private IDispatcher Dispatcher { get; set; }
+
+    public bool IsEmployee { get; set; }
+    public bool IsManager { get; set; }
+
+    public bool IsApproved => accessRequest.Status == Domain.Entities.AccessRequest.ApprovalStatus.Approved;
+    public bool IsCancelled => accessRequest.Status == Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
+    public bool IsDeclined => accessRequest.Status == Domain.Entities.AccessRequest.ApprovalStatus.Declined;
+
+    private AccessRequestViewModel accessRequest;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        [Parameter]
-        public Guid Id { get; set; }
-
-        [Inject]
-        public IStringLocalizer<App> Localizer { get; set; }
-
-        [Inject]
-        public IMediator Mediator { get; set; }
-
-        [Inject]
-        public NavigationManager NavigationManager { get; set; }
-
-        [Inject]
-        private IDispatcher Dispatcher { get; set; }
-
-        public bool IsEmployee { get; set; }
-        public bool IsManager { get; set; }
-
-        public bool IsApproved => accessRequest.Status  == Domain.Entities.AccessRequest.ApprovalStatus.Approved;
-        public bool IsCancelled => accessRequest.Status == Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
-        public bool IsDeclined => accessRequest.Status  == Domain.Entities.AccessRequest.ApprovalStatus.Declined;
-
-        private AccessRequestViewModel accessRequest;
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        if (!firstRender)
         {
-            if (!firstRender)
-            {
-                return;
-            }
-
-            var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-            locale = (locale == Locale.French) ? locale : Locale.English;
-
-            var result = await Mediator.Send(new GetAccessRequestQuery { AccessRequestId = Id, Locale = locale });
-            IsEmployee = result.IsEmployee;
-            IsManager = result.IsManager;
-            accessRequest = result;
-
-            StateHasChanged();
-
-            await base.OnAfterRenderAsync(firstRender);
+            return;
         }
 
-        private async Task ApproveRequest()
+        var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+        locale = (locale == Locale.French) ? locale : Locale.English;
+
+        var result = await Mediator.Send(new GetAccessRequestQuery { AccessRequestId = Id, Locale = locale });
+        IsEmployee = result.IsEmployee;
+        IsManager = result.IsManager;
+        accessRequest = result;
+
+        StateHasChanged();
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private async Task ApproveRequest()
+    {
+        accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Approved;
+
+        var accessRequestMessage = new Domain.Entities.AccessRequest
         {
-            accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Approved;
+            Id = accessRequest.Id,
+            Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
+        };
+        await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
+        Dispatcher.Dispatch(new GetManagerApprovalsAction());
+        Dispatcher.Dispatch(new GetMyAccessRequestsAction());
 
-            var accessRequestMessage = new Domain.Entities.AccessRequest
-            {
-                Id = accessRequest.Id,
-                Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
-            };
-            await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
-            Dispatcher.Dispatch(new GetManagerApprovalsAction());
-            Dispatcher.Dispatch(new GetMyAccessRequestsAction());
+        NavigationManager.NavigateTo(Localizer["review-access-requests"]);
+    }
 
-            NavigationManager.NavigateTo(Localizer["review-access-requests"]);
-        }
+    private async Task CancelRequest()
+    {
+        accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
 
-        private async Task CancelRequest()
+        var accessRequestMessage = new Domain.Entities.AccessRequest
         {
-            accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
+            Id = accessRequest.Id,
+            Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
+        };
+        await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
+        Dispatcher.Dispatch(new GetManagerApprovalsAction());
+        Dispatcher.Dispatch(new GetMyAccessRequestsAction());
 
-            var accessRequestMessage = new Domain.Entities.AccessRequest
-            {
-                Id = accessRequest.Id,
-                Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
-            };
-            await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
-            Dispatcher.Dispatch(new GetManagerApprovalsAction());
-            Dispatcher.Dispatch(new GetMyAccessRequestsAction());
+        NavigationManager.NavigateTo(Localizer["my-access-requests"]);
+    }
 
-            NavigationManager.NavigateTo(Localizer["my-access-requests"]);
-        }
+    private async Task DeclineRequest()
+    {
+        accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Declined;
 
-        private async Task DeclineRequest()
+        var accessRequestMessage = new Domain.Entities.AccessRequest
         {
-            accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Declined;
+            Id = accessRequest.Id,
+            Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
+        };
 
-            var accessRequestMessage = new Domain.Entities.AccessRequest
-            {
-                Id = accessRequest.Id,
-                Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
-            };
+        await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
+        Dispatcher.Dispatch(new GetManagerApprovalsAction());
+        Dispatcher.Dispatch(new GetMyAccessRequestsAction());
 
-            await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
-            Dispatcher.Dispatch(new GetManagerApprovalsAction());
-            Dispatcher.Dispatch(new GetMyAccessRequestsAction());
-
-            NavigationManager.NavigateTo(Localizer["review-access-requests"]);
-        }
+        NavigationManager.NavigateTo(Localizer["review-access-requests"]);
     }
 }

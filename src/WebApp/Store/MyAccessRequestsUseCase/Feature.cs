@@ -1,14 +1,12 @@
 ﻿using Fluxor;
 using OfficeEntry.Domain.Entities;
-using System;
 
-namespace OfficeEntry.WebApp.Store.MyAccessRequestsUseCase
+namespace OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
+
+public class Feature : Feature<MyAccessRequestsState>
 {
-    public class Feature : Feature<MyAccessRequestsState>
-    {
-        public override string GetName() => "My Access Requests";
+    public override string GetName() => "My Access Requests";
 
-        protected override MyAccessRequestsState GetInitialState() =>
-            new MyAccessRequestsState(isLoading: true, accessRequests: Array.Empty<AccessRequest>());
-    }
+    protected override MyAccessRequestsState GetInitialState() =>
+        new MyAccessRequestsState(isLoading: true, accessRequests: Array.Empty<AccessRequest>());
 }

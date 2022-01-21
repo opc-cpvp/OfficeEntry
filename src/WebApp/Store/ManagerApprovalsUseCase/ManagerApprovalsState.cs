@@ -1,25 +1,22 @@
 ﻿using OfficeEntry.Domain.Entities;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace OfficeEntry.WebApp.Store.ManagerApprovalsUseCase
+namespace OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
+
+public class ManagerApprovalsState
 {
-    public class ManagerApprovalsState
+    public bool IsLoading { get; }
+
+    public IReadOnlyList<AccessRequest> AccessRequests { get; }
+
+    public int PendingApprovals { get; }
+
+    public ManagerApprovalsState(bool isLoading, IReadOnlyList<AccessRequest> accessRequests)
     {
-        public bool IsLoading { get; }
+        IsLoading = isLoading;
 
-        public IReadOnlyList<AccessRequest> AccessRequests { get; }
+        AccessRequests = accessRequests;
 
-        public int PendingApprovals { get; }
-
-        public ManagerApprovalsState(bool isLoading, IReadOnlyList<AccessRequest> accessRequests)
-        {
-            IsLoading = isLoading;
-
-            AccessRequests = accessRequests;
-
-            PendingApprovals = accessRequests
-                .Count(x => x.Status.Key == (int)AccessRequest.ApprovalStatus.Pending);
-        }
+        PendingApprovals = accessRequests
+            .Count(x => x.Status.Key == (int)AccessRequest.ApprovalStatus.Pending);
     }
 }

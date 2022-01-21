@@ -1,8 +1,7 @@
-﻿namespace OfficeEntry.Domain.Entities
+﻿namespace OfficeEntry.Domain.Entities;
+
+public class OptionSet
 {
-    public class OptionSet
-    {
-        public int Key { get; set; }
-        public string Value { get; set; }
-    }
+    public int Key { get; set; }
+    public string Value { get; set; }
 }

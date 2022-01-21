@@ -1,28 +1,26 @@
 ﻿using OfficeEntry.Domain.Entities;
-using System;
 
-namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
+namespace OfficeEntry.Infrastructure.Services.Xrm.Entities;
+
+internal class gc_usersettingses
 {
-    internal class gc_usersettingses
+    public string gc_name { get; set; }
+    public Guid gc_usersettingsid { get; set; }
+    public DateTime? gc_healthsafety { get; set; }
+    public DateTime? gc_privacystatement { get; set; }
+
+    public int statecode { get; set; }
+
+    public static UserSettings Convert(gc_usersettingses userSettings)
     {
-        public string gc_name { get; set; }
-        public Guid gc_usersettingsid { get; set; }
-        public DateTime? gc_healthsafety { get; set; }
-        public DateTime? gc_privacystatement { get; set; }
+        if (userSettings is null)
+            return null;
 
-        public int statecode { get; set; }
-
-        public static UserSettings Convert(gc_usersettingses userSettings)
+        return new UserSettings
         {
-            if (userSettings is null)
-                return null;
-
-            return new UserSettings
-            {
-                Id = userSettings.gc_usersettingsid,
-                HealthSafety = userSettings.gc_healthsafety,
-                PrivacyStatement = userSettings.gc_privacystatement
-            };
-        }
+            Id = userSettings.gc_usersettingsid,
+            HealthSafety = userSettings.gc_healthsafety,
+            PrivacyStatement = userSettings.gc_privacystatement
+        };
     }
 }

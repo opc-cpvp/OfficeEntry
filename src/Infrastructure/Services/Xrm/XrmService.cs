@@ -1,52 +1,49 @@
 ﻿using Simple.OData.Client;
-using System;
-using System.Net.Http;
 
-namespace OfficeEntry.Infrastructure.Services.Xrm
+namespace OfficeEntry.Infrastructure.Services.Xrm;
+
+public abstract class XrmService : IDisposable
 {
-    public abstract class XrmService : IDisposable
+    private readonly IHttpClientFactory _httpClientFactory;
+    private bool disposedValue;
+
+    public XrmService(IHttpClientFactory httpClientFactory)
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-        private bool disposedValue;
+        _httpClientFactory = httpClientFactory;
+        HttpClient = _httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
 
-        public XrmService(IHttpClientFactory httpClientFactory)
+        var clientSettings = new ODataClientSettings(HttpClient)
         {
-            _httpClientFactory = httpClientFactory;
-            HttpClient = _httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
+            MetadataDocument = MetadataDocument.Value,
+            IgnoreUnmappedProperties = true
+        };
 
-            var clientSettings = new ODataClientSettings(HttpClient)
-            {
-                MetadataDocument = MetadataDocument.Value,
-                IgnoreUnmappedProperties = true
-            };
+        Client = new ODataClient(clientSettings);
+    }
 
-            Client = new ODataClient(clientSettings);
-        }
+    protected HttpClient HttpClient { get; }
+    protected ODataClient Client { get; private set; }
 
-        protected HttpClient HttpClient { get; }
-        protected ODataClient Client { get; private set; }
-
-        protected virtual void Dispose(bool disposing)
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposedValue)
         {
-            if (!disposedValue)
+            if (disposing)
             {
-                if (disposing)
-                {
-                    // Dispose managed state (managed objects)
-                    HttpClient?.Dispose();
-                }
-
-                // Free unmanaged resources (unmanaged objects) and override finalizer
-                // Set large fields to null
-                disposedValue = true;
+                // Dispose managed state (managed objects)
+                HttpClient?.Dispose();
             }
-        }
 
-        public void Dispose()
-        {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
+            // Free unmanaged resources (unmanaged objects) and override finalizer
+            // Set large fields to null
+            disposedValue = true;
         }
+    }
+
+    public void Dispose()
+    {
+        // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
     }
 }

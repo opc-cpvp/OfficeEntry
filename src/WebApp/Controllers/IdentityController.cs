@@ -1,23 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.ValueObjects;
-using System.Threading.Tasks;
 
-namespace OfficeEntry.WebApp.Controllers
+namespace OfficeEntry.WebApp.Controllers;
+
+public class IdentityController : ApiController
 {
-    public class IdentityController : ApiController
+    private readonly IDomainUserService _domainUserService;
+
+    public IdentityController(IDomainUserService domainUserService)
     {
-        private readonly IDomainUserService _domainUserService;
+        _domainUserService = domainUserService;
+    }
 
-        public IdentityController(IDomainUserService domainUserService)
-        {
-            _domainUserService = domainUserService;
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<string>> Get()
-        {
-            return await _domainUserService.GetUserNameAsync(AdAccount.For(User.Identity.Name));
-        }
+    [HttpGet]
+    public async Task<ActionResult<string>> Get()
+    {
+        return await _domainUserService.GetUserNameAsync(AdAccount.For(User.Identity.Name));
     }
 }

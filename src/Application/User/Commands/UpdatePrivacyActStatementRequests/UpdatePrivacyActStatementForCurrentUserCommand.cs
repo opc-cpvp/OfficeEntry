@@ -1,33 +1,30 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace OfficeEntry.Application.User.Commands.UpdatePrivacyStatementRequests
+namespace OfficeEntry.Application.User.Commands.UpdatePrivacyStatementRequests;
+
+public class UpdatePrivacyActStatementForCurrentUserCommand : IRequest
 {
-    public class UpdatePrivacyActStatementForCurrentUserCommand : IRequest
+    public bool IsPrivacyActStatementAccepted { get; set; }
+}
+
+public class UpdatePrivacyActStatementForCurrentUserCommandHandler : IRequestHandler<UpdatePrivacyActStatementForCurrentUserCommand>
+{
+    private readonly ICurrentUserService _currentUserService;
+    private readonly ITermsAndConditionsService _termsAndConditionsService;
+
+    public UpdatePrivacyActStatementForCurrentUserCommandHandler(ICurrentUserService currentUserService, ITermsAndConditionsService termsAndConditionsService)
     {
-        public bool IsPrivacyActStatementAccepted { get; set; }
+        _currentUserService = currentUserService;
+        _termsAndConditionsService = termsAndConditionsService;
     }
 
-    public class UpdatePrivacyActStatementForCurrentUserCommandHandler : IRequestHandler<UpdatePrivacyActStatementForCurrentUserCommand>
+    public async Task<Unit> Handle(UpdatePrivacyActStatementForCurrentUserCommand request, CancellationToken cancellationToken)
     {
-        private readonly ICurrentUserService _currentUserService;
-        private readonly ITermsAndConditionsService _termsAndConditionsService;
+        var username = _currentUserService.UserId;
 
-        public UpdatePrivacyActStatementForCurrentUserCommandHandler(ICurrentUserService currentUserService, ITermsAndConditionsService termsAndConditionsService)
-        {
-            _currentUserService = currentUserService;
-            _termsAndConditionsService = termsAndConditionsService;
-        }
+        await _termsAndConditionsService.SetPrivacyActStatementFor(username, request.IsPrivacyActStatementAccepted);
 
-        public async Task<Unit> Handle(UpdatePrivacyActStatementForCurrentUserCommand request, CancellationToken cancellationToken)
-        {
-            var username = _currentUserService.UserId;
-
-            await _termsAndConditionsService.SetPrivacyActStatementFor(username, request.IsPrivacyActStatementAccepted);
-
-            return Unit.Value;
-        }
+        return Unit.Value;
     }
 }

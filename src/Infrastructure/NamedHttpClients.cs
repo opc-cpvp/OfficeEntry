@@ -1,7 +1,6 @@
-﻿namespace OfficeEntry.Infrastructure
+﻿namespace OfficeEntry.Infrastructure;
+
+public class NamedHttpClients
 {
-    public class NamedHttpClients
-    {
-        public const string Dynamics365ServiceDesk = nameof(Dynamics365ServiceDesk);
-    }
+    public const string Dynamics365ServiceDesk = nameof(Dynamics365ServiceDesk);
 }

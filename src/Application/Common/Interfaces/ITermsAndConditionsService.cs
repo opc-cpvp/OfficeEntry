@@ -1,15 +1,13 @@
 ﻿using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
-using System.Threading.Tasks;
 
-namespace OfficeEntry.Application.Common.Interfaces
+namespace OfficeEntry.Application.Common.Interfaces;
+
+public interface ITermsAndConditionsService
 {
-    public interface ITermsAndConditionsService
-    {
-        Task<TermsAndConditions> GetTermsAndConditionsFor(string username);
+    Task<TermsAndConditions> GetTermsAndConditionsFor(string username);
 
-        Task<Result> SetPrivacyActStatementFor(string username, bool isPrivateActStatementAccepted);
+    Task<Result> SetPrivacyActStatementFor(string username, bool isPrivateActStatementAccepted);
 
-        Task<Result> SetHealthAndSafetyMeasuresFor(string username, bool isHealthAndSafetyMeasuresAccepted);
-    }
+    Task<Result> SetHealthAndSafetyMeasuresFor(string username, bool isHealthAndSafetyMeasuresAccepted);
 }

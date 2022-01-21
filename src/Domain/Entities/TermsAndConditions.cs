@@ -1,8 +1,7 @@
-﻿namespace OfficeEntry.Domain.Entities
+﻿namespace OfficeEntry.Domain.Entities;
+
+public class TermsAndConditions
 {
-    public class TermsAndConditions
-    {
-        public bool IsHealthAndSafetyMeasuresAccepted { get; set; }
-        public bool IsPrivacyActStatementAccepted { get; set; }
-    }
+    public bool IsHealthAndSafetyMeasuresAccepted { get; set; }
+    public bool IsPrivacyActStatementAccepted { get; set; }
 }

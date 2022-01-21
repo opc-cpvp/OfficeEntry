@@ -3,61 +3,60 @@ using OfficeEntry.Domain.ValueObjects;
 using FluentAssertions;
 using Xunit;
 
-namespace OfficeEntry.Domain.UnitTests.ValueObjects
+namespace OfficeEntry.Domain.UnitTests.ValueObjects;
+
+public class AdAccountTests
 {
-    public class AdAccountTests
+    [Fact]
+    public void ShouldHaveCorrectDomainAndName()
     {
-        [Fact]
-        public void ShouldHaveCorrectDomainAndName()
-        {
-            const string accountString = "SSW\\Jason";
+        const string accountString = "SSW\\Jason";
 
-            var account = AdAccount.For(accountString);
+        var account = AdAccount.For(accountString);
 
-            account.Domain.Should().Be("SSW");
-            account.Name.Should().Be("Jason");
-        }
+        account.Domain.Should().Be("SSW");
+        account.Name.Should().Be("Jason");
+    }
 
-        [Fact]
-        public void ToStringReturnsCorrectFormat()
-        {
-            const string accountString = "SSW\\Jason";
+    [Fact]
+    public void ToStringReturnsCorrectFormat()
+    {
+        const string accountString = "SSW\\Jason";
 
-            var account = AdAccount.For(accountString);
+        var account = AdAccount.For(accountString);
 
-            var result = account.ToString();
+        var result = account.ToString();
 
-            result.Should().Be(accountString);
-        }
+        result.Should().Be(accountString);
+    }
 
-        [Fact]
-        public void ImplicitConversionToStringResultsInCorrectString()
-        {
-            const string accountString = "SSW\\Jason";
+    [Fact]
+    public void ImplicitConversionToStringResultsInCorrectString()
+    {
+        const string accountString = "SSW\\Jason";
 
-            var account = AdAccount.For(accountString);
+        var account = AdAccount.For(accountString);
 
-            string result = account;
+        string result = account;
 
-            result.Should().Be(accountString);
-        }
+        result.Should().Be(accountString);
+    }
 
-        [Fact]
-        public void ExplicitConversionFromStringSetsDomainAndName()
-        {
-            const string accountString = "SSW\\Jason";
+    [Fact]
+    public void ExplicitConversionFromStringSetsDomainAndName()
+    {
+        const string accountString = "SSW\\Jason";
 
-            var account = (AdAccount)accountString;
+        var account = (AdAccount)accountString;
 
-            account.Domain.Should().Be("SSW");
-            account.Name.Should().Be("Jason");
-        }
+        account.Domain.Should().Be("SSW");
+        account.Name.Should().Be("Jason");
+    }
 
-        [Fact]
-        public void ShouldThrowAdAccountInvalidExceptionForInvalidAdAccount()
-        {
-            FluentActions.Invoking(() => (AdAccount)"SSWJason")
-                .Should().Throw<AdAccountInvalidException>();
-        }
+    [Fact]
+    public void ShouldThrowAdAccountInvalidExceptionForInvalidAdAccount()
+    {
+        FluentActions.Invoking(() => (AdAccount)"SSWJason")
+            .Should().Throw<AdAccountInvalidException>();
     }
 }

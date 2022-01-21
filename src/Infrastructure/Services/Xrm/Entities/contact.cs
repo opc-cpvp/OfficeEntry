@@ -1,45 +1,43 @@
 ﻿using OfficeEntry.Domain.Entities;
-using System;
 
-namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
+namespace OfficeEntry.Infrastructure.Services.Xrm.Entities;
+
+internal class contact
 {
-    internal class contact
+    public Guid contactid { get; set; }
+    public string firstname { get; set; }
+    public string lastname { get; set; }
+    public string emailaddress1 { get; set; }
+    public string gc_username { get; set; }
+    public gc_usersettingses gc_usersettings { get; set; }
+    public string telephone1 { get; set; }
+    public int statecode { get; set; }
+
+    public static Contact Convert(contact contact)
     {
-        public Guid contactid { get; set; }
-        public string firstname { get; set; }
-        public string lastname { get; set; }
-        public string emailaddress1 { get; set; }
-        public string gc_username { get; set; }
-        public gc_usersettingses gc_usersettings { get; set; }
-        public string telephone1 { get; set; }
-        public int statecode { get; set; }
+        if (contact is null)
+            return null;
 
-        public static Contact Convert(contact contact)
+        return new Contact
         {
-            if (contact is null)
-                return null;
+            Id = contact.contactid,
+            FirstName = contact.firstname,
+            LastName = contact.lastname,
+            EmailAddress = contact.emailaddress1,
+            PhoneNumber = contact.telephone1,
+            Username = contact.gc_username,
+            UserSettings = gc_usersettingses.Convert(contact.gc_usersettings)
+        };
+    }
 
-            return new Contact
-            {
-                Id = contact.contactid,
-                FirstName = contact.firstname,
-                LastName = contact.lastname,
-                EmailAddress = contact.emailaddress1,
-                PhoneNumber = contact.telephone1,
-                Username = contact.gc_username,
-                UserSettings = gc_usersettingses.Convert(contact.gc_usersettings)
-            };
-        }
-
-        public static contact MapFrom(Contact x)
+    public static contact MapFrom(Contact x)
+    {
+        return new contact
         {
-            return new contact
-            {
-                firstname = x.FirstName,
-                lastname = x.LastName,
-                emailaddress1 = x.EmailAddress.ToLower(),
-                telephone1 = x.PhoneNumber
-            };
-        }
+            firstname = x.FirstName,
+            lastname = x.LastName,
+            emailaddress1 = x.EmailAddress.ToLower(),
+            telephone1 = x.PhoneNumber
+        };
     }
 }

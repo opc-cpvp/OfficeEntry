@@ -1,24 +1,23 @@
 ﻿using Microsoft.JSInterop;
 
-namespace OfficeEntry.WebApp
+namespace OfficeEntry.WebApp;
+
+public interface ISurveyInterop
 {
-    public interface ISurveyInterop
+    void CreateSurvey(string id);
+}
+
+public class SurveyInterop : ISurveyInterop
+{
+    private readonly IJSRuntime _jsRuntime;
+
+    public SurveyInterop(IJSRuntime jsRuntime)
     {
-        void CreateSurvey(string id);
+        _jsRuntime = jsRuntime;
     }
 
-    public class SurveyInterop : ISurveyInterop
+    public void CreateSurvey(string id)
     {
-        private readonly IJSRuntime _jsRuntime;
-
-        public SurveyInterop(IJSRuntime jsRuntime)
-        {
-            _jsRuntime = jsRuntime;
-        }
-
-        public void CreateSurvey(string id)
-        {
-            _jsRuntime.InvokeAsync<string>("interopJS.survey.init", id);
-        }
+        _jsRuntime.InvokeAsync<string>("interopJS.survey.init", id);
     }
 }
