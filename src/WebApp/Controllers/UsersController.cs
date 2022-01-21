@@ -2,14 +2,13 @@
 using OfficeEntry.Application.Users.Queries.GetContactsRequests;
 using OfficeEntry.Domain.Entities;
 
-namespace OfficeEntry.WebApp.Controllers
+namespace OfficeEntry.WebApp.Controllers;
+
+public class UsersController : ApiController
 {
-    public class UsersController : ApiController
+    [HttpGet]
+    public async Task<IEnumerable<Contact>> Get()
     {
-        [HttpGet]
-        public async Task<IEnumerable<Contact>> Get()
-        {
-            return await Mediator.Send(new GetContactsQuery());
-        }
+        return await Mediator.Send(new GetContactsQuery());
     }
 }

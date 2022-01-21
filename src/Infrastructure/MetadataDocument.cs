@@ -1,8 +1,7 @@
-﻿namespace OfficeEntry.Infrastructure
+﻿namespace OfficeEntry.Infrastructure;
+
+public class MetadataDocument
 {
-    public class MetadataDocument
-    {
-        public static string Value { get; set; } = null;
-        public bool RefreshMetadataDocument { get; set; }
-    }
+    public static string Value { get; set; } = null;
+    public bool RefreshMetadataDocument { get; set; }
 }

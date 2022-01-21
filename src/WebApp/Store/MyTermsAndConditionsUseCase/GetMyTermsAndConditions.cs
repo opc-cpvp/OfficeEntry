@@ -1,6 +1,5 @@
-﻿namespace OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase
+﻿namespace OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
+
+public class GetMyTermsAndConditions
 {
-    public class GetMyTermsAndConditions
-    {
-    }
 }

@@ -1,34 +1,33 @@
 ﻿using Microsoft.Extensions.Primitives;
 using Serilog.Context;
 
-namespace OfficeEntry.WebApp
+namespace OfficeEntry.WebApp;
+
+public static class RequestLogContextMiddlewareExtensions
 {
-    public static class RequestLogContextMiddlewareExtensions
+    public static IApplicationBuilder UseRequestLogContext(this IApplicationBuilder builder)
     {
-        public static IApplicationBuilder UseRequestLogContext(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<RequestLogContextMiddleware>();
-        }
+        return builder.UseMiddleware<RequestLogContextMiddleware>();
+    }
+}
+
+public class RequestLogContextMiddleware
+{
+    private readonly RequestDelegate _next;
+
+    public RequestLogContextMiddleware(RequestDelegate next)
+    {
+        _next = next;
     }
 
-    public class RequestLogContextMiddleware
+    public Task Invoke(HttpContext context)
     {
-        private readonly RequestDelegate _next;
+        context.Request.Headers.TryGetValue("Cko-Correlation-Id", out StringValues ckoId);
+        var correlationId = ckoId.FirstOrDefault() ?? context.TraceIdentifier;
 
-        public RequestLogContextMiddleware(RequestDelegate next)
+        using (LogContext.PushProperty("CorrelationId", correlationId))
         {
-            _next = next;
-        }
-
-        public Task Invoke(HttpContext context)
-        {
-            context.Request.Headers.TryGetValue("Cko-Correlation-Id", out StringValues ckoId);
-            var correlationId = ckoId.FirstOrDefault() ?? context.TraceIdentifier;
-
-            using (LogContext.PushProperty("CorrelationId", correlationId))
-            {
-                return _next.Invoke(context);
-            }
+            return _next.Invoke(context);
         }
     }
 }

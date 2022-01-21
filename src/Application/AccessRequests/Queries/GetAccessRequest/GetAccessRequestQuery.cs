@@ -5,63 +5,62 @@ using OfficeEntry.Domain.Enums;
 
 using static OfficeEntry.Domain.Entities.AccessRequest;
 
-namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest
+namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
+
+public class GetAccessRequestQuery : IRequest<AccessRequestViewModel>
 {
-    public class GetAccessRequestQuery : IRequest<AccessRequestViewModel>
+    public Guid AccessRequestId { get; set; }
+    public string Locale { get; set; }
+}
+
+public class GetAccessRequestQueryHandler : IRequestHandler<GetAccessRequestQuery, AccessRequestViewModel>
+{
+    private readonly ICurrentUserService _currentUserService;
+    private readonly IAccessRequestService _accessRequestService;
+    private readonly IUserService _userService;
+
+    public GetAccessRequestQueryHandler(ICurrentUserService currentUserService, IAccessRequestService accessRequestService, IUserService userService)
     {
-        public Guid AccessRequestId { get; set; }
-        public string Locale { get; set; }
+        _currentUserService = currentUserService;
+        _accessRequestService = accessRequestService;
+        _userService = userService;
     }
 
-    public class GetAccessRequestQueryHandler : IRequestHandler<GetAccessRequestQuery, AccessRequestViewModel>
+    public async Task<AccessRequestViewModel> Handle(GetAccessRequestQuery request, CancellationToken cancellationToken)
     {
-        private readonly ICurrentUserService _currentUserService;
-        private readonly IAccessRequestService _accessRequestService;
-        private readonly IUserService _userService;
+        var username = _currentUserService.UserId;
+        var userResult = await _userService.GetUserId(username);
 
-        public GetAccessRequestQueryHandler(ICurrentUserService currentUserService, IAccessRequestService accessRequestService, IUserService userService)
+        // TODO: Ensure that the user is only able to view the request if they're the employee / manager
+        var result = await _accessRequestService.GetAccessRequest(request.AccessRequestId);
+
+        // TODO: what should we do with the result
+        if (!result.Result.Succeeded)
         {
-            _currentUserService = currentUserService;
-            _accessRequestService = accessRequestService;
-            _userService = userService;
         }
 
-        public async Task<AccessRequestViewModel> Handle(GetAccessRequestQuery request, CancellationToken cancellationToken)
+        return new AccessRequestViewModel
         {
-            var username = _currentUserService.UserId;
-            var userResult = await _userService.GetUserId(username);
+            Id = result.AccessRequest.Id,
+            IsEmployee = result.AccessRequest.Employee.Id == userResult.UserId,
+            IsManager = result.AccessRequest.Manager.Id == userResult.UserId,
+            EmployeeName = result.AccessRequest.Employee.FullName,
+            ManagerName = result.AccessRequest.Manager.FullName,
+            Building = (request.Locale == Locale.French) ? result.AccessRequest.Building.FrenchName : result.AccessRequest.Building.EnglishName,
+            Floor = (request.Locale == Locale.French) ? result.AccessRequest.Floor.FrenchName : result.AccessRequest.Floor.EnglishName,
+            Details = result.AccessRequest.Details,
+            StartTime = result.AccessRequest.StartTime,
+            EndTime = result.AccessRequest.EndTime,
+            Reason = result.AccessRequest.Reason.Value.ToString(),
+            Status = (ApprovalStatus)result.AccessRequest.Status.Key,
 
-            // TODO: Ensure that the user is only able to view the request if they're the employee / manager
-            var result = await _accessRequestService.GetAccessRequest(request.AccessRequestId);
-
-            // TODO: what should we do with the result
-            if (!result.Result.Succeeded)
+            Visitors = result.AccessRequest.Visitors.Select(x => new Visitor
             {
-            }
-
-            return new AccessRequestViewModel
-            {
-                Id = result.AccessRequest.Id,
-                IsEmployee = result.AccessRequest.Employee.Id == userResult.UserId,
-                IsManager = result.AccessRequest.Manager.Id == userResult.UserId,
-                EmployeeName = result.AccessRequest.Employee.FullName,
-                ManagerName = result.AccessRequest.Manager.FullName,
-                Building = (request.Locale == Locale.French) ? result.AccessRequest.Building.FrenchName : result.AccessRequest.Building.EnglishName,
-                Floor = (request.Locale == Locale.French) ? result.AccessRequest.Floor.FrenchName : result.AccessRequest.Floor.EnglishName,
-                Details = result.AccessRequest.Details,
-                StartTime = result.AccessRequest.StartTime,
-                EndTime = result.AccessRequest.EndTime,
-                Reason = result.AccessRequest.Reason.Value.ToString(),
-                Status = (ApprovalStatus)result.AccessRequest.Status.Key,
-
-                Visitors = result.AccessRequest.Visitors.Select(x => new Visitor
-                {
-                    FullName = x.FullName,
-                    EmailAddress = x.EmailAddress,
-                    PhoneNumber = x.PhoneNumber
-                }).ToArray(),
-                AssetRequests = result.AccessRequest.AssetRequests.ToArray()
-            };
-        }
+                FullName = x.FullName,
+                EmailAddress = x.EmailAddress,
+                PhoneNumber = x.PhoneNumber
+            }).ToArray(),
+            AssetRequests = result.AccessRequest.AssetRequests.ToArray()
+        };
     }
 }

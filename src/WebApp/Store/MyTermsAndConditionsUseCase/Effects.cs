@@ -2,23 +2,22 @@
 using MediatR;
 using OfficeEntry.Application.User.Queries.GetTermsAndConditions;
 
-namespace OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase
+namespace OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
+
+public class Effects
 {
-    public class Effects
+    private readonly IMediator _mediator;
+
+    public Effects(IMediator mediator)
     {
-        private readonly IMediator _mediator;
+        _mediator = mediator;
+    }
 
-        public Effects(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+    [EffectMethod]
+    public async Task HandleFetchDataAction(GetMyTermsAndConditions action, IDispatcher dispatcher)
+    {
+        var result = await _mediator.Send(new GetMyTermsAndConditionsQuery());
 
-        [EffectMethod]
-        public async Task HandleFetchDataAction(GetMyTermsAndConditions action, IDispatcher dispatcher)
-        {
-            var result = await _mediator.Send(new GetMyTermsAndConditionsQuery());
-
-            dispatcher.Dispatch(new GetMyTermsAndConditionsResultAction(result.IsHealthAndSafetyMeasuresAccepted, result.IsPrivacyActStatementAccepted));
-        }
+        dispatcher.Dispatch(new GetMyTermsAndConditionsResultAction(result.IsHealthAndSafetyMeasuresAccepted, result.IsPrivacyActStatementAccepted));
     }
 }

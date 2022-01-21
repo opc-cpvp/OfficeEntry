@@ -1,59 +1,58 @@
 ﻿using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 
-namespace OfficeEntry.WebApp.Area.Localization
-{
-    public static class RequestCultureMiddlewareExtensions
-    {
-        public static IApplicationBuilder UseUrlLocalizationAwareWebSockets(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<UrlLocalizationAwareWebSocketsMiddleware>();
-        }
+namespace OfficeEntry.WebApp.Area.Localization;
 
-        public static IApplicationBuilder UseUrlLocalizationRequestLocalization(this IApplicationBuilder builder)
+public static class RequestCultureMiddlewareExtensions
+{
+    public static IApplicationBuilder UseUrlLocalizationAwareWebSockets(this IApplicationBuilder builder)
+    {
+        return builder.UseMiddleware<UrlLocalizationAwareWebSocketsMiddleware>();
+    }
+
+    public static IApplicationBuilder UseUrlLocalizationRequestLocalization(this IApplicationBuilder builder)
+    {
+        var supportedCultures = new[]
         {
-            var supportedCultures = new[]
-            {
                 new CultureInfo("en"),
                 new CultureInfo("fr"),
             };
 
-            /*
-             * The three default providers are:
-             *      1. QueryStringRequestCultureProvider
-             *      2. CookieRequestCultureProvider
-             *      3. AcceptLanguageHeaderRequestCultureProvider
-             * The 4th one is ours:
-             *      4. URL base
-             */
-            var options = new RequestLocalizationOptions
+        /*
+         * The three default providers are:
+         *      1. QueryStringRequestCultureProvider
+         *      2. CookieRequestCultureProvider
+         *      3. AcceptLanguageHeaderRequestCultureProvider
+         * The 4th one is ours:
+         *      4. URL base
+         */
+        var options = new RequestLocalizationOptions
+        {
+            DefaultRequestCulture = new RequestCulture("en"),
+            // Formatting numbers, dates, etc.
+            SupportedCultures = supportedCultures,
+            // UI strings that we have localized.
+            SupportedUICultures = supportedCultures
+        };
+
+        options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
+        {
+            var currentCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+
+            var segments = context.Request.Path.Value.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (segments.Length >= 1 && segments[0].Length == 2)
             {
-                DefaultRequestCulture = new RequestCulture("en"),
-                // Formatting numbers, dates, etc.
-                SupportedCultures = supportedCultures,
-                // UI strings that we have localized.
-                SupportedUICultures = supportedCultures
-            };
+                currentCulture = segments[0];
+            }
 
-            options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
-            {
-                var currentCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            var requestCulture = new ProviderCultureResult(currentCulture, currentCulture);
 
-                var segments = context.Request.Path.Value.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            return await Task.FromResult(requestCulture);
+        }));
 
-                if (segments.Length >= 1 && segments[0].Length == 2)
-                {
-                    currentCulture = segments[0];
-                }
-
-                var requestCulture = new ProviderCultureResult(currentCulture, currentCulture);
-
-                return await Task.FromResult(requestCulture);
-            }));
-
-            return builder
-                .UseUrlLocalizationAwareWebSockets()
-                .UseRequestLocalization(options);
-        }
+        return builder
+            .UseUrlLocalizationAwareWebSockets()
+            .UseRequestLocalization(options);
     }
 }

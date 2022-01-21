@@ -3,126 +3,125 @@ using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 
-namespace OfficeEntry.Infrastructure.Services.Xrm
+namespace OfficeEntry.Infrastructure.Services.Xrm;
+
+public class TermsAndConditionsService : XrmService, ITermsAndConditionsService
 {
-    public class TermsAndConditionsService : XrmService, ITermsAndConditionsService
+    private readonly IUserService _userService;
+
+    public TermsAndConditionsService(IHttpClientFactory httpClientFactory, IUserService contactService)
+        : base(httpClientFactory)
     {
-        private readonly IUserService _userService;
+        _userService = contactService;
+    }
 
-        public TermsAndConditionsService(IHttpClientFactory httpClientFactory, IUserService contactService)
-            : base(httpClientFactory)
+    public async Task<TermsAndConditions> GetTermsAndConditionsFor(string username)
+    {
+        var (_, contact) = await _userService.GetContact(username);
+
+        return new TermsAndConditions()
         {
-            _userService = contactService;
-        }
+            IsHealthAndSafetyMeasuresAccepted = contact.UserSettings?.HealthSafety.HasValue ?? false,
+            IsPrivacyActStatementAccepted = contact.UserSettings?.PrivacyStatement.HasValue ?? false,
+        };
+    }
 
-        public async Task<TermsAndConditions> GetTermsAndConditionsFor(string username)
+    public async Task<Result> SetHealthAndSafetyMeasuresFor(string username, bool isHealthAndSafetyMeasuresAccepted)
+    {
+        var (result, contact) = await _userService.GetContact(username);
+
+        if (!result.Succeeded)
+            return (result);
+
+        await (contact.UserSettings is null ? Create() : Update(contact.UserSettings.Id));
+
+        return Result.Success();
+
+        async Task<gc_usersettingses> Create()
         {
-            var (_, contact) = await _userService.GetContact(username);
-
-            return new TermsAndConditions()
+            var userSettings = new gc_usersettingses
             {
-                IsHealthAndSafetyMeasuresAccepted = contact.UserSettings?.HealthSafety.HasValue ?? false,
-                IsPrivacyActStatementAccepted = contact.UserSettings?.PrivacyStatement.HasValue ?? false,
+                gc_usersettingsid = Guid.NewGuid(),
+                gc_name = contact.Username,
+                gc_healthsafety = DateTime.Now
             };
+
+            userSettings = await Client
+                .For<gc_usersettingses>()
+                .Set(userSettings)
+                .InsertEntryAsync();
+
+            await Client
+                .For<contact>()
+                .Key(contact.Id)
+                .Set(new { gc_usersettings = userSettings })
+                .UpdateEntryAsync();
+
+            return userSettings;
         }
 
-        public async Task<Result> SetHealthAndSafetyMeasuresFor(string username, bool isHealthAndSafetyMeasuresAccepted)
+        async Task<gc_usersettingses> Update(Guid id)
         {
-            var (result, contact) = await _userService.GetContact(username);
+            var userSettings = await Client
+                .For<gc_usersettingses>()
+                .Key(id)
+                .Set(new { gc_healthsafety = DateTime.Now })
+                .UpdateEntryAsync();
 
-            if (!result.Succeeded)
-                return (result);
-
-            await (contact.UserSettings is null ? Create() : Update(contact.UserSettings.Id));
-
-            return Result.Success();
-
-            async Task<gc_usersettingses> Create()
-            {
-                var userSettings = new gc_usersettingses
-                {
-                    gc_usersettingsid = Guid.NewGuid(),
-                    gc_name = contact.Username,
-                    gc_healthsafety = DateTime.Now
-                };
-
-                userSettings = await Client
-                    .For<gc_usersettingses>()
-                    .Set(userSettings)
-                    .InsertEntryAsync();
-
-                await Client
-                    .For<contact>()
-                    .Key(contact.Id)
-                    .Set(new { gc_usersettings = userSettings })
-                    .UpdateEntryAsync();
-
-                return userSettings;
-            }
-
-            async Task<gc_usersettingses> Update(Guid id)
-            {
-                var userSettings = await Client
-                    .For<gc_usersettingses>()
-                    .Key(id)
-                    .Set(new { gc_healthsafety = DateTime.Now })
-                    .UpdateEntryAsync();
-
-                return userSettings;
-            }
+            return userSettings;
         }
+    }
 
-        public async Task<Result> SetPrivacyActStatementFor(string username, bool isPrivateActStatementAccepted)
+    public async Task<Result> SetPrivacyActStatementFor(string username, bool isPrivateActStatementAccepted)
+    {
+        var (result, contact) = await _userService.GetContact(username);
+
+        if (!result.Succeeded)
+            return (result);
+
+        await (contact.UserSettings is null ? Create() : Update(contact.UserSettings.Id));
+
+        return Result.Success();
+
+        async Task<gc_usersettingses> Create()
         {
-            var (result, contact) = await _userService.GetContact(username);
-
-            if (!result.Succeeded)
-                return (result);
-
-            await (contact.UserSettings is null ? Create() : Update(contact.UserSettings.Id));
-
-            return Result.Success();
-
-            async Task<gc_usersettingses> Create()
+            var userSettings = new gc_usersettingses
             {
-                var userSettings = new gc_usersettingses
-                {
-                    gc_usersettingsid = Guid.NewGuid(),
-                    gc_name = contact.Username,
-                    gc_privacystatement = DateTime.Now
-                };
+                gc_usersettingsid = Guid.NewGuid(),
+                gc_name = contact.Username,
+                gc_privacystatement = DateTime.Now
+            };
 
-                userSettings = await Client
-                    .For<gc_usersettingses>()
-                    .Set(userSettings)
-                    .InsertEntryAsync();
+            userSettings = await Client
+                .For<gc_usersettingses>()
+                .Set(userSettings)
+                .InsertEntryAsync();
 
-                await Client
-                    .For<contact>()
-                    .Key(contact.Id)
-                    .Set(new { gc_usersettings = userSettings })
-                    .UpdateEntryAsync();
+            await Client
+                .For<contact>()
+                .Key(contact.Id)
+                .Set(new { gc_usersettings = userSettings })
+                .UpdateEntryAsync();
 
-                return userSettings;
-            }
-
-            async Task<gc_usersettingses> Update(Guid id)
-            {
-                var userSettings = await Client
-                    .For<gc_usersettingses>()
-                    .Key(id)
-                    .Set(new { gc_privacystatement = DateTime.Now })
-                    .UpdateEntryAsync();
-
-                return userSettings;
-            }
+            return userSettings;
         }
 
-        protected override void Dispose(bool disposing)
+        async Task<gc_usersettingses> Update(Guid id)
         {
-            (_userService as IDisposable)?.Dispose();
+            var userSettings = await Client
+                .For<gc_usersettingses>()
+                .Key(id)
+                .Set(new { gc_privacystatement = DateTime.Now })
+                .UpdateEntryAsync();
 
-            base.Dispose(disposing);
+            return userSettings;
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        (_userService as IDisposable)?.Dispose();
+
+        base.Dispose(disposing);
     }
 }

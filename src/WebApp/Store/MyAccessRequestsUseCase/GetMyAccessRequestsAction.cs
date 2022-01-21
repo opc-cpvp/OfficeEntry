@@ -1,6 +1,5 @@
-﻿namespace OfficeEntry.WebApp.Store.MyAccessRequestsUseCase
+﻿namespace OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
+
+public class GetMyAccessRequestsAction
 {
-    public class GetMyAccessRequestsAction
-    {
-    }
 }

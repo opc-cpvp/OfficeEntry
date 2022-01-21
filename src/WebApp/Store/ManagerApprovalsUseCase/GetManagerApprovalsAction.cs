@@ -1,6 +1,5 @@
-﻿namespace OfficeEntry.WebApp.Store.ManagerApprovalsUseCase
+﻿namespace OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
+
+public class GetManagerApprovalsAction
 {
-    public class GetManagerApprovalsAction
-    {
-    }
 }

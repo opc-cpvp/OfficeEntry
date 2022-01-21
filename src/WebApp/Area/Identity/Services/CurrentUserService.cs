@@ -1,57 +1,56 @@
 ﻿using OfficeEntry.Application.Common.Interfaces;
 using System.Security.Claims;
 
-namespace OfficeEntry.WebApp.Area.Identity.Services
+namespace OfficeEntry.WebApp.Area.Identity.Services;
+
+public class CurrentUserService : ICurrentUserService
 {
-    public class CurrentUserService : ICurrentUserService
+    private readonly IHttpContextAccessor _httpContextAccessor;
+
+    public CurrentUserService(IHttpContextAccessor httpContextAccessor)
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public CurrentUserService(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
-
-        public string UserId => _httpContextAccessor?.HttpContext?.User?.GetLoggedInUserName();
+        _httpContextAccessor = httpContextAccessor;
     }
 
-    public static class ClaimsPrincipalExtensions
+    public string UserId => _httpContextAccessor?.HttpContext?.User?.GetLoggedInUserName();
+}
+
+public static class ClaimsPrincipalExtensions
+{
+    public static T GetLoggedInUserId<T>(this ClaimsPrincipal principal)
     {
-        public static T GetLoggedInUserId<T>(this ClaimsPrincipal principal)
+        if (principal == null)
+            throw new ArgumentNullException(nameof(principal));
+
+        var loggedInUserId = principal.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (typeof(T) == typeof(string))
         {
-            if (principal == null)
-                throw new ArgumentNullException(nameof(principal));
-
-            var loggedInUserId = principal.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (typeof(T) == typeof(string))
-            {
-                return (T)Convert.ChangeType(loggedInUserId, typeof(T));
-            }
-            else if (typeof(T) == typeof(int) || typeof(T) == typeof(long))
-            {
-                return loggedInUserId != null ? (T)Convert.ChangeType(loggedInUserId, typeof(T)) : (T)Convert.ChangeType(0, typeof(T));
-            }
-            else
-            {
-                throw new Exception("Invalid type provided");
-            }
+            return (T)Convert.ChangeType(loggedInUserId, typeof(T));
         }
-
-        public static string GetLoggedInUserName(this ClaimsPrincipal principal)
+        else if (typeof(T) == typeof(int) || typeof(T) == typeof(long))
         {
-            if (principal == null)
-                throw new ArgumentNullException(nameof(principal));
-
-            return principal.FindFirstValue(ClaimTypes.Name);
+            return loggedInUserId != null ? (T)Convert.ChangeType(loggedInUserId, typeof(T)) : (T)Convert.ChangeType(0, typeof(T));
         }
-
-        public static string GetLoggedInUserEmail(this ClaimsPrincipal principal)
+        else
         {
-            if (principal == null)
-                throw new ArgumentNullException(nameof(principal));
-
-            return principal.FindFirstValue(ClaimTypes.Email);
+            throw new Exception("Invalid type provided");
         }
+    }
+
+    public static string GetLoggedInUserName(this ClaimsPrincipal principal)
+    {
+        if (principal == null)
+            throw new ArgumentNullException(nameof(principal));
+
+        return principal.FindFirstValue(ClaimTypes.Name);
+    }
+
+    public static string GetLoggedInUserEmail(this ClaimsPrincipal principal)
+    {
+        if (principal == null)
+            throw new ArgumentNullException(nameof(principal));
+
+        return principal.FindFirstValue(ClaimTypes.Email);
     }
 }

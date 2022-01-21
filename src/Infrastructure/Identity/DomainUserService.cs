@@ -3,31 +3,30 @@ using OfficeEntry.Domain.Exceptions;
 using OfficeEntry.Domain.ValueObjects;
 using System.DirectoryServices.AccountManagement;
 
-namespace OfficeEntry.Infrastructure.Identity
+namespace OfficeEntry.Infrastructure.Identity;
+
+public class DomainUserService : IDomainUserService
 {
-    public class DomainUserService : IDomainUserService
+    private readonly string _domainName;
+
+    public DomainUserService(string domainName)
     {
-        private readonly string _domainName;
+        _domainName = domainName;
+    }
 
-        public DomainUserService(string domainName)
+    public async Task<string> GetUserNameAsync(AdAccount adAccount)
+    {
+        return await Task.Run(() =>
         {
-            _domainName = domainName;
-        }
+            using var AD = new PrincipalContext(ContextType.Domain, _domainName);
+            var userIdentity = UserPrincipal.FindByIdentity(AD, adAccount.Name);
 
-        public async Task<string> GetUserNameAsync(AdAccount adAccount)
-        {
-            return await Task.Run(() =>
+            if (userIdentity == null)
             {
-                using var AD = new PrincipalContext(ContextType.Domain, _domainName);
-                var userIdentity = UserPrincipal.FindByIdentity(AD, adAccount.Name);
+                throw new AdAccountInvalidException(adAccount);
+            }
 
-                if (userIdentity == null)
-                {
-                    throw new AdAccountInvalidException(adAccount);
-                }
-
-                return userIdentity.DisplayName;
-            });
-        }
+            return userIdentity.DisplayName;
+        });
     }
 }

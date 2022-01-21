@@ -8,50 +8,49 @@ using OfficeEntry.Infrastructure.Services.Xrm;
 using System.Net;
 using System.Net.Http.Headers;
 
-namespace OfficeEntry.Infrastructure
+namespace OfficeEntry.Infrastructure;
+
+public static class DependencyInjection
 {
-    public static class DependencyInjection
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        services.AddTransient<IDateTime, DateTimeService>();
+
+        services.AddScoped<IAccessRequestService, AccessRequestService>();
+        services.AddScoped<ILocationService, LocationService>();
+        services.AddScoped<ITermsAndConditionsService, TermsAndConditionsService>();
+        services.AddScoped<IUserService, UserService>();
+
+        services.AddScoped<IDomainUserService, DomainUserService>(provider =>
+            new DomainUserService(configuration.GetValue<string>("Domain"))
+        );
+
         {
-            services.AddTransient<IDateTime, DateTimeService>();
+            var serviceDeskUri = new Uri(configuration.GetConnectionString("ServiceDesk"));
 
-            services.AddScoped<IAccessRequestService, AccessRequestService>();
-            services.AddScoped<ILocationService, LocationService>();
-            services.AddScoped<ITermsAndConditionsService, TermsAndConditionsService>();
-            services.AddScoped<IUserService, UserService>();
-
-            services.AddScoped<IDomainUserService, DomainUserService>(provider =>
-                new DomainUserService(configuration.GetValue<string>("Domain"))
-            );
-
+            services.AddHttpClient(NamedHttpClients.Dynamics365ServiceDesk, x =>
             {
-                var serviceDeskUri = new Uri(configuration.GetConnectionString("ServiceDesk"));
+                x.BaseAddress = serviceDeskUri;
+                x.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            }).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            {
+                Credentials = new CredentialCache { { serviceDeskUri, "NTLM", CredentialCache.DefaultNetworkCredentials } }
+            });
 
-                services.AddHttpClient(NamedHttpClients.Dynamics365ServiceDesk, x =>
-                {
-                    x.BaseAddress = serviceDeskUri;
-                    x.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                }).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
-                {
-                    Credentials = new CredentialCache { { serviceDeskUri, "NTLM", CredentialCache.DefaultNetworkCredentials } }
-                });
+            //if (configuration.GetValue<bool>("RefreshMetadataDocument"))
+            //{                   
+            //    var xml = new XrmServiceCache(IHttpClientFactory)
+            //}
 
-                //if (configuration.GetValue<bool>("RefreshMetadataDocument"))
-                //{                   
-                //    var xml = new XrmServiceCache(IHttpClientFactory)
-                //}
-
-                if (File.Exists(configuration.GetValue<string>("MetadataDocument")))
-                {
-                    MetadataDocument.Value = File.ReadAllText(configuration.GetValue<string>("MetadataDocument"));
-                }
+            if (File.Exists(configuration.GetValue<string>("MetadataDocument")))
+            {
+                MetadataDocument.Value = File.ReadAllText(configuration.GetValue<string>("MetadataDocument"));
             }
-
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
-
-            return services;
         }
+
+        services.AddAuthentication()
+            .AddIdentityServerJwt();
+
+        return services;
     }
 }
