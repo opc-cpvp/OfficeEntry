@@ -10,7 +10,7 @@
           "title": {
             "default": "Building",
             "fr": "Immeuble"
-          },f
+          },
           "isRequired": true,
           "choicesByUrl": {
             "url": "api/locations/{locale}",
