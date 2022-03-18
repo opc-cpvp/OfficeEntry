@@ -90,15 +90,15 @@ public class Startup
 
         app.UseEndpoints(endpoints =>
         {
-                // Liveness probes let us know if the app is alive or dead
-                endpoints.MapGet("/liveness", async context =>
+            // Liveness probes let us know if the app is alive or dead
+            endpoints.MapGet("/liveness", async context =>
             {
                 await context.Response.WriteAsync("I'm alive");
             }).AllowAnonymous();
 
-                // Readiness probes are designed to know when the app is ready
-                // to serve traffic.
-                endpoints.MapHealthChecks("/readiness").AllowAnonymous();
+            // Readiness probes are designed to know when the app is ready
+            // to serve traffic.
+            endpoints.MapHealthChecks("/readiness").AllowAnonymous();
 
             endpoints.MapDefaultControllerRoute();
             endpoints.MapBlazorHub();
