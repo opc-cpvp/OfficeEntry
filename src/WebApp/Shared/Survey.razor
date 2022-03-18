@@ -98,7 +98,7 @@
         {
             var availableCapacity = results[i].Capacity - results[i].SpotsReserved - (1 + submission.visitors?.Length ?? 0);
 
-            if (availableCapacity < 0)
+            if (availableCapacity <= 0)
             {
                 return false;
             }
