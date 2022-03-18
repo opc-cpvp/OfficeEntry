@@ -63,21 +63,11 @@ public class AccessRequestService : XrmService, IAccessRequestService
         var accessRequests = await Client.For<gc_accessrequest>()
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Filter(a => a.gc_employee.contactid == contactId)
-            .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_assetrequest })
-            .OrderByDescending(a => a.gc_starttime)
+            .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
+            .OrderByDescending(a => a.gc_starttime)   
             .FindEntriesAsync();
 
         accessRequests = accessRequests.ToList();
-
-        foreach (var accessRequest in accessRequests.ToList())
-        {
-            var visitors = await Client.For<gc_accessrequest>()
-                .Key(accessRequest.gc_accessrequestid)
-                .NavigateTo(a => a.gc_accessrequest_contact_visitors)
-                .FindEntriesAsync();
-
-            accessRequest.gc_accessrequest_contact_visitors = visitors.ToList();
-        }
 
         return (Result.Success(), accessRequests.Select(a => gc_accessrequest.Convert(a)));
     }
@@ -87,21 +77,11 @@ public class AccessRequestService : XrmService, IAccessRequestService
         var accessRequests = await Client.For<gc_accessrequest>()
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Filter(a => a.gc_manager.contactid == contactId)
-            .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_assetrequest })
+            .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
             .OrderByDescending(a => a.gc_starttime)
             .FindEntriesAsync();
 
         accessRequests = accessRequests.ToList();
-
-        foreach (var accessRequest in accessRequests.ToList())
-        {
-            var visitors = await Client.For<gc_accessrequest>()
-                .Key(accessRequest.gc_accessrequestid)
-                .NavigateTo(a => a.gc_accessrequest_contact_visitors)
-                .FindEntriesAsync();
-
-            accessRequest.gc_accessrequest_contact_visitors = visitors.ToList();
-        }
 
         return (Result.Success(), accessRequests.Select(a => gc_accessrequest.Convert(a)));
     }
