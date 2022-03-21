@@ -88,6 +88,8 @@ public class Startup
         app.UseAuthentication();
         app.UseAuthorization();
 
+        app.UseMiddleware<LogUserNameMiddleware>();
+
         app.UseEndpoints(endpoints =>
         {
             // Liveness probes let us know if the app is alive or dead
