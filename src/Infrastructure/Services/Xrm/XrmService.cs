@@ -12,9 +12,9 @@ public abstract class XrmService
 
         // HttpClient instances can generally be treated as .NET objects not requiring disposal.
         // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-6.0
-        HttpClient = _httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
+        var httpClient = _httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
 
-        var clientSettings = new ODataClientSettings(HttpClient)
+        var clientSettings = new ODataClientSettings(httpClient)
         {
             MetadataDocument = MetadataDocument.Value,
             IgnoreUnmappedProperties = true
@@ -22,8 +22,6 @@ public abstract class XrmService
 
         Client = new ODataClient(clientSettings);
     }
-
-    protected HttpClient HttpClient { get; }
 
     protected ODataClient Client { get; }
 }
