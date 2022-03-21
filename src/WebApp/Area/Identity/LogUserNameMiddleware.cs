@@ -14,9 +14,9 @@ public class LogUserNameMiddleware
 
     public Task Invoke(HttpContext context)
     {
-        var userName = context.User?.Claims
-            .FirstOrDefault(x => x.Type == JwtClaimTypes.Name)
-            .Value ?? "anonymous";
+        var userName = context?.User?.Claims
+            ?.FirstOrDefault(x => x.Type == JwtClaimTypes.Name)
+            ?.Value ?? "anonymous";
 
         LogContext.PushProperty("UserName", userName);
 
