@@ -37,11 +37,6 @@ public static class DependencyInjection
                 Credentials = new CredentialCache { { serviceDeskUri, "NTLM", CredentialCache.DefaultNetworkCredentials } }
             });
 
-            //if (configuration.GetValue<bool>("RefreshMetadataDocument"))
-            //{                   
-            //    var xml = new XrmServiceCache(IHttpClientFactory)
-            //}
-
             if (File.Exists(configuration.GetValue<string>("MetadataDocument")))
             {
                 MetadataDocument.Value = File.ReadAllText(configuration.GetValue<string>("MetadataDocument"));
