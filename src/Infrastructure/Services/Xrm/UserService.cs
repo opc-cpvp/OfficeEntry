@@ -2,19 +2,22 @@
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
+using Simple.OData.Client;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm;
 
-public class UserService : XrmService, IUserService
+public class UserService : IUserService
 {
-    public UserService(IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    private readonly IODataClient _client;
+
+    public UserService(IODataClient client)
     {
+        _client = client;
     }
 
     public async Task<(Result Result, Contact Contact)> GetContact(string username)
     {
-        var contacts = await Client.For<contact>()
+        var contacts = await _client.For<contact>()
             .Filter(c => c.statecode == (int)StateCode.Active)
             .Filter(c => c.gc_username == username)
             .Expand(c => c.gc_usersettings)
@@ -37,7 +40,7 @@ public class UserService : XrmService, IUserService
 
     public async Task<(Result Result, IEnumerable<Contact> Contacts)> GetContacts(string excludeUsername)
     {
-        var contacts = await Client.For<contact>()
+        var contacts = await _client.For<contact>()
             .Filter(c => c.statecode == (int)StateCode.Active)
             .Filter(c => c.gc_username != null && c.gc_username != excludeUsername)
             .Filter(c => !(c.gc_username.Contains("scanner") || c.gc_username.Contains("student")))

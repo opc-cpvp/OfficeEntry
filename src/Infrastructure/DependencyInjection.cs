@@ -5,6 +5,7 @@ using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Infrastructure.Identity;
 using OfficeEntry.Infrastructure.Services;
 using OfficeEntry.Infrastructure.Services.Xrm;
+using Simple.OData.Client;
 using System.Net;
 using System.Net.Http.Headers;
 
@@ -42,6 +43,25 @@ public static class DependencyInjection
                 MetadataDocument.Value = File.ReadAllText(configuration.GetValue<string>("MetadataDocument"));
             }
         }
+
+        services.AddScoped<IODataClient>(provider =>
+        {
+            var httpClientFactory = provider.GetRequiredService<IHttpClientFactory>();
+
+            // HttpClient instances can generally be treated as .NET objects not requiring disposal.
+            // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-6.0
+            var httpClient = httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
+
+            var clientSettings = new ODataClientSettings(httpClient)
+            {
+                MetadataDocument = MetadataDocument.Value,
+                IgnoreUnmappedProperties = true
+            };
+
+            var client = new ODataClient(clientSettings);
+
+            return client;
+        });
 
         services.AddAuthentication()
             .AddIdentityServerJwt();

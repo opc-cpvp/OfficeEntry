@@ -2,19 +2,22 @@
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
+using Simple.OData.Client;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm;
 
-public class LocationService : XrmService, ILocationService
+public class LocationService : ILocationService
 {
-    public LocationService(IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    private readonly IODataClient _client;
+
+    public LocationService(IODataClient client)
     {
+        _client = client;
     }
 
     public async Task<IEnumerable<Building>> GetBuildingsAsync(string locale)
     {
-        var buildings = await Client.For<gc_building>()
+        var buildings = await _client.For<gc_building>()
             .Filter(a => a.statecode == (int)StateCode.Active)
             .FindEntriesAsync();
 
@@ -35,7 +38,7 @@ public class LocationService : XrmService, ILocationService
 
     public async Task<IEnumerable<Floor>> GetFloorsByBuildingAsync(Guid buildingId, string locale)
     {
-        var floors = await Client.For<gc_building>()
+        var floors = await _client.For<gc_building>()
             .Key(buildingId)
             .NavigateTo(b => b.gc_building_floor)
             .FindEntriesAsync();
@@ -54,7 +57,7 @@ public class LocationService : XrmService, ILocationService
 
     public async Task<int> GetCapacityByFloorAsync(Guid floorId)
     {
-        var floor = await Client.For<gc_floor>()
+        var floor = await _client.For<gc_floor>()
             .Key(floorId)
             .FindEntryAsync();
 
