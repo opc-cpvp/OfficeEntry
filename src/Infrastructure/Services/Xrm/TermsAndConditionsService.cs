@@ -117,11 +117,4 @@ public class TermsAndConditionsService : XrmService, ITermsAndConditionsService
             return userSettings;
         }
     }
-
-    protected override void Dispose(bool disposing)
-    {
-        (_userService as IDisposable)?.Dispose();
-
-        base.Dispose(disposing);
-    }
 }

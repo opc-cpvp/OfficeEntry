@@ -2,14 +2,16 @@
 
 namespace OfficeEntry.Infrastructure.Services.Xrm;
 
-public abstract class XrmService : IDisposable
+public abstract class XrmService
 {
-    private readonly IHttpClientFactory _httpClientFactory;
-    private bool disposedValue;
+    private readonly IHttpClientFactory _httpClientFactory;    
 
     public XrmService(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
+
+        // HttpClient instances can generally be treated as .NET objects not requiring disposal.
+        // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-6.0
         HttpClient = _httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
 
         var clientSettings = new ODataClientSettings(HttpClient)
@@ -22,28 +24,6 @@ public abstract class XrmService : IDisposable
     }
 
     protected HttpClient HttpClient { get; }
-    protected ODataClient Client { get; private set; }
 
-    protected virtual void Dispose(bool disposing)
-    {
-        if (!disposedValue)
-        {
-            if (disposing)
-            {
-                // Dispose managed state (managed objects)
-                HttpClient?.Dispose();
-            }
-
-            // Free unmanaged resources (unmanaged objects) and override finalizer
-            // Set large fields to null
-            disposedValue = true;
-        }
-    }
-
-    public void Dispose()
-    {
-        // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        Dispose(disposing: true);
-        GC.SuppressFinalize(this);
-    }
+    protected ODataClient Client { get; }
 }

@@ -41,7 +41,7 @@ public class UserService : XrmService, IUserService
             .Filter(c => c.statecode == (int)StateCode.Active)
             .Filter(c => c.gc_username != null && c.gc_username != excludeUsername)
             .Filter(c => !(c.gc_username.Contains("scanner") || c.gc_username.Contains("student")))
-            .OrderBy(c => c.lastname)
+            .OrderBy(c => c.lastname)                  
             .FindEntriesAsync();
 
         return (Result.Success(), contacts.Select(c => contact.Convert(c)));
