@@ -16,7 +16,7 @@ public class LogUserNameMiddleware
     {
         var userName = context.User?.Claims
             .FirstOrDefault(x => x.Type == JwtClaimTypes.Name)
-            .Value ?? string.Empty;
+            .Value ?? "anonymous";
 
         LogContext.PushProperty("UserName", userName);
 
