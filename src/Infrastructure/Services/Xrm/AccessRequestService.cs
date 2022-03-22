@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
@@ -61,17 +62,24 @@ public class AccessRequestService : IAccessRequestService
     }
 
     public async Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetAccessRequestsFor(Guid contactId)
-    {
+    {        
         var accessRequests = await _client.For<gc_accessrequest>()
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Filter(a => a.gc_employee.contactid == contactId)
-            .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
+            //.Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
+            .Expand(
+                "gc_employee/firstname",
+                "gc_employee/lastname",
+                "gc_building/gc_englishname", "gc_building/gc_frenchname",
+                "gc_floor/gc_englishname", "gc_floor/gc_frenchname")
             .OrderByDescending(a => a.gc_starttime)   
             .FindEntriesAsync();
 
         accessRequests = accessRequests.ToList();
 
-        return (Result.Success(), accessRequests.Select(a => gc_accessrequest.Convert(a)));
+        var map = accessRequests.Select(a => gc_accessrequest.Convert(a)).ToList();
+
+        return (Result.Success(), map);
     }
 
     public async Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetManagerAccessRequestsFor(Guid contactId)
@@ -79,7 +87,12 @@ public class AccessRequestService : IAccessRequestService
         var accessRequests = await _client.For<gc_accessrequest>()
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Filter(a => a.gc_manager.contactid == contactId)
-            .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
+            //.Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
+            .Expand(
+                "gc_employee/firstname",
+                "gc_employee/lastname",
+                "gc_building/gc_englishname", "gc_building/gc_frenchname",
+                "gc_floor/gc_englishname", "gc_floor/gc_frenchname")
             .OrderByDescending(a => a.gc_starttime)
             .FindEntriesAsync();
 
