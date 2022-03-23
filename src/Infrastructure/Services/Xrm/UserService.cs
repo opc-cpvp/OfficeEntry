@@ -41,6 +41,7 @@ public class UserService : IUserService
     public async Task<(Result Result, IEnumerable<Contact> Contacts)> GetContacts(string excludeUsername)
     {
         var contacts = await _client.For<contact>()
+            .Select(c => new { c.contactid, c.firstname, c.lastname })
             .Filter(c => c.statecode == (int)StateCode.Active)
             .Filter(c => c.gc_username != null && c.gc_username != excludeUsername)
             .Filter(c => !(c.gc_username.Contains("scanner") || c.gc_username.Contains("student")))
