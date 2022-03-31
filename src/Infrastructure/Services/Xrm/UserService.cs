@@ -53,11 +53,26 @@ public class UserService : IUserService
 
     public async Task<(Result Result, Guid UserId)> GetUserId(string username)
     {
-        var (result, contact) = await GetContact(username);
+        var contacts = await _client.For<contact>()
+            .Select(c => c.contactid)
+            .Filter(c => c.statecode == (int)StateCode.Active)
+            .Filter(c => c.gc_username == username)
+            .FindEntriesAsync();
 
-        if (!result.Succeeded)
-            return (result, default(Guid));
+        // TODO: Should we replace this with a .Single()?
 
-        return (Result.Success(), contact.Id);
+        if (contacts.Count() == 0)
+        {
+            //return (Result.Failure(new[] { $"No contacts with username '{username}'." }), default(Guid));            
+            throw new Exception($"No contacts with username '{username}'.");
+        }
+
+        if (contacts.Count() > 1)
+        {
+            //return (Result.Failure(new[] { $"More than one contacts with username '{username}'." }), default(Guid));
+            throw new Exception($"More than one contacts with username '{username}'.");
+        }
+
+        return (Result.Success(), contacts.First().contactid);
     }
 }
