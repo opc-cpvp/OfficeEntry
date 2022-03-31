@@ -18,6 +18,14 @@ public class UserService : IUserService
     public async Task<(Result Result, Contact Contact)> GetContact(string username)
     {
         var contacts = await _client.For<contact>()
+            .Select(c => new
+            {
+                c.contactid,
+                c.firstname,
+                c.lastname,
+                c.gc_usersettings,
+                c.gc_username
+            })
             .Filter(c => c.statecode == (int)StateCode.Active)
             .Filter(c => c.gc_username == username)
             .Expand(c => c.gc_usersettings)
