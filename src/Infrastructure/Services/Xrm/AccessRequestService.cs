@@ -58,7 +58,9 @@ public class AccessRequestService : IAccessRequestService
             .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_contact_visitors, a.gc_accessrequest_assetrequest })
             .FindEntryAsync();
 
-        return (Result.Success(), gc_accessrequest.Convert(accessRequest));
+        var map = gc_accessrequest.Convert(accessRequest);
+
+        return (Result.Success(), map);
     }
 
     public async Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetAccessRequestsFor(Guid contactId)
