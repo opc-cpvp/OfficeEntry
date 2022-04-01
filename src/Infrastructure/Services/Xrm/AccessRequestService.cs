@@ -88,8 +88,6 @@ public class AccessRequestService : IAccessRequestService
             .OrderByDescending(a => a.gc_starttime)   
             .FindEntriesAsync();
 
-        accessRequests = accessRequests.ToList();
-
         var map = accessRequests.Select(a => gc_accessrequest.Convert(a)).ToList();
 
         return (Result.Success(), map);
@@ -119,8 +117,6 @@ public class AccessRequestService : IAccessRequestService
                 "gc_floor/gc_englishname", "gc_floor/gc_frenchname")
             .OrderByDescending(a => a.gc_starttime)
             .FindEntriesAsync();
-
-        accessRequests = accessRequests.ToList();
 
         var map = accessRequests.Select(a => gc_accessrequest.Convert(a)).ToList();
 
