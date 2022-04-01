@@ -3,11 +3,13 @@ using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 using Simple.OData.Client;
+using System.Collections.Concurrent;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm;
 
 public class UserService : IUserService
 {
+    private static readonly ConcurrentDictionary<string, Guid> _cachedUserIds = new();
     private readonly IODataClient _client;
 
     public UserService(IODataClient client)
@@ -61,6 +63,11 @@ public class UserService : IUserService
 
     public async Task<(Result Result, Guid UserId)> GetUserId(string username)
     {
+        if (_cachedUserIds.ContainsKey(username))
+        {
+            return (Result.Success(), _cachedUserIds[username]);
+        }
+
         var contacts = await _client.For<contact>()
             .Select(c => c.contactid)
             .Filter(c => c.statecode == (int)StateCode.Active)
@@ -81,6 +88,8 @@ public class UserService : IUserService
             throw new Exception($"More than one contacts with username '{username}'.");
         }
 
-        return (Result.Success(), contacts.First().contactid);
+        _cachedUserIds[username] = contacts.First().contactid;
+
+        return (Result.Success(), _cachedUserIds[username]);
     }
 }
