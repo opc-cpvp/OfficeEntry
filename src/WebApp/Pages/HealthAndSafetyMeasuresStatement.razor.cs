@@ -70,7 +70,7 @@ public partial class HealthAndSafetyMeasuresStatement
         {
             questionAcceptHsmStatement = isHealthAndSafetyMeasuresAccepted
                 ? new string[] { "iAcceptHsmStatement" }
-                : new string[0]
+                : Array.Empty<string>()
         };
 
         SurveyData = JsonSerializer.Serialize(surveyData);
