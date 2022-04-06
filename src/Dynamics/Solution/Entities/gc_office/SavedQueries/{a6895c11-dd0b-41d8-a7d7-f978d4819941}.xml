@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>1</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <returnedtypecode>10030</returnedtypecode>
+    <savedqueryid>{a6895c11-dd0b-41d8-a7d7-f978d4819941}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" object="10030" jump="gc_name" select="1" icon="1" preview="1">
+        <row name="result" id="gc_officeid">
+          <cell name="gc_name" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>4</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="gc_office">
+          <attribute name="gc_officeid" />
+          <attribute name="gc_name" />
+          <attribute name="createdon" />
+          <order attribute="gc_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="gc_name" operator="like" value="{0}" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>0.0.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Quick Find Active Offices" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

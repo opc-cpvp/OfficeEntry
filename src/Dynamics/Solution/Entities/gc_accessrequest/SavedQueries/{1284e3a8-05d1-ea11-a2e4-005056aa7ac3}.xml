@@ -15,6 +15,7 @@
           <cell name="gc_accessreason" width="100" />
           <cell name="gc_building" width="100" />
           <cell name="gc_floor" width="100" />
+          <cell name="gc_office" width="100" />
           <cell name="gc_starttime" width="100" />
           <cell name="gc_endtime" width="100" />
           <cell name="gc_manager" width="100" />
@@ -47,6 +48,7 @@
           </filter>
           <attribute name="gc_accessreason" />
           <attribute name="gc_manager" />
+          <attribute name="gc_office" />
           <attribute name="gc_accessrequestid" />
         </entity>
       </fetch>

@@ -15,6 +15,7 @@
           <cell name="gc_accessreason" width="100" />
           <cell name="gc_building" width="100" />
           <cell name="gc_floor" width="100" />
+          <cell name="gc_office" width="100" />
           <cell name="gc_starttime" width="100" />
           <cell name="gc_endtime" width="100" />
           <cell name="gc_manager" width="100" />
@@ -26,8 +27,8 @@
     <fetchxml>
       <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
         <entity name="gc_accessrequest">
+          <order attribute="gc_building" descending="false" />
           <order attribute="gc_starttime" descending="false" />
-          <order attribute="gc_floor" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
             <condition attribute="gc_approvalstatus" operator="eq" value="948160001" />
@@ -42,6 +43,7 @@
           <attribute name="gc_building" />
           <attribute name="gc_approvalstatus" />
           <attribute name="gc_accessreason" />
+          <attribute name="gc_office" />
           <attribute name="gc_accessrequestid" />
         </entity>
       </fetch>
