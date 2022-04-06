@@ -33,7 +33,7 @@ public class CreateAccessRequestForCurrentUserCommandHandler : IRequestHandler<C
         var username = _currentUserService.UserId;
         var contactResult = await _userService.GetContact(username);
 
-        if (contactResult.Contact?.UserSettings?.HealthSafety == null || contactResult.Contact?.UserSettings?.PrivacyStatement == null)
+        if (contactResult.Contact?.UserSettings?.HealthSafety is null || contactResult.Contact?.UserSettings?.PrivacyStatement is null)
         {
             throw new Exception("Can't create an access request without accepting Privacy Act statement and Health and Safety measures");
         }

@@ -79,7 +79,6 @@ public class Startup
         app.UseStaticFiles();
 
         app.UseRequestLogContext();
-        app.UseSerilogRequestLogging();
 
         app.UseRouting();
 
@@ -87,6 +86,9 @@ public class Startup
 
         app.UseAuthentication();
         app.UseAuthorization();
+
+        app.UseMiddleware<LogUserNameMiddleware>();
+        app.UseSerilogRequestLogging();
 
         app.UseEndpoints(endpoints =>
         {

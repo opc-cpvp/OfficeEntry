@@ -2,17 +2,19 @@
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
+using Simple.OData.Client;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm;
 
-public class TermsAndConditionsService : XrmService, ITermsAndConditionsService
+public class TermsAndConditionsService : ITermsAndConditionsService
 {
+    private readonly IODataClient _client;
     private readonly IUserService _userService;
 
-    public TermsAndConditionsService(IHttpClientFactory httpClientFactory, IUserService contactService)
-        : base(httpClientFactory)
+    public TermsAndConditionsService(IUserService contactService, IODataClient client)
     {
         _userService = contactService;
+        _client = client;
     }
 
     public async Task<TermsAndConditions> GetTermsAndConditionsFor(string username)
@@ -46,12 +48,12 @@ public class TermsAndConditionsService : XrmService, ITermsAndConditionsService
                 gc_healthsafety = DateTime.Now
             };
 
-            userSettings = await Client
+            userSettings = await _client
                 .For<gc_usersettingses>()
                 .Set(userSettings)
                 .InsertEntryAsync();
 
-            await Client
+            await _client
                 .For<contact>()
                 .Key(contact.Id)
                 .Set(new { gc_usersettings = userSettings })
@@ -62,7 +64,7 @@ public class TermsAndConditionsService : XrmService, ITermsAndConditionsService
 
         async Task<gc_usersettingses> Update(Guid id)
         {
-            var userSettings = await Client
+            var userSettings = await _client
                 .For<gc_usersettingses>()
                 .Key(id)
                 .Set(new { gc_healthsafety = DateTime.Now })
@@ -92,12 +94,12 @@ public class TermsAndConditionsService : XrmService, ITermsAndConditionsService
                 gc_privacystatement = DateTime.Now
             };
 
-            userSettings = await Client
+            userSettings = await _client
                 .For<gc_usersettingses>()
                 .Set(userSettings)
                 .InsertEntryAsync();
 
-            await Client
+            await _client
                 .For<contact>()
                 .Key(contact.Id)
                 .Set(new { gc_usersettings = userSettings })
@@ -108,7 +110,7 @@ public class TermsAndConditionsService : XrmService, ITermsAndConditionsService
 
         async Task<gc_usersettingses> Update(Guid id)
         {
-            var userSettings = await Client
+            var userSettings = await _client
                 .For<gc_usersettingses>()
                 .Key(id)
                 .Set(new { gc_privacystatement = DateTime.Now })
@@ -116,12 +118,5 @@ public class TermsAndConditionsService : XrmService, ITermsAndConditionsService
 
             return userSettings;
         }
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        (_userService as IDisposable)?.Dispose();
-
-        base.Dispose(disposing);
     }
 }

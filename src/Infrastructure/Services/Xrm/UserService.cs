@@ -2,19 +2,32 @@
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
+using Simple.OData.Client;
+using System.Collections.Concurrent;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm;
 
-public class UserService : XrmService, IUserService
+public class UserService : IUserService
 {
-    public UserService(IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    private static readonly ConcurrentDictionary<string, Guid> _cachedUserIds = new();
+    private readonly IODataClient _client;
+
+    public UserService(IODataClient client)
     {
+        _client = client;
     }
 
     public async Task<(Result Result, Contact Contact)> GetContact(string username)
     {
-        var contacts = await Client.For<contact>()
+        var contacts = await _client.For<contact>()
+            .Select(c => new
+            {
+                c.contactid,
+                c.firstname,
+                c.lastname,
+                c.gc_usersettings,
+                c.gc_username
+            })
             .Filter(c => c.statecode == (int)StateCode.Active)
             .Filter(c => c.gc_username == username)
             .Expand(c => c.gc_usersettings)
@@ -37,11 +50,12 @@ public class UserService : XrmService, IUserService
 
     public async Task<(Result Result, IEnumerable<Contact> Contacts)> GetContacts(string excludeUsername)
     {
-        var contacts = await Client.For<contact>()
+        var contacts = await _client.For<contact>()
+            .Select(c => new { c.contactid, c.firstname, c.lastname })
             .Filter(c => c.statecode == (int)StateCode.Active)
             .Filter(c => c.gc_username != null && c.gc_username != excludeUsername)
             .Filter(c => !(c.gc_username.Contains("scanner") || c.gc_username.Contains("student")))
-            .OrderBy(c => c.lastname)
+            .OrderBy(c => c.lastname)                  
             .FindEntriesAsync();
 
         return (Result.Success(), contacts.Select(c => contact.Convert(c)));
@@ -49,11 +63,33 @@ public class UserService : XrmService, IUserService
 
     public async Task<(Result Result, Guid UserId)> GetUserId(string username)
     {
-        var (result, contact) = await GetContact(username);
+        if (_cachedUserIds.ContainsKey(username))
+        {
+            return (Result.Success(), _cachedUserIds[username]);
+        }
 
-        if (!result.Succeeded)
-            return (result, default(Guid));
+        var contacts = await _client.For<contact>()
+            .Select(c => c.contactid)
+            .Filter(c => c.statecode == (int)StateCode.Active)
+            .Filter(c => c.gc_username == username)
+            .FindEntriesAsync();
 
-        return (Result.Success(), contact.Id);
+        // TODO: Should we replace this with a .Single()?
+
+        if (contacts.Count() == 0)
+        {
+            //return (Result.Failure(new[] { $"No contacts with username '{username}'." }), default(Guid));            
+            throw new Exception($"No contacts with username '{username}'.");
+        }
+
+        if (contacts.Count() > 1)
+        {
+            //return (Result.Failure(new[] { $"More than one contacts with username '{username}'." }), default(Guid));
+            throw new Exception($"More than one contacts with username '{username}'.");
+        }
+
+        _cachedUserIds[username] = contacts.First().contactid;
+
+        return (Result.Success(), _cachedUserIds[username]);
     }
 }

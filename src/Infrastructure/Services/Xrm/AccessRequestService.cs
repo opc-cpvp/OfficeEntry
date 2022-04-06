@@ -1,19 +1,22 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
+using Simple.OData.Client;
 using System.Text;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm;
 
-public class AccessRequestService : XrmService, IAccessRequestService
+public class AccessRequestService : IAccessRequestService
 {
-    public readonly IHttpClientFactory _httpClientFactory;
+    private readonly IODataClient _client;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public AccessRequestService(IHttpClientFactory httpClientFactory)
-        : base(httpClientFactory)
+    public AccessRequestService(IODataClient client, IHttpClientFactory httpClientFactory)
     {
+        _client = client;
         _httpClientFactory = httpClientFactory;
     }
 
@@ -22,7 +25,7 @@ public class AccessRequestService : XrmService, IAccessRequestService
         var startOfDay = date.Value.Date;
         var endOfDay = date.Value.AddDays(1).Date.AddSeconds(-1);
 
-        var accessRequests = await Client.For<gc_accessrequest>()
+        var accessRequests = await _client.For<gc_accessrequest>()
             .Filter(a => a.gc_floor.gc_floorid == floorId && a.gc_starttime >= startOfDay && a.gc_starttime <= endOfDay)
             .Expand(a => new { a.gc_accessrequest_contact_visitors })
             .FindEntriesAsync();
@@ -34,7 +37,7 @@ public class AccessRequestService : XrmService, IAccessRequestService
             // TODO filer request status in db query
             if (accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Approved || accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Pending)
             {
-                var visitors = await Client.For<gc_accessrequest>()
+                var visitors = await _client.For<gc_accessrequest>()
                .Key(accessRequest.gc_accessrequestid)
                .NavigateTo(a => a.gc_accessrequest_contact_visitors)
                .FindEntriesAsync();
@@ -50,40 +53,74 @@ public class AccessRequestService : XrmService, IAccessRequestService
 
     public async Task<(Result Result, AccessRequest AccessRequest)> GetAccessRequest(Guid accessRequestId)
     {
-        var accessRequest = await Client.For<gc_accessrequest>()
+        var accessRequest = await _client.For<gc_accessrequest>()
             .Key(accessRequestId)
             .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_contact_visitors, a.gc_accessrequest_assetrequest })
             .FindEntryAsync();
 
-        return (Result.Success(), gc_accessrequest.Convert(accessRequest));
+        var map = gc_accessrequest.Convert(accessRequest);
+
+        return (Result.Success(), map);
     }
 
     public async Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetAccessRequestsFor(Guid contactId)
-    {
-        var accessRequests = await Client.For<gc_accessrequest>()
+    {        
+        var accessRequests = await _client.For<gc_accessrequest>()
+            // Only grab the required properties
+            .Select(a => new
+            {
+                a.gc_accessrequestid,
+                a.gc_approvalstatus,
+                a.gc_starttime,
+                a.gc_endtime,
+                a.gc_employee,
+                a.gc_building,
+                a.gc_floor
+            })
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Filter(a => a.gc_employee.contactid == contactId)
-            .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
+            // Only grab the required properties of the navigation properties
+            .Expand(
+                "gc_employee/firstname",
+                "gc_employee/lastname",
+                "gc_building/gc_englishname", "gc_building/gc_frenchname",
+                "gc_floor/gc_englishname", "gc_floor/gc_frenchname")
             .OrderByDescending(a => a.gc_starttime)   
             .FindEntriesAsync();
 
-        accessRequests = accessRequests.ToList();
+        var map = accessRequests.Select(a => gc_accessrequest.Convert(a)).ToList();
 
-        return (Result.Success(), accessRequests.Select(a => gc_accessrequest.Convert(a)));
+        return (Result.Success(), map);
     }
 
     public async Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetManagerAccessRequestsFor(Guid contactId)
     {
-        var accessRequests = await Client.For<gc_accessrequest>()
+        var accessRequests = await _client.For<gc_accessrequest>()
+            // Only grab the required properties
+            .Select(a => new
+            {
+                a.gc_accessrequestid,
+                a.gc_approvalstatus,
+                a.gc_starttime,
+                a.gc_endtime,
+                a.gc_employee,
+                a.gc_building,
+                a.gc_floor
+            })
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Filter(a => a.gc_manager.contactid == contactId)
-            .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager })
+            // Only grab the required properties of the navigation properties
+            .Expand(
+                "gc_employee/firstname",
+                "gc_employee/lastname",
+                "gc_building/gc_englishname", "gc_building/gc_frenchname",
+                "gc_floor/gc_englishname", "gc_floor/gc_frenchname")
             .OrderByDescending(a => a.gc_starttime)
             .FindEntriesAsync();
 
-        accessRequests = accessRequests.ToList();
+        var map = accessRequests.Select(a => gc_accessrequest.Convert(a)).ToList();
 
-        return (Result.Success(), accessRequests.Select(a => gc_accessrequest.Convert(a)));
+        return (Result.Success(), map);
     }
 
     public async Task<Result> CreateAccessRequest(AccessRequest accessRequest)
@@ -94,7 +131,7 @@ public class AccessRequestService : XrmService, IAccessRequestService
         access.gc_starttime = access.gc_starttime.ToUniversalTime();
         access.gc_endtime = access.gc_endtime.ToUniversalTime();
 
-        access = await Client.For<gc_accessrequest>()
+        access = await _client.For<gc_accessrequest>()
             .Set(access)
             .InsertEntryAsync();
 
@@ -121,7 +158,7 @@ public class AccessRequestService : XrmService, IAccessRequestService
 
             foreach (var assetRequest in assetRequests)
             {
-                await Client
+                await _client
                     .For<gc_assetrequest>()
                     .Set(assetRequest)
                     .InsertEntryAsync();
@@ -134,7 +171,7 @@ public class AccessRequestService : XrmService, IAccessRequestService
 
             foreach (var visitor in visitors)
             {
-                var contacts = await Client.For<contact>()
+                var contacts = await _client.For<contact>()
                     .Filter(x => x.emailaddress1 == visitor.emailaddress1)
                     .FindEntriesAsync();
 
@@ -145,7 +182,7 @@ public class AccessRequestService : XrmService, IAccessRequestService
                 {
                     visitor.contactid = Guid.NewGuid();
 
-                    contact = await Client.For<contact>()
+                    contact = await _client.For<contact>()
                         .Set(visitor)
                         .InsertEntryAsync();
                 }
@@ -163,7 +200,9 @@ public class AccessRequestService : XrmService, IAccessRequestService
         /// </remarks>
         async Task AssociateAccessRequestWithVisitors(gc_accessrequest accessRequest, IEnumerable<contact> visitors)
         {
-            using var httpClient = _httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
+            // HttpClient instances can generally be treated as .NET objects not requiring disposal.
+            // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-6.0
+            var httpClient = _httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
 
             httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
             httpClient.DefaultRequestHeaders.Add("OData-MaxVersion", "4.0");
@@ -195,7 +234,7 @@ public class AccessRequestService : XrmService, IAccessRequestService
 
     public async Task<Result> UpdateAccessRequest(AccessRequest accessRequest)
     {
-        await Client.For<gc_accessrequest>()
+        await _client.For<gc_accessrequest>()
             .Key(accessRequest.Id)
             .Set(new
             {
