@@ -15,7 +15,6 @@
           <cell name="gc_accessreason" width="100" />
           <cell name="gc_building" width="100" />
           <cell name="gc_floor" width="100" />
-          <cell name="gc_office" width="100" />
           <cell name="gc_starttime" width="100" />
           <cell name="gc_endtime" width="100" />
           <cell name="gc_manager" width="100" />
@@ -35,15 +34,14 @@
           <attribute name="gc_building" />
           <attribute name="gc_approvalstatus" />
           <attribute name="gc_accessreason" />
-          <order attribute="gc_building" descending="false" />
           <order attribute="gc_starttime" descending="false" />
+          <order attribute="gc_floor" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
             <condition attribute="gc_approvalstatus" operator="eq" value="948160001" />
             <condition attribute="gc_building" operator="eq" uiname="655 Bay Street,  Suite 404" uitype="gc_building" value="{65A7447C-40B0-EA11-A2E3-005056AA7AC3}" />
             <condition attribute="gc_starttime" operator="today" />
           </filter>
-          <attribute name="gc_office" />
           <attribute name="gc_accessrequestid" />
         </entity>
       </fetch>

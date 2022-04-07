@@ -59,12 +59,12 @@
     </RelationshipDescription>
     <EntityRelationshipRoles>
       <EntityRelationshipRole>
-        <NavPaneDisplayOption>UseLabel</NavPaneDisplayOption>
+        <NavPaneDisplayOption>UseCollectionName</NavPaneDisplayOption>
         <NavPaneArea>Details</NavPaneArea>
         <NavPaneOrder>10000</NavPaneOrder>
         <NavigationPropertyName>gc_manager</NavigationPropertyName>
         <CustomLabels>
-          <CustomLabel description="Access Requests (Mng.)" languagecode="1033" />
+          <CustomLabel description="" languagecode="1033" />
         </CustomLabels>
         <RelationshipRoleType>1</RelationshipRoleType>
       </EntityRelationshipRole>

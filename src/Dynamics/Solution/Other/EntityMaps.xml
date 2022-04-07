@@ -26,16 +26,6 @@
     <AttributeMaps />
   </EntityMap>
   <EntityMap>
-    <EntitySource>gc_floor</EntitySource>
-    <EntityTarget>gc_office</EntityTarget>
-    <AttributeMaps />
-  </EntityMap>
-  <EntityMap>
-    <EntitySource>gc_office</EntitySource>
-    <EntityTarget>gc_accessrequest</EntityTarget>
-    <AttributeMaps />
-  </EntityMap>
-  <EntityMap>
     <EntitySource>gc_usersettings</EntitySource>
     <EntityTarget>contact</EntityTarget>
     <AttributeMaps />

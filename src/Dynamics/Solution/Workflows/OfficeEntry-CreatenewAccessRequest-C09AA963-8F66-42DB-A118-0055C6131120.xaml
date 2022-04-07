@@ -183,12 +183,6 @@
               <Variable x:TypeArguments="x:Object" Name="SendEmailStep2_74" />
               <Variable x:TypeArguments="x:Object" Name="SendEmailStep2_75" />
               <Variable x:TypeArguments="x:Object" Name="SendEmailStep2_76" />
-              <Variable x:TypeArguments="x:Object" Name="SendEmailStep2_77" />
-              <Variable x:TypeArguments="x:Object" Name="SendEmailStep2_78" />
-              <Variable x:TypeArguments="x:Object" Name="SendEmailStep2_79" />
-              <Variable x:TypeArguments="x:Object" Name="SendEmailStep2_80" />
-              <Variable x:TypeArguments="x:Object" Name="SendEmailStep2_81" />
-              <Variable x:TypeArguments="x:Object" Name="SendEmailStep2_82" />
             </Sequence.Variables>
             <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" Value="[New Entity(&quot;email&quot;)]" />
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
@@ -350,7 +344,7 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;p&amp;gt;Une nouvelle requête d&amp;#39;accès a été créée et requiert une action.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Employé :  ", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;p&amp;gt;Une nouvelle requête d&amp;#39;accès a été créée et requiert une action.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Employé :  ", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
@@ -458,7 +452,7 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;strong&amp;gt;- &amp;lt;/strong&amp;gt;&amp;lt;span&amp;gt;", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;strong&amp;gt;- &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
@@ -485,38 +479,11 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " -&amp;amp;nbsp;", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Raison : &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_31]</OutArgument>
-              </mxswa:ActivityReference.Arguments>
-            </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="gc_name" Entity="[InputEntities(&quot;related_gc_office#gc_office&quot;)]" EntityName="gc_office" Value="[SendEmailStep2_33]">
-              <mxswa:GetEntityProperty.TargetType>
-                <InArgument x:TypeArguments="s:Type">
-                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
-                </InArgument>
-              </mxswa:GetEntityProperty.TargetType>
-            </mxswa:GetEntityProperty>
-            <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
-              <mxswa:ActivityReference.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">SelectFirstNonNull</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { SendEmailStep2_33 }]</InArgument>
-                <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
-                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
-                </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_32]</OutArgument>
-              </mxswa:ActivityReference.Arguments>
-            </mxswa:ActivityReference>
-            <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
-              <mxswa:ActivityReference.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Raison : &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
-                <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
-                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
-                </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_34]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
@@ -526,7 +493,7 @@
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_35]</OutArgument>
+                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_32]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
@@ -536,10 +503,37 @@
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
+                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_33]</OutArgument>
+              </mxswa:ActivityReference.Arguments>
+            </mxswa:ActivityReference>
+            <mxswa:GetEntityProperty Attribute="gc_details" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_35]">
+              <mxswa:GetEntityProperty.TargetType>
+                <InArgument x:TypeArguments="s:Type">
+                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
+                </InArgument>
+              </mxswa:GetEntityProperty.TargetType>
+            </mxswa:GetEntityProperty>
+            <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+              <mxswa:ActivityReference.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">SelectFirstNonNull</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { SendEmailStep2_35 }]</InArgument>
+                <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
+                </InArgument>
+                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_34]</OutArgument>
+              </mxswa:ActivityReference.Arguments>
+            </mxswa:ActivityReference>
+            <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+              <mxswa:ActivityReference.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Créée le : &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
+                </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_36]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="gc_details" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_38]">
+            <mxswa:GetEntityProperty Attribute="createdon" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_38]">
               <mxswa:GetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -559,14 +553,14 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Créée le : &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;/p&amp;gt;&amp;lt;div style=&amp;#34;&amp;#34;display: inline;&amp;#34;&amp;#34;&amp;gt;&amp;amp;lt;hyperlink&amp;amp;gt;&amp;amp;lt;name&amp;amp;gt;Cliquez ici pour accéder la demande&amp;amp;lt;/name&amp;amp;gt;&amp;amp;lt;value&amp;amp;gt;https://eab-oe.partners.collab.gc.ca/fr/demandes-d-acces/", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_39]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="createdon" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_41]">
+            <mxswa:GetEntityProperty Attribute="gc_guid" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_41]">
               <mxswa:GetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -586,14 +580,14 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;/p&amp;gt;&amp;lt;div style=&amp;#34;&amp;#34;display: inline;&amp;#34;&amp;#34;&amp;gt;&amp;amp;lt;hyperlink&amp;amp;gt;&amp;amp;lt;name&amp;amp;gt;Cliquez ici pour accéder la demande&amp;amp;lt;/name&amp;amp;gt;&amp;amp;lt;value&amp;amp;gt;https://eab-oe.partners.collab.gc.ca/fr/demandes-d-acces/", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;lt;/value&amp;amp;gt;&amp;amp;lt;/hyperlink&amp;amp;gt;&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;A new access request was created and requires an action.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Employee: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_42]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="gc_guid" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_44]">
+            <mxswa:GetEntityProperty Attribute="gc_employee" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_44]">
               <mxswa:GetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -613,14 +607,14 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;lt;/value&amp;amp;gt;&amp;amp;lt;/hyperlink&amp;amp;gt;&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;A new access request was created and requires an action.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Employee: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Time of access: &amp;lt;/strong&amp;gt;From  ", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_45]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="gc_employee" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_47]">
+            <mxswa:GetEntityProperty Attribute="gc_starttime" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_47]">
               <mxswa:GetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -640,14 +634,14 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Time of access: &amp;lt;/strong&amp;gt;From  ", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " to  ", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_48]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="gc_starttime" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_50]">
+            <mxswa:GetEntityProperty Attribute="gc_endtime" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_50]">
               <mxswa:GetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -667,14 +661,14 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " to  ", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Location: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_51]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="gc_endtime" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_53]">
+            <mxswa:GetEntityProperty Attribute="gc_englishname" Entity="[InputEntities(&quot;related_gc_building#gc_building&quot;)]" EntityName="gc_building" Value="[SendEmailStep2_53]">
               <mxswa:GetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -694,14 +688,14 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Location: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;strong&amp;gt;- &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_54]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="gc_englishname" Entity="[InputEntities(&quot;related_gc_building#gc_building&quot;)]" EntityName="gc_building" Value="[SendEmailStep2_56]">
+            <mxswa:GetEntityProperty Attribute="gc_englishname" Entity="[InputEntities(&quot;related_gc_floor#gc_floor&quot;)]" EntityName="gc_floor" Value="[SendEmailStep2_56]">
               <mxswa:GetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -721,14 +715,14 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;strong&amp;gt;- &amp;lt;/strong&amp;gt;&amp;lt;span&amp;gt;", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Reason: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_57]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="gc_englishname" Entity="[InputEntities(&quot;related_gc_floor#gc_floor&quot;)]" EntityName="gc_floor" Value="[SendEmailStep2_59]">
+            <mxswa:GetEntityProperty Attribute="gc_accessreason" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_59]">
               <mxswa:GetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -748,14 +742,14 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " -&amp;amp;nbsp;", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Details: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_60]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="gc_name" Entity="[InputEntities(&quot;related_gc_office#gc_office&quot;)]" EntityName="gc_office" Value="[SendEmailStep2_62]">
+            <mxswa:GetEntityProperty Attribute="gc_details" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_62]">
               <mxswa:GetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -775,14 +769,14 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Reason: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Created on: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_63]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="gc_accessreason" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_65]">
+            <mxswa:GetEntityProperty Attribute="createdon" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_65]">
               <mxswa:GetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -802,14 +796,14 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Details: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;div style=&amp;#34;&amp;#34;display: inline;&amp;#34;&amp;#34;&amp;gt;&amp;amp;lt;hyperlink&amp;amp;gt;&amp;amp;lt;name&amp;amp;gt;Click here to access the request&amp;amp;lt;/name&amp;amp;gt;&amp;amp;lt;value&amp;amp;gt;https://eab-oe.partners.collab.gc.ca/en/access-requests/", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_66]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="gc_details" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_68]">
+            <mxswa:GetEntityProperty Attribute="gc_guid" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_68]">
               <mxswa:GetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -829,71 +823,17 @@
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Created on: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;lt;/value&amp;amp;gt;&amp;amp;lt;/hyperlink&amp;amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;", "String" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_69]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="createdon" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_71]">
-              <mxswa:GetEntityProperty.TargetType>
-                <InArgument x:TypeArguments="s:Type">
-                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
-                </InArgument>
-              </mxswa:GetEntityProperty.TargetType>
-            </mxswa:GetEntityProperty>
-            <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
-              <mxswa:ActivityReference.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">SelectFirstNonNull</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { SendEmailStep2_71 }]</InArgument>
-                <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
-                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
-                </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_70]</OutArgument>
-              </mxswa:ActivityReference.Arguments>
-            </mxswa:ActivityReference>
-            <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
-              <mxswa:ActivityReference.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;div style=&amp;#34;&amp;#34;display: inline;&amp;#34;&amp;#34;&amp;gt;&amp;amp;lt;hyperlink&amp;amp;gt;&amp;amp;lt;name&amp;amp;gt;Click here to access the request&amp;amp;lt;/name&amp;amp;gt;&amp;amp;lt;value&amp;amp;gt;https://eab-oe.partners.collab.gc.ca/en/access-requests/", "String" }]</InArgument>
-                <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
-                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
-                </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_72]</OutArgument>
-              </mxswa:ActivityReference.Arguments>
-            </mxswa:ActivityReference>
-            <mxswa:GetEntityProperty Attribute="gc_guid" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep2_74]">
-              <mxswa:GetEntityProperty.TargetType>
-                <InArgument x:TypeArguments="s:Type">
-                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
-                </InArgument>
-              </mxswa:GetEntityProperty.TargetType>
-            </mxswa:GetEntityProperty>
-            <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
-              <mxswa:ActivityReference.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">SelectFirstNonNull</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { SendEmailStep2_74 }]</InArgument>
-                <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
-                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
-                </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_73]</OutArgument>
-              </mxswa:ActivityReference.Arguments>
-            </mxswa:ActivityReference>
-            <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
-              <mxswa:ActivityReference.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;lt;/value&amp;amp;gt;&amp;amp;lt;/hyperlink&amp;amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;", "String" }]</InArgument>
-                <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
-                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
-                </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_75]</OutArgument>
-              </mxswa:ActivityReference.Arguments>
-            </mxswa:ActivityReference>
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">Add</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { SendEmailStep2_16, SendEmailStep2_17, SendEmailStep2_19, SendEmailStep2_20, SendEmailStep2_22, SendEmailStep2_23, SendEmailStep2_25, SendEmailStep2_26, SendEmailStep2_28, SendEmailStep2_29, SendEmailStep2_31, SendEmailStep2_32, SendEmailStep2_34, SendEmailStep2_35, SendEmailStep2_36, SendEmailStep2_37, SendEmailStep2_39, SendEmailStep2_40, SendEmailStep2_42, SendEmailStep2_43, SendEmailStep2_45, SendEmailStep2_46, SendEmailStep2_48, SendEmailStep2_49, SendEmailStep2_51, SendEmailStep2_52, SendEmailStep2_54, SendEmailStep2_55, SendEmailStep2_57, SendEmailStep2_58, SendEmailStep2_60, SendEmailStep2_61, SendEmailStep2_63, SendEmailStep2_64, SendEmailStep2_66, SendEmailStep2_67, SendEmailStep2_69, SendEmailStep2_70, SendEmailStep2_72, SendEmailStep2_73, SendEmailStep2_75 }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { SendEmailStep2_16, SendEmailStep2_17, SendEmailStep2_19, SendEmailStep2_20, SendEmailStep2_22, SendEmailStep2_23, SendEmailStep2_25, SendEmailStep2_26, SendEmailStep2_28, SendEmailStep2_29, SendEmailStep2_31, SendEmailStep2_32, SendEmailStep2_33, SendEmailStep2_34, SendEmailStep2_36, SendEmailStep2_37, SendEmailStep2_39, SendEmailStep2_40, SendEmailStep2_42, SendEmailStep2_43, SendEmailStep2_45, SendEmailStep2_46, SendEmailStep2_48, SendEmailStep2_49, SendEmailStep2_51, SendEmailStep2_52, SendEmailStep2_54, SendEmailStep2_55, SendEmailStep2_57, SendEmailStep2_58, SendEmailStep2_60, SendEmailStep2_61, SendEmailStep2_63, SendEmailStep2_64, SendEmailStep2_66, SendEmailStep2_67, SendEmailStep2_69 }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                 </InArgument>
@@ -914,10 +854,10 @@
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
                 </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_76]</OutArgument>
+                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_70]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:SetEntityProperty Attribute="deliveryprioritycode" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep2_76]">
+            <mxswa:SetEntityProperty Attribute="deliveryprioritycode" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep2_70]">
               <mxswa:SetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
@@ -931,10 +871,10 @@
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Boolean" />
                 </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_77]</OutArgument>
+                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_71]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:SetEntityProperty Attribute="directioncode" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep2_77]">
+            <mxswa:SetEntityProperty Attribute="directioncode" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep2_71]">
               <mxswa:SetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Boolean" />
@@ -948,10 +888,10 @@
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Boolean" />
                 </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_78]</OutArgument>
+                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_72]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:SetEntityProperty Attribute="followemailuserpreference" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep2_78]">
+            <mxswa:SetEntityProperty Attribute="followemailuserpreference" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep2_72]">
               <mxswa:SetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Boolean" />
@@ -965,10 +905,10 @@
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
                 </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_79]</OutArgument>
+                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_73]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:SetEntityProperty Attribute="notifications" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep2_79]">
+            <mxswa:SetEntityProperty Attribute="notifications" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep2_73]">
               <mxswa:SetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
@@ -982,10 +922,10 @@
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
                 </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_80]</OutArgument>
+                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_74]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:SetEntityProperty Attribute="prioritycode" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep2_80]">
+            <mxswa:SetEntityProperty Attribute="prioritycode" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep2_74]">
               <mxswa:SetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
@@ -999,20 +939,20 @@
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
                 </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_82]</OutArgument>
+                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_76]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
               <mxswa:ActivityReference.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.EntityReference, "transactioncurrency", "Canadian Dollar", SendEmailStep2_82, "Lookup" }]</InArgument>
+                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.EntityReference, "transactioncurrency", "Canadian Dollar", SendEmailStep2_76, "Lookup" }]</InArgument>
                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
                 </InArgument>
-                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_81]</OutArgument>
+                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep2_75]</OutArgument>
               </mxswa:ActivityReference.Arguments>
             </mxswa:ActivityReference>
-            <mxswa:SetEntityProperty Attribute="transactioncurrencyid" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep2_81]">
+            <mxswa:SetEntityProperty Attribute="transactioncurrencyid" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" EntityName="email" Value="[SendEmailStep2_75]">
               <mxswa:SetEntityProperty.TargetType>
                 <InArgument x:TypeArguments="s:Type">
                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
