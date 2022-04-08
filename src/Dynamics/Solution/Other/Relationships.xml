@@ -10,6 +10,8 @@
   <EntityRelationship Name="gc_contact_accessrequest_employee" />
   <EntityRelationship Name="gc_contact_accessrequest_manager" />
   <EntityRelationship Name="gc_floor_accessrequest_floor" />
+  <EntityRelationship Name="gc_floor_gc_office_floor" />
+  <EntityRelationship Name="gc_office_gc_accessrequest_office" />
   <EntityRelationship Name="gc_usersettings_contact_usersettings" />
   <EntityRelationship Name="lk_gc_accessrequest_createdby" />
   <EntityRelationship Name="lk_gc_accessrequest_modifiedby" />
@@ -19,10 +21,13 @@
   <EntityRelationship Name="lk_gc_building_modifiedby" />
   <EntityRelationship Name="lk_gc_floor_createdby" />
   <EntityRelationship Name="lk_gc_floor_modifiedby" />
+  <EntityRelationship Name="lk_gc_office_createdby" />
+  <EntityRelationship Name="lk_gc_office_modifiedby" />
   <EntityRelationship Name="lk_gc_usersettings_createdby" />
   <EntityRelationship Name="lk_gc_usersettings_modifiedby" />
   <EntityRelationship Name="organization_gc_building" />
   <EntityRelationship Name="organization_gc_floor" />
+  <EntityRelationship Name="organization_gc_office" />
   <EntityRelationship Name="owner_gc_accessrequest" />
   <EntityRelationship Name="owner_gc_assetrequest" />
   <EntityRelationship Name="owner_gc_usersettings" />

@@ -63,6 +63,14 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{bcd84e9b-1051-7d70-bbb4-62778d7b2627}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Office" languagecode="1033" />
+                        </labels>
+                        <control id="gc_office" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="gc_office" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{6e5eb6ba-e928-b1d6-4740-94662703a6b3}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Access Reason" languagecode="1033" />
@@ -81,7 +89,7 @@
                     <row />
                     <row />
                     <row />
-                    <row />
+                    <row></row>
                     <row>
                       <cell id="{a3c7d2ba-4a13-4a84-b507-ce489e754c67}" showlabel="true" colspan="1" auto="false" rowspan="7">
                         <labels>
@@ -114,11 +122,12 @@
                     <row />
                     <row />
                     <row />
-                    <row />
+                    <row></row>
                     <row>
                       <cell id="{dd9d6acb-3eaa-7553-6716-654141593a61}" showlabel="true" colspan="1" auto="false" rowspan="7">
                         <labels>
                           <label description="Asset Requests" languagecode="1033" />
+                          <label description="Contacts" languagecode="1036" />
                         </labels>
                         <control id="subgrid_AssetRequests" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{b9331720-4b3e-0520-5c53-83dcecc2922b}">
                           <parameters>

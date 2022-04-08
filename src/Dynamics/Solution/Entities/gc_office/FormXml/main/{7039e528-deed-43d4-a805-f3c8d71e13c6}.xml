@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{7039e528-deed-43d4-a805-f3c8d71e13c6}</formid>
+    <IntroducedVersion>0.0.1</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form shownavigationbar="true" showImage="false" maxWidth="1900">
+      <tabs>
+        <tab verticallayout="true" id="{6fb71102-b357-4f8b-b6a0-2523df7704d6}" IsUserDefined="1" labelid="{c133f5ac-302e-43de-9f0a-7afe0e0eedad}">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{2354290b-8bd3-4ab3-9a8f-74bf0cf565e7}" labelid="{28521066-c0a7-4290-8787-fe0ae1e1c869}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{a401f210-7775-4dde-a924-c2c109fc6c58}" labelid="{6383c477-a8a4-4ab6-a919-d1900f220e91}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="gc_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4a028cb5-d39c-14a1-e4aa-e4eeb198b5bc}" showlabel="true" locklevel="0" labelid="{8b860eee-a442-4a8c-af59-e9eb6c5640a5}">
+                        <labels>
+                          <label description="Floor" languagecode="1033" />
+                        </labels>
+                        <control id="gc_floor" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="gc_floor" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b4428668-e80b-91e1-0d5c-c0c2c3e10d79}" showlabel="true" locklevel="0" labelid="{17fdfad8-26f8-472d-8329-21421236dbea}">
+                        <labels>
+                          <label description="Shape" languagecode="1033" />
+                        </labels>
+                        <control id="gc_shape" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="gc_shape" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3ec315c0-0155-2e39-7469-ba3a7b099791}" showlabel="true" locklevel="0" labelid="{4a7f9fc7-9913-4761-89a0-85f6f5b5492b}">
+                        <labels>
+                          <label description="Coordinates" languagecode="1033" />
+                        </labels>
+                        <control id="gc_coordinates" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_coordinates" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <DisplayConditions Order="2" FallbackForm="true">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
