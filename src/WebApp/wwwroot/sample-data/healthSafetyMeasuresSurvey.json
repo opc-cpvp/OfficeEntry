@@ -20,8 +20,8 @@
           "type": "html",
           "name": "Keep a distance of 2m from others",
           "html": {
-            "default": "<div class=\"text-center\"><img src=\"/img/0010.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Keep a distance of 2m from others</p>\n\n<p>Adhere to Physical Distancing—maintain a distance of two (2) metres from others whenever possible. When it is not possible to consistently maintain a 2m distance from others, wearing a non-medical mask or face covering is mandatory.</p>",
-            "fr": "<div class=\"text-center\"><img src=\"/img/0010.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Gardez une distance de 2 mètres avec les autres</p>\n\n<p>Respectez la distanciation physique – maintenez une distance de deux (2) mètres par rapport aux autres lorsque cela est possible. Lorsqu'il n'est pas possible de maintenir constamment la distance de 2 mètres, le port d'un masque non médical ou d'un couvre-visage est obligatoire.</p>"
+            "default": "<div class=\"text-center\"><img src=\"/img/0010.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Keep a distance of 2m from others</p>\n\n<p>Adhere to Physical Distancing—maintain a distance of two (2) metres from others whenever possible. When it is not possible to consistently maintain a 2m distance from others, wearing a medical mask or respirator is mandatory.</p>",
+            "fr": "<div class=\"text-center\"><img src=\"/img/0010.png\" class=\"img-fluid\"></div><p align=\"center\" class=\"h3\">Gardez une distance de 2 mètres avec les autres</p>\n\n<p>Respectez la distanciation physique – maintenez une distance de deux (2) mètres par rapport aux autres lorsque cela est possible. Lorsqu'il n'est pas possible de maintenir constamment la distance de 2 mètres, le port d'un masque médical ou respirateur est obligatoire.</p>"
           }
         }
       ]
