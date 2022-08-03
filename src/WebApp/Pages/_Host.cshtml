@@ -7,9 +7,6 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
-    var isIE = Request.Headers.TryGetValue("User-Agent", out var userAgents)
-        && (userAgents.FirstOrDefault() is string userAgent)
-        && System.Text.RegularExpressions.Regex.IsMatch(userAgent, @"MSIE \d|Trident.*rv:");
 }
 
 <!DOCTYPE html>
@@ -52,12 +49,6 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    @if (isIE)
-    {
-        <script src="_framework/blazor.polyfill.min.js"></script>
-        <script type="text/javascript" src="~/lib/promise-polyfill/polyfill.min.js"></script>
-        <script type="text/javascript" src="~/lib/fetch/fetch.min.js"></script>
-    }
     <script type="text/javascript" src="~/lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="~/lib/vue/vue.min.js"></script>
     <script type="text/javascript" src="~/lib/survey-vue/survey.vue.min.js"></script>
@@ -80,11 +71,6 @@
 
     <script src="_framework/blazor.server.js"></script>
     <script src="_content/Fluxor.Blazor.Web/scripts/index.js"></script>
-
-    @if (!isIE)
-    {
-        <script>navigator.serviceWorker.register('service-worker.js');</script>
-    }
 
 </body>
 </html>

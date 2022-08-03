@@ -1,4 +1,3 @@
-using Blazor.Polyfill.Server;
 using Fluxor;
 using OfficeEntry.Application;
 using OfficeEntry.Application.Common.Interfaces;
@@ -54,8 +53,6 @@ public class Startup
         {
             options.ScanAssemblies(typeof(Program).Assembly);
         });
-
-        services.AddBlazorPolyfill();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,7 +72,6 @@ public class Startup
         app.UseUrlLocalizationRequestLocalization();
 
         app.UseHttpsRedirection();
-        app.UseBlazorPolyfill();
         app.UseStaticFiles();
 
         app.UseRequestLogContext();
