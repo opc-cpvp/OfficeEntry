@@ -19,7 +19,7 @@ public class DomainUserService : IDomainUserService
         return await Task.Run(() =>
         {
             using var AD = new PrincipalContext(ContextType.Domain, _domainName);
-            var userIdentity = UserPrincipal.FindByIdentity(AD, adAccount.Name);
+            var userIdentity = UserPrincipal.FindByIdentity(AD, IdentityType.SamAccountName, adAccount.Name);
 
             if (userIdentity == null)
             {
