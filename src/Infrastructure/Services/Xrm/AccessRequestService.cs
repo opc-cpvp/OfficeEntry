@@ -81,9 +81,14 @@ public class AccessRequestService : IAccessRequestService
             .Filter(a => a.gc_employee.contactid == contactId)
             // Only grab the required properties of the navigation properties
             .Expand(
+                "gc_employee/contactid",
                 "gc_employee/firstname",
                 "gc_employee/lastname",
+
+                "gc_building/gc_buildingid",
                 "gc_building/gc_englishname", "gc_building/gc_frenchname",
+
+                "gc_floor/gc_floorid",
                 "gc_floor/gc_englishname", "gc_floor/gc_frenchname")
             .OrderByDescending(a => a.gc_starttime)   
             .FindEntriesAsync();
@@ -111,9 +116,14 @@ public class AccessRequestService : IAccessRequestService
             .Filter(a => a.gc_manager.contactid == contactId)
             // Only grab the required properties of the navigation properties
             .Expand(
+                "gc_employee/contactid",
                 "gc_employee/firstname",
                 "gc_employee/lastname",
+
+                "gc_building/gc_buildingid",
                 "gc_building/gc_englishname", "gc_building/gc_frenchname",
+
+                "gc_floor/gc_floorid",
                 "gc_floor/gc_englishname", "gc_floor/gc_frenchname")
             .OrderByDescending(a => a.gc_starttime)
             .FindEntriesAsync();
