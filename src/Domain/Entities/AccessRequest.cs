@@ -15,6 +15,8 @@ public class AccessRequest
     public OptionSet Status { get; set; }
     public List<Contact> Visitors { get; set; } = new List<Contact>();
 
+    public Workspace Workspace { get; set; }
+
     public enum ApprovalStatus
     {
         Pending = 948160000,
