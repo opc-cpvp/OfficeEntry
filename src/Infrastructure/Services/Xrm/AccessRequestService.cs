@@ -5,6 +5,7 @@ using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 using Simple.OData.Client;
+using System.Collections.Immutable;
 using System.Text;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm;
@@ -18,6 +19,32 @@ public class AccessRequestService : IAccessRequestService
     {
         _client = client;
         _httpClientFactory = httpClientFactory;
+    }
+
+    public async Task<ImmutableArray<AccessRequest>> GetApprovedOrPendingAccessRequestsByFloorPlan(Guid floorPlanId, DateOnly date)
+    {
+        var startOfDay = date.ToDateTime(TimeOnly.MinValue);
+        var endOfDay = date.ToDateTime(TimeOnly.MaxValue);
+
+        var accessRequests = await _client.For<gc_accessrequest>()
+            .Filter(a => a.gc_floorplan.gc_floorplanid == floorPlanId && a.gc_starttime >= startOfDay && a.gc_starttime <= endOfDay)
+            .Filter(a => a.statecode == (int)StateCode.Active)
+            .Expand(
+                "gc_workspace/gc_workspaceid",
+                "gc_workspace/gc_name",
+
+                "gc_employee/contactid",
+                "gc_employee/firstname",
+                "gc_employee/lastname"
+            )
+            .FindEntriesAsync();
+
+        // TODO: add visitors for shared workspace and boardrooms
+
+        return accessRequests
+            .Where(accessRequest => accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Approved || accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Pending)
+            .Select(f => gc_accessrequest.Convert(f))
+            .ToImmutableArray();
     }
 
     public async Task<IEnumerable<AccessRequest>> GetApprovedOrPendingAccessRequestsByFloor(Guid floorId, DateTime? date = null)

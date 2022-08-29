@@ -1,0 +1,54 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/en/floor-plans/edit/{FloorPlanId:guid}"
+@page "/fr/gerer-les-plans-d-etages/{FloorPlanId:guid}"
+
+<h3>FloorPlan</h3>
+
+@if (FloorPlanState.Value.IsLoading)
+{
+    <Loading />
+}
+
+<FileUpload OnImageChangeCallback="@ShowCanvas" />
+
+@*<canvas id="floorplan-canvas" height="500" style="border: 1px solid red;"></canvas>*@
+<canvas id="floorplan-canvas" width="1163" height="815" style="border: 1px solid #eeeeee;"></canvas>
+
+@if (WorkspaceDto is not null && EditContext is not null)
+{
+    <EditForm EditContext="EditContext">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <label>
+            X
+            <InputNumber id="x" @bind-Value="WorkspaceDto.X" />
+        </label>
+
+        <label>
+            Y
+            <InputNumber id="y" @bind-Value="WorkspaceDto.Y" />
+        </label>
+
+        <label>
+            Name
+            <InputText id="name" @bind-Value="WorkspaceDto.Name" />
+        </label>
+
+    </EditForm>
+}
+
+<br />
+<button @onclick="@Save" class="btn btn-primary" disabled="@FloorPlanState.Value.IsSaving">
+    @if (FloorPlanState.Value.IsSaving)
+    {
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span>Saving...</span>
+    }
+    else
+    {
+        <span class="oi oi-cloud-upload"></span>
+        <span>Save</span>
+    }
+</button>

@@ -1,0 +1,115 @@
+﻿{
+  "logoPosition": "right",
+  "pages": [
+    {
+      "name": "page1",
+      "elements": [
+        {
+          "type": "text",
+          "visible": false,
+          "name": "floorplan",
+          "title": "Floorplan"
+        },
+        {
+          "type": "text",
+          "name": "startDate",
+          "title": "Date",
+          "isRequired": true,
+          "inputType": "date"
+        },        
+        {
+          "type": "dropdown",
+          "name": "workspace",
+          "title": "Workspace",
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/workspaces/{floorplan}",
+            "valueName": "id",
+            "titleName": "name"
+          }
+        },
+        {
+          "type": "dropdown",
+          "name": "recurrencePattern",
+          "title": "Recurrence pattern",
+          "isRequired": true,
+          "defaultValue": "0",
+          "choices": [
+            {
+              "value": "0",
+              "text": "Does not repeate"
+            },
+            {
+              "value": "1",
+              "text": "Daily"
+            },
+            {
+              "value": "2",
+              "text": "Weekly"
+            },
+            {
+              "value": "3",
+              "text": "Monthly"
+            },
+            {
+              "value": "4",
+              "text": "Annually"
+            },
+            {
+              "value": "5",
+              "text": "Every weekday"
+            },
+            {
+              "value": "6",
+              "text": "Custom"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page2",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "bookingFor",
+          "title": "Booking for",
+          "defaultValue": "Myself",
+          "choices": [
+            {
+              "value": "Myself",
+              "text": "Myself"
+            },
+            {
+              "value": "Other",
+              "text": "Other individual"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "otherIndividual",
+          "renderAs": "select2",
+          "select2Config": {
+            "theme": "bootstrap4",
+            "placeholder": "Recherche / Search",
+            "selectOnClose": true
+          },
+          "title": {
+            "default": "Other individual",
+            "fr": "Autre individu"
+          },
+          "visibleIf": "{bookingFor} = 'Other'",
+          "requiredIf": "{bookingFor} = 'Other'",
+          "choicesByUrl": {
+            "url": "api/users",
+            "valueName": "id",
+            "titleName": "fullName"
+          }
+        }
+      ]
+    }
+  ],
+  "showCompletedPage": false,
+  "showQuestionNumbers": "off"
+}

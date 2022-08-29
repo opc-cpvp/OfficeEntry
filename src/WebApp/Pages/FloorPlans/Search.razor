@@ -1,0 +1,45 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/en/floor-plans/search"
+@page "/fr/plans-d-etages/recherche"
+
+@using OfficeEntry.Domain.Entities
+
+<h3>Search</h3>
+
+@if (!State.Value.FloorPlans.Any())
+{
+    if (State.Value.IsLoading)
+    {
+        <Loading />
+    }
+    else
+    {
+        <p>No floor plans found.</p>
+    }
+}
+else
+{
+    <button type="button" class="btn btn-secondary" @onclick=Refresh>Refresh</button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (FloorPlan floorPlan in State.Value.FloorPlans)
+            {
+                <tr>
+                    <th scope="row" class="col-1"><a href='/en/floor-plans/edit/@floorPlan.Id'>Edit</a></th>
+                    <th scope="row" class="col-1"><a href='/en/floor-plans/map/@floorPlan.Id'>Map</a></th>
+                    <td>@floorPlan.Id</td>
+                    <td>@floorPlan.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -3,6 +3,7 @@ using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 using Simple.OData.Client;
+using System.Collections.Immutable;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm;
 
@@ -53,6 +54,33 @@ public class LocationService : ILocationService
             FrenchName = f.gc_frenchname,
             Name = (locale == Locale.French) ? f.gc_frenchname : f.gc_englishname,
         });
+    }
+
+    public async Task<ImmutableDictionary<Guid, string>> GetAllFloorsAsync(string locale)
+    {
+        var floors = await _client.For<gc_floor>()
+            .Filter(x => x.statecode == (int)StateCode.Active)
+            //.Filter(x => x.gc_buildingfloorid.statecode == (int)StateCode.Active) // not implemented, must be check client side.
+            .Select(x => new
+            {
+                x.gc_floorid,
+                x.gc_englishname,
+                x.gc_frenchname,
+                x.gc_buildingfloorid
+            })
+            .Expand(
+                "gc_buildingfloorid/gc_buildingid",
+                "gc_buildingfloorid/statecode",
+                "gc_buildingfloorid/gc_englishname",
+                "gc_buildingfloorid/gc_frenchname")
+            .FindEntriesAsync();
+
+        return floors
+            .Where(x => x.gc_buildingfloorid.statecode == (int)StateCode.Active)
+            .ToImmutableDictionary(key => key.gc_floorid,
+                value => (locale == Locale.French)
+                ? $"{value.gc_buildingfloorid.gc_frenchname}, {value.gc_frenchname}"
+                : $"{value.gc_buildingfloorid.gc_englishname}, {value.gc_englishname}");
     }
 
     public async Task<int> GetCapacityByFloorAsync(Guid floorId)

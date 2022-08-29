@@ -47,6 +47,15 @@ public class Startup
 
         services.AddNegotiateWithCookieAuthentication();
 
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("EditUser", policy =>
+                policy.RequireAssertion(context => context.User.HasClaim(c =>
+                    c.Type == "Team"
+                    && c.Value is "Apps" or "AdminServices"
+                    && c.Issuer is "OPC")));
+        });
+
         services.AddLocalization(options => options.ResourcesPath = "Resources");
 
         services.AddFluxor(options =>

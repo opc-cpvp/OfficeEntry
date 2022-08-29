@@ -12,7 +12,7 @@ public partial class NavMenu
     [Inject] public IState<ManagerApprovalsState> ApprovalsState { get; set; }
     [Inject] public IState<MyTermsAndConditionsState> MyTermsAndConditionsState { get; set; }
     [Inject] public IDispatcher Dispatcher { get; set; }
-
+        
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;

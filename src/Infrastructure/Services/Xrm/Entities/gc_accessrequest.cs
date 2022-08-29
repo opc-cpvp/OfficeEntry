@@ -34,6 +34,9 @@ internal class gc_accessrequest
 
     //public IList<gc_accessrequest_contact_visitor> gc_accessrequest_contact_visitors { get; set; } = new List<gc_accessrequest_contact_visitor>();
 
+    public gc_floorplan gc_floorplan { get; set; }
+    public gc_workspace gc_workspace { get; set; }    
+
     public static AccessRequest Convert(gc_accessrequest accessRequest)
     {
         return new AccessRequest
@@ -57,7 +60,13 @@ internal class gc_accessrequest
                 Key = (int)accessRequest.gc_approvalstatus,
                 Value = Enum.GetName(typeof(ApprovalStatus), accessRequest.gc_approvalstatus)
             },
-            Visitors = accessRequest.gc_accessrequest_contact_visitors.Select(v => contact.Convert(v)).ToList()
+            Visitors = accessRequest.gc_accessrequest_contact_visitors.Select(v => contact.Convert(v)).ToList(),
+
+            Workspace = new Workspace
+            {
+                Id = accessRequest.gc_workspace?.gc_workspaceid ?? Guid.Empty,
+                Name = accessRequest.gc_workspace?.gc_name ?? string.Empty
+            }
         };
     }
 
