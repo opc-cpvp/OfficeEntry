@@ -64,9 +64,6 @@ public static class DependencyInjection
             return client;
         });
 
-        services.AddAuthentication()
-            .AddIdentityServerJwt();
-
         return services;
     }
 }

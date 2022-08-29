@@ -1,5 +1,4 @@
-﻿using IdentityModel;
-using Serilog.Context;
+﻿using Serilog.Context;
 
 namespace OfficeEntry.WebApp.Area.Identity;
 
