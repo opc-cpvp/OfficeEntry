@@ -20,22 +20,16 @@ namespace OfficeEntry.WebApp.Pages;
 [Authorize]
 public partial class SubmitAccessRequest : ComponentBase
 {
-    [Inject] public NavigationManager NavigationManager { get; set; }
+    [Inject] private NavigationManager NavigationManager { get; set; }
     [Inject] private IDispatcher Dispatcher { get; set; }
-    [Inject] public IStringLocalizer<App> Localizer { get; set; }
-    [Inject] public IMediator Mediator { get; set; }
+    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private IMediator Mediator { get; set; }
 
     public bool SurveyCompleted { get; set; }
     public bool ShowSpotsAvailablePerHours { get; set; }
     public CurrentCapacity[] FloorCapacity { get; set; }
 
-    [Inject] IJSRuntime JSRuntime { get; set; }
-
-
-    public async Task OnSurveyLoaded(Survey survey)
-    {
-        await JSRuntime.InvokeVoidAsync("interop.accessRequest.init");
-    }
+    [Inject] private IJSRuntime JSRuntime { get; set; }
 
     public async Task OnSurveyCompleted(string surveyResult)
     {
