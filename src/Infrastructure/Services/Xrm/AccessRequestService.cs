@@ -27,7 +27,9 @@ public class AccessRequestService : IAccessRequestService
         var endOfDay = date.ToDateTime(TimeOnly.MaxValue);
 
         var accessRequests = await _client.For<gc_accessrequest>()
-            .Filter(a => a.gc_floorplan.gc_floorplanid == floorPlanId && a.gc_starttime >= startOfDay && a.gc_starttime <= endOfDay)
+            .Filter(a => a.gc_floorplan.gc_floorplanid == floorPlanId)
+            .Filter(x => x.gc_starttime <= endOfDay)
+            .Filter(x => x.gc_endtime >= startOfDay)            
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Expand(
                 "gc_workspace/gc_workspaceid",
