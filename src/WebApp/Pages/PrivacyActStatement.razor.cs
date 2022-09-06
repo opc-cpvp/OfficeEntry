@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using OfficeEntry.Application.User.Commands.UpdatePrivacyStatementRequests;
+using OfficeEntry.WebApp.Shared;
 using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
 using System.Text.Json;
 
@@ -21,11 +22,11 @@ public partial class PrivacyActStatement
     protected string SurveyData { get; set; }
     protected bool SurveyCompleted { get; set; }
 
-    public async Task OnSurveyCompleted(string surveyResult)
+    public async Task OnSurveyCompleted(SurveyCompletedEventArgs e)
     {
         SurveyCompleted = true;
 
-        var surveyData = JsonSerializer.Deserialize<PrivacyActStatementSurveyData>(surveyResult);
+        var surveyData = JsonSerializer.Deserialize<PrivacyActStatementSurveyData>(e.SurveyResult);
 
         bool privateActStatementAccepted = surveyData.questionAcceptPaStatement.Any();
 

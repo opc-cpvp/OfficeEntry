@@ -1,0 +1,34 @@
+﻿/*#tooltip {
+    opacity: 1;
+    position: absolute;
+    background-color: black;
+    color: white;
+    top: 0;
+    left: 0;
+
+    z-index: 999;
+}*/
+
+/*#box:hover #tooltip {
+    opacity: 1;
+}*/
+
+
+#tooltip {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 2px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+/*    top: -5px;
+    left: 105%;*/
+
+    /* Fade in tooltip - takes 0.5 second to go from 0% to 100% opac: */
+    /*opacity: 0;
+    transition: opacity 0.5s;*/
+}

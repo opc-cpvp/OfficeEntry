@@ -54,6 +54,7 @@ class Circle {
     Selected = false;
     Grabbed = false;
     Taken = false;
+    EmployeeFullName = "";
 
     constructor(x, y, diameter, name, id,  selected) {
         this.Position = new Position(x, y);
@@ -184,10 +185,13 @@ function onTouchEnd(e) {
 // ===========================================================================
 
 // https://jacksonlab.agronomy.wisc.edu/2016/05/23/15-level-colorblind-friendly-palette/
+const backgroundLightImage = new Image();
+const backgroundDarkImage = new Image();
 const availableImage = new Image();
 const availableHoveredImage = new Image();
 const selectedImage = new Image();
 const takenImage = new Image();
+const takenSelectedImage = new Image();
 
 const floorplan = new Image();
 const circles = [];
@@ -216,6 +220,8 @@ function resetState() {
         circles.pop();
     }
 }
+
+let spyingContact = "";
 
 async function Update(deltaTime) {
     // set the current selected circle
@@ -272,6 +278,41 @@ async function Update(deltaTime) {
     // set the current hovered circle
     circles.forEach(circle => circle.Hovering = circle.IsCollidingWithMouse(currentMouseState));
 
+    if (!canEdit) {
+        if (circles.filter(x => x.Hovering && x.Taken).length > 0) {
+            const spyingCirle = circles.filter(x => x.Hovering && x.Taken)[0];
+
+            const tooltip = document.getElementById("tooltip");
+
+            tooltip.style.z_index = 1;
+            tooltip.style.opacity = 1;
+            tooltip.style.visibility = "visible";
+
+            const x = spyingCirle.Position.Left + (spyingCirle.Diameter * 2);
+            const y = spyingCirle.Position.Top;
+
+            tooltip.style.left = x + "px";
+            tooltip.style.top = y + "px";
+
+            tooltip.innerHTML = spyingCirle.EmployeeFullName;
+
+            if (spyingContact !== spyingCirle.EmployeeFullName) {
+                spyingContact = spyingCirle.EmployeeFullName;
+                await dotNet.invokeMethodAsync("OnSpying", JSON.stringify({ Workspace: spyingCirle.Name, Victim: spyingContact }));
+            }
+        }
+
+        if (circles.filter(x => x.Hovering).length === 0) {
+            const tooltip = document.getElementById("tooltip");
+
+            tooltip.style.z_index = -1;
+            tooltip.style.opacity = 0;
+            tooltip.style.visibility = "hidden";
+
+            spyingContact = "";
+        }
+    }
+
     const canvas = document.getElementById('floorplan-canvas');
 
     // change the mouse pointer if hovering a circle
@@ -300,7 +341,7 @@ function Draw(deltaTime) {
 
     context.globalAlpha = 0.5;
     context.drawImage(floorplan, 0, 0);
-    context.globalAlpha = 0.7;
+    context.globalAlpha = 1.0;
 
     // draw the selected circle
     circles
@@ -327,8 +368,18 @@ function Draw(deltaTime) {
 
     circles
         .filter(x => x.Taken)
+        .filter(x => !x.Hovering)
         .forEach(circle => {
+            context.drawImage(backgroundDarkImage, circle.Position.Left + 1, circle.Position.Top + 1, circle.Diameter - 2, circle.Diameter - 2);
             context.drawImage(takenImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
+        });
+
+    circles
+        .filter(x => x.Taken)
+        .filter(x => x.Hovering)
+        .forEach(circle => {
+            context.drawImage(backgroundLightImage, circle.Position.Left + 1, circle.Position.Top + 1, circle.Diameter - 2, circle.Diameter - 2);
+            context.drawImage(takenSelectedImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
         });
 
     context.globalAlpha = 1.0;
@@ -435,6 +486,9 @@ export async function start(imagedata, circlesJson) {
     availableHoveredImage.src = '/img/floorplan/circle_orange_icon.svg';
     selectedImage.src = '/img/floorplan/circle_red_icon.svg';
     takenImage.src = '/img/floorplan/circle_taken_icon.svg';
+    takenSelectedImage.src = '/img/floorplan/circle_taken_selected_icon.svg';
+    backgroundLightImage.src = '/img/floorplan/circle_white_icon.svg';
+    backgroundDarkImage.src = '/img/floorplan/circle_black_icon.svg';
 
     canvas.width = floorplan.width;
     canvas.height = floorplan.height;
@@ -450,6 +504,7 @@ export async function start(imagedata, circlesJson) {
         tempCircles.forEach(circle => {
             const newCircle = new Circle(circle.Position.Left, circle.Position.Top, _diameter, circle.Name, circle.Id, circle.Selected);
             newCircle.Taken = circle.Taken;
+            newCircle.EmployeeFullName = circle.EmployeeFullName;
             circles.push(newCircle);
         })
     }

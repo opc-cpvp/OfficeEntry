@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using OfficeEntry.Application.User.Commands.UpdateHealthAndSafetyStatementRequests;
+using OfficeEntry.WebApp.Shared;
 using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
 using System.Text.Json;
 
@@ -21,11 +22,11 @@ public partial class HealthAndSafetyMeasuresStatement
     protected bool SurveyCompleted { get; set; }
     protected string SurveyData { get; set; }
 
-    public async Task OnSurveyCompleted(string surveyResult)
+    public async Task OnSurveyCompleted(SurveyCompletedEventArgs e)
     {
         SurveyCompleted = true;
 
-        var surveyData = JsonSerializer.Deserialize<HealthAndSafetyMeasuresStatementSurveyData>(surveyResult);
+        var surveyData = JsonSerializer.Deserialize<HealthAndSafetyMeasuresStatementSurveyData>(e.SurveyResult);
 
         bool healthAndSafetyMeasuresAccepted = surveyData.questionAcceptHsmStatement.Any();
 

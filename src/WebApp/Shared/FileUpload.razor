@@ -3,6 +3,7 @@
 
 <div @ref="_fileDropContainer" class="file-drop-zone @_hoverClass" @ondragenter="OnDragEnter" @ondragleave="OnDragLeave" @ondragover="OnDragEnter">
     <InputFile @ref="_inputFile" OnChange="@OnChange" />
+    @*Or drag and drop your image here*@
 </div>
 <div class="error-message-container">
     <p>@_errorMessage</p>

@@ -122,18 +122,6 @@ export function init(id, classStyle, surveyUrl, data) {
             // ===============================================================
             // accessRequest.js <START>
             // ===============================================================
-            survey
-                .onAfterRenderQuestion
-                .add(function (survey, options) {
-                    if (options.question.name === "startDate") {
-                        const today = new Date();
-                        // replace function fixes bug in IE where toLocaleDateString generates unicode characters
-                        const nextDayDate = new Date(today.setDate(today.getDate() + 1)).toLocaleDateString("en-US").replace(/\u200E/g, '');
-
-                        options.question.defaultValue = nextDayDate;
-                    }
-                });
-
             function CapacityValidator() {
                 var that = this;
 

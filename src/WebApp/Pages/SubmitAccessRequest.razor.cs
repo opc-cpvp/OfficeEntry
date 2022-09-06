@@ -31,11 +31,11 @@ public partial class SubmitAccessRequest : ComponentBase
 
     [Inject] private IJSRuntime JSRuntime { get; set; }
 
-    public async Task OnSurveyCompleted(string surveyResult)
+    public async Task OnSurveyCompleted(SurveyCompletedEventArgs e)
     {
         SurveyCompleted = true;
 
-        var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(surveyResult);
+        var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(e.SurveyResult);
 
         var accessRequest = new Domain.Entities.AccessRequest
         {
@@ -114,13 +114,11 @@ public partial class SubmitAccessRequest : ComponentBase
             }, count);
     }
 
-    public async Task OnPageChanged((string data, string newCurrentPageName) p)
+    public async Task OnPageChanged(PageChangedEventArgs e)
     {
-        (string surveyResult, string newCurrentPageName) = p;
-
-        if (newCurrentPageName == "page4")
+        if (e.NewCurrentPageName is "page4")
         {
-            var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(surveyResult);
+            var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(e.SurveyData);
 
             var floorId = submission.floor;
             var date = submission.startDate;
@@ -134,6 +132,6 @@ public partial class SubmitAccessRequest : ComponentBase
             return;
         }
 
-        await Task.Run(() => ShowSpotsAvailablePerHours = newCurrentPageName == "page4");
+        await Task.Run(() => ShowSpotsAvailablePerHours = e.NewCurrentPageName is "page4");
     }
 }

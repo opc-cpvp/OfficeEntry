@@ -20,7 +20,7 @@
                 <div class="card-body" style="padding: 0rem;">
                     <Survey @ref="mySurvey"
                         Id="surveyElementSubmitAccessRequest"
-                        Data="@( System.Text.Json.JsonSerializer.Serialize(new { floorplan = FloorPlanId, bookingFor = "Myself", recurrencePattern = "0", startDate = DateTime.Now.ToString("yyyy-MM-dd") }) )"
+                        Data="@( System.Text.Json.JsonSerializer.Serialize(new { floorplan = FloorPlanId, bookingFor = "Myself", recurrencePattern = "0", startDate = _selectedDate.ToString("yyyy-MM-dd") }) )"
                         SurveyUrl="sample-data/bookWorkspaceSurvey.json"
                         OnSurveyCompleted="OnSurveyCompleted"
                         OnValueChanged="OnValueChanged" />
@@ -60,6 +60,7 @@
         }
         else
         {
+            <div id="tooltip">Tooltip</div>
             <div id="canvasHolder">
                 <canvas id="floorplan-canvas" style="border: 1px solid #eeeeee;"></canvas>
             </div>

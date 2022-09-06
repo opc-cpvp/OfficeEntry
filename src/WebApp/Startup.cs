@@ -6,6 +6,7 @@ using OfficeEntry.WebApp.Area.Identity;
 using OfficeEntry.WebApp.Area.Identity.Services;
 using OfficeEntry.WebApp.Area.Localization;
 using OfficeEntry.WebApp.Filters;
+using OfficeEntry.WebApp.Pages.FloorPlans;
 using Serilog;
 
 namespace OfficeEntry.WebApp;
@@ -62,6 +63,8 @@ public class Startup
         {
             options.ScanAssemblies(typeof(Program).Assembly);
         });
+
+        services.AddScoped<IMapJsInterop, MapJsInterop>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
