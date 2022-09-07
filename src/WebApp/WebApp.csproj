@@ -31,8 +31,8 @@
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>    
-    <InternalsVisibleTo Include="WebApp.UnitTests"/>    
+  <ItemGroup>
+    <InternalsVisibleTo Include="WebApp.UnitTests"/>
   </ItemGroup>
 
 </Project>
