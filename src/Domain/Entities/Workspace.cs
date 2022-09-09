@@ -6,9 +6,5 @@ public class Workspace
     public int X { get; set; }
     public int Y { get; set; }
     public string Name { get; set; }
-
-    //public int NumberOfSpots { get; set; }
-
-
     public FloorPlan FloorPlan { get; set; }
 }
