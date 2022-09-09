@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Mappings\" />
+    <Folder Include="User\Queries\GetBuildingRoles\" />
   </ItemGroup>
 
 </Project>

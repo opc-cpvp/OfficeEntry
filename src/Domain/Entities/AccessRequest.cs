@@ -3,19 +3,20 @@
 public class AccessRequest
 {
     public Guid Id { get; set; }
-    public List<AssetRequest> AssetRequests { get; set; }
-    public Building Building { get; set; }
     public Contact Employee { get; set; }
-    public string Details { get; set; }
-    public DateTime EndTime { get; set; }
-    public Floor Floor { get; set; }
     public Contact Manager { get; set; }
-    public OptionSet Reason { get; set; }
+    public FloorPlan FloorPlan { get; set; }
+    public Workspace Workspace { get; set; }
+    public Building Building { get; set; }
+    public Floor Floor { get; set; }
     public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
+    public string Details { get; set; }
+    public Contact Delegate { get; set; }
+    public OptionSet Reason { get; set; }
     public OptionSet Status { get; set; }
     public List<Contact> Visitors { get; set; } = new List<Contact>();
-
-    public Workspace Workspace { get; set; }
+    public List<AssetRequest> AssetRequests { get; set; }
 
     public enum ApprovalStatus
     {
