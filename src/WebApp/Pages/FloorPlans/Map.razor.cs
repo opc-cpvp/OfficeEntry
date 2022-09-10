@@ -43,6 +43,15 @@ public partial class Map : IAsyncDisposable
         await base.OnInitializedAsync();        
     }
 
+    protected override Task OnParametersSetAsync()
+    {
+        // Invalidate the DTO and reload the Map 
+        FloorPlanDto = null;
+        Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
+
+        return base.OnParametersSetAsync();
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (!firstRender)
@@ -51,15 +60,11 @@ public partial class Map : IAsyncDisposable
         }
 
         await MapJsInterop.Register(this);
-
-        Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
     }
 
     private async Task UpdateCanvas()
     {
         var id = await GetSelectedWorkstationId(mySurvey);
-        
-
         var circles = FloorPlanDto.Workspaces
             .Select(x => new
             {
