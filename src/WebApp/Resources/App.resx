@@ -121,6 +121,21 @@
     <value>fr/</value>
     <comment>URI</comment>
   </data>
+  <data name="30 Victoria Street" xml:space="preserve">
+    <value>30 Victoria Street</value>
+  </data>
+  <data name="4th floor" xml:space="preserve">
+    <value>4th floor</value>
+  </data>
+  <data name="655 Bay Street,  Suite 404" xml:space="preserve">
+    <value>655 Bay Street, Suite 404</value>
+  </data>
+  <data name="7th floor" xml:space="preserve">
+    <value>7th floor</value>
+  </data>
+  <data name="8th floor" xml:space="preserve">
+    <value>8th floor</value>
+  </data>
   <data name="Accept all Terms and Conditions" xml:space="preserve">
     <value>Before submitting an access request you must accept the Health and Safety measures and the Privacy Act Statement.</value>
   </data>
@@ -193,6 +208,12 @@
   </data>
   <data name="Floor" xml:space="preserve">
     <value>Floor</value>
+  </data>
+  <data name="floor-plans-edit" xml:space="preserve">
+    <value>/en/floor-plans/edit/{0}</value>
+  </data>
+  <data name="floor-plans-map" xml:space="preserve">
+    <value>/en/floor-plans/map/{0}</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>From</value>

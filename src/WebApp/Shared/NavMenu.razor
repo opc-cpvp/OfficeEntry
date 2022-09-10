@@ -11,7 +11,6 @@
     <ul class="nav flex-column">
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="@Localizer["/"]" Match="NavLinkMatch.All">
-                @*<span class="oi oi-home" aria-hidden="true"></span>*@
                 <span class="pr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.1rem" height="1.1rem" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2c0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.987 7.987 0 0 1 5.08 16zm2.95-8H5.08a7.987 7.987 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2c0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2c0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2c0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z" fill="white" /></svg>
                 </span>
@@ -30,9 +29,25 @@
 
         @if (MyTermsAndConditionsState.Value.AreTermsAndConditionsAccepted)
         {
+            <li class="nav-item px-3 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="pr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.1rem" height="1.1rem" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5v2H5v14h14v-5h2z" fill="white" /><path d="M21 7h-4V3h-2v4h-4v2h4v4h2V9h4" fill="white" /></svg>
+                    </span>
+                    @Localizer["Submit Access Request"]
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <h6 class="dropdown-header">@Localizer["30 Victoria Street"]</h6>
+                    <NavLink class="dropdown-item" href="@Localizer["floor-plans-map", "55bd04c4-7430-ed11-a2fd-005056aa7ac3"]">@Localizer["7th floor"]</NavLink>
+                    <NavLink class="dropdown-item" href="@Localizer["floor-plans-map", "9dc5b8b6-7430-ed11-a2fd-005056aa7ac3"]">@Localizer["8th floor"]</NavLink>
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">@Localizer["655 Bay Street, Suite 404"]</h6>
+                    <NavLink class="dropdown-item" href="@Localizer["floor-plans-map", "13f51add-7430-ed11-a2fd-005056aa7ac3"]">@Localizer["4th floor"]</NavLink>
+                </div>
+            </li>
+
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="@Localizer["submit-access-request"]">
-                    @*<span class="oi oi-list-rich" aria-hidden="true"></span>*@
                     <span class="pr-2">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.1rem" height="1.1rem" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5v2H5v14h14v-5h2z" fill="white" /><path d="M21 7h-4V3h-2v4h-4v2h4v4h2V9h4" fill="white" /></svg>
                     </span>
@@ -42,7 +57,6 @@
         }
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="@Localizer["my-access-requests"]">
-                @*<span class="oi oi-list-rich" aria-hidden="true"></span>*@
                 <span class="pr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.1rem" height="1.1rem" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1200 1200"><path d="M600 0C268.629 0 0 268.629 0 600s268.629 600 600 600s600-268.629 600-600S931.371 0 600 0zm0 80.167c287.105 0 519.833 232.727 519.833 519.833c0 287.105-232.727 519.871-519.833 519.871S80.129 887.106 80.129 600S312.894 80.167 600 80.167zm322.375 460.996c17.269 16.33 16.732 39.747 3.838 56.29c-15.771 16.638-40.629 17.347-56.29 3.838c-48.914-44.386-102.442-85.918-152.237-131.77c-.152 1.96-13.502-8.813-19.189-8.956c-5.118 0-7.677 5.971-7.677 17.91c2.512 49.275-1.148 101.299 4.478 149.04c2.133 17.484 3.198 27.506 3.198 30.064l57.569 327.505c3.299 30.075-13.141 52.539-39.658 57.569c-26.557 7.224-53.846-15.676-57.569-39.658c0 0-46.445-264.445-47.335-268.657s-2.46-27.537-11.514-28.784c-11.634 4.222-10.286 23.812-11.516 28.784c-1.229 4.972-47.335 268.657-47.335 268.657c-7.78 27.743-31.696 44.14-57.568 39.658c-29.562-7.392-44.012-31.018-39.658-57.569L501.481 656.3c8.5-60.769 6.396-115.129 6.396-176.546c0-11.944-2.345-18.128-7.036-18.55c-4.69-.427-10.874 2.771-18.55 9.595L330.051 601.29c-17.788 13.255-42.655 11.046-56.29-3.838c-13.784-19.696-12.902-41.007 3.838-56.29l199.573-176.546c9.384-5.972 18.126-10.021 26.228-12.154c8.104-2.132 18.125-3.198 30.062-3.198h133.05c11.939 0 21.962 1.066 30.063 3.198c8.103 2.133 16.845 6.61 26.227 13.433c63.542 55.737 131.004 115.703 199.573 175.268zM688.031 238.326c0 48.328-39.178 87.505-87.504 87.505c-48.328 0-87.506-39.177-87.506-87.505c0-48.327 39.178-87.504 87.506-87.504c48.327-.001 87.504 39.177 87.504 87.504z" fill="white" /></svg>
                 </span>
@@ -51,7 +65,6 @@
         </li>
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="@Localizer["review-access-requests"]">
-                @*<span class="oi oi-list-rich" aria-hidden="true"></span>*@
                 <span class="pr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.1rem" height="1.1rem" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><g fill="white" fill-rule="evenodd"><path d="M13.477 10.979a2.498 2.498 0 0 0 0 4.994a2.498 2.498 0 0 0 0-4.994zm-1.643 2.677c0-1.018.816-1.843 1.82-1.843a1.8 1.8 0 0 1 .82.198l-2.443 2.475a1.853 1.853 0 0 1-.197-.83zm1.494 1.504c-.25 0-.492-.055-.723-.159l2.377-2.41a1.826 1.826 0 0 1-1.654 2.569z" /><path d="M7.987 6.049c-1.11 0-2.01.875-2.01 1.955c0 1.079.9 1.954 2.01 1.954c1.108 0 2.009-.875 2.009-1.954c0-1.08-.9-1.955-2.009-1.955z" /><path d="M9.879 13.499c0-1.989 1.623-3.604 3.623-3.604c.775 0 1.489.247 2.078.659A7.88 7.88 0 0 0 16 8.029c0-4.396-3.579-7.96-7.992-7.96C3.594.069.016 3.633.016 8.029s3.578 7.96 7.992 7.96c.887 0 1.738-.153 2.535-.42a3.564 3.564 0 0 1-.664-2.07zm2.544-10.727l.846.845l-1.787 1.788l-.845-.845l1.786-1.788zM3.548 13.338l-.845-.845l1.788-1.788l.845.846l-1.788 1.787zM5 8a3 3 0 1 1 6 0a3 3 0 0 1-6 0z" /></g></svg>
                 </span>
@@ -67,7 +80,6 @@
 
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="@Localizer["health-and-safety-measures"]">
-                @*<span class="oi oi-list-rich" aria-hidden="true"></span>*@
                 <span class="pr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.1rem" height="1.1rem" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 512"><path d="M344 150.68V16a16 16 0 0 0-16-16h-16a16 16 0 0 0-16 16v134.68a46.45 46.45 0 0 1 48 0zM195.54 444.46a48.06 48.06 0 0 1 0-67.88l8.58-8.58H192a48 48 0 0 1 0-96h12.12l-8.58-8.57a48 48 0 0 1 60.46-74v-27.68C256 125.38 224.62 96 186 96c-44 0-58 28.5-80.12 63.13a819.52 819.52 0 0 0-102 231A113.16 113.16 0 0 0 0 419.75C0 481 62.5 525.26 125.25 508.38l59.5-15.87a98.51 98.51 0 0 0 52.5-34.75a46.49 46.49 0 0 1-41.71-13.3zm226.29-22.63a16 16 0 0 0 0-22.62l-8.58-8.58c-20.16-20.16-5.88-54.63 22.63-54.63H448a16 16 0 0 0 0-32h-12.12c-28.51 0-42.79-34.47-22.63-54.62l8.58-8.58a16 16 0 0 0-22.63-22.63l-8.57 8.58c-20.16 20.16-54.63 5.88-54.63-22.63V192a16 16 0 0 0-32 0v12.12c0 28.51-34.47 42.79-54.63 22.63l-8.57-8.58a16 16 0 0 0-22.63 22.63l8.58 8.58c20.16 20.15 5.88 54.62-22.63 54.62H192a16 16 0 0 0 0 32h12.12c28.51 0 42.79 34.47 22.63 54.63l-8.58 8.58a16 16 0 1 0 22.63 22.62l8.57-8.57c20.16-20.16 54.63-5.88 54.63 22.62V448a16 16 0 0 0 32 0v-12.12c0-28.5 34.47-42.78 54.63-22.62l8.57 8.57a16 16 0 0 0 22.63 0zM288 304a16 16 0 1 1 16-16a16 16 0 0 1-16 16zm64 64a16 16 0 1 1 16-16a16 16 0 0 1-16 16zm284.12 22.13a819.52 819.52 0 0 0-102-231C512 124.5 498 96 454 96c-38.62 0-70 29.38-70 65.75v27.72a48 48 0 0 1 60.46 74l-8.58 8.53H448a48 48 0 0 1 0 96h-12.12l8.58 8.58a47.7 47.7 0 0 1-41.71 81.18a98.51 98.51 0 0 0 52.5 34.75l59.5 15.87C577.5 525.26 640 481 640 419.75a113.16 113.16 0 0 0-3.88-29.62z" fill="white" /></svg>
                     @Localizer["Health & Safety Measures"]
@@ -76,7 +88,6 @@
         </li>
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="@Localizer["privacy-act-statement"]">
-                @*<span class="oi oi-list-rich" aria-hidden="true"></span>*@
                 <span class="pr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.1rem" height="1.1rem" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 26 26"><path d="M13 0C9.155 0 6 3.155 6 7v1H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2h-1V7c0-3.845-3.155-7-7-7zm0 2c2.755 0 5 2.245 5 5v1H8V7c0-2.755 2.245-5 5-5zm0 9c2.8 0 5 2.2 5 5s-2.2 5-5 5s-5-2.2-5-5s2.2-5 5-5zm0 2c-1.7 0-3 1.3-3 3s1.3 3 3 3s3-1.3 3-3c0-.3-.094-.606-.094-.906c-.3.5-.806.906-1.406.906c-.8 0-1.5-.7-1.5-1.5c0-.6.406-1.106.906-1.406c-.3 0-.606-.094-.906-.094z" fill="white" /></svg>
                 </span>
@@ -85,7 +96,6 @@
         </li>
         <li class="nav-item px-3">
             <a href="@Localizer["guide-for-employees"]" class="nav-link" target="_blank">
-                @*<span class="oi oi-list-rich" aria-hidden="true"></span>*@
                 <span class="pr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.1em" height="1.1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 22 22"><path d="M6 22h15v-2H6.012C5.55 19.988 5 19.805 5 19s.55-.988 1.012-1H21V4c0-1.103-.897-2-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3zM5 8V5c0-.805.55-.988 1-1h13v12H5V8z" fill="white" /><path d="M8 6h9v2H8z" fill="white" /></svg>
                 </span>
@@ -96,7 +106,6 @@
         <AuthorizeView Policy="EditUser">
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="/en/floor-plans/search">
-                    @*<span class="oi oi-list-rich" aria-hidden="true"></span>*@
                     <span class="pr-2">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.1rem" height="1.1rem" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5v2H5v14h14v-5h2z" fill="white" /><path d="M21 7h-4V3h-2v4h-4v2h4v4h2V9h4" fill="white" /></svg>
                     </span>

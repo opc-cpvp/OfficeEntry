@@ -3,42 +3,9 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "fetch@3.4.1",
-      "destination": "wwwroot/lib/fetch/"
-    },
-    {
-      "library": "promise-polyfill@8.2.0",
-      "destination": "wwwroot/lib/promise-polyfill/"
-    },
-    {
-      "library": "vue@2.6.12",
-      "destination": "wwwroot/lib/vue/"
-    },
-    {
-      "library": "survey-vue@1.8.12",
-      "destination": "wwwroot/lib/survey-vue/"
-    },
-    {
-      "provider": "jsdelivr",
-      "library": "surveyjs-widgets@1.8.12",
-      "destination": "wwwroot/lib/surveyjs-widgets/"
-    },
-    {
-      "library": "jquery@3.5.1",
-      "destination": "wwwroot/lib/jquery/"
-    },
-    {
-      "library": "jqueryui@1.12.1",
-      "destination": "wwwroot/lib/jqueryui/"
-    },
-    {
-      "library": "select2@4.0.13",
-      "destination": "wwwroot/lib/select2/"
-    },
-    {
-      "provider": "jsdelivr",
       "library": "@ttskch/select2-bootstrap4-theme@1.4.0",
-      "destination": "wwwroot/lib/ttskch/select2-bootstrap4-theme/"
+      "destination": "wwwroot/lib/ttskch/select2-bootstrap4-theme/",
+      "provider": "jsdelivr"
     },
     {
       "library": "datatables@1.10.21",
@@ -49,8 +16,49 @@
       "destination": "wwwroot/lib/datatables-responsive/"
     },
     {
+      "library": "fetch@3.4.1",
+      "destination": "wwwroot/lib/fetch/"
+    },
+    {
       "library": "font-awesome@5.15.1",
       "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "jquery@3.5.1",
+      "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/lib/jqueryui/"
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/lib/jqueryui/"
+    },
+    {
+      "library": "popper.js@1.14.7",
+      "destination": "wwwroot/lib/popperjs/"
+    },
+    {
+      "library": "promise-polyfill@8.2.0",
+      "destination": "wwwroot/lib/promise-polyfill/"
+    },
+    {
+      "library": "select2@4.0.13",
+      "destination": "wwwroot/lib/select2/"
+    },
+    {
+      "library": "survey-vue@1.8.12",
+      "destination": "wwwroot/lib/survey-vue/"
+    },
+    {
+      "library": "surveyjs-widgets@1.8.12",
+      "destination": "wwwroot/lib/surveyjs-widgets/",
+      "provider": "jsdelivr"
+    },
+    {
+      "library": "vue@2.6.12",
+      "destination": "wwwroot/lib/vue/"
     },
     {
       "library": "Chart.js@2.9.4",

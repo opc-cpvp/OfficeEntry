@@ -354,4 +354,25 @@
   <data name="Reload" xml:space="preserve">
     <value>Recharger</value>
   </data>
+  <data name="30 Victoria Street" xml:space="preserve">
+    <value>30, rue Victoria</value>
+  </data>
+  <data name="4th floor" xml:space="preserve">
+    <value>4e étage</value>
+  </data>
+  <data name="655 Bay Street,  Suite 404" xml:space="preserve">
+    <value>655, rue Bay, bureau 404</value>
+  </data>
+  <data name="7th floor" xml:space="preserve">
+    <value>7e étage</value>
+  </data>
+  <data name="8th floor" xml:space="preserve">
+    <value>8e étage</value>
+  </data>
+  <data name="floor-plans-edit" xml:space="preserve">
+    <value>/fr/gerer-les-plans-d-etages/{0}</value>
+  </data>
+  <data name="floor-plans-map" xml:space="preserve">
+    <value>/fr/plans-d-etages/carte/{0}</value>
+  </data>
 </root>
