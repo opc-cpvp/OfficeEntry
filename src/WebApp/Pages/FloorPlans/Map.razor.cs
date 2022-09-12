@@ -1,14 +1,10 @@
 ﻿using Fluxor;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using Newtonsoft.Json.Linq;
-using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.WebApp.Shared;
 using OfficeEntry.WebApp.Store.FloorPlanUseCases.Map;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 using System.Text.Json;
 using static OfficeEntry.WebApp.Pages.FloorPlans.MapJsInterop;
 
@@ -30,7 +26,7 @@ public partial class Map : IAsyncDisposable
     private FloorPlan FloorPlanDto { get; set; } // ViewModel
     private IEnumerable<Domain.Entities.AccessRequest> AccessRequests { get; set; } // ViewModel
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         SubscribeToAction<GetMapResultAction>(async x =>
         {
@@ -86,7 +82,7 @@ public partial class Map : IAsyncDisposable
     }
 
     // Select survey data to check if a circle should be selected
-    static internal async Task<Guid> GetSelectedWorkstationId(Survey survey)
+    internal static async Task<Guid> GetSelectedWorkstationId(Survey survey)
     {
         if (survey is null)
         {
@@ -98,7 +94,7 @@ public partial class Map : IAsyncDisposable
         return ExtractWorkspaceId(data);
     }
 
-    static internal Guid ExtractWorkspaceId(string surveyData)
+    internal static Guid ExtractWorkspaceId(string surveyData)
     {
         var id = JToken.Parse(surveyData)
             .FirstOrDefault(x => x.Path is "workspace")
@@ -149,7 +145,7 @@ public partial class Map : IAsyncDisposable
     public async Task OnValueChanged(ValueChangedEventArgs e)
     {
         var options = JsonSerializer
-            .Deserialize<Rootobject>(
+            .Deserialize<SurveyQuestion>(
                 json: e.Options,
                 options: new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
@@ -174,32 +170,7 @@ public partial class Map : IAsyncDisposable
     }
 }
 
-public class ExampleModel
-{
-    //[Required]
-    //[StringLength(10, ErrorMessage = "Name is too long.")]
-    //public string? Name { get; set; }
-
-    [Required]
-    public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.Now);
-
-    public Guid WorkspaceId { get; set; }
-
-    public RecurrencePattern RecurrencePattern { get; set; } = RecurrencePattern.DoesNotRepeate;
-}
-
-public enum RecurrencePattern
-{
-    DoesNotRepeate,
-    Daily,
-    Weekly,
-    Monthly,
-    Annually,
-    EveryWeekday,
-    //Custom
-}
-
-public class Rootobject
+public class SurveyQuestion
 {
     public string Name { get; set; }
     public string Value { get; set; }
