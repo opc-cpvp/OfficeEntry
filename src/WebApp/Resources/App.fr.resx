@@ -360,7 +360,7 @@
   <data name="4th floor" xml:space="preserve">
     <value>4e étage</value>
   </data>
-  <data name="655 Bay Street,  Suite 404" xml:space="preserve">
+  <data name="655 Bay Street, Suite 404" xml:space="preserve">
     <value>655, rue Bay, bureau 404</value>
   </data>
   <data name="7th floor" xml:space="preserve">
@@ -374,5 +374,8 @@
   </data>
   <data name="floor-plans-map" xml:space="preserve">
     <value>/fr/plans-d-etages/carte/{0}</value>
+  </data>
+  <data name="Manage Floor Plans" xml:space="preserve">
+    <value>Manage Floor Plans</value>
   </data>
 </root>
