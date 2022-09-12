@@ -16,7 +16,7 @@
           "title": "Date",
           "isRequired": true,
           "inputType": "date"
-        },        
+        },
         {
           "type": "dropdown",
           "name": "workspace",
@@ -28,48 +28,6 @@
             "titleName": "name"
           }
         },
-        {
-          "type": "dropdown",
-          "name": "recurrencePattern",
-          "title": "Recurrence pattern",
-          "isRequired": true,
-          "defaultValue": "0",
-          "choices": [
-            {
-              "value": "0",
-              "text": "Does not repeate"
-            },
-            {
-              "value": "1",
-              "text": "Daily"
-            },
-            {
-              "value": "2",
-              "text": "Weekly"
-            },
-            {
-              "value": "3",
-              "text": "Monthly"
-            },
-            {
-              "value": "4",
-              "text": "Annually"
-            },
-            {
-              "value": "5",
-              "text": "Every weekday"
-            },
-            {
-              "value": "6",
-              "text": "Custom"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "page2",
-      "elements": [
         {
           "type": "radiogroup",
           "name": "bookingFor",
@@ -100,7 +58,7 @@
             "fr": "Autre individu"
           },
           "visibleIf": "{bookingFor} = 'Other'",
-          "requiredIf": "{bookingFor} = 'Other'",
+          "isRequired": true,
           "choicesByUrl": {
             "url": "api/users",
             "valueName": "id",
