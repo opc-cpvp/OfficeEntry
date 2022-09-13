@@ -2,7 +2,7 @@
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
 
-namespace OfficeEntry.Application.User.Queries.GetTermsAndConditions;
+namespace OfficeEntry.Application.User.Queries.GetMyTermsAndConditions;
 
 public class GetMyTermsAndConditionsQuery : IRequest<TermsAndConditions>
 {
