@@ -5,6 +5,7 @@ using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Models;
 using System.Globalization;
+using MediatR;
 
 namespace OfficeEntry.WebApp.Shared;
 
@@ -137,15 +138,29 @@ public partial class Survey
     public async Task<bool> HasAvailableCapacity(string surveyData)
     {
         var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(surveyData);
-        var floorId = submission.floor;
         var date = submission.startDate;
 
-        var results = (await Mediator.Send(new GetSpotsAvailablePerHourQuery { FloorId = floorId, SelectedDay = date })).ToArray();
+        IRequest<IEnumerable<CurrentCapacity>> request;
+        if (submission.floor != Guid.Empty)
+        {
+            var floorId = submission.floor;
+            request = new GetSpotsAvailablePerHourQuery { FloorId = floorId, SelectedDay = date };
+        }
+        else if (submission.floorplan != Guid.Empty)
+        {
+            var floorPlanId = submission.floorplan;
+            request = new GetSpotsAvailablePerHourByFloorPlanQuery { FloorPlanId = floorPlanId, SelectedDay = date };
+        }
+        else
+        {
+            // TODO: Should we return false here?
+            throw new Exception("Failed to determine available capacity");
+        }
 
+        var results = (await Mediator.Send(request)).ToArray();
         for (var i = submission.startTime; i < submission.endTime; i++)
         {
             var availableCapacity = results[i].Capacity - results[i].SpotsReserved - (1 + submission.visitors?.Length ?? 0);
-
             if (availableCapacity <= 0)
             {
                 return false;

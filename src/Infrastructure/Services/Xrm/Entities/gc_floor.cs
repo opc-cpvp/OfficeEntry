@@ -27,4 +27,19 @@ internal class gc_floor
             FrenchName = floor.gc_frenchname
         };
     }
+
+    public static gc_floor MapFrom(Floor floor)
+    {
+        if (floor is null)
+            return null;
+
+        return new gc_floor
+        {
+            gc_floorid = floor.Id,
+            gc_capacity = floor.Capacity,
+            gc_currentcapacity = floor.CurrentCapacity,
+            gc_englishname = floor.EnglishName,
+            gc_frenchname = floor.FrenchName
+        };
+    }
 }

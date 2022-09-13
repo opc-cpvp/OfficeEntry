@@ -376,6 +376,18 @@
     <value>/fr/plans-d-etages/carte/{0}</value>
   </data>
   <data name="Manage Floor Plans" xml:space="preserve">
-    <value>Manage Floor Plans</value>
+    <value>[EN] Manage Floor Plans</value>
+  </data>
+  <data name="Workspace" xml:space="preserve">
+    <value>[EN] Workspace</value>
+  </data>
+  <data name="Delegate Access Requests" xml:space="preserve">
+    <value>[EN] Delegate Access Requests</value>
+  </data>
+  <data name="Delegate Requests" xml:space="preserve">
+    <value>[EN] Delegate Requests</value>
+  </data>
+  <data name="delegate-access-requests" xml:space="preserve">
+    <value>fr/demandes-deleguees</value>
   </data>
 </root>

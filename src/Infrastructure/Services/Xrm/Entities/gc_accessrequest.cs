@@ -1,19 +1,7 @@
 ﻿using OfficeEntry.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm.Entities;
-
-internal class gc_accessrequest_contact_visitor
-{
-    [Key]
-    public Guid gc_accessrequest_contact_visitorid { get; set; }
-
-    public Guid gc_accessrequestid { get; set; }
-
-    public Guid contactid { get; set; }
-
-    //public Guid gc_accessrequest_contact_visitorid { get; set; }
-}
 
 internal class gc_accessrequest
 {
@@ -21,53 +9,58 @@ internal class gc_accessrequest
     public Guid gc_accessrequestid { get; set; }
     public ApprovalStatus gc_approvalstatus { get; set; }
     public gc_building gc_building { get; set; }
+    public contact gc_delegate { get; set; }
     public string gc_details { get; set; }
     public contact gc_employee { get; set; }
     public DateTime gc_endtime { get; set; }
     public gc_floor gc_floor { get; set; }
     public contact gc_manager { get; set; }
-    public AccessReasons gc_accessreason { get; set; }
+    public AccessReasons? gc_accessreason { get; set; }
     public DateTime gc_starttime { get; set; }
     public IList<contact> gc_accessrequest_contact_visitors { get; set; } = new List<contact>();
     public IList<gc_assetrequest> gc_accessrequest_assetrequest { get; set; } = new List<gc_assetrequest>();
     public int statecode { get; set; }
 
-    //public IList<gc_accessrequest_contact_visitor> gc_accessrequest_contact_visitors { get; set; } = new List<gc_accessrequest_contact_visitor>();
-
     public gc_floorplan gc_floorplan { get; set; }
-    public gc_workspace gc_workspace { get; set; }    
+    public gc_workspace gc_workspace { get; set; }
 
     public static AccessRequest Convert(gc_accessrequest accessRequest)
     {
-        return new AccessRequest
+        var request = new AccessRequest
         {
             Id = accessRequest.gc_accessrequestid,
-            AssetRequests = accessRequest.gc_accessrequest_assetrequest.Select(a => gc_assetrequest.Convert(a)).ToList(),
+            AssetRequests = accessRequest.gc_accessrequest_assetrequest.Select(gc_assetrequest.Convert).ToList(),
             Building = gc_building.Convert(accessRequest.gc_building),
-            Employee = contact.Convert(accessRequest.gc_employee),
             Details = accessRequest.gc_details,
+            Employee = contact.Convert(accessRequest.gc_employee),
             EndTime = accessRequest.gc_endtime.ToLocalTime(),
             Floor = gc_floor.Convert(accessRequest.gc_floor),
+            FloorPlan = gc_floorplan.Convert(accessRequest.gc_floorplan),
             Manager = contact.Convert(accessRequest.gc_manager),
-            Reason = new OptionSet
-            {
-                Key = (int)accessRequest.gc_accessreason,
-                Value = Enum.GetName(typeof(AccessReasons), accessRequest.gc_accessreason)
-            },
             StartTime = accessRequest.gc_starttime.ToLocalTime(),
             Status = new OptionSet
             {
                 Key = (int)accessRequest.gc_approvalstatus,
                 Value = Enum.GetName(typeof(ApprovalStatus), accessRequest.gc_approvalstatus)
             },
-            Visitors = accessRequest.gc_accessrequest_contact_visitors.Select(v => contact.Convert(v)).ToList(),
-
+            Visitors = accessRequest.gc_accessrequest_contact_visitors.Select(contact.Convert).ToList(),
             Workspace = new Workspace
             {
                 Id = accessRequest.gc_workspace?.gc_workspaceid ?? Guid.Empty,
                 Name = accessRequest.gc_workspace?.gc_name ?? string.Empty
             }
         };
+
+        if (accessRequest.gc_accessreason.HasValue)
+        {
+            request.Reason = new OptionSet
+            {
+                Key = (int)accessRequest.gc_accessreason,
+                Value = Enum.GetName(typeof(AccessReasons), accessRequest.gc_accessreason)
+            };
+        }
+
+        return request;
     }
 
     public static gc_accessrequest MapFrom(AccessRequest accessRequest)
@@ -75,15 +68,17 @@ internal class gc_accessrequest
         return new gc_accessrequest
         {
             gc_name = $"{accessRequest.Employee.FullName} - {accessRequest.StartTime:yyyy-MM-dd}",
-            gc_accessreason = (AccessReasons)accessRequest.Reason.Key,
+            gc_accessreason = (AccessReasons?)accessRequest.Reason?.Key,
             gc_approvalstatus = ApprovalStatus.Pending,
-            gc_building = new gc_building { gc_buildingid = accessRequest.Building.Id },
+            gc_building = gc_building.MapFrom(accessRequest.Building),
             gc_details = accessRequest.Details,
-            gc_employee = new contact { contactid = accessRequest.Employee.Id },
+            gc_employee = contact.MapFrom(accessRequest.Employee),
             gc_endtime = accessRequest.EndTime,
-            gc_floor = new gc_floor { gc_floorid = accessRequest.Floor.Id },
-            gc_manager = new contact { contactid = accessRequest.Manager.Id },
-            gc_starttime = accessRequest.StartTime
+            gc_floor = gc_floor.MapFrom(accessRequest.Floor),
+            gc_floorplan = gc_floorplan.MapFrom(accessRequest.FloorPlan),
+            gc_manager = contact.MapFrom(accessRequest.Manager),
+            gc_starttime = accessRequest.StartTime,
+            gc_workspace = gc_workspace.MapFrom(accessRequest.Workspace)
         };
     }
 }

@@ -30,14 +30,19 @@ internal class contact
         };
     }
 
-    public static contact MapFrom(Contact x)
+    public static contact MapFrom(Contact contact)
     {
+        if (contact is null)
+            return null;
+
         return new contact
         {
-            firstname = x.FirstName,
-            lastname = x.LastName,
-            emailaddress1 = x.EmailAddress.ToLower(),
-            telephone1 = x.PhoneNumber
+            contactid = contact.Id,
+            firstname = contact.FirstName,
+            lastname = contact.LastName,
+            emailaddress1 = contact.EmailAddress?.ToLower(),
+            telephone1 = contact.PhoneNumber,
+            gc_username = contact.Username
         };
     }
 }

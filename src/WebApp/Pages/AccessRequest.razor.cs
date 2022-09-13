@@ -30,6 +30,7 @@ public partial class AccessRequest
     [Inject]
     private IDispatcher Dispatcher { get; set; }
 
+    public bool IsDelegate { get; set; }
     public bool IsEmployee { get; set; }
     public bool IsManager { get; set; }
 
@@ -50,6 +51,7 @@ public partial class AccessRequest
         locale = (locale == Locale.French) ? locale : Locale.English;
 
         var result = await Mediator.Send(new GetAccessRequestQuery { AccessRequestId = Id, Locale = locale });
+        IsDelegate = result.IsDelegate;
         IsEmployee = result.IsEmployee;
         IsManager = result.IsManager;
         accessRequest = result;

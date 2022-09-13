@@ -6,25 +6,40 @@ using OfficeEntry.Domain.Entities;
 using OfficeEntry.WebApp.Shared;
 using OfficeEntry.WebApp.Store.FloorPlanUseCases.Map;
 using System.Text.Json;
+using Newtonsoft.Json;
+using OfficeEntry.WebApp.Models;
 using static OfficeEntry.WebApp.Pages.FloorPlans.MapJsInterop;
+using JsonSerializer = System.Text.Json.JsonSerializer;
+using MediatR;
+using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
+using OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
+using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
+using Microsoft.Extensions.Localization;
 
 namespace OfficeEntry.WebApp.Pages.FloorPlans;
 
 [Authorize]
 public partial class Map : IAsyncDisposable
 {
-    private Survey mySurvey;
-    private Domain.Entities.AccessRequest _selectedAccessRequest;
-    private DateOnly _selectedDate = DateOnly.FromDateTime(DateTime.Now);
     [Parameter] public Guid FloorPlanId { get; set; }
 
+    [Inject] private IStringLocalizer<App> Localizer { get; set; }
+    [Inject] private ILogger<Map> Logger { get; set; }
     [Inject] private IDispatcher Dispatcher { get; set; }
+    [Inject] private IMediator Mediator { get; set; }
+    [Inject] private NavigationManager NavigationManager { get; set; }
     [Inject] private IState<MapState> MapState { get; set; }
     [Inject] private IMapJsInterop MapJsInterop { get; set; }
-    [Inject] private ILogger<Map> Logger { get; set; }
 
+    private Survey mySurvey;
+    private Domain.Entities.AccessRequest _selectedAccessRequest;
+    private DateOnly _selectedDate = DateOnly.FromDateTime(DateTime.Now.AddDays(1));
+    private int _startTime = 9;
+    private int _endTime = 17;
     private FloorPlan FloorPlanDto { get; set; } // ViewModel
     private IEnumerable<Domain.Entities.AccessRequest> AccessRequests { get; set; } // ViewModel
+
+    public bool SurveyCompleted { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -36,12 +51,12 @@ public partial class Map : IAsyncDisposable
             await UpdateCanvas();
         });
 
-        await base.OnInitializedAsync();        
+        await base.OnInitializedAsync();
     }
 
     protected override Task OnParametersSetAsync()
     {
-        // Invalidate the DTO and reload the Map 
+        // Invalidate the DTO and reload the Map
         FloorPlanDto = null;
         Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
 
@@ -60,7 +75,11 @@ public partial class Map : IAsyncDisposable
 
     private async Task UpdateCanvas()
     {
-        var id = await GetSelectedWorkstationId(mySurvey);
+        var id = await GetSelectedWorkspaceId(mySurvey);
+        var accessRequests = AccessRequests.Where(a =>
+            a.StartTime < _selectedDate.ToDateTime(new TimeOnly(hour: _endTime, minute: 0)) &&
+            a.EndTime > _selectedDate.ToDateTime(new TimeOnly(hour: _startTime, minute: 0))
+        );
         var circles = FloorPlanDto.Workspaces
             .Select(x => new
             {
@@ -68,21 +87,21 @@ public partial class Map : IAsyncDisposable
                 Name = x.Name,
                 Position = new { Left = x.X, Top = x.Y },
                 Selected = x.Id == id, // Check if the circle should be selected when changing the date
-                Taken = AccessRequests.Any(a => a.Workspace.Id == x.Id),
+                Taken = accessRequests.Any(a => a.Workspace.Id == x.Id),
                 EmployeeFullName = AccessRequests.FirstOrDefault(a => a.Workspace.Id == x.Id)?.Employee.FullName ?? string.Empty,
             });
 
         var circlesJson = JsonSerializer.Serialize(circles.ToArray());
-                
+
         await MapJsInterop.Start(FloorPlanDto.FloorPlanImage, circlesJson);
 
-        _selectedAccessRequest = AccessRequests.FirstOrDefault(x => x.Workspace.Id == id);
+        _selectedAccessRequest = accessRequests.FirstOrDefault(x => x.Workspace.Id == id);
 
-        StateHasChanged();        
+        StateHasChanged();
     }
 
     // Select survey data to check if a circle should be selected
-    internal static async Task<Guid> GetSelectedWorkstationId(Survey survey)
+    internal static async Task<Guid> GetSelectedWorkspaceId(Survey survey)
     {
         if (survey is null)
         {
@@ -108,18 +127,18 @@ public partial class Map : IAsyncDisposable
         Dispose();
 
         await MapJsInterop.Stop();
-    }    
+    }
 
 
     // TODO: rename method to something like `OccupiedWorkspaceLookup`
     public async Task OnSpying(SpyingEventArg e)
-    {        
+    {
         Logger.LogInformation("OfficeEntry UserSpying: {UserName} {Name} {Date} {Workspace} {Victim}",
             e.UserId,
             e.FullName,
             _selectedDate.ToString("yyyy-MM-dd"),
             e.Workspace,
-            e.Victim);        
+            e.Victim);
 
         await Task.CompletedTask;
     }
@@ -139,7 +158,34 @@ public partial class Map : IAsyncDisposable
 
     public async Task OnSurveyCompleted(SurveyCompletedEventArgs e)
     {
-        await Task.CompletedTask;
+        SurveyCompleted = true;
+
+        var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(e.SurveyResult);
+
+        var accessRequest = new Domain.Entities.AccessRequest
+        {
+            AssetRequests = new List<AssetRequest>(),
+            Building = FloorPlanDto.Building,
+            Floor = FloorPlanDto.Floor,
+            FloorPlan = FloorPlanDto,
+            EndTime = submission.startDate.AddHours(submission.endTime),
+            StartTime = submission.startDate.AddHours(submission.startTime),
+            Visitors = new List<Contact>(),
+            Workspace = new Workspace { Id = submission.workspace }
+        };
+
+        var isDelegate = submission.otherIndividual != Guid.Empty;
+        if (isDelegate)
+        {
+            accessRequest.Employee = new Contact { Id = submission.otherIndividual };
+        }
+
+        await Mediator.Send(new CreateAccessRequestCommand { AccessRequest = accessRequest });
+
+        Dispatcher.Dispatch(new GetMyAccessRequestsAction());
+        Dispatcher.Dispatch(new GetManagerApprovalsAction());
+
+        NavigationManager.NavigateTo(Localizer["my-access-requests"]);
     }
 
     public async Task OnValueChanged(ValueChangedEventArgs e)
@@ -151,8 +197,8 @@ public partial class Map : IAsyncDisposable
 
         if (options.Name is "startDate")
         {
-            _selectedDate = DateOnly.Parse(options.Value);            
-            
+            _selectedDate = DateOnly.Parse(options.Value);
+
             Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
 
             _selectedAccessRequest = null;
@@ -160,10 +206,22 @@ public partial class Map : IAsyncDisposable
             StateHasChanged();
         }
 
+        if (options.Name is "startTime")
+        {
+            _startTime = int.Parse(options.Value);
+            await UpdateCanvas();
+        }
+
+        if (options.Name is "endTime")
+        {
+            _endTime = int.Parse(options.Value);
+            await UpdateCanvas();
+        }
+
         if (options.Name is "workspace")
         {
-            _selectedAccessRequest = AccessRequests.FirstOrDefault(x => x.Workspace.Id == Guid.Parse(options.Value));
             await MapJsInterop.SetSelectedCircle(options.Value);
+            await UpdateCanvas();
         }
 
         await Task.CompletedTask;

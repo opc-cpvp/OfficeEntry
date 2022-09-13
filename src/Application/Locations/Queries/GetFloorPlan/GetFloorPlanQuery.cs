@@ -6,7 +6,6 @@ namespace OfficeEntry.Application.Locations.Queries.GetFloorPlan;
 
 public class GetFloorPlanQuery : IRequest<FloorPlan>
 {
-    public Guid FloorId { get; init; }
     public Guid FloorPlanId { get; init; }
 }
 

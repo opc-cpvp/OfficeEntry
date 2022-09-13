@@ -22,10 +22,10 @@
                 <div class="card-body" style="padding: 0rem;">
                     <Survey @ref="mySurvey"
                         Id="surveyElementSubmitAccessRequest"
-                        Data="@( System.Text.Json.JsonSerializer.Serialize(new { floorplan = FloorPlanId, bookingFor = "Myself", recurrencePattern = "0", startDate = _selectedDate.ToString("yyyy-MM-dd") }) )"
+                        Data="@( System.Text.Json.JsonSerializer.Serialize(new { floorplan = FloorPlanId, bookingFor = "Myself", startDate = _selectedDate.ToString("MM/dd/yyyy"), startTime = _startTime, endTime = _endTime }) )"
                         SurveyUrl="sample-data/bookWorkspaceSurvey.json"
-                        OnSurveyCompleted="OnSurveyCompleted"
-                        OnValueChanged="OnValueChanged" />
+                        OnSurveyCompleted="@OnSurveyCompleted"
+                        OnValueChanged="@OnValueChanged" />
                 </div>
             </div>
         }

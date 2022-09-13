@@ -17,42 +17,23 @@ public class FloorPlanService : IFloorPlanService
 
     public async Task<FloorPlan> GetFloorPlanByIdAsync(Guid floorPlanId)
     {
-        var x = await _client.For<gc_floorplan>()
+        var floorPlan = await _client.For<gc_floorplan>()
             .Filter(x => x.statecode == (int)StateCode.Active)
-            .Expand(f => new { f.gc_floorplan_gc_workspaces })
+            .Expand(f => new { f.gc_building, f.gc_floor, f.gc_floorplan_gc_workspaces })
             .Key(floorPlanId)
             .FindEntryAsync();
 
-        return new FloorPlan
-        {
-            Id = x.gc_floorplanid,
-            Name = x.gc_name,
-            FloorPlanImage = x.gc_base64,
-            Workspaces = x.gc_floorplan_gc_workspaces
-                .Select(w => new Workspace
-                {
-                    Id = w.gc_workspaceid,
-                    Name = w.gc_name,
-                    X = w.gc_x,
-                    Y = w.gc_y
-                })
-                .ToList()
-        };
+        return gc_floorplan.Convert(floorPlan);
     }
 
     public async Task<ImmutableArray<FloorPlan>> GetFloorPlansAsync(string keyword)
     {
-        var floorplans = await _client.For<gc_floorplan>()
+        var floorPlans = await _client.For<gc_floorplan>()
             .Filter(x => x.statecode == (int)StateCode.Active)
             .Filter(x => x.gc_name.Contains(keyword))
             .FindEntriesAsync();
 
-        return floorplans
-            .Select(x => new FloorPlan
-            {
-                Id = x.gc_floorplanid,
-                Name = x.gc_name
-            }).ToImmutableArray();        
+        return floorPlans.Select(gc_floorplan.Convert).ToImmutableArray();
     }
 
     public async Task UpdateFloorPlan(FloorPlan floorPlan)
@@ -121,29 +102,4 @@ public class FloorPlanService : IFloorPlanService
             batch = new ODataBatch(_client);
         }
     }
-}
-
-
-// TODO: floorplan or zoneplan?? if building for mobile, a full floorplan is too big to be displayed.
-public class gc_floorplan
-{
-    public Guid gc_floorplanid { get; set; }
-
-    public string gc_name { get; set; }
-
-    public int statecode { get; set; }
-
-    public string gc_base64 { get; set; }
-
-    public ICollection<gc_workspace> gc_floorplan_gc_workspaces { get; set; } = new List<gc_workspace>();
-}
-
-public class gc_workspace
-{
-    public Guid gc_workspaceid { get; set; }
-    public string gc_name { get; set; }
-    public int gc_x { get; set; }
-    public int gc_y { get; set; }
-
-    public gc_floorplan gc_floorplanid { get; set; }
 }

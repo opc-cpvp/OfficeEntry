@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
@@ -29,7 +28,7 @@ public class AccessRequestService : IAccessRequestService
         var accessRequests = await _client.For<gc_accessrequest>()
             .Filter(a => a.gc_floorplan.gc_floorplanid == floorPlanId)
             .Filter(x => x.gc_starttime <= endOfDay)
-            .Filter(x => x.gc_endtime >= startOfDay)            
+            .Filter(x => x.gc_endtime >= startOfDay)
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Expand(
                 "gc_workspace/gc_workspaceid",
@@ -84,7 +83,17 @@ public class AccessRequestService : IAccessRequestService
     {
         var accessRequest = await _client.For<gc_accessrequest>()
             .Key(accessRequestId)
-            .Expand(a => new { a.gc_employee, a.gc_building, a.gc_floor, a.gc_manager, a.gc_accessrequest_contact_visitors, a.gc_accessrequest_assetrequest })
+            .Expand(a => new
+            {
+                a.gc_employee,
+                a.gc_delegate,
+                a.gc_building,
+                a.gc_floor,
+                a.gc_manager,
+                a.gc_workspace,
+                a.gc_accessrequest_contact_visitors,
+                a.gc_accessrequest_assetrequest
+            })
             .FindEntryAsync();
 
         var map = gc_accessrequest.Convert(accessRequest);
@@ -93,7 +102,7 @@ public class AccessRequestService : IAccessRequestService
     }
 
     public async Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetAccessRequestsFor(Guid contactId)
-    {        
+    {
         var accessRequests = await _client.For<gc_accessrequest>()
             // Only grab the required properties
             .Select(a => new
@@ -104,7 +113,8 @@ public class AccessRequestService : IAccessRequestService
                 a.gc_endtime,
                 a.gc_employee,
                 a.gc_building,
-                a.gc_floor
+                a.gc_floor,
+                a.gc_workspace
             })
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Filter(a => a.gc_employee.contactid == contactId)
@@ -118,11 +128,14 @@ public class AccessRequestService : IAccessRequestService
                 "gc_building/gc_englishname", "gc_building/gc_frenchname",
 
                 "gc_floor/gc_floorid",
-                "gc_floor/gc_englishname", "gc_floor/gc_frenchname")
-            .OrderByDescending(a => a.gc_starttime)   
+                "gc_floor/gc_englishname", "gc_floor/gc_frenchname",
+
+                "gc_workspace/gc_workspaceid",
+                "gc_workspace/gc_name")
+            .OrderByDescending(a => a.gc_starttime)
             .FindEntriesAsync();
 
-        var map = accessRequests.Select(a => gc_accessrequest.Convert(a)).ToList();
+        var map = accessRequests.Select(gc_accessrequest.Convert).ToList();
 
         return (Result.Success(), map);
     }
@@ -139,7 +152,8 @@ public class AccessRequestService : IAccessRequestService
                 a.gc_endtime,
                 a.gc_employee,
                 a.gc_building,
-                a.gc_floor
+                a.gc_floor,
+                a.gc_workspace
             })
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Filter(a => a.gc_manager.contactid == contactId)
@@ -153,11 +167,53 @@ public class AccessRequestService : IAccessRequestService
                 "gc_building/gc_englishname", "gc_building/gc_frenchname",
 
                 "gc_floor/gc_floorid",
-                "gc_floor/gc_englishname", "gc_floor/gc_frenchname")
+                "gc_floor/gc_englishname", "gc_floor/gc_frenchname",
+
+                "gc_workspace/gc_workspaceid",
+                "gc_workspace/gc_name")
             .OrderByDescending(a => a.gc_starttime)
             .FindEntriesAsync();
 
-        var map = accessRequests.Select(a => gc_accessrequest.Convert(a)).ToList();
+        var map = accessRequests.Select(gc_accessrequest.Convert).ToList();
+
+        return (Result.Success(), map);
+    }
+
+    public async Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetDelegateAccessRequestsFor(Guid contactId)
+    {
+        var accessRequests = await _client.For<gc_accessrequest>()
+            // Only grab the required properties
+            .Select(a => new
+            {
+                a.gc_accessrequestid,
+                a.gc_approvalstatus,
+                a.gc_starttime,
+                a.gc_endtime,
+                a.gc_employee,
+                a.gc_building,
+                a.gc_floor,
+                a.gc_workspace
+            })
+            .Filter(a => a.statecode == (int)StateCode.Active)
+            .Filter(a => a.gc_delegate.contactid == contactId)
+            // Only grab the required properties of the navigation properties
+            .Expand(
+                "gc_employee/contactid",
+                "gc_employee/firstname",
+                "gc_employee/lastname",
+
+                "gc_building/gc_buildingid",
+                "gc_building/gc_englishname", "gc_building/gc_frenchname",
+
+                "gc_floor/gc_floorid",
+                "gc_floor/gc_englishname", "gc_floor/gc_frenchname",
+
+                "gc_workspace/gc_workspaceid",
+                "gc_workspace/gc_name")
+            .OrderByDescending(a => a.gc_starttime)
+            .FindEntriesAsync();
+
+        var map = accessRequests.Select(gc_accessrequest.Convert).ToList();
 
         return (Result.Success(), map);
     }
@@ -206,7 +262,7 @@ public class AccessRequestService : IAccessRequestService
 
         async IAsyncEnumerable<contact> GetContactForVisitors()
         {
-            var visitors = accessRequest.Visitors.Select(x => contact.MapFrom(x)).ToList();
+            var visitors = accessRequest.Visitors.Select(contact.MapFrom).ToList();
 
             foreach (var visitor in visitors)
             {

@@ -11,6 +11,7 @@ public interface IAccessRequestService
     Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetAccessRequestsFor(Guid contactId);
 
     Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetManagerAccessRequestsFor(Guid contactId);
+    Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetDelegateAccessRequestsFor(Guid contactId);
 
     Task<Result> CreateAccessRequest(AccessRequest accessRequest);
 

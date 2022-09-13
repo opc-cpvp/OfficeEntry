@@ -7,6 +7,7 @@
             <th>@Localizer["Requestor"]</th>
             <th>@Localizer["Building"]</th>
             <th>@Localizer["Floor"]</th>
+            <th>@Localizer["Workspace"]</th>
             <th>@Localizer["Status"]</th>
         </tr>
     </thead>
@@ -40,6 +41,7 @@
                 <td class="@tdClass">@accessRequest.Employee.FullName</td>
                 <td class="@tdClass">@accessRequest.Building.Name</td>
                 <td class="@tdClass">@accessRequest.Floor.Name</td>
+                <td class="@tdClass">@accessRequest.Workspace.Name</td>
                 <td data-order="@accessRequest.GetStatusOrder()" class="align-middle font-weight-bold @statusClass">@Localizer[accessRequest.Status.Value]</td>
             </tr>
         }

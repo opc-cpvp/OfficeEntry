@@ -5,12 +5,14 @@ namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 public class AccessRequestViewModel
 {
     public Guid Id { get; set; }
+    public bool IsDelegate { get; set; }
 
     public bool IsEmployee { get; set; }
     public bool IsManager { get; set; }
 
     public string Building { get; set; }
     public string Floor { get; set; }
+    public string Workspace { get; set; }
     public string EmployeeName { get; set; }
     public string ManagerName { get; set; }
     public string Details { get; set; }

@@ -42,16 +42,18 @@ public class GetAccessRequestQueryHandler : IRequestHandler<GetAccessRequestQuer
         return new AccessRequestViewModel
         {
             Id = result.AccessRequest.Id,
+            IsDelegate = result.AccessRequest.Delegate?.Id == userResult.UserId,
             IsEmployee = result.AccessRequest.Employee.Id == userResult.UserId,
-            IsManager = result.AccessRequest.Manager.Id == userResult.UserId,
+            IsManager = result.AccessRequest.Manager?.Id == userResult.UserId,
             EmployeeName = result.AccessRequest.Employee.FullName,
-            ManagerName = result.AccessRequest.Manager.FullName,
+            ManagerName = result.AccessRequest.Manager?.FullName,
             Building = (request.Locale == Locale.French) ? result.AccessRequest.Building.FrenchName : result.AccessRequest.Building.EnglishName,
             Floor = (request.Locale == Locale.French) ? result.AccessRequest.Floor.FrenchName : result.AccessRequest.Floor.EnglishName,
             Details = result.AccessRequest.Details,
             StartTime = result.AccessRequest.StartTime,
             EndTime = result.AccessRequest.EndTime,
-            Reason = result.AccessRequest.Reason.Value.ToString(),
+            Reason = result.AccessRequest.Reason?.Value,
+            Workspace = result.AccessRequest.Workspace?.Name,
             Status = (ApprovalStatus)result.AccessRequest.Status.Key,
 
             Visitors = result.AccessRequest.Visitors.Select(x => new Visitor

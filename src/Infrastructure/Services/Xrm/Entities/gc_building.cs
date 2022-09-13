@@ -34,4 +34,23 @@ internal class gc_building
             TimezoneOffset = building.gc_timezoneoffset
         };
     }
+
+    public static gc_building MapFrom(Building building)
+    {
+        if (building is null)
+            return null;
+
+        return new gc_building
+        {
+            gc_buildingid = building.Id,
+            gc_address = building.Address,
+            gc_city = building.City,
+            gc_englishdescription = building.EnglishDescription,
+            gc_frenchdescription = building.FrenchDescription,
+            gc_englishname = building.EnglishName,
+            gc_frenchname = building.FrenchName,
+            gc_timezone = building.Timezone,
+            gc_timezoneoffset = building.TimezoneOffset
+        };
+    }
 }

@@ -1,0 +1,27 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/en/delegate-access-requests"
+@page "/fr/demandes-deleguees"
+
+@using OfficeEntry.WebApp.Shared
+
+<h1>@Localizer["Delegate Access Requests"]</h1>
+
+@if (DelegateAccessRequestsState.Value.IsLoading)
+{
+    <Loading />
+}
+else
+{
+    // The ordering matches the list order returned by the application layer
+    //     - Status
+    //     - StartTime
+    <AccessRequestDatatable AccessRequests="@DelegateAccessRequestsState.Value.AccessRequests"
+        DataOrder="@( "[[ 4, \"asc\" ], [ 0, \"desc\" ]]" )">
+    </AccessRequestDatatable>
+
+    <button @onclick="Refresh" class="btn btn-secondary">
+        <span class="oi oi-reload"></span>
+        <span>@Localizer["Refresh the list"]</span>
+    </button>
+}

@@ -12,12 +12,28 @@
 else
 {
     <h2>@accessRequest.EmployeeName</h2>
-    <p>@accessRequest.Building, @accessRequest.Floor</p>
+    if (string.IsNullOrWhiteSpace(accessRequest.Workspace))
+    {
+        <p>@accessRequest.Building, @accessRequest.Floor</p>
+    }
+    else
+    {
+        <p>@accessRequest.Building, @accessRequest.Floor, @accessRequest.Workspace</p>
+    }
     <p class="card-text">@accessRequest.StartTime.ToString(Localizer["MMMM dd, yyyy"]) - @accessRequest.StartTime.ToString(Localizer["h:mm tt"]) @Localizer["To"] @accessRequest.EndTime.ToString(Localizer["h:mm tt"])</p>
     <p><strong>@Localizer["Status:"]</strong> @Localizer[accessRequest.Status.ToString()]</p>
-    <p><strong>@Localizer["Reason:"]</strong> @Localizer[accessRequest.Reason]</p>
-    <p><strong>@Localizer["Manager:"]</strong> @Localizer[accessRequest.ManagerName]</p>
-    <p><strong>@Localizer["Details:"]</strong> @accessRequest.Details</p>
+    if (!string.IsNullOrWhiteSpace(accessRequest.Reason))
+    {
+        <p><strong>@Localizer["Reason:"]</strong> @Localizer[accessRequest.Reason]</p>
+    }
+    if (!string.IsNullOrWhiteSpace(accessRequest.ManagerName))
+    {
+        <p><strong>@Localizer["Manager:"]</strong> @Localizer[accessRequest.ManagerName]</p>
+    }
+    if (!string.IsNullOrWhiteSpace(accessRequest.Details))
+    {
+        <p><strong>@Localizer["Details:"]</strong> @accessRequest.Details</p>
+    }
 
     if (accessRequest.Visitors.Any())
     {
@@ -74,7 +90,7 @@ else
         <p><strong>@Localizer["No asset and equipment."]</strong></p>
     }
 
-    if (IsEmployee)
+    if (IsEmployee || IsDelegate)
     {
         <button type="button" class="btn btn-danger" @onclick="CancelRequest" disabled="@IsCancelled">@Localizer["Cancel"]</button>
     }
