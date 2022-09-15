@@ -170,6 +170,7 @@ public partial class Map : IAsyncDisposable
             FloorPlan = FloorPlanDto,
             EndTime = submission.startDate.AddHours(submission.endTime),
             StartTime = submission.startDate.AddHours(submission.startTime),
+            Status = new OptionSet { Key = (int)Domain.Entities.AccessRequest.ApprovalStatus.Pending },
             Visitors = new List<Contact>(),
             Workspace = new Workspace { Id = submission.workspace }
         };
