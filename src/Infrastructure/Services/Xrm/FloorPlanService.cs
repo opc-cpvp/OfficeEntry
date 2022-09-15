@@ -38,7 +38,7 @@ public class FloorPlanService : IFloorPlanService
 
     public async Task UpdateFloorPlan(FloorPlan floorPlan)
     {
-        var old = await _client.For<gc_floorplan>()            
+        var old = await _client.For<gc_floorplan>()
             .Expand(f => new { f.gc_floorplan_gc_workspaces })
             .Key(floorPlan.Id)
             .FindEntryAsync();
