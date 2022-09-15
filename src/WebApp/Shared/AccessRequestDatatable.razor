@@ -41,7 +41,7 @@
                 <td class="@tdClass">@accessRequest.Employee.FullName</td>
                 <td class="@tdClass">@accessRequest.Building.Name</td>
                 <td class="@tdClass">@accessRequest.Floor.Name</td>
-                <td class="@tdClass">@accessRequest.Workspace.Name</td>
+                <td class="@tdClass">@accessRequest.Workspace?.Name</td>
                 <td data-order="@accessRequest.GetStatusOrder()" class="align-middle font-weight-bold @statusClass">@Localizer[accessRequest.Status.Value]</td>
             </tr>
         }

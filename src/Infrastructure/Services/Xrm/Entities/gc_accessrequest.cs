@@ -1,5 +1,4 @@
 ﻿using OfficeEntry.Domain.Entities;
-using System.Drawing;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm.Entities;
 
@@ -45,11 +44,7 @@ internal class gc_accessrequest
                 Value = Enum.GetName(typeof(ApprovalStatus), accessRequest.gc_approvalstatus)
             },
             Visitors = accessRequest.gc_accessrequest_contact_visitors.Select(contact.Convert).ToList(),
-            Workspace = new Workspace
-            {
-                Id = accessRequest.gc_workspace?.gc_workspaceid ?? Guid.Empty,
-                Name = accessRequest.gc_workspace?.gc_name ?? string.Empty
-            }
+            Workspace = gc_workspace.Convert(accessRequest.gc_workspace)
         };
 
         if (accessRequest.gc_accessreason.HasValue)
@@ -70,7 +65,7 @@ internal class gc_accessrequest
         {
             gc_name = $"{accessRequest.Employee.FullName} - {accessRequest.StartTime:yyyy-MM-dd}",
             gc_accessreason = (AccessReasons?)accessRequest.Reason?.Key,
-            gc_approvalstatus = ApprovalStatus.Pending,
+            gc_approvalstatus = (ApprovalStatus?)accessRequest.Status?.Key ?? ApprovalStatus.Pending,
             gc_building = gc_building.MapFrom(accessRequest.Building),
             gc_delegate = contact.MapFrom(accessRequest.Delegate),
             gc_details = accessRequest.Details,
