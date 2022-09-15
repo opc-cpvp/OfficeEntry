@@ -17,9 +17,10 @@ public class UserService : IUserService
         _client = client;
     }
 
-    public async Task<(Result Result, Contact Contact)> GetContact(string username)
+    public async Task<(Result Result, Contact Contact)> GetContact(Guid contactId)
     {
-        var contacts = await _client.For<contact>()
+        var contact = await _client.For<contact>()
+            .Key(contactId)
             .Select(c => new
             {
                 c.contactid,
@@ -28,24 +29,18 @@ public class UserService : IUserService
                 c.gc_usersettings,
                 c.gc_username
             })
-            .Filter(c => c.statecode == (int)StateCode.Active)
-            .Filter(c => c.gc_username == username)
             .Expand(c => c.gc_usersettings)
-            .FindEntriesAsync();
+            .FindEntryAsync();
 
-        // TODO: Should we replace this with a .Single()?
+        var map = contact.Convert(contact);
 
-        if (contacts.Count() == 0)
-        {
-            return (Result.Failure(new[] { $"No contacts with username '{username}'." }), default(Contact));
-        }
+        return (Result.Success(), map);
+    }
 
-        if (contacts.Count() > 1)
-        {
-            return (Result.Failure(new[] { $"More than one contacts with username '{username}'." }), default(Contact));
-        }
-
-        return (Result.Success(), contact.Convert(contacts.First()));
+    public async Task<(Result Result, Contact Contact)> GetContactByUsername(string username)
+    {
+        var (_, contactId) = await GetUserId(username);
+        return await GetContact(contactId);
     }
 
     public async Task<(Result Result, IEnumerable<Contact> Contacts)> GetContacts(string excludeUsername)
@@ -55,10 +50,10 @@ public class UserService : IUserService
             .Filter(c => c.statecode == (int)StateCode.Active)
             .Filter(c => c.gc_username != null && c.gc_username != excludeUsername)
             .Filter(c => !(c.gc_username.Contains("scanner") || c.gc_username.Contains("student")))
-            .OrderBy(c => c.lastname)                  
+            .OrderBy(c => c.lastname)
             .FindEntriesAsync();
 
-        return (Result.Success(), contacts.Select(c => contact.Convert(c)));
+        return (Result.Success(), contacts.Select(contact.Convert));
     }
 
     public async Task<(Result Result, Guid UserId)> GetUserId(string username)
@@ -76,9 +71,9 @@ public class UserService : IUserService
 
         // TODO: Should we replace this with a .Single()?
 
-        if (contacts.Count() == 0)
+        if (!contacts.Any())
         {
-            //return (Result.Failure(new[] { $"No contacts with username '{username}'." }), default(Guid));            
+            //return (Result.Failure(new[] { $"No contacts with username '{username}'." }), default(Guid));
             throw new Exception($"No contacts with username '{username}'.");
         }
 

@@ -19,9 +19,9 @@ public class TermsAndConditionsService : ITermsAndConditionsService
 
     public async Task<TermsAndConditions> GetTermsAndConditionsFor(string username)
     {
-        var (_, contact) = await _userService.GetContact(username);
+        var (_, contact) = await _userService.GetContactByUsername(username);
 
-        return new TermsAndConditions()
+        return new TermsAndConditions
         {
             IsHealthAndSafetyMeasuresAccepted = contact.UserSettings?.HealthSafety.HasValue ?? false,
             IsPrivacyActStatementAccepted = contact.UserSettings?.PrivacyStatement.HasValue ?? false,
@@ -30,7 +30,7 @@ public class TermsAndConditionsService : ITermsAndConditionsService
 
     public async Task<Result> SetHealthAndSafetyMeasuresFor(string username, bool isHealthAndSafetyMeasuresAccepted)
     {
-        var (result, contact) = await _userService.GetContact(username);
+        var (result, contact) = await _userService.GetContactByUsername(username);
 
         if (!result.Succeeded)
             return (result);
@@ -76,7 +76,7 @@ public class TermsAndConditionsService : ITermsAndConditionsService
 
     public async Task<Result> SetPrivacyActStatementFor(string username, bool isPrivateActStatementAccepted)
     {
-        var (result, contact) = await _userService.GetContact(username);
+        var (result, contact) = await _userService.GetContactByUsername(username);
 
         if (!result.Succeeded)
             return (result);
