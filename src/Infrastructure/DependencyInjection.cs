@@ -18,10 +18,12 @@ public static class DependencyInjection
         services.AddTransient<IDateTime, DateTimeService>();
 
         services.AddScoped<IAccessRequestService, AccessRequestService>();
+        services.AddScoped<IBuildingRoleService, BuildingRoleService>();
         services.AddScoped<ILocationService, LocationService>();
         services.AddScoped<IFloorPlanService, FloorPlanService>();
         services.AddScoped<ITermsAndConditionsService, TermsAndConditionsService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IUserSettingsService, UserSettingsService>();
 
         services.AddScoped<IDomainUserService, DomainUserService>(provider =>
             new DomainUserService(configuration.GetValue<string>("Domain"))
@@ -45,7 +47,7 @@ public static class DependencyInjection
             }
         }
 
-        services.AddScoped<IODataClient>(provider =>        
+        services.AddScoped<IODataClient>(provider =>
         {
             var httpClientFactory = provider.GetRequiredService<IHttpClientFactory>();
 
