@@ -21,6 +21,11 @@ public class BuildingRoleService : IBuildingRoleService
     {
         var (_, userSettings) = await _userSettingsService.GetUserSettingsFor(contactId);
 
+        if (userSettings is null)
+        {
+            return (Result.Success(), Enumerable.Empty<BuildingRole>());
+        }
+
         var buildingRoles = await _client.For<gc_usersettingses>()
             .Key(userSettings.Id)
             .NavigateTo(u => u.gc_usersettings_buildingrole)

@@ -17,6 +17,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         private readonly ICurrentUserService _currentUserService;
         private readonly IUserService _userService;
         private readonly IBuildingRoleService _buildingRoleService;
+        private readonly IFloorPlanService _floorPlanService;
 
         private IMediator _mediator;
 
@@ -25,12 +26,15 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             ICurrentUserService currentUserService,
             IUserService userService,
             IBuildingRoleService buildingRoleService,
+            IFloorPlanService floorPlanService,
             IMediator mediator
         ) {
             _accessRequestService = accessRequestService;
             _currentUserService = currentUserService;
             _userService = userService;
             _buildingRoleService = buildingRoleService;
+            _floorPlanService = floorPlanService;
+
             _mediator = mediator;
         }
 
@@ -70,52 +74,39 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             }
 
             var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlan.Id, DateOnly.FromDateTime(date));
-            var approvedAccessRequests = accessRequests
-                .Where(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Approved)
-                .GroupBy(a => a.Employee.Id)
-                .ToDictionary(g => g.Key, g => g.ToList());
-            var pendingAccessRequests = accessRequests
-                .Where(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Pending)
-                .GroupBy(a => a.Employee.Id)
-                .ToDictionary(g => g.Key, g => g.ToList());
             var (_, buildingRoles) = await _buildingRoleService.GetBuildingRolesFor(request.AccessRequest.Employee.Id);
+            buildingRoles = buildingRoles.Where(r => r.Floor?.Id == floorId);
+            var floorPlanCapacity = await _floorPlanService.GetFloorPlanCapacityAsync(floorPlan.Id, DateOnly.FromDateTime(date));
 
             var isEmployeeFirstAidAttendant = buildingRoles.Any(b => b.Role.Key == (int)BuildingRole.BuildingRoles.FirstAidAttendant);
             var isEmployeeFloorEmergencyOfficer = buildingRoles.Any(b => b.Role.Key == (int)BuildingRole.BuildingRoles.FloorEmergencyOfficer);
-            var employeeHasApprovedAccessRequest = approvedAccessRequests.ContainsKey(request.AccessRequest.Employee.Id);
+            var employeeHasApprovedAccessRequest = accessRequests
+                .Where(a => a.Employee.Id == request.AccessRequest.Employee.Id)
+                .Any(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Approved);
 
-            var buildingRoleTasks = approvedAccessRequests.Keys
-                .Where(x => x != request.AccessRequest.Employee.Id)
-                .Select(x => _buildingRoleService.GetBuildingRolesFor(x));
-
-            var assignmentCounts = (await Task.WhenAll(buildingRoleTasks))
-                .SelectMany(r => r.BuildingRoles)
-                .Where(r => r.Floor?.Id == request.AccessRequest.Floor.Id)
-                .GroupBy(r => (BuildingRole.BuildingRoles)r.Role.Key)
-                .ToDictionary(g => g.Key, g => g.ToList().Count);
-
-            assignmentCounts.TryGetValue(BuildingRole.BuildingRoles.FirstAidAttendant, out var count);
-            var approvedFirstAidAttendants = count + (isEmployeeFirstAidAttendant ? 1 : 0);
-
-            assignmentCounts.TryGetValue(BuildingRole.BuildingRoles.FloorEmergencyOfficer, out count);
-            var approvedFloorEmergencyOfficers = count + (isEmployeeFloorEmergencyOfficer ? 1 : 0);
-
-            var thresholdFirstAidAttendant = 50;
-            var thresholdFloorEmergencyOfficer = 50;
-            var minimumFirstAidAttendant = 5;
-            var minimumFloorEmergencyOfficer = 10;
-
-            var maxFirstAidAttendantCapacity = Math.Max(approvedFirstAidAttendants * thresholdFirstAidAttendant, minimumFirstAidAttendant);
-            var maxFloorEmergencyOfficerCapacity = Math.Max(approvedFloorEmergencyOfficers * thresholdFloorEmergencyOfficer, minimumFloorEmergencyOfficer);
-            var maxCapacity = Math.Min(maxFirstAidAttendantCapacity, maxFloorEmergencyOfficerCapacity);
-            var currentCapacity = approvedAccessRequests.Keys.Count;
-            var hasCapacity = currentCapacity < maxCapacity;
-
-            if (isEmployeeFirstAidAttendant || isEmployeeFloorEmergencyOfficer)
+            // The ordering of these checks is important
+            if (employeeHasApprovedAccessRequest ||
+                isEmployeeFirstAidAttendant ||
+                isEmployeeFloorEmergencyOfficer ||
+                floorPlanCapacity.HasCapacity)
             {
                 request.AccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
+            }
 
-                var remainingCapacity = maxCapacity - currentCapacity;
+            await _accessRequestService.CreateAccessRequest(request.AccessRequest);
+
+            // Update floor plan capacity
+            floorPlanCapacity = await _floorPlanService.GetFloorPlanCapacityAsync(floorPlan.Id, DateOnly.FromDateTime(date));
+
+            // Approve pending access requests to fill the remaining spots
+            if ((isEmployeeFirstAidAttendant || isEmployeeFloorEmergencyOfficer) && floorPlanCapacity.HasCapacity)
+            {
+                var pendingAccessRequests = accessRequests
+                    .Where(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Pending)
+                    .GroupBy(a => a.Employee.Id)
+                    .ToDictionary(g => g.Key, g => g.ToList());
+
+                var remainingCapacity = floorPlanCapacity.RemainingCapacity;
                 var remainingAccessRequests = pendingAccessRequests
                     .Take(Math.Min(remainingCapacity, pendingAccessRequests.Count))
                     .SelectMany(x => x.Value);
@@ -125,44 +116,17 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                     remainingAccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
                     await _accessRequestService.UpdateAccessRequest(remainingAccessRequest);
                 }
+
+                // Update floor plan capacity
+                floorPlanCapacity = await _floorPlanService.GetFloorPlanCapacityAsync(floorPlan.Id, DateOnly.FromDateTime(date));
             }
-            else if (employeeHasApprovedAccessRequest || hasCapacity)
+
+            // Send notifications if we reached capacity
+            if (!floorPlanCapacity.HasCapacity)
             {
-                request.AccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
+                var notifyFirstAidAttendants = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFirstAidAttendantCapacity;
+                var notifyFloorEmergencyOfficers = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFloorEmergencyOfficerCapacity;
             }
-            else
-            {
-                var pendingCapacity = pendingAccessRequests.Keys.Count;
-                var totalCapacity = currentCapacity + pendingCapacity + 1;
-
-                var notifyFirstAidAttendants = totalCapacity == maxFirstAidAttendantCapacity;
-                var notifyFloorEmergencyOfficers = totalCapacity == maxFloorEmergencyOfficerCapacity;
-            }
-
-            /*
-
-            // FAA = 5 / 50 / 100
-            // FEO = 10 / 50 / 100
-            var isEmployeeFirstAidAttendant = buildingRoles.Any(b => b.Role.Key == (int)BuildingRole.BuildingRoles.FirstAidAttendant);
-            if (isEmployeeFirstAidAttendant)
-            {
-
-                request.AccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
-                await _accessRequestService.CreateAccessRequest(request.AccessRequest);
-
-                pendingAccessRequests.Take(Math.Min(thresholdFirstAidAttendant, pendingAccessRequests.Count()))
-
-                return Unit.Value;
-            }
-
-            var isEmployeeFloorEmergencyOfficer = buildingRoles.Any(b => b.Role.Key == (int)BuildingRole.BuildingRoles.FloorEmergencyOfficer);
-
-            var minimumFirstAidAttendant = 5;
-            var minimumFloorEmergencyOfficer = 10;
-
-            // FEO = 10 / 50 / 100
-            */
-            await _accessRequestService.CreateAccessRequest(request.AccessRequest);
 
             return Unit.Value;
         }

@@ -8,11 +8,20 @@ namespace OfficeEntry.Infrastructure.Services.Xrm;
 
 public class FloorPlanService : IFloorPlanService
 {
-    private readonly IODataClient _client;
+    private const int ThresholdFirstAidAttendant = 50;
+    private const int ThresholdFloorEmergencyOfficer = 50;
+    private const int MinimumFirstAidAttendant = 5;
+    private const int MinimumFloorEmergencyOfficer = 10;
 
-    public FloorPlanService(IODataClient client)
+    private readonly IODataClient _client;
+    private readonly IAccessRequestService _accessRequestService;
+    private readonly IBuildingRoleService _buildingRoleService;
+
+    public FloorPlanService(IODataClient client, IAccessRequestService accessRequestService, IBuildingRoleService buildingRoleService)
     {
         _client = client;
+        _accessRequestService = accessRequestService;
+        _buildingRoleService = buildingRoleService;
     }
 
     public async Task<FloorPlan> GetFloorPlanByIdAsync(Guid floorPlanId)
@@ -24,6 +33,47 @@ public class FloorPlanService : IFloorPlanService
             .FindEntryAsync();
 
         return gc_floorplan.Convert(floorPlan);
+    }
+
+    public async Task<FloorPlanCapacity> GetFloorPlanCapacityAsync(Guid floorPlanId, DateOnly date)
+    {
+        var floorPlan = await GetFloorPlanByIdAsync(floorPlanId);
+
+        var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlanId, date);
+        var approvedAccessRequests = accessRequests
+            .Where(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Approved)
+            .GroupBy(a => a.Employee.Id)
+            .ToDictionary(g => g.Key, g => g.ToList());
+
+        var buildingRoleTasks = approvedAccessRequests.Keys
+            .Select(x => _buildingRoleService.GetBuildingRolesFor(x));
+
+        var assignmentCounts = (await Task.WhenAll(buildingRoleTasks))
+            .SelectMany(r => r.BuildingRoles)
+            .Where(r => r.Floor?.Id == floorPlan.Floor.Id)
+            .GroupBy(r => (BuildingRole.BuildingRoles)r.Role.Key)
+            .ToDictionary(g => g.Key, g => g.ToList().Count);
+
+        assignmentCounts.TryGetValue(BuildingRole.BuildingRoles.FirstAidAttendant, out var count);
+        var approvedFirstAidAttendants = count;
+
+        assignmentCounts.TryGetValue(BuildingRole.BuildingRoles.FloorEmergencyOfficer, out count);
+        var approvedFloorEmergencyOfficers = count;
+
+        var maxFirstAidAttendantCapacity = Math.Max(approvedFirstAidAttendants * ThresholdFirstAidAttendant, MinimumFirstAidAttendant);
+        var maxFloorEmergencyOfficerCapacity = Math.Max(approvedFloorEmergencyOfficers * ThresholdFloorEmergencyOfficer, MinimumFloorEmergencyOfficer);
+        var maxCapacity = Math.Min(maxFirstAidAttendantCapacity, maxFloorEmergencyOfficerCapacity);
+        var currentCapacity = approvedAccessRequests.Keys.Count;
+        var totalCapacity = accessRequests.DistinctBy(a => a.Employee.Id).Count();
+
+        return new FloorPlanCapacity
+        {
+            CurrentCapacity = currentCapacity,
+            MaxCapacity = maxCapacity,
+            MaxFirstAidAttendantCapacity = maxFirstAidAttendantCapacity,
+            MaxFloorEmergencyOfficerCapacity = maxFloorEmergencyOfficerCapacity,
+            TotalCapacity = totalCapacity
+        };
     }
 
     public async Task<ImmutableArray<FloorPlan>> GetFloorPlansAsync(string keyword)
