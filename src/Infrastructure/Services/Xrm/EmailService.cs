@@ -1,11 +1,9 @@
-﻿using OfficeEntry.Application.Common.Interfaces;
+﻿using Newtonsoft.Json.Linq;
+using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
-using Simple.OData.Client;
-using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json.Linq;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm
 {
