@@ -25,6 +25,9 @@ internal class gc_accessrequest
 
     public static AccessRequest Convert(gc_accessrequest accessRequest)
     {
+        if (accessRequest is null)
+            return null;
+
         var request = new AccessRequest
         {
             Id = accessRequest.gc_accessrequestid,
