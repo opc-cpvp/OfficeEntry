@@ -19,8 +19,9 @@ public static class DependencyInjection
 
         services.AddScoped<IAccessRequestService, AccessRequestService>();
         services.AddScoped<IBuildingRoleService, BuildingRoleService>();
-        services.AddScoped<ILocationService, LocationService>();
+        services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IFloorPlanService, FloorPlanService>();
+        services.AddScoped<ILocationService, LocationService>();
         services.AddScoped<ITermsAndConditionsService, TermsAndConditionsService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IUserSettingsService, UserSettingsService>();
