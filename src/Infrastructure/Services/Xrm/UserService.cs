@@ -10,6 +10,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm;
 public class UserService : IUserService
 {
     private static readonly ConcurrentDictionary<string, Guid> _cachedUserIds = new();
+    private static readonly ConcurrentDictionary<string, Guid> _cachedSystemUserIds = new();
     private readonly IODataClient _client;
 
     public UserService(IODataClient client)
@@ -56,6 +57,58 @@ public class UserService : IUserService
         return (Result.Success(), contacts.Select(contact.Convert));
     }
 
+    public async Task<(Result Result, SystemUser SystemUser)> GetSystemUser(Guid systemUserId)
+    {
+        var systemUser = await _client.For<systemuser>()
+            .Key(systemUserId)
+            .Select(s => new
+            {
+                s.systemuserid,
+                s.domainname
+            })
+            .FindEntryAsync();
+
+        var map = systemuser.Convert(systemUser);
+
+        return (Result.Success(), map);
+    }
+
+    public async Task<(Result Result, SystemUser SystemUser)> GetSystemUserByUsername(string username)
+    {
+        var (_, systemUserId) = await GetSystemUserId(username);
+        return await GetSystemUser(systemUserId);
+    }
+
+    public async Task<(Result Result, Guid SystemUserId)> GetSystemUserId(string username)
+    {
+        if (_cachedSystemUserIds.ContainsKey(username))
+        {
+            return (Result.Success(), _cachedSystemUserIds[username]);
+        }
+
+        var systemUsers = await _client.For<systemuser>()
+            .Select(s => s.systemuserid)
+            .Filter(s => s.isdisabled == false)
+            .Filter(s => s.domainname == username)
+            .FindEntriesAsync();
+
+        // TODO: Should we replace this with a .Single()?
+
+        if (!systemUsers.Any())
+        {
+            throw new Exception($"No system users with username '{username}'.");
+        }
+
+        if (systemUsers.Count() > 1)
+        {
+            throw new Exception($"More than one system users with username '{username}'.");
+        }
+
+        _cachedSystemUserIds[username] = systemUsers.First().systemuserid;
+
+        return (Result.Success(), _cachedSystemUserIds[username]);
+    }
+
     public async Task<(Result Result, Guid UserId)> GetUserId(string username)
     {
         if (_cachedUserIds.ContainsKey(username))
@@ -70,7 +123,6 @@ public class UserService : IUserService
             .FindEntriesAsync();
 
         // TODO: Should we replace this with a .Single()?
-
         if (!contacts.Any())
         {
             //return (Result.Failure(new[] { $"No contacts with username '{username}'." }), default(Guid));

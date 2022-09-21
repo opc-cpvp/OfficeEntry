@@ -9,6 +9,10 @@ public interface IUserService
     Task<(Result Result, Contact Contact)> GetContactByUsername(string username);
 
     Task<(Result Result, IEnumerable<Contact> Contacts)> GetContacts(string excludeUsername);
+    Task<(Result Result, SystemUser SystemUser)> GetSystemUser(Guid systemUserId);
+    Task<(Result Result, SystemUser SystemUser)> GetSystemUserByUsername(string username);
+    Task<(Result Result, Guid SystemUserId)> GetSystemUserId(string username);
 
     Task<(Result Result, Guid UserId)> GetUserId(string username);
+
 }

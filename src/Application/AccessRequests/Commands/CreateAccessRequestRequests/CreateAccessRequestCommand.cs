@@ -3,6 +3,7 @@ using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
 using System.Linq;
+using System.Security.Principal;
 
 namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests
 {
@@ -18,6 +19,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         private readonly IUserService _userService;
         private readonly IBuildingRoleService _buildingRoleService;
         private readonly IFloorPlanService _floorPlanService;
+        private readonly INotificationService _notificationService;
 
         private IMediator _mediator;
 
@@ -27,6 +29,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             IUserService userService,
             IBuildingRoleService buildingRoleService,
             IFloorPlanService floorPlanService,
+            INotificationService notificationService,
             IMediator mediator
         ) {
             _accessRequestService = accessRequestService;
@@ -34,6 +37,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             _userService = userService;
             _buildingRoleService = buildingRoleService;
             _floorPlanService = floorPlanService;
+            _notificationService = notificationService;
 
             _mediator = mediator;
         }
@@ -126,6 +130,24 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             {
                 var notifyFirstAidAttendants = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFirstAidAttendantCapacity;
                 var notifyFloorEmergencyOfficers = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFloorEmergencyOfficerCapacity;
+
+                var capacity = Math.Min(floorPlanCapacity.MaxFirstAidAttendantCapacity, floorPlanCapacity.MaxFloorEmergencyOfficerCapacity);
+                var notification = new Notification
+                {
+                    Capacity = capacity,
+                    Building = request.AccessRequest.Building,
+                    Floor = request.AccessRequest.Floor
+                };
+
+                if (notifyFirstAidAttendants)
+                {
+                    await _notificationService.NotifyFirstAidAttendants(notification);
+                }
+
+                if (notifyFloorEmergencyOfficers)
+                {
+                    await _notificationService.NotifyFloorEmergencyOfficers(notification);
+                }
             }
 
             return Unit.Value;

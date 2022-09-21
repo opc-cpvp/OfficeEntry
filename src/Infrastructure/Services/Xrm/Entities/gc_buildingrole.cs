@@ -9,6 +9,7 @@ namespace OfficeEntry.Infrastructure.Services.Xrm.Entities
         public BuildingRoles gc_role { get; set; }
         public gc_building gc_building { get; set; }
         public gc_floor gc_floor { get; set; }
+        public gc_usersettingses gc_usersettingsbuildingroleid { get; set; }
         public int statecode { get; set; }
 
         public static BuildingRole Convert(gc_buildingrole buildingRole)

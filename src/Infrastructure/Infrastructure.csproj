@@ -5,11 +5,24 @@
     <RootNamespace>OfficeEntry.Infrastructure</RootNamespace>
     <AssemblyName>OfficeEntry.Infrastructure</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
+	<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Templates\EmailLayout.hbs" />
+    <None Remove="Templates\NotificationEmail.hbs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\EmailLayout.hbs" />
+    <EmbeddedResource Include="Templates\NotificationEmail.hbs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Handlebars.Net" Version="2.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.8" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.9" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Simple.OData.Client" Version="5.26.0" />
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="6.0.0" />

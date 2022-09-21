@@ -5,6 +5,6 @@ namespace OfficeEntry.Application.Common.Interfaces
 {
     public interface IEmailService
     {
-        Task<Result> SendEmail(Email email);
+        Task<Result> SendEmailAsync(Email email);
     }
 }

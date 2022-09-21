@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Infrastructure.Identity;
@@ -8,6 +7,7 @@ using OfficeEntry.Infrastructure.Services.Xrm;
 using Simple.OData.Client;
 using System.Net;
 using System.Net.Http.Headers;
+using Microsoft.Extensions.FileProviders;
 
 namespace OfficeEntry.Infrastructure;
 
@@ -22,9 +22,14 @@ public static class DependencyInjection
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IFloorPlanService, FloorPlanService>();
         services.AddScoped<ILocationService, LocationService>();
+        services.AddScoped<INotificationService, NotificationService>();
+        services.AddScoped<ITemplateService, TemplateService>();
         services.AddScoped<ITermsAndConditionsService, TermsAndConditionsService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IUserSettingsService, UserSettingsService>();
+
+        var manifestEmbeddedProvider = new ManifestEmbeddedFileProvider(typeof(TemplateService).Assembly);
+        services.AddSingleton<IFileProvider>(manifestEmbeddedProvider);
 
         services.AddScoped<IDomainUserService, DomainUserService>(provider =>
             new DomainUserService(configuration.GetValue<string>("Domain"))
@@ -37,6 +42,8 @@ public static class DependencyInjection
             {
                 x.BaseAddress = serviceDeskUri;
                 x.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                x.DefaultRequestHeaders.Add("OData-MaxVersion", "4.0");
+                x.DefaultRequestHeaders.Add("OData-Version", "4.0");
             }).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
             {
                 Credentials = new CredentialCache { { serviceDeskUri, "NTLM", CredentialCache.DefaultNetworkCredentials } }

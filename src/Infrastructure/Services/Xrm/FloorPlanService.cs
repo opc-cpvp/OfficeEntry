@@ -27,9 +27,8 @@ public class FloorPlanService : IFloorPlanService
     public async Task<FloorPlan> GetFloorPlanByIdAsync(Guid floorPlanId)
     {
         var floorPlan = await _client.For<gc_floorplan>()
-            .Filter(x => x.statecode == (int)StateCode.Active)
-            .Expand(f => new { f.gc_building, f.gc_floor, f.gc_floorplan_gc_workspaces })
             .Key(floorPlanId)
+            .Expand(f => new { f.gc_building, f.gc_floor, f.gc_floorplan_gc_workspaces })
             .FindEntryAsync();
 
         return gc_floorplan.Convert(floorPlan);

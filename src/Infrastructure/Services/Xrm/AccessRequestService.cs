@@ -299,9 +299,6 @@ public class AccessRequestService : IAccessRequestService
             // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-6.0
             var httpClient = _httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
 
-            httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-            httpClient.DefaultRequestHeaders.Add("OData-MaxVersion", "4.0");
-            httpClient.DefaultRequestHeaders.Add("OData-Version", "4.0");
 
             var accessRequestId = accessRequest.gc_accessrequestid.ToString("D");
 
