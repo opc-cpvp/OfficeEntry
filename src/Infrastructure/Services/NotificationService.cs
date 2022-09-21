@@ -29,7 +29,7 @@ namespace OfficeEntry.Infrastructure.Services
         public async Task<Result> NotifyFirstAidAttendants(Notification notification)
         {
             notification.Title = NotificationSubject;
-            notification.RoleFrenchName = FirstAidAttendantEnglishName;
+            notification.RoleEnglishName = FirstAidAttendantEnglishName;
             notification.RoleFrenchName = FirstAidAttendantFrenchName;
 
             var (_, sender) = await _userService.GetSystemUserByUsername(WindowsIdentity.GetCurrent().Name);
@@ -53,7 +53,7 @@ namespace OfficeEntry.Infrastructure.Services
         public async Task<Result> NotifyFloorEmergencyOfficers(Notification notification)
         {
             notification.Title = NotificationSubject;
-            notification.RoleFrenchName = FloorEmergencyOfficerEnglishName;
+            notification.RoleEnglishName = FloorEmergencyOfficerEnglishName;
             notification.RoleFrenchName = FloorEmergencyOfficerFrenchName;
 
             var (_, sender) = await _userService.GetSystemUserByUsername(WindowsIdentity.GetCurrent().Name);
