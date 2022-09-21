@@ -215,6 +215,11 @@ public partial class Map : IAsyncDisposable
 
         if (options.Name is "endTime")
         {
+            if (options.Value is null)
+            {
+                return;
+            }
+
             _endTime = int.Parse(options.Value);
             await UpdateCanvas();
         }
