@@ -199,9 +199,7 @@ public partial class Map : IAsyncDisposable
         if (options.Name is "startDate")
         {
             _selectedDate = DateOnly.Parse(options.Value);
-
             Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
-
             _selectedAccessRequest = null;
 
             StateHasChanged();
