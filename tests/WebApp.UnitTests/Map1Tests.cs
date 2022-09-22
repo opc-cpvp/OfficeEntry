@@ -54,15 +54,19 @@ public class Map1Tests
         ctx.ComponentFactories.AddStub<Loading>();
         ctx.ComponentFactories.AddStub<Survey>();
 
-        var mapJsInterop = new Mock<IMapJsInterop>();        
+        var stringLocalizer = new Mock<IStringLocalizer<App>>();
+        var mapJsInterop = new Mock<IMapJsInterop>();
 
         var dispatcher = ServiceProvider.GetRequiredService<IDispatcher>();
+        var mediator = ServiceProvider.GetRequiredService<IMediator>();
         var actionSubscriber = ServiceProvider.GetRequiredService<IActionSubscriber>();
 
         ctx.Services.AddSingleton(dispatcher);
+        ctx.Services.AddSingleton(mediator);
         ctx.Services.AddSingleton(State);
         ctx.Services.AddSingleton(actionSubscriber);
         ctx.Services.AddSingleton(mapJsInterop.Object);
+        ctx.Services.AddSingleton(stringLocalizer.Object);
 
         var textService = new TaskCompletionSource<string>();
         var cut = ctx.RenderComponent<Map>(parameters => parameters.Add(p => p.FloorPlanId, Guid.NewGuid()));
