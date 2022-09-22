@@ -2,8 +2,6 @@
 using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
-using System.Linq;
-using System.Security.Principal;
 
 namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests
 {
