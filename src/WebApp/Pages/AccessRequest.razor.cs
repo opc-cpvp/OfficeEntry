@@ -9,6 +9,7 @@ using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
 using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
 using System.Globalization;
+using OfficeEntry.Domain.Entities;
 
 namespace OfficeEntry.WebApp.Pages;
 
@@ -68,7 +69,7 @@ public partial class AccessRequest
         var accessRequestMessage = new Domain.Entities.AccessRequest
         {
             Id = accessRequest.Id,
-            Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
+            Status = new OptionSet { Key = (int)accessRequest.Status }
         };
         await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
         Dispatcher.Dispatch(new GetManagerApprovalsAction());
@@ -84,7 +85,25 @@ public partial class AccessRequest
         var accessRequestMessage = new Domain.Entities.AccessRequest
         {
             Id = accessRequest.Id,
-            Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
+            Employee = new Contact { Id = accessRequest.EmployeeId },
+            FloorPlan = new FloorPlan
+            {
+                Id = accessRequest.FloorPlanId,
+                Building = new Building
+                {
+                    Id = accessRequest.BuildingId,
+                    EnglishName = accessRequest.BuildingEnglishName,
+                    FrenchName = accessRequest.BuildingFrenchName
+                },
+                Floor = new Floor
+                {
+                    Id = accessRequest.FloorId,
+                    EnglishName = accessRequest.FloorEnglishName,
+                    FrenchName = accessRequest.FloorFrenchName
+                }
+            },
+            StartTime = accessRequest.StartTime,
+            Status = new OptionSet { Key = (int)accessRequest.Status }
         };
         await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
         Dispatcher.Dispatch(new GetManagerApprovalsAction());
@@ -100,7 +119,7 @@ public partial class AccessRequest
         var accessRequestMessage = new Domain.Entities.AccessRequest
         {
             Id = accessRequest.Id,
-            Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
+            Status = new OptionSet { Key = (int)accessRequest.Status }
         };
 
         await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });

@@ -92,6 +92,7 @@ public class AccessRequestService : IAccessRequestService
                 a.gc_delegate,
                 a.gc_building,
                 a.gc_floor,
+                a.gc_floorplan,
                 a.gc_manager,
                 a.gc_workspace,
                 a.gc_accessrequest_contact_visitors,
@@ -117,6 +118,7 @@ public class AccessRequestService : IAccessRequestService
                 a.gc_employee,
                 a.gc_building,
                 a.gc_floor,
+                a.gc_floorplan,
                 a.gc_workspace
             })
             .Filter(a => a.statecode == (int)StateCode.Active)
@@ -132,6 +134,8 @@ public class AccessRequestService : IAccessRequestService
 
                 "gc_floor/gc_floorid",
                 "gc_floor/gc_englishname", "gc_floor/gc_frenchname",
+
+                "gc_floorplan/gc_floorplanid",
 
                 "gc_workspace/gc_workspaceid",
                 "gc_workspace/gc_name")
@@ -156,6 +160,7 @@ public class AccessRequestService : IAccessRequestService
                 a.gc_employee,
                 a.gc_building,
                 a.gc_floor,
+                a.gc_floorplan,
                 a.gc_workspace
             })
             .Filter(a => a.statecode == (int)StateCode.Active)
@@ -171,6 +176,8 @@ public class AccessRequestService : IAccessRequestService
 
                 "gc_floor/gc_floorid",
                 "gc_floor/gc_englishname", "gc_floor/gc_frenchname",
+
+                "gc_floorplan/gc_floorplanid",
 
                 "gc_workspace/gc_workspaceid",
                 "gc_workspace/gc_name")
@@ -195,6 +202,7 @@ public class AccessRequestService : IAccessRequestService
                 a.gc_employee,
                 a.gc_building,
                 a.gc_floor,
+                a.gc_floorplan,
                 a.gc_workspace
             })
             .Filter(a => a.statecode == (int)StateCode.Active)
@@ -210,6 +218,8 @@ public class AccessRequestService : IAccessRequestService
 
                 "gc_floor/gc_floorid",
                 "gc_floor/gc_englishname", "gc_floor/gc_frenchname",
+
+                "gc_floorplan/gc_floorplanid",
 
                 "gc_workspace/gc_workspaceid",
                 "gc_workspace/gc_name")

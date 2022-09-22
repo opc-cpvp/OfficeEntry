@@ -43,6 +43,13 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
             return Unit.Value;
         }
 
+        // Check if a floor plan is associated with the request
+        var hasFloorPlan = request.AccessRequest.FloorPlan.Id != Guid.Empty;
+        if (!hasFloorPlan)
+        {
+            return Unit.Value;
+        }
+
         var date = request.AccessRequest.StartTime;
         var floorPlan = request.AccessRequest.FloorPlan;
         var floorId = floorPlan.Floor.Id;
