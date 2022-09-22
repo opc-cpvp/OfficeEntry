@@ -407,9 +407,10 @@
           "type": "dropdown",
           "name": "workspace",
           "title": "Workspace",
+          "visibleIf": "{startDate} notempty and {startTime} notempty and {endTime} notempty",
           "isRequired": true,
           "choicesByUrl": {
-            "url": "api/workspaces/{floorplan}",
+            "url": "api/workspaces/{floorplan}/available?date={startDate}&start={startTime}&end={endTime}",
             "valueName": "id",
             "titleName": "name"
           }

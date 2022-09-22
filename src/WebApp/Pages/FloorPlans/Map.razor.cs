@@ -80,6 +80,7 @@ public partial class Map : IAsyncDisposable
             a.StartTime < _selectedDate.ToDateTime(new TimeOnly(hour: _endTime, minute: 0)) &&
             a.EndTime > _selectedDate.ToDateTime(new TimeOnly(hour: _startTime, minute: 0))
         );
+
         var circles = FloorPlanDto.Workspaces
             .Select(x => new
             {
@@ -88,7 +89,7 @@ public partial class Map : IAsyncDisposable
                 Position = new { Left = x.X, Top = x.Y },
                 Selected = x.Id == id, // Check if the circle should be selected when changing the date
                 Taken = accessRequests.Any(a => a.Workspace.Id == x.Id),
-                EmployeeFullName = AccessRequests.FirstOrDefault(a => a.Workspace.Id == x.Id)?.Employee.FullName ?? string.Empty,
+                EmployeeFullName = accessRequests.FirstOrDefault(a => a.Workspace.Id == x.Id)?.Employee.FullName ?? string.Empty,
             });
 
         var circlesJson = JsonSerializer.Serialize(circles.ToArray());
@@ -145,11 +146,17 @@ public partial class Map : IAsyncDisposable
 
     public async Task OnSelectedCircleChanged(string data)
     {
+        var accessRequests = AccessRequests.Where(a =>
+            a.StartTime < _selectedDate.ToDateTime(new TimeOnly(hour: _endTime, minute: 0)) &&
+            a.EndTime > _selectedDate.ToDateTime(new TimeOnly(hour: _startTime, minute: 0))
+        );
         var circle = Newtonsoft.Json.JsonConvert.DeserializeObject<OfficeEntry.WebApp.Pages.FloorPlans.Edit.Circle>(data);
 
-        await mySurvey.SetValueAsync("workspace", circle.Id.ToString());
-
-        _selectedAccessRequest = AccessRequests.FirstOrDefault(x => x.Workspace.Id == circle.Id);
+        _selectedAccessRequest = accessRequests.FirstOrDefault(x => x.Workspace.Id == circle.Id);
+        if (_startTime != _endTime && _selectedAccessRequest is null)
+        {
+            await mySurvey.SetValueAsync("workspace", circle.Id.ToString());
+        }
 
         StateHasChanged();
 
@@ -207,6 +214,13 @@ public partial class Map : IAsyncDisposable
 
         if (options.Name is "startTime")
         {
+            if (options.Value is null)
+            {
+                _startTime = _endTime;
+                await mySurvey.SetValueAsync("workspace", null);
+                return;
+            }
+
             _startTime = int.Parse(options.Value);
             await UpdateCanvas();
         }
@@ -215,6 +229,8 @@ public partial class Map : IAsyncDisposable
         {
             if (options.Value is null)
             {
+                _endTime = _startTime;
+                await mySurvey.SetValueAsync("workspace", null);
                 return;
             }
 
@@ -225,6 +241,12 @@ public partial class Map : IAsyncDisposable
         if (options.Name is "workspace")
         {
             await MapJsInterop.SetSelectedCircle(options.Value);
+
+            if (options.Value is null)
+            {
+                return;
+            }
+
             await UpdateCanvas();
         }
 
