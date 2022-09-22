@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,12 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Templates\AccessRequestApprovedEmail.hbs" />
+    <None Remove="Templates\AccessRequestCancelledEmail.hbs" />
+    <None Remove="Templates\AccessRequestPendingEmail.hbs" />
     <None Remove="Templates\EmailLayout.hbs" />
     <None Remove="Templates\NotificationEmail.hbs" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Templates\AccessRequestPendingEmail.hbs" />
+    <EmbeddedResource Include="Templates\AccessRequestCancelledEmail.hbs" />
     <EmbeddedResource Include="Templates\EmailLayout.hbs" />
+    <EmbeddedResource Include="Templates\AccessRequestApprovedEmail.hbs" />
     <EmbeddedResource Include="Templates\NotificationEmail.hbs" />
   </ItemGroup>
 
