@@ -43,8 +43,11 @@ public class AccessRequestService : IAccessRequestService
         // TODO: add visitors for shared workspace and boardrooms
 
         return accessRequests
-            .Where(accessRequest => accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Approved || accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Pending)
-            .Select(f => gc_accessrequest.Convert(f))
+            .Where(accessRequest =>
+                accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Approved ||
+                accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Pending
+            )
+            .Select(gc_accessrequest.Convert)
             .ToImmutableArray();
     }
 
