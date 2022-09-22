@@ -94,11 +94,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{ee41cb45-031b-c8c6-bed6-1854ac53a8cc}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                      <cell id="{5b084192-93b5-7298-7536-91c3d4921827}" showlabel="false" colspan="1" auto="false" rowspan="6">
                         <labels>
                           <label description="Floors (Building Floor)" languagecode="1033" />
                         </labels>
-                        <control id="subgrid_floors" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="subgrid_floors" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{812c6284-1629-2bb2-40c6-423bcabb7a00}">
                           <parameters>
                             <ViewId>{DB3C48E0-705C-496F-B5F0-76136A752DE4}</ViewId>
                             <IsUserView>false</IsUserView>

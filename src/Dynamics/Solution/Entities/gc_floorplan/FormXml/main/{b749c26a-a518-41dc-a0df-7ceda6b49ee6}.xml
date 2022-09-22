@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{b749c26a-a518-41dc-a0df-7ceda6b49ee6}</formid>
+    <IntroducedVersion>0.0.1</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{f6626677-3380-4091-bcd0-09b8ce98acb8}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{f15eae91-4f51-4cc2-9b95-b32a23cdd3f1}" height="auto">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{6bedcd43-ff9a-40bf-964f-01b847f60a06}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="gc_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c41ca49a-c52a-4573-a15c-298a12cb770b}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{59bb1020-0c94-7bb0-6123-bb351a4a50c2}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Building" languagecode="1033" />
+                        </labels>
+                        <control id="gc_building" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="gc_building" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{23eeea41-89b1-59d8-5041-84779cc8dc77}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Floor" languagecode="1033" />
+                        </labels>
+                        <control id="gc_floor" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="gc_floor" disabled="false" uniqueid="{a3d4aa9e-629c-3d03-8442-7351a7812d00}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{6A4F2D2A-3AEB-4F07-AC18-F0AC63F23C09}</DefaultViewId>
+                            <FilterRelationshipName>gc_building_floor</FilterRelationshipName>
+                            <DependentAttributeName>gc_floorplan.gc_building</DependentAttributeName>
+                            <DependentAttributeType>gc_building</DependentAttributeType>
+                            <AllowFilterOff>true</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4301d762-e729-ba3e-286e-18e9ba46b069}" showlabel="true" locklevel="0" auto="true" rowspan="10">
+                        <labels>
+                          <label description="base64" languagecode="1033" />
+                        </labels>
+                        <control id="gc_base64" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="gc_base64" disabled="false" uniqueid="{4bd32bad-cbde-06e9-87eb-2e15dd9bd20d}" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

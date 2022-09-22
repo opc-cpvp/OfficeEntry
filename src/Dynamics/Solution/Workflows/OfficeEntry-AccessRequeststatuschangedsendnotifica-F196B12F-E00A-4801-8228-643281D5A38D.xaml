@@ -193,7 +193,7 @@
                                 <Variable x:TypeArguments="x:Object" Name="InvokeSdkMessageStep4_22_converted" />
                               </sco:Collection>
                               <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
-                                <mxswa:GetEntityProperty Attribute="gc_name" Entity="[InputEntities(&quot;related_gc_office#gc_office&quot;)]" EntityName="gc_office" Value="[InvokeSdkMessageStep4_2]">
+                                <mxswa:GetEntityProperty Attribute="gc_name" Entity="[InputEntities(&quot;related_gc_workspace#gc_workspace&quot;)]" EntityName="gc_workspace" Value="[InvokeSdkMessageStep4_2]">
                                   <mxswa:GetEntityProperty.TargetType>
                                     <InArgument x:TypeArguments="s:Type">
                                       <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -635,7 +635,7 @@
                                 <Variable x:TypeArguments="x:Object" Name="InvokeSdkMessageStep7_22_converted" />
                               </sco:Collection>
                               <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
-                                <mxswa:GetEntityProperty Attribute="gc_name" Entity="[InputEntities(&quot;related_gc_office#gc_office&quot;)]" EntityName="gc_office" Value="[InvokeSdkMessageStep7_2]">
+                                <mxswa:GetEntityProperty Attribute="gc_name" Entity="[InputEntities(&quot;related_gc_workspace#gc_workspace&quot;)]" EntityName="gc_workspace" Value="[InvokeSdkMessageStep7_2]">
                                   <mxswa:GetEntityProperty.TargetType>
                                     <InArgument x:TypeArguments="s:Type">
                                       <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -1280,7 +1280,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;  La requête d&amp;#39;accès au&amp;amp;nbsp;&amp;lt;span&amp;gt;", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;  La requête d&amp;#39;accès au&amp;amp;nbsp;", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1307,7 +1307,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;#44;  ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;span&amp;gt;&amp;#44;  ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1334,14 +1334,14 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;span&amp;gt;&amp;#44;&amp;amp;nbsp;&amp;lt;/span&amp;gt;", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;span&amp;gt;&amp;#44;&amp;amp;nbsp;  ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
                                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_23]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:GetEntityProperty Attribute="gc_name" Entity="[InputEntities(&quot;related_gc_office#gc_office&quot;)]" EntityName="gc_office" Value="[SendEmailStep10_25]">
+                            <mxswa:GetEntityProperty Attribute="gc_workspace" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_25]">
                               <mxswa:GetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -1361,7 +1361,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " du  ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/span&amp;gt;du  ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1388,7 +1388,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;nbsp;au ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;nbsp;au  ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1415,7 +1415,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " a été annulée.&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;strong&amp;gt;Employé : &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;nbsp;a été annulée.&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;strong&amp;gt;Employé :&amp;lt;/strong&amp;gt;&amp;amp;nbsp;", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1442,7 +1442,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Raison d&amp;#39;accès : &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Raison d&amp;#39;accès :&amp;lt;/strong&amp;gt;&amp;amp;nbsp;", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1462,7 +1462,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;amp;lt;hyperlink&amp;amp;gt;&amp;amp;lt;name&amp;amp;gt;Cliquez ici pour accéder la demande&amp;amp;lt;/name&amp;amp;gt;&amp;amp;lt;value&amp;amp;gt;https://eab-oe.partners.collab.gc.ca/fr/demandes-d-acces/", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;amp;lt;hyperlink&amp;amp;gt;&amp;amp;lt;name&amp;amp;gt;Cliquez ici pour accéder la demande&amp;amp;lt;/name&amp;amp;gt;&amp;amp;lt;value&amp;amp;gt;https://eab-oe.partners.collab.gc.ca/fr/demandes-d-acces/", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1489,7 +1489,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;lt;/value&amp;amp;gt;&amp;amp;lt;/hyperlink&amp;amp;gt;&amp;lt;br&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;The access request for  ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;lt;/value&amp;amp;gt;&amp;amp;lt;/hyperlink&amp;amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;The access request for  ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1543,14 +1543,14 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;span&amp;gt;&amp;#44;&amp;amp;nbsp;&amp;lt;/span&amp;gt;", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;span&amp;gt;&amp;#44;&amp;amp;nbsp;", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
                                 <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SendEmailStep10_46]</OutArgument>
                               </mxswa:ActivityReference.Arguments>
                             </mxswa:ActivityReference>
-                            <mxswa:GetEntityProperty Attribute="gc_name" Entity="[InputEntities(&quot;related_gc_office#gc_office&quot;)]" EntityName="gc_office" Value="[SendEmailStep10_48]">
+                            <mxswa:GetEntityProperty Attribute="gc_workspace" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[SendEmailStep10_48]">
                               <mxswa:GetEntityProperty.TargetType>
                                 <InArgument x:TypeArguments="s:Type">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
@@ -1570,7 +1570,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " from  ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/span&amp;gt;from&amp;amp;nbsp;", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1597,7 +1597,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " to  ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters" xml:space="preserve">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "  to  ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1624,7 +1624,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " was cancelled.&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;strong&amp;gt;Employee: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;nbsp;was cancelled.&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;strong&amp;gt;Employee: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1651,7 +1651,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, " &amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;strong&amp;gt;Access reason: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;strong&amp;gt;Access reason: &amp;lt;/strong&amp;gt; ", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1678,7 +1678,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;nbsp;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;amp;lt;hyperlink&amp;amp;gt;&amp;amp;lt;name&amp;amp;gt;Click here to access the request&amp;amp;lt;/name&amp;amp;gt;&amp;amp;lt;value&amp;amp;gt;https://eab-oe.partners.collab.gc.ca/en/access-requests/", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;amp;lt;hyperlink&amp;amp;gt;&amp;amp;lt;name&amp;amp;gt;Click here to access the request&amp;amp;lt;/name&amp;amp;gt;&amp;amp;lt;value&amp;amp;gt;https://eab-oe.partners.collab.gc.ca/en/access-requests/", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>
@@ -1705,7 +1705,7 @@
                             <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
                               <mxswa:ActivityReference.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;lt;/value&amp;amp;gt;&amp;amp;lt;/hyperlink&amp;amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;", "String" }]</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.String, "&amp;amp;lt;/value&amp;amp;gt;&amp;amp;lt;/hyperlink&amp;amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;", "String" }]</InArgument>
                                 <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                                   <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:String" />
                                 </InArgument>

@@ -7,8 +7,10 @@
         <fetch mapping="logical" aggregate="true">
           <entity name="gc_accessrequest">
             <attribute name="gc_starttime" groupby="true" alias="_CRMAutoGen_groupby_column_Num_0" dategrouping="month" />
-            <attribute name="gc_building" aggregate="count" alias="_CRMAutoGen_aggregate_column_Num_0" />
-            <attribute name="gc_building" groupby="true" alias="_CRMAutoGen_groupby_column_Num_13" />
+            <link-entity name="gc_floorplan" from="gc_floorplanid" to="gc_floorplan" link-type="outer">
+              <attribute name="gc_building" groupby="true" alias="_CRMAutoGen_groupby_column_Num_13" />
+              <attribute name="gc_building" aggregate="count" alias="_CRMAutoGen_aggregate_column_Num_0" />
+            </link-entity>
           </entity>
         </fetch>
       </fetchcollection>

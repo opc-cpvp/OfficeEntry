@@ -1,4 +1,4 @@
-<Activity x:Class="XrmWorkflowc09aa9638f6642dba1180055c6131120" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mcwa="clr-namespace:Microsoft.Crm.Workflow.Activities;assembly=Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxs="clr-namespace:Microsoft.Xrm.Sdk;assembly=Microsoft.Xrm.Sdk, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxswa="clr-namespace:Microsoft.Xrm.Sdk.Workflow.Activities;assembly=Microsoft.Xrm.Sdk.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:s="clr-namespace:System;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:srs="clr-namespace:System.Runtime.Serialization;assembly=System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:this="clr-namespace:" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity x:Class="XrmWorkflowc09aa9638f6642dba1180055c6131120" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mcwa="clr-namespace:Microsoft.Crm.Workflow.Activities;assembly=Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxs="clr-namespace:Microsoft.Xrm.Sdk;assembly=Microsoft.Xrm.Sdk, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxsq="clr-namespace:Microsoft.Xrm.Sdk.Query;assembly=Microsoft.Xrm.Sdk, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxswa="clr-namespace:Microsoft.Xrm.Sdk.Workflow.Activities;assembly=Microsoft.Xrm.Sdk.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:s="clr-namespace:System;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:srs="clr-namespace:System.Runtime.Serialization;assembly=System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:this="clr-namespace:" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="InputEntities" Type="InArgument(scg:IDictionary(x:String, mxs:Entity))" />
     <x:Property Name="CreatedEntities" Type="InArgument(scg:IDictionary(x:String, mxs:Entity))" />
@@ -14,11 +14,11 @@
     <mxswa:Workflow.Variables>
       <Variable x:TypeArguments="x:String" Default="[Nothing]" Name="InvokeSdkMessageStep4AccessReasonFrench_localParameter" />
     </mxswa:Workflow.Variables>
-    <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.Composite, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="StageStep3: Set Access Reason in french">
+    <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.Composite, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="StageStep3: Update Access Request fields">
       <mxswa:ActivityReference.Properties>
         <sco:Collection x:TypeArguments="Variable" x:Key="Variables" />
         <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
-          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.Composite, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="InvokeSdkMessageStep4">
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.Composite, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="InvokeSdkMessageStep4: Set Access Reason French">
             <mxswa:ActivityReference.Properties>
               <sco:Collection x:TypeArguments="Variable" x:Key="Variables">
                 <Variable x:TypeArguments="x:Object" Name="InvokeSdkMessageStep4_1" />
@@ -81,7 +81,7 @@
                     <OutArgument x:TypeArguments="x:Object" x:Key="Result">[InvokeSdkMessageStep4_3_converted]</OutArgument>
                   </mxswa:ActivityReference.Arguments>
                 </mxswa:ActivityReference>
-                <mcwa:InvokeSdkMessageActivity DisplayName="InvokeSdkMessageStep4" SdkMessageEntityName="gc_accessrequest" SdkMessageId="9a6dcf1e-a1d1-ea11-a2e4-005056aa7ac3" SdkMessageName="gc_Setaccessreasoninfrench" SdkMessageRequestSuffix="">
+                <mcwa:InvokeSdkMessageActivity DisplayName="InvokeSdkMessageStep4: Set Access Reason French" SdkMessageEntityName="gc_accessrequest" SdkMessageId="9a6dcf1e-a1d1-ea11-a2e4-005056aa7ac3" SdkMessageName="gc_Setaccessreasoninfrench" SdkMessageRequestSuffix="">
                   <mcwa:InvokeSdkMessageActivity.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="AccessReason">[DirectCast(InvokeSdkMessageStep4_1_converted, System.String)]</InArgument>
                     <InArgument x:TypeArguments="mxs:EntityReference" x:Key="Target">[DirectCast(InvokeSdkMessageStep4_3_converted, Microsoft.Xrm.Sdk.EntityReference)]</InArgument>
@@ -97,6 +97,114 @@
               </sco:Collection>
             </mxswa:ActivityReference.Properties>
           </mxswa:ActivityReference>
+          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionSequence, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionStep6: If Floor Plan contains data">
+            <mxswa:ActivityReference.Arguments>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="Wait">False</InArgument>
+            </mxswa:ActivityReference.Arguments>
+            <mxswa:ActivityReference.Properties>
+              <sco:Collection x:TypeArguments="Variable" x:Key="Variables">
+                <Variable x:TypeArguments="x:Boolean" Default="False" Name="ConditionBranchStep7_condition" />
+                <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep7_1" />
+              </sco:Collection>
+              <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
+                <mxswa:GetEntityProperty Attribute="gc_floorplan" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="gc_accessrequest" Value="[ConditionBranchStep7_1]">
+                  <mxswa:GetEntityProperty.TargetType>
+                    <InArgument x:TypeArguments="s:Type">
+                      <mxswa:ReferenceLiteral x:TypeArguments="s:Type">
+                        <x:Null />
+                      </mxswa:ReferenceLiteral>
+                    </InArgument>
+                  </mxswa:GetEntityProperty.TargetType>
+                </mxswa:GetEntityProperty>
+                <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateCondition, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateCondition">
+                  <mxswa:ActivityReference.Arguments>
+                    <InArgument x:TypeArguments="mxsq:ConditionOperator" x:Key="ConditionOperator">NotNull</InArgument>
+                    <x:Null x:Key="Parameters" />
+                    <InArgument x:TypeArguments="x:Object" x:Key="Operand">[ConditionBranchStep7_1]</InArgument>
+                    <OutArgument x:TypeArguments="x:Boolean" x:Key="Result">[ConditionBranchStep7_condition]</OutArgument>
+                  </mxswa:ActivityReference.Arguments>
+                </mxswa:ActivityReference>
+                <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionBranch, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionBranchStep7">
+                  <mxswa:ActivityReference.Arguments>
+                    <InArgument x:TypeArguments="x:Boolean" x:Key="Condition">[ConditionBranchStep7_condition]</InArgument>
+                  </mxswa:ActivityReference.Arguments>
+                  <mxswa:ActivityReference.Properties>
+                    <mxswa:ActivityReference x:Key="Then" AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.Composite, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionBranchStep7">
+                      <mxswa:ActivityReference.Properties>
+                        <sco:Collection x:TypeArguments="Variable" x:Key="Variables" />
+                        <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
+                          <Sequence DisplayName="UpdateStep8: Set Floor Plan Details">
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="x:Object" Name="UpdateStep8_1" />
+                              <Variable x:TypeArguments="x:Object" Name="UpdateStep8_2" />
+                              <Variable x:TypeArguments="x:Object" Name="UpdateStep8_3" />
+                              <Variable x:TypeArguments="x:Object" Name="UpdateStep8_4" />
+                            </Sequence.Variables>
+                            <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;gc_accessrequest&quot;)]" />
+                            <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
+                            <mxswa:GetEntityProperty Attribute="gc_building" Entity="[InputEntities(&quot;related_gc_floorplan#gc_floorplan&quot;)]" EntityName="gc_floorplan" Value="[UpdateStep8_2]">
+                              <mxswa:GetEntityProperty.TargetType>
+                                <InArgument x:TypeArguments="s:Type">
+                                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
+                                </InArgument>
+                              </mxswa:GetEntityProperty.TargetType>
+                            </mxswa:GetEntityProperty>
+                            <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+                              <mxswa:ActivityReference.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">SelectFirstNonNull</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { UpdateStep8_2 }]</InArgument>
+                                <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
+                                </InArgument>
+                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[UpdateStep8_1]</OutArgument>
+                              </mxswa:ActivityReference.Arguments>
+                            </mxswa:ActivityReference>
+                            <mxswa:SetEntityProperty Attribute="gc_building" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="gc_accessrequest" Value="[UpdateStep8_1]">
+                              <mxswa:SetEntityProperty.TargetType>
+                                <InArgument x:TypeArguments="s:Type">
+                                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
+                                </InArgument>
+                              </mxswa:SetEntityProperty.TargetType>
+                            </mxswa:SetEntityProperty>
+                            <mxswa:GetEntityProperty Attribute="gc_floor" Entity="[InputEntities(&quot;related_gc_floorplan#gc_floorplan&quot;)]" EntityName="gc_floorplan" Value="[UpdateStep8_4]">
+                              <mxswa:GetEntityProperty.TargetType>
+                                <InArgument x:TypeArguments="s:Type">
+                                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
+                                </InArgument>
+                              </mxswa:GetEntityProperty.TargetType>
+                            </mxswa:GetEntityProperty>
+                            <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
+                              <mxswa:ActivityReference.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">SelectFirstNonNull</InArgument>
+                                <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { UpdateStep8_4 }]</InArgument>
+                                <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
+                                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
+                                </InArgument>
+                                <OutArgument x:TypeArguments="x:Object" x:Key="Result">[UpdateStep8_3]</OutArgument>
+                              </mxswa:ActivityReference.Arguments>
+                            </mxswa:ActivityReference>
+                            <mxswa:SetEntityProperty Attribute="gc_floor" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="gc_accessrequest" Value="[UpdateStep8_3]">
+                              <mxswa:SetEntityProperty.TargetType>
+                                <InArgument x:TypeArguments="s:Type">
+                                  <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
+                                </InArgument>
+                              </mxswa:SetEntityProperty.TargetType>
+                            </mxswa:SetEntityProperty>
+                            <mxswa:UpdateEntity DisplayName="UpdateStep8" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="gc_accessrequest" />
+                            <Assign x:TypeArguments="mxs:Entity" To="[InputEntities(&quot;primaryEntity&quot;)]" Value="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" />
+                            <Persist />
+                          </Sequence>
+                        </sco:Collection>
+                      </mxswa:ActivityReference.Properties>
+                    </mxswa:ActivityReference>
+                    <x:Null x:Key="Else" />
+                    <x:Null x:Key="Description" />
+                  </mxswa:ActivityReference.Properties>
+                </mxswa:ActivityReference>
+              </sco:Collection>
+              <x:Boolean x:Key="ContainsElseBranch">False</x:Boolean>
+            </mxswa:ActivityReference.Properties>
+          </mxswa:ActivityReference>
           <Persist />
         </sco:Collection>
       </mxswa:ActivityReference.Properties>
@@ -105,7 +213,7 @@
       <mxswa:ActivityReference.Properties>
         <sco:Collection x:TypeArguments="Variable" x:Key="Variables" />
         <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
-          <Sequence DisplayName="SendEmailStep2">
+          <Sequence DisplayName="SendEmailStep2: Send an email">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Object" Name="SendEmailStep2_1" />
               <Variable x:TypeArguments="x:Object" Name="SendEmailStep2_2" />
@@ -1019,7 +1127,7 @@
                 </InArgument>
               </mxswa:SetEntityProperty.TargetType>
             </mxswa:SetEntityProperty>
-            <mxswa:SendEmail EntityId="{x:Null}" DisplayName="SendEmailStep2" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" />
+            <mxswa:SendEmail EntityId="{x:Null}" DisplayName="SendEmailStep2: Send an email" Entity="[CreatedEntities(&quot;SendEmailStep2_localParameter#Temp&quot;)]" />
             <Persist />
           </Sequence>
           <Persist />
