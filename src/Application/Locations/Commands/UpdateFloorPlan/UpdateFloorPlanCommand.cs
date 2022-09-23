@@ -11,16 +11,16 @@ public class UpdateFloorPlanCommand : IRequest
 
 public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateFloorPlanCommand>
 {
-    private readonly IFloorPlanService _floorPlanService;
+    private readonly ILocationService _locationService;
 
-    public UpdateAccessRequestCommandHandler(IFloorPlanService floorPlanService)
+    public UpdateAccessRequestCommandHandler(ILocationService locationService)
     {
-        _floorPlanService = floorPlanService;
+        _locationService = locationService;
     }
 
     public async Task<Unit> Handle(UpdateFloorPlanCommand request, CancellationToken cancellationToken)
     {
-        await _floorPlanService.UpdateFloorPlan(request.FloorPlan);
+        await _locationService.UpdateFloorPlan(request.FloorPlan);
 
         return Unit.Value;
     }

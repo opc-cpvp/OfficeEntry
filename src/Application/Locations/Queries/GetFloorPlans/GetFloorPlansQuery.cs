@@ -12,15 +12,15 @@ public class GetFloorPlansQuery : IRequest<ImmutableArray<FloorPlan>>
 
 public class GetFloorPlansHandler : IRequestHandler<GetFloorPlansQuery, ImmutableArray<FloorPlan>>
 {
-    private readonly IFloorPlanService _floorPlanService;
+    private readonly ILocationService _locationService;
 
-    public GetFloorPlansHandler(IFloorPlanService floorPlanService)
+    public GetFloorPlansHandler(ILocationService locationService)
     {
-        _floorPlanService = floorPlanService;
+        _locationService = locationService;
     }
 
     public Task<ImmutableArray<FloorPlan>> Handle(GetFloorPlansQuery request, CancellationToken cancellationToken)
     {
-        return _floorPlanService.GetFloorPlansAsync(request.Keyword);
+        return _locationService.GetFloorPlansAsync(request.Keyword);
     }
 }

@@ -14,12 +14,12 @@ public class GetFloorPlanAvailableWorkspacesQuery : IRequest<IEnumerable<Workspa
 public class GetFloorPlanAvailableWorkspacesQueryHandler : IRequestHandler<GetFloorPlanAvailableWorkspacesQuery, IEnumerable<Workspace>>
 {
     private readonly IAccessRequestService _accessRequestService;
-    private readonly IFloorPlanService _floorPlanService;
+    private readonly ILocationService _locationService;
 
-    public GetFloorPlanAvailableWorkspacesQueryHandler(IAccessRequestService accessRequestService, IFloorPlanService floorPlanService)
+    public GetFloorPlanAvailableWorkspacesQueryHandler(IAccessRequestService accessRequestService, ILocationService locationService)
     {
         _accessRequestService = accessRequestService;
-        _floorPlanService = floorPlanService;
+        _locationService = locationService;
     }
 
     public async Task<IEnumerable<Workspace>> Handle(GetFloorPlanAvailableWorkspacesQuery request, CancellationToken cancellationToken)
@@ -33,7 +33,7 @@ public class GetFloorPlanAvailableWorkspacesQueryHandler : IRequestHandler<GetFl
             .Select(a => a.Workspace.Id)
             .Distinct();
 
-        var floorPlan = await _floorPlanService.GetFloorPlanByIdAsync(request.FloorPlanId);
+        var floorPlan = await _locationService.GetFloorPlanAsync(request.FloorPlanId);
         var availableWorkspaces = floorPlan.Workspaces
             .Where(w => !reservedWorkspaces.Contains(w.Id));
 

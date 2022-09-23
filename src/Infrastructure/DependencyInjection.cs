@@ -20,7 +20,6 @@ public static class DependencyInjection
         services.AddScoped<IAccessRequestService, AccessRequestService>();
         services.AddScoped<IBuildingRoleService, BuildingRoleService>();
         services.AddScoped<IEmailService, EmailService>();
-        services.AddScoped<IFloorPlanService, FloorPlanService>();
         services.AddScoped<ILocationService, LocationService>();
         services.AddScoped<INotificationService, NotificationService>();
         services.AddScoped<ITemplateService, TemplateService>();

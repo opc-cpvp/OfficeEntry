@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
-using System.Security.Principal;
 
 namespace OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 
@@ -14,27 +13,25 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
 {
     private readonly IAccessRequestService _accessRequestService;
     private readonly IBuildingRoleService _buildingRoleService;
-    private readonly IFloorPlanService _floorPlanService;
-    private readonly IUserService _userService;
+    private readonly ILocationService _locationService;
     private readonly INotificationService _notificationService;
 
     public UpdateAccessRequestCommandHandler(
         IAccessRequestService accessRequestService,
         IBuildingRoleService buildingRoleService,
-        IFloorPlanService floorPlanService,
-        IUserService userService,
+        ILocationService locationService,
         INotificationService notificationService)
     {
         _accessRequestService = accessRequestService;
         _buildingRoleService = buildingRoleService;
-        _floorPlanService = floorPlanService;
-        _userService = userService;
+        _locationService = locationService;
         _notificationService = notificationService;
     }
 
     public async Task<Unit> Handle(UpdateAccessRequestCommand request, CancellationToken cancellationToken)
     {
         await _accessRequestService.UpdateAccessRequest(request.AccessRequest);
+        await _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification { AccessRequest = request.AccessRequest });
 
         // Check if the request is cancelled
         var isCancelled = request.AccessRequest.Status.Key == (int)AccessRequest.ApprovalStatus.Cancelled;
@@ -66,7 +63,7 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
             return Unit.Value;
         }
 
-        var floorPlanCapacity = await _floorPlanService.GetFloorPlanCapacityAsync(floorPlan.Id, DateOnly.FromDateTime(date));
+        var floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
 
         // Check if the floor plan has any remaining capacity
         if (floorPlanCapacity.HasCapacity)
@@ -78,7 +75,7 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
         var notifyFloorEmergencyOfficers = floorPlanCapacity.CurrentCapacity >= floorPlanCapacity.MaxFloorEmergencyOfficerCapacity;
 
         var capacity = Math.Min(floorPlanCapacity.MaxFirstAidAttendantCapacity, floorPlanCapacity.MaxFloorEmergencyOfficerCapacity);
-        var notification = new Notification
+        var notification = new CapacityNotification
         {
             Capacity = capacity,
             Building = request.AccessRequest.Building,

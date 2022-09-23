@@ -19,6 +19,7 @@ internal class gc_accessrequest
     public IList<contact> gc_accessrequest_contact_visitors { get; set; } = new List<contact>();
     public IList<gc_assetrequest> gc_accessrequest_assetrequest { get; set; } = new List<gc_assetrequest>();
     public int statecode { get; set; }
+    public DateTime createdon { get; set; }
 
     public gc_floorplan gc_floorplan { get; set; }
     public gc_workspace gc_workspace { get; set; }
@@ -31,6 +32,7 @@ internal class gc_accessrequest
         var request = new AccessRequest
         {
             Id = accessRequest.gc_accessrequestid,
+            CreatedOn = accessRequest.createdon.ToLocalTime(),
             AssetRequests = accessRequest.gc_accessrequest_assetrequest.Select(gc_assetrequest.Convert).ToList(),
             Building = gc_building.Convert(accessRequest.gc_building),
             Delegate = contact.Convert(accessRequest.gc_delegate),

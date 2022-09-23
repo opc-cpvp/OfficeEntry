@@ -12,20 +12,18 @@ public class GetSpotsAvailablePerHourByFloorPlanQuery : IRequest<IEnumerable<Cur
 public class GetSpotsAvailablePerHourByFloorPlanQueryHandler : IRequestHandler<GetSpotsAvailablePerHourByFloorPlanQuery, IEnumerable<CurrentCapacity>>
 {
     private readonly IAccessRequestService _accessRequestService;
-    private readonly IFloorPlanService _floorPlanService;
     private readonly ILocationService _locationService;
 
-    public GetSpotsAvailablePerHourByFloorPlanQueryHandler(IAccessRequestService accessRequestService, IFloorPlanService floorPlanService, ILocationService locationService)
+    public GetSpotsAvailablePerHourByFloorPlanQueryHandler(IAccessRequestService accessRequestService, ILocationService locationService)
     {
         _accessRequestService = accessRequestService;
-        _floorPlanService = floorPlanService;
         _locationService = locationService;
     }
 
     public async Task<IEnumerable<CurrentCapacity>> Handle(GetSpotsAvailablePerHourByFloorPlanQuery request, CancellationToken cancellationToken)
     {
         var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(request.FloorPlanId, DateOnly.FromDateTime(request.SelectedDay));
-        var floorPlan = await _floorPlanService.GetFloorPlanByIdAsync(request.FloorPlanId);
+        var floorPlan = await _locationService.GetFloorPlanAsync(request.FloorPlanId);
         var capacity = await _locationService.GetCapacityByFloorAsync(floorPlan.Floor.Id);
 
         return Enumerable

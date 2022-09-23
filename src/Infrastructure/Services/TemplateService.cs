@@ -30,6 +30,20 @@ namespace OfficeEntry.Infrastructure.Services
             var layoutTemplate = GetTemplate(EmailLayoutTemplate);
             var contentTemplate = GetTemplate(name);
 
+            Handlebars.RegisterHelper("formatDate", (writer, context, parameters) =>
+            {
+                var date = parameters[0] as DateTime?;
+                if (date.HasValue)
+                    writer.WriteSafeString(date.Value.ToString("yyyy-MM-dd"));
+            });
+
+            Handlebars.RegisterHelper("formatTime", (writer, context, parameters) =>
+            {
+                var date = parameters[0] as DateTime?;
+                if (date.HasValue)
+                    writer.WriteSafeString(date.Value.ToString("HH:mm"));
+            });
+
             Handlebars.RegisterTemplate(EmailContentPlaceholder, contentTemplate);
             var template = Handlebars.Compile(layoutTemplate);
 

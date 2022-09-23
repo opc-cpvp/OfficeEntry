@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
@@ -16,7 +17,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         private readonly ICurrentUserService _currentUserService;
         private readonly IUserService _userService;
         private readonly IBuildingRoleService _buildingRoleService;
-        private readonly IFloorPlanService _floorPlanService;
+        private readonly ILocationService _locationService;
         private readonly INotificationService _notificationService;
 
         private IMediator _mediator;
@@ -26,7 +27,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             ICurrentUserService currentUserService,
             IUserService userService,
             IBuildingRoleService buildingRoleService,
-            IFloorPlanService floorPlanService,
+            ILocationService locationService,
             INotificationService notificationService,
             IMediator mediator
         ) {
@@ -34,7 +35,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             _currentUserService = currentUserService;
             _userService = userService;
             _buildingRoleService = buildingRoleService;
-            _floorPlanService = floorPlanService;
+            _locationService = locationService;
             _notificationService = notificationService;
 
             _mediator = mediator;
@@ -78,7 +79,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlan.Id, DateOnly.FromDateTime(date));
             var (_, buildingRoles) = await _buildingRoleService.GetBuildingRolesFor(request.AccessRequest.Employee.Id);
             buildingRoles = buildingRoles.Where(r => r.Floor?.Id == floorId);
-            var floorPlanCapacity = await _floorPlanService.GetFloorPlanCapacityAsync(floorPlan.Id, DateOnly.FromDateTime(date));
+            var floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
 
             var isEmployeeFirstAidAttendant = buildingRoles.Any(b => b.Role.Key == (int)BuildingRole.BuildingRoles.FirstAidAttendant);
             var isEmployeeFloorEmergencyOfficer = buildingRoles.Any(b => b.Role.Key == (int)BuildingRole.BuildingRoles.FloorEmergencyOfficer);
@@ -95,10 +96,17 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 request.AccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
             }
 
-            await _accessRequestService.CreateAccessRequest(request.AccessRequest);
+            var (_, accessRequest) = await _accessRequestService.CreateAccessRequest(request.AccessRequest);
+
+            // Update access request properties
+            request.AccessRequest.Id = accessRequest.Id;
+            request.AccessRequest.CreatedOn = accessRequest.CreatedOn;
+            request.AccessRequest.Workspace = await _locationService.GetWorkspaceAsync(request.AccessRequest.Workspace.Id);
+
+            await _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification { AccessRequest = request.AccessRequest });
 
             // Update floor plan capacity
-            floorPlanCapacity = await _floorPlanService.GetFloorPlanCapacityAsync(floorPlan.Id, DateOnly.FromDateTime(date));
+            floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
 
             // Approve pending access requests to fill the remaining spots
             if ((isEmployeeFirstAidAttendant || isEmployeeFloorEmergencyOfficer) && floorPlanCapacity.HasCapacity)
@@ -116,11 +124,11 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 foreach (var remainingAccessRequest in remainingAccessRequests)
                 {
                     remainingAccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
-                    await _accessRequestService.UpdateAccessRequest(remainingAccessRequest);
+                    await _mediator.Send(new UpdateAccessRequestCommand { AccessRequest = remainingAccessRequest }, cancellationToken);
                 }
 
                 // Update floor plan capacity
-                floorPlanCapacity = await _floorPlanService.GetFloorPlanCapacityAsync(floorPlan.Id, DateOnly.FromDateTime(date));
+                floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
             }
 
             // Send notifications if we reached capacity
@@ -130,7 +138,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 var notifyFloorEmergencyOfficers = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFloorEmergencyOfficerCapacity;
 
                 var capacity = Math.Min(floorPlanCapacity.MaxFirstAidAttendantCapacity, floorPlanCapacity.MaxFloorEmergencyOfficerCapacity);
-                var notification = new Notification
+                var notification = new CapacityNotification
                 {
                     Capacity = capacity,
                     Building = request.AccessRequest.Building,

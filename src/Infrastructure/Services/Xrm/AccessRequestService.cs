@@ -31,12 +31,24 @@ public class AccessRequestService : IAccessRequestService
             .Filter(x => x.gc_endtime >= startOfDay)
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Expand(
-                "gc_workspace/gc_workspaceid",
-                "gc_workspace/gc_name",
+                "gc_delegate/contactid",
+                "gc_delegate/firstname",
+                "gc_delegate/lastname",
 
                 "gc_employee/contactid",
                 "gc_employee/firstname",
-                "gc_employee/lastname"
+                "gc_employee/lastname",
+
+                "gc_building/gc_buildingid",
+                "gc_building/gc_englishname", "gc_building/gc_frenchname",
+
+                "gc_floor/gc_floorid",
+                "gc_floor/gc_englishname", "gc_floor/gc_frenchname",
+
+                "gc_floorplan/gc_floorplanid",
+
+                "gc_workspace/gc_workspaceid",
+                "gc_workspace/gc_name"
             )
             .FindEntriesAsync();
 
@@ -231,7 +243,7 @@ public class AccessRequestService : IAccessRequestService
         return (Result.Success(), map);
     }
 
-    public async Task<Result> CreateAccessRequest(AccessRequest accessRequest)
+    public async Task<(Result Result, AccessRequest AccessRequest)> CreateAccessRequest(AccessRequest accessRequest)
     {
         var access = gc_accessrequest.MapFrom(accessRequest);
         access.gc_accessrequestid = Guid.NewGuid();
@@ -249,7 +261,9 @@ public class AccessRequestService : IAccessRequestService
 
         await InsertAssetRequests();
 
-        return Result.Success();
+        var map = gc_accessrequest.Convert(access);
+
+        return (Result.Success(), map);
 
         async Task InsertAssetRequests()
         {

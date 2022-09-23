@@ -49,7 +49,7 @@ public class AccessRequestServiceTests : IDisposable
             Visitors = new List<Contact>()
         };
 
-        var result = await _sut.CreateAccessRequest(accessRequest);
+        var (result, _) = await _sut.CreateAccessRequest(accessRequest);
 
         Assert.True(result.Succeeded);
     }
@@ -84,7 +84,7 @@ public class AccessRequestServiceTests : IDisposable
             Visitors = new List<Contact>()
         };
 
-        var result = await _sut.CreateAccessRequest(accessRequest);
+        var (result, _) = await _sut.CreateAccessRequest(accessRequest);
 
         Assert.True(result.Succeeded);
     }
@@ -114,7 +114,7 @@ public class AccessRequestServiceTests : IDisposable
                      }
         };
 
-        var result = await _sut.CreateAccessRequest(accessRequest);
+        var (result, _) = await _sut.CreateAccessRequest(accessRequest);
 
         Assert.True(result.Succeeded);
     }
@@ -145,7 +145,7 @@ public class AccessRequestServiceTests : IDisposable
                      }
         };
 
-        var result = await _sut.CreateAccessRequest(accessRequest);
+        var (result, _) = await _sut.CreateAccessRequest(accessRequest);
 
         Assert.True(result.Succeeded);
     }
@@ -185,7 +185,7 @@ public class AccessRequestServiceTests : IDisposable
                      }
         };
 
-        var result = await _sut.CreateAccessRequest(accessRequest);
+        var (result, _) = await _sut.CreateAccessRequest(accessRequest);
 
         Assert.True(result.Succeeded);
     }

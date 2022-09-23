@@ -11,15 +11,15 @@ public class GetFloorPlanQuery : IRequest<FloorPlan>
 
 public class GetFloorsQueryHandler : IRequestHandler<GetFloorPlanQuery, FloorPlan>
 {
-    private readonly IFloorPlanService _floorPlanService;
+    private readonly ILocationService _locationService;
 
-    public GetFloorsQueryHandler(IFloorPlanService floorPlanService)
+    public GetFloorsQueryHandler(ILocationService locationService)
     {
-        _floorPlanService = floorPlanService;
+        _locationService = locationService;
     }
 
     public Task<FloorPlan> Handle(GetFloorPlanQuery request, CancellationToken cancellationToken)
     {
-        return _floorPlanService.GetFloorPlanByIdAsync(request.FloorPlanId);
+        return _locationService.GetFloorPlanAsync(request.FloorPlanId);
     }
 }

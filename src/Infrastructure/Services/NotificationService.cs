@@ -7,7 +7,6 @@ namespace OfficeEntry.Infrastructure.Services
 {
     internal class NotificationService : INotificationService
     {
-        private const string NotificationSubject = "Entrée au bureau - [FR] Capacity has been reached or exceeded / Office Entry - Capacity has been reached or exceeded";
         private const string FirstAidAttendantEnglishName = "First Aid Attendant";
         private const string FirstAidAttendantFrenchName = "[FR] First Aid Attendant";
         private const string FloorEmergencyOfficerEnglishName = "Floor Emergency Officer";
@@ -26,48 +25,70 @@ namespace OfficeEntry.Infrastructure.Services
             _emailService = emailService;
         }
 
-        public async Task<Result> NotifyFirstAidAttendants(Notification notification)
+        public async Task<Result> NotifyFirstAidAttendants(CapacityNotification capacityNotification)
         {
-            notification.Title = NotificationSubject;
-            notification.RoleEnglishName = FirstAidAttendantEnglishName;
-            notification.RoleFrenchName = FirstAidAttendantFrenchName;
+            capacityNotification.RoleEnglishName = FirstAidAttendantEnglishName;
+            capacityNotification.RoleFrenchName = FirstAidAttendantFrenchName;
 
             var (_, sender) = await _userService.GetSystemUserByUsername(WindowsIdentity.GetCurrent().Name);
-            var (_, firstAidAttendants) = await _buildingRoleService.GetContactsByBuildingRole(notification.Floor.Id, BuildingRole.BuildingRoles.FirstAidAttendant);
+            var (_, firstAidAttendants) = await _buildingRoleService.GetContactsByBuildingRole(capacityNotification.Floor.Id, BuildingRole.BuildingRoles.FirstAidAttendant);
 
             if (!firstAidAttendants.Any())
                 throw new Exception("Failed to find any First Aid Attendants");
 
-            var description = _templateService.GetEmailTemplate(EmailTemplates.Notification, notification);
+            var description = _templateService.GetEmailTemplate(EmailTemplates.CapacityNotification, capacityNotification);
             var email = new Email
             {
                 From = sender,
                 To = firstAidAttendants,
-                Subject = NotificationSubject,
+                Subject = capacityNotification.Title,
                 Description = description
             };
 
             return await _emailService.SendEmailAsync(email);
         }
 
-        public async Task<Result> NotifyFloorEmergencyOfficers(Notification notification)
+        public async Task<Result> NotifyFloorEmergencyOfficers(CapacityNotification capacityNotification)
         {
-            notification.Title = NotificationSubject;
-            notification.RoleEnglishName = FloorEmergencyOfficerEnglishName;
-            notification.RoleFrenchName = FloorEmergencyOfficerFrenchName;
+            capacityNotification.RoleEnglishName = FloorEmergencyOfficerEnglishName;
+            capacityNotification.RoleFrenchName = FloorEmergencyOfficerFrenchName;
 
             var (_, sender) = await _userService.GetSystemUserByUsername(WindowsIdentity.GetCurrent().Name);
-            var (_, floorEmergencyOfficers) = await _buildingRoleService.GetContactsByBuildingRole(notification.Floor.Id, BuildingRole.BuildingRoles.FloorEmergencyOfficer);
+            var (_, floorEmergencyOfficers) = await _buildingRoleService.GetContactsByBuildingRole(capacityNotification.Floor.Id, BuildingRole.BuildingRoles.FloorEmergencyOfficer);
 
             if (!floorEmergencyOfficers.Any())
                 throw new Exception("Failed to find any Floor Emergency Officers");
 
-            var description = _templateService.GetEmailTemplate(EmailTemplates.Notification, notification);
+            var description = _templateService.GetEmailTemplate(EmailTemplates.CapacityNotification, capacityNotification);
             var email = new Email
             {
                 From = sender,
                 To = floorEmergencyOfficers,
-                Subject = NotificationSubject,
+                Subject = capacityNotification.Title,
+                Description = description
+            };
+
+            return await _emailService.SendEmailAsync(email);
+        }
+
+        public async Task<Result> NotifyAccessRequestEmployee(AccessRequestNotification accessRequestNotification)
+        {
+            var (_, sender) = await _userService.GetSystemUserByUsername(WindowsIdentity.GetCurrent().Name);
+
+            var accessRequest = accessRequestNotification.AccessRequest;
+            var recipients = new List<Contact> { accessRequest.Employee };
+
+            if (accessRequest.Delegate is not null)
+            {
+                recipients.Add(accessRequest.Delegate);
+            }
+
+            var description = _templateService.GetEmailTemplate(EmailTemplates.AccessRequestNotification, accessRequestNotification);
+            var email = new Email
+            {
+                From = sender,
+                To = recipients,
+                Subject = accessRequestNotification.Title,
                 Description = description
             };
 

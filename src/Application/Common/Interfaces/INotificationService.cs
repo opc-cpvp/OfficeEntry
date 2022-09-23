@@ -5,7 +5,8 @@ namespace OfficeEntry.Application.Common.Interfaces
 {
     public interface INotificationService
     {
-        Task<Result> NotifyFirstAidAttendants(Notification notification);
-        Task<Result> NotifyFloorEmergencyOfficers(Notification notification);
+        Task<Result> NotifyFirstAidAttendants(CapacityNotification capacityNotification);
+        Task<Result> NotifyFloorEmergencyOfficers(CapacityNotification capacityNotification);
+        Task<Result> NotifyAccessRequestEmployee(AccessRequestNotification accessRequestNotification);
     }
 }

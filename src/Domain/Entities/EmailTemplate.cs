@@ -1,13 +1,14 @@
 ﻿namespace OfficeEntry.Domain.Entities
 {
-    public class EmailTemplate
+    public abstract class EmailTemplate
     {
         public string Language { get; set; } = "fr";
-        public string Title { get; set; }
+        public virtual string Title { get; }
     }
 
     public static class EmailTemplates
     {
-        public const string Notification = "NotificationEmail";
+        public const string CapacityNotification = "CapacityNotificationEmail";
+        public const string AccessRequestNotification = "AccessRequestNotificationEmail";
     }
 }

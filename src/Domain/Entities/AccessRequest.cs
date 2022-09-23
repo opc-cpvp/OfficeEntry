@@ -3,6 +3,7 @@
 public class AccessRequest
 {
     public Guid Id { get; set; }
+    public DateTime CreatedOn { get; set; }
     public Contact Employee { get; set; }
     public Contact Manager { get; set; }
     public FloorPlan FloorPlan { get; set; }
