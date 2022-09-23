@@ -13,9 +13,9 @@
         <row name="result" id="gc_accessrequestid">
           <cell name="gc_employee" width="100" />
           <cell name="gc_accessreason" width="100" />
-          <cell name="gc_building" width="100" />
-          <cell name="gc_floor" width="100" />
-          <cell name="gc_office" width="100" />
+          <cell name="a_982edd036725ed11a2fd005056aa7ac3.gc_building" width="150" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_982edd036725ed11a2fd005056aa7ac3.gc_floor" width="125" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_workspace" width="100" />
           <cell name="gc_starttime" width="100" />
           <cell name="gc_endtime" width="100" />
           <cell name="gc_manager" width="100" />
@@ -29,13 +29,10 @@
         <entity name="gc_accessrequest">
           <attribute name="gc_starttime" />
           <attribute name="gc_manager" />
-          <attribute name="gc_floor" />
           <attribute name="gc_endtime" />
           <attribute name="gc_employee" />
-          <attribute name="gc_building" />
           <attribute name="gc_approvalstatus" />
           <attribute name="gc_accessreason" />
-          <order attribute="gc_building" descending="false" />
           <order attribute="gc_starttime" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
@@ -43,7 +40,11 @@
             <condition attribute="gc_building" operator="eq" uiname="655 Bay Street,  Suite 404" uitype="gc_building" value="{65A7447C-40B0-EA11-A2E3-005056AA7AC3}" />
             <condition attribute="gc_starttime" operator="today" />
           </filter>
-          <attribute name="gc_office" />
+          <attribute name="gc_workspace" />
+          <link-entity alias="a_982edd036725ed11a2fd005056aa7ac3" name="gc_floorplan" from="gc_floorplanid" to="gc_floorplan" link-type="outer" visible="false">
+            <attribute name="gc_floor" />
+            <attribute name="gc_building" />
+          </link-entity>
           <attribute name="gc_accessrequestid" />
         </entity>
       </fetch>

@@ -12,8 +12,8 @@
       <grid name="resultset" object="10030" jump="gc_name" select="1" icon="1" preview="1">
         <row name="result" id="gc_officeid">
           <cell name="gc_name" width="300" />
-          <cell name="a_5a9f247ecbd3eb11a2ee005056aa7ac3.gc_buildingfloorid" width="300" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="gc_floor" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_84fb9804acd7ec11a2fa005056aa7ac3.gc_buildingfloorid" width="300" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_floor" width="300" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -29,7 +29,7 @@
             <condition attribute="statecode" operator="eq" value="1" />
           </filter>
           <attribute name="gc_floor" />
-          <link-entity alias="a_5a9f247ecbd3eb11a2ee005056aa7ac3" name="gc_floor" from="gc_floorid" to="gc_floor" link-type="outer" visible="false">
+          <link-entity alias="a_84fb9804acd7ec11a2fa005056aa7ac3" name="gc_floor" from="gc_floorid" to="gc_floor" link-type="outer" visible="false">
             <attribute name="gc_buildingfloorid" />
           </link-entity>
           <attribute name="gc_officeid" />
