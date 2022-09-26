@@ -1,4 +1,5 @@
-﻿using Fluxor;
+﻿using System.Globalization;
+using Fluxor;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json.Linq;
@@ -205,7 +206,7 @@ public partial class Map : IAsyncDisposable
 
         if (options.Name is "startDate")
         {
-            _selectedDate = DateOnly.Parse(options.Value);
+            _selectedDate = DateOnly.Parse(options.Value, CultureInfo.InvariantCulture);
             Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
             _selectedAccessRequest = null;
 
