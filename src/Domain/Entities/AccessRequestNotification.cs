@@ -2,7 +2,7 @@
 
 public class AccessRequestNotification : EmailTemplate
 {
-    public override string Title => $"Requête d'accès au {AccessRequest?.Building?.FrenchName} {FrenchStatus} / Access request at {AccessRequest?.Building?.EnglishName} {EnglishStatus}";
+    public override string Title => $"Entrée au bureau - Requête d'accès au {AccessRequest?.Building?.FrenchName} {FrenchStatus} / Office Entry - Access request at {AccessRequest?.Building?.EnglishName} {EnglishStatus}";
     public AccessRequest AccessRequest { get; set; }
 
     public string EnglishStatus => AccessRequest?.Status?.Key switch
