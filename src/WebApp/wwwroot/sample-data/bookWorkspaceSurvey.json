@@ -427,7 +427,10 @@
             },
             {
               "value": "Other",
-              "text": "Other individual"
+              "text": {
+                "default": "Other individual",
+                "fr": "Autre individu"
+              }
             }
           ]
         },
