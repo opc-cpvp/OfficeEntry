@@ -78,6 +78,7 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
         var notification = new CapacityNotification
         {
             Capacity = capacity,
+            Date = request.AccessRequest.StartTime,
             Building = request.AccessRequest.Building,
             Floor = request.AccessRequest.Floor
         };

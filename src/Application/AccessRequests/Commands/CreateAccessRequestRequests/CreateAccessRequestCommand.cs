@@ -141,6 +141,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 var notification = new CapacityNotification
                 {
                     Capacity = capacity,
+                    Date = request.AccessRequest.StartTime,
                     Building = request.AccessRequest.Building,
                     Floor = request.AccessRequest.Floor
                 };
