@@ -83,14 +83,12 @@ public class LocationService : ILocationService
 
         var maxFirstAidAttendantCapacity = Math.Max(approvedFirstAidAttendants * ThresholdFirstAidAttendant, MinimumFirstAidAttendant);
         var maxFloorEmergencyOfficerCapacity = Math.Max(approvedFloorEmergencyOfficers * ThresholdFloorEmergencyOfficer, MinimumFloorEmergencyOfficer);
-        var maxCapacity = Math.Min(maxFirstAidAttendantCapacity, maxFloorEmergencyOfficerCapacity);
         var currentCapacity = approvedAccessRequests.Keys.Count;
         var totalCapacity = accessRequests.DistinctBy(a => a.Employee.Id).Count();
 
         return new FloorPlanCapacity
         {
             CurrentCapacity = currentCapacity,
-            MaxCapacity = maxCapacity,
             MaxFirstAidAttendantCapacity = maxFirstAidAttendantCapacity,
             MaxFloorEmergencyOfficerCapacity = maxFloorEmergencyOfficerCapacity,
             TotalCapacity = totalCapacity
