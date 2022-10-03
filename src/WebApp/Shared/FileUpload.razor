@@ -12,7 +12,8 @@
 @code {
     // https://code-maze.com/upload-files-drag-drop-paste-blazor/
     private const int MaxAllowedFiles = 1;
-    
+    private const int MaxAllowedSize = 1 * 1024 * 1024; // 1 MB
+
     private string _imageSource;
     private string _errorMessage;
     private ElementReference _fileDropContainer;
@@ -48,7 +49,7 @@
         {
             try
             {
-                await using var stream = file.OpenReadStream();
+                await using var stream = file.OpenReadStream(MaxAllowedSize);
                 using var ms = new MemoryStream();
                 await stream.CopyToAsync(ms);
                 _imageSource = $"data:{file.ContentType};base64,{Convert.ToBase64String(ms.ToArray())}";
@@ -56,10 +57,10 @@
                 await OnImageChangeCallback.InvokeAsync(_imageSource);
             }
             // System.IO.IOException: Supplied file with size 2059597 bytes exceeds the maximum of 512000 bytes.
-            catch (IOException exception) when (exception.Message?.Contains("bytes exceeds the maximum of 512000 bytes") ?? false)
+            catch (IOException exception) when (exception.Message?.Contains("bytes exceeds the maximum") ?? false)
             {
-                _errorMessage = "The supplied file is too large. Maximum size is 0.512 MB.";
-            }            
+                _errorMessage = "The supplied file is too large. Maximum size is 1 MB.";
+            }
         }
     }
 
