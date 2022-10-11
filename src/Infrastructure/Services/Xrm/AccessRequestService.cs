@@ -159,48 +159,6 @@ public class AccessRequestService : IAccessRequestService
         return (Result.Success(), map);
     }
 
-    public async Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetManagerAccessRequestsFor(Guid contactId)
-    {
-        var accessRequests = await _client.For<gc_accessrequest>()
-            // Only grab the required properties
-            .Select(a => new
-            {
-                a.gc_accessrequestid,
-                a.gc_approvalstatus,
-                a.gc_starttime,
-                a.gc_endtime,
-                a.gc_employee,
-                a.gc_building,
-                a.gc_floor,
-                a.gc_floorplan,
-                a.gc_workspace
-            })
-            .Filter(a => a.statecode == (int)StateCode.Active)
-            .Filter(a => a.gc_manager.contactid == contactId)
-            // Only grab the required properties of the navigation properties
-            .Expand(
-                "gc_employee/contactid",
-                "gc_employee/firstname",
-                "gc_employee/lastname",
-
-                "gc_building/gc_buildingid",
-                "gc_building/gc_englishname", "gc_building/gc_frenchname",
-
-                "gc_floor/gc_floorid",
-                "gc_floor/gc_englishname", "gc_floor/gc_frenchname",
-
-                "gc_floorplan/gc_floorplanid",
-
-                "gc_workspace/gc_workspaceid",
-                "gc_workspace/gc_name")
-            .OrderByDescending(a => a.gc_starttime)
-            .FindEntriesAsync();
-
-        var map = accessRequests.Select(gc_accessrequest.Convert).ToList();
-
-        return (Result.Success(), map);
-    }
-
     public async Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetDelegateAccessRequestsFor(Guid contactId)
     {
         var accessRequests = await _client.For<gc_accessrequest>()

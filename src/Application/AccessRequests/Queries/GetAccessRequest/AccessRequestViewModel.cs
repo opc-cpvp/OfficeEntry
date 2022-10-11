@@ -11,7 +11,6 @@ public class AccessRequestViewModel
     public Guid FloorId { get; set; }
     public bool IsDelegate { get; set; }
     public bool IsEmployee { get; set; }
-    public bool IsManager { get; set; }
     public string Building { get; set; }
     public string BuildingEnglishName { get; set; }
     public string BuildingFrenchName { get; set; }

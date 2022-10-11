@@ -124,9 +124,6 @@
   <data name="Approve" xml:space="preserve">
     <value>Approuver</value>
   </data>
-  <data name="Approve Requests" xml:space="preserve">
-    <value>Approuver une demande</value>
-  </data>
   <data name="Approved" xml:space="preserve">
     <value>Approuvée</value>
   </data>
@@ -279,19 +276,11 @@
   <data name="Status" xml:space="preserve">
     <value>Statut</value>
   </data>
-  <data name="review-access-requests" xml:space="preserve">
-    <value>fr/approuver-les-demandes</value>
-    <comment>URI</comment>
-  </data>
   <data name="Status:" xml:space="preserve">
     <value>Statut:</value>
   </data>
   <data name="Submit Access Request" xml:space="preserve">
     <value>Soumettre une demande</value>
-  </data>
-  <data name="submit-access-request" xml:space="preserve">
-    <value>fr/soumettre-une-demande</value>
-    <comment>URI</comment>
   </data>
   <data name="Tablet" xml:space="preserve">
     <value>Tablette</value>
@@ -370,10 +359,12 @@
     <value>8e étage</value>
   </data>
   <data name="floor-plans-edit" xml:space="preserve">
-    <value>/fr/gerer-les-plans-d-etages/{0}</value>
+    <value>fr/gerer-les-plans-d-etages/{0}</value>
+    <comment>URI</comment>
   </data>
   <data name="floor-plans-map" xml:space="preserve">
-    <value>/fr/plans-d-etages/carte/{0}</value>
+    <value>fr/plans-d-etages/carte/{0}</value>
+    <comment>URI</comment>
   </data>
   <data name="Manage Floor Plans" xml:space="preserve">
     <value>[EN] Manage Floor Plans</value>
@@ -389,5 +380,6 @@
   </data>
   <data name="delegate-access-requests" xml:space="preserve">
     <value>fr/demandes-deleguees</value>
+    <comment>URI</comment>
   </data>
 </root>

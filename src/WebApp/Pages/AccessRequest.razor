@@ -94,10 +94,4 @@ else
     {
         <button type="button" class="btn btn-danger" @onclick="CancelRequest" disabled="@IsCancelled">@Localizer["Cancel"]</button>
     }
-
-    if (IsManager)
-    {
-        <button type="button" class="btn btn-danger" @onclick="DeclineRequest" disabled="@IsDeclined">@Localizer["Decline"]</button>
-        <button type="button" class="btn btn-success" @onclick="ApproveRequest" disabled="@IsApproved">@Localizer["Approve"]</button>
-    }
 }

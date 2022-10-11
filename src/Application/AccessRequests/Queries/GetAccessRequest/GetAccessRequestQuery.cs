@@ -45,7 +45,6 @@ public class GetAccessRequestQueryHandler : IRequestHandler<GetAccessRequestQuer
             BuildingId = result.AccessRequest.Building.Id,
             IsDelegate = result.AccessRequest.Delegate?.Id == userResult.UserId,
             IsEmployee = result.AccessRequest.Employee.Id == userResult.UserId,
-            IsManager = result.AccessRequest.Manager?.Id == userResult.UserId,
             EmployeeId = result.AccessRequest.Employee.Id,
             EmployeeName = result.AccessRequest.Employee.FullName,
             ManagerName = result.AccessRequest.Manager?.FullName,

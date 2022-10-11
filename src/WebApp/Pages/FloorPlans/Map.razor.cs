@@ -1,21 +1,21 @@
-﻿using System.Globalization;
-using Fluxor;
+﻿using Fluxor;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
-using Newtonsoft.Json.Linq;
-using OfficeEntry.Domain.Entities;
-using OfficeEntry.WebApp.Shared;
-using OfficeEntry.WebApp.Store.FloorPlanUseCases.Map;
-using System.Text.Json;
+using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
+using OfficeEntry.Domain.Entities;
 using OfficeEntry.WebApp.Models;
+using OfficeEntry.WebApp.Shared;
+using OfficeEntry.WebApp.Store.DelegateAccessRequestsUseCase;
+using OfficeEntry.WebApp.Store.FloorPlanUseCases.Map;
+using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
+using System.Globalization;
+using System.Text.Json;
 using static OfficeEntry.WebApp.Pages.FloorPlans.MapJsInterop;
 using JsonSerializer = System.Text.Json.JsonSerializer;
-using MediatR;
-using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
-using OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
-using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
-using Microsoft.Extensions.Localization;
 
 namespace OfficeEntry.WebApp.Pages.FloorPlans;
 
@@ -192,7 +192,7 @@ public partial class Map : IAsyncDisposable
         await Mediator.Send(new CreateAccessRequestCommand { AccessRequest = accessRequest });
 
         Dispatcher.Dispatch(new GetMyAccessRequestsAction());
-        Dispatcher.Dispatch(new GetManagerApprovalsAction());
+        Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());
 
         NavigationManager.NavigateTo(Localizer["my-access-requests"]);
     }
