@@ -28,7 +28,7 @@ public static class AuthenticationServiceCollectionExtensions
             {
                 options.DefaultScheme = NegotiateDefaults.AuthenticationScheme;
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;                
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             })
             .AddNegotiate(configureOptions =>
             {
@@ -51,6 +51,12 @@ public static class AuthenticationServiceCollectionExtensions
 
 public class CustomCookieAuthenticationEvents : CookieAuthenticationEvents
 {
+    private static readonly Dictionary<string, string[]> TeamGroups = new()
+    {
+        { "Apps", new []{ "Apps" }},
+        { "AdminServices", new []{ "OPC - Administrative Services" }}
+    };
+
     private readonly IDomainUserService _domainUserService;
 
     public CustomCookieAuthenticationEvents(IDomainUserService domainUserService)
@@ -75,12 +81,12 @@ public class CustomCookieAuthenticationEvents : CookieAuthenticationEvents
         }
 
         var name = userPrincipal.Identity.Name;
-
         var adGroups = _domainUserService.GetUserGroupsFor(AdAccount.For(name));
 
         foreach (var team in teams)
         {
-            if (!adGroups.Contains(team))
+            var groups = TeamGroups.ContainsKey(team) ? TeamGroups[team] : Array.Empty<string>();
+            if (!adGroups.Intersect(groups).Any())
             {
                 context.RejectPrincipal();
                 await context.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

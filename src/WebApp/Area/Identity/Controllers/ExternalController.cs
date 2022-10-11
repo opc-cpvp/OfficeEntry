@@ -125,7 +125,7 @@ public class ExternalController : Controller
 
             if (adGroups.Any(x => x is "OPC - Administrative Services"))
             {
-                id.AddClaim(new Claim("Team", "OPC - Administrative Services", ClaimValueTypes.String, issuer: "OPC"));
+                id.AddClaim(new Claim("Team", "AdminServices", ClaimValueTypes.String, issuer: "OPC"));
             }
 
             await HttpContext.SignInAsync(
