@@ -4,9 +4,9 @@ using OfficeEntry.Domain.Entities;
 
 namespace OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 
-public class UpdateAccessRequestCommand : IRequest
+public record UpdateAccessRequestCommand : IRequest
 {
-    public AccessRequest AccessRequest { get; set; }
+    public AccessRequest AccessRequest { get; init; }
 }
 
 public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessRequestCommand>

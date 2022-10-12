@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 
 namespace OfficeEntry.Application.Locations.Queries.GetFloorPlans;
 
-public class GetFloorPlansQuery : IRequest<ImmutableArray<FloorPlan>>
+public record GetFloorPlansQuery : IRequest<ImmutableArray<FloorPlan>>
 {
     public string Keyword { get; init; }
 }

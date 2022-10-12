@@ -1,25 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OfficeEntry.Application.Locations.Queries.GetBuildings;
-using OfficeEntry.Application.Locations.Queries.GetFloors;
+using OfficeEntry.Application.Locations.Queries.GetAvailableWorkspaces;
 using OfficeEntry.Domain.Entities;
 
 namespace OfficeEntry.WebApp.Controllers;
 
 public class LocationsController : ApiController
 {
-    private const int DayInSeconds = 86_400;
-
-    [HttpGet("{locale}")]
-    [ResponseCache(VaryByQueryKeys = new string[] { "locale" }, Duration = DayInSeconds)]
-    public async Task<IEnumerable<Building>> Get(string locale)
+    [HttpGet("{locale}/floorplans/{floorPlanId}/workspaces/available")]
+    public async Task<IEnumerable<Workspace>> GetAvailableWorkspaces(string locale, Guid floorPlanId, [FromQuery] DateTime date, [FromQuery] int start, [FromQuery] int end)
     {
-        return await Mediator.Send(new GetBuildingsQuery { Locale = locale });
-    }
+        var startTime = date.AddHours(start);
+        var endTime = date.AddHours(end);
 
-    [HttpGet("{locale}/{id}")]
-    [ResponseCache(VaryByQueryKeys = new string[] { "id", "locale" }, Duration = DayInSeconds)]
-    public async Task<IEnumerable<Floor>> Get(Guid id, string locale)
-    {
-        return await Mediator.Send(new GetFloorsQuery { BuildingId = id, Locale = locale });
+        var result = await Mediator.Send(new GetAvailableWorkspacesQuery
+        {
+            FloorPlanId = floorPlanId,
+            StartTime = startTime,
+            EndTime = endTime
+        });
+
+        return result
+            .OrderBy(x => x.Name)
+            .ToArray();
     }
 }

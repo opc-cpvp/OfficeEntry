@@ -66,9 +66,9 @@ class Circle {
 
     /**
      * Axis-aligned bounding box (AABB) collision detetion for a circle and the current mouse position.
-     * 
+     *
      * We are using a square and not a circle to have a margin of error around the circle.
-     * 
+     *
      * @param {MouseState} mouseState
      */
     IsCollidingWithMouse(mouseState) {
@@ -130,7 +130,7 @@ class FrameCounter {
 //     CurrentFramesPerSecond = 0.0;
 //     #MAXIMUM_SAMPLES = 100;
 //     #_sampleBuffer = [];
-    
+
 //     _sampleBuffer = new Queue()
 
 //     Update(deltaTime) {
@@ -239,7 +239,7 @@ async function Update(deltaTime) {
         });
 
         const selectedCircles = circles.filter(x => x.Selected);
-        
+
         if (selectedCircles.length === 0 && canEdit) {
             const circleId = await dotNet.invokeMethodAsync("GetGuid");
             const newCircle = new Circle(currentMouseState.X - _diameter / 2, currentMouseState.Y - _diameter / 2, _diameter, "", circleId, false);
@@ -247,7 +247,7 @@ async function Update(deltaTime) {
             circles.push(newCircle);
             await dotNet.invokeMethodAsync("OnSelectedCircleChanged", JSON.stringify(newCircle));
         } else if (selectedCircles.length === 1) {
-            await dotNet.invokeMethodAsync("OnSelectedCircleChanged", JSON.stringify(selectedCircles[0]));            
+            await dotNet.invokeMethodAsync("OnSelectedCircleChanged", JSON.stringify(selectedCircles[0]));
         }
     }
 
@@ -394,14 +394,14 @@ function Draw(deltaTime) {
             const fontWidth = context.measureText(circle.Name).width;
             context.fillText(circle.Name, circle.Position.Left + circle.Diameter / 2 - fontWidth / 2, circle.Position.Top + fontHeight + circle.Diameter / 2 - fontHeight / 1.5);
         });
-    
+
     if (canEdit) {
         context.fillText(`(${currentMouseState.X}, ${currentMouseState.Y})`, 3, canvas.height - 1);
 
         // TODO: remove, debug only
         context.fillText(`FPS: ${_frameCounter.AverageFramesPerSecond}`, 3, canvas.height - 20);
         context.fillText(`deltaTime: ${deltaTime}`, 3, canvas.height - 40);
-    }    
+    }
 }
 
 async function gameLoop(timeStamp) {
@@ -500,7 +500,7 @@ export async function start(imagedata, circlesJson) {
 
     function initCircles(circlesJson) {
         const tempCircles = JSON.parse(circlesJson);
-    
+
         tempCircles.forEach(circle => {
             const newCircle = new Circle(circle.Position.Left, circle.Position.Top, _diameter, circle.Name, circle.Id, circle.Selected);
             newCircle.Taken = circle.Taken;

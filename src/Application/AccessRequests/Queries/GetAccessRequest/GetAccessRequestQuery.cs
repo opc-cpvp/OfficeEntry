@@ -1,16 +1,15 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
-using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
 
 using static OfficeEntry.Domain.Entities.AccessRequest;
 
 namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 
-public class GetAccessRequestQuery : IRequest<AccessRequestViewModel>
+public record GetAccessRequestQuery : IRequest<AccessRequestViewModel>
 {
-    public Guid AccessRequestId { get; set; }
-    public string Locale { get; set; }
+    public Guid AccessRequestId { get; init; }
+    public string Locale { get; init; }
 }
 
 public class GetAccessRequestQueryHandler : IRequestHandler<GetAccessRequestQuery, AccessRequestViewModel>
@@ -61,15 +60,7 @@ public class GetAccessRequestQueryHandler : IRequestHandler<GetAccessRequestQuer
             EndTime = result.AccessRequest.EndTime,
             Reason = result.AccessRequest.Reason?.Value,
             Workspace = result.AccessRequest.Workspace?.Name,
-            Status = (ApprovalStatus)result.AccessRequest.Status.Key,
-
-            Visitors = result.AccessRequest.Visitors.Select(x => new Visitor
-            {
-                FullName = x.FullName,
-                EmailAddress = x.EmailAddress,
-                PhoneNumber = x.PhoneNumber
-            }).ToArray(),
-            AssetRequests = result.AccessRequest.AssetRequests.ToArray()
+            Status = (ApprovalStatus)result.AccessRequest.Status.Key
         };
     }
 }

@@ -11,7 +11,6 @@ public class Program
         var configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .AddJsonFile("appsettings.Development.json", optional: true)
-            //.AddEnvironmentVariables(prefix: "OfficeEntry__")
             .Build();
 
         var assemblyVersion = typeof(Program).Assembly.GetName().Version.ToString();

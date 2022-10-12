@@ -9,9 +9,9 @@ using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequest
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.WebApp.Models;
 using OfficeEntry.WebApp.Shared;
+using OfficeEntry.WebApp.Store.AccessRequestsUseCase;
 using OfficeEntry.WebApp.Store.DelegateAccessRequestsUseCase;
 using OfficeEntry.WebApp.Store.FloorPlanUseCases.Map;
-using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
 using System.Globalization;
 using System.Text.Json;
 using static OfficeEntry.WebApp.Pages.FloorPlans.MapJsInterop;
@@ -172,14 +172,12 @@ public partial class Map : IAsyncDisposable
 
         var accessRequest = new Domain.Entities.AccessRequest
         {
-            AssetRequests = new List<AssetRequest>(),
             Building = FloorPlanDto.Building,
             Floor = FloorPlanDto.Floor,
             FloorPlan = FloorPlanDto,
             EndTime = submission.startDate.AddHours(submission.endTime),
             StartTime = submission.startDate.AddHours(submission.startTime),
             Status = new OptionSet { Key = (int)Domain.Entities.AccessRequest.ApprovalStatus.Pending },
-            Visitors = new List<Contact>(),
             Workspace = new Workspace { Id = submission.workspace }
         };
 
@@ -191,8 +189,14 @@ public partial class Map : IAsyncDisposable
 
         await Mediator.Send(new CreateAccessRequestCommand { AccessRequest = accessRequest });
 
-        Dispatcher.Dispatch(new GetMyAccessRequestsAction());
-        Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());
+        if (isDelegate)
+        {
+            Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());
+        }
+        else
+        {
+            Dispatcher.Dispatch(new GetAccessRequestsAction());
+        }
 
         NavigationManager.NavigateTo(Localizer["my-access-requests"]);
     }

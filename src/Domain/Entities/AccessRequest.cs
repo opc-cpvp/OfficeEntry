@@ -16,8 +16,6 @@ public class AccessRequest
     public Contact Delegate { get; set; }
     public OptionSet Reason { get; set; }
     public OptionSet Status { get; set; }
-    public List<Contact> Visitors { get; set; } = new List<Contact>();
-    public List<AssetRequest> AssetRequests { get; set; }
 
     public enum ApprovalStatus
     {

@@ -3,18 +3,15 @@
 @page "/en/my-access-requests"
 @page "/fr/mes-demandes-d-acces"
 
-@using OfficeEntry.WebApp.Shared
-
-
 <h1>@Localizer["My Requests"]</h1>
 
-@if (MyAccessRequestsState.Value.IsLoading || MyTermsAndConditionsState.Value.IsLoading)
+@if (AccessRequestsState.Value.IsLoading || TermsAndConditionsState.Value.IsLoading)
 {
     <Loading />
 }
 else
 {
-    if (!MyTermsAndConditionsState.Value.AreTermsAndConditionsAccepted)
+    if (!TermsAndConditionsState.Value.AreTermsAndConditionsAccepted)
     {
         <TermsAndConditionsCard />
     }
@@ -22,7 +19,7 @@ else
     // The ordering matches the list order returned by the application layer
     //     - StartTime
     //     - Status
-    <AccessRequestDatatable AccessRequests="@MyAccessRequestsState.Value.AccessRequests"
+    <AccessRequestDatatable AccessRequests="@AccessRequestsState.Value.AccessRequests"
                             DataOrder="@( "[[ 0, \"desc\" ], [ 5, \"asc\" ]]" )">
     </AccessRequestDatatable>
 

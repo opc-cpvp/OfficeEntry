@@ -1,17 +1,17 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Fluxor;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using Fluxor;
-using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
-using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
+using OfficeEntry.WebApp.Store.AccessRequestsUseCase;
+using OfficeEntry.WebApp.Store.TermsAndConditionsUseCase;
 
 namespace OfficeEntry.WebApp.Pages;
 
 [Authorize]
 public partial class MyAccessRequests
 {
-    [Inject] public IState<MyAccessRequestsState> MyAccessRequestsState { get; set; }
-    [Inject] public IState<MyTermsAndConditionsState> MyTermsAndConditionsState { get; set; }
+    [Inject] public IState<AccessRequestsState> AccessRequestsState { get; set; }
+    [Inject] public IState<TermsAndConditionsState> TermsAndConditionsState { get; set; }
     [Inject] public IDispatcher Dispatcher { get; set; }
     [Inject] public IStringLocalizer<App> Localizer { get; set; }
 
@@ -19,14 +19,14 @@ public partial class MyAccessRequests
     {
         base.OnInitialized();
 
-        if (!MyAccessRequestsState.Value.AccessRequests.Any())
+        if (!AccessRequestsState.Value.AccessRequests.Any())
         {
-            Dispatcher.Dispatch(new GetMyAccessRequestsAction());
+            Dispatcher.Dispatch(new GetAccessRequestsAction());
         }
     }
 
     private void Refresh()
     {
-        Dispatcher.Dispatch(new GetMyAccessRequestsAction());
+        Dispatcher.Dispatch(new GetAccessRequestsAction());
     }
 }

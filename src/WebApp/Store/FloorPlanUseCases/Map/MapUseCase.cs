@@ -1,6 +1,6 @@
 ﻿using Fluxor;
 using MediatR;
-using OfficeEntry.Application.AccessRequests.Queries.GetAccessRquestPerFloorPlan;
+using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequestPerFloorPlan;
 using OfficeEntry.Application.Locations.Queries.GetFloorPlan;
 using OfficeEntry.Domain.Entities;
 using System.Collections.Immutable;

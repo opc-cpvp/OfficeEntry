@@ -53,7 +53,6 @@ public class AccessRequestService : IAccessRequestService
             .FindEntriesAsync();
 
         // TODO: add visitors for shared workspace and boardrooms
-
         return accessRequests
             .Where(accessRequest =>
                 accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Approved ||
@@ -70,28 +69,12 @@ public class AccessRequestService : IAccessRequestService
 
         var accessRequests = await _client.For<gc_accessrequest>()
             .Filter(a => a.gc_floor.gc_floorid == floorId && a.gc_starttime >= startOfDay && a.gc_starttime <= endOfDay)
-            .Expand(a => new { a.gc_accessrequest_contact_visitors })
             .FindEntriesAsync();
 
-        var approvedAndPendingAccessRequests = new List<gc_accessrequest>();
-
-        foreach (var accessRequest in accessRequests.ToList())
-        {
-            // TODO filer request status in db query
-            if (accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Approved || accessRequest.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Pending)
-            {
-                var visitors = await _client.For<gc_accessrequest>()
-               .Key(accessRequest.gc_accessrequestid)
-               .NavigateTo(a => a.gc_accessrequest_contact_visitors)
-               .FindEntriesAsync();
-
-                accessRequest.gc_accessrequest_contact_visitors = visitors.ToList();
-
-                approvedAndPendingAccessRequests.Add(accessRequest);
-            }
-        }
-
-        return approvedAndPendingAccessRequests.Select(f => gc_accessrequest.Convert(f));
+        return accessRequests.Where(x =>
+            x.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Approved ||
+            x.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Pending
+        ).Select(gc_accessrequest.Convert);
     }
 
     public async Task<(Result Result, AccessRequest AccessRequest)> GetAccessRequest(Guid accessRequestId)
@@ -107,8 +90,6 @@ public class AccessRequestService : IAccessRequestService
                 a.gc_floorplan,
                 a.gc_manager,
                 a.gc_workspace,
-                a.gc_accessrequest_contact_visitors,
-                a.gc_accessrequest_assetrequest
             })
             .FindEntryAsync();
 
@@ -213,100 +194,9 @@ public class AccessRequestService : IAccessRequestService
             .Set(access)
             .InsertEntryAsync();
 
-        var visitors = await GetContactForVisitors().ToListAsync();
-
-        await AssociateAccessRequestWithVisitors(access, visitors);
-
-        await InsertAssetRequests();
-
         var map = gc_accessrequest.Convert(access);
 
         return (Result.Success(), map);
-
-        async Task InsertAssetRequests()
-        {
-            var assetRequests = accessRequest
-                .AssetRequests
-                .Select(assetRequest => new gc_assetrequest
-                {
-                    gc_assetrequestid = Guid.NewGuid(),
-                    gc_name = $"{access.gc_accessrequestid} - {Enum.GetName(typeof(Domain.Enums.Asset), assetRequest.Asset.Key)}",
-                    gc_assetsid = access,
-                    gc_asset = (Asset)assetRequest.Asset.Key,
-                    gc_other = assetRequest.Other
-                });
-
-            foreach (var assetRequest in assetRequests)
-            {
-                await _client
-                    .For<gc_assetrequest>()
-                    .Set(assetRequest)
-                    .InsertEntryAsync();
-            }
-        }
-
-        async IAsyncEnumerable<contact> GetContactForVisitors()
-        {
-            var visitors = accessRequest.Visitors.Select(contact.MapFrom).ToList();
-
-            foreach (var visitor in visitors)
-            {
-                var contacts = await _client.For<contact>()
-                    .Filter(x => x.emailaddress1 == visitor.emailaddress1)
-                    .FindEntriesAsync();
-
-                var contact = contacts.FirstOrDefault();
-
-                // If no contact has been found, let's create it.
-                if (contact is null)
-                {
-                    visitor.contactid = Guid.NewGuid();
-
-                    contact = await _client.For<contact>()
-                        .Set(visitor)
-                        .InsertEntryAsync();
-                }
-
-                yield return contact;
-            }
-        }
-
-        /// <remarks>
-        /// Unfortunately, this is the only supported way of associating existing entity instances.
-        ///
-        /// For more information, please see:
-        /// https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/webapi/samples/basic-operations-csharp
-        /// https://himbap.com/blog/?p=2063
-        /// </remarks>
-        async Task AssociateAccessRequestWithVisitors(gc_accessrequest accessRequest, IEnumerable<contact> visitors)
-        {
-            // HttpClient instances can generally be treated as .NET objects not requiring disposal.
-            // https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-6.0
-            var httpClient = _httpClientFactory.CreateClient(NamedHttpClients.Dynamics365ServiceDesk);
-
-
-            var accessRequestId = accessRequest.gc_accessrequestid.ToString("D");
-
-            var relationshipObjects = visitors
-                .Select(x => x.contactid.ToString("D"))
-                .Select(id => new JObject
-                {
-                        { "@odata.id", new Uri(httpClient.BaseAddress + $"contacts({id})") }
-                })
-                .Select(x => x.ToString());
-
-            foreach (var relationshipObject in relationshipObjects)
-            {
-                using var content = new StringContent(relationshipObject.ToString(), Encoding.UTF8, "application/json");
-
-                using var response = await httpClient.PostAsync($"gc_accessrequests({accessRequestId})/gc_accessrequest_contact_visitors/$ref", content);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    throw new Exception(response.ToString());
-                }
-            }
-        }
     }
 
     public async Task<Result> UpdateAccessRequest(AccessRequest accessRequest)

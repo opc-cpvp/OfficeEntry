@@ -47,15 +47,6 @@ public class LocationService : ILocationService
         });
     }
 
-    public async Task<int> GetCapacityByFloorAsync(Guid floorId)
-    {
-        var floor = await _client.For<gc_floor>()
-            .Key(floorId)
-            .FindEntryAsync();
-
-        return floor.gc_capacity;
-    }
-
     public async Task<FloorPlanCapacity> GetCapacityByFloorPlanAsync(Guid floorPlanId, DateOnly date)
     {
         var floorPlan = await GetFloorPlanAsync(floorPlanId);
@@ -113,25 +104,6 @@ public class LocationService : ILocationService
             .FindEntriesAsync();
 
         return floorPlans.Select(gc_floorplan.Convert).ToImmutableArray();
-    }
-
-    public async Task<IEnumerable<Floor>> GetFloorsByBuildingAsync(Guid buildingId, string locale)
-    {
-        var floors = await _client.For<gc_building>()
-            .Key(buildingId)
-            .NavigateTo(b => b.gc_building_floor)
-            .FindEntriesAsync();
-
-        return floors.Select(f => new Floor
-        {
-            Id = f.gc_floorid,
-            BuildingId = buildingId,
-            Capacity = f.gc_capacity,
-            CurrentCapacity = f.gc_currentcapacity,
-            EnglishName = f.gc_englishname,
-            FrenchName = f.gc_frenchname,
-            Name = (locale == Locale.French) ? f.gc_frenchname : f.gc_englishname,
-        });
     }
 
     public async Task<Workspace> GetWorkspaceAsync(Guid workspaceId)

@@ -3,9 +3,9 @@ using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
 using System.Collections.Immutable;
 
-namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRquestPerFloorPlan;
+namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequestPerFloorPlan;
 
-public class GetAccessRequestPerFloorPlanQuery : IRequest<ImmutableArray<AccessRequest>>
+public record GetAccessRequestPerFloorPlanQuery : IRequest<ImmutableArray<AccessRequest>>
 {
     public Guid FloorPlanId { get; init; }
     public DateOnly Date { get; init; }

@@ -3,9 +3,7 @@ using OfficeEntry.Application.Common.Interfaces;
 
 namespace OfficeEntry.Application.Users.Queries.GetContactsRequests;
 
-public class GetContactsQuery : IRequest<IEnumerable<Domain.Entities.Contact>>
-{
-}
+public record GetContactsQuery : IRequest<IEnumerable<Domain.Entities.Contact>>;
 
 public class GetContactsQueryHandler : IRequestHandler<GetContactsQuery, IEnumerable<Domain.Entities.Contact>>
 {

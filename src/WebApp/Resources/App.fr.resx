@@ -127,23 +127,14 @@
   <data name="Approved" xml:space="preserve">
     <value>Approuvée</value>
   </data>
-  <data name="Asset and equipment:" xml:space="preserve">
-    <value>Matériel de bureau:</value>
-  </data>
   <data name="Building" xml:space="preserve">
     <value>Édifice</value>
-  </data>
-  <data name="Cables" xml:space="preserve">
-    <value>Câbles</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuler</value>
   </data>
   <data name="Cancelled" xml:space="preserve">
     <value>Annulée</value>
-  </data>
-  <data name="Chair" xml:space="preserve">
-    <value>Chaise</value>
   </data>
   <data name="CriticalWork" xml:space="preserve">
     <value>Travail critique</value>
@@ -160,9 +151,6 @@
   <data name="Details:" xml:space="preserve">
     <value>Détails:</value>
   </data>
-  <data name="DockingStation" xml:space="preserve">
-    <value>Station d'accueil pour ordinateur portable</value>
-  </data>
   <data name="Email" xml:space="preserve">
     <value>Courriel</value>
   </data>
@@ -178,9 +166,6 @@
   <data name="h:mm tt" xml:space="preserve">
     <value>HH:mm</value>
   </data>
-  <data name="Headset" xml:space="preserve">
-    <value>Casque d'écoute</value>
-  </data>
   <data name="Health &amp; Safety Measures" xml:space="preserve">
     <value>Mesures de santé et de sécurité</value>
   </data>
@@ -194,12 +179,6 @@
   <data name="LanguageToggle" xml:space="preserve">
     <value>English</value>
   </data>
-  <data name="Keyboard" xml:space="preserve">
-    <value>Clavier</value>
-  </data>
-  <data name="Laptop" xml:space="preserve">
-    <value>Portable</value>
-  </data>
   <data name="Loading..." xml:space="preserve">
     <value>Téléchargement en cours...</value>
   </data>
@@ -209,23 +188,11 @@
   <data name="MMMM dd, yyyy" xml:space="preserve">
     <value>d MMMM yyyy</value>
   </data>
-  <data name="Monitor" xml:space="preserve">
-    <value>Moniteur</value>
-  </data>
-  <data name="Mouse" xml:space="preserve">
-    <value>Souris</value>
-  </data>
   <data name="My Requests" xml:space="preserve">
     <value>Mes demandes</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
-  </data>
-  <data name="No asset and equipment." xml:space="preserve">
-    <value>Pas de matériel de bureau.</value>
-  </data>
-  <data name="No visitors." xml:space="preserve">
-    <value>Pas de visiteurs.</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
@@ -282,9 +249,6 @@
   <data name="Submit Access Request" xml:space="preserve">
     <value>Soumettre une demande</value>
   </data>
-  <data name="Tablet" xml:space="preserve">
-    <value>Tablette</value>
-  </data>
   <data name="Telephone" xml:space="preserve">
     <value>Téléphone</value>
   </data>
@@ -293,9 +257,6 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
-  </data>
-  <data name="Visitors:" xml:space="preserve">
-    <value>Visiteurs:</value>
   </data>
   <data name="Accept all Terms and Conditions" xml:space="preserve">
     <value>Avant de soumettre une demande, vous devez accepter les conditions des Mesures de santé et de sécurité relatives et de la Protection des renseignements personnels.</value>

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Newtonsoft.Json;
-using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Models;
 using System.Globalization;
@@ -135,42 +134,6 @@ public partial class Survey
     }
 
     [JSInvokable]
-    public async Task<bool> HasAvailableCapacity(string surveyData)
-    {
-        var submission = JsonConvert.DeserializeObject<AccessRequestSubmission>(surveyData);
-        var date = submission.startDate;
-
-        IRequest<IEnumerable<CurrentCapacity>> request;
-        if (submission.floor != Guid.Empty)
-        {
-            var floorId = submission.floor;
-            request = new GetSpotsAvailablePerHourQuery { FloorId = floorId, SelectedDay = date };
-        }
-        else if (submission.floorplan != Guid.Empty)
-        {
-            var floorPlanId = submission.floorplan;
-            request = new GetSpotsAvailablePerHourByFloorPlanQuery { FloorPlanId = floorPlanId, SelectedDay = date };
-        }
-        else
-        {
-            // TODO: Should we return false here?
-            throw new Exception("Failed to determine available capacity");
-        }
-
-        var results = (await Mediator.Send(request)).ToArray();
-        for (var i = submission.startTime; i < submission.endTime; i++)
-        {
-            var availableCapacity = results[i].Capacity - results[i].SpotsReserved - (1 + submission.visitors?.Length ?? 0);
-            if (availableCapacity <= 0)
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    [JSInvokable]
 
     public void ShowError()
     {
@@ -213,15 +176,11 @@ public class CurrentPageChangingEventArgs : EventArgs
 {
     public string SurveyData { get; init; }
     public string NewCurrentPageName { get; init; }
-    public string OldCurrentPageName { get; init; }    
+    public string OldCurrentPageName { get; init; }
 }
 
 public class ValueChangedEventArgs : EventArgs
 {
     public string SurveyData { get; init; }
     public string Options { get; init; }
-}
-
-public class SurveyLoadedEventArgs : EventArgs
-{
 }

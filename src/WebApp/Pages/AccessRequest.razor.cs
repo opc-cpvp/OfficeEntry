@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
-using OfficeEntry.Domain.Enums;
-using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
-using System.Globalization;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Enums;
+using OfficeEntry.WebApp.Store.AccessRequestsUseCase;
+using OfficeEntry.WebApp.Store.DelegateAccessRequestsUseCase;
+using System.Globalization;
 
 namespace OfficeEntry.WebApp.Pages;
 
@@ -87,7 +88,15 @@ public partial class AccessRequest
             Status = new OptionSet { Key = (int)accessRequest.Status }
         };
         await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
-        Dispatcher.Dispatch(new GetMyAccessRequestsAction());
+
+        if (IsEmployee)
+        {
+            Dispatcher.Dispatch(new GetAccessRequestsAction());
+        }
+        else if (IsDelegate)
+        {
+            Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());
+        }
 
         NavigationManager.NavigateTo(Localizer["my-access-requests"]);
     }

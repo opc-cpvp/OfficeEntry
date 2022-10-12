@@ -2,27 +2,27 @@
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
 
-namespace OfficeEntry.Application.Locations.Queries.GetFloorPlan;
+namespace OfficeEntry.Application.Locations.Queries.GetAvailableWorkspaces;
 
-public class GetFloorPlanAvailableWorkspacesQuery : IRequest<IEnumerable<Workspace>>
+public record GetAvailableWorkspacesQuery : IRequest<IEnumerable<Workspace>>
 {
     public Guid FloorPlanId { get; init; }
     public DateTime StartTime { get; init; }
     public DateTime EndTime { get; init; }
 }
 
-public class GetFloorPlanAvailableWorkspacesQueryHandler : IRequestHandler<GetFloorPlanAvailableWorkspacesQuery, IEnumerable<Workspace>>
+public class GetAvailableWorkspacesQueryHandler : IRequestHandler<GetAvailableWorkspacesQuery, IEnumerable<Workspace>>
 {
     private readonly IAccessRequestService _accessRequestService;
     private readonly ILocationService _locationService;
 
-    public GetFloorPlanAvailableWorkspacesQueryHandler(IAccessRequestService accessRequestService, ILocationService locationService)
+    public GetAvailableWorkspacesQueryHandler(IAccessRequestService accessRequestService, ILocationService locationService)
     {
         _accessRequestService = accessRequestService;
         _locationService = locationService;
     }
 
-    public async Task<IEnumerable<Workspace>> Handle(GetFloorPlanAvailableWorkspacesQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<Workspace>> Handle(GetAvailableWorkspacesQuery request, CancellationToken cancellationToken)
     {
         var date = DateOnly.FromDateTime(request.StartTime);
         var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(request.FloorPlanId, date);

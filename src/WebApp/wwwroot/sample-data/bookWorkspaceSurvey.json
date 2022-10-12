@@ -41,14 +41,6 @@
                 "fr": "« À » doit être plus grand que « De »"
               },
               "expression": "{endTime} > {startTime}"
-            },
-            {
-              "type": "expression",
-              "text": {
-                "default": "The request exceeds the available capacity for the chosen time range",
-                "fr": "La demande excède la capacité disponible pour l'intervalle de temps choisi"
-              },
-              "expression": "CapacityValidator() = true"
             }
           ],
           "choices": [
@@ -410,7 +402,7 @@
           "visibleIf": "{startDate} notempty and {startTime} notempty and {endTime} notempty",
           "isRequired": true,
           "choicesByUrl": {
-            "url": "api/workspaces/{floorplan}/available?date={startDate}&start={startTime}&end={endTime}",
+            "url": "api/locations/{locale}/floorplans/{floorplan}/workspaces/available?date={startDate}&start={startTime}&end={endTime}",
             "valueName": "id",
             "titleName": "name"
           }

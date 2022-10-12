@@ -1,11 +1,9 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
 
-namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests;
+namespace OfficeEntry.Application.AccessRequests.Queries.GetDelegateAccessRequests;
 
-public class GetDelegateAccessRequestsQuery : IRequest<IEnumerable<Domain.Entities.AccessRequest>>
-{
-}
+public record GetDelegateAccessRequestsQuery : IRequest<IEnumerable<Domain.Entities.AccessRequest>>;
 
 public class GetDelegateAccessRequestsQueryHandler : IRequestHandler<GetDelegateAccessRequestsQuery, IEnumerable<Domain.Entities.AccessRequest>>
 {

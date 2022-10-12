@@ -1,14 +1,13 @@
 ﻿using MediatR;
 using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
-using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
 
 namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests
 {
-    public class CreateAccessRequestCommand : IRequest
+    public record CreateAccessRequestCommand : IRequest
     {
-        public AccessRequest AccessRequest { get; set; }
+        public AccessRequest AccessRequest { get; init; }
     }
 
     public class CreateAccessRequestCommandHandler : IRequestHandler<CreateAccessRequestCommand>
@@ -54,18 +53,6 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             var floorPlan = request.AccessRequest.FloorPlan;
             var floorId = floorPlan.Floor.Id;
             var date = request.AccessRequest.StartTime;
-            var requestContactCount = (request.AccessRequest.Visitors?.Count ?? 0) + 1;
-
-            var currentCapacities = await _mediator.Send(new GetSpotsAvailablePerHourQuery { FloorId = floorId, SelectedDay = date }, cancellationToken);
-
-            var hasAvailableCapacity = currentCapacities
-                .Where(x => x.Hour >= request.AccessRequest.StartTime.Hour && x.Hour < request.AccessRequest.EndTime.Hour)
-                .All(x => x.Capacity - x.SpotsReserved - requestContactCount >= 0);
-
-            if (!hasAvailableCapacity)
-            {
-                throw new Exception("Your request exceeds the floor capacity");
-            }
 
             if (request.AccessRequest.Employee is null)
             {

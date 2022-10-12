@@ -2,7 +2,6 @@
 using Moq;
 using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
 using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
-using OfficeEntry.Application.AccessRequests.Queries.GetSpotsAvailablePerHour;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
@@ -53,11 +52,6 @@ namespace Application.UnitTests
             Floor = new Floor { Id = FloorId }
         };
 
-        private static readonly IEnumerable<CurrentCapacity> CurrentCapacities = new List<CurrentCapacity>
-        {
-            new() { Hour = DateTime.Now.Hour, Capacity = 100, SpotsReserved = 50 }
-        };
-
         private readonly AccessRequest _accessRequest;
         private readonly ICurrentUserService _currentUserService;
         private readonly IUserService _userService;
@@ -93,8 +87,6 @@ namespace Application.UnitTests
             userServiceMock.Setup(x => x.GetContactByUsername(FloorEmergencyOfficerContact.Username)).ReturnsAsync((Result.Success(), FloorEmergencyOfficerContact));
 
             var mediatorMock = new Mock<IMediator>();
-            mediatorMock.Setup(x => x.Send(It.IsAny<GetSpotsAvailablePerHourQuery>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(CurrentCapacities);
             mediatorMock.Setup(x => x.Send(It.IsAny<UpdateAccessRequestCommand>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(Unit.Value);
 
@@ -188,31 +180,6 @@ namespace Application.UnitTests
             // Assert
             Assert.Equal(
                 "Can't create an access request without accepting Privacy Act statement and Health and Safety measures",
-                result.Message);
-        }
-
-        [Fact]
-        public async Task Should_throw_an_exception_when_the_capacity_has_been_reached()
-        {
-            // Arrange
-            var currentCapacities = new List<CurrentCapacity>
-            {
-                new() { Hour = _accessRequest.StartTime.Hour, Capacity = 100, SpotsReserved = 100 }
-            };
-
-            var mediatorMock = new Mock<IMediator>();
-            mediatorMock.Setup(x => x.Send(It.IsAny<GetSpotsAvailablePerHourQuery>(), It.IsAny<CancellationToken>())).ReturnsAsync(currentCapacities);
-
-            var request = new CreateAccessRequestCommand { AccessRequest = _accessRequest };
-            var handler = new CreateAccessRequestCommandHandler(null, _currentUserService, _userService, null,
-                null, null, mediatorMock.Object);
-
-            // Act
-            var result = await Assert.ThrowsAsync<Exception>(() => handler.Handle(request, CancellationToken.None));
-
-            // Assert
-            Assert.Equal(
-                "Your request exceeds the floor capacity",
                 result.Message);
         }
 
@@ -420,8 +387,6 @@ namespace Application.UnitTests
             notificationServiceMock.Setup(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>())).ReturnsAsync(Result.Success);
 
             var mediatorMock = new Mock<IMediator>();
-            mediatorMock.Setup(x => x.Send(It.IsAny<GetSpotsAvailablePerHourQuery>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(CurrentCapacities);
             mediatorMock.Setup(x => x.Send(It.IsAny<UpdateAccessRequestCommand>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(Unit.Value);
 

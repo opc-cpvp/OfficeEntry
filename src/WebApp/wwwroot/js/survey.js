@@ -119,26 +119,6 @@ export function init(id, classStyle, surveyUrl, data) {
                     options.html = options.text;
                 });
 
-            // ===============================================================
-            // accessRequest.js <START>
-            // ===============================================================
-            function CapacityValidator() {
-                var that = this;
-
-                return dotNet.invokeMethodAsync("HasAvailableCapacity", JSON.stringify(survey.data, null, 3))
-                    .then(function (r) {
-                        return that.returnResult(r);
-                    });
-            }
-
-            Survey
-                .FunctionFactory
-                .Instance
-                .register("CapacityValidator", CapacityValidator, true);
-            // ===============================================================
-            // accessRequest.js <END>
-            // ===============================================================
-
             var app = new Vue({
                 el: "#" + id,
                 data: {

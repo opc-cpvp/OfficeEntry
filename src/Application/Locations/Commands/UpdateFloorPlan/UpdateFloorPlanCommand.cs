@@ -4,9 +4,9 @@ using OfficeEntry.Domain.Entities;
 
 namespace OfficeEntry.Application.Locations.Commands.UpdateFloorPlan;
 
-public class UpdateFloorPlanCommand : IRequest
+public record UpdateFloorPlanCommand : IRequest
 {
-    public FloorPlan FloorPlan { get; set; }
+    public FloorPlan FloorPlan { get; init; }
 }
 
 public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateFloorPlanCommand>

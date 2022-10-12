@@ -4,7 +4,7 @@ using OfficeEntry.Domain.Entities;
 
 namespace OfficeEntry.Application.Locations.Queries.GetFloorPlan;
 
-public class GetFloorPlanQuery : IRequest<FloorPlan>
+public record GetFloorPlanQuery : IRequest<FloorPlan>
 {
     public Guid FloorPlanId { get; init; }
 }

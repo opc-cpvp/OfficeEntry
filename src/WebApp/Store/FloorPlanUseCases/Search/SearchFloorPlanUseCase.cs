@@ -61,7 +61,7 @@ public class Effects
 	{
 		_mediator = mediator;
 	}
-	
+
 	[EffectMethod]
 	public async Task HandleSearchFloorPlansAction(SearchFloorPlansAction action, IDispatcher dispatcher)
 	{

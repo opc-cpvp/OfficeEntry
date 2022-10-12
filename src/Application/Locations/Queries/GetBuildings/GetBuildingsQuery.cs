@@ -4,9 +4,9 @@ using OfficeEntry.Domain.Entities;
 
 namespace OfficeEntry.Application.Locations.Queries.GetBuildings;
 
-public class GetBuildingsQuery : IRequest<IEnumerable<Building>>
+public record GetBuildingsQuery : IRequest<IEnumerable<Building>>
 {
-    public string Locale { get; set; }
+    public string Locale { get; init; }
 }
 
 public class GetBuildingsQueryHandler : IRequestHandler<GetBuildingsQuery, IEnumerable<Building>>

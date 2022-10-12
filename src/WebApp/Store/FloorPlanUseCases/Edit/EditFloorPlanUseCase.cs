@@ -1,4 +1,4 @@
-﻿using Fluxor;   
+﻿using Fluxor;
 using MediatR;
 using OfficeEntry.Application.Locations.Commands.UpdateFloorPlan;
 using OfficeEntry.Application.Locations.Queries.GetFloorPlan;

@@ -16,8 +16,6 @@ internal class gc_accessrequest
     public contact gc_manager { get; set; }
     public AccessReasons? gc_accessreason { get; set; }
     public DateTime gc_starttime { get; set; }
-    public IList<contact> gc_accessrequest_contact_visitors { get; set; } = new List<contact>();
-    public IList<gc_assetrequest> gc_accessrequest_assetrequest { get; set; } = new List<gc_assetrequest>();
     public int statecode { get; set; }
     public DateTime createdon { get; set; }
 
@@ -33,7 +31,6 @@ internal class gc_accessrequest
         {
             Id = accessRequest.gc_accessrequestid,
             CreatedOn = accessRequest.createdon.ToLocalTime(),
-            AssetRequests = accessRequest.gc_accessrequest_assetrequest.Select(gc_assetrequest.Convert).ToList(),
             Building = gc_building.Convert(accessRequest.gc_building),
             Delegate = contact.Convert(accessRequest.gc_delegate),
             Details = accessRequest.gc_details,
@@ -48,7 +45,6 @@ internal class gc_accessrequest
                 Key = (int)accessRequest.gc_approvalstatus,
                 Value = Enum.GetName(typeof(ApprovalStatus), accessRequest.gc_approvalstatus)
             },
-            Visitors = accessRequest.gc_accessrequest_contact_visitors.Select(contact.Convert).ToList(),
             Workspace = gc_workspace.Convert(accessRequest.gc_workspace)
         };
 

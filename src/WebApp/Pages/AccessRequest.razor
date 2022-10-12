@@ -35,61 +35,6 @@ else
         <p><strong>@Localizer["Details:"]</strong> @accessRequest.Details</p>
     }
 
-    if (accessRequest.Visitors.Any())
-    {
-        <p><strong>@Localizer["Visitors:"]</strong></p>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">@Localizer["Name"]</th>
-                    <th scope="col">@Localizer["Email"]</th>
-                    <th scope="col">@Localizer["Telephone"]</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var visitor in accessRequest.Visitors)
-                {
-                    <tr>
-                        <td>@visitor.FullName</td>
-                        <td>@visitor.EmailAddress</td>
-                        <td>@visitor.PhoneNumber</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p><strong>@Localizer["No visitors."]</strong></p>
-    }
-
-    if (accessRequest.AssetRequests.Any())
-    {
-        <p><strong>@Localizer["Asset and equipment:"]</strong></p>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-
-                    <th scope="col">@Localizer["Type"]</th>
-                    <th scope="col">@Localizer["Notes"]</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var asset in accessRequest.AssetRequests.OrderBy(x => x.Asset.Value))
-                {
-                    <tr>
-                        <td>@Localizer[asset.Asset.Value]</td>
-                        <td>@asset.Other</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p><strong>@Localizer["No asset and equipment."]</strong></p>
-    }
-
     if (IsEmployee || IsDelegate)
     {
         <button type="button" class="btn btn-danger" @onclick="CancelRequest" disabled="@IsCancelled">@Localizer["Cancel"]</button>

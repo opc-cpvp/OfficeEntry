@@ -1,6 +1,6 @@
 ﻿using Fluxor;
 using MediatR;
-using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests;
+using OfficeEntry.Application.AccessRequests.Queries.GetDelegateAccessRequests;
 using OfficeEntry.Domain.Entities;
 
 namespace OfficeEntry.WebApp.Store.DelegateAccessRequestsUseCase;
