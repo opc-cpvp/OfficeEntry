@@ -155,6 +155,9 @@
   <data name="Approved" xml:space="preserve">
     <value>Approved</value>
   </data>
+  <data name="Book Workstation" xml:space="preserve">
+    <value>Book Workstation</value>
+  </data>
   <data name="Building" xml:space="preserve">
     <value>Building</value>
   </data>
@@ -179,12 +182,12 @@
   <data name="Delegate Access Requests" xml:space="preserve">
     <value>Delegate Access Requests</value>
   </data>
-  <data name="Delegate Requests" xml:space="preserve">
-    <value>Delegate Requests</value>
-  </data>
   <data name="delegate-access-requests" xml:space="preserve">
     <value>en/delegate-access-requests</value>
     <comment>URI</comment>
+  </data>
+  <data name="Delegated Access Requests" xml:space="preserve">
+    <value>Delegated Access Requests</value>
   </data>
   <data name="Details:" xml:space="preserve">
     <value>Details:</value>
@@ -338,7 +341,7 @@
   <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
-  <data name="Workspace" xml:space="preserve">
-    <value>Workspace</value>
+  <data name="Workstation" xml:space="preserve">
+    <value>Workstation</value>
   </data>
 </root>

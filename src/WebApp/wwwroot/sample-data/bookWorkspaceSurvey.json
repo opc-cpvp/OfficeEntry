@@ -15,7 +15,7 @@
           "name": "startDate",
           "title": {
             "default": "Select a date",
-            "fr": "Choisissez une date"
+            "fr": "Sélectionnez une date"
           },
           "isRequired": true,
           "dateFormat": "mm/dd/yy",
@@ -398,7 +398,10 @@
         {
           "type": "dropdown",
           "name": "workspace",
-          "title": "Workspace",
+          "title": {
+            "default": "Workstation",
+            "fr": "Poste de travail"
+          },
           "visibleIf": "{startDate} notempty and {startTime} notempty and {endTime} notempty",
           "isRequired": true,
           "choicesByUrl": {
@@ -410,18 +413,24 @@
         {
           "type": "radiogroup",
           "name": "bookingFor",
-          "title": "Booking for",
+          "title": {
+            "default": "I'm booking for",
+            "fr": "Je réserve pour"
+          },
           "defaultValue": "Myself",
           "choices": [
             {
               "value": "Myself",
-              "text": "Myself"
+              "text": {
+                "default": "Myself",
+                "fr": "Moi-même"
+              }
             },
             {
               "value": "Other",
               "text": {
-                "default": "Other individual",
-                "fr": "Autre individu"
+                "default": "Colleague",
+                "fr": "Collègue"
               }
             }
           ]
