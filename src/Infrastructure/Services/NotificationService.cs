@@ -1,4 +1,5 @@
-﻿using OfficeEntry.Application.Common.Interfaces;
+﻿using System.Runtime.Versioning;
+using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using System.Security.Principal;
@@ -25,6 +26,7 @@ namespace OfficeEntry.Infrastructure.Services
             _emailService = emailService;
         }
 
+        [SupportedOSPlatform("windows")]
         public async Task<Result> NotifyFirstAidAttendants(CapacityNotification capacityNotification)
         {
             capacityNotification.RoleEnglishName = FirstAidAttendantEnglishName;
@@ -48,6 +50,7 @@ namespace OfficeEntry.Infrastructure.Services
             return await _emailService.SendEmailAsync(email);
         }
 
+        [SupportedOSPlatform("windows")]
         public async Task<Result> NotifyFloorEmergencyOfficers(CapacityNotification capacityNotification)
         {
             capacityNotification.RoleEnglishName = FloorEmergencyOfficerEnglishName;
@@ -71,6 +74,7 @@ namespace OfficeEntry.Infrastructure.Services
             return await _emailService.SendEmailAsync(email);
         }
 
+        [SupportedOSPlatform("windows")]
         public async Task<Result> NotifyAccessRequestEmployee(AccessRequestNotification accessRequestNotification)
         {
             var (_, sender) = await _userService.GetSystemUserByUsername(WindowsIdentity.GetCurrent().Name);
