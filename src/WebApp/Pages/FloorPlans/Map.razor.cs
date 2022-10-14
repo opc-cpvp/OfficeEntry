@@ -78,6 +78,7 @@ public partial class Map : IAsyncDisposable
     {
         var id = await GetSelectedWorkspaceId(mySurvey);
         var accessRequests = AccessRequests.Where(a =>
+            a.Workspace is not null &&
             a.StartTime < _selectedDate.ToDateTime(new TimeOnly(hour: _endTime, minute: 0)) &&
             a.EndTime > _selectedDate.ToDateTime(new TimeOnly(hour: _startTime, minute: 0))
         );
@@ -148,6 +149,7 @@ public partial class Map : IAsyncDisposable
     public async Task OnSelectedCircleChanged(string data)
     {
         var accessRequests = AccessRequests.Where(a =>
+            a.Workspace is not null &&
             a.StartTime < _selectedDate.ToDateTime(new TimeOnly(hour: _endTime, minute: 0)) &&
             a.EndTime > _selectedDate.ToDateTime(new TimeOnly(hour: _startTime, minute: 0))
         );
@@ -178,8 +180,13 @@ public partial class Map : IAsyncDisposable
             EndTime = submission.startDate.AddHours(submission.endTime),
             StartTime = submission.startDate.AddHours(submission.startTime),
             Status = new OptionSet { Key = (int)Domain.Entities.AccessRequest.ApprovalStatus.Pending },
-            Workspace = new Workspace { Id = submission.workspace }
         };
+
+        var hasWorkspace = submission.workspace != Guid.Empty;
+        if (hasWorkspace)
+        {
+            accessRequest.Workspace = new Workspace { Id = submission.workspace };
+        }
 
         var isDelegate = submission.otherIndividual != Guid.Empty;
         if (isDelegate)
@@ -192,12 +199,11 @@ public partial class Map : IAsyncDisposable
         if (isDelegate)
         {
             Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());
-        }
-        else
-        {
-            Dispatcher.Dispatch(new GetAccessRequestsAction());
+            NavigationManager.NavigateTo(Localizer["delegate-access-requests"]);
+            return;
         }
 
+        Dispatcher.Dispatch(new GetAccessRequestsAction());
         NavigationManager.NavigateTo(Localizer["my-access-requests"]);
     }
 
@@ -210,7 +216,8 @@ public partial class Map : IAsyncDisposable
 
         if (options.Name is "startDate")
         {
-            _selectedDate = DateOnly.Parse(options.Value, CultureInfo.InvariantCulture);
+            var startDate = options.Value?.ToString();
+            DateOnly.TryParse(startDate, CultureInfo.InvariantCulture, DateTimeStyles.None, out _selectedDate);
             Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
             _selectedAccessRequest = null;
 
@@ -219,35 +226,38 @@ public partial class Map : IAsyncDisposable
 
         if (options.Name is "startTime")
         {
-            if (options.Value is null)
+            var startTime = options.Value?.ToString();
+            if (string.IsNullOrWhiteSpace(startTime))
             {
                 _startTime = _endTime;
                 await mySurvey.SetValueAsync("workspace", null);
                 return;
             }
 
-            _startTime = int.Parse(options.Value);
+            int.TryParse(startTime, out _startTime);
             await UpdateCanvas();
         }
 
         if (options.Name is "endTime")
         {
-            if (options.Value is null)
+            var endTime = options.Value?.ToString();
+            if (string.IsNullOrWhiteSpace(endTime))
             {
                 _endTime = _startTime;
                 await mySurvey.SetValueAsync("workspace", null);
                 return;
             }
 
-            _endTime = int.Parse(options.Value);
+            int.TryParse(endTime, out _endTime);
             await UpdateCanvas();
         }
 
         if (options.Name is "workspace")
         {
-            await MapJsInterop.SetSelectedCircle(options.Value);
+            var workspace = options.Value?.ToString();
+            await MapJsInterop.SetSelectedCircle(workspace);
 
-            if (options.Value is null)
+            if (string.IsNullOrWhiteSpace(workspace))
             {
                 return;
             }
@@ -262,5 +272,5 @@ public partial class Map : IAsyncDisposable
 public class SurveyQuestion
 {
     public string Name { get; set; }
-    public string Value { get; set; }
+    public object Value { get; set; }
 }

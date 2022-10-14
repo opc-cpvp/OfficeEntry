@@ -16,6 +16,25 @@ public class AccessRequest
     public Contact Delegate { get; set; }
     public OptionSet Reason { get; set; }
     public OptionSet Status { get; set; }
+    public bool IsPending => Status?.Key == (int)ApprovalStatus.Pending;
+
+    public string EnglishStatus => Status?.Key switch
+    {
+        (int)ApprovalStatus.Approved => "Approved",
+        (int)ApprovalStatus.Cancelled => "Cancelled",
+        (int)ApprovalStatus.Declined => "Declined",
+        (int)ApprovalStatus.Pending => "Pending",
+        _ => string.Empty
+    };
+
+    public string FrenchStatus => Status?.Key switch
+    {
+        (int)ApprovalStatus.Approved => "Approuvée",
+        (int)ApprovalStatus.Cancelled => "Annulée",
+        (int)ApprovalStatus.Declined => "Refusée",
+        (int)ApprovalStatus.Pending => "En attente",
+        _ => string.Empty
+    };
 
     public enum ApprovalStatus
     {

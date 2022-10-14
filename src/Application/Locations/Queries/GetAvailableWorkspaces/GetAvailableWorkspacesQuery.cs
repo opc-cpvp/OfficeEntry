@@ -27,6 +27,7 @@ public class GetAvailableWorkspacesQueryHandler : IRequestHandler<GetAvailableWo
         var date = DateOnly.FromDateTime(request.StartTime);
         var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(request.FloorPlanId, date);
         var reservedWorkspaces = accessRequests.Where(ar =>
+                ar.Workspace is not null &&
                 ar.StartTime < request.EndTime &&
                 ar.EndTime > request.StartTime
             )

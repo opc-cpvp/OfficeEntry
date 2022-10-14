@@ -396,13 +396,23 @@
           ]
         },
         {
+          "type": "boolean",
+          "name": "unassignedWorkspace",
+          "title": {
+            "default": "Unassigned workspace",
+            "fr": "Espace de travail non assigné"
+          },
+          "defaultValue": "false",
+          "isRequired": true
+        },
+        {
           "type": "dropdown",
           "name": "workspace",
           "title": {
             "default": "Workstation",
             "fr": "Poste de travail"
           },
-          "visibleIf": "{startDate} notempty and {startTime} notempty and {endTime} notempty",
+          "visibleIf": "{startDate} notempty and {startTime} notempty and {endTime} notempty and {unassignedWorkspace} = false",
           "isRequired": true,
           "choicesByUrl": {
             "url": "api/locations/{locale}/floorplans/{floorplan}/workspaces/available?date={startDate}&start={startTime}&end={endTime}{NOCACHE}",
@@ -441,7 +451,6 @@
           "renderAs": "select2",
           "select2Config": {
             "theme": "bootstrap4",
-            "placeholder": "Recherche / Search",
             "selectOnClose": true
           },
           "title": {
@@ -454,6 +463,10 @@
             "url": "api/users",
             "valueName": "id",
             "titleName": "fullName"
+          },
+          "optionsCaption": {
+            "default": "Search",
+            "fr": "Recherche"
           }
         }
       ]

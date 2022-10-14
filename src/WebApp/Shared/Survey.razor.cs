@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using Newtonsoft.Json;
 using OfficeEntry.Domain.Enums;
-using OfficeEntry.WebApp.Models;
 using System.Globalization;
-using MediatR;
 
 namespace OfficeEntry.WebApp.Shared;
 

@@ -88,7 +88,11 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             // Update access request properties
             request.AccessRequest.Id = accessRequest.Id;
             request.AccessRequest.CreatedOn = accessRequest.CreatedOn;
-            request.AccessRequest.Workspace = await _locationService.GetWorkspaceAsync(request.AccessRequest.Workspace.Id);
+
+            if (request.AccessRequest.Workspace is not null)
+            {
+                request.AccessRequest.Workspace = await _locationService.GetWorkspaceAsync(request.AccessRequest.Workspace.Id);
+            }
 
             await _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification { AccessRequest = request.AccessRequest });
 
