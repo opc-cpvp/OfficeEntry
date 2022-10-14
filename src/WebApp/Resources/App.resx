@@ -179,9 +179,6 @@
   <data name="Declined" xml:space="preserve">
     <value>Declined</value>
   </data>
-  <data name="Delegate Access Requests" xml:space="preserve">
-    <value>Delegate Access Requests</value>
-  </data>
   <data name="delegate-access-requests" xml:space="preserve">
     <value>en/delegate-access-requests</value>
     <comment>URI</comment>
