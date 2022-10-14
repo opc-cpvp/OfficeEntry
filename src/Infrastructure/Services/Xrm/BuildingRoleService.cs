@@ -39,20 +39,24 @@ public class BuildingRoleService : IBuildingRoleService
 
     public async Task<(Result Result, IEnumerable<Contact> Contacts)> GetContactsByBuildingRole(Guid floorId, BuildingRole.BuildingRoles role)
     {
-        var buildingRoles = await _client.For<gc_buildingrole>()
+        var floorBuildingRoles = await _client.For<gc_buildingrole>()
             .Filter(x => x.statecode == (int)StateCode.Active)
-            .Filter($"{nameof(gc_buildingrole.gc_role)} eq {(int)role}")
             .Filter(x => x.gc_floor.gc_floorid == floorId)
             .Expand(
                 "gc_usersettingsbuildingroleid/gc_usersettingsid"
             )
-            .Select(x => x.gc_usersettingsbuildingroleid)
+            .Select(x => new
+            {
+                x.gc_usersettingsbuildingroleid,
+                x.gc_role
+            })
             .FindEntriesAsync();
 
         var contacts = new List<Contact>();
-        foreach (var buildingRole in buildingRoles)
+        var filteredRoles = floorBuildingRoles.Where(x => (int)x.gc_role == (int)role);
+        foreach (var filteredRole in filteredRoles)
         {
-            var userSettingsId = buildingRole.gc_usersettingsbuildingroleid.gc_usersettingsid;
+            var userSettingsId = filteredRole.gc_usersettingsbuildingroleid.gc_usersettingsid;
             var contact = await _client.For<contact>()
                 .Filter(x => x.gc_usersettings.gc_usersettingsid == userSettingsId)
                 .FindEntryAsync();
