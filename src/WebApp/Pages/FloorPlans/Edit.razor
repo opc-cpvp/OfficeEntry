@@ -3,8 +3,6 @@
 @page "/en/floor-plans/edit/{FloorPlanId:guid}"
 @page "/fr/gerer-les-plans-d-etages/{FloorPlanId:guid}"
 
-<h3>Floor Plan</h3>
-
 @if (FloorPlanState.Value.IsLoading)
 {
     <Loading />
@@ -12,7 +10,6 @@
 
 <FileUpload OnImageChangeCallback="@ShowCanvas" />
 
-@*<canvas id="floorplan-canvas" height="500" style="border: 1px solid red;"></canvas>*@
 <canvas id="floorplan-canvas" width="1163" height="815" style="border: 1px solid #eeeeee;"></canvas>
 
 @if (WorkspaceDto is not null && EditContext is not null)

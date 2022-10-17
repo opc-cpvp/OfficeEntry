@@ -21,7 +21,7 @@ public class HealthCheck : IHealthCheck
     {
         try
         {
-            var buildings = await _mediator.Send(new GetBuildingsQuery { Locale = "en" });
+            var buildings = await _mediator.Send(new GetBuildingsQuery { Locale = "en" }, cancellationToken);
 
             if (buildings is { })
             {

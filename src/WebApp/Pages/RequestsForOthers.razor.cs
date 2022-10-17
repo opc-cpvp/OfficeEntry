@@ -7,7 +7,7 @@ using OfficeEntry.WebApp.Store.DelegateAccessRequestsUseCase;
 namespace OfficeEntry.WebApp.Pages;
 
 [Authorize]
-public partial class DelegateAccessRequests
+public partial class RequestsForOthers
 {
     [Inject] public IState<DelegateAccessRequestsState> DelegateAccessRequestsState { get; set; }
     [Inject] public IDispatcher Dispatcher { get; set; }

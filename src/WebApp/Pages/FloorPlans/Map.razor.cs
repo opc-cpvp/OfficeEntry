@@ -199,12 +199,12 @@ public partial class Map : IAsyncDisposable
         if (isDelegate)
         {
             Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());
-            NavigationManager.NavigateTo(Localizer["delegate-access-requests"]);
+            NavigationManager.NavigateTo(Localizer["requests-for-others"]);
             return;
         }
 
         Dispatcher.Dispatch(new GetAccessRequestsAction());
-        NavigationManager.NavigateTo(Localizer["my-access-requests"]);
+        NavigationManager.NavigateTo(Localizer["my-requests"]);
     }
 
     public async Task OnValueChanged(ValueChangedEventArgs e)

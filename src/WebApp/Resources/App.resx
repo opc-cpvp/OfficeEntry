@@ -155,9 +155,6 @@
   <data name="Approved" xml:space="preserve">
     <value>Approved</value>
   </data>
-  <data name="Book Workstation" xml:space="preserve">
-    <value>Book Workstation</value>
-  </data>
   <data name="Building" xml:space="preserve">
     <value>Building</value>
   </data>
@@ -179,15 +176,11 @@
   <data name="Declined" xml:space="preserve">
     <value>Declined</value>
   </data>
-  <data name="delegate-access-requests" xml:space="preserve">
-    <value>en/delegate-access-requests</value>
-    <comment>URI</comment>
-  </data>
-  <data name="Delegated Access Requests" xml:space="preserve">
-    <value>Delegated Access Requests</value>
-  </data>
   <data name="Details:" xml:space="preserve">
     <value>Details:</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -251,8 +244,8 @@
   <data name="My Requests" xml:space="preserve">
     <value>My Requests</value>
   </data>
-  <data name="my-access-requests" xml:space="preserve">
-    <value>en/my-access-requests</value>
+  <data name="my-requests" xml:space="preserve">
+    <value>en/my-requests</value>
     <comment>URI</comment>
   </data>
   <data name="Name" xml:space="preserve">
@@ -301,6 +294,13 @@
   <data name="Requestor" xml:space="preserve">
     <value>Requestor</value>
   </data>
+  <data name="Requests for Others" xml:space="preserve">
+    <value>Requests for Others</value>
+  </data>
+  <data name="requests-for-others" xml:space="preserve">
+    <value>en/requests-for-others</value>
+    <comment>URI</comment>
+  </data>
   <data name="Review" xml:space="preserve">
     <value>Review</value>
   </data>
@@ -316,8 +316,8 @@
   <data name="Status:" xml:space="preserve">
     <value>Status:</value>
   </data>
-  <data name="Submit Access Request" xml:space="preserve">
-    <value>Submit Access Request</value>
+  <data name="Submit Request" xml:space="preserve">
+    <value>Submit Request</value>
   </data>
   <data name="Telephone" xml:space="preserve">
     <value>Telephone</value>

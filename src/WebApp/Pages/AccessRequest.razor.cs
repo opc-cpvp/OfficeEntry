@@ -92,12 +92,12 @@ public partial class AccessRequest
         if (IsEmployee)
         {
             Dispatcher.Dispatch(new GetAccessRequestsAction());
+            NavigationManager.NavigateTo(Localizer["my-requests"]);
         }
         else if (IsDelegate)
         {
             Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());
+            NavigationManager.NavigateTo(Localizer["requests-for-others"]);
         }
-
-        NavigationManager.NavigateTo(Localizer["my-access-requests"]);
     }
 }

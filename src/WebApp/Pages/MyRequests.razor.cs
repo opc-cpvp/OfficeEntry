@@ -8,7 +8,7 @@ using OfficeEntry.WebApp.Store.TermsAndConditionsUseCase;
 namespace OfficeEntry.WebApp.Pages;
 
 [Authorize]
-public partial class MyAccessRequests
+public partial class MyRequests
 {
     [Inject] public IState<AccessRequestsState> AccessRequestsState { get; set; }
     [Inject] public IState<TermsAndConditionsState> TermsAndConditionsState { get; set; }

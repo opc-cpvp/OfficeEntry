@@ -246,9 +246,6 @@
   <data name="Status:" xml:space="preserve">
     <value>Statut:</value>
   </data>
-  <data name="Submit Access Request" xml:space="preserve">
-    <value>Soumettre une demande</value>
-  </data>
   <data name="Telephone" xml:space="preserve">
     <value>Téléphone</value>
   </data>
@@ -274,8 +271,8 @@
     <value>fr/modalites-et-conditions</value>
     <comment>URI</comment>
   </data>
-  <data name="my-access-requests" xml:space="preserve">
-    <value>fr/mes-demandes-d-acces</value>
+  <data name="my-requests" xml:space="preserve">
+    <value>fr/mes-demandes</value>
     <comment>URI</comment>
   </data>
   <data name="/" xml:space="preserve">
@@ -330,17 +327,20 @@
   <data name="Manage Floor Plans" xml:space="preserve">
     <value>Gestion des plans d'étages</value>
   </data>
-  <data name="Delegated Access Requests" xml:space="preserve">
-    <value>Demandes de réservation déléguées</value>
-  </data>
-  <data name="delegate-access-requests" xml:space="preserve">
-    <value>fr/demandes-deleguees</value>
+  <data name="requests-for-others" xml:space="preserve">
+    <value>fr/demandes-pour-autrui</value>
     <comment>URI</comment>
-  </data>
-  <data name="Book Workstation" xml:space="preserve">
-    <value>Réserver un poste de travail</value>
   </data>
   <data name="Workstation" xml:space="preserve">
     <value>Poste de travail</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="Requests for Others" xml:space="preserve">
+    <value>Demandes pour autrui</value>
+  </data>
+  <data name="Submit Request" xml:space="preserve">
+    <value>Soumettre une demande</value>
   </data>
 </root>
