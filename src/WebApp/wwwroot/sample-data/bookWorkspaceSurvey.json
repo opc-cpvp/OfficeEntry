@@ -417,7 +417,8 @@
           "choicesByUrl": {
             "url": "api/locations/{locale}/floorplans/{floorplan}/workspaces/available?date={startDate}&start={startTime}&end={endTime}{NOCACHE}",
             "valueName": "id",
-            "titleName": "name"
+            "titleName": "name",
+            "allowEmptyResponse": true
           }
         },
         {
