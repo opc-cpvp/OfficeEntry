@@ -45,8 +45,8 @@
             "selectOnClose": true
           },
           "title": {
-            "default": "Other individual",
-            "fr": "Autre individu"
+            "default": "Colleague",
+            "fr": "Collègue"
           },
           "visibleIf": "{bookingFor} = 'Other'",
           "isRequired": true,
