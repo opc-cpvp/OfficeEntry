@@ -11,6 +11,56 @@
           "title": "Floorplan"
         },
         {
+          "type": "radiogroup",
+          "name": "bookingFor",
+          "title": {
+            "default": "I'm booking for",
+            "fr": "Je réserve pour"
+          },
+          "defaultValue": "Myself",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Myself",
+              "text": {
+                "default": "Myself",
+                "fr": "Moi-même"
+              }
+            },
+            {
+              "value": "Other",
+              "text": {
+                "default": "Colleague",
+                "fr": "Collègue"
+              }
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "otherIndividual",
+          "renderAs": "select2",
+          "select2Config": {
+            "theme": "bootstrap4",
+            "selectOnClose": true
+          },
+          "title": {
+            "default": "Other individual",
+            "fr": "Autre individu"
+          },
+          "visibleIf": "{bookingFor} = 'Other'",
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/users",
+            "valueName": "id",
+            "titleName": "fullName"
+          },
+          "optionsCaption": {
+            "default": "Search",
+            "fr": "Recherche"
+          }
+        },
+        {
           "type": "datepicker",
           "name": "startDate",
           "title": {
@@ -419,56 +469,6 @@
             "valueName": "id",
             "titleName": "name",
             "allowEmptyResponse": true
-          }
-        },
-        {
-          "type": "radiogroup",
-          "name": "bookingFor",
-          "title": {
-            "default": "I'm booking for",
-            "fr": "Je réserve pour"
-          },
-          "defaultValue": "Myself",
-          "isRequired": true,
-          "choices": [
-            {
-              "value": "Myself",
-              "text": {
-                "default": "Myself",
-                "fr": "Moi-même"
-              }
-            },
-            {
-              "value": "Other",
-              "text": {
-                "default": "Colleague",
-                "fr": "Collègue"
-              }
-            }
-          ]
-        },
-        {
-          "type": "dropdown",
-          "name": "otherIndividual",
-          "renderAs": "select2",
-          "select2Config": {
-            "theme": "bootstrap4",
-            "selectOnClose": true
-          },
-          "title": {
-            "default": "Other individual",
-            "fr": "Autre individu"
-          },
-          "visibleIf": "{bookingFor} = 'Other'",
-          "isRequired": true,
-          "choicesByUrl": {
-            "url": "api/users",
-            "valueName": "id",
-            "titleName": "fullName"
-          },
-          "optionsCaption": {
-            "default": "Search",
-            "fr": "Recherche"
           }
         }
       ]
