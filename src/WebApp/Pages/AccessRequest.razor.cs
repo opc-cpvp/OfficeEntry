@@ -97,7 +97,7 @@ public partial class AccessRequest
         else if (IsDelegate)
         {
             Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());
-            NavigationManager.NavigateTo(Localizer["requests-for-others"]);
+            NavigationManager.NavigateTo(Localizer["requests-for-my-colleagues"]);
         }
     }
 }

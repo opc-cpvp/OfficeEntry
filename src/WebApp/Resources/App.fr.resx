@@ -327,8 +327,8 @@
   <data name="Manage Floor Plans" xml:space="preserve">
     <value>Gestion des plans d'étages</value>
   </data>
-  <data name="requests-for-others" xml:space="preserve">
-    <value>fr/demandes-pour-autrui</value>
+  <data name="requests-for-my-colleagues" xml:space="preserve">
+    <value>fr/demandes-pour-mes-collegues</value>
     <comment>URI</comment>
   </data>
   <data name="Workstation" xml:space="preserve">
@@ -337,8 +337,8 @@
   <data name="Edit" xml:space="preserve">
     <value>Modifier</value>
   </data>
-  <data name="Requests for Others" xml:space="preserve">
-    <value>Demandes pour autrui</value>
+  <data name="Requests for my Colleagues" xml:space="preserve">
+    <value>Demandes pour mes collègues</value>
   </data>
   <data name="Submit Request" xml:space="preserve">
     <value>Soumettre une demande</value>

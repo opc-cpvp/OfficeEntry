@@ -447,12 +447,26 @@
         },
         {
           "type": "boolean",
-          "name": "needWorkstation",
+          "name": "myselfWorkstation",
+          "valueName": "requireWorkstation",
           "title": {
             "default": "I need a workstation",
             "fr": "J'ai besoin d'un poste de travail"
           },
           "defaultValue": "true",
+          "visibleIf": "{bookingFor} = 'Myself'",
+          "isRequired": true
+        },
+        {
+          "type": "boolean",
+          "name": "otherWorkstation",
+          "valueName": "requireWorkstation",
+          "title": {
+            "default": "Colleague needs a workstation",
+            "fr": "Collègue a besoin d'un poste de travail"
+          },
+          "defaultValue": "true",
+          "visibleIf": "{bookingFor} = 'Other'",
           "isRequired": true
         },
         {
@@ -462,7 +476,7 @@
             "default": "Workstation",
             "fr": "Poste de travail"
           },
-          "visibleIf": "{startDate} notempty and {startTime} notempty and {endTime} notempty and {needWorkstation} = true",
+          "visibleIf": "{startDate} notempty and {startTime} notempty and {endTime} notempty and {requireWorkstation} = true",
           "isRequired": true,
           "choicesByUrl": {
             "url": "api/locations/{locale}/floorplans/{floorplan}/workspaces/available?date={startDate}&start={startTime}&end={endTime}{NOCACHE}",

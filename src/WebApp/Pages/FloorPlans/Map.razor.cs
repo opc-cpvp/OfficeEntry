@@ -199,7 +199,7 @@ public partial class Map : IAsyncDisposable
         if (isDelegate)
         {
             Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());
-            NavigationManager.NavigateTo(Localizer["requests-for-others"]);
+            NavigationManager.NavigateTo(Localizer["requests-for-my-colleagues"]);
             return;
         }
 

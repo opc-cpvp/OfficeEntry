@@ -294,11 +294,11 @@
   <data name="Requestor" xml:space="preserve">
     <value>Requestor</value>
   </data>
-  <data name="Requests for Others" xml:space="preserve">
-    <value>Requests for Others</value>
+  <data name="Requests for my Colleagues" xml:space="preserve">
+    <value>Requests for my Colleagues</value>
   </data>
-  <data name="requests-for-others" xml:space="preserve">
-    <value>en/requests-for-others</value>
+  <data name="requests-for-my-colleagues" xml:space="preserve">
+    <value>en/requests-for-my-colleagues</value>
     <comment>URI</comment>
   </data>
   <data name="Review" xml:space="preserve">
