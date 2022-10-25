@@ -17,11 +17,6 @@
   </EntityMap>
   <EntityMap>
     <EntitySource>gc_building</EntitySource>
-    <EntityTarget>gc_buildingrole</EntityTarget>
-    <AttributeMaps />
-  </EntityMap>
-  <EntityMap>
-    <EntitySource>gc_building</EntitySource>
     <EntityTarget>gc_floor</EntityTarget>
     <AttributeMaps />
   </EntityMap>
@@ -33,11 +28,6 @@
   <EntityMap>
     <EntitySource>gc_floor</EntitySource>
     <EntityTarget>gc_accessrequest</EntityTarget>
-    <AttributeMaps />
-  </EntityMap>
-  <EntityMap>
-    <EntitySource>gc_floor</EntitySource>
-    <EntityTarget>gc_buildingrole</EntityTarget>
     <AttributeMaps />
   </EntityMap>
   <EntityMap>
@@ -68,11 +58,6 @@
   <EntityMap>
     <EntitySource>gc_usersettings</EntitySource>
     <EntityTarget>contact</EntityTarget>
-    <AttributeMaps />
-  </EntityMap>
-  <EntityMap>
-    <EntitySource>gc_usersettings</EntitySource>
-    <EntityTarget>gc_buildingrole</EntityTarget>
     <AttributeMaps />
   </EntityMap>
   <EntityMap>

@@ -37,40 +37,63 @@
       </EntityRelationshipRole>
     </EntityRelationshipRoles>
   </EntityRelationship>
-  <EntityRelationship Name="gc_building_buildingrole_building">
-    <EntityRelationshipType>OneToMany</EntityRelationshipType>
+  <EntityRelationship Name="gc_building_contact_firstaidattendants">
+    <EntityRelationshipType>ManyToMany</EntityRelationshipType>
     <IsCustomizable>1</IsCustomizable>
     <IntroducedVersion>0.0.1</IntroducedVersion>
     <IsHierarchical>0</IsHierarchical>
-    <ReferencingEntityName>gc_buildingrole</ReferencingEntityName>
-    <ReferencedEntityName>gc_building</ReferencedEntityName>
-    <CascadeAssign>NoCascade</CascadeAssign>
-    <CascadeDelete>RemoveLink</CascadeDelete>
-    <CascadeReparent>NoCascade</CascadeReparent>
-    <CascadeShare>NoCascade</CascadeShare>
-    <CascadeUnshare>NoCascade</CascadeUnshare>
-    <CascadeRollupView>NoCascade</CascadeRollupView>
+    <FirstEntityName>gc_building</FirstEntityName>
+    <SecondEntityName>Contact</SecondEntityName>
+    <IntersectEntityName>gc_building_contact_firstaidattendants</IntersectEntityName>
     <IsValidForAdvancedFind>1</IsValidForAdvancedFind>
-    <ReferencingAttributeName>gc_building</ReferencingAttributeName>
-    <RelationshipDescription>
-      <Descriptions>
-        <Description description="" languagecode="1033" />
-      </Descriptions>
-    </RelationshipDescription>
     <EntityRelationshipRoles>
       <EntityRelationshipRole>
-        <NavPaneDisplayOption>UseCollectionName</NavPaneDisplayOption>
-        <NavPaneArea>Details</NavPaneArea>
-        <NavPaneOrder>10000</NavPaneOrder>
-        <NavigationPropertyName>gc_building</NavigationPropertyName>
+        <NavPaneDisplayOption>DoNotDisplay</NavPaneDisplayOption>
+        <NavigationPropertyName>gc_building_contact_firstaidattendants</NavigationPropertyName>
         <CustomLabels>
           <CustomLabel description="" languagecode="1033" />
         </CustomLabels>
-        <RelationshipRoleType>1</RelationshipRoleType>
+        <AssociationRoleOrdinal>1</AssociationRoleOrdinal>
       </EntityRelationshipRole>
       <EntityRelationshipRole>
-        <NavigationPropertyName>gc_building_buildingrole_building</NavigationPropertyName>
-        <RelationshipRoleType>0</RelationshipRoleType>
+        <NavPaneDisplayOption>UseLabel</NavPaneDisplayOption>
+        <NavPaneArea>Details</NavPaneArea>
+        <NavPaneOrder>10000</NavPaneOrder>
+        <NavigationPropertyName>gc_building_contact_firstaidattendants</NavigationPropertyName>
+        <CustomLabels>
+          <CustomLabel description="First Aid Attendants" languagecode="1033" />
+        </CustomLabels>
+        <AssociationRoleOrdinal>2</AssociationRoleOrdinal>
+      </EntityRelationshipRole>
+    </EntityRelationshipRoles>
+  </EntityRelationship>
+  <EntityRelationship Name="gc_building_contact_flooremergencyofficers">
+    <EntityRelationshipType>ManyToMany</EntityRelationshipType>
+    <IsCustomizable>1</IsCustomizable>
+    <IntroducedVersion>0.0.1</IntroducedVersion>
+    <IsHierarchical>0</IsHierarchical>
+    <FirstEntityName>gc_building</FirstEntityName>
+    <SecondEntityName>Contact</SecondEntityName>
+    <IntersectEntityName>gc_building_contact_flooremergencyofficers</IntersectEntityName>
+    <IsValidForAdvancedFind>1</IsValidForAdvancedFind>
+    <EntityRelationshipRoles>
+      <EntityRelationshipRole>
+        <NavPaneDisplayOption>DoNotDisplay</NavPaneDisplayOption>
+        <NavigationPropertyName>gc_building_contact_flooremergencyofficers</NavigationPropertyName>
+        <CustomLabels>
+          <CustomLabel description="" languagecode="1033" />
+        </CustomLabels>
+        <AssociationRoleOrdinal>1</AssociationRoleOrdinal>
+      </EntityRelationshipRole>
+      <EntityRelationshipRole>
+        <NavPaneDisplayOption>UseLabel</NavPaneDisplayOption>
+        <NavPaneArea>Details</NavPaneArea>
+        <NavPaneOrder>10000</NavPaneOrder>
+        <NavigationPropertyName>gc_building_contact_flooremergencyofficers</NavigationPropertyName>
+        <CustomLabels>
+          <CustomLabel description="Floor Emergency Officers" languagecode="1033" />
+        </CustomLabels>
+        <AssociationRoleOrdinal>2</AssociationRoleOrdinal>
       </EntityRelationshipRole>
     </EntityRelationshipRoles>
   </EntityRelationship>

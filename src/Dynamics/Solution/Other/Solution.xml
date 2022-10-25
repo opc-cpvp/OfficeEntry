@@ -82,7 +82,6 @@
       <RootComponent type="1" schemaName="gc_accessrequest" behavior="0" />
       <RootComponent type="1" schemaName="gc_assetrequest" behavior="0" />
       <RootComponent type="1" schemaName="gc_building" behavior="0" />
-      <RootComponent type="1" schemaName="gc_buildingrole" behavior="0" />
       <RootComponent type="1" schemaName="gc_floor" behavior="0" />
       <RootComponent type="1" schemaName="gc_floorplan" behavior="0" />
       <RootComponent type="1" schemaName="gc_office" behavior="0" />
@@ -94,7 +93,6 @@
       <RootComponent type="29" id="{f196b12f-e00a-4801-8228-643281d5a38d}" behavior="0" />
       <RootComponent type="60" id="{1754254b-dad0-ea11-a2e4-005056aa7ac3}" behavior="0" />
       <RootComponent type="60" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
-      <RootComponent type="60" id="{2067b669-4fb5-44bc-a9d4-ccf6491f0134}" behavior="0" />
       <RootComponent type="60" id="{6c42b6fd-4a00-43f5-9cf5-5601a6a2012c}" behavior="0" />
       <RootComponent type="60" id="{6f8aeb07-7dd3-420f-bfe2-cb684d08a61e}" behavior="0" />
       <RootComponent type="60" id="{7039e528-deed-43d4-a805-f3c8d71e13c6}" behavior="0" />

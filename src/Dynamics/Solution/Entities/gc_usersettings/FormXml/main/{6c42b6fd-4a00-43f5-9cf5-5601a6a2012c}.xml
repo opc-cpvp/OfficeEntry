@@ -46,36 +46,6 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{57a7a010-dae1-e385-b257-a74a6d8decc1}" showlabel="false" colspan="1" auto="false" rowspan="6">
-                        <labels>
-                          <label description="Building Roles (User Settings Building Role)" languagecode="1033" />
-                        </labels>
-                        <control id="subgrid_buildingroles" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
-                          <parameters>
-                            <ViewId>{6265A648-BBC7-4BD6-A7A1-E0978F8DF27C}</ViewId>
-                            <IsUserView>false</IsUserView>
-                            <RelationshipName>gc_usersettings_buildingrole</RelationshipName>
-                            <TargetEntityType>gc_buildingrole</TargetEntityType>
-                            <AutoExpand>Fixed</AutoExpand>
-                            <EnableQuickFind>false</EnableQuickFind>
-                            <EnableViewPicker>false</EnableViewPicker>
-                            <ViewIds>{6265A648-BBC7-4BD6-A7A1-E0978F8DF27C}</ViewIds>
-                            <EnableJumpBar>false</EnableJumpBar>
-                            <ChartGridMode>Grid</ChartGridMode>
-                            <VisualizationId />
-                            <IsUserChart>false</IsUserChart>
-                            <EnableChartPicker>false</EnableChartPicker>
-                            <RecordsPerPage>4</RecordsPerPage>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row>
                       <cell id="{d050b01a-7d36-4b91-aa62-155dc2032d69}">
                         <labels>
                           <label description="Owner" languagecode="1033" />
