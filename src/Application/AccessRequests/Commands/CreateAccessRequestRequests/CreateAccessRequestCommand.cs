@@ -40,9 +40,9 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         public async Task<Unit> Handle(CreateAccessRequestCommand request, CancellationToken cancellationToken)
         {
             var username = _currentUserService.UserId;
-            var (_, contact) = await _userService.GetContactByUsername(username);
+            var (_, currentContact) = await _userService.GetContactByUsername(username);
 
-            if (contact.UserSettings?.HealthSafety is null || contact.UserSettings?.PrivacyStatement is null)
+            if (currentContact.UserSettings?.HealthSafety is null || currentContact.UserSettings?.PrivacyStatement is null)
             {
                 throw new Exception("Can't create an access request without accepting Privacy Act statement and Health and Safety measures");
             }
@@ -52,11 +52,13 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
 
             if (request.AccessRequest.Employee is null)
             {
-                request.AccessRequest.Employee = contact;
+                request.AccessRequest.Employee = currentContact;
             }
             else
             {
-                request.AccessRequest.Delegate = contact;
+                var (_, employee) = await _userService.GetContact(request.AccessRequest.Employee.Id);
+                request.AccessRequest.Employee = employee;
+                request.AccessRequest.Delegate = currentContact;
             }
 
             var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlan.Id, DateOnly.FromDateTime(date));

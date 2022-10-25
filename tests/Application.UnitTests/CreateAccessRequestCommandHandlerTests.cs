@@ -12,6 +12,12 @@ namespace Application.UnitTests
 {
     public class CreateAccessRequestCommandHandlerTests
     {
+        private static readonly Contact CurrentContact = new()
+        {
+            Id = Guid.NewGuid(),
+            UserSettings = new UserSettings { HealthSafety = DateTime.Now, PrivacyStatement = DateTime.Now }
+        };
+
         private static readonly Guid FirstAidAttendantId = Guid.NewGuid();
         private static readonly Contact FirstAidAttendantContact = new()
         {
@@ -38,9 +44,7 @@ namespace Application.UnitTests
         {
             _locationServiceMock.Setup(x => x.GetFirstAidAttendantsAsync(It.IsAny<Guid>())).ReturnsAsync(new[] { FirstAidAttendantContact });
             _locationServiceMock.Setup(x => x.GetFloorEmergencyOfficersAsync(It.IsAny<Guid>())).ReturnsAsync(new[] { FloorEmergencyOfficerContact });
-
             _notificationServiceMock.Setup(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>())).ReturnsAsync(Result.Success);
-
             _mediatorMock.Setup(x => x.Send(It.IsAny<UpdateAccessRequestCommand>(), It.IsAny<CancellationToken>())).ReturnsAsync(Unit.Value);
 
             _sut = new CreateAccessRequestCommandHandler(_accessRequestServiceMock.Object,
@@ -157,16 +161,9 @@ namespace Application.UnitTests
         public async Task Should_automatically_approve_access_request_when_capacity_is_available()
         {
             // Arrange
-            var contact = new Contact
-            {
-                Id = Guid.NewGuid(),
-                UserSettings = new UserSettings { HealthSafety = DateTime.Now, PrivacyStatement = DateTime.Now }
-            };
-
             var accessRequest = new AccessRequest
             {
                 Id = Guid.NewGuid(),
-                Employee = contact,
                 Building = new Building { Id = Guid.NewGuid() },
                 Floor = new Floor { Id = Guid.NewGuid() },
                 CreatedOn = DateTime.Now,
@@ -185,7 +182,7 @@ namespace Application.UnitTests
                 TotalCapacity = 0
             };
 
-            _userServiceMock.Setup(x => x.GetContactByUsername(It.IsAny<string>())).ReturnsAsync((Result.Success(), contact));
+            _userServiceMock.Setup(x => x.GetContactByUsername(It.IsAny<string>())).ReturnsAsync((Result.Success(), CurrentContact));
             _accessRequestServiceMock.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloorPlan(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(ImmutableArray<AccessRequest>.Empty);
             _accessRequestServiceMock.Setup(x => x.CreateAccessRequest(It.IsAny<AccessRequest>())).ReturnsAsync((Result.Success(), accessRequest));
             _locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
@@ -202,16 +199,9 @@ namespace Application.UnitTests
         public async Task Should_automatically_approve_access_request_when_capacity_isnt_available_and_a_previously_approved_access_request_exists()
         {
             // Arrange
-            var contact = new Contact
-            {
-                Id = Guid.NewGuid(),
-                UserSettings = new UserSettings { HealthSafety = DateTime.Now, PrivacyStatement = DateTime.Now }
-            };
-
             var accessRequest = new AccessRequest
             {
                 Id = Guid.NewGuid(),
-                Employee = contact,
                 Building = new Building { Id = Guid.NewGuid() },
                 Floor = new Floor { Id = Guid.NewGuid() },
                 CreatedOn = DateTime.Now,
@@ -225,7 +215,7 @@ namespace Application.UnitTests
             var approvedAccessRequest = new AccessRequest
             {
                 Id = Guid.NewGuid(),
-                Employee = contact,
+                Employee = CurrentContact,
                 Building = new Building { Id = Guid.NewGuid() },
                 Floor = new Floor { Id = Guid.NewGuid() },
                 CreatedOn = DateTime.Now,
@@ -244,7 +234,7 @@ namespace Application.UnitTests
                 TotalCapacity = 5
             };
 
-            _userServiceMock.Setup(x => x.GetContactByUsername(It.IsAny<string>())).ReturnsAsync((Result.Success(), contact));
+            _userServiceMock.Setup(x => x.GetContactByUsername(It.IsAny<string>())).ReturnsAsync((Result.Success(), CurrentContact));
             _accessRequestServiceMock.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloorPlan(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(ImmutableArray.Create(approvedAccessRequest));
             _accessRequestServiceMock.Setup(x => x.CreateAccessRequest(It.IsAny<AccessRequest>())).ReturnsAsync((Result.Success(), accessRequest));
             _locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
@@ -264,7 +254,6 @@ namespace Application.UnitTests
             var accessRequest = new AccessRequest
             {
                 Id = Guid.NewGuid(),
-                Employee = FirstAidAttendantContact,
                 Building = new Building { Id = Guid.NewGuid() },
                 Floor = new Floor { Id = Guid.NewGuid() },
                 CreatedOn = DateTime.Now,
@@ -303,7 +292,6 @@ namespace Application.UnitTests
             var accessRequest = new AccessRequest
             {
                 Id = Guid.NewGuid(),
-                Employee = FloorEmergencyOfficerContact,
                 Building = new Building { Id = Guid.NewGuid() },
                 Floor = new Floor { Id = Guid.NewGuid() },
                 CreatedOn = DateTime.Now,
@@ -342,7 +330,6 @@ namespace Application.UnitTests
             var accessRequest = new AccessRequest
             {
                 Id = Guid.NewGuid(),
-                Employee = FirstAidAttendantContact,
                 Building = new Building { Id = Guid.NewGuid() },
                 Floor = new Floor { Id = Guid.NewGuid() },
                 CreatedOn = DateTime.Now,
@@ -402,16 +389,9 @@ namespace Application.UnitTests
         public async Task Should_notify_first_aid_attendants_when_capacity_has_been_reached()
         {
             // Arrange
-            var contact = new Contact
-            {
-                Id = Guid.NewGuid(),
-                UserSettings = new UserSettings { HealthSafety = DateTime.Now, PrivacyStatement = DateTime.Now }
-            };
-
             var accessRequest = new AccessRequest
             {
                 Id = Guid.NewGuid(),
-                Employee = contact,
                 Building = new Building { Id = Guid.NewGuid() },
                 Floor = new Floor { Id = Guid.NewGuid() },
                 CreatedOn = DateTime.Now,
@@ -430,7 +410,7 @@ namespace Application.UnitTests
                 TotalCapacity = 5
             };
 
-            _userServiceMock.Setup(x => x.GetContactByUsername(It.IsAny<string>())).ReturnsAsync((Result.Success(), contact));
+            _userServiceMock.Setup(x => x.GetContactByUsername(It.IsAny<string>())).ReturnsAsync((Result.Success(), CurrentContact));
             _accessRequestServiceMock.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloorPlan(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(ImmutableArray<AccessRequest>.Empty);
             _accessRequestServiceMock.Setup(x => x.CreateAccessRequest(It.IsAny<AccessRequest>())).ReturnsAsync((Result.Success(), accessRequest));
             _locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
@@ -448,16 +428,9 @@ namespace Application.UnitTests
         public async Task Should_notify_floor_emergency_officers_when_capacity_has_been_reached()
         {
             // Arrange
-            var contact = new Contact
-            {
-                Id = Guid.NewGuid(),
-                UserSettings = new UserSettings { HealthSafety = DateTime.Now, PrivacyStatement = DateTime.Now }
-            };
-
             var accessRequest = new AccessRequest
             {
                 Id = Guid.NewGuid(),
-                Employee = contact,
                 Building = new Building { Id = Guid.NewGuid() },
                 Floor = new Floor { Id = Guid.NewGuid() },
                 CreatedOn = DateTime.Now,
@@ -476,7 +449,7 @@ namespace Application.UnitTests
                 TotalCapacity = 10
             };
 
-            _userServiceMock.Setup(x => x.GetContactByUsername(It.IsAny<string>())).ReturnsAsync((Result.Success(), contact));
+            _userServiceMock.Setup(x => x.GetContactByUsername(It.IsAny<string>())).ReturnsAsync((Result.Success(), CurrentContact));
             _accessRequestServiceMock.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloorPlan(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(ImmutableArray<AccessRequest>.Empty);
             _accessRequestServiceMock.Setup(x => x.CreateAccessRequest(It.IsAny<AccessRequest>())).ReturnsAsync((Result.Success(), accessRequest));
             _locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
@@ -494,16 +467,9 @@ namespace Application.UnitTests
         public async Task Should_notify_first_aid_attendants_and_floor_emergency_officers_when_capacity_has_been_reached()
         {
             // Arrange
-            var contact = new Contact
-            {
-                Id = Guid.NewGuid(),
-                UserSettings = new UserSettings { HealthSafety = DateTime.Now, PrivacyStatement = DateTime.Now }
-            };
-
             var accessRequest = new AccessRequest
             {
                 Id = Guid.NewGuid(),
-                Employee = contact,
                 Building = new Building { Id = Guid.NewGuid() },
                 Floor = new Floor { Id = Guid.NewGuid() },
                 CreatedOn = DateTime.Now,
@@ -522,7 +488,7 @@ namespace Application.UnitTests
                 TotalCapacity = 50
             };
 
-            _userServiceMock.Setup(x => x.GetContactByUsername(It.IsAny<string>())).ReturnsAsync((Result.Success(), contact));
+            _userServiceMock.Setup(x => x.GetContactByUsername(It.IsAny<string>())).ReturnsAsync((Result.Success(), CurrentContact));
             _accessRequestServiceMock.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloorPlan(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(ImmutableArray<AccessRequest>.Empty);
             _accessRequestServiceMock.Setup(x => x.CreateAccessRequest(It.IsAny<AccessRequest>())).ReturnsAsync((Result.Success(), accessRequest));
             _locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
