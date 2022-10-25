@@ -9,141 +9,52 @@ namespace Application.UnitTests
 {
     public class UpdateAccessRequestCommandTests
     {
-        private readonly IAccessRequestService _accessRequestService;
-        private readonly IBuildingRoleService _buildingRoleService;
-        private readonly ILocationService _locationService;
+        private readonly UpdateAccessRequestCommandHandler _sut;
+        private readonly Mock<INotificationService> _notificationServiceMock = new Mock<INotificationService>();
+        private readonly Mock<IAccessRequestService> _accessRequestServiceMock = new Mock<IAccessRequestService>();
+        private readonly Mock<ILocationService> _locationServiceMock = new Mock<ILocationService>();
 
-        private AccessRequest _accessRequest;
+        private static readonly Guid EmergencyContactId = Guid.NewGuid();
+        private static readonly Contact EmergencyContact = new()
+        {
+            Id = EmergencyContactId
+        };
 
         public UpdateAccessRequestCommandTests()
         {
-            _accessRequest = new AccessRequest
-            {
-                Id = Guid.NewGuid(),
-                Employee = new Contact { Id = Guid.NewGuid() },
-                CreatedOn = DateTime.Now,
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now.AddHours(1),
-                FloorPlan = new FloorPlan
-                {
-                    Id = Guid.NewGuid(),
-                    Floor = new Floor
-                    {
-                        Id = Guid.NewGuid()
-                    }
-                },
-                Workspace = new Workspace { Id = Guid.NewGuid() },
-                Status = new OptionSet { Key = (int)AccessRequest.ApprovalStatus.Cancelled }
-            };
+            _notificationServiceMock.Setup(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>())).ReturnsAsync(Result.Success);
+            _notificationServiceMock.Setup(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>())).ReturnsAsync(Result.Success);
+            _notificationServiceMock.Setup(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>())).ReturnsAsync(Result.Success);
 
-            var accessRequestServiceMock = new Mock<IAccessRequestService>();
-            accessRequestServiceMock.Setup(x => x.UpdateAccessRequest(It.IsAny<AccessRequest>())).ReturnsAsync(Result.Success);
+            _accessRequestServiceMock.Setup(x => x.UpdateAccessRequest(It.IsAny<AccessRequest>())).ReturnsAsync(Result.Success);
 
-            var floorPlanCapacity = new FloorPlanCapacity
-            {
-                CurrentCapacity = 50,
-                MaxFirstAidAttendantCapacity = 50,
-                MaxFloorEmergencyOfficerCapacity = 50,
-                TotalCapacity = 50
-            };
+            _locationServiceMock.Setup(x => x.GetFirstAidAttendantsAsync(It.IsAny<Guid>())).ReturnsAsync(new [] { EmergencyContact });
+            _locationServiceMock.Setup(x => x.GetFloorEmergencyOfficersAsync(It.IsAny<Guid>())).ReturnsAsync(new[] { EmergencyContact });
 
-            var locationServiceMock = new Mock<ILocationService>();
-            locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
-
-            var buildingRoles = new List<BuildingRole>
-            {
-                new()
-                {
-                    Floor = new Floor { Id = _accessRequest.FloorPlan.Floor.Id },
-                    Role = new OptionSet { Key = (int)BuildingRole.BuildingRoles.FirstAidAttendant }
-                },
-                new()
-                {
-                    Floor = new Floor { Id = _accessRequest.FloorPlan.Floor.Id },
-                    Role = new OptionSet { Key = (int)BuildingRole.BuildingRoles.FloorEmergencyOfficer }
-                }
-            };
-
-            var buildingRoleServiceMock = new Mock<IBuildingRoleService>();
-            buildingRoleServiceMock.Setup(x => x.GetBuildingRolesFor(It.IsAny<Guid>())).ReturnsAsync((Result.Success(), buildingRoles));
-
-            _accessRequestService = accessRequestServiceMock.Object;
-            _buildingRoleService = buildingRoleServiceMock.Object;
-            _locationService = locationServiceMock.Object;
+            _sut = new UpdateAccessRequestCommandHandler(_accessRequestServiceMock.Object, _locationServiceMock.Object, _notificationServiceMock.Object);
         }
 
         [Fact]
         public async Task Should_notify_employee_when_the_access_request_status_has_been_approved()
         {
             // Arrange
-            _accessRequest.Status = new OptionSet { Key = (int)AccessRequest.ApprovalStatus.Approved };
+            var accessRequest = new AccessRequest
+            {
+                Id = Guid.NewGuid(),
+                Employee = new Contact { Id = Guid.NewGuid() },
+                Building = new Building { Id = Guid.NewGuid() },
+                Floor = new Floor { Id = Guid.NewGuid() },
+                CreatedOn = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now.AddHours(1),
+                FloorPlan = new FloorPlan
+                {
+                    Id = Guid.NewGuid()
+                },
+                Workspace = new Workspace { Id = Guid.NewGuid() },
+                Status = new OptionSet { Key = (int)AccessRequest.ApprovalStatus.Approved }
+            };
 
-            var notificationServiceMock = new Mock<INotificationService>();
-            notificationServiceMock.Setup(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>())).ReturnsAsync(Result.Success);
-            notificationServiceMock.Setup(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>())).ReturnsAsync(Result.Success);
-            notificationServiceMock.Setup(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>())).ReturnsAsync(Result.Success);
-
-            var request = new UpdateAccessRequestCommand { AccessRequest = _accessRequest };
-            var handler = new UpdateAccessRequestCommandHandler(_accessRequestService, _buildingRoleService, _locationService, notificationServiceMock.Object);
-
-            // Act
-            var result = await handler.Handle(request, CancellationToken.None);
-
-            // Assert
-            notificationServiceMock.Verify(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>()), Times.Once);
-            notificationServiceMock.Verify(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>()), Times.Never);
-            notificationServiceMock.Verify(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>()), Times.Never);
-        }
-
-        [Fact]
-        public async Task Should_notify_first_aid_attendants_and_floor_emergency_officers_when_a_first_aid_attendant_cancels_and_capacity_has_been_exceeded()
-        {
-            // Arrange
-            var notificationServiceMock = new Mock<INotificationService>();
-            notificationServiceMock.Setup(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>())).ReturnsAsync(Result.Success);
-            notificationServiceMock.Setup(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>())).ReturnsAsync(Result.Success);
-            notificationServiceMock.Setup(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>())).ReturnsAsync(Result.Success);
-
-            var request = new UpdateAccessRequestCommand { AccessRequest = _accessRequest };
-            var handler = new UpdateAccessRequestCommandHandler(_accessRequestService, _buildingRoleService, _locationService, notificationServiceMock.Object);
-
-            // Act
-            var result = await handler.Handle(request, CancellationToken.None);
-
-            // Assert
-            notificationServiceMock.Verify(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>()), Times.Once);
-            notificationServiceMock.Verify(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>()), Times.Once);
-            notificationServiceMock.Verify(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>()), Times.Once);
-        }
-
-        [Fact]
-        public async Task Shouldnt_notify_first_aid_attendants_or_floor_emergency_officers_when_the_access_request_has_been_cancelled_for_a_regular_user()
-        {
-            // Arrange
-            var notificationServiceMock = new Mock<INotificationService>();
-            notificationServiceMock.Setup(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>())).ReturnsAsync(Result.Success);
-            notificationServiceMock.Setup(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>())).ReturnsAsync(Result.Success);
-            notificationServiceMock.Setup(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>())).ReturnsAsync(Result.Success);
-
-            var buildingRoleServiceMock = new Mock<IBuildingRoleService>();
-            buildingRoleServiceMock.Setup(x => x.GetBuildingRolesFor(It.IsAny<Guid>())).ReturnsAsync((Result.Success(), Enumerable.Empty<BuildingRole>()));
-
-            var request = new UpdateAccessRequestCommand { AccessRequest = _accessRequest };
-            var handler = new UpdateAccessRequestCommandHandler(_accessRequestService, buildingRoleServiceMock.Object, _locationService, notificationServiceMock.Object);
-
-            // Act
-            var result = await handler.Handle(request, CancellationToken.None);
-
-            // Assert
-            notificationServiceMock.Verify(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>()), Times.Once);
-            notificationServiceMock.Verify(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>()), Times.Never);
-            notificationServiceMock.Verify(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>()), Times.Never);
-        }
-
-        [Fact]
-        public async Task Shouldnt_notify_first_aid_attendants_or_floor_emergency_officers_when_the_access_request_has_been_cancelled_and_theres_remaining_capacity()
-        {
-            // Arrange
             var floorPlanCapacity = new FloorPlanCapacity
             {
                 CurrentCapacity = 0,
@@ -152,25 +63,126 @@ namespace Application.UnitTests
                 TotalCapacity = 0
             };
 
-            var notificationServiceMock = new Mock<INotificationService>();
-            notificationServiceMock.Setup(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>())).ReturnsAsync(Result.Success);
-            notificationServiceMock.Setup(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>())).ReturnsAsync(Result.Success);
-            notificationServiceMock.Setup(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>())).ReturnsAsync(Result.Success);
-
-            var locationServiceMock = new Mock<ILocationService>();
-            locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
-
-
-            var request = new UpdateAccessRequestCommand { AccessRequest = _accessRequest };
-            var handler = new UpdateAccessRequestCommandHandler(_accessRequestService, _buildingRoleService, locationServiceMock.Object, notificationServiceMock.Object);
+            _locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
 
             // Act
-            var result = await handler.Handle(request, CancellationToken.None);
+            await _sut.Handle(new UpdateAccessRequestCommand { AccessRequest = accessRequest }, CancellationToken.None);
 
             // Assert
-            notificationServiceMock.Verify(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>()), Times.Once);
-            notificationServiceMock.Verify(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>()), Times.Never);
-            notificationServiceMock.Verify(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>()), Times.Never);
+            _notificationServiceMock.Verify(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>()), Times.Once);
+            _notificationServiceMock.Verify(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>()), Times.Never);
+            _notificationServiceMock.Verify(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>()), Times.Never);
+        }
+
+        [Fact]
+        public async Task Should_notify_first_aid_attendants_when_a_first_aid_attendant_cancels_and_capacity_has_been_exceeded()
+        {
+            // Arrange
+            var accessRequest = new AccessRequest
+            {
+                Id = Guid.NewGuid(),
+                Employee = new Contact { Id = EmergencyContactId },
+                Building = new Building { Id = Guid.NewGuid() },
+                Floor = new Floor { Id = Guid.NewGuid() },
+                CreatedOn = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now.AddHours(1),
+                FloorPlan = new FloorPlan { Id = Guid.NewGuid() },
+                Workspace = new Workspace { Id = Guid.NewGuid() },
+                Status = new OptionSet { Key = (int)AccessRequest.ApprovalStatus.Cancelled }
+            };
+
+            var floorPlanCapacity = new FloorPlanCapacity
+            {
+                CurrentCapacity = 6,
+                MaxFirstAidAttendantCapacity = 5,
+                MaxFloorEmergencyOfficerCapacity = 10,
+                TotalCapacity = 6
+            };
+
+            _locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
+
+            // Act
+            await _sut.Handle(new UpdateAccessRequestCommand { AccessRequest = accessRequest }, CancellationToken.None);
+
+            // Assert
+            _notificationServiceMock.Verify(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>()), Times.Once);
+            _notificationServiceMock.Verify(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>()), Times.Once);
+            _notificationServiceMock.Verify(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>()), Times.Never);
+        }
+
+        [Fact]
+        public async Task Should_notify_floor_emergency_officers_when_a_floor_emergency_officers_cancels_and_capacity_has_been_exceeded()
+        {
+            // Arrange
+            var accessRequest = new AccessRequest
+            {
+                Id = Guid.NewGuid(),
+                Employee = new Contact { Id = EmergencyContactId },
+                Building = new Building { Id = Guid.NewGuid() },
+                Floor = new Floor { Id = Guid.NewGuid() },
+                CreatedOn = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now.AddHours(1),
+                FloorPlan = new FloorPlan { Id = Guid.NewGuid() },
+                Workspace = new Workspace { Id = Guid.NewGuid() },
+                Status = new OptionSet { Key = (int)AccessRequest.ApprovalStatus.Cancelled }
+            };
+
+            var floorPlanCapacity = new FloorPlanCapacity
+            {
+                CurrentCapacity = 11,
+                MaxFirstAidAttendantCapacity = 50,
+                MaxFloorEmergencyOfficerCapacity = 10,
+                TotalCapacity = 11
+            };
+
+            _locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
+
+            // Act
+            await _sut.Handle(new UpdateAccessRequestCommand { AccessRequest = accessRequest }, CancellationToken.None);
+
+            // Assert
+            _notificationServiceMock.Verify(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>()), Times.Once);
+            _notificationServiceMock.Verify(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>()), Times.Never);
+            _notificationServiceMock.Verify(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task Shouldnt_notify_emergency_contacts_when_an_access_request_has_been_cancelled_for_a_regular_user()
+        {
+            // Arrange
+            var accessRequest = new AccessRequest
+            {
+                Id = Guid.NewGuid(),
+                Employee = new Contact { Id = Guid.NewGuid() },
+                Building = new Building { Id = Guid.NewGuid() },
+                Floor = new Floor { Id = Guid.NewGuid() },
+                CreatedOn = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now.AddHours(1),
+                FloorPlan = new FloorPlan { Id = Guid.NewGuid() },
+                Workspace = new Workspace { Id = Guid.NewGuid() },
+                Status = new OptionSet { Key = (int)AccessRequest.ApprovalStatus.Cancelled }
+            };
+
+            var floorPlanCapacity = new FloorPlanCapacity
+            {
+                CurrentCapacity = 0,
+                MaxFirstAidAttendantCapacity = 5,
+                MaxFloorEmergencyOfficerCapacity = 10,
+                TotalCapacity = 0
+            };
+
+            _locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
+
+            // Act
+            await _sut.Handle(new UpdateAccessRequestCommand { AccessRequest = accessRequest }, CancellationToken.None);
+
+            // Assert
+            _notificationServiceMock.Verify(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>()), Times.Once);
+            _notificationServiceMock.Verify(x => x.NotifyFirstAidAttendants(It.IsAny<CapacityNotification>()), Times.Never);
+            _notificationServiceMock.Verify(x => x.NotifyFloorEmergencyOfficers(It.IsAny<CapacityNotification>()), Times.Never);
         }
     }
 }

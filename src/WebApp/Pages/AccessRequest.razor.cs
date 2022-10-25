@@ -68,25 +68,23 @@ public partial class AccessRequest
         {
             Id = accessRequest.Id,
             Employee = new Contact { Id = accessRequest.EmployeeId },
-            FloorPlan = new FloorPlan
+            Building = new Building
             {
-                Id = accessRequest.FloorPlanId,
-                Building = new Building
-                {
-                    Id = accessRequest.BuildingId,
-                    EnglishName = accessRequest.BuildingEnglishName,
-                    FrenchName = accessRequest.BuildingFrenchName
-                },
-                Floor = new Floor
-                {
-                    Id = accessRequest.FloorId,
-                    EnglishName = accessRequest.FloorEnglishName,
-                    FrenchName = accessRequest.FloorFrenchName
-                }
+                Id = accessRequest.BuildingId,
+                EnglishName = accessRequest.BuildingEnglishName,
+                FrenchName = accessRequest.BuildingFrenchName
             },
+            Floor = new Floor
+            {
+                Id = accessRequest.FloorId,
+                EnglishName = accessRequest.FloorEnglishName,
+                FrenchName = accessRequest.FloorFrenchName
+            },
+            FloorPlan = new FloorPlan { Id = accessRequest.FloorPlanId },
             StartTime = accessRequest.StartTime,
             Status = new OptionSet { Key = (int)accessRequest.Status }
         };
+
         await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
 
         if (IsEmployee)

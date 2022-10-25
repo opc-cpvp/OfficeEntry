@@ -12,18 +12,15 @@ public record UpdateAccessRequestCommand : IRequest
 public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessRequestCommand>
 {
     private readonly IAccessRequestService _accessRequestService;
-    private readonly IBuildingRoleService _buildingRoleService;
     private readonly ILocationService _locationService;
     private readonly INotificationService _notificationService;
 
     public UpdateAccessRequestCommandHandler(
         IAccessRequestService accessRequestService,
-        IBuildingRoleService buildingRoleService,
         ILocationService locationService,
         INotificationService notificationService)
     {
         _accessRequestService = accessRequestService;
-        _buildingRoleService = buildingRoleService;
         _locationService = locationService;
         _notificationService = notificationService;
     }
@@ -49,13 +46,12 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
 
         var date = request.AccessRequest.StartTime;
         var floorPlan = request.AccessRequest.FloorPlan;
-        var floorId = floorPlan.Floor.Id;
 
-        var (_, buildingRoles) = await _buildingRoleService.GetBuildingRolesFor(request.AccessRequest.Employee.Id);
-        buildingRoles = buildingRoles.Where(r => r.Floor?.Id == floorId);
+        var firstAidAttendants = await _locationService.GetFirstAidAttendantsAsync(request.AccessRequest.Building.Id);
+        var floorEmergencyOfficers = await _locationService.GetFloorEmergencyOfficersAsync(request.AccessRequest.Building.Id);
 
-        var isEmployeeFirstAidAttendant = buildingRoles.Any(b => b.Role.Key == (int)BuildingRole.BuildingRoles.FirstAidAttendant);
-        var isEmployeeFloorEmergencyOfficer = buildingRoles.Any(b => b.Role.Key == (int)BuildingRole.BuildingRoles.FloorEmergencyOfficer);
+        var isEmployeeFirstAidAttendant = firstAidAttendants.Any(x => x.Id == request.AccessRequest.Employee.Id);
+        var isEmployeeFloorEmergencyOfficer = floorEmergencyOfficers.Any(x => x.Id == request.AccessRequest.Employee.Id);
 
         // Check if the employee is either a First Aid Attendant or Floor Emergency Officer
         if (!isEmployeeFirstAidAttendant || !isEmployeeFloorEmergencyOfficer)

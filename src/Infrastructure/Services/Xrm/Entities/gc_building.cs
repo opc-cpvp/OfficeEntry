@@ -6,7 +6,6 @@ internal class gc_building
 {
     public Guid gc_buildingid { get; set; }
     public string gc_address { get; set; }
-    public IList<gc_floor> gc_building_floor { get; set; }
     public string gc_city { get; set; }
     public string gc_englishdescription { get; set; }
     public string gc_englishname { get; set; }
@@ -14,6 +13,8 @@ internal class gc_building
     public string gc_frenchname { get; set; }
     public string gc_timezone { get; set; }
     public double gc_timezoneoffset { get; set; }
+    public IEnumerable<contact> gc_building_contact_firstaidattendants { get; set; }
+    public IEnumerable<contact> gc_building_contact_flooremergencyofficers { get; set; }
     public int statecode { get; set; }
 
     public static Building Convert(gc_building building)

@@ -18,7 +18,6 @@ public static class DependencyInjection
         services.AddTransient<IDateTime, DateTimeService>();
 
         services.AddScoped<IAccessRequestService, AccessRequestService>();
-        services.AddScoped<IBuildingRoleService, BuildingRoleService>();
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<ILocationService, LocationService>();
         services.AddScoped<INotificationService, NotificationService>();

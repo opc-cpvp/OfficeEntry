@@ -3,6 +3,7 @@ using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using System.Security.Principal;
+using MediatR;
 
 namespace OfficeEntry.Infrastructure.Services
 {
@@ -14,14 +15,14 @@ namespace OfficeEntry.Infrastructure.Services
         private const string FloorEmergencyOfficerFrenchName = "[FR] Floor Emergency Officer";
 
         private readonly IUserService _userService;
-        private readonly IBuildingRoleService _buildingRoleService;
+        private readonly ILocationService _locationService;
         private readonly ITemplateService _templateService;
         private readonly IEmailService _emailService;
 
-        public NotificationService(IUserService userService, IBuildingRoleService buildingRoleService, ITemplateService templateService, IEmailService emailService)
+        public NotificationService(IUserService userService, ILocationService locationService, ITemplateService templateService, IEmailService emailService)
         {
             _userService = userService;
-            _buildingRoleService = buildingRoleService;
+            _locationService = locationService;
             _templateService = templateService;
             _emailService = emailService;
         }
@@ -33,7 +34,7 @@ namespace OfficeEntry.Infrastructure.Services
             capacityNotification.RoleFrenchName = FirstAidAttendantFrenchName;
 
             var (_, sender) = await _userService.GetSystemUserByUsername(WindowsIdentity.GetCurrent().Name);
-            var (_, firstAidAttendants) = await _buildingRoleService.GetContactsByBuildingRole(capacityNotification.Floor.Id, BuildingRole.BuildingRoles.FirstAidAttendant);
+            var firstAidAttendants = await _locationService.GetFirstAidAttendantsAsync(capacityNotification.Building.Id);
 
             if (!firstAidAttendants.Any())
                 throw new Exception("Failed to find any First Aid Attendants");
@@ -57,7 +58,7 @@ namespace OfficeEntry.Infrastructure.Services
             capacityNotification.RoleFrenchName = FloorEmergencyOfficerFrenchName;
 
             var (_, sender) = await _userService.GetSystemUserByUsername(WindowsIdentity.GetCurrent().Name);
-            var (_, floorEmergencyOfficers) = await _buildingRoleService.GetContactsByBuildingRole(capacityNotification.Floor.Id, BuildingRole.BuildingRoles.FloorEmergencyOfficer);
+            var floorEmergencyOfficers = await _locationService.GetFloorEmergencyOfficersAsync(capacityNotification.Building.Id);
 
             if (!floorEmergencyOfficers.Any())
                 throw new Exception("Failed to find any Floor Emergency Officers");

@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.UnitTests", "tests\D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "src\WebApp\WebApp.csproj", "{8AAEAF2A-D604-4D1C-80FA-976579962BF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.UnitTests", "tests\WebApp.UnitTests\WebApp.UnitTests.csproj", "{0A2C4E26-DA24-4500-B0CE-2680417A16E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.UnitTests", "tests\WebApp.UnitTests\WebApp.UnitTests.csproj", "{0A2C4E26-DA24-4500-B0CE-2680417A16E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

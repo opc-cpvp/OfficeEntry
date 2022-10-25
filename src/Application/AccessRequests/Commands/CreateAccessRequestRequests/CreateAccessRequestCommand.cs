@@ -15,7 +15,6 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         private readonly IAccessRequestService _accessRequestService;
         private readonly ICurrentUserService _currentUserService;
         private readonly IUserService _userService;
-        private readonly IBuildingRoleService _buildingRoleService;
         private readonly ILocationService _locationService;
         private readonly INotificationService _notificationService;
 
@@ -25,7 +24,6 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             IAccessRequestService accessRequestService,
             ICurrentUserService currentUserService,
             IUserService userService,
-            IBuildingRoleService buildingRoleService,
             ILocationService locationService,
             INotificationService notificationService,
             IMediator mediator
@@ -33,7 +31,6 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             _accessRequestService = accessRequestService;
             _currentUserService = currentUserService;
             _userService = userService;
-            _buildingRoleService = buildingRoleService;
             _locationService = locationService;
             _notificationService = notificationService;
 
@@ -51,7 +48,6 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             }
 
             var floorPlan = request.AccessRequest.FloorPlan;
-            var floorId = floorPlan.Floor.Id;
             var date = request.AccessRequest.StartTime;
 
             if (request.AccessRequest.Employee is null)
@@ -64,12 +60,13 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             }
 
             var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlan.Id, DateOnly.FromDateTime(date));
-            var (_, buildingRoles) = await _buildingRoleService.GetBuildingRolesFor(request.AccessRequest.Employee.Id);
-            buildingRoles = buildingRoles.Where(r => r.Floor?.Id == floorId);
             var floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
 
-            var isEmployeeFirstAidAttendant = buildingRoles.Any(b => b.Role.Key == (int)BuildingRole.BuildingRoles.FirstAidAttendant);
-            var isEmployeeFloorEmergencyOfficer = buildingRoles.Any(b => b.Role.Key == (int)BuildingRole.BuildingRoles.FloorEmergencyOfficer);
+            var firstAidAttendants = await _locationService.GetFirstAidAttendantsAsync(request.AccessRequest.Building.Id);
+            var floorEmergencyOfficers = await _locationService.GetFloorEmergencyOfficersAsync(request.AccessRequest.Building.Id);
+
+            var isEmployeeFirstAidAttendant = firstAidAttendants.Any(x => x.Id == request.AccessRequest.Employee.Id);
+            var isEmployeeFloorEmergencyOfficer = floorEmergencyOfficers.Any(x => x.Id == request.AccessRequest.Employee.Id);
             var employeeHasApprovedAccessRequest = accessRequests
                 .Where(a => a.Employee.Id == request.AccessRequest.Employee.Id)
                 .Any(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Approved);

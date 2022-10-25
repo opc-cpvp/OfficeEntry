@@ -16,14 +16,11 @@ public class LocationService : ILocationService
 
     private readonly IODataClient _client;
     private readonly IAccessRequestService _accessRequestService;
-    private readonly IBuildingRoleService _buildingRoleService;
 
-    public LocationService(IODataClient client, IAccessRequestService accessRequestService,
-        IBuildingRoleService buildingRoleService)
+    public LocationService(IODataClient client, IAccessRequestService accessRequestService)
     {
         _client = client;
         _accessRequestService = accessRequestService;
-        _buildingRoleService = buildingRoleService;
     }
 
     public async Task<IEnumerable<Building>> GetBuildingsAsync(string locale)
@@ -52,29 +49,21 @@ public class LocationService : ILocationService
         var floorPlan = await GetFloorPlanAsync(floorPlanId);
 
         var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlanId, date);
-        var approvedAccessRequests = accessRequests
+        var approvedContacts = accessRequests
             .Where(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Approved)
-            .GroupBy(a => a.Employee.Id)
-            .ToDictionary(g => g.Key, g => g.ToList());
+            .Select(a => a.Employee)
+            .Distinct()
+            .ToList();
 
-        var buildingRoleTasks = approvedAccessRequests.Keys
-            .Select(x => _buildingRoleService.GetBuildingRolesFor(x));
+        var firstAidAttendants = await GetFirstAidAttendantsAsync(floorPlan.Building.Id);
+        var floorEmergencyOfficers = await GetFloorEmergencyOfficersAsync(floorPlan.Building.Id);
 
-        var assignmentCounts = (await Task.WhenAll(buildingRoleTasks))
-            .SelectMany(r => r.BuildingRoles)
-            .Where(r => r.Floor?.Id == floorPlan.Floor.Id)
-            .GroupBy(r => (BuildingRole.BuildingRoles)r.Role.Key)
-            .ToDictionary(g => g.Key, g => g.ToList().Count);
-
-        assignmentCounts.TryGetValue(BuildingRole.BuildingRoles.FirstAidAttendant, out var count);
-        var approvedFirstAidAttendants = count;
-
-        assignmentCounts.TryGetValue(BuildingRole.BuildingRoles.FloorEmergencyOfficer, out count);
-        var approvedFloorEmergencyOfficers = count;
+        var approvedFirstAidAttendants = approvedContacts.Count(x => firstAidAttendants.Any(y => y.Id == x.Id));
+        var approvedFloorEmergencyOfficers = approvedContacts.Count(x => floorEmergencyOfficers.Any(y => y.Id == x.Id));
 
         var maxFirstAidAttendantCapacity = Math.Max(approvedFirstAidAttendants * ThresholdFirstAidAttendant, MinimumFirstAidAttendant);
         var maxFloorEmergencyOfficerCapacity = Math.Max(approvedFloorEmergencyOfficers * ThresholdFloorEmergencyOfficer, MinimumFloorEmergencyOfficer);
-        var currentCapacity = approvedAccessRequests.Keys.Count;
+        var currentCapacity = approvedContacts.Count;
         var totalCapacity = accessRequests.DistinctBy(a => a.Employee.Id).Count();
 
         return new FloorPlanCapacity
@@ -180,5 +169,29 @@ public class LocationService : ILocationService
             await batch.ExecuteAsync();
             batch = new ODataBatch(_client);
         }
+    }
+
+    public async Task<IEnumerable<Contact>> GetFirstAidAttendantsAsync(Guid buildingId)
+    {
+        var firstAidAttendants = await _client
+            .For<gc_building>()
+            .Key(buildingId)
+            .NavigateTo(x => x.gc_building_contact_firstaidattendants)
+            .Filter(x => x.statecode == (int)StateCode.Active)
+            .FindEntriesAsync();
+
+        return firstAidAttendants.Select(contact.Convert);
+    }
+
+    public async Task<IEnumerable<Contact>> GetFloorEmergencyOfficersAsync(Guid buildingId)
+    {
+        var floorEmergencyOfficers = await _client
+            .For<gc_building>()
+            .Key(buildingId)
+            .NavigateTo(x => x.gc_building_contact_flooremergencyofficers)
+            .Filter(x => x.statecode == (int)StateCode.Active)
+            .FindEntriesAsync();
+
+        return floorEmergencyOfficers.Select(contact.Convert);
     }
 }
