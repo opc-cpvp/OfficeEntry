@@ -15,27 +15,49 @@
           <columns>
             <column width="100%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{ff980c22-b4a5-4e85-83e6-29c680db95bc}">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{ff980c22-b4a5-4e85-83e6-29c680db95bc}" name="{ff980c22-b4a5-4e85-83e6-29c680db95bc}" columns="11" locklevel="0" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
                     <label description="General" languagecode="1033" />
                     <label description="Général" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{6723ac5a-5185-4fc6-b52f-de4f99279447}">
+                      <cell id="{6723ac5a-5185-4fc6-b52f-de4f99279447}" showlabel="true" locklevel="0" colspan="2">
                         <labels>
                           <label description="Name" languagecode="1033" />
                         </labels>
-                        <control id="gc_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_name" />
+                        <control id="gc_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_name" uniqueid="{13624d24-31a6-424a-1973-50cb52acbb23}" disabled="false" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{edf01905-c49d-4d5b-af04-7490dac76190}">
+                      <cell id="{210b46e8-c694-89e6-50a3-6c39047a5752}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Owner" languagecode="1033" />
-                          <label description="Propriétaire" languagecode="1036" />
+                          <label description="English Description" languagecode="1033" />
                         </labels>
-                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                        <control id="gc_englishdescription" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_englishdescription" disabled="false" />
+                      </cell>
+                      <cell id="{8416819d-b166-00b9-adc6-3b2449c3e0d1}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="French Description" languagecode="1033" />
+                        </labels>
+                        <control id="gc_frenchdescription" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_frenchdescription" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9eab35ee-781d-6755-7066-1a8358db4287}" showlabel="true" locklevel="0" colspan="2">
+                        <labels>
+                          <label description="Floorplan" languagecode="1033" />
+                        </labels>
+                        <control id="gc_floorplanid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="gc_floorplanid" disabled="false" uniqueid="{d7127b02-34d6-8083-3505-87b31a848642}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{AA5F8F5F-741C-49F1-B58E-836EEE7099A3}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -45,21 +67,11 @@
                         </labels>
                         <control id="gc_x" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="gc_x" disabled="false" />
                       </cell>
-                    </row>
-                    <row>
                       <cell id="{8b3c859e-b1da-9c7c-0414-1b0a6b60dd60}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Y" languagecode="1033" />
                         </labels>
                         <control id="gc_y" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="gc_y" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{9eab35ee-781d-6755-7066-1a8358db4287}" showlabel="true" locklevel="0">
-                        <labels>
-                          <label description="Floorplan" languagecode="1033" />
-                        </labels>
-                        <control id="gc_floorplanid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="gc_floorplanid" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -69,6 +81,29 @@
           </columns>
         </tab>
       </tabs>
+      <header id="{97794d34-2f50-4f45-9219-10582c9b6a49}" columns="111">
+        <rows>
+          <row>
+            <cell id="{c4425f67-d352-4ccd-96fa-f2e6a0d9211d}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{421475ed-bab5-47af-bb04-8905c9fcc6cc}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{7b8b1580-8121-a996-7140-14c5a453842e}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
       <Navigation>
         <NavBar></NavBar>
         <NavBarAreas>
@@ -99,6 +134,7 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
+      <controlDescriptions />
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

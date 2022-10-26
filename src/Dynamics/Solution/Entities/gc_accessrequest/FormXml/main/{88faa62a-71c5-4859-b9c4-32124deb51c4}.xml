@@ -198,55 +198,6 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_assetrequests" id="{5825a3ed-2168-30a2-19a7-980381564424}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
-          <labels>
-            <label description="Asset Requests" languagecode="1033" />
-          </labels>
-          <columns>
-            <column width="100%">
-              <sections>
-                <section name="section_assetrequests" showlabel="false" showbar="false" locklevel="0" id="{8891d062-8325-c136-a6d1-55eb57a48062}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
-                  <labels>
-                    <label description="Asset Requests" languagecode="1033" />
-                  </labels>
-                  <rows>
-                    <row>
-                      <cell id="{dd9d6acb-3eaa-7553-6716-654141593a61}" showlabel="false" colspan="1" auto="false" rowspan="6">
-                        <labels>
-                          <label description="Asset Requests" languagecode="1033" />
-                          <label description="Contacts" languagecode="1036" />
-                        </labels>
-                        <control id="subgrid_AssetRequests" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{b9331720-4b3e-0520-5c53-83dcecc2922b}">
-                          <parameters>
-                            <ViewId>{FAC3BE0D-B443-4A77-8D15-3B7CBA3DD774}</ViewId>
-                            <IsUserView>false</IsUserView>
-                            <RelationshipName>gc_accessrequest_assetrequest</RelationshipName>
-                            <TargetEntityType>gc_assetrequest</TargetEntityType>
-                            <AutoExpand>Fixed</AutoExpand>
-                            <EnableQuickFind>false</EnableQuickFind>
-                            <EnableViewPicker>false</EnableViewPicker>
-                            <ViewIds>{FAC3BE0D-B443-4A77-8D15-3B7CBA3DD774}</ViewIds>
-                            <EnableJumpBar>false</EnableJumpBar>
-                            <ChartGridMode>All</ChartGridMode>
-                            <VisualizationId>{992C652E-F7D0-EA11-A2E4-005056AA7AC3}</VisualizationId>
-                            <IsUserChart>false</IsUserChart>
-                            <EnableChartPicker>true</EnableChartPicker>
-                            <RecordsPerPage>4</RecordsPerPage>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                  </rows>
-                </section>
-              </sections>
-            </column>
-          </columns>
-        </tab>
       </tabs>
       <header id="{7073a317-e179-4cc8-a0fe-bf67a5dc3e63}" columns="111">
         <rows>
