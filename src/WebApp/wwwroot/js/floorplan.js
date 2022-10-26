@@ -54,9 +54,11 @@ class Circle {
     Selected = false;
     Grabbed = false;
     Taken = false;
+    IsFirstAidAttendant = false;
+    IsFloorEmergencyOfficer = false;
     EmployeeFullName = "";
 
-    constructor(x, y, diameter, name, id,  selected) {
+    constructor(x, y, diameter, name, id, selected) {
         this.Position = new Position(x, y);
         this.Diameter = diameter;
         this.Name = name;
@@ -185,13 +187,14 @@ function onTouchEnd(e) {
 // ===========================================================================
 
 // https://jacksonlab.agronomy.wisc.edu/2016/05/23/15-level-colorblind-friendly-palette/
-const backgroundLightImage = new Image();
-const backgroundDarkImage = new Image();
-const availableImage = new Image();
-const availableHoveredImage = new Image();
-const selectedImage = new Image();
-const takenImage = new Image();
-const takenSelectedImage = new Image();
+const availableBackgroundImage = new Image();
+const availableHoveredBackgroundImage = new Image();
+const takenBackgroundImage = new Image();
+const selectedBackgroundImage = new Image();
+const firstAidAttendantImage = new Image();
+const floorEmergencyOfficerImage = new Image();
+const multipleRolesImage = new Image();
+const userImage = new Image();
 
 const floorplan = new Image();
 const circles = [];
@@ -279,26 +282,24 @@ async function Update(deltaTime) {
     circles.forEach(circle => circle.Hovering = circle.IsCollidingWithMouse(currentMouseState));
 
     if (!canEdit) {
-        if (circles.filter(x => x.Hovering && x.Taken).length > 0) {
-            const spyingCirle = circles.filter(x => x.Hovering && x.Taken)[0];
-
+        if (circles.filter(x => x.Hovering && x.EmployeeFullName).length > 0) {
+            const spyingCircle = circles.find(x => x.Hovering && x.EmployeeFullName);
             const tooltip = document.getElementById("tooltip");
 
             tooltip.style.z_index = 1;
             tooltip.style.opacity = 1;
             tooltip.style.visibility = "visible";
 
-            const x = spyingCirle.Position.Left + (spyingCirle.Diameter * 2);
-            const y = spyingCirle.Position.Top;
+            const x = spyingCircle.Position.Left + (spyingCircle.Diameter * 2);
+            const y = spyingCircle.Position.Top;
+            tooltip.style.left = `${x}px`;
+            tooltip.style.top = `${y}px`;
 
-            tooltip.style.left = x + "px";
-            tooltip.style.top = y + "px";
+            tooltip.innerHTML = spyingCircle.EmployeeFullName;
 
-            tooltip.innerHTML = spyingCirle.EmployeeFullName;
-
-            if (spyingContact !== spyingCirle.EmployeeFullName) {
-                spyingContact = spyingCirle.EmployeeFullName;
-                await dotNet.invokeMethodAsync("OnSpying", JSON.stringify({ Workspace: spyingCirle.Name, Victim: spyingContact }));
+            if (spyingCircle.Taken && spyingContact !== spyingCircle.EmployeeFullName) {
+                spyingContact = spyingCircle.EmployeeFullName;
+                await dotNet.invokeMethodAsync("OnSpying", JSON.stringify({ Workspace: spyingCircle.Name, Victim: spyingContact }));
             }
         }
 
@@ -343,43 +344,51 @@ function Draw(deltaTime) {
     context.drawImage(floorplan, 0, 0);
     context.globalAlpha = 1.0;
 
-    // draw the selected circle
+    // set the background of the circle
+    circles
+        .filter(x => !x.Taken)
+        .forEach(circle => {
+            const backgroundImage = circle.Hovering ? availableHoveredBackgroundImage : availableBackgroundImage;
+            context.drawImage(backgroundImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
+        });
+
+    circles
+        .filter(x => x.Taken)
+        .forEach(circle => {
+            const backgroundImage = circle.Hovering ? selectedBackgroundImage : takenBackgroundImage;
+            context.drawImage(backgroundImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
+        });
+
     circles
         .filter(x => x.Selected)
         .forEach(circle => {
-            context.drawImage(selectedImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
+            context.drawImage(selectedBackgroundImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
         });
 
-    // draw the circles under the mouse (hovering)
-    circles
-        .filter(x => !x.Selected)
-        .filter(x => x.Hovering)
-        .forEach(circle => {
-            context.drawImage(availableHoveredImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
-        });
-
-    // draw all other circles
-    circles
-        .filter(x => !x.Selected)
-        .filter(x => !x.Hovering)
-        .forEach(circle => {
-            context.drawImage(availableImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
-        });
-
+    // draw the icon inside of the circle
     circles
         .filter(x => x.Taken)
-        .filter(x => !x.Hovering)
         .forEach(circle => {
-            context.drawImage(backgroundDarkImage, circle.Position.Left + 1, circle.Position.Top + 1, circle.Diameter - 2, circle.Diameter - 2);
-            context.drawImage(takenImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
-        });
+            const iconImage = circle.IsFirstAidAttendant && circle.IsFloorEmergencyOfficer ? multipleRolesImage
+                : circle.IsFirstAidAttendant ? firstAidAttendantImage
+                : circle.IsFloorEmergencyOfficer ? floorEmergencyOfficerImage
+                : userImage;
 
-    circles
-        .filter(x => x.Taken)
-        .filter(x => x.Hovering)
-        .forEach(circle => {
-            context.drawImage(backgroundLightImage, circle.Position.Left + 1, circle.Position.Top + 1, circle.Diameter - 2, circle.Diameter - 2);
-            context.drawImage(takenSelectedImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
+            const degrees = 315;
+            const radius = circle.Diameter / 2;
+            const offset = 2; // we want the icon to fit inside the circle so we set an offset
+
+            // set the origin of the circle
+            const origin = new Position(circle.Position.Left + radius, circle.Position.Top + radius);
+
+            // calculate the coordinates of the top left corner of the circle
+            const x = (-1 * (radius - offset) * Math.sin(degrees)) + origin.Left;
+            const y = (-1 * (radius - offset) * Math.cos(degrees)) + origin.Top;
+
+            // calculate the width of the largest square that fits inside the circle
+            const width = (radius - offset) * Math.sqrt(2);
+
+            context.drawImage(iconImage, x, y, width, width);
         });
 
     context.globalAlpha = 1.0;
@@ -482,13 +491,14 @@ export async function start(imagedata, circlesJson) {
     //     window.requestAnimationFrame(gameLoop);
     // }
 
-    availableImage.src = '/img/floorplan/circle_yellow_icon.svg';
-    availableHoveredImage.src = '/img/floorplan/circle_orange_icon.svg';
-    selectedImage.src = '/img/floorplan/circle_red_icon.svg';
-    takenImage.src = '/img/floorplan/circle_taken_icon.svg';
-    takenSelectedImage.src = '/img/floorplan/circle_taken_selected_icon.svg';
-    backgroundLightImage.src = '/img/floorplan/circle_white_icon.svg';
-    backgroundDarkImage.src = '/img/floorplan/circle_black_icon.svg';
+    availableBackgroundImage.src = '/img/floorplan/circle_available_icon.svg';
+    availableHoveredBackgroundImage.src = '/img/floorplan/circle_available_hover_icon.svg';
+    takenBackgroundImage.src = '/img/floorplan/circle_taken_icon.svg';
+    selectedBackgroundImage.src = '/img/floorplan/circle_selected_icon.svg';
+    firstAidAttendantImage.src = '/img/floorplan/first_aid_attendant_icon.svg';
+    floorEmergencyOfficerImage.src = '/img/floorplan/floor_emergency_officer_icon.svg';
+    multipleRolesImage.src = '/img/floorplan/multiple_roles_icon.svg';
+    userImage.src = '/img/floorplan/user_icon.svg';
 
     canvas.width = floorplan.width;
     canvas.height = floorplan.height;
@@ -505,8 +515,10 @@ export async function start(imagedata, circlesJson) {
             const newCircle = new Circle(circle.Position.Left, circle.Position.Top, _diameter, circle.Name, circle.Id, circle.Selected);
             newCircle.Taken = circle.Taken;
             newCircle.EmployeeFullName = circle.EmployeeFullName;
+            newCircle.IsFirstAidAttendant = circle.IsFirstAidAttendant;
+            newCircle.IsFloorEmergencyOfficer = circle.IsFloorEmergencyOfficer;
             circles.push(newCircle);
-        })
+        });
     }
 }
 

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Models;
 using OfficeEntry.WebApp.Shared;
 using OfficeEntry.WebApp.Store.AccessRequestsUseCase;
@@ -59,6 +60,7 @@ public partial class Map : IAsyncDisposable
     {
         // Invalidate the DTO and reload the Map
         FloorPlanDto = null;
+        _selectedAccessRequest = null;
         Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
 
         return base.OnParametersSetAsync();
@@ -83,15 +85,31 @@ public partial class Map : IAsyncDisposable
             a.EndTime > _selectedDate.ToDateTime(new TimeOnly(hour: _startTime, minute: 0))
         );
 
+        var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+        locale = (locale == Locale.French) ? locale : Locale.English;
+
         var circles = FloorPlanDto.Workspaces
-            .Select(x => new
+            .Select(x =>
             {
-                Id = x.Id,
-                Name = x.Name,
-                Position = new { Left = x.X, Top = x.Y },
-                Selected = x.Id == id, // Check if the circle should be selected when changing the date
-                Taken = accessRequests.Any(a => a.Workspace.Id == x.Id),
-                EmployeeFullName = accessRequests.FirstOrDefault(a => a.Workspace.Id == x.Id)?.Employee.FullName ?? string.Empty,
+                var accessRequest = accessRequests.FirstOrDefault(a => a.Workspace.Id == x.Id);
+                var employeeFullName = accessRequest?.Employee.FullName ?? string.Empty;
+                var workspaceDescription = (locale == Locale.French) ? x.FrenchDescription : x.EnglishDescription;
+                var isTaken = accessRequest is not null;
+                var isFirstAidAttendant = accessRequest?.FirstAidAttendant ?? false;
+                var isFloorEmergencyOfficer = accessRequest?.FloorEmergencyOfficer ?? false;
+                var tooltip = isTaken ? employeeFullName : workspaceDescription;
+
+                return new
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Position = new { Left = x.X, Top = x.Y },
+                    Selected = x.Id == id, // Check if the circle should be selected when changing the date
+                    Taken = isTaken,
+                    IsFirstAidAttendant = isFirstAidAttendant,
+                    IsFloorEmergencyOfficer = isFloorEmergencyOfficer,
+                    EmployeeFullName = tooltip,
+                };
             });
 
         var circlesJson = JsonSerializer.Serialize(circles.ToArray());

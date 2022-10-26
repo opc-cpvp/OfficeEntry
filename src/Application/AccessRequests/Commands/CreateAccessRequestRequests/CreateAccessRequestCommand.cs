@@ -73,6 +73,9 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 .Where(a => a.Employee.Id == request.AccessRequest.Employee.Id)
                 .Any(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Approved);
 
+            request.AccessRequest.FirstAidAttendant = isEmployeeFirstAidAttendant;
+            request.AccessRequest.FloorEmergencyOfficer = isEmployeeFloorEmergencyOfficer;
+
             // The ordering of these checks is important
             if (employeeHasApprovedAccessRequest ||
                 isEmployeeFirstAidAttendant ||

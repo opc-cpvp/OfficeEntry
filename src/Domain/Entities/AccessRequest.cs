@@ -9,6 +9,8 @@ public class AccessRequest
     public FloorPlan FloorPlan { get; set; }
     public Workspace Workspace { get; set; }
     public Building Building { get; set; }
+    public bool FirstAidAttendant { get; set; }
+    public bool FloorEmergencyOfficer { get; set; }
     public Floor Floor { get; set; }
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }

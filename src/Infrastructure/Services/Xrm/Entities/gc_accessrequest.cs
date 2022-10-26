@@ -12,13 +12,14 @@ internal class gc_accessrequest
     public string gc_details { get; set; }
     public contact gc_employee { get; set; }
     public DateTime gc_endtime { get; set; }
+    public bool gc_firstaidattendant { get; set; }
+    public bool gc_flooremergencyofficer { get; set; }
     public gc_floor gc_floor { get; set; }
     public contact gc_manager { get; set; }
     public AccessReasons? gc_accessreason { get; set; }
     public DateTime gc_starttime { get; set; }
     public int statecode { get; set; }
     public DateTime createdon { get; set; }
-
     public gc_floorplan gc_floorplan { get; set; }
     public gc_workspace gc_workspace { get; set; }
 
@@ -36,7 +37,9 @@ internal class gc_accessrequest
             Details = accessRequest.gc_details,
             Employee = contact.Convert(accessRequest.gc_employee),
             EndTime = accessRequest.gc_endtime.ToLocalTime(),
+            FirstAidAttendant = accessRequest.gc_firstaidattendant,
             Floor = gc_floor.Convert(accessRequest.gc_floor),
+            FloorEmergencyOfficer = accessRequest.gc_flooremergencyofficer,
             FloorPlan = gc_floorplan.Convert(accessRequest.gc_floorplan),
             Manager = contact.Convert(accessRequest.gc_manager),
             StartTime = accessRequest.gc_starttime.ToLocalTime(),
@@ -72,7 +75,9 @@ internal class gc_accessrequest
             gc_details = accessRequest.Details,
             gc_employee = contact.MapFrom(accessRequest.Employee),
             gc_endtime = accessRequest.EndTime,
+            gc_firstaidattendant = accessRequest.FirstAidAttendant,
             gc_floor = gc_floor.MapFrom(accessRequest.Floor),
+            gc_flooremergencyofficer = accessRequest.FloorEmergencyOfficer,
             gc_floorplan = gc_floorplan.MapFrom(accessRequest.FloorPlan),
             gc_manager = contact.MapFrom(accessRequest.Manager),
             gc_starttime = accessRequest.StartTime,
