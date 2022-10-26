@@ -11,7 +11,8 @@
     <layoutxml>
       <grid name="" object="10031" jump="gc_name" select="1" icon="1" preview="0">
         <row name="gc_workspace" id="gc_workspaceid">
-          <cell name="gc_name" width="300" />
+          <cell name="gc_name" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_floorplanid" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -26,6 +27,8 @@
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <order attribute="gc_name" descending="false" />
+          <attribute name="gc_floorplanid" />
         </entity>
       </fetch>
     </fetchxml>

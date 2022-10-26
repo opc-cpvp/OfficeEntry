@@ -11,10 +11,10 @@
     <layoutxml>
       <grid name="resultset" object="10031" jump="gc_name" select="1" icon="1" preview="1">
         <row name="result" id="gc_workspaceid">
-          <cell name="gc_name" width="300" />
-          <cell name="gc_floorplanid" width="100" />
-          <cell name="gc_x" width="100" />
-          <cell name="gc_y" width="100" />
+          <cell name="gc_name" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_englishdescription" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_frenchdescription" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_floorplanid" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -29,9 +29,9 @@
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <attribute name="gc_y" />
-          <attribute name="gc_x" />
           <attribute name="gc_floorplanid" />
+          <attribute name="gc_frenchdescription" />
+          <attribute name="gc_englishdescription" />
           <attribute name="gc_workspaceid" />
         </entity>
       </fetch>
