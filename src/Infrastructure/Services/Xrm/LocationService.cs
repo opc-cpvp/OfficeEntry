@@ -124,13 +124,10 @@ public class LocationService : ILocationService
         // Insert and update workspaces
         var workspaces = floorPlan
             .Workspaces
-            .Select(x => new gc_workspace
+            .Select(x =>
             {
-                gc_workspaceid = x.Id,
-                gc_x = x.X,
-                gc_y = x.Y,
-                gc_name = x.Name,
-                gc_floorplanid = new gc_floorplan { gc_floorplanid = floorPlan.Id }
+                x.FloorPlan = floorPlan;
+                return gc_workspace.MapFrom(x);
             })
             .ToArray();
 
