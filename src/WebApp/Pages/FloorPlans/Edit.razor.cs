@@ -152,9 +152,11 @@ public partial class Edit : IAsyncDisposable
     {
         Dispose();
 
-        await module.InvokeVoidAsync("stop");
-
-        await module.DisposeAsync();
+        if (module is not null)
+        {
+            await module.InvokeVoidAsync("stop");
+            await module.DisposeAsync();
+        }
 
         objRef?.Dispose();
     }
