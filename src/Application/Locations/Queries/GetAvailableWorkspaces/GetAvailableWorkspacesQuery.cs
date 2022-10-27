@@ -1,17 +1,19 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Enums;
 
 namespace OfficeEntry.Application.Locations.Queries.GetAvailableWorkspaces;
 
-public record GetAvailableWorkspacesQuery : IRequest<IEnumerable<Workspace>>
+public record GetAvailableWorkspacesQuery : IRequest<IEnumerable<AvailableWorkspaceViewModel>>
 {
+    public string Locale { get; init; }
     public Guid FloorPlanId { get; init; }
     public DateTime StartTime { get; init; }
     public DateTime EndTime { get; init; }
 }
 
-public class GetAvailableWorkspacesQueryHandler : IRequestHandler<GetAvailableWorkspacesQuery, IEnumerable<Workspace>>
+public class GetAvailableWorkspacesQueryHandler : IRequestHandler<GetAvailableWorkspacesQuery, IEnumerable<AvailableWorkspaceViewModel>>
 {
     private readonly IAccessRequestService _accessRequestService;
     private readonly ILocationService _locationService;
@@ -22,7 +24,7 @@ public class GetAvailableWorkspacesQueryHandler : IRequestHandler<GetAvailableWo
         _locationService = locationService;
     }
 
-    public async Task<IEnumerable<Workspace>> Handle(GetAvailableWorkspacesQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<AvailableWorkspaceViewModel>> Handle(GetAvailableWorkspacesQuery request, CancellationToken cancellationToken)
     {
         var date = DateOnly.FromDateTime(request.StartTime);
         var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(request.FloorPlanId, date);
@@ -36,7 +38,18 @@ public class GetAvailableWorkspacesQueryHandler : IRequestHandler<GetAvailableWo
 
         var floorPlan = await _locationService.GetFloorPlanAsync(request.FloorPlanId);
         var availableWorkspaces = floorPlan.Workspaces
-            .Where(w => !reservedWorkspaces.Contains(w.Id));
+            .Where(w => !reservedWorkspaces.Contains(w.Id))
+            .Select(x =>
+            {
+                var description = (request.Locale == Locale.French) ? x.FrenchDescription : x.EnglishDescription;
+                var hasDescription = !string.IsNullOrWhiteSpace(description);
+
+                return new AvailableWorkspaceViewModel
+                {
+                    Id = x.Id,
+                    Name = hasDescription ? $"{x.Name} - {description}" : x.Name
+                };
+            });
 
         return availableWorkspaces;
     }
