@@ -7,45 +7,69 @@
 {
     <Loading />
 }
-
-<FileUpload OnImageChangeCallback="@ShowCanvas" />
-
-<canvas id="floorplan-canvas" width="1163" height="815" style="border: 1px solid #eeeeee;"></canvas>
-
-@if (WorkspaceDto is not null && EditContext is not null)
+else
 {
-    <EditForm EditContext="EditContext">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+    <div class="row">
+        <div class="col-12">
+            <FileUpload OnImageChangeCallback="@ShowCanvas" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div id="tooltip">Tooltip</div>
+            <div id="canvasHolder">
+                <canvas id="floorplan-canvas" style="border: 1px solid #eeeeee;"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            @if (WorkspaceDto is not null && EditContext is not null)
+            {
+                <EditForm EditContext="EditContext">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
 
-        <label>
-            X
-            <InputNumber id="x" @bind-Value="WorkspaceDto.X" />
-        </label>
+                    <label>
+                        X
+                        <InputNumber id="x" @bind-Value="WorkspaceDto.X" />
+                    </label>
 
-        <label>
-            Y
-            <InputNumber id="y" @bind-Value="WorkspaceDto.Y" />
-        </label>
+                    <label>
+                        Y
+                        <InputNumber id="y" @bind-Value="WorkspaceDto.Y" />
+                    </label>
 
-        <label>
-            Name
-            <InputText id="name" @bind-Value="WorkspaceDto.Name" />
-        </label>
+                    <label>
+                        Name
+                        <InputText id="name" @bind-Value="WorkspaceDto.Name" />
+                    </label>
 
-    </EditForm>
+                    <label>
+                        English Description
+                        <InputText id="name" @bind-Value="WorkspaceDto.EnglishDescription" />
+                    </label>
+
+                    <label>
+                        French Description
+                        <InputText id="name" @bind-Value="WorkspaceDto.FrenchDescription" />
+                    </label>
+
+                </EditForm>
+            }
+            <br />
+            <button @onclick="@Save" class="btn btn-primary" disabled="@FloorPlanState.Value.IsSaving">
+                @if (FloorPlanState.Value.IsSaving)
+                {
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span>Saving...</span>
+                }
+                else
+                {
+                    <span class="oi oi-cloud-upload"></span>
+                    <span>Save</span>
+                }
+            </button>
+        </div>
+    </div>
 }
-
-<br />
-<button @onclick="@Save" class="btn btn-primary" disabled="@FloorPlanState.Value.IsSaving">
-    @if (FloorPlanState.Value.IsSaving)
-    {
-          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-          <span>Saving...</span>
-    }
-    else
-    {
-        <i class="fas fa-cloud-upload-alt"></i>
-        <span>Save</span>
-    }
-</button>

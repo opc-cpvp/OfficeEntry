@@ -281,37 +281,37 @@ async function Update(deltaTime) {
     // set the current hovered circle
     circles.forEach(circle => circle.Hovering = circle.IsCollidingWithMouse(currentMouseState));
 
-    if (!canEdit) {
-        if (circles.filter(x => x.Hovering && x.EmployeeFullName).length > 0) {
-            const spyingCircle = circles.find(x => x.Hovering && x.EmployeeFullName);
-            const tooltip = document.getElementById("tooltip");
 
-            tooltip.style.z_index = 1;
-            tooltip.style.opacity = 1;
-            tooltip.style.visibility = "visible";
+    if (circles.filter(x => x.Hovering && x.EmployeeFullName).length > 0) {
+        const spyingCircle = circles.find(x => x.Hovering && x.EmployeeFullName);
+        const tooltip = document.getElementById("tooltip");
 
-            const x = spyingCircle.Position.Left + (spyingCircle.Diameter * 2);
-            const y = spyingCircle.Position.Top;
-            tooltip.style.left = `${x}px`;
-            tooltip.style.top = `${y}px`;
+        tooltip.style.z_index = 1;
+        tooltip.style.opacity = 1;
+        tooltip.style.visibility = "visible";
 
-            tooltip.innerHTML = spyingCircle.EmployeeFullName;
+        const x = spyingCircle.Position.Left + (spyingCircle.Diameter * 2);
+        const y = spyingCircle.Position.Top;
+        tooltip.style.left = `${x}px`;
+        tooltip.style.top = `${y}px`;
 
-            if (spyingCircle.Taken && spyingContact !== spyingCircle.EmployeeFullName) {
-                spyingContact = spyingCircle.EmployeeFullName;
-                await dotNet.invokeMethodAsync("OnSpying", JSON.stringify({ Workspace: spyingCircle.Name, Victim: spyingContact }));
-            }
+        tooltip.innerHTML = spyingCircle.EmployeeFullName;
+
+        if (!canEdit && spyingCircle.Taken && spyingContact !== spyingCircle.EmployeeFullName) {
+            spyingContact = spyingCircle.EmployeeFullName;
+            await dotNet.invokeMethodAsync("OnSpying",
+                JSON.stringify({ Workspace: spyingCircle.Name, Victim: spyingContact }));
         }
+    }
 
-        if (circles.filter(x => x.Hovering).length === 0) {
-            const tooltip = document.getElementById("tooltip");
+    if (circles.filter(x => x.Hovering).length === 0) {
+        const tooltip = document.getElementById("tooltip");
 
-            tooltip.style.z_index = -1;
-            tooltip.style.opacity = 0;
-            tooltip.style.visibility = "hidden";
+        tooltip.style.z_index = -1;
+        tooltip.style.opacity = 0;
+        tooltip.style.visibility = "hidden";
 
-            spyingContact = "";
-        }
+        spyingContact = "";
     }
 
     const canvas = document.getElementById('floorplan-canvas');
@@ -531,6 +531,7 @@ export function updateCircle(data) {
             x.Position.Left = circle.Position.Left;
             x.Position.Top = circle.Position.Top;
             x.Name = circle.Name;
+            x.EmployeeFullName = circle.EmployeeFullName;
         });
 }
 

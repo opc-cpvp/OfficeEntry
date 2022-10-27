@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Store.FloorPlanUseCases.Edit;
+using System.Globalization;
 using System.Text.Json;
 
 namespace OfficeEntry.WebApp.Pages.FloorPlans;
@@ -56,13 +58,22 @@ public partial class Edit : IAsyncDisposable
 
     private async Task UpdateCanvas()
     {
+        var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+        locale = (locale == Locale.French) ? locale : Locale.English;
+
         var circles = FloorPlanDto.Workspaces
-            .Select(x => new
+            .Select(x =>
             {
-                Id = x.Id,
-                Name = x.Name,
-                Position = new { Left = x.X, Top = x.Y },
-                Selected = false
+                var workspaceDescription = (locale == Locale.French) ? x.FrenchDescription : x.EnglishDescription;
+
+                return new
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Position = new { Left = x.X, Top = x.Y },
+                    EmployeeFullName = workspaceDescription,
+                    Selected = false
+                };
             });
 
         var circlesJson = JsonSerializer.Serialize(circles.ToArray());
@@ -112,11 +123,17 @@ public partial class Edit : IAsyncDisposable
         {
             if (EditContext.Validate())
             {
+                var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+                locale = (locale == Locale.French) ? locale : Locale.English;
+
+                var workspaceDescription = (locale == Locale.French) ? WorkspaceDto.FrenchDescription : WorkspaceDto.EnglishDescription;
+
                 var data = JsonSerializer.Serialize(new
                     {
                         Id = WorkspaceDto.Id,
                         Name = WorkspaceDto.Name,
-                        Position = new { Left = WorkspaceDto.X, Top = WorkspaceDto.Y }
+                        Position = new { Left = WorkspaceDto.X, Top = WorkspaceDto.Y },
+                        EmployeeFullName = workspaceDescription,
                     });
 
                 _ = module.InvokeVoidAsync("updateCircle", data); // no await on purpose, only the animation run async
