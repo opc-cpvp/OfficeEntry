@@ -69,36 +69,6 @@
                         <control id="gc_currentcapacity" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="gc_currentcapacity" disabled="false" />
                       </cell>
                     </row>
-                    <row>
-                      <cell id="{2347e4e9-add2-8ec8-11ec-c0d352b96014}" showlabel="false" colspan="1" auto="false" rowspan="6">
-                        <labels>
-                          <label description="Offices (Floor)" languagecode="1033" />
-                        </labels>
-                        <control id="subgrid_offices" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
-                          <parameters>
-                            <ViewId>{719A6C0F-9E70-4942-93C1-89CBF1109995}</ViewId>
-                            <IsUserView>false</IsUserView>
-                            <RelationshipName>gc_floor_gc_office_floor</RelationshipName>
-                            <TargetEntityType>gc_office</TargetEntityType>
-                            <AutoExpand>Fixed</AutoExpand>
-                            <EnableQuickFind>false</EnableQuickFind>
-                            <EnableViewPicker>false</EnableViewPicker>
-                            <ViewIds>{719A6C0F-9E70-4942-93C1-89CBF1109995}</ViewIds>
-                            <EnableJumpBar>false</EnableJumpBar>
-                            <ChartGridMode>Grid</ChartGridMode>
-                            <VisualizationId />
-                            <IsUserChart>false</IsUserChart>
-                            <EnableChartPicker>false</EnableChartPicker>
-                            <RecordsPerPage>4</RecordsPerPage>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
                   </rows>
                 </section>
               </sections>

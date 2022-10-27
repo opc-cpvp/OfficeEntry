@@ -11,7 +11,10 @@
     <layoutxml>
       <grid name="resultset" object="10031" jump="gc_name" select="1" icon="1" preview="1">
         <row name="result" id="gc_workspaceid">
-          <cell name="gc_name" width="300" />
+          <cell name="gc_name" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_englishdescription" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_frenchdescription" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_floorplanid" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -20,10 +23,13 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="gc_workspace">
-          <attribute name="gc_workspaceid" />
           <attribute name="gc_name" />
           <attribute name="createdon" />
           <order attribute="gc_name" descending="false" />
+          <attribute name="gc_frenchdescription" />
+          <attribute name="gc_floorplanid" />
+          <attribute name="gc_englishdescription" />
+          <attribute name="gc_workspaceid" />
         </entity>
       </fetch>
     </fetchxml>

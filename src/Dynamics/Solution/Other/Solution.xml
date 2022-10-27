@@ -80,11 +80,9 @@
     <RootComponents>
       <RootComponent type="1" schemaName="contact" behavior="1" />
       <RootComponent type="1" schemaName="gc_accessrequest" behavior="0" />
-      <RootComponent type="1" schemaName="gc_assetrequest" behavior="0" />
       <RootComponent type="1" schemaName="gc_building" behavior="0" />
       <RootComponent type="1" schemaName="gc_floor" behavior="0" />
       <RootComponent type="1" schemaName="gc_floorplan" behavior="0" />
-      <RootComponent type="1" schemaName="gc_office" behavior="0" />
       <RootComponent type="1" schemaName="gc_usersettings" behavior="0" />
       <RootComponent type="1" schemaName="gc_workspace" behavior="0" />
       <RootComponent type="29" id="{6d589127-198e-4c22-aa3e-8e1e45c876af}" behavior="0" />
@@ -95,12 +93,9 @@
       <RootComponent type="60" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       <RootComponent type="60" id="{6c42b6fd-4a00-43f5-9cf5-5601a6a2012c}" behavior="0" />
       <RootComponent type="60" id="{6f8aeb07-7dd3-420f-bfe2-cb684d08a61e}" behavior="0" />
-      <RootComponent type="60" id="{7039e528-deed-43d4-a805-f3c8d71e13c6}" behavior="0" />
       <RootComponent type="60" id="{7f934d44-6a35-40a6-9a8d-96f1110858ac}" behavior="0" />
       <RootComponent type="60" id="{88faa62a-71c5-4859-b9c4-32124deb51c4}" behavior="0" />
-      <RootComponent type="60" id="{8ed27027-e12f-4f35-8667-d37499d44b07}" behavior="0" />
       <RootComponent type="60" id="{b749c26a-a518-41dc-a0df-7ceda6b49ee6}" behavior="0" />
-      <RootComponent type="60" id="{c28cac41-f7d0-ea11-a2e4-005056aa7ac3}" behavior="0" />
       <RootComponent type="60" id="{c9456f40-921a-4df5-a279-b57db7a76dfd}" behavior="0" />
       <RootComponent type="91" schemaName="OfficeEntry.Plugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=472c6a8b46ad30c2" behavior="0" />
       <RootComponent type="92" id="{e0d9c9bf-60e9-ea11-a2e4-005056aa7ac3}" behavior="0" />
