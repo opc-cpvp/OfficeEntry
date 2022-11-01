@@ -8,4 +8,9 @@ public class FloorPlan
     public Building Building { get; set; }
     public Floor Floor { get; set; }
     public virtual ICollection<Workspace> Workspaces { get; set; } = new HashSet<Workspace>();
+
+    public override string ToString()
+    {
+        return $"FloorPlan {{ Id: {Id}, Name: \"{Name}\" }}";
+    }
 }

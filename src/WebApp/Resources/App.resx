@@ -199,9 +199,15 @@
   </data>
   <data name="floor-plans-edit" xml:space="preserve">
     <value>en/floor-plans/edit/{0}</value>
+    <comment>URI</comment>
+  </data>
+  <data name="floor-plans-manage" xml:space="preserve">
+    <value>en/floor-plans/manage</value>
+    <comment>URI</comment>
   </data>
   <data name="floor-plans-map" xml:space="preserve">
     <value>en/floor-plans/map/{0}</value>
+    <comment>URI</comment>
   </data>
   <data name="From" xml:space="preserve">
     <value>From</value>

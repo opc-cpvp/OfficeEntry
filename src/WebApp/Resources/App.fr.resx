@@ -343,4 +343,8 @@
   <data name="Submit Request" xml:space="preserve">
     <value>Soumettre une demande</value>
   </data>
+  <data name="floor-plans-manage" xml:space="preserve">
+    <value>fr/plans-d-etages/gestion</value>
+    <comment>URI</comment>
+  </data>
 </root>
