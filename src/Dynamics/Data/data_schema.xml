@@ -47,6 +47,8 @@
       <field updateCompare="true" displayname="Workspace" name="gc_workspaceid" type="guid" primaryKey="true" />
       <field displayname="Y" name="gc_y" type="number" customfield="true" />
       <field displayname="Name" name="gc_name" type="string" customfield="true" />
+      <field displayname="English Description" name="gc_englishdescription" type="string" customfield="true" />
+      <field displayname="French Description" name="gc_frenchdescription" type="string" customfield="true" />
     </fields>
   </entity>
 </entities>
