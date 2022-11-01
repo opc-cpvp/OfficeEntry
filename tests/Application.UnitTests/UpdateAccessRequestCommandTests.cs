@@ -3,6 +3,7 @@ using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequest
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
+using System.Collections.Immutable;
 using Xunit;
 
 namespace Application.UnitTests
@@ -175,6 +176,7 @@ namespace Application.UnitTests
             };
 
             _locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
+            _accessRequestServiceMock.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloorPlan(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(ImmutableArray<AccessRequest>.Empty);
 
             // Act
             await _sut.Handle(new UpdateAccessRequestCommand { AccessRequest = accessRequest }, CancellationToken.None);

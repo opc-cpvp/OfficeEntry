@@ -9,6 +9,8 @@
     public static class EmailTemplates
     {
         public const string CapacityNotification = "CapacityNotificationEmail";
-        public const string AccessRequestNotification = "AccessRequestNotificationEmail";
+        public const string ApprovedAccessRequestNotification = "ApprovedAccessRequestNotificationEmail";
+        public const string CancelledAccessRequestNotification = "CancelledAccessRequestNotificationEmail";
+        public const string PendingAccessRequestNotification = "PendingAccessRequestNotificationEmail";
     }
 }

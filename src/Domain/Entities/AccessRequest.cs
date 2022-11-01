@@ -18,7 +18,6 @@ public class AccessRequest
     public Contact Delegate { get; set; }
     public OptionSet Reason { get; set; }
     public OptionSet Status { get; set; }
-    public bool IsPending => Status?.Key == (int)ApprovalStatus.Pending;
 
     public string EnglishStatus => Status?.Key switch
     {

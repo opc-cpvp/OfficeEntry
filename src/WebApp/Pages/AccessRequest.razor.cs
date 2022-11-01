@@ -34,9 +34,7 @@ public partial class AccessRequest
     public bool IsDelegate { get; set; }
     public bool IsEmployee { get; set; }
 
-    public bool IsApproved => accessRequest.Status == Domain.Entities.AccessRequest.ApprovalStatus.Approved;
     public bool IsCancelled => accessRequest.Status == Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
-    public bool IsDeclined => accessRequest.Status == Domain.Entities.AccessRequest.ApprovalStatus.Declined;
 
     private AccessRequestViewModel accessRequest;
 
@@ -85,16 +83,22 @@ public partial class AccessRequest
             Status = new OptionSet { Key = (int)accessRequest.Status }
         };
 
+        if (accessRequest.DelegateId.HasValue)
+        {
+            accessRequestMessage.Delegate = new Contact { Id = accessRequest.DelegateId.Value };
+        }
+
         await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
+
+        Dispatcher.Dispatch(new GetAccessRequestsAction());
+        Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());
 
         if (IsEmployee)
         {
-            Dispatcher.Dispatch(new GetAccessRequestsAction());
             NavigationManager.NavigateTo(Localizer["my-requests"]);
         }
         else if (IsDelegate)
         {
-            Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());
             NavigationManager.NavigateTo(Localizer["requests-for-my-colleagues"]);
         }
     }

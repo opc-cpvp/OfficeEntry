@@ -6,6 +6,7 @@ public class AccessRequestViewModel
 {
     public Guid Id { get; set; }
     public Guid BuildingId { get; set; }
+    public Guid? DelegateId { get; set; }
     public Guid EmployeeId { get; set; }
     public Guid FloorPlanId { get; set; }
     public Guid FloorId { get; set; }
