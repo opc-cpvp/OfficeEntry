@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2022-10-19T13:48:08.7562307Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2022-11-01T18:05:12.8594798Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -119,6 +119,14 @@
         <field name="gc_y" value="840" />
         <field name="gc_name" value="23" />
       </record>
+      <record id="fac89c88-c1e4-47d9-8e2f-035fb1ceace2">
+        <field name="statuscode" value="1" />
+        <field name="statecode" value="0" />
+        <field name="gc_x" value="1688" />
+        <field name="gc_workspaceid" value="fac89c88-c1e4-47d9-8e2f-035fb1ceace2" />
+        <field name="gc_y" value="81" />
+        <field name="gc_name" value="822A" />
+      </record>
       <record id="4796f224-439a-4a48-a255-0477e427c80d">
         <field name="statuscode" value="1" />
         <field name="statecode" value="0" />
@@ -158,6 +166,14 @@
         <field name="gc_workspaceid" value="3d9b2e6b-78d2-45eb-851d-09a67f855e68" />
         <field name="gc_y" value="500" />
         <field name="gc_name" value="13" />
+      </record>
+      <record id="2d996e9e-166f-496e-bd37-0ab4d243062d">
+        <field name="statuscode" value="1" />
+        <field name="statecode" value="0" />
+        <field name="gc_x" value="1146" />
+        <field name="gc_workspaceid" value="2d996e9e-166f-496e-bd37-0ab4d243062d" />
+        <field name="gc_y" value="444" />
+        <field name="gc_name" value="Lab 3" />
       </record>
       <record id="7bde6345-f62b-4701-801a-0c5a972e71fe">
         <field name="statuscode" value="1" />
@@ -551,6 +567,14 @@
         <field name="gc_y" value="912" />
         <field name="gc_name" value="74" />
       </record>
+      <record id="8a7554f2-b142-4944-a022-5b97599ca279">
+        <field name="statuscode" value="1" />
+        <field name="statecode" value="0" />
+        <field name="gc_x" value="1196" />
+        <field name="gc_workspaceid" value="8a7554f2-b142-4944-a022-5b97599ca279" />
+        <field name="gc_y" value="400" />
+        <field name="gc_name" value="Lab5" />
+      </record>
       <record id="80fe4957-d7a6-42ca-839f-5f459d1ed22b">
         <field name="statuscode" value="1" />
         <field name="statecode" value="0" />
@@ -679,6 +703,14 @@
         <field name="gc_y" value="432" />
         <field name="gc_name" value="22" />
       </record>
+      <record id="2a56e5d5-ad57-48de-b956-75257bbe376d">
+        <field name="statuscode" value="1" />
+        <field name="statecode" value="0" />
+        <field name="gc_x" value="1096" />
+        <field name="gc_workspaceid" value="2a56e5d5-ad57-48de-b956-75257bbe376d" />
+        <field name="gc_y" value="400" />
+        <field name="gc_name" value="Lab 1" />
+      </record>
       <record id="f2300e37-2983-4a78-a8ba-77de73acd50d">
         <field name="statuscode" value="1" />
         <field name="statecode" value="0" />
@@ -702,6 +734,14 @@
         <field name="gc_workspaceid" value="e4331786-1e95-41d2-9d5f-78c2739e7283" />
         <field name="gc_y" value="914" />
         <field name="gc_name" value="27" />
+      </record>
+      <record id="febf5aa6-89e1-4100-bea2-7ce37dd73f3b">
+        <field name="statuscode" value="1" />
+        <field name="statecode" value="0" />
+        <field name="gc_x" value="1196" />
+        <field name="gc_workspaceid" value="febf5aa6-89e1-4100-bea2-7ce37dd73f3b" />
+        <field name="gc_y" value="444" />
+        <field name="gc_name" value="Lab 4" />
       </record>
       <record id="329b5458-0050-47ef-a029-7d0c146135cb">
         <field name="statuscode" value="1" />
@@ -863,6 +903,14 @@
         <field name="gc_y" value="259" />
         <field name="gc_name" value="06" />
       </record>
+      <record id="5f7e5261-d4fa-409b-be05-99ef917dcbd0">
+        <field name="statuscode" value="1" />
+        <field name="statecode" value="0" />
+        <field name="gc_x" value="343" />
+        <field name="gc_workspaceid" value="5f7e5261-d4fa-409b-be05-99ef917dcbd0" />
+        <field name="gc_y" value="128" />
+        <field name="gc_name" value="714" />
+      </record>
       <record id="9b2129ba-d722-480c-9dff-9bd6fff70264">
         <field name="statuscode" value="1" />
         <field name="statecode" value="0" />
@@ -902,6 +950,14 @@
         <field name="gc_workspaceid" value="40c12f35-9cb9-4ef3-ae37-a317c6169d83" />
         <field name="gc_y" value="990" />
         <field name="gc_name" value="77" />
+      </record>
+      <record id="c41305e6-7549-48e2-9728-a4a28af492d0">
+        <field name="statuscode" value="1" />
+        <field name="statecode" value="0" />
+        <field name="gc_x" value="1096" />
+        <field name="gc_workspaceid" value="c41305e6-7549-48e2-9728-a4a28af492d0" />
+        <field name="gc_y" value="444" />
+        <field name="gc_name" value="Lab 2" />
       </record>
       <record id="03b32d1a-ef37-4f3a-b418-a4c74a79929e">
         <field name="statuscode" value="1" />
@@ -990,6 +1046,14 @@
         <field name="gc_workspaceid" value="04964722-6f5e-4525-918b-ae88202f90e0" />
         <field name="gc_y" value="466" />
         <field name="gc_name" value="23" />
+      </record>
+      <record id="a189eb61-bce5-4f6d-933c-afb3b85e9d1d">
+        <field name="statuscode" value="1" />
+        <field name="statecode" value="0" />
+        <field name="gc_x" value="538" />
+        <field name="gc_workspaceid" value="a189eb61-bce5-4f6d-933c-afb3b85e9d1d" />
+        <field name="gc_y" value="217" />
+        <field name="gc_name" value="719" />
       </record>
       <record id="7b766c52-2f52-4303-ba4f-afe55a8d94a9">
         <field name="statuscode" value="1" />
