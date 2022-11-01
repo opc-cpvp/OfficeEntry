@@ -1,18 +1,17 @@
-﻿using System.Runtime.Versioning;
-using OfficeEntry.Application.Common.Interfaces;
+﻿using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
+using System.Runtime.Versioning;
 using System.Security.Principal;
-using MediatR;
 
 namespace OfficeEntry.Infrastructure.Services
 {
     internal class NotificationService : INotificationService
     {
         private const string FirstAidAttendantEnglishName = "First Aid Attendant";
-        private const string FirstAidAttendantFrenchName = "[FR] First Aid Attendant";
+        private const string FirstAidAttendantFrenchName = "Secouriste";
         private const string FloorEmergencyOfficerEnglishName = "Floor Emergency Officer";
-        private const string FloorEmergencyOfficerFrenchName = "[FR] Floor Emergency Officer";
+        private const string FloorEmergencyOfficerFrenchName = "Agents de secours d’étage";
 
         private readonly IUserService _userService;
         private readonly ILocationService _locationService;
@@ -88,7 +87,15 @@ namespace OfficeEntry.Infrastructure.Services
                 recipients.Add(accessRequest.Delegate);
             }
 
-            var description = _templateService.GetEmailTemplate(EmailTemplates.AccessRequestNotification, accessRequestNotification);
+            var template = (AccessRequest.ApprovalStatus) accessRequestNotification.AccessRequest.Status.Key switch
+            {
+                AccessRequest.ApprovalStatus.Approved => EmailTemplates.ApprovedAccessRequestNotification,
+                AccessRequest.ApprovalStatus.Pending => EmailTemplates.PendingAccessRequestNotification,
+                AccessRequest.ApprovalStatus.Cancelled => EmailTemplates.CancelledAccessRequestNotification,
+                _ => throw new Exception($"Unable to determine template using Access Request status: {accessRequestNotification.AccessRequest.Status.Key}")
+            };
+
+            var description = _templateService.GetEmailTemplate(template, accessRequestNotification);
             var email = new Email
             {
                 From = sender,

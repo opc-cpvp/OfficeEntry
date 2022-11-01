@@ -9,14 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Templates\AccessRequestNotificationEmail.hbs" />
+    <None Remove="Templates\ApprovedAccessRequestNotificationEmail.hbs" />
+    <None Remove="Templates\CancelledAccessRequestNotificationEmail.hbs" />
     <None Remove="Templates\CapacityNotificationEmail.hbs" />
     <None Remove="Templates\EmailLayout.hbs" />
+    <None Remove="Templates\PendingAccessRequestNotificationEmail.hbs" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Templates\CancelledAccessRequestNotificationEmail.hbs" />
+    <EmbeddedResource Include="Templates\PendingAccessRequestNotificationEmail.hbs" />
     <EmbeddedResource Include="Templates\EmailLayout.hbs" />
-    <EmbeddedResource Include="Templates\AccessRequestNotificationEmail.hbs" />
+    <EmbeddedResource Include="Templates\ApprovedAccessRequestNotificationEmail.hbs" />
     <EmbeddedResource Include="Templates\CapacityNotificationEmail.hbs" />
   </ItemGroup>
 

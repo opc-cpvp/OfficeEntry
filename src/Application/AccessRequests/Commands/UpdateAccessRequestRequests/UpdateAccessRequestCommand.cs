@@ -47,24 +47,34 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
         var date = request.AccessRequest.StartTime;
         var floorPlan = request.AccessRequest.FloorPlan;
 
-        var firstAidAttendants = await _locationService.GetFirstAidAttendantsAsync(request.AccessRequest.Building.Id);
-        var floorEmergencyOfficers = await _locationService.GetFloorEmergencyOfficersAsync(request.AccessRequest.Building.Id);
-
-        var isEmployeeFirstAidAttendant = firstAidAttendants.Any(x => x.Id == request.AccessRequest.Employee.Id);
-        var isEmployeeFloorEmergencyOfficer = floorEmergencyOfficers.Any(x => x.Id == request.AccessRequest.Employee.Id);
-
-        // Check if the employee is either a First Aid Attendant or Floor Emergency Officer
-        if (!isEmployeeFirstAidAttendant || !isEmployeeFloorEmergencyOfficer)
-        {
-            return Unit.Value;
-        }
-
         var floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
 
         // Check if the floor plan has any remaining capacity
         if (floorPlanCapacity.HasCapacity)
         {
-            return Unit.Value;
+            var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlan.Id, DateOnly.FromDateTime(date));
+            var pendingAccessRequests = accessRequests
+                .Where(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Pending)
+                .GroupBy(a => a.Employee.Id)
+                .ToDictionary(g => g.Key, g => g.ToList());
+
+            var remainingCapacity = floorPlanCapacity.RemainingCapacity;
+            var remainingAccessRequests = pendingAccessRequests
+                .Take(Math.Min(remainingCapacity, pendingAccessRequests.Count))
+                .SelectMany(x => x.Value);
+
+            foreach (var remainingAccessRequest in remainingAccessRequests)
+            {
+                remainingAccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
+                await _accessRequestService.UpdateAccessRequest(remainingAccessRequest);
+                await _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification { AccessRequest = remainingAccessRequest });
+            }
+
+            floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
+            if (floorPlanCapacity.HasCapacity)
+            {
+                return Unit.Value;
+            }
         }
 
         var notifyFirstAidAttendants = floorPlanCapacity.CurrentCapacity >= floorPlanCapacity.MaxFirstAidAttendantCapacity;

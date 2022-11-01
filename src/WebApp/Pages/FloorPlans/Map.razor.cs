@@ -194,7 +194,7 @@ public partial class Map : IAsyncDisposable
         {
             Building = FloorPlanDto.Building,
             Floor = FloorPlanDto.Floor,
-            FloorPlan = FloorPlanDto,
+            FloorPlan = new FloorPlan { Id = FloorPlanDto.Id },
             EndTime = submission.startDate.AddHours(submission.endTime),
             StartTime = submission.startDate.AddHours(submission.startTime),
             Status = new OptionSet { Key = (int)Domain.Entities.AccessRequest.ApprovalStatus.Pending },
