@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2022-11-01T18:07:31.3271975Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2022-11-01T18:11:17.3498341Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -228,8 +228,6 @@
         <field name="gc_workspaceid" value="62946a60-7cc2-482c-9a61-12d79ccacec0" />
         <field name="gc_y" value="350" />
         <field name="gc_name" value="20" />
-        <field name="gc_englishdescription" value="TEST EN" />
-        <field name="gc_frenchdescription" value="TEST FR" />
       </record>
       <record id="1749e78b-1bfe-4556-8ec3-1467b175dfaf">
         <field name="statuscode" value="1" />
