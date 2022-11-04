@@ -64,7 +64,7 @@ public class AccessRequestService : IAccessRequestService
     }
 
     public async Task<(Result Result, IEnumerable<AccessRequest> AccessRequests)> GetAccessRequestsFor(Guid contactId)
-    {        
+    {
         var accessRequests = await _client.For<gc_accessrequest>()
             // Only grab the required properties
             .Select(a => new
@@ -85,7 +85,7 @@ public class AccessRequestService : IAccessRequestService
                 "gc_employee/lastname",
                 "gc_building/gc_englishname", "gc_building/gc_frenchname",
                 "gc_floor/gc_englishname", "gc_floor/gc_frenchname")
-            .OrderByDescending(a => a.gc_starttime)   
+            .OrderByDescending(a => a.gc_starttime)
             .FindEntriesAsync();
 
         var map = accessRequests.Select(a => gc_accessrequest.Convert(a)).ToList();
@@ -171,11 +171,17 @@ public class AccessRequestService : IAccessRequestService
 
             foreach (var visitor in visitors)
             {
-                var contacts = await _client.For<contact>()
-                    .Filter(x => x.emailaddress1 == visitor.emailaddress1)
-                    .FindEntriesAsync();
+                contact contact = null;
 
-                var contact = contacts.FirstOrDefault();
+                var hasEmailAddress = !string.IsNullOrWhiteSpace(visitor.emailaddress1);
+                if (hasEmailAddress)
+                {
+                    var contacts = await _client.For<contact>()
+                        .Filter(x => x.emailaddress1 == visitor.emailaddress1)
+                        .FindEntriesAsync();
+
+                    contact = contacts.FirstOrDefault();
+                }
 
                 // If no contact has been found, let's create it.
                 if (contact is null)

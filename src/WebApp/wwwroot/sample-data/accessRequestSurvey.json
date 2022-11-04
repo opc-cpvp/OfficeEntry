@@ -135,6 +135,7 @@
                     "default": "Name",
                     "fr": "Nom"
                   },
+                  "isRequired": true,
                   "cellType": "text"
                 },
                 {

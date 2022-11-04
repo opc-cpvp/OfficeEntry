@@ -36,7 +36,7 @@ internal class contact
         {
             firstname = x.FirstName,
             lastname = x.LastName,
-            emailaddress1 = x.EmailAddress.ToLower(),
+            emailaddress1 = x.EmailAddress?.ToLower(),
             telephone1 = x.PhoneNumber
         };
     }
