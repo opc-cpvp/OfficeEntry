@@ -300,8 +300,8 @@
   <data name="Requestor" xml:space="preserve">
     <value>Requestor</value>
   </data>
-  <data name="Requests for my Colleagues" xml:space="preserve">
-    <value>Requests for my Colleagues</value>
+  <data name="Requests for My Colleagues" xml:space="preserve">
+    <value>Requests for My Colleagues</value>
   </data>
   <data name="requests-for-my-colleagues" xml:space="preserve">
     <value>en/requests-for-my-colleagues</value>
