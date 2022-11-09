@@ -9,10 +9,9 @@ namespace OfficeEntry.WebApp.Pages.FloorPlans;
 [Authorize(Policy = "EditUser")]
 public partial class Search
 {
-    [Inject]
-    public IStringLocalizer<App> Localizer { get; set; }
+    [Inject] public IStringLocalizer<App> Localizer { get; set; }
     [Inject] private IDispatcher Dispatcher { get; set; } = null!;
-	[Inject] private IState<SearchFloorPlansState> State { get; set; } = null!;
+    [Inject] private IState<SearchFloorPlansState> State { get; set; } = null!;
 
 	protected override void OnInitialized()
 	{
