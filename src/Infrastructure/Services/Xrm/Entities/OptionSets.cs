@@ -17,12 +17,6 @@ public enum ApprovalStatus
     Cancelled = 948160003
 }
 
-public enum BuildingRoles
-{
-    FirstAidAttendant = 948160000,
-    FloorEmergencyOfficer = 948160001
-}
-
 public enum StateCode
 {
     Active = 0,
