@@ -63,12 +63,17 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
                 .Take(Math.Min(remainingCapacity, pendingAccessRequests.Count))
                 .SelectMany(x => x.Value);
 
-            foreach (var remainingAccessRequest in remainingAccessRequests)
+            var updateAccessRequestTasks = remainingAccessRequests.SelectMany(x =>
             {
-                remainingAccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
-                await _accessRequestService.UpdateAccessRequest(remainingAccessRequest);
-                await _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification { AccessRequest = remainingAccessRequest });
-            }
+                x.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
+                return new[]
+                {
+                    _accessRequestService.UpdateAccessRequest(x),
+                    _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification { AccessRequest = x })
+                };
+            });
+
+            await Task.WhenAll(updateAccessRequestTasks);
 
             floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
             if (floorPlanCapacity.HasCapacity)
@@ -91,12 +96,12 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
 
         if (notifyFirstAidAttendants)
         {
-            await _notificationService.NotifyFirstAidAttendants(notification);
+            _ = _notificationService.NotifyFirstAidAttendants(notification);
         }
 
         if (notifyFloorEmergencyOfficers)
         {
-            await _notificationService.NotifyFloorEmergencyOfficers(notification);
+            _ = _notificationService.NotifyFloorEmergencyOfficers(notification);
         }
 
         return Unit.Value;
