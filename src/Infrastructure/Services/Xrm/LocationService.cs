@@ -46,24 +46,19 @@ public class LocationService : ILocationService
 
     public async Task<FloorPlanCapacity> GetCapacityByFloorPlanAsync(Guid floorPlanId, DateOnly date)
     {
-        var floorPlan = await GetFloorPlanAsync(floorPlanId);
-
         var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlanId, date);
-        var approvedContacts = accessRequests
+        var approvedAccessRequests = accessRequests
             .Where(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Approved)
-            .Select(a => a.Employee)
-            .Distinct()
+            .DistinctBy(a => a.Employee.Id)
             .ToList();
 
-        var firstAidAttendants = await GetFirstAidAttendantsAsync(floorPlan.Building.Id);
-        var floorEmergencyOfficers = await GetFloorEmergencyOfficersAsync(floorPlan.Building.Id);
+        var firstAidAttendants = approvedAccessRequests.Count(x => x.FirstAidAttendant);
+        var maxFirstAidAttendantCapacity = Math.Max(firstAidAttendants * ThresholdFirstAidAttendant, MinimumFirstAidAttendant);
 
-        var approvedFirstAidAttendants = approvedContacts.Count(x => firstAidAttendants.Any(y => y.Id == x.Id));
-        var approvedFloorEmergencyOfficers = approvedContacts.Count(x => floorEmergencyOfficers.Any(y => y.Id == x.Id));
+        var floorEmergencyOfficers = approvedAccessRequests.Count(x => x.FloorEmergencyOfficer);
+        var maxFloorEmergencyOfficerCapacity = Math.Max(floorEmergencyOfficers * ThresholdFloorEmergencyOfficer, MinimumFloorEmergencyOfficer);
 
-        var maxFirstAidAttendantCapacity = Math.Max(approvedFirstAidAttendants * ThresholdFirstAidAttendant, MinimumFirstAidAttendant);
-        var maxFloorEmergencyOfficerCapacity = Math.Max(approvedFloorEmergencyOfficers * ThresholdFloorEmergencyOfficer, MinimumFloorEmergencyOfficer);
-        var currentCapacity = approvedContacts.Count;
+        var currentCapacity = approvedAccessRequests.Count;
         var totalCapacity = accessRequests.DistinctBy(a => a.Employee.Id).Count();
 
         return new FloorPlanCapacity
@@ -114,7 +109,7 @@ public class LocationService : ILocationService
         if (!floorPlan.FloorPlanImage.Equals(old.gc_base64))
         {
             // Update floorplan image
-            var updatedFloorplan = await _client
+            _ = await _client
                 .For<gc_floorplan>()
                 .Key(floorPlan.Id)
                 .Set(new { gc_base64 = floorPlan.FloorPlanImage })
