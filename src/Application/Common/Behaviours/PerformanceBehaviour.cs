@@ -47,7 +47,7 @@ public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequ
                 userName = await _domainUserService.GetUserNameAsync(AdAccount.For(userId));
             }
 
-            _logger.LogWarning("OfficeEntry Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {Request}",
+            _logger.LogWarning("OfficeEntry Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {@Request}",
                 requestName, elapsedMilliseconds, userId, userName, request);
         }
 

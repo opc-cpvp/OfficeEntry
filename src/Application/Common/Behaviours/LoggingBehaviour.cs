@@ -29,7 +29,7 @@ public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest>
             userName = await _domainUserService.GetUserNameAsync(AdAccount.For(userId));
         }
 
-        _logger.LogInformation("OfficeEntry Request: {Name} {@UserId} {@UserName} {Request}",
+        _logger.LogInformation("OfficeEntry Request: {Name} {@UserId} {@UserName} {@Request}",
             requestName, userId, userName, request);
     }
 }
