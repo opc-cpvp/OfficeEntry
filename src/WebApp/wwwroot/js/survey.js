@@ -104,13 +104,6 @@ export function init(id, classStyle, surveyUrl, data) {
                             console.error(error);
                             dotNet.invokeMethodAsync("ShowError");
                         });
-
-                // if (options.name === "floor") {
-                //     //console.debug(sender);
-                //     //console.debug(options.name);
-                //     //console.debug(options.question);
-                //     //console.debug(options.value);
-                // }
             });
 
             survey

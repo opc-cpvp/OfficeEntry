@@ -124,36 +124,6 @@ class FrameCounter {
         return true;
     }
 }
-
-// class FrameCounter {
-//     TotalFrames = 0;
-//     TotalSeconds = 0;
-//     AverageFramesPerSecond = 0.0;
-//     CurrentFramesPerSecond = 0.0;
-//     #MAXIMUM_SAMPLES = 100;
-//     #_sampleBuffer = [];
-
-//     _sampleBuffer = new Queue()
-
-//     Update(deltaTime) {
-//         this.CurrentFramesPerSecond = 1.0 / deltaTime;
-
-//         this.#_sampleBuffer.push(this.CurrentFramesPerSecond);
-
-//         if (this.#_sampleBuffer.length > this.#MAXIMUM_SAMPLES) {
-//             this.#_sampleBuffer.shift();
-//             this.AverageFramesPerSecond = this.#_sampleBuffer.reduce((a, b) => a + b, 0) / this.#_sampleBuffer.length;
-//         }
-//         else {
-//             this.AverageFramesPerSecond = this.CurrentFramesPerSecond;
-//         }
-
-//         this.TotalFrames++;
-//         this.TotalSeconds += deltaTime;
-
-//         return true;
-//     }
-// }
 // ===========================================================================
 // classes END
 // ===========================================================================
@@ -207,9 +177,6 @@ let previousMouseState = new MouseState();
 let previousTimeStamp = 0.0;
 let _frameCounter = new FrameCounter();
 
-// const grabCountDownBufferDefault = 35;
-// let grabCountDownBuffer = grabCountDownBufferDefault;
-
 function resetState() {
     shouldRender = false;
 
@@ -229,14 +196,6 @@ let spyingContact = "";
 async function Update(deltaTime) {
     // set the current selected circle
     if (previousMouseState.LeftButton === "down" && currentMouseState.LeftButton === "up") {
-
-        // circles.forEach(circle => {
-        //     circle.Grabbed = false;
-        // });
-
-        // // reset last the buffer
-        // grabCountDownBuffer = grabCountDownBufferDefault
-
         circles.forEach(circle => {
             circle.Selected = circle.IsCollidingWithMouse(currentMouseState);
         });
@@ -253,30 +212,6 @@ async function Update(deltaTime) {
             await dotNet.invokeMethodAsync("OnSelectedCircleChanged", JSON.stringify(selectedCircles[0]));
         }
     }
-
-    // // TODO: drag the selected circle
-    // if (canEdit) {
-    //     if (previousMouseState.LeftButton === "down" && currentMouseState.LeftButton === "down") {
-
-    //         if (grabCountDownBuffer > 0) {
-    //             grabCountDownBuffer -= deltaTime;
-    //             return;
-    //         }
-
-    //         const grabbedCircles = circles.filter(x => x.Grabbed);
-
-    //         if (grabbedCircles.length === 1) {
-    //             const grabbedCircle = grabbedCircles[0];
-
-    //             grabbedCircle.Position.Left = currentMouseState.X - grabbedCircle.Diameter / 2;
-    //             grabbedCircle.Position.Top = currentMouseState.Y - grabbedCircle.Diameter / 2;
-    //         } else if (grabbedCircles.length === 0) {
-    //             circles.forEach(circle => {
-    //                 circle.Grabbed = circle.IsCollidingWithMouse(currentMouseState);
-    //             });
-    //         }
-    //     }
-    // }
 
     // set the current hovered circle
     circles.forEach(circle => circle.Hovering = circle.IsCollidingWithMouse(currentMouseState));
@@ -406,10 +341,6 @@ function Draw(deltaTime) {
 
     if (canEdit) {
         context.fillText(`(${currentMouseState.X}, ${currentMouseState.Y})`, 3, canvas.height - 1);
-
-        // TODO: remove, debug only
-        context.fillText(`FPS: ${_frameCounter.AverageFramesPerSecond}`, 3, canvas.height - 20);
-        context.fillText(`deltaTime: ${deltaTime}`, 3, canvas.height - 40);
     }
 }
 
@@ -467,29 +398,8 @@ export async function start(imagedata, circlesJson) {
     canvas.removeEventListener("touchend", onTouchEnd);
     canvas.addEventListener("touchend", onTouchEnd);
 
-    // const holder = document.getElementById('canvasHolder');
-
-    // if (holder) {
-    //     canvas.width = holder.clientWidth;
-    //     canvas.height = holder.clientHeight;
-
-    //     canvas.style.width ='100%';
-    //     canvas.style.height='100%';
-    // }
-
     floorplan.src = imagedata;
     await floorplan.decode();
-
-    // floorplan.onload = function() {
-    //     // alert(this.width + 'x' + this.height);
-    //     canvas.width = this.width;
-    //     canvas.height = this.height;
-
-    //     initCircles(circlesJson);
-
-    //     shouldRender = true;
-    //     window.requestAnimationFrame(gameLoop);
-    // }
 
     availableBackgroundImage.src = '/img/floorplan/circle_available_icon.svg';
     availableHoveredBackgroundImage.src = '/img/floorplan/circle_available_hover_icon.svg';
@@ -541,18 +451,6 @@ export function setSelectedCircle(circleId) {
             x.Selected = x.Id === circleId;
         });
 }
-
-// export function deleteSelectedCircle() {
-//     const temp = circles.filter(x => !x.Selected);
-
-//     while (circles.length > 0) {
-//         circles.pop();
-//     }
-
-//     temp.forEach(circle => {
-//         circles.push(circle);
-//     });
-// }
 
 export function stop() {
     shouldRender = false;
