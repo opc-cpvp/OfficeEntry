@@ -61,11 +61,17 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 request.AccessRequest.Delegate = currentContact;
             }
 
-            var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlan.Id, DateOnly.FromDateTime(date));
-            var floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
+            var accessRequestsTask = _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlan.Id, DateOnly.FromDateTime(date));
+            var floorPlanCapacityTask = _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
+            var firstAidAttendantsTask = _locationService.GetFirstAidAttendantsAsync(request.AccessRequest.Building.Id);
+            var floorEmergencyOfficersTask = _locationService.GetFloorEmergencyOfficersAsync(request.AccessRequest.Building.Id);
 
-            var firstAidAttendants = await _locationService.GetFirstAidAttendantsAsync(request.AccessRequest.Building.Id);
-            var floorEmergencyOfficers = await _locationService.GetFloorEmergencyOfficersAsync(request.AccessRequest.Building.Id);
+            await Task.WhenAll(accessRequestsTask, floorPlanCapacityTask, firstAidAttendantsTask, floorEmergencyOfficersTask);
+
+            var accessRequests = accessRequestsTask.Result;
+            var floorPlanCapacity = floorPlanCapacityTask.Result;
+            var firstAidAttendants = firstAidAttendantsTask.Result;
+            var floorEmergencyOfficers = floorEmergencyOfficersTask.Result;
 
             var isEmployeeFirstAidAttendant = firstAidAttendants.Any(x => x.Id == request.AccessRequest.Employee.Id);
             var isEmployeeFloorEmergencyOfficer = floorEmergencyOfficers.Any(x => x.Id == request.AccessRequest.Employee.Id);
@@ -96,7 +102,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 request.AccessRequest.Workspace = await _locationService.GetWorkspaceAsync(request.AccessRequest.Workspace.Id);
             }
 
-            await _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification { AccessRequest = request.AccessRequest });
+            _ = _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification { AccessRequest = request.AccessRequest });
 
             // Update floor plan capacity
             floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
@@ -114,40 +120,44 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                     .Take(Math.Min(remainingCapacity, pendingAccessRequests.Count))
                     .SelectMany(x => x.Value);
 
-                foreach (var remainingAccessRequest in remainingAccessRequests)
+                var updateAccessRequestTasks = remainingAccessRequests.Select(x =>
                 {
-                    remainingAccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
-                    await _mediator.Send(new UpdateAccessRequestCommand { AccessRequest = remainingAccessRequest }, cancellationToken);
-                }
+                    x.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
+                    return _mediator.Send(new UpdateAccessRequestCommand { AccessRequest = x }, cancellationToken);
+                });
+
+                await Task.WhenAll(updateAccessRequestTasks);
 
                 // Update floor plan capacity
                 floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
             }
 
-            // Send notifications if we reached capacity
-            if (!floorPlanCapacity.HasCapacity)
+            if (floorPlanCapacity.HasCapacity)
             {
-                var notifyFirstAidAttendants = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFirstAidAttendantCapacity;
-                var notifyFloorEmergencyOfficers = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFloorEmergencyOfficerCapacity;
+                return Unit.Value;
+            }
 
-                var capacity = Math.Min(floorPlanCapacity.MaxFirstAidAttendantCapacity, floorPlanCapacity.MaxFloorEmergencyOfficerCapacity);
-                var notification = new CapacityNotification
-                {
-                    Capacity = capacity,
-                    Date = request.AccessRequest.StartTime,
-                    Building = request.AccessRequest.Building,
-                    Floor = request.AccessRequest.Floor
-                };
+            // Send notifications if we reached capacity
+            var notifyFirstAidAttendants = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFirstAidAttendantCapacity;
+            var notifyFloorEmergencyOfficers = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFloorEmergencyOfficerCapacity;
 
-                if (notifyFirstAidAttendants)
-                {
-                    await _notificationService.NotifyFirstAidAttendants(notification);
-                }
+            var capacity = Math.Min(floorPlanCapacity.MaxFirstAidAttendantCapacity, floorPlanCapacity.MaxFloorEmergencyOfficerCapacity);
+            var notification = new CapacityNotification
+            {
+                Capacity = capacity,
+                Date = request.AccessRequest.StartTime,
+                Building = request.AccessRequest.Building,
+                Floor = request.AccessRequest.Floor
+            };
 
-                if (notifyFloorEmergencyOfficers)
-                {
-                    await _notificationService.NotifyFloorEmergencyOfficers(notification);
-                }
+            if (notifyFirstAidAttendants)
+            {
+                _ = _notificationService.NotifyFirstAidAttendants(notification);
+            }
+
+            if (notifyFloorEmergencyOfficers)
+            {
+                _ = _notificationService.NotifyFloorEmergencyOfficers(notification);
             }
 
             return Unit.Value;
