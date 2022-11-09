@@ -108,7 +108,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
 
             // Approve pending access requests to fill the remaining spots
-            if ((isEmployeeFirstAidAttendant || isEmployeeFloorEmergencyOfficer) && floorPlanCapacity.HasCapacity)
+            if (floorPlanCapacity.HasCapacity)
             {
                 var pendingAccessRequests = accessRequests
                     .Where(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Pending)
@@ -130,11 +130,10 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
 
                 // Update floor plan capacity
                 floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
-            }
-
-            if (floorPlanCapacity.HasCapacity)
-            {
-                return Unit.Value;
+                if (floorPlanCapacity.HasCapacity)
+                {
+                    return Unit.Value;
+                }
             }
 
             // Send notifications if we reached capacity
