@@ -1,11 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
-using OfficeEntry.Application.Common.Interfaces;
+﻿using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 using Simple.OData.Client;
 using System.Collections.Immutable;
-using System.Text;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm;
 
@@ -30,26 +28,13 @@ public class AccessRequestService : IAccessRequestService
             .Filter(x => x.gc_starttime <= endOfDay)
             .Filter(x => x.gc_endtime >= startOfDay)
             .Filter(a => a.statecode == (int)StateCode.Active)
-            .Expand(
-                "gc_delegate/contactid",
-                "gc_delegate/firstname",
-                "gc_delegate/lastname",
-
-                "gc_employee/contactid",
-                "gc_employee/firstname",
-                "gc_employee/lastname",
-
-                "gc_building/gc_buildingid",
-                "gc_building/gc_englishname", "gc_building/gc_frenchname",
-
-                "gc_floor/gc_floorid",
-                "gc_floor/gc_englishname", "gc_floor/gc_frenchname",
-
-                "gc_floorplan/gc_floorplanid",
-
-                "gc_workspace/gc_workspaceid",
-                "gc_workspace/gc_name"
-            )
+            // Only grab the required properties of the navigation properties
+            .Expand(a => new { a.gc_delegate.contactid, a.gc_delegate.firstname, a.gc_delegate.lastname })
+            .Expand(a => new { a.gc_employee.contactid, a.gc_employee.firstname, a.gc_employee.lastname })
+            .Expand(a => new { a.gc_building.gc_buildingid, a.gc_building.gc_englishname, a.gc_building.gc_frenchname })
+            .Expand(a => new { a.gc_floor.gc_floorid, a.gc_floor.gc_englishname, a.gc_floor.gc_frenchname })
+            .Expand(a => new { a.gc_floorplan.gc_floorplanid })
+            .Expand(a => new { a.gc_workspace.gc_workspaceid, a.gc_workspace.gc_name })
             .FindEntriesAsync();
 
         // TODO: add visitors for shared workspace and boardrooms
@@ -60,21 +45,6 @@ public class AccessRequestService : IAccessRequestService
             )
             .Select(gc_accessrequest.Convert)
             .ToImmutableArray();
-    }
-
-    public async Task<IEnumerable<AccessRequest>> GetApprovedOrPendingAccessRequestsByFloor(Guid floorId, DateTime? date = null)
-    {
-        var startOfDay = date.Value.Date;
-        var endOfDay = date.Value.AddDays(1).Date.AddSeconds(-1);
-
-        var accessRequests = await _client.For<gc_accessrequest>()
-            .Filter(a => a.gc_floor.gc_floorid == floorId && a.gc_starttime >= startOfDay && a.gc_starttime <= endOfDay)
-            .FindEntriesAsync();
-
-        return accessRequests.Where(x =>
-            x.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Approved ||
-            x.gc_approvalstatus == (ApprovalStatus)AccessRequest.ApprovalStatus.Pending
-        ).Select(gc_accessrequest.Convert);
     }
 
     public async Task<(Result Result, AccessRequest AccessRequest)> GetAccessRequest(Guid accessRequestId)
@@ -117,21 +87,11 @@ public class AccessRequestService : IAccessRequestService
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Filter(a => a.gc_employee.contactid == contactId)
             // Only grab the required properties of the navigation properties
-            .Expand(
-                "gc_employee/contactid",
-                "gc_employee/firstname",
-                "gc_employee/lastname",
-
-                "gc_building/gc_buildingid",
-                "gc_building/gc_englishname", "gc_building/gc_frenchname",
-
-                "gc_floor/gc_floorid",
-                "gc_floor/gc_englishname", "gc_floor/gc_frenchname",
-
-                "gc_floorplan/gc_floorplanid",
-
-                "gc_workspace/gc_workspaceid",
-                "gc_workspace/gc_name")
+            .Expand(a => new { a.gc_employee.contactid, a.gc_employee.firstname, a.gc_employee.lastname })
+            .Expand(a => new { a.gc_building.gc_buildingid, a.gc_building.gc_englishname, a.gc_building.gc_frenchname })
+            .Expand(a => new { a.gc_floor.gc_floorid, a.gc_floor.gc_englishname, a.gc_floor.gc_frenchname })
+            .Expand(a => new { a.gc_floorplan.gc_floorplanid })
+            .Expand(a => new { a.gc_workspace.gc_workspaceid, a.gc_workspace.gc_name })
             .OrderByDescending(a => a.gc_starttime)
             .FindEntriesAsync();
 
@@ -159,21 +119,11 @@ public class AccessRequestService : IAccessRequestService
             .Filter(a => a.statecode == (int)StateCode.Active)
             .Filter(a => a.gc_delegate.contactid == contactId)
             // Only grab the required properties of the navigation properties
-            .Expand(
-                "gc_employee/contactid",
-                "gc_employee/firstname",
-                "gc_employee/lastname",
-
-                "gc_building/gc_buildingid",
-                "gc_building/gc_englishname", "gc_building/gc_frenchname",
-
-                "gc_floor/gc_floorid",
-                "gc_floor/gc_englishname", "gc_floor/gc_frenchname",
-
-                "gc_floorplan/gc_floorplanid",
-
-                "gc_workspace/gc_workspaceid",
-                "gc_workspace/gc_name")
+            .Expand(a => new { a.gc_employee.contactid, a.gc_employee.firstname, a.gc_employee.lastname })
+            .Expand(a => new { a.gc_building.gc_buildingid, a.gc_building.gc_englishname, a.gc_building.gc_frenchname })
+            .Expand(a => new { a.gc_floor.gc_floorid, a.gc_floor.gc_englishname, a.gc_floor.gc_frenchname })
+            .Expand(a => new { a.gc_floorplan.gc_floorplanid })
+            .Expand(a => new { a.gc_workspace.gc_workspaceid, a.gc_workspace.gc_name })
             .OrderByDescending(a => a.gc_starttime)
             .FindEntriesAsync();
 
