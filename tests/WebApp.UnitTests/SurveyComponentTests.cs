@@ -1,23 +1,20 @@
-﻿using FluentAssertions;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.JSInterop;
 using OfficeEntry.Application;
 using OfficeEntry.WebApp;
 using OfficeEntry.WebApp.Shared;
-using System.Xml.Linq;
 
 namespace WebApp.UnitTests;
 
-public class SurveyTests : TestContext
+public class SurveyComponentTests : TestContext
 {
     private readonly IServiceProvider ServiceProvider;
     private readonly JSRuntimeInvocationHandler _plannedRegister;
     private readonly JSRuntimeInvocationHandler _plannedInit;
 
-    public SurveyTests()
+    public SurveyComponentTests()
     {
         var services = new ServiceCollection();
         services.AddApplication();
@@ -103,7 +100,7 @@ public class SurveyTests : TestContext
         }
     }
 
-    public class EventCallbackTests : SurveyTests
+    public class EventCallbackComponentTests : SurveyComponentTests
     {
         private const string NAME = nameof(NAME);
         private const string EXPECTED = nameof(EXPECTED);

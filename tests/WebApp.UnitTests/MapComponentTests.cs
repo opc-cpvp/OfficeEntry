@@ -1,32 +1,25 @@
-﻿using Bunit;
-using FluentAssertions;
-using Fluxor;
+﻿using Fluxor;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
-using Moq;
 using OfficeEntry.Application;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.WebApp;
 using OfficeEntry.WebApp.Pages.FloorPlans;
 using OfficeEntry.WebApp.Shared;
 using OfficeEntry.WebApp.Store.FloorPlanUseCases.Map;
-using Serilog;
 using System.Collections.Immutable;
-using System.Numerics;
-using Xunit;
 
 namespace WebApp.UnitTests;
 
-public class Map1Tests
+public class MapComponentTests
 {
     private readonly IServiceProvider ServiceProvider;
     private readonly IStore Store;
     private readonly IState<MapState> State;
 
-    public Map1Tests()
+    public MapComponentTests()
     {
         var services = new ServiceCollection();
         services.AddFluxor(x => x.ScanAssemblies(GetType().Assembly).ScanTypes(typeof(MapState), typeof(Reducers)));
@@ -45,7 +38,7 @@ public class Map1Tests
     }
 
     [Fact]
-    public void Test1()
+    public void When_component_loads_the_state_gets_updated()
     {
         // Arrange
         using var ctx = new TestContext();

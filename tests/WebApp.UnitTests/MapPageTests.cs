@@ -2,7 +2,7 @@ using Bunit;
 
 namespace WebApp.UnitTests;
 
-public class Map2Tests
+public class MapPageTests
 {
     [Fact]
     public void When_no_workstation_id_return_default_guid()
@@ -29,15 +29,5 @@ public class Map2Tests
 
         // Assert
         Assert.Equal(id, result);
-    }
-}
-
-public class Map3Tests
-{
-    [Fact]
-    public void Test1()
-    {
-        using var ctx = new TestContext();
-        var moduleInterop = ctx.JSInterop.SetupModule("/js/floorplan.js");
     }
 }
