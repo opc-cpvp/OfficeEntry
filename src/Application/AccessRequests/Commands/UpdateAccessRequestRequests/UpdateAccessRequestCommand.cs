@@ -6,6 +6,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestReq
 
 public record UpdateAccessRequestCommand : IRequest
 {
+    public string BaseUrl { get; init; }
     public AccessRequest AccessRequest { get; init; }
 }
 
@@ -28,7 +29,11 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
     public async Task<Unit> Handle(UpdateAccessRequestCommand request, CancellationToken cancellationToken)
     {
         await _accessRequestService.UpdateAccessRequest(request.AccessRequest);
-        await _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification { AccessRequest = request.AccessRequest });
+        await _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification
+        {
+            BaseUrl = request.BaseUrl,
+            AccessRequest = request.AccessRequest
+        });
 
         // Check if the request is cancelled
         var isCancelled = request.AccessRequest.Status.Key == (int)AccessRequest.ApprovalStatus.Cancelled;
@@ -69,7 +74,11 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
                 return new[]
                 {
                     _accessRequestService.UpdateAccessRequest(x),
-                    _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification { AccessRequest = x })
+                    _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification
+                    {
+                        BaseUrl = request.BaseUrl,
+                        AccessRequest = x
+                    })
                 };
             });
 
@@ -96,12 +105,12 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
 
         if (notifyFirstAidAttendants)
         {
-            _ = _notificationService.NotifyFirstAidAttendants(notification);
+            await _notificationService.NotifyFirstAidAttendants(notification);
         }
 
         if (notifyFloorEmergencyOfficers)
         {
-            _ = _notificationService.NotifyFloorEmergencyOfficers(notification);
+            await _notificationService.NotifyFloorEmergencyOfficers(notification);
         }
 
         return Unit.Value;

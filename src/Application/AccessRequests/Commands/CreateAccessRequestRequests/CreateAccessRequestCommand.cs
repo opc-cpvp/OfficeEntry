@@ -7,6 +7,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
 {
     public record CreateAccessRequestCommand : IRequest
     {
+        public string BaseUrl { get; init; }
         public AccessRequest AccessRequest { get; init; }
     }
 
@@ -102,7 +103,11 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 request.AccessRequest.Workspace = await _locationService.GetWorkspaceAsync(request.AccessRequest.Workspace.Id);
             }
 
-            _ = _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification { AccessRequest = request.AccessRequest });
+            await _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification
+            {
+                BaseUrl = request.BaseUrl,
+                AccessRequest = request.AccessRequest
+            });
 
             // Update floor plan capacity
             floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
@@ -123,7 +128,11 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 var updateAccessRequestTasks = remainingAccessRequests.Select(x =>
                 {
                     x.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
-                    return _mediator.Send(new UpdateAccessRequestCommand { AccessRequest = x }, cancellationToken);
+                    return _mediator.Send(new UpdateAccessRequestCommand
+                    {
+                        BaseUrl = request.BaseUrl,
+                        AccessRequest = x
+                    }, cancellationToken);
                 });
 
                 await Task.WhenAll(updateAccessRequestTasks);
@@ -151,12 +160,12 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
 
             if (notifyFirstAidAttendants)
             {
-                _ = _notificationService.NotifyFirstAidAttendants(notification);
+                await _notificationService.NotifyFirstAidAttendants(notification);
             }
 
             if (notifyFloorEmergencyOfficers)
             {
-                _ = _notificationService.NotifyFloorEmergencyOfficers(notification);
+                await _notificationService.NotifyFloorEmergencyOfficers(notification);
             }
 
             return Unit.Value;

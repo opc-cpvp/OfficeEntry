@@ -88,7 +88,11 @@ public partial class AccessRequest
             accessRequestMessage.Delegate = new Contact { Id = accessRequest.DelegateId.Value };
         }
 
-        await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
+        await Mediator.Send(new UpdateAccessRequestCommand
+        {
+            BaseUrl = NavigationManager.BaseUri,
+            AccessRequest = accessRequestMessage
+        });
 
         Dispatcher.Dispatch(new GetAccessRequestsAction());
         Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());

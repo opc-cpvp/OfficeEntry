@@ -212,7 +212,11 @@ public partial class Map : IAsyncDisposable
             accessRequest.Employee = new Contact { Id = submission.otherIndividual };
         }
 
-        await Mediator.Send(new CreateAccessRequestCommand { AccessRequest = accessRequest });
+        await Mediator.Send(new CreateAccessRequestCommand
+        {
+            BaseUrl = NavigationManager.BaseUri,
+            AccessRequest = accessRequest
+        });
 
         if (isDelegate)
         {
