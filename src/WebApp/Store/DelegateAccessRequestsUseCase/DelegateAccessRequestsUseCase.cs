@@ -63,7 +63,7 @@ public class Effects
     [EffectMethod]
     public async Task HandleFetchDataAction(GetDelegateAccessRequestsAction action, IDispatcher dispatcher)
     {
-        var accessRequests = (await _mediator.Send(new GetDelegateAccessRequestsQuery())).ToArray();
+        var accessRequests = (await _mediator.Send(GetDelegateAccessRequestsQuery.Instance)).ToArray();
         dispatcher.Dispatch(new GetDelegateAccessRequestsResultAction(accessRequests));
     }
 }

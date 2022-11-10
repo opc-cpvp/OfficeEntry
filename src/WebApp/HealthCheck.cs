@@ -21,7 +21,7 @@ public class HealthCheck : IHealthCheck
     {
         try
         {
-            var contacts = await _mediator.Send(new GetContactsQuery(), cancellationToken);
+            var contacts = await _mediator.Send(GetContactsQuery.Instance, cancellationToken);
 
             if (contacts is { })
             {

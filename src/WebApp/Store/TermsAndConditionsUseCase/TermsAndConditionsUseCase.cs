@@ -66,7 +66,7 @@ public class Effects
     [EffectMethod]
     public async Task HandleFetchDataAction(GetTermsAndConditions action, IDispatcher dispatcher)
     {
-        var result = await _mediator.Send(new GetTermsAndConditionsQuery());
+        var result = await _mediator.Send(GetTermsAndConditionsQuery.Instance);
 
         dispatcher.Dispatch(new GetTermsAndConditionsResultAction(result.IsHealthAndSafetyMeasuresAccepted, result.IsPrivacyActStatementAccepted));
     }

@@ -3,7 +3,14 @@ using OfficeEntry.Application.Common.Interfaces;
 
 namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests;
 
-public record GetAccessRequestsQuery : IRequest<IEnumerable<Domain.Entities.AccessRequest>>;
+public record GetAccessRequestsQuery : IRequest<IEnumerable<Domain.Entities.AccessRequest>>
+{
+    public static readonly GetAccessRequestsQuery Instance = new();
+
+    private GetAccessRequestsQuery()
+    {
+    }
+}
 
 public class GetAccessRequestsQueryHandler : IRequestHandler<GetAccessRequestsQuery, IEnumerable<Domain.Entities.AccessRequest>>
 {

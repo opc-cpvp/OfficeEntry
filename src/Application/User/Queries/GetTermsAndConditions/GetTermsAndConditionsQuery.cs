@@ -4,7 +4,14 @@ using OfficeEntry.Domain.Entities;
 
 namespace OfficeEntry.Application.User.Queries.GetMyTermsAndConditions;
 
-public record GetTermsAndConditionsQuery : IRequest<TermsAndConditions>;
+public record GetTermsAndConditionsQuery : IRequest<TermsAndConditions>
+{
+    public static readonly GetTermsAndConditionsQuery Instance = new();
+
+    private GetTermsAndConditionsQuery()
+    {
+    }
+}
 
 public class GetTermsAndConditionsQueryHandler : IRequestHandler<GetTermsAndConditionsQuery, TermsAndConditions>
 {

@@ -9,6 +9,6 @@ public class UsersController : ApiController
     [HttpGet]
     public async Task<IEnumerable<Contact>> Get()
     {
-        return await Mediator.Send(new GetContactsQuery());
+        return await Mediator.Send(GetContactsQuery.Instance);
     }
 }

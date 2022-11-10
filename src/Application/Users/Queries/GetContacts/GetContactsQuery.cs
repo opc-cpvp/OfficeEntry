@@ -3,7 +3,14 @@ using OfficeEntry.Application.Common.Interfaces;
 
 namespace OfficeEntry.Application.Users.Queries.GetContactsRequests;
 
-public record GetContactsQuery : IRequest<IEnumerable<Domain.Entities.Contact>>;
+public record GetContactsQuery : IRequest<IEnumerable<Domain.Entities.Contact>>
+{
+    public static readonly GetContactsQuery Instance = new();
+
+    private GetContactsQuery()
+    {
+    }
+}
 
 public class GetContactsQueryHandler : IRequestHandler<GetContactsQuery, IEnumerable<Domain.Entities.Contact>>
 {
