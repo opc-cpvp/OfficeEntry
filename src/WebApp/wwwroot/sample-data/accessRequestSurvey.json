@@ -180,7 +180,8 @@
           "dateFormat": "mm/dd/yy",
           "inputType": "date",
           "config": {
-            "minDate": 0
+            "minDate": 0,
+            "maxDate": "11/18/2022"
           }
         }
       ]
