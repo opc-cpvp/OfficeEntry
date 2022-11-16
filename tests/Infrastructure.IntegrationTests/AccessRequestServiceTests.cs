@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AutoMapper.Configuration.Annotations;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
@@ -27,7 +28,7 @@ public class AccessRequestServiceTests : IDisposable
         _sut = serviceProvider.GetRequiredService<IAccessRequestService>();
     }
 
-    [Fact]
+    [Fact(Skip = "no longer a valid use case")]
     public async Task Create_access_resquest_no_asset_and_no_visitors()
     {
         var accessRequest = new AccessRequest
@@ -51,7 +52,7 @@ public class AccessRequestServiceTests : IDisposable
         Assert.True(result.Succeeded);
     }
 
-    [Fact]
+    [Fact(Skip = "no longer a valid use case")]
     public async Task Create_access_resquest_with_asset_and_no_visitors()
     {
         var accessRequest = new AccessRequest
@@ -75,7 +76,7 @@ public class AccessRequestServiceTests : IDisposable
         Assert.True(result.Succeeded);
     }
 
-    [Fact]
+    [Fact(Skip = "no longer a valid use case")]
     public async Task Create_access_resquest_no_asset_and_one_visitor()
     {
         var accessRequest = new AccessRequest
@@ -99,7 +100,7 @@ public class AccessRequestServiceTests : IDisposable
         Assert.True(result.Succeeded);
     }
 
-    [Fact]
+    [Fact(Skip = "no longer a valid use case")]
     public async Task Create_access_resquest_no_asset_and_two_visitors()
     {
         var accessRequest = new AccessRequest
@@ -123,7 +124,7 @@ public class AccessRequestServiceTests : IDisposable
         Assert.True(result.Succeeded);
     }
 
-    [Fact]
+    [Fact(Skip = "no longer a valid use case")]
     public async Task Create_access_resquest_with_assets_and_two_visitors()
     {
         var accessRequest = new AccessRequest
