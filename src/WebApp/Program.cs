@@ -1,3 +1,4 @@
+using Destructurama;
 using Serilog;
 using Serilog.Exceptions;
 using Serilog.Exceptions.Core;
@@ -11,13 +12,13 @@ public class Program
         var configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .AddJsonFile("appsettings.Development.json", optional: true)
-            //.AddEnvironmentVariables(prefix: "OfficeEntry__")
             .Build();
 
         var assemblyVersion = typeof(Program).Assembly.GetName().Version.ToString();
 
         Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(configuration)
+            .Destructure.UsingAttributes()
             .Enrich.WithProperty("Version", assemblyVersion)
             .Enrich.WithExceptionDetails(new DestructuringOptionsBuilder().WithDefaultDestructurers())
             .Filter.ByExcluding("RequestPath = '/health' and StatusCode = 200")

@@ -1,9 +1,12 @@
-﻿using IdentityModel;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.ValueObjects;
+using System.Collections.Immutable;
+using System.Runtime.Versioning;
 using System.Security.Claims;
 using System.Security.Principal;
 
@@ -12,11 +15,13 @@ namespace OfficeEntry.WebApp.Area.Identity.Controllers;
 [Route("{controller}/{action}")]
 public class ExternalController : Controller
 {
+    private readonly IDomainUserService _domainUserService;
     private readonly ILogger<ExternalController> _logger;
 
-    public ExternalController(ILogger<ExternalController> logger)
+    public ExternalController(ILogger<ExternalController> logger, IDomainUserService domainUserService)
     {
         _logger = logger;
+        _domainUserService = domainUserService;
     }
 
     /// <summary>
@@ -33,6 +38,7 @@ public class ExternalController : Controller
     /// Initiate roundtrip to external authentication provider
     /// </summary>
     [HttpGet]
+    [SupportedOSPlatform("windows")]
     public async Task<IActionResult> Challenge(string provider, string returnUrl)
     {
         if (string.IsNullOrEmpty(returnUrl)) returnUrl = "~/";
@@ -78,6 +84,7 @@ public class ExternalController : Controller
         return Redirect(returnUrl);
     }
 
+    [SupportedOSPlatform("windows")]
     private async Task<IActionResult> ProcessNegociateLoginAsync(string returnUrl)
     {
         // see if windows auth has already been requested and succeeded
@@ -103,10 +110,23 @@ public class ExternalController : Controller
 
             var id = new ClaimsIdentity(NegotiateDefaults.AuthenticationScheme);
             id.AddClaim(new Claim(JwtClaimTypes.Subject, wp.FindFirst(ClaimTypes.PrimarySid).Value));
-#pragma warning disable CA1416
             id.AddClaim(new Claim(JwtClaimTypes.Name, wp.Identity.Name));
             id.AddClaim(new Claim(ClaimTypes.Name, wp.Identity.Name));
-#pragma warning restore CA1416
+
+            var adGroups = _domainUserService
+                .GetUserGroupsFor(AdAccount.For(wp.Identity.Name))
+                .OrderBy(x => x.ToLowerInvariant())
+                .ToImmutableArray();
+
+            if (adGroups.Any(x => x is "Apps"))
+            {
+                id.AddClaim(new Claim("Team", "Apps", ClaimValueTypes.String, issuer: "OPC"));
+            }
+
+            if (adGroups.Any(x => x is "OPC - Administrative Services"))
+            {
+                id.AddClaim(new Claim("Team", "AdminServices", ClaimValueTypes.String, issuer: "OPC"));
+            }
 
             await HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,

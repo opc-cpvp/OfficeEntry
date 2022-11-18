@@ -3,9 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using OfficeEntry.Application.User.Commands.UpdatePrivacyStatementRequests;
-using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
+using OfficeEntry.Application.User.Commands.UpdatePrivacyStatement;
+using OfficeEntry.WebApp.Shared;
 using System.Text.Json;
+using OfficeEntry.WebApp.Store.TermsAndConditionsUseCase;
 
 namespace OfficeEntry.WebApp.Pages;
 
@@ -15,52 +16,52 @@ public partial class PrivacyActStatement
     [Inject] public NavigationManager NavigationManager { get; set; }
     [Inject] public IMediator Mediator { get; set; }
     [Inject] public IStringLocalizer<App> Localizer { get; set; }
-    [Inject] public IState<MyTermsAndConditionsState> MyTermsAndConditionsState { get; set; }
+    [Inject] public IState<TermsAndConditionsState> TermsAndConditionsState { get; set; }
     [Inject] public IDispatcher Dispatcher { get; set; }
 
     protected string SurveyData { get; set; }
     protected bool SurveyCompleted { get; set; }
 
-    public async Task OnSurveyCompleted(string surveyResult)
+    public async Task OnSurveyCompleted(SurveyCompletedEventArgs e)
     {
         SurveyCompleted = true;
 
-        var surveyData = JsonSerializer.Deserialize<PrivacyActStatementSurveyData>(surveyResult);
+        var surveyData = JsonSerializer.Deserialize<PrivacyActStatementSurveyData>(e.SurveyResult);
 
-        bool privateActStatementAccepted = surveyData.questionAcceptPaStatement.Any();
+        var privateActStatementAccepted = surveyData.questionAcceptPaStatement.Any();
 
-        await Mediator.Send(new UpdatePrivacyActStatementForCurrentUserCommand { IsPrivacyActStatementAccepted = privateActStatementAccepted });
+        await Mediator.Send(new UpdatePrivacyActStatementCommand { IsPrivacyActStatementAccepted = privateActStatementAccepted });
 
-        Dispatcher.Dispatch(new GetMyTermsAndConditions());
+        Dispatcher.Dispatch(new GetTermsAndConditions());
 
         NavigationManager.NavigateTo(Localizer["my-access-requests"]);
     }
 
     protected override void Dispose(bool disposing)
     {
-        MyTermsAndConditionsState.StateChanged -= MyTermsAndConditionsState_StateChanged;
+        TermsAndConditionsState.StateChanged -= MyTermsAndConditionsState_StateChanged;
         base.Dispose(disposing);
     }
 
     protected override void OnInitialized()
     {
-        if (!MyTermsAndConditionsState.Value.IsLoading)
+        if (!TermsAndConditionsState.Value.IsLoading)
         {
-            SetSurveyData(MyTermsAndConditionsState.Value.IsPrivacyActStatementAccepted);
+            SetSurveyData(TermsAndConditionsState.Value.IsPrivacyActStatementAccepted);
         }
 
-        MyTermsAndConditionsState.StateChanged += MyTermsAndConditionsState_StateChanged;
+        TermsAndConditionsState.StateChanged += MyTermsAndConditionsState_StateChanged;
         base.OnInitialized();
     }
 
     private void MyTermsAndConditionsState_StateChanged(object sender, EventArgs e)
     {
-        if (MyTermsAndConditionsState.Value.IsLoading)
+        if (TermsAndConditionsState.Value.IsLoading)
         {
             return;
         }
 
-        SetSurveyData(MyTermsAndConditionsState.Value.IsPrivacyActStatementAccepted);
+        SetSurveyData(TermsAndConditionsState.Value.IsPrivacyActStatementAccepted);
         StateHasChanged();
     }
 
@@ -69,8 +70,8 @@ public partial class PrivacyActStatement
         var surveyData = new PrivacyActStatementSurveyData
         {
             questionAcceptPaStatement = isPrivacyActStatementAccepted
-                ? new string[] { "iAcceptPaStatement" }
-                : new string[0]
+                ? new[] { "iAcceptPaStatement" }
+                : Array.Empty<string>()
         };
 
         SurveyData = JsonSerializer.Serialize(surveyData);

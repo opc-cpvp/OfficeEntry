@@ -1,0 +1,25 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/en/requests-for-my-colleagues"
+@page "/fr/demandes-pour-mes-collegues"
+
+<h1>@Localizer["Requests for My Colleagues"]</h1>
+
+@if (DelegateAccessRequestsState.Value.IsLoading)
+{
+    <Loading />
+}
+else
+{
+    // The ordering matches the list order returned by the application layer
+    //     - Status
+    //     - StartTime
+    <AccessRequestDatatable AccessRequests="@DelegateAccessRequestsState.Value.AccessRequests"
+        DataOrder="@( "[[ 5, \"asc\" ], [ 0, \"desc\" ]]" )">
+    </AccessRequestDatatable>
+
+    <button @onclick="Refresh" class="btn btn-secondary">
+        <i class="fas fa-sync-alt"></i>
+        <span>@Localizer["Refresh the list"]</span>
+    </button>
+}

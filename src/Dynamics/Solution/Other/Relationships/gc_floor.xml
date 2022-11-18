@@ -37,12 +37,12 @@
       </EntityRelationshipRole>
     </EntityRelationshipRoles>
   </EntityRelationship>
-  <EntityRelationship Name="gc_floor_gc_office_floor">
+  <EntityRelationship Name="gc_floor_floorplan_floor">
     <EntityRelationshipType>OneToMany</EntityRelationshipType>
     <IsCustomizable>1</IsCustomizable>
     <IntroducedVersion>0.0.1</IntroducedVersion>
     <IsHierarchical>0</IsHierarchical>
-    <ReferencingEntityName>gc_office</ReferencingEntityName>
+    <ReferencingEntityName>gc_floorplan</ReferencingEntityName>
     <ReferencedEntityName>gc_floor</ReferencedEntityName>
     <CascadeAssign>NoCascade</CascadeAssign>
     <CascadeDelete>RemoveLink</CascadeDelete>
@@ -69,7 +69,7 @@
         <RelationshipRoleType>1</RelationshipRoleType>
       </EntityRelationshipRole>
       <EntityRelationshipRole>
-        <NavigationPropertyName>gc_floor_gc_office_floor</NavigationPropertyName>
+        <NavigationPropertyName>gc_floor_floorplan_floor</NavigationPropertyName>
         <RelationshipRoleType>0</RelationshipRoleType>
       </EntityRelationshipRole>
     </EntityRelationshipRoles>

@@ -3,8 +3,9 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using OfficeEntry.Application.User.Commands.UpdateHealthAndSafetyStatementRequests;
-using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
+using OfficeEntry.Application.User.Commands.UpdateHealthAndSafetyStatement;
+using OfficeEntry.WebApp.Shared;
+using OfficeEntry.WebApp.Store.TermsAndConditionsUseCase;
 using System.Text.Json;
 
 namespace OfficeEntry.WebApp.Pages;
@@ -15,52 +16,52 @@ public partial class HealthAndSafetyMeasuresStatement
     [Inject] public NavigationManager NavigationManager { get; set; }
     [Inject] public IMediator Mediator { get; set; }
     [Inject] public IStringLocalizer<App> Localizer { get; set; }
-    [Inject] public IState<MyTermsAndConditionsState> MyTermsAndConditionsState { get; set; }
+    [Inject] public IState<TermsAndConditionsState> TermsAndConditionsState { get; set; }
     [Inject] public IDispatcher Dispatcher { get; set; }
 
     protected bool SurveyCompleted { get; set; }
     protected string SurveyData { get; set; }
 
-    public async Task OnSurveyCompleted(string surveyResult)
+    public async Task OnSurveyCompleted(SurveyCompletedEventArgs e)
     {
         SurveyCompleted = true;
 
-        var surveyData = JsonSerializer.Deserialize<HealthAndSafetyMeasuresStatementSurveyData>(surveyResult);
+        var surveyData = JsonSerializer.Deserialize<HealthAndSafetyMeasuresStatementSurveyData>(e.SurveyResult);
 
         bool healthAndSafetyMeasuresAccepted = surveyData.questionAcceptHsmStatement.Any();
 
-        await Mediator.Send(new UpdateHealthAndSafetyMeasuresStatementForCurrentUserCommand { IsHealthAndSafetyMeasuresAccepted = healthAndSafetyMeasuresAccepted });
+        await Mediator.Send(new UpdateHealthAndSafetyMeasuresStatementCommand { IsHealthAndSafetyMeasuresAccepted = healthAndSafetyMeasuresAccepted });
 
-        Dispatcher.Dispatch(new GetMyTermsAndConditions());
+        Dispatcher.Dispatch(new GetTermsAndConditions());
 
         NavigationManager.NavigateTo(Localizer["my-access-requests"]);
     }
 
     protected override void Dispose(bool disposing)
     {
-        MyTermsAndConditionsState.StateChanged -= MyTermsAndConditionsState_StateChanged;
+        TermsAndConditionsState.StateChanged -= TermsAndConditionsState_StateChanged;
         base.Dispose(disposing);
     }
 
     protected override void OnInitialized()
     {
-        if (!MyTermsAndConditionsState.Value.IsLoading)
+        if (!TermsAndConditionsState.Value.IsLoading)
         {
-            SetSurveyData(MyTermsAndConditionsState.Value.IsHealthAndSafetyMeasuresAccepted);
+            SetSurveyData(TermsAndConditionsState.Value.IsHealthAndSafetyMeasuresAccepted);
         }
 
-        MyTermsAndConditionsState.StateChanged += MyTermsAndConditionsState_StateChanged;
+        TermsAndConditionsState.StateChanged += TermsAndConditionsState_StateChanged;
         base.OnInitialized();
     }
 
-    private void MyTermsAndConditionsState_StateChanged(object sender, EventArgs e)
+    private void TermsAndConditionsState_StateChanged(object sender, EventArgs e)
     {
-        if (MyTermsAndConditionsState.Value.IsLoading)
+        if (TermsAndConditionsState.Value.IsLoading)
         {
             return;
         }
 
-        SetSurveyData(MyTermsAndConditionsState.Value.IsHealthAndSafetyMeasuresAccepted);
+        SetSurveyData(TermsAndConditionsState.Value.IsHealthAndSafetyMeasuresAccepted);
         StateHasChanged();
     }
 

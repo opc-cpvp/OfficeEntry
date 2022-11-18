@@ -7,9 +7,6 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
-    var isIE = Request.Headers.TryGetValue("User-Agent", out var userAgents)
-        && (userAgents.FirstOrDefault() is string userAgent)
-        && System.Text.RegularExpressions.Regex.IsMatch(userAgent, @"MSIE \d|Trident.*rv:");
 }
 
 <!DOCTYPE html>
@@ -25,6 +22,7 @@
     <link rel="stylesheet" href="~/lib/ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css" />
     <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="css/site.css" />
+    <link href="OfficeEntry.WebApp.styles.css" rel="stylesheet" />
 
     <link href="manifest.json" rel="manifest" crossorigin="use-credentials">
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
@@ -52,39 +50,25 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    @if (isIE)
-    {
-        <script src="_framework/blazor.polyfill.min.js"></script>
-        <script type="text/javascript" src="~/lib/promise-polyfill/polyfill.min.js"></script>
-        <script type="text/javascript" src="~/lib/fetch/fetch.min.js"></script>
-    }
     <script type="text/javascript" src="~/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/jqueryui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="~/lib/vue/vue.min.js"></script>
     <script type="text/javascript" src="~/lib/survey-vue/survey.vue.min.js"></script>
-    <script type="text/javascript" src="~/lib/jqueryui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="~/lib/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/lib/select2/js/i18n/fr.js"></script>
     <script type="text/javascript" src="~/lib/surveyjs-widgets/surveyjs-widgets.min.js"></script>
     <script type="text/javascript" src="~/lib/chartjs/chart.min.js"></script>
-    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
-    <script src="~/lib/datatables-responsive/dataTables.responsive.min.js"></script>
-    <script src="~/lib/font-awesome/js/all.min.js"></script>
-    <script src="~/lib/select2/js/i18n/fr.js"></script>    
+    <script type="text/javascript" src="~/lib/popperjs/umd/popper.min.js"></script>
+    <script type="text/javascript" src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="~/lib/datatables-responsive/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="~/lib/font-awesome/js/all.min.js"></script>
 
-    <script src="~/js/survey.js"></script>
-    <script src="~/js/accessRequest.js"></script>
-    <script src="~/js/spotsAvailablePerHours.js"></script>
-    <script src="~/js/datepicker.js"></script>
-    <script src="~/js/datatables.js"></script>
-    <script src="~/js/select2.js"></script>    
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/datepicker.js"></script>
+    <script type="text/javascript" src="~/js/datatables.js"></script>
+    <script type="text/javascript" src="~/js/select2.js"></script>
 
-    <script src="_framework/blazor.server.js"></script>
-    <script src="_content/Fluxor.Blazor.Web/scripts/index.js"></script>
-
-    @if (!isIE)
-    {
-        <script>navigator.serviceWorker.register('service-worker.js');</script>
-    }
-
+    <script type="text/javascript" src="_framework/blazor.server.js"></script>
 </body>
 </html>

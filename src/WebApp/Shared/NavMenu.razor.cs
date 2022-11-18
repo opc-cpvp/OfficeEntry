@@ -1,16 +1,14 @@
 ﻿using Fluxor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
-using OfficeEntry.WebApp.Store.MyTermsAndConditionsUseCase;
+using OfficeEntry.WebApp.Store.TermsAndConditionsUseCase;
 
 namespace OfficeEntry.WebApp.Shared;
 
 public partial class NavMenu
 {
     [Inject] public IStringLocalizer<App> Localizer { get; set; }
-    [Inject] public IState<ManagerApprovalsState> ApprovalsState { get; set; }
-    [Inject] public IState<MyTermsAndConditionsState> MyTermsAndConditionsState { get; set; }
+    [Inject] public IState<TermsAndConditionsState> TermsAndConditionsState { get; set; }
     [Inject] public IDispatcher Dispatcher { get; set; }
 
     private bool collapseNavMenu = true;
@@ -20,8 +18,7 @@ public partial class NavMenu
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        Dispatcher.Dispatch(new GetManagerApprovalsAction());
-        Dispatcher.Dispatch(new GetMyTermsAndConditions());
+        Dispatcher.Dispatch(new GetTermsAndConditions());
     }
 
     private void ToggleNavMenu()

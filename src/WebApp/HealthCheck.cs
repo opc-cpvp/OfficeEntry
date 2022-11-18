@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using OfficeEntry.Application.Locations.Queries.GetBuildings;
+using OfficeEntry.Application.Users.Queries.GetContactsRequests;
 
 namespace OfficeEntry.WebApp;
 
@@ -21,19 +21,19 @@ public class HealthCheck : IHealthCheck
     {
         try
         {
-            var buildings = await _mediator.Send(new GetBuildingsQuery { Locale = "en" });
+            var contacts = await _mediator.Send(GetContactsQuery.Instance, cancellationToken);
 
-            if (buildings is { })
+            if (contacts is { })
             {
                 return HealthCheckResult.Healthy("A healthy result.");
             }
             else
             {
-                _logger.LogError("No buildings found.");
+                _logger.LogError("No contacts found.");
 
                 return new HealthCheckResult(
                     context.Registration.FailureStatus,
-                    "No buildings found.");
+                    "No contacts found.");
             }
         }
         catch (Exception ex)

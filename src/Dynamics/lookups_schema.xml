@@ -28,4 +28,27 @@
       <field displayname="Status Reason" name="statuscode" type="status" />
     </fields>
   </entity>
+  <entity name="gc_floorplan" displayname="Floor Plan" etc="10032" primaryidfield="gc_floorplanid" primarynamefield="gc_name" disableplugins="false">
+    <fields>
+      <field displayname="base64" name="gc_base64" type="string" customfield="true" />
+      <field displayname="Building" name="gc_building" type="entityreference" lookupType="gc_building" customfield="true" />
+      <field displayname="Floor" name="gc_floor" type="entityreference" lookupType="gc_floor" customfield="true" />
+      <field updateCompare="true" displayname="Floor Plan" name="gc_floorplanid" type="guid" primaryKey="true" />
+      <field displayname="Name" name="gc_name" type="string" customfield="true" />
+      <field displayname="Status" name="statecode" type="state" />
+      <field displayname="Status Reason" name="statuscode" type="status" />
+    </fields>
+  </entity>
+  <entity name="gc_workspace" displayname="Workspace" etc="10031" primaryidfield="gc_workspaceid" primarynamefield="gc_name" disableplugins="false">
+    <fields>
+      <field displayname="Status Reason" name="statuscode" type="status" />
+      <field displayname="Status" name="statecode" type="state" />
+      <field displayname="X" name="gc_x" type="number" customfield="true" />
+      <field updateCompare="true" displayname="Workspace" name="gc_workspaceid" type="guid" primaryKey="true" />
+      <field displayname="Y" name="gc_y" type="number" customfield="true" />
+      <field displayname="Name" name="gc_name" type="string" customfield="true" />
+      <field displayname="English Description" name="gc_englishdescription" type="string" customfield="true" />
+      <field displayname="French Description" name="gc_frenchdescription" type="string" customfield="true" />
+    </fields>
+  </entity>
 </entities>

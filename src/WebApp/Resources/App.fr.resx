@@ -124,29 +124,17 @@
   <data name="Approve" xml:space="preserve">
     <value>Approuver</value>
   </data>
-  <data name="Approve Requests" xml:space="preserve">
-    <value>Approuver une demande</value>
-  </data>
   <data name="Approved" xml:space="preserve">
     <value>Approuvée</value>
   </data>
-  <data name="Asset and equipment:" xml:space="preserve">
-    <value>Matériel de bureau:</value>
-  </data>
   <data name="Building" xml:space="preserve">
     <value>Édifice</value>
-  </data>
-  <data name="Cables" xml:space="preserve">
-    <value>Câbles</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuler</value>
   </data>
   <data name="Cancelled" xml:space="preserve">
     <value>Annulée</value>
-  </data>
-  <data name="Chair" xml:space="preserve">
-    <value>Chaise</value>
   </data>
   <data name="CriticalWork" xml:space="preserve">
     <value>Travail critique</value>
@@ -163,9 +151,6 @@
   <data name="Details:" xml:space="preserve">
     <value>Détails:</value>
   </data>
-  <data name="DockingStation" xml:space="preserve">
-    <value>Station d'accueil pour ordinateur portable</value>
-  </data>
   <data name="Email" xml:space="preserve">
     <value>Courriel</value>
   </data>
@@ -181,9 +166,6 @@
   <data name="h:mm tt" xml:space="preserve">
     <value>HH:mm</value>
   </data>
-  <data name="Headset" xml:space="preserve">
-    <value>Casque d'écoute</value>
-  </data>
   <data name="Health &amp; Safety Measures" xml:space="preserve">
     <value>Mesures de santé et de sécurité</value>
   </data>
@@ -197,12 +179,6 @@
   <data name="LanguageToggle" xml:space="preserve">
     <value>English</value>
   </data>
-  <data name="Keyboard" xml:space="preserve">
-    <value>Clavier</value>
-  </data>
-  <data name="Laptop" xml:space="preserve">
-    <value>Portable</value>
-  </data>
   <data name="Loading..." xml:space="preserve">
     <value>Téléchargement en cours...</value>
   </data>
@@ -212,23 +188,11 @@
   <data name="MMMM dd, yyyy" xml:space="preserve">
     <value>d MMMM yyyy</value>
   </data>
-  <data name="Monitor" xml:space="preserve">
-    <value>Moniteur</value>
-  </data>
-  <data name="Mouse" xml:space="preserve">
-    <value>Souris</value>
-  </data>
   <data name="My Requests" xml:space="preserve">
     <value>Mes demandes</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
-  </data>
-  <data name="No asset and equipment." xml:space="preserve">
-    <value>Pas de matériel de bureau.</value>
-  </data>
-  <data name="No visitors." xml:space="preserve">
-    <value>Pas de visiteurs.</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
@@ -279,22 +243,8 @@
   <data name="Status" xml:space="preserve">
     <value>Statut</value>
   </data>
-  <data name="review-access-requests" xml:space="preserve">
-    <value>fr/approuver-les-demandes</value>
-    <comment>URI</comment>
-  </data>
   <data name="Status:" xml:space="preserve">
     <value>Statut:</value>
-  </data>
-  <data name="Submit Access Request" xml:space="preserve">
-    <value>Soumettre une demande</value>
-  </data>
-  <data name="submit-access-request" xml:space="preserve">
-    <value>fr/soumettre-une-demande</value>
-    <comment>URI</comment>
-  </data>
-  <data name="Tablet" xml:space="preserve">
-    <value>Tablette</value>
   </data>
   <data name="Telephone" xml:space="preserve">
     <value>Téléphone</value>
@@ -304,9 +254,6 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
-  </data>
-  <data name="Visitors:" xml:space="preserve">
-    <value>Visiteurs:</value>
   </data>
   <data name="Accept all Terms and Conditions" xml:space="preserve">
     <value>Avant de soumettre une demande, vous devez accepter les conditions des Mesures de santé et de sécurité relatives et de la Protection des renseignements personnels.</value>
@@ -324,8 +271,8 @@
     <value>fr/modalites-et-conditions</value>
     <comment>URI</comment>
   </data>
-  <data name="my-access-requests" xml:space="preserve">
-    <value>fr/mes-demandes-d-acces</value>
+  <data name="my-requests" xml:space="preserve">
+    <value>fr/mes-demandes</value>
     <comment>URI</comment>
   </data>
   <data name="/" xml:space="preserve">
@@ -353,5 +300,51 @@
   </data>
   <data name="Reload" xml:space="preserve">
     <value>Recharger</value>
+  </data>
+  <data name="30 Victoria Street" xml:space="preserve">
+    <value>30, rue Victoria</value>
+  </data>
+  <data name="4th floor" xml:space="preserve">
+    <value>4e étage</value>
+  </data>
+  <data name="655 Bay Street, Suite 404" xml:space="preserve">
+    <value>655, rue Bay, bureau 404</value>
+  </data>
+  <data name="7th floor" xml:space="preserve">
+    <value>7e étage</value>
+  </data>
+  <data name="8th floor" xml:space="preserve">
+    <value>8e étage</value>
+  </data>
+  <data name="floor-plans-edit" xml:space="preserve">
+    <value>fr/gerer-les-plans-d-etages/{0}</value>
+    <comment>URI</comment>
+  </data>
+  <data name="floor-plans-map" xml:space="preserve">
+    <value>fr/plans-d-etages/carte/{0}</value>
+    <comment>URI</comment>
+  </data>
+  <data name="Manage Floor Plans" xml:space="preserve">
+    <value>Gestion des plans d'étages</value>
+  </data>
+  <data name="requests-for-my-colleagues" xml:space="preserve">
+    <value>fr/demandes-pour-mes-collegues</value>
+    <comment>URI</comment>
+  </data>
+  <data name="Workstation" xml:space="preserve">
+    <value>Poste de travail</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="Requests for My Colleagues" xml:space="preserve">
+    <value>Demandes pour mes collègues</value>
+  </data>
+  <data name="Submit Request" xml:space="preserve">
+    <value>Soumettre une demande</value>
+  </data>
+  <data name="floor-plans-manage" xml:space="preserve">
+    <value>fr/plans-d-etages/gestion</value>
+    <comment>URI</comment>
   </data>
 </root>

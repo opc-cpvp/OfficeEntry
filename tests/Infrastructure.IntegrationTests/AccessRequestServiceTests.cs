@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AutoMapper.Configuration.Annotations;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
@@ -27,7 +28,7 @@ public class AccessRequestServiceTests : IDisposable
         _sut = serviceProvider.GetRequiredService<IAccessRequestService>();
     }
 
-    [Fact]
+    [Fact(Skip = "no longer a valid use case")]
     public async Task Create_access_resquest_no_asset_and_no_visitors()
     {
         var accessRequest = new AccessRequest
@@ -43,18 +44,15 @@ public class AccessRequestServiceTests : IDisposable
             Floor = new Floor { Id = Guid.Parse("{aada8dd4-e3af-ea11-a2e3-005056aa7ac3}") },
 
             Employee = new Contact { Id = Guid.Parse("{45e0ffc3-2d6c-e511-ad11-005056901d57}") },
-            Manager = new Contact { Id = Guid.Parse("{edf031df-adb6-4306-bc8b-b70e77ea0d58}") },
-
-            AssetRequests = new List<AssetRequest>(),
-            Visitors = new List<Contact>()
+            Manager = new Contact { Id = Guid.Parse("{edf031df-adb6-4306-bc8b-b70e77ea0d58}") }
         };
 
-        var result = await _sut.CreateAccessRequest(accessRequest);
+        var (result, _) = await _sut.CreateAccessRequest(accessRequest);
 
         Assert.True(result.Succeeded);
     }
 
-    [Fact]
+    [Fact(Skip = "no longer a valid use case")]
     public async Task Create_access_resquest_with_asset_and_no_visitors()
     {
         var accessRequest = new AccessRequest
@@ -70,26 +68,15 @@ public class AccessRequestServiceTests : IDisposable
             Floor = new Floor { Id = Guid.Parse("{aada8dd4-e3af-ea11-a2e3-005056aa7ac3}") },
 
             Employee = new Contact { Id = Guid.Parse("{45e0ffc3-2d6c-e511-ad11-005056901d57}") },
-            Manager = new Contact { Id = Guid.Parse("{edf031df-adb6-4306-bc8b-b70e77ea0d58}") },
-
-            AssetRequests = new List<AssetRequest>()
-                     {
-                        new AssetRequest { Id = Guid.NewGuid(), Asset = new OptionSet { Key = (int)Asset.Chair } },
-                        new AssetRequest { Id = Guid.NewGuid(), Asset = new OptionSet { Key = (int)Asset.Chair } },
-
-
-                        new AssetRequest { Id = Guid.NewGuid(), Asset = new OptionSet { Key = (int)Asset.DockingStation } },
-                        new AssetRequest { Id = Guid.NewGuid(), Asset = new OptionSet { Key = (int)Asset.Headset } }
-                     },
-            Visitors = new List<Contact>()
+            Manager = new Contact { Id = Guid.Parse("{edf031df-adb6-4306-bc8b-b70e77ea0d58}") }
         };
 
-        var result = await _sut.CreateAccessRequest(accessRequest);
+        var (result, _) = await _sut.CreateAccessRequest(accessRequest);
 
         Assert.True(result.Succeeded);
     }
 
-    [Fact]
+    [Fact(Skip = "no longer a valid use case")]
     public async Task Create_access_resquest_no_asset_and_one_visitor()
     {
         var accessRequest = new AccessRequest
@@ -105,21 +92,15 @@ public class AccessRequestServiceTests : IDisposable
             Floor = new Floor { Id = Guid.Parse("{aada8dd4-e3af-ea11-a2e3-005056aa7ac3}") },
 
             Employee = new Contact { Id = Guid.Parse("{45e0ffc3-2d6c-e511-ad11-005056901d57}") },
-            Manager = new Contact { Id = Guid.Parse("{edf031df-adb6-4306-bc8b-b70e77ea0d58}") },
-
-            AssetRequests = new List<AssetRequest>(),
-            Visitors = new List<Contact>()
-                     {
-                        new Contact { FirstName = "Alice", LastName = "Smith", EmailAddress = "alice@example.com", PhoneNumber = "111-555-8888" }
-                     }
+            Manager = new Contact { Id = Guid.Parse("{edf031df-adb6-4306-bc8b-b70e77ea0d58}") }
         };
 
-        var result = await _sut.CreateAccessRequest(accessRequest);
+        var (result, _) = await _sut.CreateAccessRequest(accessRequest);
 
         Assert.True(result.Succeeded);
     }
 
-    [Fact]
+    [Fact(Skip = "no longer a valid use case")]
     public async Task Create_access_resquest_no_asset_and_two_visitors()
     {
         var accessRequest = new AccessRequest
@@ -135,22 +116,15 @@ public class AccessRequestServiceTests : IDisposable
             Floor = new Floor { Id = Guid.Parse("{aada8dd4-e3af-ea11-a2e3-005056aa7ac3}") },
 
             Employee = new Contact { Id = Guid.Parse("{45e0ffc3-2d6c-e511-ad11-005056901d57}") },
-            Manager = new Contact { Id = Guid.Parse("{edf031df-adb6-4306-bc8b-b70e77ea0d58}") },
-
-            AssetRequests = new List<AssetRequest>(),
-            Visitors = new List<Contact>()
-                     {
-                        new Contact { FirstName = "Alice", LastName = "Smith", EmailAddress = "alice@example.com", PhoneNumber = "111-555-8888" },
-                        new Contact { FirstName = "Bob", LastName = "Jones", EmailAddress = "BOB@example.com", PhoneNumber = "000-111-0000" }
-                     }
+            Manager = new Contact { Id = Guid.Parse("{edf031df-adb6-4306-bc8b-b70e77ea0d58}") }
         };
 
-        var result = await _sut.CreateAccessRequest(accessRequest);
+        var (result, _) = await _sut.CreateAccessRequest(accessRequest);
 
         Assert.True(result.Succeeded);
     }
 
-    [Fact]
+    [Fact(Skip = "no longer a valid use case")]
     public async Task Create_access_resquest_with_assets_and_two_visitors()
     {
         var accessRequest = new AccessRequest
@@ -166,26 +140,10 @@ public class AccessRequestServiceTests : IDisposable
             Floor = new Floor { Id = Guid.Parse("{aada8dd4-e3af-ea11-a2e3-005056aa7ac3}") },
 
             Employee = new Contact { Id = Guid.Parse("{45e0ffc3-2d6c-e511-ad11-005056901d57}") },
-            Manager = new Contact { Id = Guid.Parse("{edf031df-adb6-4306-bc8b-b70e77ea0d58}") },
-
-            AssetRequests = new List<AssetRequest>()
-                     {
-                        new AssetRequest { Id = Guid.NewGuid(), Asset = new OptionSet { Key = (int)Asset.Chair } },
-                        new AssetRequest { Id = Guid.NewGuid(), Asset = new OptionSet { Key = (int)Asset.Chair } },
-
-
-                        new AssetRequest { Id = Guid.NewGuid(), Asset = new OptionSet { Key = (int)Asset.DockingStation } },
-                        new AssetRequest { Id = Guid.NewGuid(), Asset = new OptionSet { Key = (int)Asset.Headset } }
-                     },
-
-            Visitors = new List<Contact>()
-                     {
-                        new Contact { FirstName = "Alice", LastName = "Smith", EmailAddress = "alice@example.com", PhoneNumber = "111-555-8888" },
-                        new Contact { FirstName = "Bob", LastName = "Jones", EmailAddress = "BOB@example.com", PhoneNumber = "000-111-0000" }
-                     }
+            Manager = new Contact { Id = Guid.Parse("{edf031df-adb6-4306-bc8b-b70e77ea0d58}") }
         };
 
-        var result = await _sut.CreateAccessRequest(accessRequest);
+        var (result, _) = await _sut.CreateAccessRequest(accessRequest);
 
         Assert.True(result.Succeeded);
     }

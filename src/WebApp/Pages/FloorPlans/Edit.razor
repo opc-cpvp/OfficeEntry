@@ -1,0 +1,75 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/en/floor-plans/edit/{FloorPlanId:guid}"
+@page "/fr/gerer-les-plans-d-etages/{FloorPlanId:guid}"
+
+@if (FloorPlanState.Value.IsLoading)
+{
+    <Loading />
+}
+else
+{
+    <div class="row">
+        <div class="col-12">
+            <FileUpload OnImageChangeCallback="@ShowCanvas" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div id="tooltip">Tooltip</div>
+            <div id="canvasHolder">
+                <canvas id="floorplan-canvas" style="border: 1px solid #eeeeee;"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            @if (WorkspaceDto is not null && EditContext is not null)
+            {
+                <EditForm EditContext="EditContext">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+
+                    <label>
+                        X
+                        <InputNumber id="x" @bind-Value="WorkspaceDto.X" />
+                    </label>
+
+                    <label>
+                        Y
+                        <InputNumber id="y" @bind-Value="WorkspaceDto.Y" />
+                    </label>
+
+                    <label>
+                        Name
+                        <InputText id="name" @bind-Value="WorkspaceDto.Name" />
+                    </label>
+
+                    <label>
+                        English Description
+                        <InputText id="name" @bind-Value="WorkspaceDto.EnglishDescription" />
+                    </label>
+
+                    <label>
+                        French Description
+                        <InputText id="name" @bind-Value="WorkspaceDto.FrenchDescription" />
+                    </label>
+
+                </EditForm>
+            }
+            <br />
+            <button @onclick="@Save" class="btn btn-primary" disabled="@FloorPlanState.Value.IsSaving">
+                @if (FloorPlanState.Value.IsSaving)
+                {
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span>Saving...</span>
+                }
+                else
+                {
+                    <span class="oi oi-cloud-upload"></span>
+                    <span>Save</span>
+                }
+            </button>
+        </div>
+    </div>
+}

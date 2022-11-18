@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <returnedtypecode>10032</returnedtypecode>
+    <savedqueryid>{c2b3d58c-b84f-4015-be7c-1ddf35cb365f}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" object="10032" jump="gc_name" select="1" icon="1" preview="1">
+        <row name="result" id="gc_floorplanid">
+          <cell name="gc_name" width="300" />
+          <cell name="gc_building" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_floor" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="gc_floorplan">
+          <attribute name="gc_name" />
+          <attribute name="createdon" />
+          <order attribute="gc_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="gc_floor" />
+          <attribute name="gc_building" />
+          <attribute name="gc_floorplanid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>0.0.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Floorplans" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

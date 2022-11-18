@@ -1,4 +1,3 @@
-using Blazor.Polyfill.Server;
 using Fluxor;
 using OfficeEntry.Application;
 using OfficeEntry.Application.Common.Interfaces;
@@ -7,6 +6,7 @@ using OfficeEntry.WebApp.Area.Identity;
 using OfficeEntry.WebApp.Area.Identity.Services;
 using OfficeEntry.WebApp.Area.Localization;
 using OfficeEntry.WebApp.Filters;
+using OfficeEntry.WebApp.Pages.FloorPlans;
 using Serilog;
 
 namespace OfficeEntry.WebApp;
@@ -48,6 +48,15 @@ public class Startup
 
         services.AddNegotiateWithCookieAuthentication();
 
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("EditUser", policy =>
+                policy.RequireAssertion(context => context.User.HasClaim(c =>
+                    c.Type == "Team"
+                    && c.Value is "Apps" or "AdminServices"
+                    && c.Issuer is "OPC")));
+        });
+
         services.AddLocalization(options => options.ResourcesPath = "Resources");
 
         services.AddFluxor(options =>
@@ -55,7 +64,7 @@ public class Startup
             options.ScanAssemblies(typeof(Program).Assembly);
         });
 
-        services.AddBlazorPolyfill();
+        services.AddScoped<IMapJsInterop, MapJsInterop>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,7 +84,6 @@ public class Startup
         app.UseUrlLocalizationRequestLocalization();
 
         app.UseHttpsRedirection();
-        app.UseBlazorPolyfill();
         app.UseStaticFiles();
 
         app.UseRequestLogContext();

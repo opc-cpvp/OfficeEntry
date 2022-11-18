@@ -7,12 +7,9 @@ public class Building
     public string City { get; set; }
     public string EnglishDescription { get; set; }
     public string FrenchDescription { get; set; }
-    public string Description { get; set; }
     public string EnglishName { get; set; }
     public string FrenchName { get; set; }
     public string Name { get; set; }
     public string Timezone { get; set; }
     public double TimezoneOffset { get; set; }
-
-    //public IReadOnlyList<Floor> Floors { get; set; }
 }

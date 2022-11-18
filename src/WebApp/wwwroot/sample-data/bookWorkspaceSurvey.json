@@ -1,0 +1,493 @@
+﻿{
+  "locale": "en",
+  "pages": [
+    {
+      "name": "page1",
+      "elements": [
+        {
+          "type": "text",
+          "visible": false,
+          "name": "floorplan",
+          "title": "Floorplan"
+        },
+        {
+          "type": "radiogroup",
+          "name": "bookingFor",
+          "title": {
+            "default": "I'm booking for",
+            "fr": "Je réserve pour"
+          },
+          "defaultValue": "Myself",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "Myself",
+              "text": {
+                "default": "Myself",
+                "fr": "Moi-même"
+              }
+            },
+            {
+              "value": "Other",
+              "text": {
+                "default": "Colleague",
+                "fr": "Collègue"
+              }
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "otherIndividual",
+          "renderAs": "select2",
+          "select2Config": {
+            "theme": "bootstrap4",
+            "selectOnClose": true
+          },
+          "title": {
+            "default": "Colleague",
+            "fr": "Collègue"
+          },
+          "visibleIf": "{bookingFor} = 'Other'",
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/users",
+            "valueName": "id",
+            "titleName": "fullName"
+          },
+          "optionsCaption": {
+            "default": "Search",
+            "fr": "Recherche"
+          }
+        },
+        {
+          "type": "datepicker",
+          "name": "startDate",
+          "title": {
+            "default": "Select a date",
+            "fr": "Sélectionnez une date"
+          },
+          "isRequired": true,
+          "dateFormat": "mm/dd/yy",
+          "inputType": "date",
+          "config": {
+            "minDate": 0
+          }
+        },
+        {
+          "type": "dropdown",
+          "name": "startTime",
+          "title": {
+            "default": "From",
+            "fr": "De"
+          },
+          "defaultValue": "9",
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "text": {
+                "default": "To must be greater than From",
+                "fr": "« À » doit être plus grand que « De »"
+              },
+              "expression": "{endTime} > {startTime}"
+            }
+          ],
+          "choices": [
+            {
+              "value": "0",
+              "text": {
+                "default": "Midnight",
+                "fr": "Minuit"
+              }
+            },
+            {
+              "value": "1",
+              "text": {
+                "default": "1:00 AM",
+                "fr": "1h"
+              }
+            },
+            {
+              "value": "2",
+              "text": {
+                "default": "2:00 AM",
+                "fr": "2h"
+              }
+            },
+            {
+              "value": "3",
+              "text": {
+                "default": "3:00 AM",
+                "fr": "3h"
+              }
+            },
+            {
+              "value": "4",
+              "text": {
+                "default": "4:00 AM",
+                "fr": "4h"
+              }
+            },
+            {
+              "value": "5",
+              "text": {
+                "default": "5:00 AM",
+                "fr": "5h"
+              }
+            },
+            {
+              "value": "6",
+              "text": {
+                "default": "6:00 AM",
+                "fr": "6h"
+              }
+            },
+            {
+              "value": "7",
+              "text": {
+                "default": "7:00 AM",
+                "fr": "7h"
+              }
+            },
+            {
+              "value": "8",
+              "text": {
+                "default": "8:00 AM",
+                "fr": "8h"
+              }
+            },
+            {
+              "value": "9",
+              "text": {
+                "default": "9:00 AM",
+                "fr": "9h"
+              }
+            },
+            {
+              "value": "10",
+              "text": {
+                "default": "10:00 AM",
+                "fr": "10h"
+              }
+            },
+            {
+              "value": "11",
+              "text": {
+                "default": "11:00 AM",
+                "fr": "11h"
+              }
+            },
+            {
+              "value": "12",
+              "text": {
+                "default": "12:00 PM",
+                "fr": "Midi"
+              }
+            },
+            {
+              "value": "13",
+              "text": {
+                "default": "1:00 PM",
+                "fr": "13h"
+              }
+            },
+            {
+              "value": "14",
+              "text": {
+                "default": "2:00 PM",
+                "fr": "14h"
+              }
+            },
+            {
+              "value": "15",
+              "text": {
+                "default": "3:00 PM",
+                "fr": "15h"
+              }
+            },
+            {
+              "value": "16",
+              "text": {
+                "default": "4:00 PM",
+                "fr": "16h"
+              }
+            },
+            {
+              "value": "17",
+              "text": {
+                "default": "5:00 PM",
+                "fr": "17h"
+              }
+            },
+            {
+              "value": "18",
+              "text": {
+                "default": "6:00 PM",
+                "fr": "18h"
+              }
+            },
+            {
+              "value": "19",
+              "text": {
+                "default": "7:00 PM",
+                "fr": "19h"
+              }
+            },
+            {
+              "value": "20",
+              "text": {
+                "default": "8:00 PM",
+                "fr": "20h"
+              }
+            },
+            {
+              "value": "21",
+              "text": {
+                "default": "9:00 PM",
+                "fr": "21h"
+              }
+            },
+            {
+              "value": "22",
+              "text": {
+                "default": "10:00 PM",
+                "fr": "22h"
+              }
+            },
+            {
+              "value": "23",
+              "text": {
+                "default": "11:00 PM",
+                "fr": "23h"
+              }
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "endTime",
+          "title": {
+            "default": "To",
+            "fr": "À"
+          },
+          "defaultValue": "17",
+          "isRequired": true,
+          "choicesVisibleIf": "{item} > {startTime}",
+          "choices": [
+            {
+              "value": "1",
+              "text": {
+                "default": "1:00 AM",
+                "fr": "1h"
+              }
+            },
+            {
+              "value": "2",
+              "text": {
+                "default": "2:00 AM",
+                "fr": "2h"
+              }
+            },
+            {
+              "value": "3",
+              "text": {
+                "default": "3:00 AM",
+                "fr": "3h"
+              }
+            },
+            {
+              "value": "4",
+              "text": {
+                "default": "4:00 AM",
+                "fr": "4h"
+              }
+            },
+            {
+              "value": "5",
+              "text": {
+                "default": "5:00 AM",
+                "fr": "5h"
+              }
+            },
+            {
+              "value": "6",
+              "text": {
+                "default": "6:00 AM",
+                "fr": "6h"
+              }
+            },
+            {
+              "value": "7",
+              "text": {
+                "default": "7:00 AM",
+                "fr": "7h"
+              }
+            },
+            {
+              "value": "8",
+              "text": {
+                "default": "8:00 AM",
+                "fr": "8h"
+              }
+            },
+            {
+              "value": "9",
+              "text": {
+                "default": "9:00 AM",
+                "fr": "9h"
+              }
+            },
+            {
+              "value": "10",
+              "text": {
+                "default": "10:00 AM",
+                "fr": "10h"
+              }
+            },
+            {
+              "value": "11",
+              "text": {
+                "default": "11:00 AM",
+                "fr": "11h"
+              }
+            },
+            {
+              "value": "12",
+              "text": {
+                "default": "12:00 PM",
+                "fr": "Midi"
+              }
+            },
+            {
+              "value": "13",
+              "text": {
+                "default": "1:00 PM",
+                "fr": "13h"
+              }
+            },
+            {
+              "value": "14",
+              "text": {
+                "default": "2:00 PM",
+                "fr": "14h"
+              }
+            },
+            {
+              "value": "15",
+              "text": {
+                "default": "3:00 PM",
+                "fr": "15h"
+              }
+            },
+            {
+              "value": "16",
+              "text": {
+                "default": "4:00 PM",
+                "fr": "16h"
+              }
+            },
+            {
+              "value": "17",
+              "text": {
+                "default": "5:00 PM",
+                "fr": "17h"
+              }
+            },
+            {
+              "value": "18",
+              "text": {
+                "default": "6:00 PM",
+                "fr": "18h"
+              }
+            },
+            {
+              "value": "19",
+              "text": {
+                "default": "7:00 PM",
+                "fr": "19h"
+              }
+            },
+            {
+              "value": "20",
+              "text": {
+                "default": "8:00 PM",
+                "fr": "20h"
+              }
+            },
+            {
+              "value": "21",
+              "text": {
+                "default": "9:00 PM",
+                "fr": "21h"
+              }
+            },
+            {
+              "value": "22",
+              "text": {
+                "default": "10:00 PM",
+                "fr": "22h"
+              }
+            },
+            {
+              "value": "23",
+              "text": {
+                "default": "11:00 PM",
+                "fr": "23h"
+              }
+            },
+            {
+              "value": "24",
+              "text": {
+                "default": "Midnight",
+                "fr": "Minuit"
+              }
+            }
+          ]
+        },
+        {
+          "type": "boolean",
+          "name": "myselfWorkstation",
+          "valueName": "requireWorkstation",
+          "title": {
+            "default": "I need a workstation",
+            "fr": "J'ai besoin d'un poste de travail"
+          },
+          "defaultValue": "true",
+          "visibleIf": "{bookingFor} = 'Myself'",
+          "isRequired": true
+        },
+        {
+          "type": "boolean",
+          "name": "otherWorkstation",
+          "valueName": "requireWorkstation",
+          "title": {
+            "default": "Colleague needs a workstation",
+            "fr": "Collègue a besoin d'un poste de travail"
+          },
+          "defaultValue": "true",
+          "visibleIf": "{bookingFor} = 'Other'",
+          "isRequired": true
+        },
+        {
+          "type": "dropdown",
+          "name": "workspace",
+          "title": {
+            "default": "Workstation",
+            "fr": "Poste de travail"
+          },
+          "visibleIf": "{startDate} notempty and {startTime} notempty and {endTime} notempty and {requireWorkstation} = true",
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "api/locations/{locale}/floorplans/{floorplan}/workspaces/available?date={startDate}&start={startTime}&end={endTime}{NOCACHE}",
+            "valueName": "id",
+            "titleName": "name",
+            "allowEmptyResponse": true
+          }
+        }
+      ]
+    }
+  ],
+  "showCompletedPage": false,
+  "showQuestionNumbers": "off"
+}

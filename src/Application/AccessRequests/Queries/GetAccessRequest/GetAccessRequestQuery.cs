@@ -1,16 +1,15 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
-using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
 
 using static OfficeEntry.Domain.Entities.AccessRequest;
 
 namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 
-public class GetAccessRequestQuery : IRequest<AccessRequestViewModel>
+public record GetAccessRequestQuery : IRequest<AccessRequestViewModel>
 {
-    public Guid AccessRequestId { get; set; }
-    public string Locale { get; set; }
+    public Guid AccessRequestId { get; init; }
+    public string Locale { get; init; }
 }
 
 public class GetAccessRequestQueryHandler : IRequestHandler<GetAccessRequestQuery, AccessRequestViewModel>
@@ -42,25 +41,27 @@ public class GetAccessRequestQueryHandler : IRequestHandler<GetAccessRequestQuer
         return new AccessRequestViewModel
         {
             Id = result.AccessRequest.Id,
+            BuildingId = result.AccessRequest.Building.Id,
+            IsDelegate = result.AccessRequest.Delegate?.Id == userResult.UserId,
             IsEmployee = result.AccessRequest.Employee.Id == userResult.UserId,
-            IsManager = result.AccessRequest.Manager.Id == userResult.UserId,
+            DelegateId = result.AccessRequest.Delegate?.Id,
+            EmployeeId = result.AccessRequest.Employee.Id,
             EmployeeName = result.AccessRequest.Employee.FullName,
-            ManagerName = result.AccessRequest.Manager.FullName,
+            ManagerName = result.AccessRequest.Manager?.FullName,
+            FloorPlanId = result.AccessRequest.FloorPlan?.Id ?? Guid.Empty,
             Building = (request.Locale == Locale.French) ? result.AccessRequest.Building.FrenchName : result.AccessRequest.Building.EnglishName,
+            BuildingEnglishName = result.AccessRequest.Building.EnglishName,
+            BuildingFrenchName = result.AccessRequest.Building.FrenchName,
+            FloorId = result.AccessRequest.Floor.Id,
             Floor = (request.Locale == Locale.French) ? result.AccessRequest.Floor.FrenchName : result.AccessRequest.Floor.EnglishName,
+            FloorEnglishName = result.AccessRequest.Floor.EnglishName,
+            FloorFrenchName = result.AccessRequest.Floor.FrenchName,
             Details = result.AccessRequest.Details,
             StartTime = result.AccessRequest.StartTime,
             EndTime = result.AccessRequest.EndTime,
-            Reason = result.AccessRequest.Reason.Value.ToString(),
-            Status = (ApprovalStatus)result.AccessRequest.Status.Key,
-
-            Visitors = result.AccessRequest.Visitors.Select(x => new Visitor
-            {
-                FullName = x.FullName,
-                EmailAddress = x.EmailAddress,
-                PhoneNumber = x.PhoneNumber
-            }).ToArray(),
-            AssetRequests = result.AccessRequest.AssetRequests.ToArray()
+            Reason = result.AccessRequest.Reason?.Value,
+            Workspace = result.AccessRequest.Workspace?.Name,
+            Status = (ApprovalStatus)result.AccessRequest.Status.Key
         };
     }
 }

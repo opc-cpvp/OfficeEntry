@@ -1,0 +1,36 @@
+﻿<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tr>
+        <td style="padding: 20px; font-size: 15px; line-height: 20px;">
+            <h1 style="margin: 0 0 10px 0; font-family: Helvetica,Arial,sans-serif; font-size: 25px; line-height: 30px; color: #B31885; font-weight: normal;">Une annulation d’une réservation d’entrée bureau d'accès a été créée.</h1>
+            <ul style="padding: 0; margin: 0 0 10px 0; list-style-type: disc;">
+                <li style="margin: 0 0 0 30px; font-family: Helvetica,Arial,sans-serif;" class="list-item-first">Employé : {{AccessRequest.Employee.FullName}}</li>
+                <li style="margin: 0 0 0 30px; font-family: Helvetica,Arial,sans-serif;">Date : {{formatDate AccessRequest.StartTime}}</li>
+                <li style="margin: 0 0 0 30px; font-family: Helvetica,Arial,sans-serif;">Temps d'accès : {{formatTime AccessRequest.StartTime}} à {{formatTime AccessRequest.EndTime}}</li>
+                <li style="margin: 0 0 0 30px; font-family: Helvetica,Arial,sans-serif;">Statut : {{AccessRequest.FrenchStatus}}</li>
+                <li style="margin: 0 0 0 30px; font-family: Helvetica,Arial,sans-serif;">Immeuble / Étage : {{AccessRequest.Building.FrenchName}} - {{AccessRequest.Floor.FrenchName}}</li>
+                {{#if AccessRequest.Workspace.Name}}
+                <li style="margin: 0 0 0 30px; font-family: Helvetica,Arial,sans-serif;">Espace de travail : {{AccessRequest.Workspace.Name}}</li>
+                {{/if}}
+                <li style="margin: 0 0 10px 30px; font-family: Helvetica,Arial,sans-serif;" class="list-item-last">Créée le : {{formatDate AccessRequest.CreatedOn}} {{formatTime AccessRequest.CreatedOn}}</li>
+            </ul>
+            <p style="margin: 0 0 10px 0; font-family: Helvetica,Arial,sans-serif;"><a style="background-color: transparent; color: #00627e; text-decoration: underline;" href="{{FrenchUrl}}">Cliquez ici pour accéder la demande</a></p>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 20px; font-size: 15px; line-height: 20px;">
+            <h1 style="margin: 0 0 10px 0; font-family: Helvetica,Arial,sans-serif; font-size: 25px; line-height: 30px; color: #B31885; font-weight: normal;">A cancellation access request was created.</h1>
+            <ul style="padding: 0; margin: 0 0 10px 0; list-style-type: disc;">
+                <li style="margin: 0 0 0 30px; font-family: Helvetica,Arial,sans-serif;" class="list-item-first">Employee: {{AccessRequest.Employee.FullName}}</li>
+                <li style="margin: 0 0 0 30px; font-family: Helvetica,Arial,sans-serif;">Date: {{formatDate AccessRequest.StartTime}}</li>
+                <li style="margin: 0 0 0 30px; font-family: Helvetica,Arial,sans-serif;">Time of access: {{formatTime AccessRequest.StartTime}} to {{formatTime AccessRequest.EndTime}}</li>
+                <li style="margin: 0 0 0 30px; font-family: Helvetica,Arial,sans-serif;">Status: {{AccessRequest.EnglishStatus}}</li>
+                <li style="margin: 0 0 0 30px; font-family: Helvetica,Arial,sans-serif;">Building / Floor: {{AccessRequest.Building.EnglishName}} - {{AccessRequest.Floor.EnglishName}}</li>
+                {{#if AccessRequest.Workspace.Name}}
+                    <li style="margin: 0 0 0 30px; font-family: Helvetica,Arial,sans-serif;">Workstation: {{AccessRequest.Workspace.Name}}</li>
+                {{/if}}
+                <li style="margin: 0 0 10px 30px; font-family: Helvetica,Arial,sans-serif;" class="list-item-last">Created on: {{formatDate AccessRequest.CreatedOn}} {{formatTime AccessRequest.CreatedOn}}</li>
+            </ul>
+            <p style="margin: 0 0 10px 0; font-family: Helvetica,Arial,sans-serif;"><a style="background-color: transparent; color: #00627e; text-decoration: underline;" href="{{EnglishUrl}}">Click here to access the request</a></p>
+        </td>
+    </tr>
+</table>

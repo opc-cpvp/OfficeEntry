@@ -6,11 +6,6 @@
     <AttributeMaps />
   </EntityMap>
   <EntityMap>
-    <EntitySource>gc_accessrequest</EntitySource>
-    <EntityTarget>gc_assetrequest</EntityTarget>
-    <AttributeMaps />
-  </EntityMap>
-  <EntityMap>
     <EntitySource>gc_building</EntitySource>
     <EntityTarget>gc_accessrequest</EntityTarget>
     <AttributeMaps />
@@ -21,23 +16,38 @@
     <AttributeMaps />
   </EntityMap>
   <EntityMap>
+    <EntitySource>gc_building</EntitySource>
+    <EntityTarget>gc_floorplan</EntityTarget>
+    <AttributeMaps />
+  </EntityMap>
+  <EntityMap>
     <EntitySource>gc_floor</EntitySource>
     <EntityTarget>gc_accessrequest</EntityTarget>
     <AttributeMaps />
   </EntityMap>
   <EntityMap>
     <EntitySource>gc_floor</EntitySource>
-    <EntityTarget>gc_office</EntityTarget>
+    <EntityTarget>gc_floorplan</EntityTarget>
     <AttributeMaps />
   </EntityMap>
   <EntityMap>
-    <EntitySource>gc_office</EntitySource>
+    <EntitySource>gc_floorplan</EntitySource>
     <EntityTarget>gc_accessrequest</EntityTarget>
+    <AttributeMaps />
+  </EntityMap>
+  <EntityMap>
+    <EntitySource>gc_floorplan</EntitySource>
+    <EntityTarget>gc_workspace</EntityTarget>
     <AttributeMaps />
   </EntityMap>
   <EntityMap>
     <EntitySource>gc_usersettings</EntitySource>
     <EntityTarget>contact</EntityTarget>
+    <AttributeMaps />
+  </EntityMap>
+  <EntityMap>
+    <EntitySource>gc_workspace</EntitySource>
+    <EntityTarget>gc_accessrequest</EntityTarget>
     <AttributeMaps />
   </EntityMap>
 </EntityMaps>

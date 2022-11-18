@@ -3,17 +3,39 @@
 public class AccessRequest
 {
     public Guid Id { get; set; }
-    public List<AssetRequest> AssetRequests { get; set; }
-    public Building Building { get; set; }
+    public DateTime CreatedOn { get; set; }
     public Contact Employee { get; set; }
-    public string Details { get; set; }
-    public DateTime EndTime { get; set; }
-    public Floor Floor { get; set; }
     public Contact Manager { get; set; }
-    public OptionSet Reason { get; set; }
+    public FloorPlan FloorPlan { get; set; }
+    public Workspace Workspace { get; set; }
+    public Building Building { get; set; }
+    public bool FirstAidAttendant { get; set; }
+    public bool FloorEmergencyOfficer { get; set; }
+    public Floor Floor { get; set; }
     public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
+    public string Details { get; set; }
+    public Contact Delegate { get; set; }
+    public OptionSet Reason { get; set; }
     public OptionSet Status { get; set; }
-    public List<Contact> Visitors { get; set; } = new List<Contact>();
+
+    public string EnglishStatus => Status?.Key switch
+    {
+        (int)ApprovalStatus.Approved => "Approved",
+        (int)ApprovalStatus.Cancelled => "Cancelled",
+        (int)ApprovalStatus.Declined => "Declined",
+        (int)ApprovalStatus.Pending => "Pending",
+        _ => string.Empty
+    };
+
+    public string FrenchStatus => Status?.Key switch
+    {
+        (int)ApprovalStatus.Approved => "Approuvée",
+        (int)ApprovalStatus.Cancelled => "Annulée",
+        (int)ApprovalStatus.Declined => "Refusée",
+        (int)ApprovalStatus.Pending => "En attente",
+        _ => string.Empty
+    };
 
     public enum ApprovalStatus
     {

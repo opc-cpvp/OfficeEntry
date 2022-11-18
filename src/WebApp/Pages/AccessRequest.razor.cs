@@ -5,9 +5,10 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
+using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
-using OfficeEntry.WebApp.Store.ManagerApprovalsUseCase;
-using OfficeEntry.WebApp.Store.MyAccessRequestsUseCase;
+using OfficeEntry.WebApp.Store.AccessRequestsUseCase;
+using OfficeEntry.WebApp.Store.DelegateAccessRequestsUseCase;
 using System.Globalization;
 
 namespace OfficeEntry.WebApp.Pages;
@@ -30,12 +31,10 @@ public partial class AccessRequest
     [Inject]
     private IDispatcher Dispatcher { get; set; }
 
+    public bool IsDelegate { get; set; }
     public bool IsEmployee { get; set; }
-    public bool IsManager { get; set; }
 
-    public bool IsApproved => accessRequest.Status == Domain.Entities.AccessRequest.ApprovalStatus.Approved;
     public bool IsCancelled => accessRequest.Status == Domain.Entities.AccessRequest.ApprovalStatus.Cancelled;
-    public bool IsDeclined => accessRequest.Status == Domain.Entities.AccessRequest.ApprovalStatus.Declined;
 
     private AccessRequestViewModel accessRequest;
 
@@ -50,29 +49,13 @@ public partial class AccessRequest
         locale = (locale == Locale.French) ? locale : Locale.English;
 
         var result = await Mediator.Send(new GetAccessRequestQuery { AccessRequestId = Id, Locale = locale });
+        IsDelegate = result.IsDelegate;
         IsEmployee = result.IsEmployee;
-        IsManager = result.IsManager;
         accessRequest = result;
 
         StateHasChanged();
 
         await base.OnAfterRenderAsync(firstRender);
-    }
-
-    private async Task ApproveRequest()
-    {
-        accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Approved;
-
-        var accessRequestMessage = new Domain.Entities.AccessRequest
-        {
-            Id = accessRequest.Id,
-            Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
-        };
-        await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
-        Dispatcher.Dispatch(new GetManagerApprovalsAction());
-        Dispatcher.Dispatch(new GetMyAccessRequestsAction());
-
-        NavigationManager.NavigateTo(Localizer["review-access-requests"]);
     }
 
     private async Task CancelRequest()
@@ -82,29 +65,45 @@ public partial class AccessRequest
         var accessRequestMessage = new Domain.Entities.AccessRequest
         {
             Id = accessRequest.Id,
-            Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
+            Employee = new Contact { Id = accessRequest.EmployeeId },
+            Building = new Building
+            {
+                Id = accessRequest.BuildingId,
+                EnglishName = accessRequest.BuildingEnglishName,
+                FrenchName = accessRequest.BuildingFrenchName
+            },
+            Floor = new Floor
+            {
+                Id = accessRequest.FloorId,
+                EnglishName = accessRequest.FloorEnglishName,
+                FrenchName = accessRequest.FloorFrenchName
+            },
+            FloorPlan = new FloorPlan { Id = accessRequest.FloorPlanId },
+            StartTime = accessRequest.StartTime,
+            Status = new OptionSet { Key = (int)accessRequest.Status }
         };
-        await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
-        Dispatcher.Dispatch(new GetManagerApprovalsAction());
-        Dispatcher.Dispatch(new GetMyAccessRequestsAction());
 
-        NavigationManager.NavigateTo(Localizer["my-access-requests"]);
-    }
-
-    private async Task DeclineRequest()
-    {
-        accessRequest.Status = Domain.Entities.AccessRequest.ApprovalStatus.Declined;
-
-        var accessRequestMessage = new Domain.Entities.AccessRequest
+        if (accessRequest.DelegateId.HasValue)
         {
-            Id = accessRequest.Id,
-            Status = new Domain.Entities.OptionSet { Key = (int)accessRequest.Status }
-        };
+            accessRequestMessage.Delegate = new Contact { Id = accessRequest.DelegateId.Value };
+        }
 
-        await Mediator.Send(new UpdateAccessRequestCommand { AccessRequest = accessRequestMessage });
-        Dispatcher.Dispatch(new GetManagerApprovalsAction());
-        Dispatcher.Dispatch(new GetMyAccessRequestsAction());
+        await Mediator.Send(new UpdateAccessRequestCommand
+        {
+            BaseUrl = NavigationManager.BaseUri,
+            AccessRequest = accessRequestMessage
+        });
 
-        NavigationManager.NavigateTo(Localizer["review-access-requests"]);
+        Dispatcher.Dispatch(new GetAccessRequestsAction());
+        Dispatcher.Dispatch(new GetDelegateAccessRequestsAction());
+
+        if (IsEmployee)
+        {
+            NavigationManager.NavigateTo(Localizer["my-requests"]);
+        }
+        else if (IsDelegate)
+        {
+            NavigationManager.NavigateTo(Localizer["requests-for-my-colleagues"]);
+        }
     }
 }

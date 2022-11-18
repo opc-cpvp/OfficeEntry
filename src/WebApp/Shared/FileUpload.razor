@@ -1,0 +1,79 @@
+﻿@implements IAsyncDisposable
+@inject IJSRuntime JSRuntime;
+
+<div @ref="_fileDropContainer" class="file-drop-zone @_hoverClass" @ondragenter="OnDragEnter" @ondragleave="OnDragLeave" @ondragover="OnDragEnter">
+    <InputFile @ref="_inputFile" OnChange="@OnChange" />
+    @*Or drag and drop your image here*@
+</div>
+<div class="error-message-container">
+    <p>@_errorMessage</p>
+</div>
+
+@code {
+    // https://code-maze.com/upload-files-drag-drop-paste-blazor/
+    private const int MaxAllowedFiles = 1;
+    private const int MaxAllowedSize = 1 * 1024 * 1024; // 1 MB
+
+    private string _imageSource;
+    private string _errorMessage;
+    private ElementReference _fileDropContainer;
+    private InputFile _inputFile;
+    private string _hoverClass;
+    private IJSObjectReference _filePasteModule;
+    private IJSObjectReference _filePasteFunctionReference;
+
+    private void OnDragEnter(DragEventArgs e) => _hoverClass = "hover";
+    private void OnDragLeave(DragEventArgs e) => _hoverClass = string.Empty;
+
+    [Parameter]
+    public EventCallback<string> OnImageChangeCallback { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _filePasteModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./js/filePaste.js");
+            _filePasteFunctionReference = await _filePasteModule.InvokeAsync<IJSObjectReference>("initializeFilePaste", _fileDropContainer, _inputFile.Element);
+        }
+    }
+
+    private async Task OnChange(InputFileChangeEventArgs e)
+    {
+        _errorMessage = string.Empty;
+        if (e.FileCount > MaxAllowedFiles)
+        {
+            _errorMessage = $"Only {MaxAllowedFiles} files can be uploaded";
+            return;
+        }
+        foreach (var file in e.GetMultipleFiles(MaxAllowedFiles))
+        {
+            try
+            {
+                await using var stream = file.OpenReadStream(MaxAllowedSize);
+                using var ms = new MemoryStream();
+                await stream.CopyToAsync(ms);
+                _imageSource = $"data:{file.ContentType};base64,{Convert.ToBase64String(ms.ToArray())}";
+
+                await OnImageChangeCallback.InvokeAsync(_imageSource);
+            }
+            // System.IO.IOException: Supplied file with size 2059597 bytes exceeds the maximum of 512000 bytes.
+            catch (IOException exception) when (exception.Message?.Contains("bytes exceeds the maximum") ?? false)
+            {
+                _errorMessage = "The supplied file is too large. Maximum size is 1 MB.";
+            }
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_filePasteFunctionReference != null)
+        {
+            await _filePasteFunctionReference.InvokeVoidAsync("dispose");
+            await _filePasteFunctionReference.DisposeAsync();
+        }
+        if (_filePasteModule != null)
+        {
+            await _filePasteModule.DisposeAsync();
+        }
+    }
+}

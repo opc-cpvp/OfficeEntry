@@ -1,0 +1,81 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/en/floor-plans/map/{FloorPlanId:guid}"
+@page "/fr/plans-d-etages/carte/{FloorPlanId:guid}"
+
+@if (SurveyCompleted)
+{
+    <Loading />
+}
+else
+{
+    <div class="row">
+        <div class="col-12 col-md-2">
+
+            @if (FloorPlanDto is not null)
+            {
+                <div class="card mb-3">
+                    <h5 class="card-header">@Localizer["Submit Request"]</h5>
+                    <div class="card-body" style="padding: 0rem;">
+                        <Survey @ref="mySurvey"
+                        Id="surveyElementSubmitAccessRequest"
+                        Data="@( System.Text.Json.JsonSerializer.Serialize(new { floorplan = FloorPlanId, bookingFor = "Myself", startDate = _selectedDate.ToString("MM/dd/yyyy"), startTime = _startTime, endTime = _endTime, requireWorkstation = true }) )"
+                        SurveyUrl="sample-data/bookWorkspaceSurvey.json"
+                        OnSurveyCompleted="@OnSurveyCompleted"
+                        OnValueChanged="@OnValueChanged" />
+                    </div>
+                </div>
+            }
+
+            @if (_selectedAccessRequest is not null)
+            {
+                <div class="card text-white bg-dark mb-3">
+                    <h5 class="card-header">@_selectedAccessRequest.Workspace.Name</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">@_selectedAccessRequest.Employee.FullName</h5>
+                        <p class="card-text">
+                            <span class="font-weight-bold text-muted">Start</span>
+                            <br />
+                            <span class="nowrap">
+                                <i class="fas fa-calendar-alt text-muted"></i>
+                                @_selectedAccessRequest.StartTime.ToString("yyyy-MM-dd")
+                            </span>
+                            <br />
+                            <span class="nowrap">
+                                <i class="fas fa-clock text-muted"></i>
+                                @_selectedAccessRequest.StartTime.ToString("HH:mm")
+                            </span>
+                        </p>
+                        <p class="card-text">
+                            <span class="font-weight-bold text-muted">End</span>
+                            <br />
+                            <span class="nowrap">
+                                <i class="fas fa-calendar-alt text-muted"></i>
+                                @_selectedAccessRequest.EndTime.ToString("yyyy-MM-dd")
+                            </span>
+                            <br />
+                            <span class="nowrap">
+                                <i class="fas fa-clock text-muted"></i>
+                                @_selectedAccessRequest.EndTime.ToString("HH:mm")
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="col">
+            @if (MapState.Value.IsLoading)
+            {
+                <Loading />
+            }
+            else
+            {
+                <div id="tooltip">Tooltip</div>
+                <div id="canvasHolder">
+                    <canvas id="floorplan-canvas" style="border: 1px solid #eeeeee;"></canvas>
+                </div>
+            }
+        </div>
+    </div>
+}

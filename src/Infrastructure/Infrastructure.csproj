@@ -1,24 +1,43 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>OfficeEntry.Infrastructure</RootNamespace>
     <AssemblyName>OfficeEntry.Infrastructure</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
+  <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="11.0.1" />
-    <PackageReference Include="Duende.IdentityServer.EntityFramework.Storage" Version="6.0.4" />    
-    <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="6.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.3" />
+    <None Remove="Templates\ApprovedAccessRequestNotificationEmail.hbs" />
+    <None Remove="Templates\CancelledAccessRequestNotificationEmail.hbs" />
+    <None Remove="Templates\CapacityNotificationEmail.hbs" />
+    <None Remove="Templates\EmailLayout.hbs" />
+    <None Remove="Templates\PendingAccessRequestNotificationEmail.hbs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\CancelledAccessRequestNotificationEmail.hbs" />
+    <EmbeddedResource Include="Templates\PendingAccessRequestNotificationEmail.hbs" />
+    <EmbeddedResource Include="Templates\EmailLayout.hbs" />
+    <EmbeddedResource Include="Templates\ApprovedAccessRequestNotificationEmail.hbs" />
+    <EmbeddedResource Include="Templates\CapacityNotificationEmail.hbs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="Handlebars.Net" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="7.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Simple.OData.Client" Version="5.26.0" />
-    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="6.0.0" />
+    <PackageReference Include="Simple.OData.Client" Version="6.0.1" />
+    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="7.0.0" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+
+    <!--We need to explicitly include these references for Simple.OData.Client to work correctly in .NET 7.0-->
+    <PackageReference Include="Microsoft.Data.OData" Version="5.8.5" />
+    <PackageReference Include="Microsoft.OData.Core" Version="7.12.5" />
+    <PackageReference Include="Microsoft.OData.Edm" Version="7.12.5" />
   </ItemGroup>
 
   <ItemGroup>

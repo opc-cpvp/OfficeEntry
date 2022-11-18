@@ -8,7 +8,6 @@ internal class gc_usersettingses
     public Guid gc_usersettingsid { get; set; }
     public DateTime? gc_healthsafety { get; set; }
     public DateTime? gc_privacystatement { get; set; }
-
     public int statecode { get; set; }
 
     public static UserSettings Convert(gc_usersettingses userSettings)

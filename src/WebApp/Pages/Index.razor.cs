@@ -32,11 +32,11 @@ public partial class Index
 
     public void SetLanguageToFrench()
     {
-        NavigationManager.NavigateTo("/fr/mes-demandes-d-acces", forceLoad: true);
+        NavigationManager.NavigateTo("/fr/mes-demandes", forceLoad: true);
     }
 
     public void SetLanguageToEnglish()
     {
-        NavigationManager.NavigateTo("/en/my-access-requests", forceLoad: true);
+        NavigationManager.NavigateTo("/en/my-requests", forceLoad: true);
     }
 }

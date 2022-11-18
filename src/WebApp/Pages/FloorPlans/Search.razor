@@ -1,0 +1,44 @@
+﻿@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@page "/en/floor-plans/manage"
+@page "/fr/plans-d-etages/gestion"
+
+<h1>@Localizer["Manage Floor Plans"]</h1>
+
+@if (!State.Value.FloorPlans.Any())
+{
+    if (State.Value.IsLoading)
+    {
+        <Loading />
+    }
+    else
+    {
+        <p>No floor plans found.</p>
+    }
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">@Localizer["Name"]</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var floorPlan in State.Value.FloorPlans)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-secondary btn-sm mr-2" href="/@Localizer["floor-plans-edit", @floorPlan.Id]"><i class="fas fa-pencil-alt"></i></a>
+                    @floorPlan.Name
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <button @onclick="Refresh" class="btn btn-secondary">
+        <i class="fas fa-sync-alt"></i>
+        <span>@Localizer["Refresh the list"]</span>
+    </button>
+}

@@ -33,7 +33,6 @@
                 <h5 class="card-title">@AccessRequest.Employee.FullName</h5>
                 <p class="card-text">@AccessRequest.Building.Name, @AccessRequest.Floor.Name</p>
                 <p class="card-text">@AccessRequest.StartTime.ToString(Localizer["MMMM dd, yyyy"]) - @AccessRequest.StartTime.ToString(Localizer["h:mm tt"]) @Localizer["To"] @AccessRequest.EndTime.ToString(Localizer["h:mm tt"])</p>
-                <p class="card-text">@Localizer["Visitors:"]<strong>@AccessRequest.Visitors.Count()</strong></p>
             </div>
         </div>
         <div class="card-footer w-100 text-muted">

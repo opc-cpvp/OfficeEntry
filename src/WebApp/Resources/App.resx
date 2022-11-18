@@ -121,6 +121,21 @@
     <value>fr/</value>
     <comment>URI</comment>
   </data>
+  <data name="30 Victoria Street" xml:space="preserve">
+    <value>30 Victoria Street</value>
+  </data>
+  <data name="4th floor" xml:space="preserve">
+    <value>4th floor</value>
+  </data>
+  <data name="655 Bay Street, Suite 404" xml:space="preserve">
+    <value>655 Bay Street, Suite 404</value>
+  </data>
+  <data name="7th floor" xml:space="preserve">
+    <value>7th floor</value>
+  </data>
+  <data name="8th floor" xml:space="preserve">
+    <value>8th floor</value>
+  </data>
   <data name="Accept all Terms and Conditions" xml:space="preserve">
     <value>Before submitting an access request you must accept the Health and Safety measures and the Privacy Act Statement.</value>
   </data>
@@ -137,29 +152,17 @@
   <data name="Approve" xml:space="preserve">
     <value>Approve</value>
   </data>
-  <data name="Approve Requests" xml:space="preserve">
-    <value>Approve Requests</value>
-  </data>
   <data name="Approved" xml:space="preserve">
     <value>Approved</value>
   </data>
-  <data name="Asset and equipment:" xml:space="preserve">
-    <value>Asset and equipment:</value>
-  </data>
   <data name="Building" xml:space="preserve">
     <value>Building</value>
-  </data>
-  <data name="Cables" xml:space="preserve">
-    <value>Cables</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="Cancelled" xml:space="preserve">
     <value>Cancelled</value>
-  </data>
-  <data name="Chair" xml:space="preserve">
-    <value>Chair</value>
   </data>
   <data name="CriticalWork" xml:space="preserve">
     <value>Critical Work</value>
@@ -176,8 +179,8 @@
   <data name="Details:" xml:space="preserve">
     <value>Details:</value>
   </data>
-  <data name="DockingStation" xml:space="preserve">
-    <value>Docking Station</value>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -194,6 +197,18 @@
   <data name="Floor" xml:space="preserve">
     <value>Floor</value>
   </data>
+  <data name="floor-plans-edit" xml:space="preserve">
+    <value>en/floor-plans/edit/{0}</value>
+    <comment>URI</comment>
+  </data>
+  <data name="floor-plans-manage" xml:space="preserve">
+    <value>en/floor-plans/manage</value>
+    <comment>URI</comment>
+  </data>
+  <data name="floor-plans-map" xml:space="preserve">
+    <value>en/floor-plans/map/{0}</value>
+    <comment>URI</comment>
+  </data>
   <data name="From" xml:space="preserve">
     <value>From</value>
   </data>
@@ -207,9 +222,6 @@
   <data name="h:mm tt" xml:space="preserve">
     <value>h:mm tt</value>
   </data>
-  <data name="Headset" xml:space="preserve">
-    <value>Headset</value>
-  </data>
   <data name="Health &amp; Safety Measures" xml:space="preserve">
     <value>Health &amp; Safety Measures</value>
   </data>
@@ -220,18 +232,14 @@
   <data name="Hello," xml:space="preserve">
     <value>Hello,</value>
   </data>
-  <data name="Keyboard" xml:space="preserve">
-    <value>Keyboard</value>
-  </data>
   <data name="LanguageToggle" xml:space="preserve">
     <value>Français</value>
-    <comment>URI</comment>
-  </data>
-  <data name="Laptop" xml:space="preserve">
-    <value>Laptop</value>
   </data>
   <data name="Loading..." xml:space="preserve">
     <value>Loading...</value>
+  </data>
+  <data name="Manage Floor Plans" xml:space="preserve">
+    <value>Manage Floor Plans</value>
   </data>
   <data name="Manager:" xml:space="preserve">
     <value>Manager:</value>
@@ -239,27 +247,15 @@
   <data name="MMMM dd, yyyy" xml:space="preserve">
     <value>MMMM dd, yyyy</value>
   </data>
-  <data name="Monitor" xml:space="preserve">
-    <value>Monitor</value>
-  </data>
-  <data name="Mouse" xml:space="preserve">
-    <value>Mouse</value>
-  </data>
   <data name="My Requests" xml:space="preserve">
     <value>My Requests</value>
   </data>
-  <data name="my-access-requests" xml:space="preserve">
-    <value>en/my-access-requests</value>
+  <data name="my-requests" xml:space="preserve">
+    <value>en/my-requests</value>
     <comment>URI</comment>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
-  </data>
-  <data name="No asset and equipment." xml:space="preserve">
-    <value>No asset and equipment.</value>
-  </data>
-  <data name="No visitors." xml:space="preserve">
-    <value>No visitors.</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>
@@ -304,15 +300,18 @@
   <data name="Requestor" xml:space="preserve">
     <value>Requestor</value>
   </data>
+  <data name="Requests for My Colleagues" xml:space="preserve">
+    <value>Requests for My Colleagues</value>
+  </data>
+  <data name="requests-for-my-colleagues" xml:space="preserve">
+    <value>en/requests-for-my-colleagues</value>
+    <comment>URI</comment>
+  </data>
   <data name="Review" xml:space="preserve">
     <value>Review</value>
   </data>
   <data name="Review Access Requests" xml:space="preserve">
     <value>Review Access Requests</value>
-  </data>
-  <data name="review-access-requests" xml:space="preserve">
-    <value>en/review-access-requests</value>
-    <comment>URI</comment>
   </data>
   <data name="StartTime" xml:space="preserve">
     <value>From</value>
@@ -323,15 +322,8 @@
   <data name="Status:" xml:space="preserve">
     <value>Status:</value>
   </data>
-  <data name="Submit Access Request" xml:space="preserve">
-    <value>Submit Access Request</value>
-  </data>
-  <data name="submit-access-request" xml:space="preserve">
-    <value>en/submit-access-request</value>
-    <comment>URI</comment>
-  </data>
-  <data name="Tablet" xml:space="preserve">
-    <value>Tablet</value>
+  <data name="Submit Request" xml:space="preserve">
+    <value>Submit Request</value>
   </data>
   <data name="Telephone" xml:space="preserve">
     <value>Telephone</value>
@@ -352,7 +344,7 @@
   <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
-  <data name="Visitors:" xml:space="preserve">
-    <value>Visitors:</value>
+  <data name="Workstation" xml:space="preserve">
+    <value>Workstation</value>
   </data>
 </root>

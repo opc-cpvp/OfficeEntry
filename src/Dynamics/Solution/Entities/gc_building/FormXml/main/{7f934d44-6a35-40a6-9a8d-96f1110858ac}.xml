@@ -15,18 +15,18 @@
           <columns>
             <column width="100%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{61ba1d25-50ee-4fb8-8b5b-619afcc3ef0c}">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{61ba1d25-50ee-4fb8-8b5b-619afcc3ef0c}" name="{61ba1d25-50ee-4fb8-8b5b-619afcc3ef0c}" columns="11" locklevel="0" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
                     <label description="General" languagecode="1033" />
                     <label description="Général" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{746ba87a-3a3a-47bc-8882-8a237ece56f4}">
+                      <cell id="{746ba87a-3a3a-47bc-8882-8a237ece56f4}" showlabel="true" locklevel="0" colspan="2">
                         <labels>
                           <label description="Name" languagecode="1033" />
                         </labels>
-                        <control id="gc_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_name" />
+                        <control id="gc_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_name" uniqueid="{9a221a3c-8de3-1281-3447-192ac7788ab3}" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -36,8 +36,6 @@
                         </labels>
                         <control id="gc_englishname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_englishname" disabled="false" />
                       </cell>
-                    </row>
-                    <row>
                       <cell id="{ee6a67cd-d5be-692d-170d-0965c6e10eb6}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="French Name" languagecode="1033" />
@@ -52,8 +50,6 @@
                         </labels>
                         <control id="gc_englishdescription" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_englishdescription" disabled="false" />
                       </cell>
-                    </row>
-                    <row>
                       <cell id="{821bbb5c-96e4-118c-9053-941ab81c304c}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="French Description" languagecode="1033" />
@@ -68,6 +64,11 @@
                         </labels>
                         <control id="gc_address" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_address" disabled="false" />
                       </cell>
+                      <cell id="{7ed4bd4c-9bd7-e639-e320-742d8e715e20}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
                     </row>
                     <row>
                       <cell id="{67c4e695-8526-60bb-6d2b-ceecdc98771a}" showlabel="true" locklevel="0">
@@ -75,6 +76,11 @@
                           <label description="City" languagecode="1033" />
                         </labels>
                         <control id="gc_city" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_city" disabled="false" />
+                      </cell>
+                      <cell id="{d854e917-123e-9756-e3d5-3366a9470d96}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                     <row>
@@ -84,6 +90,11 @@
                         </labels>
                         <control id="gc_timezone" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="gc_timezone" disabled="false" />
                       </cell>
+                      <cell id="{8bdc0c6e-0235-a29b-50ad-4cc73507736b}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
                     </row>
                     <row>
                       <cell id="{03d4accc-ed79-5abe-919e-442903a63b97}" showlabel="true" locklevel="0">
@@ -92,13 +103,25 @@
                         </labels>
                         <control id="gc_timezoneoffset" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="gc_timezoneoffset" disabled="false" />
                       </cell>
+                      <cell id="{088c64b6-e1de-873a-a49a-d1b61ac2a782}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
                     </row>
+                  </rows>
+                </section>
+                <section name="section_floors" showlabel="true" showbar="true" locklevel="0" id="{9a2b38bb-62da-ee30-b677-4865d95178ee}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Floors" languagecode="1033" />
+                  </labels>
+                  <rows>
                     <row>
-                      <cell id="{ee41cb45-031b-c8c6-bed6-1854ac53a8cc}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                      <cell id="{5b084192-93b5-7298-7536-91c3d4921827}" showlabel="false" colspan="1" auto="false" rowspan="6">
                         <labels>
                           <label description="Floors (Building Floor)" languagecode="1033" />
                         </labels>
-                        <control id="subgrid_floors" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="subgrid_floors" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{812c6284-1629-2bb2-40c6-423bcabb7a00}">
                           <parameters>
                             <ViewId>{DB3C48E0-705C-496F-B5F0-76136A752DE4}</ViewId>
                             <IsUserView>false</IsUserView>
@@ -114,6 +137,99 @@
                             <IsUserChart>false</IsUserChart>
                             <EnableChartPicker>false</EnableChartPicker>
                             <RecordsPerPage>4</RecordsPerPage>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_emergencycontacts" id="{0785c09a-10b4-b9e9-b34e-b116a7ba9de3}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Emergency Contacts" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="50%">
+              <sections>
+                <section name="section_firstaidattendants" showlabel="true" showbar="true" locklevel="0" id="{335593e6-acae-90c9-6745-2473dab438b8}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="First Aid Attendants" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{3422169a-c94d-7b93-c329-651be36d3a83}" showlabel="false" colspan="2" auto="false" rowspan="6">
+                        <labels>
+                          <label description="First Aid Attendants" languagecode="1033" />
+                          <label description="Contacts" languagecode="1036" />
+                        </labels>
+                        <control id="subgrid_firstaidattendants" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{60ab3899-b980-69b7-cea4-0c52364602ee}">
+                          <parameters>
+                            <ViewId>{00000000-0000-0000-00AA-000010001004}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>gc_building_contact_firstaidattendants</RelationshipName>
+                            <TargetEntityType>contact</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{00000000-0000-0000-00AA-000010001004},{00000000-0000-0000-00AA-000010001003}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <VisualizationId>{E365462F-1DB9-46A8-928D-BEAB1A7A2375}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>false</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="section_flooremergencyofficers" showlabel="true" showbar="true" locklevel="0" id="{e1de431d-8488-4b10-d094-48c6ed0b90c7}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Floor Emergency Officers" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{82c82e43-9335-68ba-067d-704645b17839}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="Floor Emergency Officers" languagecode="1033" />
+                          <label description="Contacts" languagecode="1036" />
+                        </labels>
+                        <control id="subgrid_flooremergencyofficers" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{5d50d901-5c2b-36bd-152c-722856661abd}">
+                          <parameters>
+                            <ViewId>{00000000-0000-0000-00AA-000010001004}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>gc_building_contact_flooremergencyofficers</RelationshipName>
+                            <TargetEntityType>contact</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{00000000-0000-0000-00AA-000010001004},{00000000-0000-0000-00AA-000010001003}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <VisualizationId>{E365462F-1DB9-46A8-928D-BEAB1A7A2375}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>false</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
                           </parameters>
                         </control>
                       </cell>

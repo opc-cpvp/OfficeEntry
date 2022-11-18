@@ -12,13 +12,14 @@
       <grid name="resultset" object="10024" jump="gc_name" select="1" preview="1" icon="1">
         <row name="result" id="gc_accessrequestid">
           <cell name="gc_employee" width="100" />
-          <cell name="gc_accessreason" width="100" />
-          <cell name="gc_building" width="100" />
-          <cell name="gc_floor" width="100" />
-          <cell name="gc_office" width="100" />
+          <cell name="a_982edd036725ed11a2fd005056aa7ac3.gc_building" width="150" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_982edd036725ed11a2fd005056aa7ac3.gc_floor" width="125" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_workspace" width="100" />
           <cell name="gc_starttime" width="100" />
           <cell name="gc_endtime" width="100" />
-          <cell name="gc_manager" width="100" />
+          <cell name="gc_delegate" width="100" />
+          <cell name="gc_firstaidattendant" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_flooremergencyofficer" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="gc_approvalstatus" width="100" />
         </row>
       </grid>
@@ -28,14 +29,9 @@
       <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
         <entity name="gc_accessrequest">
           <attribute name="gc_starttime" />
-          <attribute name="gc_manager" />
-          <attribute name="gc_floor" />
           <attribute name="gc_endtime" />
           <attribute name="gc_employee" />
-          <attribute name="gc_building" />
           <attribute name="gc_approvalstatus" />
-          <attribute name="gc_accessreason" />
-          <order attribute="gc_building" descending="false" />
           <order attribute="gc_starttime" descending="false" />
           <filter type="and">
             <filter type="or">
@@ -48,7 +44,14 @@
             </condition>
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <attribute name="gc_office" />
+          <attribute name="gc_workspace" />
+          <link-entity alias="a_982edd036725ed11a2fd005056aa7ac3" name="gc_floorplan" from="gc_floorplanid" to="gc_floorplan" link-type="outer" visible="false">
+            <attribute name="gc_floor" />
+            <attribute name="gc_building" />
+          </link-entity>
+          <attribute name="gc_flooremergencyofficer" />
+          <attribute name="gc_firstaidattendant" />
+          <attribute name="gc_delegate" />
           <attribute name="gc_accessrequestid" />
         </entity>
       </fetch>
