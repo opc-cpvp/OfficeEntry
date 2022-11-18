@@ -66,7 +66,12 @@ public partial class AccessRequest
         {
             Id = accessRequest.Id,
             CreatedOn = accessRequest.CreatedOn,
-            Employee = new Contact { Id = accessRequest.EmployeeId },
+            Employee = new Contact
+            {
+                Id = accessRequest.EmployeeId,
+                FirstName = accessRequest.EmployeeFirstName,
+                LastName = accessRequest.EmployeeLastName
+            },
             Building = new Building
             {
                 Id = accessRequest.BuildingId,

@@ -9,6 +9,8 @@ public class AccessRequestViewModel
     public Guid BuildingId { get; set; }
     public Guid? DelegateId { get; set; }
     public Guid EmployeeId { get; set; }
+    public string EmployeeFirstName { get; set; }
+    public string EmployeeLastName { get; set; }
     public Guid FloorPlanId { get; set; }
     public Guid FloorId { get; set; }
     public bool IsDelegate { get; set; }
