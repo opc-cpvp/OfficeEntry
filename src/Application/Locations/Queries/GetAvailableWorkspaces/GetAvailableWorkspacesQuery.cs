@@ -36,8 +36,8 @@ public class GetAvailableWorkspacesQueryHandler : IRequestHandler<GetAvailableWo
             .Select(a => a.Workspace.Id)
             .Distinct();
 
-        var floorPlan = await _locationService.GetFloorPlanAsync(request.FloorPlanId);
-        var availableWorkspaces = floorPlan.Workspaces
+        var floorPlanWorkspaces = await _locationService.GetWorkspacesAsync(request.FloorPlanId);
+        var availableWorkspaces = floorPlanWorkspaces
             .Where(w => !reservedWorkspaces.Contains(w.Id))
             .Select(x =>
             {

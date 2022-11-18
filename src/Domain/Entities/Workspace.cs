@@ -1,4 +1,6 @@
-﻿namespace OfficeEntry.Domain.Entities;
+﻿using System.Dynamic;
+
+namespace OfficeEntry.Domain.Entities;
 
 public class Workspace
 {
@@ -9,4 +11,5 @@ public class Workspace
     public int Y { get; set; }
     public string Name { get; set; }
     public FloorPlan FloorPlan { get; set; }
+    public OptionSet StateCode { get; set; }
 }

@@ -53,6 +53,7 @@ class Circle {
     Hovering = false;
     Selected = false;
     Grabbed = false;
+    Active = true;
     Taken = false;
     IsFirstAidAttendant = false;
     IsFloorEmergencyOfficer = false;
@@ -157,6 +158,8 @@ function onTouchEnd(e) {
 // ===========================================================================
 
 // https://jacksonlab.agronomy.wisc.edu/2016/05/23/15-level-colorblind-friendly-palette/
+const inactiveBackgroundImage = new Image();
+const inactiveHoveredBackgroundImage = new Image();
 const availableBackgroundImage = new Image();
 const availableHoveredBackgroundImage = new Image();
 const takenBackgroundImage = new Image();
@@ -295,6 +298,13 @@ function Draw(deltaTime) {
         });
 
     circles
+        .filter(x => !x.Active)
+        .forEach(circle => {
+            const backgroundImage = circle.Hovering ? inactiveHoveredBackgroundImage : inactiveBackgroundImage;
+            context.drawImage(backgroundImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
+        });
+
+    circles
         .filter(x => x.Selected)
         .forEach(circle => {
             context.drawImage(selectedBackgroundImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
@@ -401,6 +411,8 @@ export async function start(imagedata, circlesJson) {
     floorplan.src = imagedata;
     await floorplan.decode();
 
+    inactiveBackgroundImage.src = '/img/floorplan/circle_inactive_icon.svg';
+    inactiveHoveredBackgroundImage.src = '/img/floorplan/circle_inactive_hover_icon.svg';
     availableBackgroundImage.src = '/img/floorplan/circle_available_icon.svg';
     availableHoveredBackgroundImage.src = '/img/floorplan/circle_available_hover_icon.svg';
     takenBackgroundImage.src = '/img/floorplan/circle_taken_icon.svg';
@@ -423,6 +435,7 @@ export async function start(imagedata, circlesJson) {
 
         tempCircles.forEach(circle => {
             const newCircle = new Circle(circle.Position.Left, circle.Position.Top, _diameter, circle.Name, circle.Id, circle.Selected);
+            newCircle.Active = circle.Active;
             newCircle.Taken = circle.Taken;
             newCircle.EmployeeFullName = circle.EmployeeFullName;
             newCircle.IsFirstAidAttendant = circle.IsFirstAidAttendant;

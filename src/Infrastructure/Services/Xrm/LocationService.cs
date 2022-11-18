@@ -26,7 +26,7 @@ public class LocationService : ILocationService
     public async Task<IEnumerable<Building>> GetBuildingsAsync(string locale)
     {
         var buildings = await _client.For<gc_building>()
-            .Filter(a => a.statecode == (int)StateCode.Active)
+            .Filter(a => a.statecode == (int)Entities.StateCode.Active)
             .FindEntriesAsync();
 
         return buildings.Select(b => new Building
@@ -83,7 +83,7 @@ public class LocationService : ILocationService
     public async Task<ImmutableArray<FloorPlan>> GetFloorPlansAsync(string keyword)
     {
         var floorPlans = await _client.For<gc_floorplan>()
-            .Filter(x => x.statecode == (int)StateCode.Active)
+            .Filter(x => x.statecode == (int)Entities.StateCode.Active)
             .Filter(x => x.gc_name.Contains(keyword))
             .FindEntriesAsync();
 
@@ -97,6 +97,16 @@ public class LocationService : ILocationService
             .FindEntryAsync();
 
         return gc_workspace.Convert(workspace);
+    }
+
+    public async Task<ImmutableArray<Workspace>> GetWorkspacesAsync(Guid floorPlanId)
+    {
+        var workspaces = await _client.For<gc_workspace>()
+            .Filter(x => x.statecode == (int)Entities.StateCode.Active)
+            .Filter(x => x.gc_floorplanid.gc_floorplanid == floorPlanId)
+            .FindEntriesAsync();
+
+        return workspaces.Select(gc_workspace.Convert).ToImmutableArray();
     }
 
     public async Task UpdateFloorPlan(FloorPlan floorPlan)
@@ -169,7 +179,7 @@ public class LocationService : ILocationService
             .For<gc_building>()
             .Key(buildingId)
             .NavigateTo(x => x.gc_building_contact_firstaidattendants)
-            .Filter(x => x.statecode == (int)StateCode.Active)
+            .Filter(x => x.statecode == (int)Entities.StateCode.Active)
             .FindEntriesAsync();
 
         return firstAidAttendants.Select(contact.Convert);
@@ -181,7 +191,7 @@ public class LocationService : ILocationService
             .For<gc_building>()
             .Key(buildingId)
             .NavigateTo(x => x.gc_building_contact_flooremergencyofficers)
-            .Filter(x => x.statecode == (int)StateCode.Active)
+            .Filter(x => x.statecode == (int)Entities.StateCode.Active)
             .FindEntriesAsync();
 
         return floorEmergencyOfficers.Select(contact.Convert);

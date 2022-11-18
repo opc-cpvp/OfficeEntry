@@ -10,6 +10,7 @@ public interface ILocationService
     Task<FloorPlan> GetFloorPlanAsync(Guid floorPlanId);
     Task<ImmutableArray<FloorPlan>> GetFloorPlansAsync(string keyword);
     Task<Workspace> GetWorkspaceAsync(Guid workspaceId);
+    Task<ImmutableArray<Workspace>> GetWorkspacesAsync(Guid floorPlanId);
     Task UpdateFloorPlan(FloorPlan floorPlan);
     Task<IEnumerable<Contact>> GetFirstAidAttendantsAsync(Guid buildingId);
     Task<IEnumerable<Contact>> GetFloorEmergencyOfficersAsync(Guid buildingId);

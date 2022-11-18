@@ -11,6 +11,7 @@ internal class gc_workspace
     public int gc_x { get; set; }
     public int gc_y { get; set; }
     public gc_floorplan gc_floorplanid { get; set; }
+    public int statecode { get; set; }
 
     public static Workspace Convert(gc_workspace workspace)
     {
@@ -24,7 +25,12 @@ internal class gc_workspace
             EnglishDescription = workspace.gc_englishdescription,
             FrenchDescription = workspace.gc_frenchdescription,
             X = workspace.gc_x,
-            Y = workspace.gc_y
+            Y = workspace.gc_y,
+            StateCode = new OptionSet
+            {
+                Key = workspace.statecode,
+                Value = Enum.GetName(typeof(StateCode), workspace.statecode)
+            }
         };
     }
 

@@ -94,6 +94,7 @@ public partial class Map : IAsyncDisposable
                 var accessRequest = accessRequests.FirstOrDefault(a => a.Workspace.Id == x.Id);
                 var employeeFullName = accessRequest?.Employee.FullName ?? string.Empty;
                 var workspaceDescription = (locale == Locale.French) ? x.FrenchDescription : x.EnglishDescription;
+                var isActive = x.StateCode.Key == (int)StateCode.Active;
                 var isTaken = accessRequest is not null;
                 var isFirstAidAttendant = accessRequest?.FirstAidAttendant ?? false;
                 var isFloorEmergencyOfficer = accessRequest?.FloorEmergencyOfficer ?? false;
@@ -105,6 +106,7 @@ public partial class Map : IAsyncDisposable
                     Name = x.Name,
                     Position = new { Left = x.X, Top = x.Y },
                     Selected = x.Id == id, // Check if the circle should be selected when changing the date
+                    Active = isActive,
                     Taken = isTaken,
                     IsFirstAidAttendant = isFirstAidAttendant,
                     IsFloorEmergencyOfficer = isFloorEmergencyOfficer,

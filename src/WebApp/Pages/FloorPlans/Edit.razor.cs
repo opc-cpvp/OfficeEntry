@@ -65,6 +65,7 @@ public partial class Edit : IAsyncDisposable
             .Select(x =>
             {
                 var workspaceDescription = (locale == Locale.French) ? x.FrenchDescription : x.EnglishDescription;
+                var isActive = x.StateCode.Key == (int)StateCode.Active;
 
                 return new
                 {
@@ -72,7 +73,8 @@ public partial class Edit : IAsyncDisposable
                     Name = x.Name,
                     Position = new { Left = x.X, Top = x.Y },
                     EmployeeFullName = workspaceDescription,
-                    Selected = false
+                    Selected = false,
+                    Active = isActive
                 };
             });
 
