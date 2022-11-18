@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2022-11-18T16:01:19.3338081Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2022-11-18T18:08:22.9237411Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -104,8 +104,8 @@
   <entity name="gc_workspace" displayname="Workspace">
     <records>
       <record id="a3661d85-aef4-4ebb-80f0-01dfef4cf5c4">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="354" />
         <field name="gc_workspaceid" value="a3661d85-aef4-4ebb-80f0-01dfef4cf5c4" />
         <field name="gc_y" value="990" />
@@ -133,8 +133,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="4796f224-439a-4a48-a255-0477e427c80d">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="467" />
         <field name="gc_workspaceid" value="4796f224-439a-4a48-a255-0477e427c80d" />
         <field name="gc_y" value="990" />
@@ -162,8 +162,8 @@
         <field name="gc_floorplanid" value="13f51add-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="655 Bay Street,  Suite 404 - 4th floor" />
       </record>
       <record id="188fb985-63c4-4d79-804a-08324810135f">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="150" />
         <field name="gc_workspaceid" value="188fb985-63c4-4d79-804a-08324810135f" />
         <field name="gc_y" value="787" />
@@ -209,8 +209,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="ab815ae5-1a38-45d6-a290-0ea843ea824d">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="584" />
         <field name="gc_workspaceid" value="ab815ae5-1a38-45d6-a290-0ea843ea824d" />
         <field name="gc_y" value="990" />
@@ -218,8 +218,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="54720b3c-1551-4d6d-b27b-0ff8f4b4ce45">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="1108" />
         <field name="gc_workspaceid" value="54720b3c-1551-4d6d-b27b-0ff8f4b4ce45" />
         <field name="gc_y" value="912" />
@@ -254,8 +254,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="d6c29a4e-a83c-42dd-adfa-18221c8cf553">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="777" />
         <field name="gc_workspaceid" value="d6c29a4e-a83c-42dd-adfa-18221c8cf553" />
         <field name="gc_y" value="1029" />
@@ -321,8 +321,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="a0923146-f869-423e-acd8-28cfb3337dd1">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="416" />
         <field name="gc_workspaceid" value="a0923146-f869-423e-acd8-28cfb3337dd1" />
         <field name="gc_y" value="952" />
@@ -350,8 +350,8 @@
         <field name="gc_floorplanid" value="13f51add-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="655 Bay Street,  Suite 404 - 4th floor" />
       </record>
       <record id="f0e82d2d-b44a-4e2b-9ded-2ecbd3df8d12">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="1108" />
         <field name="gc_workspaceid" value="f0e82d2d-b44a-4e2b-9ded-2ecbd3df8d12" />
         <field name="gc_y" value="990" />
@@ -377,8 +377,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="677ac4ee-a221-4060-b50c-2ffe41fc638f">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="777" />
         <field name="gc_workspaceid" value="677ac4ee-a221-4060-b50c-2ffe41fc638f" />
         <field name="gc_y" value="952" />
@@ -386,8 +386,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="7eca45f2-c144-4863-9326-30471a0cca04">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="1108" />
         <field name="gc_workspaceid" value="7eca45f2-c144-4863-9326-30471a0cca04" />
         <field name="gc_y" value="952" />
@@ -395,8 +395,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="8e99ce56-5d98-4d4e-ba85-30ed60cfc688">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="666" />
         <field name="gc_workspaceid" value="8e99ce56-5d98-4d4e-ba85-30ed60cfc688" />
         <field name="gc_y" value="952" />
@@ -404,8 +404,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="74405129-f704-4485-8d7b-32fad12a8c7d">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="537" />
         <field name="gc_workspaceid" value="74405129-f704-4485-8d7b-32fad12a8c7d" />
         <field name="gc_y" value="912" />
@@ -413,8 +413,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="89cc8348-52f5-4ad5-8cdd-360a1948d08d">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="537" />
         <field name="gc_workspaceid" value="89cc8348-52f5-4ad5-8cdd-360a1948d08d" />
         <field name="gc_y" value="952" />
@@ -431,8 +431,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="abbeb553-b642-4f60-93dc-37ac2fa55ff3">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="938" />
         <field name="gc_workspaceid" value="abbeb553-b642-4f60-93dc-37ac2fa55ff3" />
         <field name="gc_y" value="990" />
@@ -440,8 +440,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="d808c2c5-7d2b-44c0-a3ae-388c0bc7e758">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="416" />
         <field name="gc_workspaceid" value="d808c2c5-7d2b-44c0-a3ae-388c0bc7e758" />
         <field name="gc_y" value="912" />
@@ -467,8 +467,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="083817ea-9beb-4389-a60d-3bfdd7e012cb">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="827" />
         <field name="gc_workspaceid" value="083817ea-9beb-4389-a60d-3bfdd7e012cb" />
         <field name="gc_y" value="912" />
@@ -476,8 +476,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="598c9c6a-0298-4af0-aeb2-3c4ed090e90f">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="827" />
         <field name="gc_workspaceid" value="598c9c6a-0298-4af0-aeb2-3c4ed090e90f" />
         <field name="gc_y" value="990" />
@@ -485,8 +485,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="bb2c7cb4-5ebd-4cba-916c-3df3356400aa">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="1045" />
         <field name="gc_workspaceid" value="bb2c7cb4-5ebd-4cba-916c-3df3356400aa" />
         <field name="gc_y" value="1029" />
@@ -541,8 +541,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="6f68efed-2a46-4dcd-93a3-4413623d259c">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="1000" />
         <field name="gc_workspaceid" value="6f68efed-2a46-4dcd-93a3-4413623d259c" />
         <field name="gc_y" value="912" />
@@ -550,8 +550,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="be061d71-0e9a-4093-ba57-47d768e7f920">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="416" />
         <field name="gc_workspaceid" value="be061d71-0e9a-4093-ba57-47d768e7f920" />
         <field name="gc_y" value="1029" />
@@ -559,8 +559,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="e87607c0-fc0b-482a-b2fc-48b00d5d786e">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="714" />
         <field name="gc_workspaceid" value="e87607c0-fc0b-482a-b2fc-48b00d5d786e" />
         <field name="gc_y" value="990" />
@@ -568,8 +568,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="89f15b36-4216-4f81-b472-4a717ca40a95">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="938" />
         <field name="gc_workspaceid" value="89f15b36-4216-4f81-b472-4a717ca40a95" />
         <field name="gc_y" value="912" />
@@ -606,8 +606,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="e20217a8-8440-4077-8240-56f27f45f6b7">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="714" />
         <field name="gc_workspaceid" value="e20217a8-8440-4077-8240-56f27f45f6b7" />
         <field name="gc_y" value="1029" />
@@ -615,8 +615,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="d715d3df-ff87-441f-8ba5-58cfac019326">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="714" />
         <field name="gc_workspaceid" value="d715d3df-ff87-441f-8ba5-58cfac019326" />
         <field name="gc_y" value="952" />
@@ -635,8 +635,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="893ed3e7-8ece-47d0-9a88-5aa4a1233a98">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="584" />
         <field name="gc_workspaceid" value="893ed3e7-8ece-47d0-9a88-5aa4a1233a98" />
         <field name="gc_y" value="912" />
@@ -664,8 +664,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="6515f6f3-22c9-40e9-a3b1-5f4f2b61595a">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="467" />
         <field name="gc_workspaceid" value="6515f6f3-22c9-40e9-a3b1-5f4f2b61595a" />
         <field name="gc_y" value="952" />
@@ -729,8 +729,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="a9b69702-87c8-41a1-adbd-691d81f45e88">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="215" />
         <field name="gc_workspaceid" value="a9b69702-87c8-41a1-adbd-691d81f45e88" />
         <field name="gc_y" value="842" />
@@ -738,8 +738,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="7034aaa5-4941-4bd2-972f-696087a203ab">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="827" />
         <field name="gc_workspaceid" value="7034aaa5-4941-4bd2-972f-696087a203ab" />
         <field name="gc_y" value="952" />
@@ -747,8 +747,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="32536df2-3e9d-40cb-bdb6-69bfc3dd4713">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="584" />
         <field name="gc_workspaceid" value="32536df2-3e9d-40cb-bdb6-69bfc3dd4713" />
         <field name="gc_y" value="1029" />
@@ -756,8 +756,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="60eee371-f39b-423a-8681-6b044afcd03d">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="183" />
         <field name="gc_workspaceid" value="60eee371-f39b-423a-8681-6b044afcd03d" />
         <field name="gc_y" value="842" />
@@ -765,8 +765,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="9ebe1ae4-a544-4c30-a225-6be5551d6329">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="666" />
         <field name="gc_workspaceid" value="9ebe1ae4-a544-4c30-a225-6be5551d6329" />
         <field name="gc_y" value="990" />
@@ -812,8 +812,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="f2300e37-2983-4a78-a8ba-77de73acd50d">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="245" />
         <field name="gc_workspaceid" value="f2300e37-2983-4a78-a8ba-77de73acd50d" />
         <field name="gc_y" value="787" />
@@ -821,8 +821,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="365aea63-2202-48fa-9a24-77f57f33a5b8">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="1108" />
         <field name="gc_workspaceid" value="365aea63-2202-48fa-9a24-77f57f33a5b8" />
         <field name="gc_y" value="1029" />
@@ -850,8 +850,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="329b5458-0050-47ef-a029-7d0c146135cb">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="215" />
         <field name="gc_workspaceid" value="329b5458-0050-47ef-a029-7d0c146135cb" />
         <field name="gc_y" value="787" />
@@ -868,8 +868,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="2a2fe847-33d4-4930-b7b3-7fbfb51ced57">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="416" />
         <field name="gc_workspaceid" value="2a2fe847-33d4-4930-b7b3-7fbfb51ced57" />
         <field name="gc_y" value="990" />
@@ -897,8 +897,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="4ad31cf9-e945-47d3-a2db-853bb0915966">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="666" />
         <field name="gc_workspaceid" value="4ad31cf9-e945-47d3-a2db-853bb0915966" />
         <field name="gc_y" value="912" />
@@ -962,8 +962,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="d21dc77f-f34c-4c17-8e51-8e04338dd2ae">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="354" />
         <field name="gc_workspaceid" value="d21dc77f-f34c-4c17-8e51-8e04338dd2ae" />
         <field name="gc_y" value="912" />
@@ -1009,8 +1009,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="1b77ec2f-912c-47f3-8db8-93638e488550">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="537" />
         <field name="gc_workspaceid" value="1b77ec2f-912c-47f3-8db8-93638e488550" />
         <field name="gc_y" value="1029" />
@@ -1047,8 +1047,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="9b2129ba-d722-480c-9dff-9bd6fff70264">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="666" />
         <field name="gc_workspaceid" value="9b2129ba-d722-480c-9dff-9bd6fff70264" />
         <field name="gc_y" value="1029" />
@@ -1056,8 +1056,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="fe2ce616-e394-44fc-9618-a05df468d9f6">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="158" />
         <field name="gc_workspaceid" value="fe2ce616-e394-44fc-9618-a05df468d9f6" />
         <field name="gc_y" value="238" />
@@ -1065,8 +1065,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="06e87624-8d43-43fb-a862-a0b1edb94c40">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="888" />
         <field name="gc_workspaceid" value="06e87624-8d43-43fb-a862-a0b1edb94c40" />
         <field name="gc_y" value="912" />
@@ -1083,8 +1083,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="40c12f35-9cb9-4ef3-ae37-a317c6169d83">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="537" />
         <field name="gc_workspaceid" value="40c12f35-9cb9-4ef3-ae37-a317c6169d83" />
         <field name="gc_y" value="990" />
@@ -1150,8 +1150,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="39ab1fef-212f-4762-ae53-aa1656926342">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="354" />
         <field name="gc_workspaceid" value="39ab1fef-212f-4762-ae53-aa1656926342" />
         <field name="gc_y" value="952" />
@@ -1215,8 +1215,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="7b766c52-2f52-4303-ba4f-afe55a8d94a9">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="303" />
         <field name="gc_workspaceid" value="7b766c52-2f52-4303-ba4f-afe55a8d94a9" />
         <field name="gc_y" value="952" />
@@ -1233,8 +1233,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="70b181e1-290f-41dd-87cb-b23cfe7a4fc6">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="1045" />
         <field name="gc_workspaceid" value="70b181e1-290f-41dd-87cb-b23cfe7a4fc6" />
         <field name="gc_y" value="952" />
@@ -1242,8 +1242,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="c7ec7e61-450e-446d-a6b7-b3dffbee691e">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="467" />
         <field name="gc_workspaceid" value="c7ec7e61-450e-446d-a6b7-b3dffbee691e" />
         <field name="gc_y" value="912" />
@@ -1251,8 +1251,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="0ad893a5-8686-4aa7-b49f-b43e41a0ce8f">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="1045" />
         <field name="gc_workspaceid" value="0ad893a5-8686-4aa7-b49f-b43e41a0ce8f" />
         <field name="gc_y" value="990" />
@@ -1287,8 +1287,8 @@
         <field name="gc_floorplanid" value="13f51add-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="655 Bay Street,  Suite 404 - 4th floor" />
       </record>
       <record id="e28b0153-0523-415a-b7cd-b63d9b42e0f6">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="938" />
         <field name="gc_workspaceid" value="e28b0153-0523-415a-b7cd-b63d9b42e0f6" />
         <field name="gc_y" value="952" />
@@ -1316,8 +1316,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="bf74b891-3efd-406f-a0fc-b99627296682">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="354" />
         <field name="gc_workspaceid" value="bf74b891-3efd-406f-a0fc-b99627296682" />
         <field name="gc_y" value="1029" />
@@ -1325,8 +1325,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="17ba5061-28d2-4359-8c61-b9e3f6a7e22a">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="777" />
         <field name="gc_workspaceid" value="17ba5061-28d2-4359-8c61-b9e3f6a7e22a" />
         <field name="gc_y" value="990" />
@@ -1334,8 +1334,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="4c9cad6b-5b18-4c23-9649-bceb47b36555">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="714" />
         <field name="gc_workspaceid" value="4c9cad6b-5b18-4c23-9649-bceb47b36555" />
         <field name="gc_y" value="912" />
@@ -1343,8 +1343,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="7d577100-1065-424f-9e3c-bcf04819ab78">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="1000" />
         <field name="gc_workspaceid" value="7d577100-1065-424f-9e3c-bcf04819ab78" />
         <field name="gc_y" value="952" />
@@ -1372,8 +1372,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="05847674-3b03-48fb-bb84-becf4905b1f0">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="1045" />
         <field name="gc_workspaceid" value="05847674-3b03-48fb-bb84-becf4905b1f0" />
         <field name="gc_y" value="912" />
@@ -1392,8 +1392,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="fdfb022a-17d9-42a3-ae3f-c4358d7612d1">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="245" />
         <field name="gc_workspaceid" value="fdfb022a-17d9-42a3-ae3f-c4358d7612d1" />
         <field name="gc_y" value="842" />
@@ -1419,8 +1419,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="f6ec2ddf-02c5-4226-ab31-c9b99e5211fa">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="888" />
         <field name="gc_workspaceid" value="f6ec2ddf-02c5-4226-ab31-c9b99e5211fa" />
         <field name="gc_y" value="1029" />
@@ -1437,8 +1437,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="7e4270f0-8f3e-4ede-8b50-cc932fa891c6">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="150" />
         <field name="gc_workspaceid" value="7e4270f0-8f3e-4ede-8b50-cc932fa891c6" />
         <field name="gc_y" value="842" />
@@ -1455,8 +1455,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="213f4a70-e29b-4ad8-a55a-ce60890be399">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="1000" />
         <field name="gc_workspaceid" value="213f4a70-e29b-4ad8-a55a-ce60890be399" />
         <field name="gc_y" value="990" />
@@ -1464,8 +1464,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="22f46663-460a-4775-a074-cf1189e8d3ac">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="888" />
         <field name="gc_workspaceid" value="22f46663-460a-4775-a074-cf1189e8d3ac" />
         <field name="gc_y" value="952" />
@@ -1493,8 +1493,8 @@
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="76d5a7ac-dfc1-4fdf-aa58-d4aa729c8dd3">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="1000" />
         <field name="gc_workspaceid" value="76d5a7ac-dfc1-4fdf-aa58-d4aa729c8dd3" />
         <field name="gc_y" value="1029" />
@@ -1533,8 +1533,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="925be0db-5910-4b94-95b7-d8df107ef285">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="938" />
         <field name="gc_workspaceid" value="925be0db-5910-4b94-95b7-d8df107ef285" />
         <field name="gc_y" value="1029" />
@@ -1560,8 +1560,8 @@
         <field name="gc_floorplanid" value="13f51add-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="655 Bay Street,  Suite 404 - 4th floor" />
       </record>
       <record id="72fddc27-7512-4022-828c-dede79e88da2">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="183" />
         <field name="gc_workspaceid" value="72fddc27-7512-4022-828c-dede79e88da2" />
         <field name="gc_y" value="787" />
@@ -1578,8 +1578,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="e8e54d99-470b-4487-9f63-e1992ef137f2">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="303" />
         <field name="gc_workspaceid" value="e8e54d99-470b-4487-9f63-e1992ef137f2" />
         <field name="gc_y" value="912" />
@@ -1607,8 +1607,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="00fe9068-a87d-428c-a3e2-e752bd21db7a">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="888" />
         <field name="gc_workspaceid" value="00fe9068-a87d-428c-a3e2-e752bd21db7a" />
         <field name="gc_y" value="990" />
@@ -1625,8 +1625,8 @@
         <field name="gc_floorplanid" value="13f51add-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="655 Bay Street,  Suite 404 - 4th floor" />
       </record>
       <record id="e67bf3d3-4365-4626-b6bf-f068f2595d98">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="777" />
         <field name="gc_workspaceid" value="e67bf3d3-4365-4626-b6bf-f068f2595d98" />
         <field name="gc_y" value="912" />
@@ -1652,8 +1652,8 @@
         <field name="gc_floorplanid" value="13f51add-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="655 Bay Street,  Suite 404 - 4th floor" />
       </record>
       <record id="18405d13-4161-4b7c-959d-f53512eee701">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="303" />
         <field name="gc_workspaceid" value="18405d13-4161-4b7c-959d-f53512eee701" />
         <field name="gc_y" value="990" />
@@ -1699,8 +1699,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="ebe6172f-bbab-4015-9cb1-fa4f0ae08bff">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="827" />
         <field name="gc_workspaceid" value="ebe6172f-bbab-4015-9cb1-fa4f0ae08bff" />
         <field name="gc_y" value="1029" />
@@ -1717,8 +1717,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="f54583b6-9819-4186-953c-fcc14652f1c0">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="584" />
         <field name="gc_workspaceid" value="f54583b6-9819-4186-953c-fcc14652f1c0" />
         <field name="gc_y" value="952" />
@@ -1726,8 +1726,8 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="15605313-f719-498f-9332-ff872c33d2b8">
-        <field name="statuscode" value="1" />
-        <field name="statecode" value="0" />
+        <field name="statuscode" value="2" />
+        <field name="statecode" value="1" />
         <field name="gc_x" value="467" />
         <field name="gc_workspaceid" value="15605313-f719-498f-9332-ff872c33d2b8" />
         <field name="gc_y" value="1029" />
