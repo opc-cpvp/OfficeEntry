@@ -175,8 +175,11 @@ public partial class Map : IAsyncDisposable
         );
         var circle = Newtonsoft.Json.JsonConvert.DeserializeObject<OfficeEntry.WebApp.Pages.FloorPlans.Edit.Circle>(data);
 
+        var workspace = FloorPlanDto.Workspaces.First(x => x.Id == circle.Id);
+        var isActive = workspace.StateCode.Key == (int)StateCode.Active;
+
         _selectedAccessRequest = accessRequests.FirstOrDefault(x => x.Workspace.Id == circle.Id);
-        if (_startTime != _endTime && _selectedAccessRequest is null)
+        if (_startTime != _endTime && _selectedAccessRequest is null && isActive)
         {
             await mySurvey.SetValueAsync("workspace", circle.Id.ToString());
         }
