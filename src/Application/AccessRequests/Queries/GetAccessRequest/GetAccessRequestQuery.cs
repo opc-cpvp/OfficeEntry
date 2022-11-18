@@ -41,6 +41,7 @@ public class GetAccessRequestQueryHandler : IRequestHandler<GetAccessRequestQuer
         return new AccessRequestViewModel
         {
             Id = result.AccessRequest.Id,
+            CreatedOn = result.AccessRequest.CreatedOn,
             BuildingId = result.AccessRequest.Building.Id,
             IsDelegate = result.AccessRequest.Delegate?.Id == userResult.UserId,
             IsEmployee = result.AccessRequest.Employee.Id == userResult.UserId,

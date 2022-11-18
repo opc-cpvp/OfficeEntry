@@ -5,6 +5,7 @@ namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 public class AccessRequestViewModel
 {
     public Guid Id { get; set; }
+    public DateTime CreatedOn { get; set; }
     public Guid BuildingId { get; set; }
     public Guid? DelegateId { get; set; }
     public Guid EmployeeId { get; set; }

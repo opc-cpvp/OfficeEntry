@@ -65,6 +65,7 @@ public partial class AccessRequest
         var accessRequestMessage = new Domain.Entities.AccessRequest
         {
             Id = accessRequest.Id,
+            CreatedOn = accessRequest.CreatedOn,
             Employee = new Contact { Id = accessRequest.EmployeeId },
             Building = new Building
             {
@@ -80,6 +81,7 @@ public partial class AccessRequest
             },
             FloorPlan = new FloorPlan { Id = accessRequest.FloorPlanId },
             StartTime = accessRequest.StartTime,
+            EndTime = accessRequest.EndTime,
             Status = new OptionSet { Key = (int)accessRequest.Status }
         };
 
