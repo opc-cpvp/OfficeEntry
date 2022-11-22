@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
@@ -13,6 +14,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
 
     public class CreateAccessRequestCommandHandler : IRequestHandler<CreateAccessRequestCommand>
     {
+        private readonly ILogger<CreateAccessRequestCommandHandler> _logger;
         private readonly IAccessRequestService _accessRequestService;
         private readonly ICurrentUserService _currentUserService;
         private readonly IUserService _userService;
@@ -22,6 +24,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         private IMediator _mediator;
 
         public CreateAccessRequestCommandHandler(
+            ILogger<CreateAccessRequestCommandHandler> logger,
             IAccessRequestService accessRequestService,
             ICurrentUserService currentUserService,
             IUserService userService,
@@ -29,6 +32,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             INotificationService notificationService,
             IMediator mediator
         ) {
+            _logger = logger;
             _accessRequestService = accessRequestService;
             _currentUserService = currentUserService;
             _userService = userService;
@@ -145,14 +149,15 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 }
             }
 
+            _logger.LogWarning("The floor plan {FloorPlanId} capacity {MaxCapacity} has been met or exceeded {TotalCapacity} on {Date}", floorPlan.Id, floorPlanCapacity.MaxCapacity, floorPlanCapacity.TotalCapacity, date);
+
             // Send notifications if we reached capacity
             var notifyFirstAidAttendants = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFirstAidAttendantCapacity;
             var notifyFloorEmergencyOfficers = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFloorEmergencyOfficerCapacity;
 
-            var capacity = Math.Min(floorPlanCapacity.MaxFirstAidAttendantCapacity, floorPlanCapacity.MaxFloorEmergencyOfficerCapacity);
             var notification = new CapacityNotification
             {
-                Capacity = capacity,
+                Capacity = floorPlanCapacity.MaxCapacity,
                 Date = request.AccessRequest.StartTime,
                 Building = request.AccessRequest.Building,
                 Floor = request.AccessRequest.Floor
@@ -167,6 +172,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             {
                 await _notificationService.NotifyFloorEmergencyOfficers(notification);
             }
+
 
             return Unit.Value;
         }

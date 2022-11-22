@@ -1,11 +1,12 @@
-﻿using System.Collections.Immutable;
-using MediatR;
+﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Moq;
 using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
 using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
+using System.Collections.Immutable;
 using Xunit;
 
 namespace Application.UnitTests
@@ -33,6 +34,7 @@ namespace Application.UnitTests
         };
 
         private readonly CreateAccessRequestCommandHandler _sut;
+        private readonly Mock<ILogger<CreateAccessRequestCommandHandler>> _loggerMock = new Mock<ILogger<CreateAccessRequestCommandHandler>>();
         private readonly Mock<IAccessRequestService> _accessRequestServiceMock = new Mock<IAccessRequestService>();
         private readonly Mock<ICurrentUserService> _currentUserServiceMock = new Mock<ICurrentUserService>();
         private readonly Mock<ILocationService> _locationServiceMock = new Mock<ILocationService>();
@@ -47,7 +49,7 @@ namespace Application.UnitTests
             _notificationServiceMock.Setup(x => x.NotifyAccessRequestEmployee(It.IsAny<AccessRequestNotification>())).ReturnsAsync(Result.Success);
             _mediatorMock.Setup(x => x.Send(It.IsAny<UpdateAccessRequestCommand>(), It.IsAny<CancellationToken>())).ReturnsAsync(Unit.Value);
 
-            _sut = new CreateAccessRequestCommandHandler(_accessRequestServiceMock.Object,
+            _sut = new CreateAccessRequestCommandHandler(_loggerMock.Object, _accessRequestServiceMock.Object,
                 _currentUserServiceMock.Object, _userServiceMock.Object, _locationServiceMock.Object,
                 _notificationServiceMock.Object, _mediatorMock.Object);
         }

@@ -1,4 +1,5 @@
-﻿using OfficeEntry.Application.Common.Interfaces;
+﻿using Microsoft.Extensions.Logging;
+using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using System.Runtime.Versioning;
@@ -13,13 +14,15 @@ namespace OfficeEntry.Infrastructure.Services
         private const string FloorEmergencyOfficerEnglishName = "Floor Emergency Officer";
         private const string FloorEmergencyOfficerFrenchName = "Agents de secours d’étage";
 
+        private readonly ILogger<NotificationService> _logger;
         private readonly IUserService _userService;
         private readonly ILocationService _locationService;
         private readonly ITemplateService _templateService;
         private readonly IEmailService _emailService;
 
-        public NotificationService(IUserService userService, ILocationService locationService, ITemplateService templateService, IEmailService emailService)
+        public NotificationService(ILogger<NotificationService> logger, IUserService userService, ILocationService locationService, ITemplateService templateService, IEmailService emailService)
         {
+            _logger = logger;
             _userService = userService;
             _locationService = locationService;
             _templateService = templateService;
@@ -31,6 +34,8 @@ namespace OfficeEntry.Infrastructure.Services
         {
             capacityNotification.RoleEnglishName = FirstAidAttendantEnglishName;
             capacityNotification.RoleFrenchName = FirstAidAttendantFrenchName;
+
+            _logger.LogInformation("Notifying First Aid Attendants: {@CapacityNotification}", capacityNotification);
 
             var (_, sender) = await _userService.GetSystemUserByUsername(WindowsIdentity.GetCurrent().Name);
             var firstAidAttendants = await _locationService.GetFirstAidAttendantsAsync(capacityNotification.Building.Id);
@@ -55,6 +60,8 @@ namespace OfficeEntry.Infrastructure.Services
         {
             capacityNotification.RoleEnglishName = FloorEmergencyOfficerEnglishName;
             capacityNotification.RoleFrenchName = FloorEmergencyOfficerFrenchName;
+
+            _logger.LogInformation("Notifying Floor Emergency Officers: {@CapacityNotification}", capacityNotification);
 
             var (_, sender) = await _userService.GetSystemUserByUsername(WindowsIdentity.GetCurrent().Name);
             var floorEmergencyOfficers = await _locationService.GetFloorEmergencyOfficersAsync(capacityNotification.Building.Id);
