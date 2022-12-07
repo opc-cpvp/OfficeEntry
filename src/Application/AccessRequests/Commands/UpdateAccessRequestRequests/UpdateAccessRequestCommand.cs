@@ -94,7 +94,7 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
         var notifyFirstAidAttendants = floorPlanCapacity.CurrentCapacity >= floorPlanCapacity.MaxFirstAidAttendantCapacity;
         var notifyFloorEmergencyOfficers = floorPlanCapacity.CurrentCapacity >= floorPlanCapacity.MaxFloorEmergencyOfficerCapacity;
 
-        var capacity = Math.Min(floorPlanCapacity.MaxFirstAidAttendantCapacity, floorPlanCapacity.MaxFloorEmergencyOfficerCapacity);
+        var capacity = floorPlanCapacity.MaxCapacity;
         var notification = new CapacityNotification
         {
             Capacity = capacity,
