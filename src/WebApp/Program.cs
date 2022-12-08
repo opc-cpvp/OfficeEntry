@@ -16,8 +16,17 @@ public class Program
 
         var assemblyVersion = typeof(Program).Assembly.GetName().Version.ToString();
 
+        var splunkHost = configuration["LoggerConfig:SplunkHost"];
+        var eventCollectorToken = configuration["LoggerConfig:EventCollectorToken"];
+        var source = configuration["LoggerConfig:Source"];
+        var messageHandler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+        };
+
         Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(configuration)
+            .WriteTo.EventCollector(splunkHost, eventCollectorToken, source: source, messageHandler: messageHandler)
             .Destructure.UsingAttributes()
             .Enrich.WithProperty("Version", assemblyVersion)
             .Enrich.WithExceptionDetails(new DestructuringOptionsBuilder().WithDefaultDestructurers())
