@@ -1,0 +1,42 @@
+# Specify location of manifest files for each package manager
+
+version: 2
+updates:
+
+#Source
+  - package-ecosystem: "nuget"
+    directory: "/src/Application"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "nuget"
+    directory: "/src/Domain"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "nuget"
+    directory: "/src/Infrastructure"
+    schedule:
+      interval: "daily"
+    ignore:
+	  - dependency-name: "Simple.OData.Client"
+  - package-ecosystem: "nuget"
+    directory: "/src/OfficeEntry.Plugins"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "nuget"
+    directory: "/src/WebApp"
+    schedule:
+      interval: "daily"
+
+# Tests
+  - package-ecosystem: "nuget"
+    directory: "/tests/Application.UnitTests"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "nuget"
+    directory: "/tests/Domain.UnitTests"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "nuget"
+    directory: "/tests/Infrastructure.IntegrationTests"
+    schedule:
+      interval: "daily"
