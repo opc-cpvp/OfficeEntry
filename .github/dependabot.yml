@@ -17,7 +17,7 @@ updates:
     schedule:
       interval: "daily"
     ignore:
-	  - dependency-name: "Simple.OData.Client"
+      - dependency-name: "Simple.OData.Client"
   - package-ecosystem: "nuget"
     directory: "/src/OfficeEntry.Plugins"
     schedule:
