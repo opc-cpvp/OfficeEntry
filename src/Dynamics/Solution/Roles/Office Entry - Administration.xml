@@ -2,6 +2,16 @@
 <Role id="{5b0830ef-0d12-eb11-a2e5-005056aa7ac3}" name="Office Entry - Administration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <IsCustomizable>1</IsCustomizable>
   <RolePrivileges>
+    <RolePrivilege name="prvAppendContact" level="Global" />
+    <RolePrivilege name="prvAppendgc_building" level="Global" />
+    <RolePrivilege name="prvAppendgc_floor" level="Global" />
+    <RolePrivilege name="prvAppendgc_floorplan" level="Global" />
+    <RolePrivilege name="prvAppendgc_workspace" level="Global" />
+    <RolePrivilege name="prvAppendToContact" level="Global" />
+    <RolePrivilege name="prvAppendTogc_building" level="Global" />
+    <RolePrivilege name="prvAppendTogc_floor" level="Global" />
+    <RolePrivilege name="prvAppendTogc_floorplan" level="Global" />
+    <RolePrivilege name="prvAppendTogc_workspace" level="Global" />
     <RolePrivilege name="prvCreategc_building" level="Global" />
     <RolePrivilege name="prvCreategc_floor" level="Global" />
     <RolePrivilege name="prvCreategc_floorplan" level="Global" />
