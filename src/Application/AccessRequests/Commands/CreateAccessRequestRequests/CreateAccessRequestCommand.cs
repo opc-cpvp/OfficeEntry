@@ -85,8 +85,8 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
 
             // The ordering of these checks is important
             if (employeeHasApprovedAccessRequest ||
-                isEmployeeFirstAidAttendant ||
-                isEmployeeFloorEmergencyOfficer ||
+                floorPlanCapacity.NeedsFirstAidAttendant && isEmployeeFirstAidAttendant  ||
+                floorPlanCapacity.NeedsFloorEmergencyOfficer && isEmployeeFloorEmergencyOfficer  ||
                 floorPlanCapacity.HasCapacity)
             {
                 request.AccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
@@ -149,7 +149,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             var notifyFirstAidAttendants = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFirstAidAttendantCapacity;
             var notifyFloorEmergencyOfficers = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFloorEmergencyOfficerCapacity;
 
-            var capacity = Math.Min(floorPlanCapacity.MaxFirstAidAttendantCapacity, floorPlanCapacity.MaxFloorEmergencyOfficerCapacity);
+            var capacity = floorPlanCapacity.MaxCapacity;
             var notification = new CapacityNotification
             {
                 Capacity = capacity,
