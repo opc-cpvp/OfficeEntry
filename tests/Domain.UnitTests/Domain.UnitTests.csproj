@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>covid19_office_entry.Domain.UnitTests</RootNamespace>
-    <AssemblyName>covid19_office_entry.Domain.UnitTests</AssemblyName>
+    <RootNamespace>OfficeEntry.Domain.UnitTests</RootNamespace>
+    <AssemblyName>OfficeEntry.Domain.UnitTests</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
 
     <IsPackable>false</IsPackable>
