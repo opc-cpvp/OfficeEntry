@@ -27,17 +27,17 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="Handlebars.Net" Version="2.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="7.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="7.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Simple.OData.Client" Version="6.0.1" />
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="7.0.0" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
 
     <!--We need to explicitly include these references for Simple.OData.Client to work correctly in .NET 7.0-->
     <PackageReference Include="Microsoft.Data.OData" Version="5.8.5" />
-    <PackageReference Include="Microsoft.OData.Core" Version="7.12.5" />
-    <PackageReference Include="Microsoft.OData.Edm" Version="7.12.5" />
+    <PackageReference Include="Microsoft.OData.Core" Version="7.13.0" />
+    <PackageReference Include="Microsoft.OData.Edm" Version="7.13.0" />
   </ItemGroup>
 
   <ItemGroup>
