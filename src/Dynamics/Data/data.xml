@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2022-11-18T18:08:22.9237411Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2022-12-14T16:24:09.4623335Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -649,7 +649,7 @@
         <field name="gc_x" value="1196" />
         <field name="gc_workspaceid" value="8a7554f2-b142-4944-a022-5b97599ca279" />
         <field name="gc_y" value="400" />
-        <field name="gc_name" value="Lab5" />
+        <field name="gc_name" value="Lab 5" />
         <field name="gc_englishdescription" value="Lab only" />
         <field name="gc_frenchdescription" value="Lab seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
