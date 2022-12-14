@@ -31,7 +31,7 @@ public class ExternalController : Controller
     public IActionResult Login(string returnUrl = "/")
     {
         // we only have one option for logging in and it's an external provider
-        return RedirectToAction("Challenge", "External", new { provider = NegotiateDefaults.AuthenticationScheme, returnUrl });
+        return RedirectToAction("Challenge", "External", new { returnUrl });
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public class ExternalController : Controller
     /// </summary>
     [HttpGet]
     [SupportedOSPlatform("windows")]
-    public async Task<IActionResult> Challenge(string provider, string returnUrl)
+    public async Task<IActionResult> Challenge(string returnUrl)
     {
         if (string.IsNullOrEmpty(returnUrl)) returnUrl = "~/";
 
@@ -50,12 +50,7 @@ public class ExternalController : Controller
             throw new Exception("invalid return URL");
         }
 
-        if (NegotiateDefaults.AuthenticationScheme != provider)
-        {
-            throw new Exception("Invalid authentication provider.");
-        }
-
-        return await ProcessNegociateLoginAsync(returnUrl);
+        return await ProcessNegotiateLoginAsync(returnUrl);
     }
 
     /// <summary>
@@ -85,7 +80,7 @@ public class ExternalController : Controller
     }
 
     [SupportedOSPlatform("windows")]
-    private async Task<IActionResult> ProcessNegociateLoginAsync(string returnUrl)
+    private async Task<IActionResult> ProcessNegotiateLoginAsync(string returnUrl)
     {
         // see if windows auth has already been requested and succeeded
         var result = await HttpContext.AuthenticateAsync(NegotiateDefaults.AuthenticationScheme);
@@ -139,7 +134,7 @@ public class ExternalController : Controller
             // trigger windows auth
             // since windows auth don't support the redirect uri,
             // this URL is re-triggered when we call challenge
-            return Challenge(NegotiateDefaults.AuthenticationScheme);
+            return Challenge();
         }
     }
 }
