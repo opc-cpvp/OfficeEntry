@@ -125,18 +125,22 @@ public class UserService : IUserService
         // TODO: Should we replace this with a .Single()?
         if (!contacts.Any())
         {
-            //return (Result.Failure(new[] { $"No contacts with username '{username}'." }), default(Guid));
             throw new Exception($"No contacts with username '{username}'.");
         }
 
         if (contacts.Count() > 1)
         {
-            //return (Result.Failure(new[] { $"More than one contacts with username '{username}'." }), default(Guid));
             throw new Exception($"More than one contacts with username '{username}'.");
         }
 
-        _cachedUserIds[username] = contacts.First().contactid;
+        var contactId = contacts.First().contactid;
+        if (contactId == Guid.Empty)
+        {
+            // Dynamics sometimes returns an empty GUID
+            throw new Exception($"An error occurred when retrieving contactid for '{username}'.");
+        }
 
+        _cachedUserIds[username] = contactId;
         return (Result.Success(), _cachedUserIds[username]);
     }
 }
