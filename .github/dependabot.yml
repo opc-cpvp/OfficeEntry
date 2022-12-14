@@ -20,6 +20,8 @@ updates:
     directory: "/src/OfficeEntry.Plugins"
     schedule:
       interval: "daily"
+    ignore:
+      - dependency-name: "Microsoft.CrmSdk.CoreAssemblies"
   - package-ecosystem: "nuget"
     directory: "/src/WebApp"
     schedule:
