@@ -134,7 +134,7 @@ public class ExternalController : Controller
             // trigger windows auth
             // since windows auth don't support the redirect uri,
             // this URL is re-triggered when we call challenge
-            return Challenge();
+            return new ChallengeResult(NegotiateDefaults.AuthenticationScheme);
         }
     }
 }
