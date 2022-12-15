@@ -41,7 +41,7 @@ public class Startup
             opts.Filters.Add<SerilogLoggingPageFilter>();
         });
         services.AddRazorPages();
-        services.AddServerSideBlazor();
+        services.AddServerSideBlazor().AddCircuitOptions(option => { option.DetailedErrors = true; });
 
         services.AddHealthChecks()
             .AddCheck<HealthCheck>("health_check");
