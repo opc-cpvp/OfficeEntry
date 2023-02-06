@@ -34,7 +34,7 @@ public partial class HealthAndSafetyMeasuresStatement
 
         Dispatcher.Dispatch(new GetTermsAndConditions());
 
-        NavigationManager.NavigateTo(Localizer["my-access-requests"]);
+        NavigationManager.NavigateTo(Localizer["my-requests"]);
     }
 
     protected override void Dispose(bool disposing)
