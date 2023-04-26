@@ -14,6 +14,7 @@
     <None Remove="Templates\CapacityNotificationEmail.hbs" />
     <None Remove="Templates\EmailLayout.hbs" />
     <None Remove="Templates\PendingAccessRequestNotificationEmail.hbs" />
+    <None Remove="Templates\CapacityAvailableNotificationEmail.hbs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,7 @@
     <EmbeddedResource Include="Templates\EmailLayout.hbs" />
     <EmbeddedResource Include="Templates\ApprovedAccessRequestNotificationEmail.hbs" />
     <EmbeddedResource Include="Templates\CapacityNotificationEmail.hbs" />
+    <EmbeddedResource Include="Templates\CapacityAvailableNotificationEmail.hbs" />
   </ItemGroup>
 
   <ItemGroup>
