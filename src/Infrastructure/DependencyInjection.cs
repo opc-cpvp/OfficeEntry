@@ -17,6 +17,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IAccessRequestService, AccessRequestService>();
         services.AddScoped<IEmailService, EmailService>();
+        services.AddScoped<IEmployeeRoleService, EmployeeRoleService>();
         services.AddScoped<ILocationService, LocationService>();
         services.AddScoped<INotificationService, NotificationService>();
         services.AddScoped<ITemplateService, TemplateService>();
