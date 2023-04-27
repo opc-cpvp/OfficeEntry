@@ -196,4 +196,14 @@ public class LocationService : ILocationService
 
         return floorEmergencyOfficers.Select(contact.Convert);
     }
+
+    public async Task<IEnumerable<Contact>> GetContactsForBuildingByRole(Guid buildingId, EmployeeRoleType roleType)
+    {
+        return roleType switch
+        {
+            EmployeeRoleType.FirstAidAttendant => await GetFirstAidAttendantsAsync(buildingId),
+            EmployeeRoleType.FloorEmergencyOfficer => await GetFloorEmergencyOfficersAsync(buildingId),
+            _ => default
+        };
+    }
 }
