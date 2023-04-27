@@ -69,10 +69,7 @@
           },
           "isRequired": true,
           "dateFormat": "mm/dd/yy",
-          "inputType": "date",
-          "config": {
-            "minDate": 0
-          }
+          "inputType": "date"
         },
         {
           "type": "dropdown",
