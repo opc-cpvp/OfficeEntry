@@ -12,5 +12,6 @@
         public const string ApprovedAccessRequestNotification = "ApprovedAccessRequestNotificationEmail";
         public const string CancelledAccessRequestNotification = "CancelledAccessRequestNotificationEmail";
         public const string PendingAccessRequestNotification = "PendingAccessRequestNotificationEmail";
+        public const string CapacityAvailableNotification = "CapacityAvailableNotificationEmail";
     }
 }
