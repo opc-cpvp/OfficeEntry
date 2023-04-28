@@ -1,4 +1,6 @@
-﻿namespace OfficeEntry.Domain.Entities
+﻿using OfficeEntry.Domain.Enums;
+
+namespace OfficeEntry.Domain.Entities
 {
     public class CapacityNotification : EmailTemplate
     {
@@ -16,12 +18,6 @@
             Type = notificationType;
         }
 
-        public enum NotificationType
-        {
-            Available = 1,
-            Maximum = 2
-        }
-
         private string GetTitle(NotificationType type)
         => type switch
         {
@@ -30,4 +26,6 @@
             _ => null
         };
     }
+
+
 }
