@@ -76,7 +76,6 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
                 .Take(Math.Min(remainingCapacity, pendingAccessRequests.Count))
                 .SelectMany(x => x.Value);
 
-
             var updateAccessRequestTasks = remainingAccessRequests.Select(async x =>
             {
                 x.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;

@@ -15,6 +15,7 @@
         {
             Type = notificationType;
         }
+
         public enum NotificationType
         {
             Available = 1,
