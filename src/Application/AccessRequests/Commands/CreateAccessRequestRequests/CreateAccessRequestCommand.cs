@@ -163,7 +163,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             var notifyFloorEmergencyOfficersOfMaxCapacity = currentFloorPlanCapacity.NeedsFloorEmergencyOfficer;
 
             // Send notifications if capacity is available following the request
-            var capacityNofication = new CapacityNotification(CapacityNotification.NotificationType.Available)
+            var capacityNotification = new CapacityNotification(NotificationType.Available)
             {
                 Date = request.AccessRequest.StartTime,
                 Building = request.AccessRequest.Building,
@@ -172,17 +172,17 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
 
             if (notifyFirstAidAttendantsOfAvailableCapacity)
             {
-                await _notificationService.NotifyOfAvailableCapacity(capacityAvailableNotification, EmployeeRoleType.FirstAidAttendant);
+                await _notificationService.NotifyOfAvailableCapacity(capacityNotification, EmployeeRoleType.FirstAidAttendant);
             }
 
             if (notifyFloorEmergencyOfficersOfAvailableCapacity)
             {
-                await _notificationService.NotifyOfAvailableCapacity(capacityAvailableNotification, EmployeeRoleType.FloorEmergencyOfficer);
+                await _notificationService.NotifyOfAvailableCapacity(capacityNotification, EmployeeRoleType.FloorEmergencyOfficer);
             }
 
             // Send notifications if we reached capacity
             var capacity = currentFloorPlanCapacity.MaxCapacity;
-            capacityNotification = new CapacityNotification(CapacityNotification.NotificationType.Maximum)
+            capacityNotification = new CapacityNotification(NotificationType.Maximum)
             {
                 Capacity = capacity,
                 Date = request.AccessRequest.StartTime,
@@ -192,12 +192,12 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
 
             if (notifyFirstAidAttendantsOfMaxCapacity)
             {
-                await _notificationService.NotifyOfMaximumCapacityReached(notification, EmployeeRoleType.FirstAidAttendant);
+                await _notificationService.NotifyOfMaximumCapacityReached(capacityNotification, EmployeeRoleType.FirstAidAttendant);
             }
 
             if (notifyFloorEmergencyOfficersOfMaxCapacity)
             {
-                await _notificationService.NotifyOfMaximumCapacityReached(notification, EmployeeRoleType.FloorEmergencyOfficer);
+                await _notificationService.NotifyOfMaximumCapacityReached(capacityNotification, EmployeeRoleType.FloorEmergencyOfficer);
             }
         }
     }

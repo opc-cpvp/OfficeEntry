@@ -102,7 +102,7 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
         {
             // Send notifications if we reached capacity
             var capacity = currentFloorPlanCapacity.MaxCapacity;
-            var notification = new CapacityNotification(CapacityNotification.NotificationType.Maximum)
+            var capacityNotification = new CapacityNotification(NotificationType.Maximum)
             {
                 Capacity = capacity,
                 Date = request.AccessRequest.StartTime,
@@ -112,12 +112,12 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
 
             if (notifyFirstAidAttendantsOfMaxCapacity)
             {
-                await _notificationService.NotifyOfMaximumCapacityReached(notification, EmployeeRoleType.FirstAidAttendant);
+                await _notificationService.NotifyOfMaximumCapacityReached(capacityNotification, EmployeeRoleType.FirstAidAttendant);
             }
 
             if (notifyFloorEmergencyOfficersOfMaxCapacity)
             {
-                await _notificationService.NotifyOfMaximumCapacityReached(notification, EmployeeRoleType.FloorEmergencyOfficer);
+                await _notificationService.NotifyOfMaximumCapacityReached(capacityNotification, EmployeeRoleType.FloorEmergencyOfficer);
             }
         }
     }
