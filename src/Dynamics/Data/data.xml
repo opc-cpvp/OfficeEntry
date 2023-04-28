@@ -128,7 +128,7 @@
         <field name="gc_workspaceid" value="fac89c88-c1e4-47d9-8e2f-035fb1ceace2" />
         <field name="gc_y" value="81" />
         <field name="gc_name" value="822A" />
-        <field name="gc_englishdescription" value="Commissionner" />
+        <field name="gc_englishdescription" value="Commissioner" />
         <field name="gc_frenchdescription" value="Commissaire" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>

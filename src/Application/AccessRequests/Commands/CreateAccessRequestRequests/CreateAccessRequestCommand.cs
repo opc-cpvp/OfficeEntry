@@ -1,7 +1,8 @@
 ﻿using MediatR;
-using OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Enums;
+using System.Collections.Immutable;
 
 namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests
 {
@@ -19,23 +20,19 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         private readonly ILocationService _locationService;
         private readonly INotificationService _notificationService;
 
-        private IMediator _mediator;
-
         public CreateAccessRequestCommandHandler(
             IAccessRequestService accessRequestService,
             ICurrentUserService currentUserService,
             IUserService userService,
             ILocationService locationService,
-            INotificationService notificationService,
-            IMediator mediator
-        ) {
+            INotificationService notificationService
+        )
+        {
             _accessRequestService = accessRequestService;
             _currentUserService = currentUserService;
             _userService = userService;
             _locationService = locationService;
             _notificationService = notificationService;
-
-            _mediator = mediator;
         }
 
         public async Task<Unit> Handle(CreateAccessRequestCommand request, CancellationToken cancellationToken)
@@ -49,7 +46,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             }
 
             var floorPlan = request.AccessRequest.FloorPlan;
-            var date = request.AccessRequest.StartTime;
+            var requestDate = request.AccessRequest.StartTime;
 
             if (request.AccessRequest.Employee is null)
             {
@@ -62,15 +59,15 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 request.AccessRequest.Delegate = currentContact;
             }
 
-            var accessRequestsTask = _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlan.Id, DateOnly.FromDateTime(date));
-            var floorPlanCapacityTask = _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
+            var accessRequestsTask = _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlan.Id, DateOnly.FromDateTime(requestDate));
+            var floorPlanCapacityTask = _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(requestDate));
             var firstAidAttendantsTask = _locationService.GetFirstAidAttendantsAsync(request.AccessRequest.Building.Id);
             var floorEmergencyOfficersTask = _locationService.GetFloorEmergencyOfficersAsync(request.AccessRequest.Building.Id);
 
             await Task.WhenAll(accessRequestsTask, floorPlanCapacityTask, firstAidAttendantsTask, floorEmergencyOfficersTask);
 
             var accessRequests = accessRequestsTask.Result;
-            var floorPlanCapacity = floorPlanCapacityTask.Result;
+            var initialFloorPlanCapacity = floorPlanCapacityTask.Result;
             var firstAidAttendants = firstAidAttendantsTask.Result;
             var floorEmergencyOfficers = floorEmergencyOfficersTask.Result;
 
@@ -84,15 +81,24 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             request.AccessRequest.FloorEmergencyOfficer = isEmployeeFloorEmergencyOfficer;
 
             // The ordering of these checks is important
+            // 1. Check if the employee already has an approved access request
+            // 2. Check if the floor requires an additional first aid attendant and that the employee is one
+            // 3. Check if the floor requires an additional floor emergency officer and that the employee is one
+            // 4. Check if the floor has capacity
             if (employeeHasApprovedAccessRequest ||
-                floorPlanCapacity.NeedsFirstAidAttendant && isEmployeeFirstAidAttendant  ||
-                floorPlanCapacity.NeedsFloorEmergencyOfficer && isEmployeeFloorEmergencyOfficer  ||
-                floorPlanCapacity.HasCapacity)
+                initialFloorPlanCapacity.NeedsFirstAidAttendant && isEmployeeFirstAidAttendant ||
+                initialFloorPlanCapacity.NeedsFloorEmergencyOfficer && isEmployeeFloorEmergencyOfficer ||
+                initialFloorPlanCapacity.HasCapacity)
             {
                 request.AccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
             }
 
-            var (_, accessRequest) = await _accessRequestService.CreateAccessRequest(request.AccessRequest);
+            var (result, accessRequest) = await _accessRequestService.CreateAccessRequest(request.AccessRequest);
+
+            if (!result.Succeeded)
+            {
+                return Unit.Value;
+            }
 
             // Update access request properties
             request.AccessRequest.Id = accessRequest.Id;
@@ -109,9 +115,15 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 AccessRequest = request.AccessRequest
             });
 
-            // Update floor plan capacity
-            floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
+            var floorPlanCapacityAfterRequest = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(requestDate));
+            await ApprovePendingAccessRequests(request, floorPlanCapacityAfterRequest, accessRequests);
+            await NotifyEmergencyPersonnelOfCapacity(request, initialFloorPlanCapacity);
 
+            return Unit.Value;
+        }
+
+        private async Task ApprovePendingAccessRequests(CreateAccessRequestCommand request, FloorPlanCapacity floorPlanCapacity, ImmutableArray<AccessRequest> accessRequests)
+        {
             // Approve pending access requests to fill the remaining spots
             if (floorPlanCapacity.HasCapacity)
             {
@@ -125,32 +137,52 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                     .Take(Math.Min(remainingCapacity, pendingAccessRequests.Count))
                     .SelectMany(x => x.Value);
 
-                var updateAccessRequestTasks = remainingAccessRequests.Select(x =>
+
+                var updateAccessRequestTasks = remainingAccessRequests.Select(async x =>
                 {
                     x.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
-                    return _mediator.Send(new UpdateAccessRequestCommand
+                    await _accessRequestService.UpdateAccessRequest(x);
+                    await _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification
                     {
-                        BaseUrl = request.BaseUrl,
-                        AccessRequest = x
-                    }, cancellationToken);
+                        AccessRequest = x,
+                        BaseUrl = request.BaseUrl
+                    });
                 });
 
                 await Task.WhenAll(updateAccessRequestTasks);
+            }
+        }
 
-                // Update floor plan capacity
-                floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
-                if (floorPlanCapacity.HasCapacity)
-                {
-                    return Unit.Value;
-                }
+        private async Task NotifyEmergencyPersonnelOfCapacity(CreateAccessRequestCommand request, FloorPlanCapacity initialFloorPlanCapacity)
+        {
+            var currentFloorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(request.AccessRequest.FloorPlan.Id, DateOnly.FromDateTime(request.AccessRequest.StartTime));
+
+            var notifyFirstAidAttendantsOfAvailableCapacity = initialFloorPlanCapacity.NeedsFirstAidAttendant && !currentFloorPlanCapacity.NeedsFirstAidAttendant;
+            var notifyFloorEmergencyOfficersOfAvailableCapacity = initialFloorPlanCapacity.NeedsFloorEmergencyOfficer && !currentFloorPlanCapacity.NeedsFloorEmergencyOfficer;
+            var notifyFirstAidAttendantsOfMaxCapacity = currentFloorPlanCapacity.NeedsFirstAidAttendant;
+            var notifyFloorEmergencyOfficersOfMaxCapacity = currentFloorPlanCapacity.NeedsFloorEmergencyOfficer;
+
+            // Send notifications if capacity is available following the request
+            var capacityNotification = new CapacityNotification(NotificationType.Available)
+            {
+                Date = request.AccessRequest.StartTime,
+                Building = request.AccessRequest.Building,
+                Floor = request.AccessRequest.Floor,
+            };
+
+            if (notifyFirstAidAttendantsOfAvailableCapacity)
+            {
+                await _notificationService.NotifyOfAvailableCapacity(capacityNotification, EmployeeRoleType.FirstAidAttendant);
+            }
+
+            if (notifyFloorEmergencyOfficersOfAvailableCapacity)
+            {
+                await _notificationService.NotifyOfAvailableCapacity(capacityNotification, EmployeeRoleType.FloorEmergencyOfficer);
             }
 
             // Send notifications if we reached capacity
-            var notifyFirstAidAttendants = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFirstAidAttendantCapacity;
-            var notifyFloorEmergencyOfficers = floorPlanCapacity.TotalCapacity == floorPlanCapacity.MaxFloorEmergencyOfficerCapacity;
-
-            var capacity = floorPlanCapacity.MaxCapacity;
-            var notification = new CapacityNotification
+            var capacity = currentFloorPlanCapacity.MaxCapacity;
+            capacityNotification = new CapacityNotification(NotificationType.Maximum)
             {
                 Capacity = capacity,
                 Date = request.AccessRequest.StartTime,
@@ -158,17 +190,15 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 Floor = request.AccessRequest.Floor
             };
 
-            if (notifyFirstAidAttendants)
+            if (notifyFirstAidAttendantsOfMaxCapacity)
             {
-                await _notificationService.NotifyFirstAidAttendants(notification);
+                await _notificationService.NotifyOfMaximumCapacityReached(capacityNotification, EmployeeRoleType.FirstAidAttendant);
             }
 
-            if (notifyFloorEmergencyOfficers)
+            if (notifyFloorEmergencyOfficersOfMaxCapacity)
             {
-                await _notificationService.NotifyFloorEmergencyOfficers(notification);
+                await _notificationService.NotifyOfMaximumCapacityReached(capacityNotification, EmployeeRoleType.FloorEmergencyOfficer);
             }
-
-            return Unit.Value;
         }
     }
 }

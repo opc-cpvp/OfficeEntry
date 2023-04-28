@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Enums;
 
 namespace OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 
@@ -49,15 +50,22 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
             return Unit.Value;
         }
 
-        var date = request.AccessRequest.StartTime;
+        var requestDate = request.AccessRequest.StartTime;
         var floorPlan = request.AccessRequest.FloorPlan;
 
-        var floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
+        var initialFloorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(requestDate));
+        await ApprovePendingAccessRequests(request, initialFloorPlanCapacity);
+        await NotifyEmergencyPersonnelOfMaximumCapacity(request);
 
-        // Check if the floor plan has any remaining capacity
+        return Unit.Value;
+    }
+
+    private async Task ApprovePendingAccessRequests(UpdateAccessRequestCommand request, FloorPlanCapacity floorPlanCapacity)
+    {
+        // Approve pending access requests to fill the remaining spots
         if (floorPlanCapacity.HasCapacity)
         {
-            var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(floorPlan.Id, DateOnly.FromDateTime(date));
+            var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(request.AccessRequest.FloorPlan.Id, DateOnly.FromDateTime(request.AccessRequest.StartTime));
             var pendingAccessRequests = accessRequests
                 .Where(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Pending)
                 .GroupBy(a => a.Employee.Id)
@@ -68,51 +76,49 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
                 .Take(Math.Min(remainingCapacity, pendingAccessRequests.Count))
                 .SelectMany(x => x.Value);
 
-            var updateAccessRequestTasks = remainingAccessRequests.SelectMany(x =>
+            var updateAccessRequestTasks = remainingAccessRequests.Select(async x =>
             {
                 x.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
-                return new[]
+                await _accessRequestService.UpdateAccessRequest(x);
+                await _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification
                 {
-                    _accessRequestService.UpdateAccessRequest(x),
-                    _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification
-                    {
-                        BaseUrl = request.BaseUrl,
-                        AccessRequest = x
-                    })
-                };
+                    AccessRequest = x,
+                    BaseUrl = request.BaseUrl
+                });
             });
 
             await Task.WhenAll(updateAccessRequestTasks);
+        }
+    }
 
-            floorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(date));
-            if (floorPlanCapacity.HasCapacity)
+    private async Task NotifyEmergencyPersonnelOfMaximumCapacity(UpdateAccessRequestCommand request)
+    {
+        var currentFloorPlanCapacity = await _locationService.GetCapacityByFloorPlanAsync(request.AccessRequest.FloorPlan.Id, DateOnly.FromDateTime(request.AccessRequest.StartTime));
+
+        var notifyFirstAidAttendantsOfMaxCapacity = currentFloorPlanCapacity.NeedsFirstAidAttendant;
+        var notifyFloorEmergencyOfficersOfMaxCapacity = currentFloorPlanCapacity.NeedsFloorEmergencyOfficer;
+
+        if (notifyFirstAidAttendantsOfMaxCapacity || notifyFloorEmergencyOfficersOfMaxCapacity)
+        {
+            // Send notifications if we reached capacity
+            var capacity = currentFloorPlanCapacity.MaxCapacity;
+            var capacityNotification = new CapacityNotification(NotificationType.Maximum)
             {
-                return Unit.Value;
+                Capacity = capacity,
+                Date = request.AccessRequest.StartTime,
+                Building = request.AccessRequest.Building,
+                Floor = request.AccessRequest.Floor,
+            };
+
+            if (notifyFirstAidAttendantsOfMaxCapacity)
+            {
+                await _notificationService.NotifyOfMaximumCapacityReached(capacityNotification, EmployeeRoleType.FirstAidAttendant);
+            }
+
+            if (notifyFloorEmergencyOfficersOfMaxCapacity)
+            {
+                await _notificationService.NotifyOfMaximumCapacityReached(capacityNotification, EmployeeRoleType.FloorEmergencyOfficer);
             }
         }
-
-        var notifyFirstAidAttendants = floorPlanCapacity.CurrentCapacity >= floorPlanCapacity.MaxFirstAidAttendantCapacity;
-        var notifyFloorEmergencyOfficers = floorPlanCapacity.CurrentCapacity >= floorPlanCapacity.MaxFloorEmergencyOfficerCapacity;
-
-        var capacity = floorPlanCapacity.MaxCapacity;
-        var notification = new CapacityNotification
-        {
-            Capacity = capacity,
-            Date = request.AccessRequest.StartTime,
-            Building = request.AccessRequest.Building,
-            Floor = request.AccessRequest.Floor
-        };
-
-        if (notifyFirstAidAttendants)
-        {
-            await _notificationService.NotifyFirstAidAttendants(notification);
-        }
-
-        if (notifyFloorEmergencyOfficers)
-        {
-            await _notificationService.NotifyFloorEmergencyOfficers(notification);
-        }
-
-        return Unit.Value;
     }
 }

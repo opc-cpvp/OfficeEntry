@@ -1,6 +1,7 @@
 ﻿using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Enums;
 using System.Runtime.Versioning;
 using System.Security.Principal;
 
@@ -8,41 +9,39 @@ namespace OfficeEntry.Infrastructure.Services
 {
     internal class NotificationService : INotificationService
     {
-        private const string FirstAidAttendantEnglishName = "First Aid Attendant";
-        private const string FirstAidAttendantFrenchName = "Secouriste";
-        private const string FloorEmergencyOfficerEnglishName = "Floor Emergency Officer";
-        private const string FloorEmergencyOfficerFrenchName = "Agents de secours d’étage";
-
         private readonly IUserService _userService;
+        private readonly IEmployeeRoleService _employeeRoleService;
         private readonly ILocationService _locationService;
         private readonly ITemplateService _templateService;
         private readonly IEmailService _emailService;
 
-        public NotificationService(IUserService userService, ILocationService locationService, ITemplateService templateService, IEmailService emailService)
+        public NotificationService(IUserService userService, IEmployeeRoleService employeeRoleService, ILocationService locationService, ITemplateService templateService, IEmailService emailService)
         {
             _userService = userService;
+            _employeeRoleService = employeeRoleService;
             _locationService = locationService;
             _templateService = templateService;
             _emailService = emailService;
         }
 
         [SupportedOSPlatform("windows")]
-        public async Task<Result> NotifyFirstAidAttendants(CapacityNotification capacityNotification)
+        public async Task<Result> NotifyOfMaximumCapacityReached(CapacityNotification capacityNotification, EmployeeRoleType roleType)
         {
-            capacityNotification.RoleEnglishName = FirstAidAttendantEnglishName;
-            capacityNotification.RoleFrenchName = FirstAidAttendantFrenchName;
+            var employeeRole = _employeeRoleService.GetEmployeeRole(roleType);
+            capacityNotification.RoleFrenchName = employeeRole.FrenchName;
+            capacityNotification.RoleEnglishName = employeeRole.EnglishName;
 
             var (_, sender) = await _userService.GetSystemUserByUsername(WindowsIdentity.GetCurrent().Name);
-            var firstAidAttendants = await _locationService.GetFirstAidAttendantsAsync(capacityNotification.Building.Id);
+            var contacts = await _locationService.GetContactsForBuildingByRole(capacityNotification.Building.Id, roleType);
 
-            if (!firstAidAttendants.Any())
-                throw new Exception("Failed to find any First Aid Attendants");
+            if (!contacts.Any())
+                    throw new Exception($"Failed to find any {employeeRole.EnglishName}");
 
             var description = _templateService.GetEmailTemplate(EmailTemplates.CapacityNotification, capacityNotification);
             var email = new Email
             {
                 From = sender,
-                To = firstAidAttendants,
+                To = contacts,
                 Subject = capacityNotification.Title,
                 Description = description
             };
@@ -51,22 +50,23 @@ namespace OfficeEntry.Infrastructure.Services
         }
 
         [SupportedOSPlatform("windows")]
-        public async Task<Result> NotifyFloorEmergencyOfficers(CapacityNotification capacityNotification)
+        public async Task<Result> NotifyOfAvailableCapacity(CapacityNotification capacityNotification, EmployeeRoleType roleType)
         {
-            capacityNotification.RoleEnglishName = FloorEmergencyOfficerEnglishName;
-            capacityNotification.RoleFrenchName = FloorEmergencyOfficerFrenchName;
+            var employeeRole = _employeeRoleService.GetEmployeeRole(roleType);
+            capacityNotification.RoleFrenchName = employeeRole.FrenchName;
+            capacityNotification.RoleEnglishName = employeeRole.EnglishName;
 
             var (_, sender) = await _userService.GetSystemUserByUsername(WindowsIdentity.GetCurrent().Name);
-            var floorEmergencyOfficers = await _locationService.GetFloorEmergencyOfficersAsync(capacityNotification.Building.Id);
+            var contacts = await _locationService.GetContactsForBuildingByRole(capacityNotification.Building.Id, roleType);
 
-            if (!floorEmergencyOfficers.Any())
-                throw new Exception("Failed to find any Floor Emergency Officers");
+            if (!contacts.Any())
+                throw new Exception($"Failed to find any {capacityNotification.RoleEnglishName}");
 
-            var description = _templateService.GetEmailTemplate(EmailTemplates.CapacityNotification, capacityNotification);
+            var description = _templateService.GetEmailTemplate(EmailTemplates.CapacityAvailableNotification, capacityNotification);
             var email = new Email
             {
                 From = sender,
-                To = floorEmergencyOfficers,
+                To = contacts,
                 Subject = capacityNotification.Title,
                 Description = description
             };
