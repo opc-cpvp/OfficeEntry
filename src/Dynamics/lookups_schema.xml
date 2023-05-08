@@ -41,8 +41,6 @@
   </entity>
   <entity name="gc_workspace" displayname="Workspace" etc="10031" primaryidfield="gc_workspaceid" primarynamefield="gc_name" disableplugins="false">
     <fields>
-      <field displayname="Status Reason" name="statuscode" type="status" />
-      <field displayname="Status" name="statecode" type="state" />
       <field displayname="X" name="gc_x" type="number" customfield="true" />
       <field updateCompare="true" displayname="Workspace" name="gc_workspaceid" type="guid" primaryKey="true" />
       <field displayname="Y" name="gc_y" type="number" customfield="true" />
