@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2023-05-08T16:31:53.4595037Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2023-07-13T19:00:46.2499617Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -172,6 +172,15 @@
         <field name="gc_frenchdescription" value="Lab seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
+      <record id="a3cb3b03-469d-4503-a85f-0c27ab538476">
+        <field name="gc_x" value="904" />
+        <field name="gc_workspaceid" value="a3cb3b03-469d-4503-a85f-0c27ab538476" />
+        <field name="gc_y" value="786" />
+        <field name="gc_name" value="IT 3" />
+        <field name="gc_englishdescription" value="IT only" />
+        <field name="gc_frenchdescription" value="TI seulement" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
+      </record>
       <record id="7bde6345-f62b-4701-801a-0c5a972e71fe">
         <field name="gc_x" value="438" />
         <field name="gc_workspaceid" value="7bde6345-f62b-4701-801a-0c5a972e71fe" />
@@ -249,6 +258,15 @@
         <field name="gc_name" value="C-8" />
         <field name="gc_englishdescription" value="Info Center only" />
         <field name="gc_frenchdescription" value="Centre d&amp;#39;information seulement" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
+      </record>
+      <record id="54bb3488-2eb3-4ccf-913d-1f3a8cee0b73">
+        <field name="gc_x" value="854" />
+        <field name="gc_workspaceid" value="54bb3488-2eb3-4ccf-913d-1f3a8cee0b73" />
+        <field name="gc_y" value="786" />
+        <field name="gc_name" value="IT 2" />
+        <field name="gc_englishdescription" value="IT only" />
+        <field name="gc_frenchdescription" value="TI seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="03670f12-d845-486f-934d-21cc8a5354aa">
@@ -791,6 +809,15 @@
         <field name="gc_name" value="105" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
+      <record id="f7a01893-b360-4c0f-a2e6-8e3b69112f3b">
+        <field name="gc_x" value="805" />
+        <field name="gc_workspaceid" value="f7a01893-b360-4c0f-a2e6-8e3b69112f3b" />
+        <field name="gc_y" value="786" />
+        <field name="gc_name" value="IT 1" />
+        <field name="gc_englishdescription" value="IT only" />
+        <field name="gc_frenchdescription" value="TI seulement" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
+      </record>
       <record id="b9c4e9a3-db40-4413-9c52-8fcf903fc013">
         <field name="gc_x" value="1284" />
         <field name="gc_workspaceid" value="b9c4e9a3-db40-4413-9c52-8fcf903fc013" />
@@ -908,6 +935,15 @@
         <field name="gc_y" value="99" />
         <field name="gc_name" value="07" />
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
+      </record>
+      <record id="34c8ba68-92ed-4424-9b96-a69701e335ac">
+        <field name="gc_x" value="904" />
+        <field name="gc_workspaceid" value="34c8ba68-92ed-4424-9b96-a69701e335ac" />
+        <field name="gc_y" value="817" />
+        <field name="gc_name" value="IT 4" />
+        <field name="gc_englishdescription" value="IT only" />
+        <field name="gc_frenchdescription" value="TI seulement" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="f0389dd3-4fab-4ae4-b01c-a6d9bf0206b9">
         <field name="gc_x" value="1596" />
