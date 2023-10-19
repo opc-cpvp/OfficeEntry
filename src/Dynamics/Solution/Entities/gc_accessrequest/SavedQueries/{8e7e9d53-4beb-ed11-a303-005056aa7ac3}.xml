@@ -21,6 +21,7 @@
           <cell name="gc_firstaidattendant" width="100" />
           <cell name="gc_flooremergencyofficer" width="100" />
           <cell name="gc_approvalstatus" width="100" />
+          <cell name="createdon" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -52,6 +53,7 @@
             <attribute name="gc_floor" />
             <attribute name="gc_building" />
           </link-entity>
+          <attribute name="createdon" />
           <attribute name="gc_accessrequestid" />
         </entity>
       </fetch>
