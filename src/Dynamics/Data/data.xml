@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2024-01-03T15:18:38.2793097Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2024-01-09T16:55:55.5156092Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -161,14 +161,14 @@
         <field name="gc_workspaceid" value="dd87c315-25a0-44bc-b8a8-08a3537613e1" />
         <field name="gc_y" value="809" />
         <field name="gc_name" value="849" />
-        <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocats seulement" />
+        <field name="gc_englishdescription" value="Directors only" />
+        <field name="gc_frenchdescription" value="Directeur(trice) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="9cde247d-c4d3-4143-9fad-08c772d4b590">
-        <field name="gc_x" value="1660" />
+        <field name="gc_x" value="1662" />
         <field name="gc_workspaceid" value="9cde247d-c4d3-4143-9fad-08c772d4b590" />
-        <field name="gc_y" value="1007" />
+        <field name="gc_y" value="1029" />
         <field name="gc_name" value="843" />
         <field name="gc_englishdescription" value="Gregory Smolynec" />
         <field name="gc_frenchdescription" value="Gregory Smolynec" />
@@ -196,7 +196,7 @@
         <field name="gc_y" value="346" />
         <field name="gc_name" value="827" />
         <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocat seulement" />
+        <field name="gc_frenchdescription" value="Avocat(e) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="a3cb3b03-469d-4503-a85f-0c27ab538476">
@@ -221,7 +221,7 @@
         <field name="gc_y" value="847" />
         <field name="gc_name" value="839" />
         <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocat seulement" />
+        <field name="gc_frenchdescription" value="Avocat(e) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="9a56d644-8bd6-4aac-a35f-0d935196ff34">
@@ -336,7 +336,7 @@
         <field name="gc_y" value="459" />
         <field name="gc_name" value="829" />
         <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocat seulement" />
+        <field name="gc_frenchdescription" value="Avocat(e) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="af048eff-3029-44fd-926c-28497c118698">
@@ -383,8 +383,8 @@
         <field name="gc_workspaceid" value="d21abb07-4418-4a23-94a8-2e246ebbf121" />
         <field name="gc_y" value="110" />
         <field name="gc_name" value="869" />
-        <field name="gc_englishdescription" value="Miguel Bernal" />
-        <field name="gc_frenchdescription" value="Miguel Bernal" />
+        <field name="gc_englishdescription" value="Directors only" />
+        <field name="gc_frenchdescription" value="Directeur(trice) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="f0e82d2d-b44a-4e2b-9ded-2ecbd3df8d12">
@@ -493,7 +493,7 @@
         <field name="gc_y" value="575" />
         <field name="gc_name" value="831" />
         <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocat seulement" />
+        <field name="gc_frenchdescription" value="Avocat(e) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="083817ea-9beb-4389-a60d-3bfdd7e012cb">
@@ -576,7 +576,7 @@
         <field name="gc_y" value="696" />
         <field name="gc_name" value="833" />
         <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocat seulement" />
+        <field name="gc_frenchdescription" value="Avocat(e) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="be061d71-0e9a-4093-ba57-47d768e7f920">
@@ -615,7 +615,7 @@
         <field name="gc_y" value="633" />
         <field name="gc_name" value="832" />
         <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocat seulement" />
+        <field name="gc_frenchdescription" value="Avocat(e) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="edbaab4e-9202-4c2d-9a58-4f468f074b3a">
@@ -637,8 +637,8 @@
         <field name="gc_workspaceid" value="26588c45-a8ae-4d27-b036-569e7031a210" />
         <field name="gc_y" value="193" />
         <field name="gc_name" value="870" />
-        <field name="gc_englishdescription" value="Justin Lafontaine" />
-        <field name="gc_frenchdescription" value="Justin Lafontaine" />
+        <field name="gc_englishdescription" value="Directors only" />
+        <field name="gc_frenchdescription" value="Directeur(trice) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="e20217a8-8440-4077-8240-56f27f45f6b7">
@@ -892,7 +892,7 @@
         <field name="gc_y" value="961" />
         <field name="gc_name" value="841" />
         <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocat seulement" />
+        <field name="gc_frenchdescription" value="Avocat(e) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="f2b11c39-c481-4e6d-a3ad-87959ff38c3b">
@@ -939,6 +939,15 @@
         <field name="gc_name" value="08" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
+      <record id="a5899b01-b0ad-45c0-9a1f-8de32e4a731c">
+        <field name="gc_x" value="1641" />
+        <field name="gc_workspaceid" value="a5899b01-b0ad-45c0-9a1f-8de32e4a731c" />
+        <field name="gc_y" value="607" />
+        <field name="gc_name" value="835" />
+        <field name="gc_englishdescription" value="Lawyers only" />
+        <field name="gc_frenchdescription" value="Avocats seulement" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
+      </record>
       <record id="d21dc77f-f34c-4c17-8e51-8e04338dd2ae">
         <field name="gc_x" value="354" />
         <field name="gc_workspaceid" value="d21dc77f-f34c-4c17-8e51-8e04338dd2ae" />
@@ -968,7 +977,7 @@
         <field name="gc_y" value="520" />
         <field name="gc_name" value="830" />
         <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocat seulement" />
+        <field name="gc_frenchdescription" value="Avocat(e) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="b9c4e9a3-db40-4413-9c52-8fcf903fc013">
@@ -1021,7 +1030,7 @@
         <field name="gc_y" value="796" />
         <field name="gc_name" value="838" />
         <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocat seulement" />
+        <field name="gc_frenchdescription" value="Avocat(e) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="5f7e5261-d4fa-409b-be05-99ef917dcbd0">
@@ -1120,7 +1129,7 @@
         <field name="gc_y" value="905" />
         <field name="gc_name" value="840" />
         <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocat seulement" />
+        <field name="gc_frenchdescription" value="Avocat(e) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="78bb2805-5473-4911-9df1-a89ae2eeb08b">
@@ -1159,7 +1168,7 @@
         <field name="gc_y" value="408" />
         <field name="gc_name" value="828" />
         <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocat seulement" />
+        <field name="gc_frenchdescription" value="Avocat(e) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="e06ec36d-c8a7-444b-869a-ad2cffb5ca85">
@@ -1332,9 +1341,9 @@
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="cd46e153-0efa-4aaa-80cc-c2f9b28bcb58">
-        <field name="gc_x" value="177" />
+        <field name="gc_x" value="181" />
         <field name="gc_workspaceid" value="cd46e153-0efa-4aaa-80cc-c2f9b28bcb58" />
-        <field name="gc_y" value="716" />
+        <field name="gc_y" value="712" />
         <field name="gc_name" value="857" />
         <field name="gc_englishdescription" value="Sue Lajoie" />
         <field name="gc_frenchdescription" value="Sue Lajoie" />
@@ -1431,7 +1440,7 @@
       <record id="4a3d88e8-3333-4b4f-9865-d3f060a5f04b">
         <field name="gc_x" value="164" />
         <field name="gc_workspaceid" value="4a3d88e8-3333-4b4f-9865-d3f060a5f04b" />
-        <field name="gc_y" value="990" />
+        <field name="gc_y" value="1007" />
         <field name="gc_name" value="855" />
         <field name="gc_englishdescription" value="Brent Homan" />
         <field name="gc_frenchdescription" value="Brent Homan" />
@@ -1489,7 +1498,7 @@
         <field name="gc_y" value="809" />
         <field name="gc_name" value="845" />
         <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocats seulement" />
+        <field name="gc_frenchdescription" value="Avocat(e)s seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="08f8c53f-3344-4e35-bc64-dbdd7e75f064">
@@ -1497,8 +1506,8 @@
         <field name="gc_workspaceid" value="08f8c53f-3344-4e35-bc64-dbdd7e75f064" />
         <field name="gc_y" value="605" />
         <field name="gc_name" value="834" />
-        <field name="gc_englishdescription" value="Matthew Shogilev" />
-        <field name="gc_frenchdescription" value="Matthew Shogilev" />
+        <field name="gc_englishdescription" value="Lawyers only" />
+        <field name="gc_frenchdescription" value="Avocat seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="1bee1393-ebb6-4dd6-a355-dccc96b381ca">
@@ -1582,8 +1591,8 @@
         <field name="gc_workspaceid" value="bfef4dda-b8ad-41d8-873f-ef7b5a12e9c5" />
         <field name="gc_y" value="695" />
         <field name="gc_name" value="837" />
-        <field name="gc_englishdescription" value="Kate Wilson" />
-        <field name="gc_frenchdescription" value="Kate Wilson" />
+        <field name="gc_englishdescription" value="Lawyers only" />
+        <field name="gc_frenchdescription" value="Avocats seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="e67bf3d3-4365-4626-b6bf-f068f2595d98">
