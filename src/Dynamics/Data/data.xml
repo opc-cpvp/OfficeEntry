@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2024-01-12T18:11:35.3272697Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2024-01-12T19:32:23.9108483Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -944,8 +944,8 @@
         <field name="gc_workspaceid" value="a5899b01-b0ad-45c0-9a1f-8de32e4a731c" />
         <field name="gc_y" value="607" />
         <field name="gc_name" value="835" />
-        <field name="gc_englishdescription" value="Lawyers only" />
-        <field name="gc_frenchdescription" value="Avocats seulement" />
+        <field name="gc_englishdescription" value="Director only" />
+        <field name="gc_frenchdescription" value="Directeur(trice) seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="d21dc77f-f34c-4c17-8e51-8e04338dd2ae">
