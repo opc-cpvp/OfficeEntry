@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2024-01-09T16:55:55.5156092Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2024-01-12T18:11:35.3272697Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -1442,8 +1442,8 @@
         <field name="gc_workspaceid" value="4a3d88e8-3333-4b4f-9865-d3f060a5f04b" />
         <field name="gc_y" value="1007" />
         <field name="gc_name" value="855" />
-        <field name="gc_englishdescription" value="Brent Homan" />
-        <field name="gc_frenchdescription" value="Brent Homan" />
+        <field name="gc_englishdescription" value="Marc Ch&amp;#233;nier" />
+        <field name="gc_frenchdescription" value="Marc Ch&amp;#233;nier" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="76d5a7ac-dfc1-4fdf-aa58-d4aa729c8dd3">
