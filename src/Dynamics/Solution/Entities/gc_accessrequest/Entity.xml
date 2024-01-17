@@ -343,6 +343,86 @@
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="gc_dayofweek">
+          <Type>picklist</Type>
+          <Name>gc_dayofweek</Name>
+          <LogicalName>gc_dayofweek</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>0.0.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <optionset Name="gc_accessrequest_gc_dayofweek">
+            <OptionSetType>picklist</OptionSetType>
+            <IntroducedVersion>0.0.1</IntroducedVersion>
+            <IsCustomizable>1</IsCustomizable>
+            <displaynames>
+              <displayname description="Day of Week" languagecode="1033" />
+            </displaynames>
+            <Descriptions>
+              <Description description="" languagecode="1033" />
+            </Descriptions>
+            <options>
+              <option value="948160000" Color="#0000ff">
+                <labels>
+                  <label description="Sunday" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="948160001" Color="#0000ff">
+                <labels>
+                  <label description="Monday" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="948160002" Color="#0000ff">
+                <labels>
+                  <label description="Tuesday" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="948160003" Color="#0000ff">
+                <labels>
+                  <label description="Wednesday" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="948160004" Color="#0000ff">
+                <labels>
+                  <label description="Thursday" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="948160005" Color="#0000ff">
+                <labels>
+                  <label description="Friday" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="948160006" Color="#0000ff">
+                <labels>
+                  <label description="Saturday" languagecode="1033" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Day of Week" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="gc_delegate">
           <Type>lookup</Type>
           <Name>gc_delegate</Name>
