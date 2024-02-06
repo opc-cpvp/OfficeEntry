@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OfficeEntry.Plugins.OptionSets
+namespace OfficeEntry.Plugins
 {
 
 	[System.Runtime.Serialization.DataContractAttribute()]

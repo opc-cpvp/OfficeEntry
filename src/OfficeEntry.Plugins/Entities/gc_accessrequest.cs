@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace OfficeEntry.Plugins.Entities
+namespace OfficeEntry.Plugins
 {
 
 	[System.Runtime.Serialization.DataContractAttribute()]

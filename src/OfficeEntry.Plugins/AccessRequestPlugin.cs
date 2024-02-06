@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xrm.Sdk;
-using OfficeEntry.Plugins.Entities;
 using System;
 
 namespace OfficeEntry.Plugins
@@ -15,6 +14,8 @@ namespace OfficeEntry.Plugins
         {
         }
 
+        public AccessRequestPlugin() : base(typeof(AccessRequestPlugin)) { }
+
         // Entry point for custom business logic execution
         protected override void ExecuteCdsPlugin(ILocalPluginContext localPluginContext)
         {
@@ -23,7 +24,7 @@ namespace OfficeEntry.Plugins
 
             var context = localPluginContext.PluginExecutionContext;
 
-            if (context.MessageName != PluginMessage.Create)
+            if (context.MessageName != PluginMessage.Create && context.MessageName != PluginMessage.Update)
                 return;
 
             if (!(context.InputParameters["Target"] is Entity target))
@@ -35,9 +36,41 @@ namespace OfficeEntry.Plugins
                 var accessRequest = target.ToEntity<gc_accessrequest>();
 
                 // Assign the AccessRequest's ID to the Guid property
-                accessRequest.gc_guid = accessRequest.gc_accessrequestid?.ToString("D");
+                accessRequest.gc_guid = accessRequest.gc_accessrequestId?.ToString("D");
+
+                
+
+
+                var dayValue = accessRequest.gc_starttime;
+
+                switch (dayValue.Value.DayOfWeek)
+                {
+                    case DayOfWeek.Monday:
+                        accessRequest.gc_dayofweek = new OptionSetValue((int)gc_accessrequest_gc_dayofweek.Monday); 
+                        break;
+                    case DayOfWeek.Tuesday:
+                        accessRequest.gc_dayofweek = new OptionSetValue((int)gc_accessrequest_gc_dayofweek.Tuesday);
+                        break;
+                    case DayOfWeek.Wednesday:
+                        accessRequest.gc_dayofweek = new OptionSetValue((int)gc_accessrequest_gc_dayofweek.Wednesday);
+                        break;
+                    case DayOfWeek.Thursday:
+                        accessRequest.gc_dayofweek = new OptionSetValue((int)gc_accessrequest_gc_dayofweek.Thursday);
+                        break;
+                    case DayOfWeek.Friday:
+                        accessRequest.gc_dayofweek = new OptionSetValue((int)gc_accessrequest_gc_dayofweek.Friday);
+                        break;
+                    case DayOfWeek.Saturday:
+                        accessRequest.gc_dayofweek = new OptionSetValue((int)gc_accessrequest_gc_dayofweek.Saturday);
+                        break;
+                    case DayOfWeek.Sunday:
+                        accessRequest.gc_dayofweek = new OptionSetValue((int)gc_accessrequest_gc_dayofweek.Sunday);
+                        break;
+                }
 
                 localPluginContext.CurrentUserService.Update(accessRequest);
+
+
             }
             catch (Exception ex)
             {
