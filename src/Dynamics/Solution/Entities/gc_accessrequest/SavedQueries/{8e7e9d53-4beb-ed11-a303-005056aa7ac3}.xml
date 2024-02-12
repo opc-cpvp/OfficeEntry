@@ -17,6 +17,7 @@
           <cell name="gc_workspace" width="100" />
           <cell name="gc_starttime" width="100" />
           <cell name="gc_endtime" width="100" />
+          <cell name="gc_dayofweek" width="100" />
           <cell name="gc_delegate" width="100" />
           <cell name="gc_firstaidattendant" width="100" />
           <cell name="gc_flooremergencyofficer" width="100" />
@@ -54,6 +55,7 @@
             <attribute name="gc_building" />
           </link-entity>
           <attribute name="createdon" />
+          <attribute name="gc_dayofweek" />
           <attribute name="gc_accessrequestid" />
         </entity>
       </fetch>
