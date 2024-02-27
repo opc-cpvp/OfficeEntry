@@ -38,12 +38,9 @@ namespace OfficeEntry.Plugins
                 // Assign the AccessRequest's ID to the Guid property
                 accessRequest.gc_guid = accessRequest.gc_accessrequestId?.ToString("D");
 
-                
+                var dateTime = accessRequest.gc_starttime;
 
-
-                var dayValue = accessRequest.gc_starttime;
-
-                switch (dayValue.Value.DayOfWeek)
+                switch (dateTime.Value.DayOfWeek)
                 {
                     case DayOfWeek.Monday:
                         accessRequest.gc_dayofweek = new OptionSetValue((int)gc_accessrequest_gc_dayofweek.Monday); 

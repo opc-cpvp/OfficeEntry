@@ -14,7 +14,7 @@ namespace Plugins.UnitTests
 {
     public class DayOfWeekTests
     {
-        public class When_creating_access_request 
+        public class When_creating_or_updating_access_request 
         {
 
             private static Mock<IOrganizationService> currentUserService =  null;
@@ -44,6 +44,7 @@ namespace Plugins.UnitTests
 
                 context.ExecutePluginWithTarget<AccessRequestPlugin>(accessRequest);
 
+                accessRequest.gc_dayofweek.Should().NotBeNull();
                 accessRequest.gc_dayofweek.Should().Be(new OptionSetValue((int)gc_accessrequest_gc_dayofweek.Tuesday));
 
 
@@ -59,10 +60,12 @@ namespace Plugins.UnitTests
                 context.InitializeMetadata(metadata);
 
                 var accessRequest = new gc_accessrequest { Id = Guid.NewGuid(), gc_starttime = dateToCheck };
+                accessRequest.gc_dayofweek = new OptionSetValue((int)gc_accessrequest_gc_dayofweek.Monday);
                 context.Initialize(accessRequest);
 
                 context.ExecutePluginWithTarget<AccessRequestPlugin>(accessRequest);
 
+                accessRequest.gc_dayofweek.Should().NotBeNull();
                 accessRequest.gc_dayofweek.Should().Be(new OptionSetValue((int)gc_accessrequest_gc_dayofweek.Tuesday));
             }
         }
