@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Application.Locations.Queries.GetAvailableWorkspaces;
 using OfficeEntry.Domain.Entities;
 

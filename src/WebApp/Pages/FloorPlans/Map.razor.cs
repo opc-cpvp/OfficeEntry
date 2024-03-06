@@ -40,6 +40,7 @@ public partial class Map : IAsyncDisposable
     private int _endTime = 17;
     private FloorPlan FloorPlanDto { get; set; } // ViewModel
     private IEnumerable<Domain.Entities.AccessRequest> AccessRequests { get; set; } // ViewModel
+    private string _errorMessage;
 
     public bool SurveyCompleted { get; set; }
 
@@ -217,11 +218,20 @@ public partial class Map : IAsyncDisposable
             accessRequest.Employee = new Contact { Id = submission.otherIndividual };
         }
 
-        await Mediator.Send(new CreateAccessRequestCommand
+        var response = await Mediator.Send(new CreateAccessRequestCommand
         {
             BaseUrl = NavigationManager.BaseUri,
             AccessRequest = accessRequest
         });
+
+        if (!response.Succeeded)
+        {
+            _errorMessage = response.Errors[0];
+
+            // Work in progress, not sure if this function refreshes the map
+            await OnParametersSetAsync();
+            return;
+        }
 
         if (isDelegate)
         {
