@@ -23,6 +23,7 @@ public sealed class MapJsInterop : IAsyncDisposable, IMapJsInterop
     private readonly Lazy<Task<IJSObjectReference>> _moduleTask;
     private readonly DotNetObjectReference<MapJsInterop> _objRef;
     private Map? _mapInstance;
+    private bool _disposed;
 
     public MapJsInterop(IJSRuntime jsRuntime, ICurrentUserService currentUserService, IDomainUserService domainUserService)
     {
@@ -71,7 +72,10 @@ public sealed class MapJsInterop : IAsyncDisposable, IMapJsInterop
     {
         var module = await _moduleTask.Value;
 
-        await module.InvokeVoidAsync("stop");
+        if (!_disposed)
+        {
+            await module.InvokeVoidAsync("stop");
+        }
     }
 
     public async Task SetSelectedCircle(string data)
@@ -91,6 +95,7 @@ public sealed class MapJsInterop : IAsyncDisposable, IMapJsInterop
         }
 
         _objRef?.Dispose();
+        _disposed = true;
     }
 
     public class SpyingEventArg : EventArgs

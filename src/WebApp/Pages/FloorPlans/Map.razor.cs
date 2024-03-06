@@ -43,19 +43,6 @@ public partial class Map : IAsyncDisposable
 
     public bool SurveyCompleted { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        SubscribeToAction<GetMapResultAction>(async x =>
-        {
-            FloorPlanDto = x.Dto;
-            AccessRequests = x.AccessRequests;
-
-            await UpdateCanvas();
-        });
-
-        await base.OnInitializedAsync();
-    }
-
     protected override Task OnParametersSetAsync()
     {
         // Invalidate the DTO and reload the Map
@@ -74,6 +61,14 @@ public partial class Map : IAsyncDisposable
         }
 
         await MapJsInterop.Register(this);
+
+        SubscribeToAction<GetMapResultAction>(async x =>
+        {
+            FloorPlanDto = x.Dto;
+            AccessRequests = x.AccessRequests;
+
+            await UpdateCanvas();
+        });
     }
 
     private async Task UpdateCanvas()
