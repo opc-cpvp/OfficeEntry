@@ -65,14 +65,17 @@ public sealed class MapJsInterop : IAsyncDisposable, IMapJsInterop
     {
         var module = await _moduleTask.Value;
 
-        await module.InvokeVoidAsync("start", floorplanImage, circlesJson);
+        if (module is not null && !_disposed)
+        {
+            await module.InvokeVoidAsync("start", floorplanImage, circlesJson);
+        }        
     }
 
     public async Task Stop()
     {
         var module = await _moduleTask.Value;
 
-        if (!_disposed)
+        if (module is not null && !_disposed)
         {
             await module.InvokeVoidAsync("stop");
         }
@@ -82,7 +85,10 @@ public sealed class MapJsInterop : IAsyncDisposable, IMapJsInterop
     {
         var module = await _moduleTask.Value;
 
-        await module.InvokeVoidAsync("setSelectedCircle", data);
+        if (module is not null && !_disposed)
+        {
+            await module.InvokeVoidAsync("setSelectedCircle", data);
+        }
     }
 
     public async ValueTask DisposeAsync()
