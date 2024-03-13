@@ -64,7 +64,7 @@ public class Startup
             options.ScanAssemblies(typeof(Program).Assembly);
         });
 
-        services.AddScoped<IMapJsInterop, MapJsInterop>();
+        services.AddTransient<IMapJsInterop, MapJsInterop>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

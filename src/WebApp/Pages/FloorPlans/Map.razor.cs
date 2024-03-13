@@ -21,7 +21,7 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 namespace OfficeEntry.WebApp.Pages.FloorPlans;
 
 [Authorize]
-public partial class Map : IAsyncDisposable
+public sealed partial class Map : IAsyncDisposable
 {
     [Parameter] public Guid FloorPlanId { get; set; }
 
@@ -142,11 +142,13 @@ public partial class Map : IAsyncDisposable
 
     public async ValueTask DisposeAsync()
     {
+        if (MapJsInterop is MapJsInterop js)
+        {
+            await js.DisposeAsync();
+        }
+
         Dispose();
-
-        await MapJsInterop.Stop();
     }
-
 
     // TODO: rename method to something like `OccupiedWorkspaceLookup`
     public async Task OnSpying(SpyingEventArg e)

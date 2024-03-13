@@ -12,7 +12,6 @@ public interface IMapJsInterop
     Task Register(Map map);
     Task SetSelectedCircle(string data);
     Task Start(string floorplanImage, string circlesJson);
-    Task Stop();
 }
 
 public sealed class MapJsInterop : IAsyncDisposable, IMapJsInterop
@@ -65,20 +64,7 @@ public sealed class MapJsInterop : IAsyncDisposable, IMapJsInterop
     {
         var module = await _moduleTask.Value;
 
-        if (module is not null && !_disposed)
-        {
-            await module.InvokeVoidAsync("start", floorplanImage, circlesJson);
-        }        
-    }
-
-    public async Task Stop()
-    {
-        var module = await _moduleTask.Value;
-
-        if (module is not null && !_disposed)
-        {
-            await module.InvokeVoidAsync("stop");
-        }
+        await module.InvokeVoidAsync("start", floorplanImage, circlesJson);
     }
 
     public async Task SetSelectedCircle(string data)
