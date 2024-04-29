@@ -30,7 +30,7 @@ public class Program
             .Destructure.UsingAttributes()
             .Enrich.WithProperty("Version", assemblyVersion)
             .Enrich.WithExceptionDetails(new DestructuringOptionsBuilder().WithDefaultDestructurers())
-            .Filter.ByExcluding("RequestPath = '/health' and StatusCode = 200")            
+            .Filter.ByExcluding("RequestPath = '/health' and StatusCode = 200")
             .Filter.ByExcluding("RequestPath = '/_blazor/disconnect'")
             .CreateLogger();
 
