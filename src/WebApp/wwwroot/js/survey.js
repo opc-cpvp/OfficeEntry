@@ -39,7 +39,7 @@ export function init(id, classStyle, surveyUrl, data) {
     // Override the color used style the flip switch
     Survey.StylesManager.ThemeColors["bootstrap"]["$main-color"] = "#007bff";
 
-    // The background color of selected item in dropdown is not set in survey-vue 1.9.68
+    // The background color of selected item in dropdown is not set in survey-vue
     Survey.StylesManager.Styles[".sv-list__item--selected"] =
         "background-color: #007bff; color: #fff;";
 
