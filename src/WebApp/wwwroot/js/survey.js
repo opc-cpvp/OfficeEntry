@@ -39,6 +39,27 @@ export function init(id, classStyle, surveyUrl, data) {
     // Override the color used style the flip switch
     Survey.StylesManager.ThemeColors["bootstrap"]["$main-color"] = "#007bff";
 
+    // The background color of selected item in dropdown is not set in survey-vue 1.9.68
+    Survey.StylesManager.Styles[".sv-list__item--selected"] =
+        "background-color: #007bff; color: #fff;";
+
+    // The background color of the boolean switch is not set for some reason
+    Survey.StylesManager.Styles[".sv-boolean__switch"] =
+        "background-color: rgb(0, 98, 126)";
+
+    // The boolean thumb ghost class is in diplay: block, causing line breaks we don't want for boolean switches
+    Survey.StylesManager.Styles[".sv-boolean__thumb-ghost"] = "display: inline";
+
+    // The background color of the boolean switch slider is not set for some reason
+    Survey.StylesManager.Styles[".sv-boolean__slider"] = "background-color: white";
+
+    // Better indentation of descriptions
+    Survey.StylesManager.Styles[".sv_p_description"] = "padding-left: 16px";
+
+    // Edit padding for action bar
+    Survey.StylesManager.Styles[".sv_main .sv-action-bar"] =
+        "padding: 16px;";
+
     // Apply bootstrap classes
     Survey.StylesManager.applyTheme("bootstrap");
 
@@ -88,7 +109,7 @@ export function init(id, classStyle, surveyUrl, data) {
                         });
                 });
 
-            survey
+            survey  
                 .onCurrentPageChanged
                 .add(function (survey, options) {
                     dotNet.invokeMethodAsync("PageChanged", JSON.stringify(survey.data), options.newCurrentPage.name)
@@ -98,12 +119,21 @@ export function init(id, classStyle, surveyUrl, data) {
                         });
                 });
 
+            // Set date picker format when the value is changing for expected formatting
+            survey.onValueChanging.add((sender, options) => {
+                if (options.question.getType() == "datepicker") {
+                    const date = new Date(options.value);
+                    var datestring = `${(date.getMonth() + 1)}/${date.getDate()}/${date.getFullYear()}`
+                    options.value = datestring;
+                }
+            });
+
             survey.onValueChanged.add((sender, options) => {
                 dotNet.invokeMethodAsync("ValueChanged", JSON.stringify(survey.data), JSON.stringify(options))
-                        .catch(function (error) {
-                            console.error(error);
-                            dotNet.invokeMethodAsync("ShowError");
-                        });
+                    .catch(function (error) {
+                        console.error(error);
+                        dotNet.invokeMethodAsync("ShowError");
+                    });
             });
 
             survey
@@ -111,6 +141,31 @@ export function init(id, classStyle, surveyUrl, data) {
                 .add(function (survey, options) {
                     options.html = options.text;
                 });
+
+            // Fix some styling issues that cannot be fixed directly with css
+            survey.onAfterRenderQuestion.add((_, options) => {
+                const html = options.htmlElement;
+                const parent = html.parentElement;
+
+                html.style.minWidth = "100%";
+                parent.style.minWidth = "100%";
+
+                // Added spacing to radio label
+                if (options.question.getType() === "radiogroup") {
+                    html
+                        .querySelectorAll("fieldset span.sv-string-viewer")
+                        .forEach((value) => {
+                            value.innerText = ` ${value.innerText}`;
+                        });
+                }
+            });
+
+            // Apply button group class to actions in the navigation bar.
+            const container = survey.navigationBarValue;
+            const actions = container.actions;
+            actions.forEach((x) => {
+                x.css = "btn-group";
+            });
 
             var app = new Vue({
                 el: "#" + id,
