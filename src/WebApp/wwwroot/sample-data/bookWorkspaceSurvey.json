@@ -6,9 +6,10 @@
       "elements": [
         {
           "type": "text",
-          "visible": false,
           "name": "floorplan",
-          "title": "Floorplan"
+          "title": "Floorplan",
+          "clearIfInvisible": "none",
+          "visible":  false
         },
         {
           "type": "radiogroup",
@@ -69,7 +70,8 @@
           },
           "isRequired": true,
           "dateFormat": "mm/dd/yy",
-          "inputType": "date"
+          "inputType": "date",
+          "maxValueExpression": "today(14)"
         },
         {
           "type": "dropdown",
@@ -77,6 +79,12 @@
           "title": {
             "default": "From",
             "fr": "De"
+          },
+          "renderAs": "select2",
+          "select2Config": {
+            "theme": "bootstrap4",
+            "selectOnClose": true,
+            "minimumResultsForSearch": -1
           },
           "defaultValue": "9",
           "isRequired": true,
@@ -267,6 +275,12 @@
           "title": {
             "default": "To",
             "fr": "À"
+          },
+          "renderAs": "select2",
+          "select2Config": {
+            "theme": "bootstrap4",
+            "selectOnClose": true,
+            "minimumResultsForSearch": -1
           },
           "defaultValue": "17",
           "isRequired": true,
@@ -472,6 +486,12 @@
           "title": {
             "default": "Workstation",
             "fr": "Poste de travail"
+          },
+          "renderAs": "select2",
+          "select2Config": {
+            "theme": "bootstrap4",
+            "selectOnClose": true,
+            "minimumResultsForSearch": -1
           },
           "visibleIf": "{startDate} notempty and {startTime} notempty and {endTime} notempty and {requireWorkstation} = true",
           "isRequired": true,

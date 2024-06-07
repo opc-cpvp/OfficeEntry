@@ -48,11 +48,11 @@
       "destination": "wwwroot/lib/select2/"
     },
     {
-      "library": "survey-vue@1.8.12",
+      "library": "survey-vue@1.9.139",
       "destination": "wwwroot/lib/survey-vue/"
     },
     {
-      "library": "surveyjs-widgets@1.8.12",
+      "library": "surveyjs-widgets@1.9.139",
       "destination": "wwwroot/lib/surveyjs-widgets/",
       "provider": "jsdelivr"
     },

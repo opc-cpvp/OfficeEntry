@@ -15,8 +15,8 @@ namespace OfficeEntry.WebApp.Pages.FloorPlans;
 public partial class Edit : IAsyncDisposable
 {
     private EditContext EditContext;
-    private IJSObjectReference module;
-    private DotNetObjectReference<Edit> objRef;
+    private IJSObjectReference _module;
+    private DotNetObjectReference<Edit> _objRef;
 
     [Parameter] public Guid FloorPlanId { get; set; }
 
@@ -27,17 +27,6 @@ public partial class Edit : IAsyncDisposable
     private FloorPlan FloorPlanDto { get; set; } // ViewModel
     private Workspace WorkspaceDto { get; set; } // ViewModel
 
-    protected async override Task OnInitializedAsync()
-    {
-        SubscribeToAction<GetFloorPlanResultAction>(async x =>
-        {
-            FloorPlanDto = x.Dto;
-
-            await UpdateCanvas();
-        });
-
-        await base.OnInitializedAsync();
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -46,12 +35,19 @@ public partial class Edit : IAsyncDisposable
             return;
         }
 
-        objRef = DotNetObjectReference.Create(this);
+        _objRef = DotNetObjectReference.Create(this);
 
-        module = await JSRuntime
+        _module = await JSRuntime
             .InvokeAsync<IJSObjectReference>("import", "/js/floorplan.js");
 
-        await module.InvokeVoidAsync("register", objRef, "en", "editMode");
+        await _module.InvokeVoidAsync("register", _objRef, "en", "editMode");
+
+        SubscribeToAction<GetFloorPlanResultAction>(async x =>
+        {
+            FloorPlanDto = x.Dto;
+
+            await UpdateCanvas();
+        });
 
         Dispatcher.Dispatch(new GetFloorPlanAction(FloorPlanId));
     }
@@ -80,7 +76,7 @@ public partial class Edit : IAsyncDisposable
 
         var circlesJson = JsonSerializer.Serialize(circles.ToArray());
 
-        await module.InvokeVoidAsync("start", FloorPlanDto.FloorPlanImage, circlesJson);
+        await _module.InvokeVoidAsync("start", FloorPlanDto.FloorPlanImage, circlesJson);
     }
 
     private async Task ShowCanvas(string imageSource)
@@ -138,7 +134,7 @@ public partial class Edit : IAsyncDisposable
                         EmployeeFullName = workspaceDescription,
                     });
 
-                _ = module.InvokeVoidAsync("updateCircle", data); // no await on purpose, only the animation run async
+                _ = _module.InvokeVoidAsync("updateCircle", data); // no await on purpose, only the animation run async
             }
         }
 
@@ -152,15 +148,15 @@ public partial class Edit : IAsyncDisposable
 
     public async ValueTask DisposeAsync()
     {
-        Dispose();
-
-        if (module is not null)
+        if (_module is not null)
         {
-            await module.InvokeVoidAsync("stop");
-            await module.DisposeAsync();
+            await _module.InvokeVoidAsync("stop");
+            await _module.DisposeAsync();
         }
 
-        objRef?.Dispose();
+        _objRef?.Dispose();
+
+        Dispose();
     }
 
     public class Circle

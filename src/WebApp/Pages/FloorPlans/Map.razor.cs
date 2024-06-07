@@ -21,7 +21,7 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 namespace OfficeEntry.WebApp.Pages.FloorPlans;
 
 [Authorize]
-public partial class Map : IAsyncDisposable
+public sealed partial class Map : IAsyncDisposable
 {
     [Parameter] public Guid FloorPlanId { get; set; }
 
@@ -43,19 +43,6 @@ public partial class Map : IAsyncDisposable
 
     public bool SurveyCompleted { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        SubscribeToAction<GetMapResultAction>(async x =>
-        {
-            FloorPlanDto = x.Dto;
-            AccessRequests = x.AccessRequests;
-
-            await UpdateCanvas();
-        });
-
-        await base.OnInitializedAsync();
-    }
-
     protected override Task OnParametersSetAsync()
     {
         // Invalidate the DTO and reload the Map
@@ -74,6 +61,14 @@ public partial class Map : IAsyncDisposable
         }
 
         await MapJsInterop.Register(this);
+
+        SubscribeToAction<GetMapResultAction>(async x =>
+        {
+            FloorPlanDto = x.Dto;
+            AccessRequests = x.AccessRequests;
+
+            await UpdateCanvas();
+        });
     }
 
     private async Task UpdateCanvas()
@@ -147,11 +142,13 @@ public partial class Map : IAsyncDisposable
 
     public async ValueTask DisposeAsync()
     {
+        if (MapJsInterop is MapJsInterop js)
+        {
+            await js.DisposeAsync();
+        }
+
         Dispose();
-
-        await MapJsInterop.Stop();
     }
-
 
     // TODO: rename method to something like `OccupiedWorkspaceLookup`
     public async Task OnSpying(SpyingEventArg e)
