@@ -1,9 +1,9 @@
-﻿using MediatR;
+﻿using Fluxor;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using OfficeEntry.WebApp.Store.TermsAndConditionsUseCase;
-using Fluxor;
 
 namespace OfficeEntry.WebApp.Pages;
 
