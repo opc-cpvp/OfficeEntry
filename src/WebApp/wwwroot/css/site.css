@@ -225,3 +225,7 @@ app {
 #blazor-spotsAvailablePerHours-wraper {
     height: 200px;
 }
+
+.btn-group {
+    margin-left: 5px;
+}

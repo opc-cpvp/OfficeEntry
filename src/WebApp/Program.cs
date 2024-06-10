@@ -31,9 +31,7 @@ public class Program
             .Enrich.WithProperty("Version", assemblyVersion)
             .Enrich.WithExceptionDetails(new DestructuringOptionsBuilder().WithDefaultDestructurers())
             .Filter.ByExcluding("RequestPath = '/health' and StatusCode = 200")
-            //.Filter.ByExcluding("RequestPath = '/_blazor/disconnect'")
-            //.Filter.ByExcluding("RequestPath = '/_blazor'")
-            //.Filter.ByExcluding(x => x.Exception is Microsoft.JSInterop.JSDisconnectedException)
+            .Filter.ByExcluding("RequestPath = '/_blazor/disconnect'")
             .CreateLogger();
 
         try
