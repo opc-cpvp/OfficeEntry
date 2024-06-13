@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>OfficeEntry.Plugins.snk</AssemblyOriginatorKeyFile>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
