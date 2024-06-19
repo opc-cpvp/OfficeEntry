@@ -130,9 +130,12 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 AccessRequest = request.AccessRequest
             });
 
-            var floorPlanCapacityAfterRequest = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(requestDate));
-            await ApprovePendingAccessRequests(request, floorPlanCapacityAfterRequest, accessRequests);
-            await NotifyEmergencyPersonnelOfCapacity(request, initialFloorPlanCapacity);
+            if (requestDate > DateTime.Today)
+            {
+                var floorPlanCapacityAfterRequest = await _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(requestDate));
+                await ApprovePendingAccessRequests(request, floorPlanCapacityAfterRequest, accessRequests);
+                await NotifyEmergencyPersonnelOfCapacity(request, initialFloorPlanCapacity);
+            }
 
             return Result.Success();
         }
