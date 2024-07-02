@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OfficeEntry.Application.Locations.Queries.GetAvailableWorkspaces
+namespace OfficeEntry.Application.Common.Models
 {
     public class AvailableWorkspaceViewModel
     {

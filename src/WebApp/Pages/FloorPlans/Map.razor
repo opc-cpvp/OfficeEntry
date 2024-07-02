@@ -3,12 +3,19 @@
 @page "/en/floor-plans/map/{FloorPlanId:guid}"
 @page "/fr/plans-d-etages/carte/{FloorPlanId:guid}"
 
-@if (SurveyCompleted)
+@if (SurveyCompleted && _errorMessage == null)
 {
     <Loading />
 }
 else
 {
+    @if (_errorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @_errorMessage
+            <br />
+        </div>
+    }
     <div class="row">
         <div class="col-12 col-md-2">
 

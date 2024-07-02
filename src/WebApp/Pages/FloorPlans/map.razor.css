@@ -9,3 +9,25 @@
     position: absolute;
     z-index: 1;
 }
+
+#error-message-container {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    margin-bottom: 15px;
+}
+
+#close-button {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    float: right;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s
+}
+
+.close-button:hover {
+    color: black;
+}
