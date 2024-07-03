@@ -10,51 +10,51 @@
 
 namespace OfficeEntry.Plugins
 {
-
+	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	public enum gc_accessrequestState
 	{
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Active = 0,
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Inactive = 1,
 	}
-
+	
 	/// <summary>
-	///
+	/// 
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("gc_accessrequest")]
 	public partial class gc_accessrequest : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	{
-
+		
 		/// <summary>
 		/// Default Constructor.
 		/// </summary>
 		[System.Diagnostics.DebuggerNonUserCode()]
-		public gc_accessrequest() :
+		public gc_accessrequest() : 
 				base(EntityLogicalName)
 		{
 		}
-
+		
 		public const string EntityLogicalName = "gc_accessrequest";
-
+		
 		public const string EntitySchemaName = "gc_accessrequest";
-
+		
 		public const string PrimaryIdAttribute = "gc_accessrequestid";
-
+		
 		public const string PrimaryNameAttribute = "gc_name";
-
+		
 		public const string EntityLogicalCollectionName = "gc_accessrequests";
-
+		
 		public const string EntitySetName = "gc_accessrequests";
-
+		
 		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
+		
 		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
-
+		
 		[System.Diagnostics.DebuggerNonUserCode()]
 		private void OnPropertyChanged(string propertyName)
 		{
@@ -63,7 +63,7 @@ namespace OfficeEntry.Plugins
 				this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
 			}
 		}
-
+		
 		[System.Diagnostics.DebuggerNonUserCode()]
 		private void OnPropertyChanging(string propertyName)
 		{
@@ -72,7 +72,7 @@ namespace OfficeEntry.Plugins
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
 			}
 		}
-
+		
 		/// <summary>
 		/// Unique identifier of the user who created the record.
 		/// </summary>
@@ -85,7 +85,7 @@ namespace OfficeEntry.Plugins
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
 			}
 		}
-
+		
 		/// <summary>
 		/// Date and time when the record was created.
 		/// </summary>
@@ -98,7 +98,7 @@ namespace OfficeEntry.Plugins
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
 			}
 		}
-
+		
 		/// <summary>
 		/// Unique identifier of the delegate user who created the record.
 		/// </summary>
@@ -118,7 +118,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("CreatedOnBehalfBy");
 			}
 		}
-
+		
 		/// <summary>
 		/// The primary email address for the entity.
 		/// </summary>
@@ -138,9 +138,9 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("EmailAddress");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_accessreason")]
 		public Microsoft.Xrm.Sdk.OptionSetValue gc_accessreason
@@ -158,7 +158,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_accessreason");
 			}
 		}
-
+		
 		/// <summary>
 		/// Unique identifier for entity instances
 		/// </summary>
@@ -186,7 +186,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_accessrequestId");
 			}
 		}
-
+		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_accessrequestid")]
 		public override System.Guid Id
 		{
@@ -201,9 +201,9 @@ namespace OfficeEntry.Plugins
 				this.gc_accessrequestId = value;
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_approvalstatus")]
 		public Microsoft.Xrm.Sdk.OptionSetValue gc_approvalstatus
@@ -221,9 +221,9 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_approvalstatus");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_building")]
 		public Microsoft.Xrm.Sdk.EntityReference gc_building
@@ -241,9 +241,9 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_building");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_dayofweek")]
 		public Microsoft.Xrm.Sdk.OptionSetValue gc_dayofweek
@@ -261,9 +261,9 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_dayofweek");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_delegate")]
 		public Microsoft.Xrm.Sdk.EntityReference gc_delegate
@@ -281,9 +281,9 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_delegate");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_details")]
 		public string gc_details
@@ -301,9 +301,9 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_details");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_employee")]
 		public Microsoft.Xrm.Sdk.EntityReference gc_employee
@@ -321,9 +321,9 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_employee");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_endtime")]
 		public System.Nullable<System.DateTime> gc_endtime
@@ -341,9 +341,9 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_endtime");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_firstaidattendant")]
 		public System.Nullable<bool> gc_firstaidattendant
@@ -361,9 +361,9 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_firstaidattendant");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_floor")]
 		public Microsoft.Xrm.Sdk.EntityReference gc_floor
@@ -381,9 +381,9 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_floor");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_flooremergencyofficer")]
 		public System.Nullable<bool> gc_flooremergencyofficer
@@ -401,7 +401,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_flooremergencyofficer");
 			}
 		}
-
+		
 		/// <summary>
 		/// Unique identifier for Floorplan associated with Access Request.
 		/// </summary>
@@ -421,9 +421,9 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_floorplan");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_guid")]
 		public string gc_guid
@@ -441,9 +441,9 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_guid");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_manager")]
 		public Microsoft.Xrm.Sdk.EntityReference gc_manager
@@ -461,7 +461,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_manager");
 			}
 		}
-
+		
 		/// <summary>
 		/// The name of the custom entity.
 		/// </summary>
@@ -481,9 +481,29 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_name");
 			}
 		}
-
+		
 		/// <summary>
-		///
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_office")]
+		public Microsoft.Xrm.Sdk.EntityReference gc_office
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("gc_office");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("gc_office");
+				this.SetAttributeValue("gc_office", value);
+				this.OnPropertyChanged("gc_office");
+			}
+		}
+		
+		/// <summary>
+		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_starttime")]
 		public System.Nullable<System.DateTime> gc_starttime
@@ -501,7 +521,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_starttime");
 			}
 		}
-
+		
 		/// <summary>
 		/// Unique identifier for Workspace associated with Access Request.
 		/// </summary>
@@ -521,7 +541,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("gc_workspace");
 			}
 		}
-
+		
 		/// <summary>
 		/// Sequence number of the import that created this record.
 		/// </summary>
@@ -541,7 +561,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("ImportSequenceNumber");
 			}
 		}
-
+		
 		/// <summary>
 		/// Unique identifier of the user who modified the record.
 		/// </summary>
@@ -554,7 +574,7 @@ namespace OfficeEntry.Plugins
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
 			}
 		}
-
+		
 		/// <summary>
 		/// Date and time when the record was modified.
 		/// </summary>
@@ -567,7 +587,7 @@ namespace OfficeEntry.Plugins
 				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
 			}
 		}
-
+		
 		/// <summary>
 		/// Unique identifier of the delegate user who modified the record.
 		/// </summary>
@@ -587,7 +607,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("ModifiedOnBehalfBy");
 			}
 		}
-
+		
 		/// <summary>
 		/// Date and time that the record was migrated.
 		/// </summary>
@@ -607,7 +627,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("OverriddenCreatedOn");
 			}
 		}
-
+		
 		/// <summary>
 		/// Owner Id
 		/// </summary>
@@ -627,7 +647,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("OwnerId");
 			}
 		}
-
+		
 		/// <summary>
 		/// Unique identifier for the business unit that owns the record
 		/// </summary>
@@ -640,7 +660,7 @@ namespace OfficeEntry.Plugins
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
 			}
 		}
-
+		
 		/// <summary>
 		/// Unique identifier for the team that owns the record.
 		/// </summary>
@@ -653,7 +673,7 @@ namespace OfficeEntry.Plugins
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
 			}
 		}
-
+		
 		/// <summary>
 		/// Unique identifier for the user that owns the record.
 		/// </summary>
@@ -666,7 +686,7 @@ namespace OfficeEntry.Plugins
 				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
 			}
 		}
-
+		
 		/// <summary>
 		/// Status of the Access Request
 		/// </summary>
@@ -701,7 +721,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("StateCode");
 			}
 		}
-
+		
 		/// <summary>
 		/// Reason for the status of the Access Request
 		/// </summary>
@@ -721,7 +741,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("StatusCode");
 			}
 		}
-
+		
 		/// <summary>
 		/// For internal use only.
 		/// </summary>
@@ -741,7 +761,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
 			}
 		}
-
+		
 		/// <summary>
 		/// Time zone code that was in use when the record was created.
 		/// </summary>
@@ -761,7 +781,7 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanged("UTCConversionTimeZoneCode");
 			}
 		}
-
+		
 		/// <summary>
 		/// Version Number
 		/// </summary>
