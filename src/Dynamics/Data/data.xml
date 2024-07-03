@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2024-06-27T18:53:00.2933722Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2024-07-03T14:10:01.7625958Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -413,8 +413,8 @@
         <field name="gc_workspaceid" value="52eb699b-9943-4ded-8b75-2fcd9cd8f5b4" />
         <field name="gc_y" value="306" />
         <field name="gc_name" value="865" />
-        <field name="gc_englishdescription" value="Director only" />
-        <field name="gc_frenchdescription" value="Directeur(trice) seulement" />
+        <field name="gc_englishdescription" value="Focus room" />
+        <field name="gc_frenchdescription" value="Salle de r&amp;#233;flexion" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="677ac4ee-a221-4060-b50c-2ffe41fc638f">
@@ -637,8 +637,8 @@
         <field name="gc_workspaceid" value="26588c45-a8ae-4d27-b036-569e7031a210" />
         <field name="gc_y" value="193" />
         <field name="gc_name" value="870" />
-        <field name="gc_englishdescription" value="Director only" />
-        <field name="gc_frenchdescription" value="Directeur(trice) seulement" />
+        <field name="gc_englishdescription" value="Focus Room" />
+        <field name="gc_frenchdescription" value="Salle de r&amp;#233;flexion" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="e20217a8-8440-4077-8240-56f27f45f6b7">
