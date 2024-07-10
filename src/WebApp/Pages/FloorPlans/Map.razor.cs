@@ -140,14 +140,17 @@ public sealed partial class Map : IAsyncDisposable
         return Guid.Parse(id);
     }
 
-    public async ValueTask DisposeAsync()
+    protected override async ValueTask DisposeAsyncCore(bool disposing)
     {
-        if (MapJsInterop is MapJsInterop js)
+        if (disposing)
         {
-            await js.DisposeAsync();
+            if (MapJsInterop is MapJsInterop js)
+            {
+                await js.DisposeAsync();
+            }
         }
 
-        Dispose();
+        await base.DisposeAsyncCore(disposing);
     }
 
     // TODO: rename method to something like `OccupiedWorkspaceLookup`

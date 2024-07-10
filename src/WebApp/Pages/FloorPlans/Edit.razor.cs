@@ -146,17 +146,20 @@ public partial class Edit : IAsyncDisposable
         Dispatcher.Dispatch(new UpdateFloorPlanAction(FloorPlanDto));
     }
 
-    public async ValueTask DisposeAsync()
+    protected override async ValueTask DisposeAsyncCore(bool disposing)
     {
-        if (_module is not null)
+        if (disposing)
         {
-            await _module.InvokeVoidAsync("stop");
-            await _module.DisposeAsync();
+            if (_module is not null)
+            {
+                await _module.InvokeVoidAsync("stop");
+                await _module.DisposeAsync();
+            }
+
+            _objRef?.Dispose();
         }
 
-        _objRef?.Dispose();
-
-        Dispose();
+        await base.DisposeAsyncCore(disposing);
     }
 
     public class Circle
