@@ -21,7 +21,7 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 namespace OfficeEntry.WebApp.Pages.FloorPlans;
 
 [Authorize]
-public sealed partial class Map : IAsyncDisposable
+public sealed partial class Map
 {
     [Parameter] public Guid FloorPlanId { get; set; }
 

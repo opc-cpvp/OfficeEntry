@@ -12,7 +12,7 @@ using System.Text.Json;
 namespace OfficeEntry.WebApp.Pages.FloorPlans;
 
 [Authorize(Policy = "EditUser")]
-public partial class Edit : IAsyncDisposable
+public partial class Edit
 {
     private EditContext EditContext;
     private IJSObjectReference _module;
