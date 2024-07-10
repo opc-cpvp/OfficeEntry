@@ -13,7 +13,6 @@ namespace OfficeEntry.Application
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddMediatR(config =>
             {
-
                 config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
                 config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
                 config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
@@ -22,10 +21,8 @@ namespace OfficeEntry.Application
             });
 
             //services.AddMediatR(new[] { Assembly.GetExecutingAssembly() }, configuration: c => { c.AsTransient(); });
-
             //services.AddMediatR(new[] { Assembly.GetExecutingAssembly() }, configuration: c => { c.AsTransient(); });
             //services.AddMediatR(config => config.AsSingleton(), new[] { Assembly.GetExecutingAssembly() });
-
 
             return services;
         }
