@@ -27,7 +27,7 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
         _notificationService = notificationService;
     }
 
-    public async Task<Unit> Handle(UpdateAccessRequestCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateAccessRequestCommand request, CancellationToken cancellationToken)
     {
         await _accessRequestService.UpdateAccessRequest(request.AccessRequest);
         await _notificationService.NotifyAccessRequestEmployee(new AccessRequestNotification
@@ -40,14 +40,14 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
         var isCancelled = request.AccessRequest.Status.Key == (int)AccessRequest.ApprovalStatus.Cancelled;
         if (!isCancelled)
         {
-            return Unit.Value;
+            return;
         }
 
         // Check if a floor plan is associated with the request
         var hasFloorPlan = request.AccessRequest.FloorPlan.Id != Guid.Empty;
         if (!hasFloorPlan)
         {
-            return Unit.Value;
+            return;
         }
 
         var requestDate = request.AccessRequest.StartTime;
@@ -57,7 +57,7 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
         await ApprovePendingAccessRequests(request, initialFloorPlanCapacity);
         await NotifyEmergencyPersonnelOfMaximumCapacity(request);
 
-        return Unit.Value;
+        return;
     }
 
     private async Task ApprovePendingAccessRequests(UpdateAccessRequestCommand request, FloorPlanCapacity floorPlanCapacity)

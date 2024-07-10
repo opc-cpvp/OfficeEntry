@@ -35,7 +35,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             _notificationService = notificationService;
         }
 
-        public async Task<Unit> Handle(CreateAccessRequestCommand request, CancellationToken cancellationToken)
+        public async Task Handle(CreateAccessRequestCommand request, CancellationToken cancellationToken)
         {
             var username = _currentUserService.UserId;
             var (_, currentContact) = await _userService.GetContactByUsername(username);
@@ -97,7 +97,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
 
             if (!result.Succeeded)
             {
-                return Unit.Value;
+                return;
             }
 
             // Update access request properties
@@ -122,7 +122,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 await NotifyEmergencyPersonnelOfCapacity(request, initialFloorPlanCapacity);
             }
 
-            return Unit.Value;
+            return;
         }
 
         private async Task ApprovePendingAccessRequests(CreateAccessRequestCommand request, FloorPlanCapacity floorPlanCapacity, ImmutableArray<AccessRequest> accessRequests)

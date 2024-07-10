@@ -19,12 +19,12 @@ public class UpdateHealthAndSafetyMeasuresStatementCommandHandler : IRequestHand
         _termsAndConditionsService = termsAndConditionsService;
     }
 
-    public async Task<Unit> Handle(UpdateHealthAndSafetyMeasuresStatementCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateHealthAndSafetyMeasuresStatementCommand request, CancellationToken cancellationToken)
     {
         var username = _currentUserService.UserId;
 
         await _termsAndConditionsService.SetHealthAndSafetyMeasuresFor(username, request.IsHealthAndSafetyMeasuresAccepted);
 
-        return Unit.Value;
+        return;
     }
 }

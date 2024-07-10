@@ -18,10 +18,10 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateFloorPlan
         _locationService = locationService;
     }
 
-    public async Task<Unit> Handle(UpdateFloorPlanCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateFloorPlanCommand request, CancellationToken cancellationToken)
     {
         await _locationService.UpdateFloorPlan(request.FloorPlan);
 
-        return Unit.Value;
+        return;
     }
 }
