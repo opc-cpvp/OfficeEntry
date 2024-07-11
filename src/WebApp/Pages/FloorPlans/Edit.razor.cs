@@ -152,8 +152,12 @@ public partial class Edit
         {
             if (_module is not null)
             {
-                await _module.InvokeVoidAsync("stop");
-                await _module.DisposeAsync();
+                try
+                {
+                    await _module.InvokeVoidAsync("stop");
+                    await _module.DisposeAsync();
+                }
+                catch (JSDisconnectedException) { }
             }
 
             _objRef?.Dispose();
