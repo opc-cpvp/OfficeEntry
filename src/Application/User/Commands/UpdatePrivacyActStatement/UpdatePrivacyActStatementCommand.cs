@@ -19,12 +19,12 @@ public class UpdatePrivacyActStatementCommandHandler : IRequestHandler<UpdatePri
         _termsAndConditionsService = termsAndConditionsService;
     }
 
-    public async Task<Unit> Handle(UpdatePrivacyActStatementCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdatePrivacyActStatementCommand request, CancellationToken cancellationToken)
     {
         var username = _currentUserService.UserId;
 
         await _termsAndConditionsService.SetPrivacyActStatementFor(username, request.IsPrivacyActStatementAccepted);
 
-        return Unit.Value;
+        return;
     }
 }

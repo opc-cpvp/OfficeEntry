@@ -12,7 +12,7 @@ using System.Text.Json;
 namespace OfficeEntry.WebApp.Pages.FloorPlans;
 
 [Authorize(Policy = "EditUser")]
-public partial class Edit : IAsyncDisposable
+public partial class Edit
 {
     private EditContext EditContext;
     private IJSObjectReference _module;
@@ -146,17 +146,24 @@ public partial class Edit : IAsyncDisposable
         Dispatcher.Dispatch(new UpdateFloorPlanAction(FloorPlanDto));
     }
 
-    public async ValueTask DisposeAsync()
+    protected override async ValueTask DisposeAsyncCore(bool disposing)
     {
-        if (_module is not null)
+        if (disposing)
         {
-            await _module.InvokeVoidAsync("stop");
-            await _module.DisposeAsync();
+            if (_module is not null)
+            {
+                try
+                {
+                    await _module.InvokeVoidAsync("stop");
+                    await _module.DisposeAsync();
+                }
+                catch (JSDisconnectedException) { }
+            }
+
+            _objRef?.Dispose();
         }
 
-        _objRef?.Dispose();
-
-        Dispose();
+        await base.DisposeAsyncCore(disposing);
     }
 
     public class Circle
