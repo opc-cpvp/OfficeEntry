@@ -347,4 +347,11 @@
     <value>fr/plans-d-etages/gestion</value>
     <comment>URI</comment>
   </data>
+  <data name="Instructions on Booking Workspace" xml:space="preserve">
+    <value>Instructions sur la façon de réserver un poste de travail</value>
+  </data>
+  <data name="Instructions-on-Booking-Workspace" xml:space="preserve">
+    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-528986</value>
+    <comment>URl</comment>
+  </data>
 </root>

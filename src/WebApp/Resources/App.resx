@@ -232,6 +232,13 @@
   <data name="Hello," xml:space="preserve">
     <value>Hello,</value>
   </data>
+  <data name="Instructions on Booking Workspace" xml:space="preserve">
+    <value>How to Book a Workstation</value>
+  </data>
+  <data name="Instructions-on-Booking-Workspace" xml:space="preserve">
+    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-526726</value>
+    <comment>URl</comment>
+  </data>
   <data name="LanguageToggle" xml:space="preserve">
     <value>Français</value>
   </data>
