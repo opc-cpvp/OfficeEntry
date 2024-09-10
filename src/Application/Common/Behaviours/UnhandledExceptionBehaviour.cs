@@ -23,7 +23,14 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavio
         {
             var requestName = typeof(TRequest).Name;
 
-            _logger.LogError(ex, "OfficeEntry Request: Unhandled Exception for Request {Name} {@Request}", requestName, request);
+            if (ex.Message?.StartsWith("Unhandled exception in circuit") ?? false)
+            {
+                _logger.LogWarning(ex, "OfficeEntry Request: Unhandled Exception for Request {Name} {@Request}", requestName, request);
+            }
+            else
+            {
+                _logger.LogError(ex, "OfficeEntry Request: Unhandled Exception for Request {Name} {@Request}", requestName, request);
+            }
 
             throw;
         }
