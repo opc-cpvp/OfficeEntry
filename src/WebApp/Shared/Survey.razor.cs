@@ -77,8 +77,8 @@ public partial class Survey
 
         await _module.InvokeVoidAsync("register", _objectReference, locale);
         await _module.InvokeVoidAsync("init", Id, Class, SurveyUrl, dataValue);
-        await JSRuntime.InvokeAsync<object>("initializeDatepicker", locale);
-        await JSRuntime.InvokeAsync<object>("initializeSelect2", locale);
+        await JSRuntime.InvokeVoidAsync("initializeDatepicker", locale);
+        await JSRuntime.InvokeVoidAsync("initializeSelect2", locale);
     }
 
     public async Task<string> GetData()

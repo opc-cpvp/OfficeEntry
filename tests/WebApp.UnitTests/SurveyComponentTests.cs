@@ -36,8 +36,8 @@ public class SurveyComponentTests : TestContext
             .SetupVoid(invocation => invocation.Identifier == "init")
             .SetVoidResult();
 
-        var plannedInitializeDatepicker = JSInterop.Setup<object>("initializeDatepicker", "en");
-        var plannedinitializeSelect2 = JSInterop.Setup<object>("initializeSelect2");
+        var plannedInitializeDatepicker = JSInterop.SetupVoid("initializeDatepicker", "en");
+        var plannedinitializeSelect2 = JSInterop.SetupVoid("initializeSelect2");
     }
 
     [Fact]
