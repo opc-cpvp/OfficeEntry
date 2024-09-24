@@ -143,4 +143,9 @@ public class UserService : IUserService
         _cachedUserIds[username] = contactId;
         return (Result.Success(), _cachedUserIds[username]);
     }
+
+    public async Task<(Result Result, bool isFirstResponder)> IsContactFirstResponder(string username)
+    {
+        throw new NotImplementedException();
+    }
 }

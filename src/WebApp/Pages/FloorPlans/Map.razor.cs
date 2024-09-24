@@ -6,6 +6,8 @@ using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
+using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Application.User.Queries.GetMyTermsAndConditions;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Models;
@@ -32,6 +34,7 @@ public sealed partial class Map
     [Inject] private NavigationManager NavigationManager { get; set; }
     [Inject] private IState<MapState> MapState { get; set; }
     [Inject] private IMapJsInterop MapJsInterop { get; set; }
+    [Inject] private ICurrentUserService CurrentUserService { get; set; }
 
     private Survey mySurvey;
     private Domain.Entities.AccessRequest _selectedAccessRequest;
@@ -59,8 +62,10 @@ public sealed partial class Map
         {
             return;
         }
-
         await MapJsInterop.Register(this);
+
+        // TODO: Handle this variable to set calendar
+        var isContactFirstResponder = await Mediator.Send(new GetContactFirstResponderQuery());
 
         SubscribeToAction<GetMapResultAction>(async x =>
         {
