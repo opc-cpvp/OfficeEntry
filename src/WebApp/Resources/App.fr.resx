@@ -347,4 +347,7 @@
     <value>fr/plans-d-etages/gestion</value>
     <comment>URI</comment>
   </data>
+  <data name="result-workstation-already-booked" xml:space="preserve">
+    <value>Le poste de travail que vous avez choisi est déjà réservé. S'il vous plait, en choisir un autre.</value>
+  </data>
 </root>
