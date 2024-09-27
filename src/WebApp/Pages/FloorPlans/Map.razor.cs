@@ -6,6 +6,7 @@ using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
+using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Models;
@@ -40,7 +41,7 @@ public sealed partial class Map : IAsyncDisposable
     private int _endTime = 17;
     private FloorPlan FloorPlanDto { get; set; } // ViewModel
     private IEnumerable<Domain.Entities.AccessRequest> AccessRequests { get; set; } // ViewModel
-    private string _errorMessage;
+    private string _errorMessage = string.Empty;
 
     public bool SurveyCompleted { get; set; }
 
@@ -221,12 +222,13 @@ public sealed partial class Map : IAsyncDisposable
             AccessRequest = accessRequest
         });
 
-        if (!response.Succeeded)
+        if (!response.Succeeded && response.GetType() == typeof(AlreadyBookedResult))
         {
-            _errorMessage = response.Errors[0];
-
-            // Work in progress, not sure if this function refreshes the map
-            await OnParametersSetAsync();
+            _errorMessage = Localizer[response.Errors[0]];
+            await mySurvey.InitializeSurvey();
+            SurveyCompleted = false;
+            Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
+            StateHasChanged();
             return;
         }
 
@@ -243,6 +245,8 @@ public sealed partial class Map : IAsyncDisposable
 
     public async Task OnValueChanged(ValueChangedEventArgs e)
     {
+        _errorMessage = string.Empty;
+
         var options = JsonSerializer
             .Deserialize<SurveyQuestion>(
                 json: e.Options,

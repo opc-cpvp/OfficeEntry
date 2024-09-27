@@ -20,7 +20,6 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
         private readonly IUserService _userService;
         private readonly ILocationService _locationService;
         private readonly INotificationService _notificationService;
-        private string[] error;
 
         public CreateAccessRequestCommandHandler(
             IAccessRequestService accessRequestService,
@@ -96,23 +95,23 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             }
 
             // Access request Id matches Id that is already booked
-            var accessRequestAlreadyBooked = accessRequests.Where(ar =>
-                    ar.Workspace.Id == request.AccessRequest.Workspace.Id &&
-                    ar.StartTime < request.AccessRequest.StartTime &&
-                    ar.EndTime > request.AccessRequest.EndTime
+            var workspaceAlreadyBooked = accessRequests.Where(ar =>
+                    ar.Workspace?.Id == request.AccessRequest.Workspace?.Id &&
+                    ar.StartTime <= request.AccessRequest.StartTime &&
+                    ar.EndTime >= request.AccessRequest.EndTime
                 )
                 .Any();
-            
-            if (accessRequestAlreadyBooked)
+
+            if (workspaceAlreadyBooked)
             {
-                return Result.Failure(error = new string[1] { "Workspace already booked. Please select another workspace" });
+                return new AlreadyBookedResult();
             }
 
             var (result, accessRequest) = await _accessRequestService.CreateAccessRequest(request.AccessRequest);
 
             if (!result.Succeeded)
             {
-                return Result.Failure(error = new string[1] { "error" });
+                return result;
             }
 
             // Update access request properties
