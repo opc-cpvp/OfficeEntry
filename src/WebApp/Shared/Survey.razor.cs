@@ -40,6 +40,7 @@ public partial class Survey
     private DotNetObjectReference<Survey> _objectReference;
 
     private bool _isErrorActive;
+    private string _locale;
 
     [Inject]
     public MediatR.IMediator Mediator { get; set; }
@@ -66,19 +67,24 @@ public partial class Survey
         }
 
         _module = await JSRuntime
-            .InvokeAsync<IJSObjectReference>("import", "/js/survey.js");
+           .InvokeAsync<IJSObjectReference>("import", "/js/survey.js");
 
         var locale = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-        locale = locale == Locale.French ? locale : Locale.English;
+        _locale = locale == Locale.French ? locale : Locale.English;
 
         _objectReference = DotNetObjectReference.Create(this);
 
-        var dataValue = string.IsNullOrWhiteSpace(Data) ? "{}" : Data;
+        await _module.InvokeVoidAsync("register", _objectReference, _locale);
+        await InitializeSurvey();
+        await JSRuntime.InvokeAsync<object>("initializeDatepicker", _locale);
+        await JSRuntime.InvokeAsync<object>("initializeSelect2", _locale);
+    }
 
-        await _module.InvokeVoidAsync("register", _objectReference, locale);
+    public async Task InitializeSurvey()
+    {
+        var dataValue = string.IsNullOrWhiteSpace(Data) ? "{}" : Data;
         await _module.InvokeVoidAsync("init", Id, Class, SurveyUrl, dataValue);
-        await JSRuntime.InvokeAsync<object>("initializeDatepicker", locale);
-        await JSRuntime.InvokeAsync<object>("initializeSelect2", locale);
+
     }
 
     public async Task<string> GetData()
