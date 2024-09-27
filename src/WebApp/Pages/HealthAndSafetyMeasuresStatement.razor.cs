@@ -37,10 +37,14 @@ public partial class HealthAndSafetyMeasuresStatement
         NavigationManager.NavigateTo(Localizer["my-requests"]);
     }
 
-    protected override void Dispose(bool disposing)
+    protected override ValueTask DisposeAsyncCore(bool disposing)
     {
-        TermsAndConditionsState.StateChanged -= TermsAndConditionsState_StateChanged;
-        base.Dispose(disposing);
+        if (disposing)
+        {
+            TermsAndConditionsState.StateChanged -= TermsAndConditionsState_StateChanged;
+        }
+
+        return base.DisposeAsyncCore(disposing);
     }
 
     protected override void OnInitialized()

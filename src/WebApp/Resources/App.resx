@@ -213,10 +213,10 @@
     <value>From</value>
   </data>
   <data name="Guide for Employees" xml:space="preserve">
-    <value>Guide for Employees</value>
+    <value>Workplace Handbook In An Hybrid Model</value>
   </data>
   <data name="guide-for-employees" xml:space="preserve">
-    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-402771</value>
+    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-497341</value>
     <comment>URL</comment>
   </data>
   <data name="h:mm tt" xml:space="preserve">
@@ -231,6 +231,13 @@
   </data>
   <data name="Hello," xml:space="preserve">
     <value>Hello,</value>
+  </data>
+  <data name="Instructions on Booking Workspace" xml:space="preserve">
+    <value>How to Book a Workstation</value>
+  </data>
+  <data name="Instructions-on-Booking-Workspace" xml:space="preserve">
+    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-526726</value>
+    <comment>URl</comment>
   </data>
   <data name="LanguageToggle" xml:space="preserve">
     <value>Français</value>

@@ -22,7 +22,7 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 namespace OfficeEntry.WebApp.Pages.FloorPlans;
 
 [Authorize]
-public sealed partial class Map : IAsyncDisposable
+public sealed partial class Map
 {
     [Parameter] public Guid FloorPlanId { get; set; }
 
@@ -142,14 +142,17 @@ public sealed partial class Map : IAsyncDisposable
         return Guid.Parse(id);
     }
 
-    public async ValueTask DisposeAsync()
+    protected override async ValueTask DisposeAsyncCore(bool disposing)
     {
-        if (MapJsInterop is MapJsInterop js)
+        if (disposing)
         {
-            await js.DisposeAsync();
+            if (MapJsInterop is MapJsInterop js)
+            {
+                await js.DisposeAsync();
+            }
         }
 
-        Dispose();
+        await base.DisposeAsyncCore(disposing);
     }
 
     // TODO: rename method to something like `OccupiedWorkspaceLookup`

@@ -19,6 +19,11 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavio
         {
             return await next();
         }
+        catch (TaskCanceledException ex) when (ex.Message?.StartsWith("Unhandled exception in circuit") ?? false)
+        {
+            // Do not log TaskCanceledException when it is thrown by the circuit
+            throw;
+        }
         catch (Exception ex)
         {
             var requestName = typeof(TRequest).Name;

@@ -37,10 +37,14 @@ public partial class PrivacyActStatement
         NavigationManager.NavigateTo(Localizer["my-requests"]);
     }
 
-    protected override void Dispose(bool disposing)
+    protected override ValueTask DisposeAsyncCore(bool disposing)
     {
-        TermsAndConditionsState.StateChanged -= MyTermsAndConditionsState_StateChanged;
-        base.Dispose(disposing);
+        if (disposing)
+        {
+            TermsAndConditionsState.StateChanged -= MyTermsAndConditionsState_StateChanged;
+        }
+
+        return base.DisposeAsyncCore(disposing);
     }
 
     protected override void OnInitialized()

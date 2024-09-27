@@ -286,10 +286,10 @@
     <value>Rafraîchir la liste</value>
   </data>
   <data name="Guide for Employees" xml:space="preserve">
-    <value>Guide à l'intention des employés</value>
+    <value>Guide du milieu de travail en modèle hybride</value>
   </data>
   <data name="guide-for-employees" xml:space="preserve">
-    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-406180</value>
+    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-525314</value>
     <comment>URL</comment>
   </data>
   <data name="Error Message" xml:space="preserve">
@@ -349,5 +349,12 @@
   </data>
   <data name="result-workstation-already-booked" xml:space="preserve">
     <value>Le poste de travail que vous avez choisi est déjà réservé. S'il vous plait, en choisir un autre.</value>
+  </data>
+  <data name="Instructions on Booking Workspace" xml:space="preserve">
+    <value>Instructions sur la façon de réserver un poste de travail</value>
+  </data>
+  <data name="Instructions-on-Booking-Workspace" xml:space="preserve">
+    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-528986</value>
+    <comment>URl</comment>
   </data>
 </root>

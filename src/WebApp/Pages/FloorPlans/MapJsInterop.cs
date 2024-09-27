@@ -80,8 +80,13 @@ public sealed class MapJsInterop : IAsyncDisposable, IMapJsInterop
         if (_moduleTask.IsValueCreated)
         {
             var module = await _moduleTask.Value;
-            await module.InvokeVoidAsync("stop");
-            await module.DisposeAsync();
+
+            try
+            {
+                await module.InvokeVoidAsync("stop");
+                await module.DisposeAsync();
+            }
+            catch (JSDisconnectedException) { }
         }
 
         _objRef?.Dispose();
