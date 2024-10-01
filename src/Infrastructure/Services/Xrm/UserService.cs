@@ -1,11 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using OfficeEntry.Application.Common.Interfaces;
+﻿using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 using Simple.OData.Client;
 using System.Collections.Concurrent;
-using System.Reflection.Metadata.Ecma335;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm;
 
