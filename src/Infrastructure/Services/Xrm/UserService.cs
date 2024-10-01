@@ -145,24 +145,6 @@ public class UserService : IUserService
         _cachedUserIds[username] = contactId;
         return (Result.Success(), _cachedUserIds[username]);
     }
-
-    /*
-    public async Task<(Result Result, bool isFirstResponder)> IsContactFirstResponder(string username)
-    {
-        var user = await _client.For<contact>()
-            .Filter(c => c.gc_username == "PARTNERS\\bnimpagaritse")
-            .Expand(c => c.gc_building_contact_firstaidattendants)
-            .Expand(c => c.gc_building_contact_flooremergencyofficers)
-            .FindEntriesAsync();
-
-        bool isFirstResponder = user.Any(c =>
-            c.gc_building_contact_firstaidattendants.Any() ||
-            c.gc_building_contact_flooremergencyofficers.Any()
-        );
-
-        return (Result.Success(), true );
-    }
-    */
     
     public async Task<(Result Result, bool isFirstResponder)> IsContactFirstResponder(string username)
     {
