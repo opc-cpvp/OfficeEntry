@@ -3,7 +3,7 @@
 @page "/en/floor-plans/map/{FloorPlanId:guid}"
 @page "/fr/plans-d-etages/carte/{FloorPlanId:guid}"
 
-@if (SurveyCompleted)
+@if (SurveyCompleted && string.IsNullOrWhiteSpace(_errorMessage))
 {
     <Loading />
 }
@@ -11,6 +11,13 @@ else
 {
     <div class="row">
         <div class="col-12 col-md-2">
+            @if (!string.IsNullOrWhiteSpace(_errorMessage))
+            {
+                <div class="alert alert-danger">
+                    @_errorMessage
+                    <br />
+                </div>
+            }
 
             @if (FloorPlanDto is not null)
             {
