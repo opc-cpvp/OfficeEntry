@@ -17,6 +17,7 @@ using OfficeEntry.WebApp.Store.DelegateAccessRequestsUseCase;
 using OfficeEntry.WebApp.Store.FloorPlanUseCases.Map;
 using System.Globalization;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using static OfficeEntry.WebApp.Pages.FloorPlans.MapJsInterop;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -66,6 +67,71 @@ public sealed partial class Map
 
         // TODO: Handle this variable to set calendar
         var isContactFirstResponder = await Mediator.Send(new GetContactFirstResponderQuery());
+
+        if (isContactFirstResponder)
+        {
+            var fileName = "bookWorkspaceSurvey.json";
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "sample-data", fileName);
+            var jsonData = await File.ReadAllTextAsync(filePath);
+
+            var surveyJson = JsonNode.Parse(jsonData);
+
+            if (surveyJson?["pages"] is JsonArray pages)
+            {
+                foreach (var page in pages)
+                {
+                    if (page?["elements"] is JsonArray elements)
+                    {
+                        foreach (var element in elements)
+                        {
+                            if (element?["maxValueExpression"] != null)
+                            {
+                                element["maxValueExpression"] = "today(28)";
+                            }
+                        }
+                    }
+                }
+            }
+
+            var updatedJsonData = surveyJson?.ToJsonString();
+
+            if (updatedJsonData != null)
+            {
+                await File.WriteAllTextAsync(filePath, updatedJsonData);
+            }
+        }
+        else
+        {
+            var fileName = "bookWorkspaceSurvey.json";
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "sample-data", fileName);
+            var jsonData = await File.ReadAllTextAsync(filePath);
+
+            var surveyJson = JsonNode.Parse(jsonData);
+
+            if (surveyJson?["pages"] is JsonArray pages)
+            {
+                foreach (var page in pages)
+                {
+                    if (page?["elements"] is JsonArray elements)
+                    {
+                        foreach (var element in elements)
+                        {
+                            if (element?["maxValueExpression"] != null)
+                            {
+                                element["maxValueExpression"] = "today(14)";
+                            }
+                        }
+                    }
+                }
+            }
+
+            var updatedJsonData = surveyJson?.ToJsonString();
+
+            if (updatedJsonData != null)
+            {
+                await File.WriteAllTextAsync(filePath, updatedJsonData);
+            }
+        }
 
         SubscribeToAction<GetMapResultAction>(async x =>
         {

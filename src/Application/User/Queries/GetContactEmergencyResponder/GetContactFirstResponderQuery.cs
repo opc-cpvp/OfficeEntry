@@ -31,6 +31,7 @@ public class GetContactFirstResponderQueryHandler : IRequestHandler<GetContactFi
         // TODO: what should we do with the result
         if (!result.Result.Succeeded)
         {
+            throw new InvalidOperationException();
         }
 
         return result.isFirstResponder;

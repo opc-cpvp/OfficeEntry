@@ -1,9 +1,11 @@
-﻿using OfficeEntry.Application.Common.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Infrastructure.Services.Xrm.Entities;
 using Simple.OData.Client;
 using System.Collections.Concurrent;
+using System.Reflection.Metadata.Ecma335;
 
 namespace OfficeEntry.Infrastructure.Services.Xrm;
 
@@ -144,8 +146,40 @@ public class UserService : IUserService
         return (Result.Success(), _cachedUserIds[username]);
     }
 
+    /*
     public async Task<(Result Result, bool isFirstResponder)> IsContactFirstResponder(string username)
     {
-        throw new NotImplementedException();
+        var user = await _client.For<contact>()
+            .Filter(c => c.gc_username == "PARTNERS\\bnimpagaritse")
+            .Expand(c => c.gc_building_contact_firstaidattendants)
+            .Expand(c => c.gc_building_contact_flooremergencyofficers)
+            .FindEntriesAsync();
+
+        bool isFirstResponder = user.Any(c =>
+            c.gc_building_contact_firstaidattendants.Any() ||
+            c.gc_building_contact_flooremergencyofficers.Any()
+        );
+
+        return (Result.Success(), true );
+    }
+    */
+    
+    public async Task<(Result Result, bool isFirstResponder)> IsContactFirstResponder(string username)
+    {
+        var userIdResult = await this.GetUserId(username);
+
+        var contactIsFirstAid = (await _client.For<contact>()
+            .Key(userIdResult.UserId)
+            .NavigateTo(c => c.gc_building_contact_firstaidattendants)
+            .FindEntriesAsync())
+            .Any();
+
+        var contactIsEmergencyOfficer = (await _client.For<contact>()
+            .Key(userIdResult.UserId)
+            .NavigateTo(c => c.gc_building_contact_flooremergencyofficers)
+            .FindEntriesAsync())
+            .Any();
+
+        return (Result.Success(), contactIsFirstAid || contactIsEmergencyOfficer);
     }
 }
