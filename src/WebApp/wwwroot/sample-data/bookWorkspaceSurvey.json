@@ -1,4 +1,4 @@
-﻿{
+{
   "locale": "en",
   "pages": [
     {
@@ -9,7 +9,15 @@
           "name": "floorplan",
           "title": "Floorplan",
           "clearIfInvisible": "none",
-          "visible":  false
+          "visible": false
+        },
+        {
+          "type": "number",
+          "name": "numberOfDaysAllowed",
+          "title": "numberOfDaysAllowed",
+          "defaultValue": 14,
+          "clearIfInvisible": "none",
+          "visible": false
         },
         {
           "type": "radiogroup",
@@ -71,7 +79,7 @@
           "isRequired": true,
           "dateFormat": "mm/dd/yy",
           "inputType": "date",
-          "maxValueExpression": "today(14)"
+          "maxValueExpression": "today({numberOfDaysAllowed})"
         },
         {
           "type": "dropdown",

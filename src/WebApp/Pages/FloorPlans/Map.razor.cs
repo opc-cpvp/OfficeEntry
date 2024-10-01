@@ -42,6 +42,7 @@ public sealed partial class Map
     private DateOnly _selectedDate = DateOnly.FromDateTime(DateTime.Now.AddDays(1));
     private int _startTime = 9;
     private int _endTime = 17;
+    private bool _isContactFirstResponder = false;
     private FloorPlan FloorPlanDto { get; set; } // ViewModel
     private IEnumerable<Domain.Entities.AccessRequest> AccessRequests { get; set; } // ViewModel
 
@@ -63,75 +64,10 @@ public sealed partial class Map
         {
             return;
         }
+
+        _isContactFirstResponder = await Mediator.Send(new GetContactFirstResponderQuery());
+
         await MapJsInterop.Register(this);
-
-        // TODO: Handle this variable to set calendar
-        var isContactFirstResponder = await Mediator.Send(new GetContactFirstResponderQuery());
-
-        if (isContactFirstResponder)
-        {
-            var fileName = "bookWorkspaceSurvey.json";
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "sample-data", fileName);
-            var jsonData = await File.ReadAllTextAsync(filePath);
-
-            var surveyJson = JsonNode.Parse(jsonData);
-
-            if (surveyJson?["pages"] is JsonArray pages)
-            {
-                foreach (var page in pages)
-                {
-                    if (page?["elements"] is JsonArray elements)
-                    {
-                        foreach (var element in elements)
-                        {
-                            if (element?["maxValueExpression"] != null)
-                            {
-                                element["maxValueExpression"] = "today(28)";
-                            }
-                        }
-                    }
-                }
-            }
-
-            var updatedJsonData = surveyJson?.ToJsonString();
-
-            if (updatedJsonData != null)
-            {
-                await File.WriteAllTextAsync(filePath, updatedJsonData);
-            }
-        }
-        else
-        {
-            var fileName = "bookWorkspaceSurvey.json";
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "sample-data", fileName);
-            var jsonData = await File.ReadAllTextAsync(filePath);
-
-            var surveyJson = JsonNode.Parse(jsonData);
-
-            if (surveyJson?["pages"] is JsonArray pages)
-            {
-                foreach (var page in pages)
-                {
-                    if (page?["elements"] is JsonArray elements)
-                    {
-                        foreach (var element in elements)
-                        {
-                            if (element?["maxValueExpression"] != null)
-                            {
-                                element["maxValueExpression"] = "today(14)";
-                            }
-                        }
-                    }
-                }
-            }
-
-            var updatedJsonData = surveyJson?.ToJsonString();
-
-            if (updatedJsonData != null)
-            {
-                await File.WriteAllTextAsync(filePath, updatedJsonData);
-            }
-        }
 
         SubscribeToAction<GetMapResultAction>(async x =>
         {
