@@ -19,7 +19,7 @@ else
                     <div class="card-body" style="padding: 0rem;">
                         <Survey @ref="mySurvey"
                         Id="surveyElementSubmitAccessRequest"
-                        Data="@( System.Text.Json.JsonSerializer.Serialize(new { floorplan = FloorPlanId, numberOfDaysAllowed = isContactFirstResponder ? 28 : 14, bookingFor = "Myself", startDate = _selectedDate.ToString("MM/dd/yyyy"), startTime = _startTime, endTime = _endTime, requireWorkstation = true,  }) )"
+                        Data="@( System.Text.Json.JsonSerializer.Serialize(new { floorplan = FloorPlanId, numberOfDaysAllowed = _isContactFirstResponder ? 28 : 14, bookingFor = "Myself", startDate = _selectedDate.ToString("MM/dd/yyyy"), startTime = _startTime, endTime = _endTime, requireWorkstation = true,  }) )"
                         SurveyUrl="sample-data/bookWorkspaceSurvey.json"
                         OnSurveyCompleted="@OnSurveyCompleted"
                         OnValueChanged="@OnValueChanged" />

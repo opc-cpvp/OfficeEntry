@@ -17,7 +17,6 @@ using OfficeEntry.WebApp.Store.DelegateAccessRequestsUseCase;
 using OfficeEntry.WebApp.Store.FloorPlanUseCases.Map;
 using System.Globalization;
 using System.Text.Json;
-using System.Text.Json.Nodes;
 using static OfficeEntry.WebApp.Pages.FloorPlans.MapJsInterop;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
