@@ -75,16 +75,10 @@ public partial class Survey
         _objectReference = DotNetObjectReference.Create(this);
 
         await _module.InvokeVoidAsync("register", _objectReference, _locale);
-        await InitializeSurvey();
-        await JSRuntime.InvokeVoidAsync("initializeDatepicker", _locale);
-        await JSRuntime.InvokeVoidAsync("initializeSelect2", _locale);
-    }
-
-    public async Task InitializeSurvey()
-    {
         var dataValue = string.IsNullOrWhiteSpace(Data) ? "{}" : Data;
         await _module.InvokeVoidAsync("init", Id, Class, SurveyUrl, dataValue);
-
+        await JSRuntime.InvokeVoidAsync("initializeDatepicker", _locale);
+        await JSRuntime.InvokeVoidAsync("initializeSelect2", _locale);
     }
 
     public async Task<string> GetData()

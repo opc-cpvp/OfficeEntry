@@ -228,7 +228,6 @@ public sealed partial class Map
         if (!response.Succeeded && response.GetType() == typeof(AlreadyBookedResult))
         {
             _errorMessage = Localizer[response.Errors[0]];
-            await mySurvey.InitializeSurvey();
             SurveyCompleted = false;
             Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
             StateHasChanged();
