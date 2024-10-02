@@ -314,6 +314,9 @@
     <value>en/requests-for-my-colleagues</value>
     <comment>URI</comment>
   </data>
+  <data name="result-workstation-already-booked" xml:space="preserve">
+    <value>The workstation you selected is already booked. Please select another one. </value>
+  </data>
   <data name="Review" xml:space="preserve">
     <value>Review</value>
   </data>

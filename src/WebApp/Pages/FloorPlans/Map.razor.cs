@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Application.User.Queries.GetIsContactFirstResponder;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
@@ -44,6 +45,7 @@ public sealed partial class Map
     private bool _isContactFirstResponder = false;
     private FloorPlan FloorPlanDto { get; set; } // ViewModel
     private IEnumerable<Domain.Entities.AccessRequest> AccessRequests { get; set; } // ViewModel
+    private string _errorMessage = string.Empty;
 
     public bool SurveyCompleted { get; set; }
 
@@ -223,11 +225,20 @@ public sealed partial class Map
             accessRequest.Employee = new Contact { Id = submission.otherIndividual };
         }
 
-        await Mediator.Send(new CreateAccessRequestCommand
+        var response = await Mediator.Send(new CreateAccessRequestCommand
         {
             BaseUrl = NavigationManager.BaseUri,
             AccessRequest = accessRequest
         });
+
+        if (!response.Succeeded && response.GetType() == typeof(AlreadyBookedResult))
+        {
+            _errorMessage = Localizer[response.Errors[0]];
+            SurveyCompleted = false;
+            Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
+            StateHasChanged();
+            return;
+        }
 
         if (isDelegate)
         {
@@ -242,6 +253,8 @@ public sealed partial class Map
 
     public async Task OnValueChanged(ValueChangedEventArgs e)
     {
+        _errorMessage = string.Empty;
+
         var options = JsonSerializer
             .Deserialize<SurveyQuestion>(
                 json: e.Options,

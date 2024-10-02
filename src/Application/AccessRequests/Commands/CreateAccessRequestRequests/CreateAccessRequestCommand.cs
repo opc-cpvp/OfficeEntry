@@ -1,18 +1,19 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
 using System.Collections.Immutable;
 
 namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests
 {
-    public record CreateAccessRequestCommand : IRequest
+    public record CreateAccessRequestCommand : IRequest<Result>
     {
         public string BaseUrl { get; init; }
         public AccessRequest AccessRequest { get; init; }
     }
 
-    public class CreateAccessRequestCommandHandler : IRequestHandler<CreateAccessRequestCommand>
+    public class CreateAccessRequestCommandHandler : IRequestHandler<CreateAccessRequestCommand, Result>
     {
         private readonly IAccessRequestService _accessRequestService;
         private readonly ICurrentUserService _currentUserService;
@@ -35,7 +36,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             _notificationService = notificationService;
         }
 
-        public async Task Handle(CreateAccessRequestCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(CreateAccessRequestCommand request, CancellationToken cancellationToken)
         {
             var username = _currentUserService.UserId;
             var (_, currentContact) = await _userService.GetContactByUsername(username);
@@ -93,11 +94,24 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 request.AccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
             }
 
+            // Access request Id matches Id that is already booked
+            var workspaceAlreadyBooked = accessRequests.Where(ar =>
+                    ar.Workspace?.Id == request.AccessRequest.Workspace?.Id &&
+                    ar.StartTime <= request.AccessRequest.StartTime &&
+                    ar.EndTime >= request.AccessRequest.EndTime
+                )
+                .Any();
+
+            if (workspaceAlreadyBooked)
+            {
+                return new AlreadyBookedResult();
+            }
+
             var (result, accessRequest) = await _accessRequestService.CreateAccessRequest(request.AccessRequest);
 
             if (!result.Succeeded)
             {
-                return;
+                return result;
             }
 
             // Update access request properties
@@ -122,7 +136,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 await NotifyEmergencyPersonnelOfCapacity(request, initialFloorPlanCapacity);
             }
 
-            return;
+            return Result.Success();
         }
 
         private async Task ApprovePendingAccessRequests(CreateAccessRequestCommand request, FloorPlanCapacity floorPlanCapacity, ImmutableArray<AccessRequest> accessRequests)

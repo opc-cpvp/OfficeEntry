@@ -1,7 +1,5 @@
 ﻿using Microsoft.JSInterop;
 using OfficeEntry.Application.Common.Interfaces;
-using OfficeEntry.Infrastructure.Identity;
-using OfficeEntry.WebApp.Area.Identity.Services;
 using System.Text.Json;
 
 namespace OfficeEntry.WebApp.Pages.FloorPlans;
