@@ -146,7 +146,7 @@ public class UserService : IUserService
     
     public async Task<(Result Result, bool isFirstResponder)> IsContactFirstResponder(string username)
     {
-        var userIdResult = await this.GetUserId(username);
+        var userIdResult = await GetUserId(username);
 
         var contactIsFirstAid = (await _client.For<contact>()
             .Key(userIdResult.UserId)

@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
 using OfficeEntry.Application.Common.Interfaces;
-using OfficeEntry.Application.User.Queries.GetMyTermsAndConditions;
+using OfficeEntry.Application.User.Queries.GetIsContactFirstResponder;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Models;
@@ -64,7 +64,7 @@ public sealed partial class Map
             return;
         }
 
-        _isContactFirstResponder = await Mediator.Send(new GetContactFirstResponderQuery());
+        _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery());
 
         await MapJsInterop.Register(this);
 
