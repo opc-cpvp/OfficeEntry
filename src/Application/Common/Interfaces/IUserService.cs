@@ -15,4 +15,5 @@ public interface IUserService
 
     Task<(Result Result, Guid UserId)> GetUserId(string username);
 
+    Task<(Result Result, bool isFirstResponder)> IsContactFirstResponder(string username);
 }

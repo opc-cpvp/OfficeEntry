@@ -6,7 +6,9 @@ using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
+using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
+using OfficeEntry.Application.User.Queries.GetIsContactFirstResponder;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
 using OfficeEntry.WebApp.Models;
@@ -33,12 +35,14 @@ public sealed partial class Map
     [Inject] private NavigationManager NavigationManager { get; set; }
     [Inject] private IState<MapState> MapState { get; set; }
     [Inject] private IMapJsInterop MapJsInterop { get; set; }
+    [Inject] private ICurrentUserService CurrentUserService { get; set; }
 
     private Survey mySurvey;
     private Domain.Entities.AccessRequest _selectedAccessRequest;
     private DateOnly _selectedDate = DateOnly.FromDateTime(DateTime.Now.AddDays(1));
     private int _startTime = 9;
     private int _endTime = 17;
+    private bool _isContactFirstResponder = false;
     private FloorPlan FloorPlanDto { get; set; } // ViewModel
     private IEnumerable<Domain.Entities.AccessRequest> AccessRequests { get; set; } // ViewModel
     private string _errorMessage = string.Empty;
@@ -61,6 +65,8 @@ public sealed partial class Map
         {
             return;
         }
+
+        _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery());
 
         await MapJsInterop.Register(this);
 

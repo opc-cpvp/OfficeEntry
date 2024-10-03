@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Application.Common.Models;
-using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
 
 namespace OfficeEntry.Application.Locations.Queries.GetAvailableWorkspaces;

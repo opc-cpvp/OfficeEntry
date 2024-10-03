@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using OfficeEntry.Application;
+using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.WebApp;
 using OfficeEntry.WebApp.Pages.FloorPlans;
@@ -27,8 +29,18 @@ public class MapComponentTests
         services.AddApplication();
 
         services.AddLocalization(options => options.ResourcesPath = "Resources");
-        //services.AddSingleton<ILoggerFactory>(new LoggerFactory().AddSerilog(serilogLogger, dispose: true));
         services.AddSingleton<ILoggerFactory>(new LoggerFactory());
+
+        var domainUserService = new Mock<IDomainUserService>();
+        services.AddSingleton(domainUserService.Object);
+
+        var currentUserService = new Mock<ICurrentUserService>();
+        services.AddSingleton(currentUserService.Object);
+
+        var userService = new Mock<IUserService>();
+        userService.Setup(x => x.IsContactFirstResponder(It.IsAny<string>())).ReturnsAsync((Result.Success(), true));
+        services.AddSingleton(userService.Object);
+
         services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
 
         ServiceProvider = services.BuildServiceProvider();
@@ -53,9 +65,11 @@ public class MapComponentTests
         var dispatcher = ServiceProvider.GetRequiredService<IDispatcher>();
         var mediator = ServiceProvider.GetRequiredService<IMediator>();
         var actionSubscriber = ServiceProvider.GetRequiredService<IActionSubscriber>();
+        var currentUserService = ServiceProvider.GetRequiredService<ICurrentUserService>();
 
         ctx.Services.AddSingleton(dispatcher);
         ctx.Services.AddSingleton(mediator);
+        ctx.Services.AddSingleton(currentUserService);
         ctx.Services.AddSingleton(State);
         ctx.Services.AddSingleton(actionSubscriber);
         ctx.Services.AddSingleton(mapJsInterop.Object);
@@ -64,10 +78,7 @@ public class MapComponentTests
         var textService = new TaskCompletionSource<string>();
         var cut = ctx.RenderComponent<Map>(parameters => parameters.Add(p => p.FloorPlanId, Guid.NewGuid()));
 
-        var accessRequests = new AccessRequest[]
-        {
-            //new AccessRequest { Id =  }
-        }.ToImmutableArray();
+        var accessRequests = new AccessRequest[] { }.ToImmutableArray();
 
         // Act
         dispatcher.Dispatch(new GetMapResultAction(new FloorPlan {  }, accessRequests));

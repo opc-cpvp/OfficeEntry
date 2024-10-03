@@ -12,6 +12,9 @@ internal class contact
     public gc_usersettingses gc_usersettings { get; set; }
     public string telephone1 { get; set; }
     public int statecode { get; set; }
+    public IEnumerable<gc_building> gc_building_contact_firstaidattendants { get; set; }
+    public IEnumerable<gc_building> gc_building_contact_flooremergencyofficers { get; set; }
+
 
     public static Contact Convert(contact contact)
     {

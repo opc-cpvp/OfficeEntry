@@ -143,4 +143,23 @@ public class UserService : IUserService
         _cachedUserIds[username] = contactId;
         return (Result.Success(), _cachedUserIds[username]);
     }
+    
+    public async Task<(Result Result, bool isFirstResponder)> IsContactFirstResponder(string username)
+    {
+        var userIdResult = await GetUserId(username);
+
+        var contactIsFirstAid = (await _client.For<contact>()
+            .Key(userIdResult.UserId)
+            .NavigateTo(c => c.gc_building_contact_firstaidattendants)
+            .FindEntriesAsync())
+            .Any();
+
+        var contactIsEmergencyOfficer = (await _client.For<contact>()
+            .Key(userIdResult.UserId)
+            .NavigateTo(c => c.gc_building_contact_flooremergencyofficers)
+            .FindEntriesAsync())
+            .Any();
+
+        return (Result.Success(), contactIsFirstAid || contactIsEmergencyOfficer);
+    }
 }
