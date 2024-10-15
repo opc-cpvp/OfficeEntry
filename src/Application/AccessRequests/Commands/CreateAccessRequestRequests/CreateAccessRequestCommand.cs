@@ -94,13 +94,17 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
                 request.AccessRequest.Status.Key = (int)AccessRequest.ApprovalStatus.Approved;
             }
 
+            var workspaceAlreadyBooked = false;
             // Access request Id matches Id that is already booked
-            var workspaceAlreadyBooked = accessRequests.Where(ar =>
+            if (request.AccessRequest.Workspace != null)
+            {
+                workspaceAlreadyBooked = accessRequests.Where(ar =>
                     ar.Workspace?.Id == request.AccessRequest.Workspace?.Id &&
                     ar.StartTime <= request.AccessRequest.StartTime &&
                     ar.EndTime >= request.AccessRequest.EndTime
                 )
                 .Any();
+            }
 
             if (workspaceAlreadyBooked)
             {
