@@ -629,6 +629,43 @@ namespace Application.UnitTests
             _notificationServiceMock.Verify(x => x.NotifyOfAvailableCapacity(It.IsAny<CapacityNotification>(), EmployeeRoleType.FloorEmergencyOfficer), Times.Once);
         }
 
+        [Fact]
+        public async Task Should_create_access_request_when_workspace_is_null()
+        {
+            // Arrange
+            var accessRequest = new AccessRequest
+            {
+                Id = Guid.NewGuid(),
+                Building = new Building { Id = Guid.NewGuid() },
+                Floor = new Floor { Id = Guid.NewGuid() },
+                CreatedOn = DateTime.Now,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now.AddHours(1),
+                FloorPlan = new FloorPlan { Id = Guid.NewGuid() },
+                Workspace = null,
+                Status = new OptionSet { Key = (int)AccessRequest.ApprovalStatus.Pending }
+            };
+
+            var floorPlanCapacity = new FloorPlanCapacity
+            {
+                CurrentCapacity = 0,
+                MaxFirstAidAttendantCapacity = 5,
+                MaxFloorEmergencyOfficerCapacity = 10,
+                TotalCapacity = 0
+            };
+
+
+            _userServiceMock.Setup(x => x.GetContactByUsername(It.IsAny<string>())).ReturnsAsync((Result.Success(), FloorEmergencyOfficerContact));
+            _accessRequestServiceMock.Setup(x => x.CreateAccessRequest(It.IsAny<AccessRequest>())).ReturnsAsync((Result.Success(), accessRequest));
+            _accessRequestServiceMock.Setup(x => x.GetApprovedOrPendingAccessRequestsByFloorPlan(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(ImmutableArray<AccessRequest>.Empty);
+            _locationServiceMock.Setup(x => x.GetCapacityByFloorPlanAsync(It.IsAny<Guid>(), It.IsAny<DateOnly>())).ReturnsAsync(floorPlanCapacity);
+
+            // Act
+            await _sut.Handle(new CreateAccessRequestCommand { AccessRequest = accessRequest }, CancellationToken.None);
+
+            // Assert
+            _accessRequestServiceMock.Verify(x => x.CreateAccessRequest(accessRequest), Times.Once);
+        }
 
     }
 }
