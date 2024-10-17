@@ -269,25 +269,16 @@ public sealed partial class Map
             
             if (options.Name is "bookingFor")
             {
-                var booking = options.Value?.ToString();
+                // Reset any selected individual when switching who the booking is for
+                await mySurvey.SetValueAsync("otherIndividual", null);
 
-                if (booking == "Myself")
+                if (options.Value?.ToString() == "Myself")
                 {
                     _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery());
 
-                    if (_isContactFirstResponder)
-                    {
-                        await mySurvey.SetValueAsync("numberOfDaysAllowed", "35");
-                        StateHasChanged();
-                        return;
-                    }
-
-                    if (!_isContactFirstResponder)
-                    {
-                        await mySurvey.SetValueAsync("numberOfDaysAllowed", "28");
-                        StateHasChanged();
-                        return;
-                    }
+                    await mySurvey.SetValueAsync("numberOfDaysAllowed", _isContactFirstResponder ? "35" : "21");
+                    StateHasChanged();
+                    return;
                 }
             }
 
@@ -297,20 +288,9 @@ public sealed partial class Map
 
                 _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery(otherIndividualName));
 
-                if (_isContactFirstResponder)
-                {
-                    //await mySurvey.SetValueAsync("maxValueExpression", "today(28)");
-                    await mySurvey.SetValueAsync("numberOfDaysAllowed", "35");
-                    StateHasChanged();
-                    return;
-                }
-
-                if (!_isContactFirstResponder)
-                {
-                    await mySurvey.SetValueAsync("numberOfDaysAllowed", "28");
-                    StateHasChanged();
-                    return;
-                }
+                await mySurvey.SetValueAsync("numberOfDaysAllowed", _isContactFirstResponder ? "35" : "21");
+                StateHasChanged();
+                return;
             }
 
             if (options.Name is "startDate")

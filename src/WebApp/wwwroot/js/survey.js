@@ -144,7 +144,7 @@ export function init(id, classStyle, surveyUrl, data) {
                     const daysAllowed = parseInt(survey.data.numberOfDaysAllowed);
 
                     var maxCalendarDays = new Date();
-                    maxCalendarDays.setDate(maxCalendarDays.getDate() + daysAllowed);
+                    maxCalendarDays.setDate(maxCalendarDays.getDate() + daysAllowed - 1); // Remove 1 day to match the surveyjs behaviour/validation
                     startDatePicker.datepicker('option', 'maxDate', maxCalendarDays);
                 }
                 dotNet.invokeMethodAsync("ValueChanged", JSON.stringify(survey.data), JSON.stringify(options))
