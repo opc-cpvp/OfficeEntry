@@ -15,7 +15,7 @@
           "type": "number",
           "name": "numberOfDaysAllowed",
           "title": "numberOfDaysAllowed",
-          "defaultValue": 14,
+          "defaultValue": 21,
           "clearIfInvisible": "none",
           "visible": false
         },
