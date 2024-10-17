@@ -1,6 +1,7 @@
 using BlazorServerUrlRequestCultureProvider;
 using Fluxor;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.SignalR;
 using OfficeEntry.Application;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Infrastructure;
@@ -45,6 +46,11 @@ public class Startup
         });
         services.AddRazorPages();
         services.AddServerSideBlazor().AddCircuitOptions(option => { option.DetailedErrors = true; });
+
+        services.Configure<HubOptions>(options =>
+        {
+            options.MaximumReceiveMessageSize = 1024 * 512;
+        });
 
         services.AddHealthChecks()
             .AddCheck<HealthCheck>("health_check");
