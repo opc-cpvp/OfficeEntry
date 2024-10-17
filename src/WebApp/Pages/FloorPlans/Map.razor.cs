@@ -257,101 +257,91 @@ public sealed partial class Map
 
     public async Task OnValueChanged(ValueChangedEventArgs e)
     {
+        _errorMessage = string.Empty;
 
-        try
+        var options = JsonSerializer
+            .Deserialize<SurveyQuestion>(
+                json: e.Options,
+                options: new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+        if (options.Name is "bookingFor")
         {
-            _errorMessage = string.Empty;
+            // Reset any selected individual when switching who the booking is for
+            await mySurvey.SetValueAsync("otherIndividual", null);
 
-            var options = JsonSerializer
-                .Deserialize<SurveyQuestion>(
-                    json: e.Options,
-                    options: new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            
-            if (options.Name is "bookingFor")
+            if (options.Value?.ToString() == "Myself")
             {
-                // Reset any selected individual when switching who the booking is for
-                await mySurvey.SetValueAsync("otherIndividual", null);
-
-                if (options.Value?.ToString() == "Myself")
-                {
-                    _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery());
-
-                    await mySurvey.SetValueAsync("numberOfDaysAllowed", _isContactFirstResponder ? "35" : "21");
-                    StateHasChanged();
-                    return;
-                }
-            }
-
-            if (options.Name is "otherIndividual")
-            {
-                var otherIndividualName = options.Value?.ToString();
-
-                _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery(otherIndividualName));
+                _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery());
 
                 await mySurvey.SetValueAsync("numberOfDaysAllowed", _isContactFirstResponder ? "35" : "21");
                 StateHasChanged();
                 return;
             }
-
-            if (options.Name is "startDate")
-            {
-                var startDate = options.Value?.ToString();
-                DateOnly.TryParse(startDate, CultureInfo.InvariantCulture, DateTimeStyles.None, out _selectedDate);
-                Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
-                _selectedAccessRequest = null;
-
-                StateHasChanged();
-            }
-
-            if (options.Name is "startTime")
-            {
-                var startTime = options.Value?.ToString();
-                if (string.IsNullOrWhiteSpace(startTime))
-                {
-                    _startTime = _endTime;
-                    await mySurvey.SetValueAsync("workspace", null);
-                    return;
-                }
-
-                int.TryParse(startTime, out _startTime);
-                await UpdateCanvas();
-            }
-
-            if (options.Name is "endTime")
-            {
-                var endTime = options.Value?.ToString();
-                if (string.IsNullOrWhiteSpace(endTime))
-                {
-                    _endTime = _startTime;
-                    await mySurvey.SetValueAsync("workspace", null);
-                    return;
-                }
-
-                int.TryParse(endTime, out _endTime);
-                await UpdateCanvas();
-            }
-
-            if (options.Name is "workspace")
-            {
-                var workspace = options.Value?.ToString();
-                await MapJsInterop.SetSelectedCircle(workspace);
-
-                if (string.IsNullOrWhiteSpace(workspace))
-                {
-                    return;
-                }
-
-                await UpdateCanvas();
-            }
-
-            await Task.CompletedTask;
         }
-        catch(Exception ex) 
+
+        if (options.Name is "otherIndividual")
         {
-            var i = 0;
-            await Task.CompletedTask;
+            var otherIndividualName = options.Value?.ToString();
+
+            _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery(otherIndividualName));
+
+            await mySurvey.SetValueAsync("numberOfDaysAllowed", _isContactFirstResponder ? "35" : "21");
+            StateHasChanged();
+            return;
         }
-        
+
+        if (options.Name is "startDate")
+        {
+            var startDate = options.Value?.ToString();
+            DateOnly.TryParse(startDate, CultureInfo.InvariantCulture, DateTimeStyles.None, out _selectedDate);
+            Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
+            _selectedAccessRequest = null;
+
+            StateHasChanged();
+        }
+
+        if (options.Name is "startTime")
+        {
+            var startTime = options.Value?.ToString();
+            if (string.IsNullOrWhiteSpace(startTime))
+            {
+                _startTime = _endTime;
+                await mySurvey.SetValueAsync("workspace", null);
+                return;
+            }
+
+            int.TryParse(startTime, out _startTime);
+            await UpdateCanvas();
+        }
+
+        if (options.Name is "endTime")
+        {
+            var endTime = options.Value?.ToString();
+            if (string.IsNullOrWhiteSpace(endTime))
+            {
+                _endTime = _startTime;
+                await mySurvey.SetValueAsync("workspace", null);
+                return;
+            }
+
+            int.TryParse(endTime, out _endTime);
+            await UpdateCanvas();
+        }
+
+        if (options.Name is "workspace")
+        {
+            var workspace = options.Value?.ToString();
+            await MapJsInterop.SetSelectedCircle(workspace);
+
+            if (string.IsNullOrWhiteSpace(workspace))
+            {
+                return;
+            }
+
+            await UpdateCanvas();
+        }
+
+        await Task.CompletedTask;
     }
 }
 
