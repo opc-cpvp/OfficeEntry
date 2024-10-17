@@ -49,14 +49,11 @@ public class GetIsContactFirstResponderQueryHandler : IRequestHandler<GetIsConta
 
             if (!result.Result.Succeeded)
             {
-                _logger.LogError("Failed to get first responder status for user {Username}", userIdToCheck);
+                _logger.LogError("Failed to get first responder status for user with ID {userIdToCheck}", userIdToCheck);
                 return false;
             }
 
             return result.isFirstResponder;
         }
-
-
-
     }
 }
