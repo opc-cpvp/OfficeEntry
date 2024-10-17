@@ -147,15 +147,20 @@ public class UserService : IUserService
     public async Task<(Result Result, bool isFirstResponder)> IsContactFirstResponder(string username)
     {
         var userIdResult = await GetUserId(username);
+        return await IsContactFirstResponder(userIdResult.UserId);
+    }
+
+    public async Task<(Result Result, bool isFirstResponder)> IsContactFirstResponder(Guid userId)
+    {
 
         var contactIsFirstAid = (await _client.For<contact>()
-            .Key(userIdResult.UserId)
+            .Key(userId)
             .NavigateTo(c => c.gc_building_contact_firstaidattendants)
             .FindEntriesAsync())
             .Any();
 
         var contactIsEmergencyOfficer = (await _client.For<contact>()
-            .Key(userIdResult.UserId)
+            .Key(userId)
             .NavigateTo(c => c.gc_building_contact_flooremergencyofficers)
             .FindEntriesAsync())
             .Any();

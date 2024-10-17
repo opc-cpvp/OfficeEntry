@@ -11,15 +11,19 @@ using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Application.User.Queries.GetIsContactFirstResponder;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
+using OfficeEntry.WebApp.Area.Identity.Services;
 using OfficeEntry.WebApp.Models;
 using OfficeEntry.WebApp.Shared;
+using Microsoft.JSInterop;
 using OfficeEntry.WebApp.Store.AccessRequestsUseCase;
 using OfficeEntry.WebApp.Store.DelegateAccessRequestsUseCase;
 using OfficeEntry.WebApp.Store.FloorPlanUseCases.Map;
 using System.Globalization;
 using System.Text.Json;
+using static OfficeEntry.WebApp.Pages.FloorPlans.Edit;
 using static OfficeEntry.WebApp.Pages.FloorPlans.MapJsInterop;
 using JsonSerializer = System.Text.Json.JsonSerializer;
+using System.Reflection.Metadata;
 
 namespace OfficeEntry.WebApp.Pages.FloorPlans;
 
@@ -259,6 +263,32 @@ public sealed partial class Map
             .Deserialize<SurveyQuestion>(
                 json: e.Options,
                 options: new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+        if (options.Name is "bookingFor")
+        {
+            // Reset any selected individual when switching who the booking is for
+            await mySurvey.SetValueAsync("otherIndividual", null);
+
+            if (options.Value?.ToString() == "Myself")
+            {
+                _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery());
+
+                await mySurvey.SetValueAsync("numberOfDaysAllowed", _isContactFirstResponder ? "35" : "21");
+                StateHasChanged();
+                return;
+            }
+        }
+
+        if (options.Name is "otherIndividual")
+        {
+            var otherIndividualName = options.Value?.ToString();
+
+            _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery(otherIndividualName));
+
+            await mySurvey.SetValueAsync("numberOfDaysAllowed", _isContactFirstResponder ? "35" : "21");
+            StateHasChanged();
+            return;
+        }
 
         if (options.Name is "startDate")
         {
