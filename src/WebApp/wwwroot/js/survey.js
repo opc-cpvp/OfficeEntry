@@ -121,7 +121,16 @@ export function init(id, classStyle, surveyUrl, data) {
 
             // Set date picker format when the value is changing for expected formatting
             survey.onValueChanging.add((sender, options) => {
-                if (options.question.getType() == "datepicker") {
+                if (options.question && options.question.getType && options.question.getType() == "datepicker") {
+                    const date = new Date(options.value);
+                    var datestring = `${(date.getMonth() + 1)}/${date.getDate()}/${date.getFullYear()}`
+                    options.value = datestring;
+                }
+            });
+
+            // Set date picker format when the value is changing for expected formatting
+            survey.onValueChanging.add((sender, options) => {
+                if (options.question && options.question.getType() == "datepicker") {
                     const date = new Date(options.value);
                     var datestring = `${(date.getMonth() + 1)}/${date.getDate()}/${date.getFullYear()}`
                     options.value = datestring;
@@ -129,6 +138,15 @@ export function init(id, classStyle, surveyUrl, data) {
             });
 
             survey.onValueChanged.add((sender, options) => {
+                // We need to manually set the startDate for the datepicker when trying to change its max days
+                if (options.name == "numberOfDaysAllowed") {
+                    const startDatePicker = $("div[data-name='startDate'] input");
+                    const daysAllowed = parseInt(survey.data.numberOfDaysAllowed);
+
+                    var maxCalendarDays = new Date();
+                    maxCalendarDays.setDate(maxCalendarDays.getDate() + daysAllowed - 1); // Remove 1 day to match the surveyjs behaviour/validation
+                    startDatePicker.datepicker('option', 'maxDate', maxCalendarDays);
+                }
                 dotNet.invokeMethodAsync("ValueChanged", JSON.stringify(survey.data), JSON.stringify(options))
                     .catch(function (error) {
                         console.error(error);
