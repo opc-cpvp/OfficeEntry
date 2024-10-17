@@ -4,13 +4,9 @@ using OfficeEntry.Application.Common.Interfaces;
 
 namespace OfficeEntry.Application.User.Queries.GetIsContactFirstResponder;
 
-public record GetIsContactFirstResponderQuery(string userId) : IRequest<bool>
+public record GetIsContactFirstResponderQuery() : IRequest<bool>
 {
-    public static readonly GetIsContactFirstResponderQuery Instance = new();
-
-    public GetIsContactFirstResponderQuery() : this(string.Empty)
-    {
-    }
+    public string UserId { get; init; }
 }
 
 public class GetIsContactFirstResponderQueryHandler : IRequestHandler<GetIsContactFirstResponderQuery, bool>
@@ -28,7 +24,7 @@ public class GetIsContactFirstResponderQueryHandler : IRequestHandler<GetIsConta
 
     public async Task<bool> Handle(GetIsContactFirstResponderQuery request, CancellationToken cancellationToken)
     {
-        var userIdToCheck = request.userId;
+        var userIdToCheck = request.UserId;
 
         if (string.IsNullOrEmpty(userIdToCheck)) 
         {

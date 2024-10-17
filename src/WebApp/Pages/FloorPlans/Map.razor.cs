@@ -283,7 +283,7 @@ public sealed partial class Map
         {
             var otherIndividualName = options.Value?.ToString();
 
-            _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery(otherIndividualName));
+            _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery() { UserId = otherIndividualName });
 
             await mySurvey.SetValueAsync("numberOfDaysAllowed", _isContactFirstResponder ? "35" : "21");
             StateHasChanged();
