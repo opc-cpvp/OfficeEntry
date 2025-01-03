@@ -158,6 +158,7 @@ function onTouchEnd(e) {
 // ===========================================================================
 
 // https://jacksonlab.agronomy.wisc.edu/2016/05/23/15-level-colorblind-friendly-palette/
+const redBackgroundImage = new Image();
 const inactiveBackgroundImage = new Image();
 const inactiveHoveredBackgroundImage = new Image();
 const availableBackgroundImage = new Image();
@@ -293,6 +294,19 @@ function Draw(deltaTime) {
     circles
         .filter(x => x.Taken)
         .forEach(circle => {
+            // Is the circle a first aid attendant or an floor emergency officer?
+            if (circle.IsFirstAidAttendant || circle.IsFloorEmergencyOfficer) {
+                const diameterMultiplier = 1.2;
+                const extra = ((circle.Diameter * diameterMultiplier) - circle.Diameter) / 2;
+
+                // Draw the red background as a "border" around the circle
+                context.drawImage(
+                    redBackgroundImage,
+                    circle.Position.Left - extra, circle.Position.Top - extra,
+                    circle.Diameter * diameterMultiplier,
+                    circle.Diameter * diameterMultiplier);
+            }
+
             const backgroundImage = circle.Hovering ? selectedBackgroundImage : takenBackgroundImage;
             context.drawImage(backgroundImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
         });
@@ -310,36 +324,52 @@ function Draw(deltaTime) {
             context.drawImage(selectedBackgroundImage, circle.Position.Left, circle.Position.Top, circle.Diameter, circle.Diameter);
         });
 
-    // draw the icon inside of the circle
+    // using the width of the upper case later 'M' is a hack to get the font height, but it works...
+    const fontHeight = context.measureText("M").width;
+
+    //// draw the icon inside of the circle
+    //circles
+    //    .filter(x => x.Taken)
+    //    .forEach(circle => {
+    //        const iconImage = circle.IsFirstAidAttendant && circle.IsFloorEmergencyOfficer ? multipleRolesImage
+    //            : circle.IsFirstAidAttendant ? firstAidAttendantImage
+    //            : circle.IsFloorEmergencyOfficer ? floorEmergencyOfficerImage
+    //            : userImage;
+
+    //        const degrees = 315;
+    //        const radius = circle.Diameter / 2;
+    //        const offset = 2; // we want the icon to fit inside the circle so we set an offset
+
+    //        // set the origin of the circle
+    //        const origin = new Position(circle.Position.Left + radius, circle.Position.Top + radius);
+
+    //        // calculate the coordinates of the top left corner of the circle
+    //        const x = (-1 * (radius - offset) * Math.sin(degrees)) + origin.Left;
+    //        const y = (-1 * (radius - offset) * Math.cos(degrees)) + origin.Top;
+
+    //        // calculate the width of the largest square that fits inside the circle
+    //        const width = (radius - offset) * Math.sqrt(2);
+
+    //        context.drawImage(iconImage, x, y, width, width);
+    //    });
+
+    // draw the initials inside of the circle
     circles
         .filter(x => x.Taken)
         .forEach(circle => {
-            const iconImage = circle.IsFirstAidAttendant && circle.IsFloorEmergencyOfficer ? multipleRolesImage
-                : circle.IsFirstAidAttendant ? firstAidAttendantImage
-                : circle.IsFloorEmergencyOfficer ? floorEmergencyOfficerImage
-                : userImage;
+            // Add the initials of the employee in the center of the circle
+            const initials = circle.EmployeeFullName.split(" ").map(x => x[0]).join("");
+            const fontWidth = context.measureText(initials).width;
 
-            const degrees = 315;
-            const radius = circle.Diameter / 2;
-            const offset = 2; // we want the icon to fit inside the circle so we set an offset
-
-            // set the origin of the circle
-            const origin = new Position(circle.Position.Left + radius, circle.Position.Top + radius);
-
-            // calculate the coordinates of the top left corner of the circle
-            const x = (-1 * (radius - offset) * Math.sin(degrees)) + origin.Left;
-            const y = (-1 * (radius - offset) * Math.cos(degrees)) + origin.Top;
-
-            // calculate the width of the largest square that fits inside the circle
-            const width = (radius - offset) * Math.sqrt(2);
-
-            context.drawImage(iconImage, x, y, width, width);
+            context.fillText(initials,
+                circle.Position.Left + circle.Diameter / 2 - fontWidth / 2,
+                circle.Position.Top + fontHeight + circle.Diameter / 2 - fontHeight / 1.5);
         });
 
     context.globalAlpha = 1.0;
 
-    // using the width of the upper case later 'M' is a hack to get the font height, but it works...
-    const fontHeight = context.measureText("M").width;
+    //// using the width of the upper case later 'M' is a hack to get the font height, but it works...
+    //const fontHeight = context.measureText("M").width;
 
     // draw the name of the circle in the center of the circle
     circles
@@ -410,6 +440,8 @@ export async function start(imagedata, circlesJson) {
 
     floorplan.src = imagedata;
     await floorplan.decode();
+
+    redBackgroundImage.src = '/img/floorplan/circle_red_icon.svg';
 
     inactiveBackgroundImage.src = '/img/floorplan/circle_inactive_icon.svg';
     inactiveHoveredBackgroundImage.src = '/img/floorplan/circle_inactive_hover_icon.svg';
