@@ -1,4 +1,5 @@
-﻿using OfficeEntry.Application.Common.Interfaces;
+﻿using Microsoft.Extensions.Logging;
+using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Exceptions;
 using OfficeEntry.Domain.ValueObjects;
 using System.Collections.Immutable;
@@ -9,11 +10,13 @@ namespace OfficeEntry.Infrastructure.Identity;
 
 public class DomainUserService : IDomainUserService
 {
+    private readonly ILogger<DomainUserService> _logger;
     private readonly string _domainName;
 
-    public DomainUserService(string domainName)
+    public DomainUserService(string domainName, ILogger<DomainUserService> logger)
     {
         _domainName = domainName;
+        _logger = logger;
     }
 
     [SupportedOSPlatform("windows")]
@@ -26,6 +29,7 @@ public class DomainUserService : IDomainUserService
 
             if (userIdentity is null)
             {
+                _logger.LogError("User not found in AD: {AdAccount}", adAccount);
                 throw new AdAccountInvalidException(adAccount);
             }
 
@@ -41,6 +45,7 @@ public class DomainUserService : IDomainUserService
 
         if (userIdentity is null)
         {
+            _logger.LogError("User not found in AD: {AdAccount}", adAccount);
             throw new AdAccountInvalidException(adAccount);
         }
 

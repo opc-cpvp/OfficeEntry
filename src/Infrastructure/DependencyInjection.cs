@@ -8,6 +8,7 @@ using Simple.OData.Client;
 using System.Net;
 using System.Net.Http.Headers;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging;
 
 namespace OfficeEntry.Infrastructure;
 
@@ -29,7 +30,7 @@ public static class DependencyInjection
         services.AddSingleton<IFileProvider>(manifestEmbeddedProvider);
 
         services.AddScoped<IDomainUserService, DomainUserService>(provider =>
-            new DomainUserService(configuration.GetValue<string>("Domain"))
+            new DomainUserService(configuration.GetValue<string>("Domain"), provider.GetRequiredService<ILogger<DomainUserService>>())
         );
 
         {
