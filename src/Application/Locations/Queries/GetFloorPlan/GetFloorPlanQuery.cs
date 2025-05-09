@@ -1,15 +1,16 @@
-﻿using MediatR;
+﻿using MagicOnion;
+using MagicOnion.Server;
+using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.Application.Locations.Queries.GetFloorPlan;
 
-public record GetFloorPlanQuery : IRequest<FloorPlan>
-{
-    public Guid FloorPlanId { get; init; }
-}
-
-public class GetFloorsQueryHandler : IRequestHandler<GetFloorPlanQuery, FloorPlan>
+public class GetFloorsQueryHandler :
+    ServiceBase<IGetFloorPlanQueryService>,
+    IGetFloorPlanQueryService,
+    IRequestHandler<GetFloorPlanQuery, FloorPlan>
 {
     private readonly ILocationService _locationService;
 
@@ -18,8 +19,13 @@ public class GetFloorsQueryHandler : IRequestHandler<GetFloorPlanQuery, FloorPla
         _locationService = locationService;
     }
 
-    public Task<FloorPlan> Handle(GetFloorPlanQuery request, CancellationToken cancellationToken)
+    public async Task<FloorPlan> Handle(GetFloorPlanQuery request, CancellationToken cancellationToken)
     {
-        return _locationService.GetFloorPlanAsync(request.FloorPlanId);
+        return await _locationService.GetFloorPlanAsync(request.FloorPlanId);
+    }
+
+    public async UnaryResult<FloorPlan> HandleAsync(GetFloorPlanQuery request)
+    {
+        return await _locationService.GetFloorPlanAsync(request.FloorPlanId);
     }
 }

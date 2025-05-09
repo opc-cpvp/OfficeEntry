@@ -1,5 +1,5 @@
-﻿using OfficeEntry.Application.Common.Models;
-using OfficeEntry.Domain.Entities;
+﻿using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.ValueObjects;
 using System.Collections.Immutable;
 
 namespace OfficeEntry.Application.Common.Interfaces;

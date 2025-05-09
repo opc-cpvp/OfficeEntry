@@ -1,17 +1,17 @@
-﻿using MediatR;
+﻿using MagicOnion;
+using MagicOnion.Server;
+using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.Application.AccessRequests.Commands.UpdateAccessRequestRequests;
 
-public record UpdateAccessRequestCommand : IRequest
-{
-    public string BaseUrl { get; init; }
-    public AccessRequest AccessRequest { get; init; }
-}
-
-public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessRequestCommand>
+public class UpdateAccessRequestCommandHandler : 
+    ServiceBase<IUpdateAccessRequestCommandService>,
+    IUpdateAccessRequestCommandService,
+    IRequestHandler<UpdateAccessRequestCommand>
 {
     private readonly IAccessRequestService _accessRequestService;
     private readonly ILocationService _locationService;
@@ -58,6 +58,11 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateAccessReq
         await NotifyEmergencyPersonnelOfMaximumCapacity(request);
 
         return;
+    }
+
+    public async UnaryResult HandleAsync(UpdateAccessRequestCommand request)
+    {
+        await Handle(request, new CancellationToken());
     }
 
     private async Task ApprovePendingAccessRequests(UpdateAccessRequestCommand request, FloorPlanCapacity floorPlanCapacity)

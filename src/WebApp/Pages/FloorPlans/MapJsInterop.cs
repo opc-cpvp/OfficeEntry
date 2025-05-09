@@ -1,5 +1,6 @@
 ﻿using Microsoft.JSInterop;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.Services;
 using System.Text.Json;
 
 namespace OfficeEntry.WebApp.Pages.FloorPlans;
@@ -91,13 +92,5 @@ public sealed class MapJsInterop : IAsyncDisposable, IMapJsInterop
 
         _objRef?.Dispose();
         _disposed = true;
-    }
-
-    public class SpyingEventArg : EventArgs
-    {
-        public string Victim { get; init; }
-        public string Workspace { get; init; }
-        public string FullName { get; set; }
-        public string UserId { get; set; }
     }
 }

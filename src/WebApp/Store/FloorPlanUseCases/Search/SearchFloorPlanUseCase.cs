@@ -2,6 +2,7 @@
 using MediatR;
 using OfficeEntry.Application.Locations.Queries.GetFloorPlans;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Services;
 using System.Collections.Immutable;
 
 namespace OfficeEntry.WebApp.Store.FloorPlanUseCases.Search;

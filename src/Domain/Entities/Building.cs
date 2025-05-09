@@ -1,6 +1,9 @@
-﻿namespace OfficeEntry.Domain.Entities;
+﻿using MemoryPack;
 
-public class Building
+namespace OfficeEntry.Domain.Entities;
+
+[MemoryPackable]
+public partial class Building
 {
     public Guid Id { get; set; }
     public string Address { get; set; }

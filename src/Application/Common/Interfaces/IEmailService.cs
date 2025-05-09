@@ -1,5 +1,5 @@
-﻿using OfficeEntry.Application.Common.Models;
-using OfficeEntry.Domain.Entities;
+﻿using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.ValueObjects;
 
 namespace OfficeEntry.Application.Common.Interfaces
 {

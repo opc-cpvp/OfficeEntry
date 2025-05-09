@@ -3,6 +3,7 @@ using MediatR;
 using OfficeEntry.Application.AccessRequests.Queries.GetAccessRequestPerFloorPlan;
 using OfficeEntry.Application.Locations.Queries.GetFloorPlan;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Services;
 using System.Collections.Immutable;
 
 namespace OfficeEntry.WebApp.Store.FloorPlanUseCases.Map;

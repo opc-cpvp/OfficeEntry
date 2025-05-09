@@ -2,9 +2,10 @@
 using Moq;
 using OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestRequests;
 using OfficeEntry.Application.Common.Interfaces;
-using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
+using OfficeEntry.Domain.Services;
+using OfficeEntry.Domain.ValueObjects;
 using Xunit;
 
 namespace Application.UnitTests

@@ -1,6 +1,9 @@
-﻿namespace OfficeEntry.Domain.Entities;
+﻿using MemoryPack;
 
-public class TermsAndConditions
+namespace OfficeEntry.Domain.Entities;
+
+[MemoryPackable]
+public partial class TermsAndConditions
 {
     public bool IsHealthAndSafetyMeasuresAccepted { get; set; }
     public bool IsPrivacyActStatementAccepted { get; set; }

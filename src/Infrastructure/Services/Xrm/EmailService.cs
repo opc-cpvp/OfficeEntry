@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using OfficeEntry.Application.Common.Interfaces;
-using OfficeEntry.Application.Common.Models;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.ValueObjects;
 using System.Text;
 using System.Text.RegularExpressions;
 

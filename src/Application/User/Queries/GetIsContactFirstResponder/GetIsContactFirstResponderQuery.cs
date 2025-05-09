@@ -1,15 +1,18 @@
-﻿using MediatR;
+﻿using MagicOnion;
+using MagicOnion.Server;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.Application.User.Queries.GetIsContactFirstResponder;
 
-public record GetIsContactFirstResponderQuery() : IRequest<bool>
-{
-    public string UserId { get; init; }
-}
 
-public class GetIsContactFirstResponderQueryHandler : IRequestHandler<GetIsContactFirstResponderQuery, bool>
+
+public class GetIsContactFirstResponderQueryHandler :
+    ServiceBase<IGetIsContactFirstResponderQueryService>,
+    IGetIsContactFirstResponderQueryService,
+    IRequestHandler<GetIsContactFirstResponderQuery, bool>
 {
     private readonly ICurrentUserService _currentUserService;
     private readonly IUserService _userService;
@@ -51,5 +54,10 @@ public class GetIsContactFirstResponderQueryHandler : IRequestHandler<GetIsConta
 
             return result.isFirstResponder;
         }
+    }
+
+    public async UnaryResult<bool> HandleAsync(GetIsContactFirstResponderQuery request)
+    {
+        return await Handle(request, new CancellationToken());
     }
 }

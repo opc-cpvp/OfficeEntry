@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using OfficeEntry.Application.Users.Queries.GetContactsRequests;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.WebApp;
 

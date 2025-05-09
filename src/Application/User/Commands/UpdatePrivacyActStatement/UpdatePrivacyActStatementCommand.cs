@@ -1,14 +1,15 @@
-﻿using MediatR;
+﻿using MagicOnion;
+using MagicOnion.Server;
+using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.Application.User.Commands.UpdatePrivacyStatement;
 
-public record UpdatePrivacyActStatementCommand : IRequest
-{
-    public bool IsPrivacyActStatementAccepted { get; init; }
-}
-
-public class UpdatePrivacyActStatementCommandHandler : IRequestHandler<UpdatePrivacyActStatementCommand>
+public class UpdatePrivacyActStatementCommandHandler :
+    ServiceBase<IUpdatePrivacyActStatementCommandService>,
+    IUpdatePrivacyActStatementCommandService,
+    IRequestHandler<UpdatePrivacyActStatementCommand>
 {
     private readonly ICurrentUserService _currentUserService;
     private readonly ITermsAndConditionsService _termsAndConditionsService;
@@ -26,5 +27,10 @@ public class UpdatePrivacyActStatementCommandHandler : IRequestHandler<UpdatePri
         await _termsAndConditionsService.SetPrivacyActStatementFor(username, request.IsPrivacyActStatementAccepted);
 
         return;
+    }
+
+    public async UnaryResult HandleAsync(UpdatePrivacyActStatementCommand request)
+    {
+        await Handle(request, CancellationToken.None);
     }
 }
