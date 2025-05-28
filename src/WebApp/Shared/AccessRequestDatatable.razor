@@ -33,6 +33,12 @@
                     break;
             }
 
+            // Highlight the row if the request is for today
+            if (accessRequest.StartTime.Date == DateTime.Today)
+            {
+                tdClass += " bg-warning text-dark";
+            }
+
             <tr>
                 <td class="@tdClass" data-order="@accessRequest.StartTime.Ticks">
                     <a class="btn btn-secondary btn-sm mr-2" href="/@Localizer["access-requests"]/@accessRequest.Id"><i class="fas fa-external-link-alt"></i></a>
@@ -42,7 +48,7 @@
                 <td class="@tdClass">@accessRequest.Building.Name</td>
                 <td class="@tdClass">@accessRequest.Floor.Name</td>
                 <td class="@tdClass">@accessRequest.Workspace?.Name</td>
-                <td data-order="@accessRequest.GetStatusOrder()" class="align-middle font-weight-bold @statusClass">@Localizer[accessRequest.Status.Value]</td>
+                <td data-order="@accessRequest.GetStatusOrder()" class="align-middle font-weight-bold @statusClass @tdClass">@Localizer[accessRequest.Status.Value]</td>
             </tr>
         }
     </tbody>
