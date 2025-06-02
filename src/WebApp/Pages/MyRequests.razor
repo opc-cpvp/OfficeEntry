@@ -16,6 +16,19 @@ else
         <TermsAndConditionsCard />
     }
 
+    var todayRequests = AccessRequestsState.Value.AccessRequests.Where(r => r.StartTime.Date == DateTime.Today).ToList();
+
+    if (todayRequests.Any())
+    {
+        <h4>@Localizer["Today's Requests"]</h4>
+        <div class="">
+            @foreach (var request in todayRequests)
+            {
+                <AccessRequestCard AccessRequest="@request" />
+            }
+        </div>
+    }
+
     // The ordering matches the list order returned by the application layer
     //     - StartTime
     //     - Status
