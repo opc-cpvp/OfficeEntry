@@ -29,7 +29,7 @@ public class DomainUserService : IDomainUserService
                 throw new AdAccountInvalidException(adAccount);
             }
 
-            return userIdentity.DisplayName;
+            return userIdentity.Name ?? userIdentity.DisplayName;
         });
     }
 
