@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2025-07-08T21:08:38.8749786Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2025-08-27T12:46:01.5308024Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -149,6 +149,13 @@
         <field name="gc_name" value="08" />
         <field name="gc_floorplanid" value="13f51add-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="655 Bay Street,  Suite 404 - 4th floor" />
       </record>
+      <record id="188fb985-63c4-4d79-804a-08324810135f">
+        <field name="gc_x" value="150" />
+        <field name="gc_workspaceid" value="188fb985-63c4-4d79-804a-08324810135f" />
+        <field name="gc_y" value="787" />
+        <field name="gc_name" value="T-5" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
+      </record>
       <record id="dd87c315-25a0-44bc-b8a8-08a3537613e1">
         <field name="gc_x" value="1015" />
         <field name="gc_workspaceid" value="dd87c315-25a0-44bc-b8a8-08a3537613e1" />
@@ -172,6 +179,8 @@
         <field name="gc_workspaceid" value="3d9b2e6b-78d2-45eb-851d-09a67f855e68" />
         <field name="gc_y" value="500" />
         <field name="gc_name" value="13" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="2d996e9e-166f-496e-bd37-0ab4d243062d">
@@ -266,6 +275,8 @@
         <field name="gc_workspaceid" value="62946a60-7cc2-482c-9a61-12d79ccacec0" />
         <field name="gc_y" value="350" />
         <field name="gc_name" value="20" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="1749e78b-1bfe-4556-8ec3-1467b175dfaf">
@@ -280,6 +291,8 @@
         <field name="gc_workspaceid" value="d6c29a4e-a83c-42dd-adfa-18221c8cf553" />
         <field name="gc_y" value="1029" />
         <field name="gc_name" value="62" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="0e4addb7-183a-4279-ac5f-1b9adbc01e4b">
@@ -287,6 +300,8 @@
         <field name="gc_workspaceid" value="0e4addb7-183a-4279-ac5f-1b9adbc01e4b" />
         <field name="gc_y" value="99" />
         <field name="gc_name" value="05" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="781404ba-3618-43a8-8b61-1c12ab099ba9">
@@ -344,6 +359,8 @@
         <field name="gc_workspaceid" value="af048eff-3029-44fd-926c-28497c118698" />
         <field name="gc_y" value="161" />
         <field name="gc_name" value="10" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="a0923146-f869-423e-acd8-28cfb3337dd1">
@@ -422,6 +439,8 @@
         <field name="gc_workspaceid" value="677ac4ee-a221-4060-b50c-2ffe41fc638f" />
         <field name="gc_y" value="952" />
         <field name="gc_name" value="60" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="7eca45f2-c144-4863-9326-30471a0cca04">
@@ -443,6 +462,8 @@
         <field name="gc_workspaceid" value="74405129-f704-4485-8d7b-32fad12a8c7d" />
         <field name="gc_y" value="912" />
         <field name="gc_name" value="75" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="89cc8348-52f5-4ad5-8cdd-360a1948d08d">
@@ -450,6 +471,8 @@
         <field name="gc_workspaceid" value="89cc8348-52f5-4ad5-8cdd-360a1948d08d" />
         <field name="gc_y" value="952" />
         <field name="gc_name" value="76" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="e639de7e-67c9-4f8d-b6c8-362ab46a1fe0">
@@ -552,6 +575,8 @@
         <field name="gc_workspaceid" value="a6a90492-ae76-481d-88a8-43dd276cadb3" />
         <field name="gc_y" value="500" />
         <field name="gc_name" value="12" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="6f68efed-2a46-4dcd-93a3-4413623d259c">
@@ -706,6 +731,8 @@
         <field name="gc_workspaceid" value="91bba2a0-c1b5-4cfd-9c08-61feca06f7a2" />
         <field name="gc_y" value="350" />
         <field name="gc_name" value="27" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="43c56711-0084-40db-bc12-64df0a4fc0b8">
@@ -736,7 +763,16 @@
         <field name="gc_workspaceid" value="f2824b6e-e9da-42fc-9b32-679cc50b19d3" />
         <field name="gc_y" value="161" />
         <field name="gc_name" value="09" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
+      </record>
+      <record id="a9b69702-87c8-41a1-adbd-691d81f45e88">
+        <field name="gc_x" value="215" />
+        <field name="gc_workspaceid" value="a9b69702-87c8-41a1-adbd-691d81f45e88" />
+        <field name="gc_y" value="842" />
+        <field name="gc_name" value="T-3" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="7034aaa5-4941-4bd2-972f-696087a203ab">
         <field name="gc_x" value="827" />
@@ -750,6 +786,13 @@
         <field name="gc_workspaceid" value="32536df2-3e9d-40cb-bdb6-69bfc3dd4713" />
         <field name="gc_y" value="1029" />
         <field name="gc_name" value="71" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
+      </record>
+      <record id="60eee371-f39b-423a-8681-6b044afcd03d">
+        <field name="gc_x" value="183" />
+        <field name="gc_workspaceid" value="60eee371-f39b-423a-8681-6b044afcd03d" />
+        <field name="gc_y" value="842" />
+        <field name="gc_name" value="T-2" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="9ebe1ae4-a544-4c30-a225-6be5551d6329">
@@ -778,6 +821,8 @@
         <field name="gc_workspaceid" value="1106eb46-ce8c-4fbf-8c6b-6de086f3dff7" />
         <field name="gc_y" value="432" />
         <field name="gc_name" value="22" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="2a56e5d5-ad57-48de-b956-75257bbe376d">
@@ -787,6 +832,13 @@
         <field name="gc_name" value="Lab 1" />
         <field name="gc_englishdescription" value="Lab only" />
         <field name="gc_frenchdescription" value="Lab seulement" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
+      </record>
+      <record id="f2300e37-2983-4a78-a8ba-77de73acd50d">
+        <field name="gc_x" value="245" />
+        <field name="gc_workspaceid" value="f2300e37-2983-4a78-a8ba-77de73acd50d" />
+        <field name="gc_y" value="787" />
+        <field name="gc_name" value="T-8" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="365aea63-2202-48fa-9a24-77f57f33a5b8">
@@ -801,6 +853,8 @@
         <field name="gc_workspaceid" value="e4331786-1e95-41d2-9d5f-78c2739e7283" />
         <field name="gc_y" value="914" />
         <field name="gc_name" value="27" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="d432e0db-0632-49f0-a2f7-7a2f23796783">
@@ -819,6 +873,13 @@
         <field name="gc_name" value="Lab 4" />
         <field name="gc_englishdescription" value="Lab only" />
         <field name="gc_frenchdescription" value="Lab seulement" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
+      </record>
+      <record id="329b5458-0050-47ef-a029-7d0c146135cb">
+        <field name="gc_x" value="215" />
+        <field name="gc_workspaceid" value="329b5458-0050-47ef-a029-7d0c146135cb" />
+        <field name="gc_y" value="787" />
+        <field name="gc_name" value="T-7" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="9aa1d550-329a-4098-a9ce-7d8109550dd2">
@@ -1054,6 +1115,8 @@
         <field name="gc_workspaceid" value="40c12f35-9cb9-4ef3-ae37-a317c6169d83" />
         <field name="gc_y" value="990" />
         <field name="gc_name" value="77" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="c41305e6-7549-48e2-9728-a4a28af492d0">
@@ -1100,6 +1163,8 @@
         <field name="gc_workspaceid" value="f0389dd3-4fab-4ae4-b01c-a6d9bf0206b9" />
         <field name="gc_y" value="914" />
         <field name="gc_name" value="26" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="bc086437-e410-45aa-a2be-a78453942275">
@@ -1139,6 +1204,8 @@
         <field name="gc_workspaceid" value="a3002f3b-9cc2-4196-a762-ab19d414f8ef" />
         <field name="gc_y" value="328" />
         <field name="gc_name" value="103" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="dea83d94-9918-4d01-89e6-ac79878aa81b">
@@ -1280,6 +1347,8 @@
         <field name="gc_workspaceid" value="17ba5061-28d2-4359-8c61-b9e3f6a7e22a" />
         <field name="gc_y" value="990" />
         <field name="gc_name" value="61" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="4c9cad6b-5b18-4c23-9649-bceb47b36555">
@@ -1324,6 +1393,8 @@
         <field name="gc_workspaceid" value="98e6e40e-0304-4c21-97f6-c05bb7ff532f" />
         <field name="gc_y" value="375" />
         <field name="gc_name" value="96" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="cd46e153-0efa-4aaa-80cc-c2f9b28bcb58">
@@ -1344,6 +1415,13 @@
         <field name="gc_frenchdescription" value="S&amp;#233;curit&amp;#233; seulement" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
+      <record id="fdfb022a-17d9-42a3-ae3f-c4358d7612d1">
+        <field name="gc_x" value="245" />
+        <field name="gc_workspaceid" value="fdfb022a-17d9-42a3-ae3f-c4358d7612d1" />
+        <field name="gc_y" value="842" />
+        <field name="gc_name" value="T-4" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
+      </record>
       <record id="7b557783-3626-4f05-ad1d-c4a557c3864b">
         <field name="gc_x" value="1682" />
         <field name="gc_workspaceid" value="7b557783-3626-4f05-ad1d-c4a557c3864b" />
@@ -1356,6 +1434,8 @@
         <field name="gc_workspaceid" value="06c230c1-314e-44bb-8720-c5c89b14af3b" />
         <field name="gc_y" value="99" />
         <field name="gc_name" value="06" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="f6ec2ddf-02c5-4226-ab31-c9b99e5211fa">
@@ -1381,6 +1461,13 @@
         <field name="gc_name" value="28" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
+      <record id="7e4270f0-8f3e-4ede-8b50-cc932fa891c6">
+        <field name="gc_x" value="150" />
+        <field name="gc_workspaceid" value="7e4270f0-8f3e-4ede-8b50-cc932fa891c6" />
+        <field name="gc_y" value="842" />
+        <field name="gc_name" value="T-1" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
+      </record>
       <record id="c4849d76-9650-4a3c-b6c8-cd5df0a7c69e">
         <field name="gc_x" value="207" />
         <field name="gc_workspaceid" value="c4849d76-9650-4a3c-b6c8-cd5df0a7c69e" />
@@ -1393,6 +1480,8 @@
         <field name="gc_workspaceid" value="213f4a70-e29b-4ad8-a55a-ce60890be399" />
         <field name="gc_y" value="990" />
         <field name="gc_name" value="45" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="22f46663-460a-4775-a074-cf1189e8d3ac">
@@ -1434,6 +1523,8 @@
         <field name="gc_workspaceid" value="76d5a7ac-dfc1-4fdf-aa58-d4aa729c8dd3" />
         <field name="gc_y" value="1029" />
         <field name="gc_name" value="46" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="d43ef65a-eb8d-4701-bbed-d5da7da3bcea">
@@ -1466,6 +1557,8 @@
         <field name="gc_workspaceid" value="925be0db-5910-4b94-95b7-d8df107ef285" />
         <field name="gc_y" value="1029" />
         <field name="gc_name" value="47" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="23c119fd-9362-45f3-b864-da7d5b5bf9dd">
@@ -1499,6 +1592,13 @@
         <field name="gc_y" value="303" />
         <field name="gc_name" value="05" />
         <field name="gc_floorplanid" value="13f51add-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="655 Bay Street,  Suite 404 - 4th floor" />
+      </record>
+      <record id="72fddc27-7512-4022-828c-dede79e88da2">
+        <field name="gc_x" value="183" />
+        <field name="gc_workspaceid" value="72fddc27-7512-4022-828c-dede79e88da2" />
+        <field name="gc_y" value="787" />
+        <field name="gc_name" value="T-6" />
+        <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="3adbc684-3fa4-430e-af40-df9d71fec2fb">
         <field name="gc_x" value="349" />
@@ -1604,6 +1704,8 @@
         <field name="gc_workspaceid" value="07526d2e-e0ac-438b-9eec-f6ff8bad5fcb" />
         <field name="gc_y" value="456" />
         <field name="gc_name" value="10" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="292406b1-b5c1-4d2d-a377-f839b9a2c39d">
@@ -1627,6 +1729,8 @@
         <field name="gc_workspaceid" value="e5a0fde3-8488-41df-aca4-f9886de83197" />
         <field name="gc_y" value="453" />
         <field name="gc_name" value="09" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="ebe6172f-bbab-4015-9cb1-fa4f0ae08bff">
