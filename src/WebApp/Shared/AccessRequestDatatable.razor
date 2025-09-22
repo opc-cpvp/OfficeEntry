@@ -42,7 +42,7 @@
             <tr>
                 <td class="@tdClass" data-order="@accessRequest.StartTime.Ticks">
                     <a class="btn btn-secondary btn-sm mr-2" href="/@Localizer["access-requests"]/@accessRequest.Id"><i class="fas fa-external-link-alt"></i></a>
-                    @accessRequest.StartTime.Date.ToString(Localizer["MMMM dd, yyyy"]) @accessRequest.StartTime.ToString(Localizer["h:mm tt"]) - @accessRequest.EndTime.ToString(Localizer["h:mm tt"])
+                    @accessRequest.StartTime.Date.ToString(Localizer["dddd, MMMM dd, yyyy"]) @accessRequest.StartTime.ToString(Localizer["h:mm tt"]) - @accessRequest.EndTime.ToString(Localizer["h:mm tt"])
                 </td>
                 <td class="@tdClass">@accessRequest.Employee.FullName</td>
                 <td class="@tdClass">@accessRequest.Building.Name</td>
