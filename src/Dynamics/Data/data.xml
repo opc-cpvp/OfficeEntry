@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2025-09-22T18:57:31.7638827Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2025-09-25T13:29:38.7563028Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -1402,8 +1402,8 @@
         <field name="gc_workspaceid" value="cd46e153-0efa-4aaa-80cc-c2f9b28bcb58" />
         <field name="gc_y" value="712" />
         <field name="gc_name" value="857" />
-        <field name="gc_englishdescription" value="Director only - Curved monitor " />
-        <field name="gc_frenchdescription" value="Directeur(rice) seulement - Moniteur courb&amp;#233;" />
+        <field name="gc_englishdescription" value="Focus room - Curved monitor" />
+        <field name="gc_frenchdescription" value="Salle de r&amp;#233;flexion - Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="9dc5b8b6-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="e84f49a2-1acf-446e-8ca8-c30b7fb9ad86">
