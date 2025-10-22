@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2025-09-25T13:29:38.7563028Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2025-10-22T13:27:45.5087992Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -821,8 +821,6 @@
         <field name="gc_workspaceid" value="1106eb46-ce8c-4fbf-8c6b-6de086f3dff7" />
         <field name="gc_y" value="432" />
         <field name="gc_name" value="22" />
-        <field name="gc_englishdescription" value="Curved monitor" />
-        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="2a56e5d5-ad57-48de-b956-75257bbe376d">
@@ -1236,6 +1234,8 @@
         <field name="gc_workspaceid" value="04964722-6f5e-4525-918b-ae88202f90e0" />
         <field name="gc_y" value="466" />
         <field name="gc_name" value="23" />
+        <field name="gc_englishdescription" value="Curved monitor" />
+        <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
       </record>
       <record id="a189eb61-bce5-4f6d-933c-afb3b85e9d1d">
