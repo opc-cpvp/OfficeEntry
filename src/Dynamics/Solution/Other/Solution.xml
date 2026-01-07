@@ -96,7 +96,6 @@
       <RootComponent type="60" id="{b749c26a-a518-41dc-a0df-7ceda6b49ee6}" behavior="0" />
       <RootComponent type="60" id="{c9456f40-921a-4df5-a279-b57db7a76dfd}" behavior="0" />
       <RootComponent type="91" schemaName="OfficeEntry.Plugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=472c6a8b46ad30c2" behavior="0" />
-      <RootComponent type="92" id="{e0d9c9bf-60e9-ea11-a2e4-005056aa7ac3}" behavior="0" />
     </RootComponents>
     <MissingDependencies />
   </SolutionManifest>

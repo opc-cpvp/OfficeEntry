@@ -8,6 +8,7 @@
   <EntityRelationship Name="gc_building_accessrequest_building" />
   <EntityRelationship Name="gc_building_contact_firstaidattendants" />
   <EntityRelationship Name="gc_building_contact_flooremergencyofficers" />
+  <EntityRelationship Name="gc_building_contact_mentalhealthtraining" />
   <EntityRelationship Name="gc_building_floor" />
   <EntityRelationship Name="gc_building_floorplan_building" />
   <EntityRelationship Name="gc_contact_accessrequest_delegate" />
