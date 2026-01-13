@@ -80,6 +80,7 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
 
             request.AccessRequest.FirstAidAttendant = isEmployeeFirstAidAttendant;
             request.AccessRequest.FloorEmergencyOfficer = isEmployeeFloorEmergencyOfficer;
+            request.AccessRequest.MentalHealthTraining = true;
 
             // The ordering of these checks is important
             // 1. Check if the employee already has an approved access request

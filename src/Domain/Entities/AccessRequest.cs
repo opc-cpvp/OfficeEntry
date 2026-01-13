@@ -11,6 +11,7 @@ public class AccessRequest
     public Building Building { get; set; }
     public bool FirstAidAttendant { get; set; }
     public bool FloorEmergencyOfficer { get; set; }
+    public bool MentalHealthTraining { get; set; }
     public Floor Floor { get; set; }
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }

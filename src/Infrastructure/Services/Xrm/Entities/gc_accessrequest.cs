@@ -14,6 +14,7 @@ internal class gc_accessrequest
     public DateTime gc_endtime { get; set; }
     public bool gc_firstaidattendant { get; set; }
     public bool gc_flooremergencyofficer { get; set; }
+    public bool gc_mentalhealthtraining { get; set; }
     public gc_floor gc_floor { get; set; }
     public contact gc_manager { get; set; }
     public AccessReasons? gc_accessreason { get; set; }
@@ -42,6 +43,7 @@ internal class gc_accessrequest
             FloorEmergencyOfficer = accessRequest.gc_flooremergencyofficer,
             FloorPlan = gc_floorplan.Convert(accessRequest.gc_floorplan),
             Manager = contact.Convert(accessRequest.gc_manager),
+            MentalHealthTraining = accessRequest.gc_mentalhealthtraining,
             StartTime = accessRequest.gc_starttime.ToLocalTime(),
             Status = new OptionSet
             {
@@ -80,6 +82,7 @@ internal class gc_accessrequest
             gc_flooremergencyofficer = accessRequest.FloorEmergencyOfficer,
             gc_floorplan = gc_floorplan.MapFrom(accessRequest.FloorPlan),
             gc_manager = contact.MapFrom(accessRequest.Manager),
+            gc_mentalhealthtraining = accessRequest.MentalHealthTraining,
             gc_starttime = accessRequest.StartTime,
             gc_workspace = gc_workspace.MapFrom(accessRequest.Workspace)
         };

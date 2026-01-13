@@ -57,6 +57,7 @@ class Circle {
     Taken = false;
     IsFirstAidAttendant = false;
     IsFloorEmergencyOfficer = false;
+    IsMentalHealthTraining = false;
     EmployeeFullName = "";
 
     constructor(x, y, diameter, name, id, selected) {
@@ -166,6 +167,7 @@ const takenBackgroundImage = new Image();
 const selectedBackgroundImage = new Image();
 const firstAidAttendantImage = new Image();
 const floorEmergencyOfficerImage = new Image();
+const mentalHealthTrainingImage = new Image();
 const multipleRolesImage = new Image();
 const userImage = new Image();
 
@@ -314,9 +316,12 @@ function Draw(deltaTime) {
     circles
         .filter(x => x.Taken)
         .forEach(circle => {
-            const iconImage = circle.IsFirstAidAttendant && circle.IsFloorEmergencyOfficer ? multipleRolesImage
+            const roles = [circle.IsFirstAidAttendant, circle.IsFloorEmergencyOfficer, circle.IsMentalHealthTraining]
+            const hasMultipleRoles = roles.filter((role) => role === true).length > 1;
+            const iconImage = hasMultipleRoles  ? multipleRolesImage
                 : circle.IsFirstAidAttendant ? firstAidAttendantImage
                 : circle.IsFloorEmergencyOfficer ? floorEmergencyOfficerImage
+                : circle.IsMentalHealthTraining ? floorEmergencyOfficerImage
                 : userImage;
 
             const degrees = 315;
@@ -419,6 +424,7 @@ export async function start(imagedata, circlesJson) {
     selectedBackgroundImage.src = '/img/floorplan/circle_selected_icon.svg';
     firstAidAttendantImage.src = '/img/floorplan/first_aid_attendant_icon.svg';
     floorEmergencyOfficerImage.src = '/img/floorplan/floor_emergency_officer_icon.svg';
+    mentalHealthTrainingImage.src = '/img/floorplan/mental_health_training_icon.svg';
     multipleRolesImage.src = '/img/floorplan/multiple_roles_icon.svg';
     userImage.src = '/img/floorplan/user_icon.svg';
 

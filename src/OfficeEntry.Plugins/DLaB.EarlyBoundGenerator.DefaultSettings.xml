@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Config xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <AudibleCompletionNotification>false</AudibleCompletionNotification>
+  <AudibleCompletionNotification>true</AudibleCompletionNotification>
   <CrmSvcUtilRelativePath>DLaB.EarlyBoundGenerator\crmsvcutil.exe</CrmSvcUtilRelativePath>
   <IncludeCommandLine>true</IncludeCommandLine>
   <MaskPassword>true</MaskPassword>
-  <SettingsVersion>1.2022.9.22</SettingsVersion>
+  <SettingsVersion>1.2023.12.6</SettingsVersion>
   <Version>1.2023.12.6</Version>
   <ExtensionConfig>
     <ActionPrefixesWhitelist />
