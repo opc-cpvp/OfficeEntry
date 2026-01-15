@@ -38,6 +38,7 @@ else
             {
                 <div class="card text-white bg-dark mb-3">
                     <h5 class="card-header">@_selectedAccessRequest.Workspace.Name</h5>
+                    <h5 class="card-header">Test</h5>
                     <div class="card-body">
                         <h5 class="card-title">@_selectedAccessRequest.Employee.FullName</h5>
                         <p class="card-text">
@@ -66,6 +67,35 @@ else
                                 @_selectedAccessRequest.EndTime.ToString("HH:mm")
                             </span>
                         </p>
+                        <!--Maybe make better if statement-->
+                        @if (_selectedAccessRequest.FirstAidAttendant || _selectedAccessRequest.FloorEmergencyOfficer || _selectedAccessRequest.MentalHealthTraining) 
+                        {
+                            <p class="card-text">
+                                <span class="font-weight-bold text-muted">Roles</span>
+                                <br>
+                                @if (_selectedAccessRequest.FirstAidAttendant)
+                                {
+                                    <span class="nowrap">
+                                        FirstAidAttendant
+                                    </span>
+                                    <br>
+                                }
+                                @if (_selectedAccessRequest.FloorEmergencyOfficer)
+                                {
+                                    <span class="nowrap">
+                                        FloorEmergencyOfficer
+                                    </span>
+                                    <br>
+                                }
+                                @if (_selectedAccessRequest.MentalHealthTraining)
+                                {
+                                    <span class="nowrap">
+                                        MentalHealthTraining
+                                    </span>
+                                    <br>
+                                }
+                            </p>
+                        }
                     </div>
                 </div>
             }

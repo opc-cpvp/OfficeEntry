@@ -446,6 +446,7 @@ export async function start(imagedata, circlesJson) {
             newCircle.EmployeeFullName = circle.EmployeeFullName;
             newCircle.IsFirstAidAttendant = circle.IsFirstAidAttendant;
             newCircle.IsFloorEmergencyOfficer = circle.IsFloorEmergencyOfficer;
+            newCircle.IsMentalHealthTraining = circle.IsMentalHealthTraining;
             circles.push(newCircle);
         });
     }
