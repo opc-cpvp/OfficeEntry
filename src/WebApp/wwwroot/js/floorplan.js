@@ -321,7 +321,7 @@ function Draw(deltaTime) {
             const iconImage = hasMultipleRoles  ? multipleRolesImage
                 : circle.IsFirstAidAttendant ? firstAidAttendantImage
                 : circle.IsFloorEmergencyOfficer ? floorEmergencyOfficerImage
-                : circle.IsMentalHealthTraining ? floorEmergencyOfficerImage
+                : circle.IsMentalHealthTraining ? mentalHealthTrainingImage
                 : userImage;
 
             const degrees = 315;

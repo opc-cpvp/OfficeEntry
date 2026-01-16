@@ -357,4 +357,13 @@
   <data name="Workstation" xml:space="preserve">
     <value>Workstation</value>
   </data>
+  <data name="FloorEmergencyOfficer" xml:space="preserve">
+    <value>Floor Emergency Officer</value>
+  </data>
+  <data name="FirstAidAttendant" xml:space="preserve">
+    <value>First Aid Attendant</value>
+  </data>
+  <data name="MentalHealthTraining" xml:space="preserve">
+    <value>Mental Health Training</value>
+  </data>
 </root>

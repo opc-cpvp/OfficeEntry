@@ -64,23 +64,26 @@ namespace OfficeEntry.Application.AccessRequests.Commands.CreateAccessRequestReq
             var floorPlanCapacityTask = _locationService.GetCapacityByFloorPlanAsync(floorPlan.Id, DateOnly.FromDateTime(requestDate));
             var firstAidAttendantsTask = _locationService.GetFirstAidAttendantsAsync(request.AccessRequest.Building.Id);
             var floorEmergencyOfficersTask = _locationService.GetFloorEmergencyOfficersAsync(request.AccessRequest.Building.Id);
+            var mentalHealthTrainingTask = _locationService.GetMentalHealthTrainingAsync(request.AccessRequest.Building.Id);
 
-            await Task.WhenAll(accessRequestsTask, floorPlanCapacityTask, firstAidAttendantsTask, floorEmergencyOfficersTask);
+            await Task.WhenAll(accessRequestsTask, floorPlanCapacityTask, firstAidAttendantsTask, floorEmergencyOfficersTask, mentalHealthTrainingTask);
 
             var accessRequests = accessRequestsTask.Result;
             var initialFloorPlanCapacity = floorPlanCapacityTask.Result;
             var firstAidAttendants = firstAidAttendantsTask.Result;
             var floorEmergencyOfficers = floorEmergencyOfficersTask.Result;
+            var mentalHealthTraining = mentalHealthTrainingTask.Result;
 
             var isEmployeeFirstAidAttendant = firstAidAttendants.Any(x => x.Id == request.AccessRequest.Employee.Id);
             var isEmployeeFloorEmergencyOfficer = floorEmergencyOfficers.Any(x => x.Id == request.AccessRequest.Employee.Id);
+            var isMentalHealthTraining = mentalHealthTraining.Any(x => x.Id == request.AccessRequest.Employee.Id);
             var employeeHasApprovedAccessRequest = accessRequests
                 .Where(a => a.Employee.Id == request.AccessRequest.Employee.Id)
                 .Any(a => a.Status.Key == (int)AccessRequest.ApprovalStatus.Approved);
 
             request.AccessRequest.FirstAidAttendant = isEmployeeFirstAidAttendant;
             request.AccessRequest.FloorEmergencyOfficer = isEmployeeFloorEmergencyOfficer;
-            request.AccessRequest.MentalHealthTraining = true;
+            request.AccessRequest.MentalHealthTraining = isMentalHealthTraining;
 
             // The ordering of these checks is important
             // 1. Check if the employee already has an approved access request

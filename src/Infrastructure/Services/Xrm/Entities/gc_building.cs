@@ -15,6 +15,7 @@ internal class gc_building
     public double gc_timezoneoffset { get; set; }
     public IEnumerable<contact> gc_building_contact_firstaidattendants { get; set; }
     public IEnumerable<contact> gc_building_contact_flooremergencyofficers { get; set; }
+    public IEnumerable<contact> gc_building_contact_mentalhealthtraining { get; set; }
     public int statecode { get; set; }
 
     public static Building Convert(gc_building building)

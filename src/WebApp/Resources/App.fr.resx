@@ -117,6 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="/" xml:space="preserve">
+    <value>en/</value>
+    <comment>URI</comment>
+  </data>
+  <data name="30 Victoria Street" xml:space="preserve">
+    <value>30, rue Victoria</value>
+  </data>
+  <data name="4th floor" xml:space="preserve">
+    <value>4e étage</value>
+  </data>
+  <data name="655 Bay Street, Suite 404" xml:space="preserve">
+    <value>655, rue Bay, bureau 404</value>
+  </data>
+  <data name="7th floor" xml:space="preserve">
+    <value>7e étage</value>
+  </data>
+  <data name="8th floor" xml:space="preserve">
+    <value>8e étage</value>
+  </data>
+  <data name="Accept all Terms and Conditions" xml:space="preserve">
+    <value>Avant de soumettre une demande, vous devez accepter les conditions des Mesures de santé et de sécurité relatives et de la Protection des renseignements personnels.</value>
+  </data>
+  <data name="Accept Health and Safety Measures" xml:space="preserve">
+    <value>Avant de soumettre une demande, vous devez accepter les conditions des Mesures de santé et de sécurité relatives.</value>
+  </data>
+  <data name="Accept Privacy Act Statement" xml:space="preserve">
+    <value>Avant de soumettre une demande, vous devez accepter les conditions de la Protection des renseignements personnels.</value>
+  </data>
   <data name="access-requests" xml:space="preserve">
     <value>fr/demandes-d-acces</value>
     <comment>URI</comment>
@@ -151,17 +179,45 @@
   <data name="Details:" xml:space="preserve">
     <value>Détails:</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Courriel</value>
   </data>
   <data name="EndTime" xml:space="preserve">
     <value>À</value>
   </data>
+  <data name="Error Message" xml:space="preserve">
+    <value>Une erreur s'est produite. Si le problème persiste, s'il vous plait &lt;a target="_blank" href="https://web-sh-01.partners.collab.gc.ca/cds-sd/fr/billet-it/Creer-It"&gt;contacter l'équipe de la TI&lt;/a&gt;.</value>
+  </data>
+  <data name="Error Title" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
   <data name="Floor" xml:space="preserve">
     <value>Étage</value>
   </data>
+  <data name="floor-plans-edit" xml:space="preserve">
+    <value>fr/gerer-les-plans-d-etages/{0}</value>
+    <comment>URI</comment>
+  </data>
+  <data name="floor-plans-manage" xml:space="preserve">
+    <value>fr/plans-d-etages/gestion</value>
+    <comment>URI</comment>
+  </data>
+  <data name="floor-plans-map" xml:space="preserve">
+    <value>fr/plans-d-etages/carte/{0}</value>
+    <comment>URI</comment>
+  </data>
   <data name="From" xml:space="preserve">
     <value>de</value>
+  </data>
+  <data name="Guide for Employees" xml:space="preserve">
+    <value>Guide du milieu de travail en modèle hybride</value>
+  </data>
+  <data name="guide-for-employees" xml:space="preserve">
+    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-525314</value>
+    <comment>URL</comment>
   </data>
   <data name="h:mm tt" xml:space="preserve">
     <value>HH:mm</value>
@@ -176,11 +232,21 @@
   <data name="Hello," xml:space="preserve">
     <value>Bonjour,</value>
   </data>
+  <data name="Instructions on Booking Workspace" xml:space="preserve">
+    <value>Instructions sur la façon de réserver un poste de travail</value>
+  </data>
+  <data name="Instructions-on-Booking-Workspace" xml:space="preserve">
+    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-528986</value>
+    <comment>URl</comment>
+  </data>
   <data name="LanguageToggle" xml:space="preserve">
     <value>English</value>
   </data>
   <data name="Loading..." xml:space="preserve">
     <value>Téléchargement en cours...</value>
+  </data>
+  <data name="Manage Floor Plans" xml:space="preserve">
+    <value>Gestion des plans d'étages</value>
   </data>
   <data name="Manager:" xml:space="preserve">
     <value>Gestionnaire:</value>
@@ -190,6 +256,10 @@
   </data>
   <data name="My Requests" xml:space="preserve">
     <value>Mes demandes</value>
+  </data>
+  <data name="my-requests" xml:space="preserve">
+    <value>fr/mes-demandes</value>
+    <comment>URI</comment>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nom</value>
@@ -225,11 +295,27 @@
   <data name="Reason:" xml:space="preserve">
     <value>Raison:</value>
   </data>
+  <data name="Refresh the list" xml:space="preserve">
+    <value>Rafraîchir la liste</value>
+  </data>
   <data name="RegularWork" xml:space="preserve">
     <value>Travail régulier</value>
   </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Recharger</value>
+  </data>
   <data name="Requestor" xml:space="preserve">
     <value>Demandeur</value>
+  </data>
+  <data name="Requests for My Colleagues" xml:space="preserve">
+    <value>Demandes pour mes collègues</value>
+  </data>
+  <data name="requests-for-my-colleagues" xml:space="preserve">
+    <value>fr/demandes-pour-mes-collegues</value>
+    <comment>URI</comment>
+  </data>
+  <data name="result-workstation-already-booked" xml:space="preserve">
+    <value>Le poste de travail que vous avez choisi est déjà réservé. S'il vous plait, en choisir un autre.</value>
   </data>
   <data name="Review" xml:space="preserve">
     <value>Revue</value>
@@ -246,23 +332,11 @@
   <data name="Status:" xml:space="preserve">
     <value>Statut:</value>
   </data>
+  <data name="Submit Request" xml:space="preserve">
+    <value>Soumettre une demande</value>
+  </data>
   <data name="Telephone" xml:space="preserve">
     <value>Téléphone</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>à</value>
-  </data>
-  <data name="Type" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="Accept all Terms and Conditions" xml:space="preserve">
-    <value>Avant de soumettre une demande, vous devez accepter les conditions des Mesures de santé et de sécurité relatives et de la Protection des renseignements personnels.</value>
-  </data>
-  <data name="Accept Health and Safety Measures" xml:space="preserve">
-    <value>Avant de soumettre une demande, vous devez accepter les conditions des Mesures de santé et de sécurité relatives.</value>
-  </data>
-  <data name="Accept Privacy Act Statement" xml:space="preserve">
-    <value>Avant de soumettre une demande, vous devez accepter les conditions de la Protection des renseignements personnels.</value>
   </data>
   <data name="Terms and Conditions" xml:space="preserve">
     <value>Modalités et conditions</value>
@@ -271,90 +345,25 @@
     <value>fr/modalites-et-conditions</value>
     <comment>URI</comment>
   </data>
-  <data name="my-requests" xml:space="preserve">
-    <value>fr/mes-demandes</value>
-    <comment>URI</comment>
-  </data>
-  <data name="/" xml:space="preserve">
-    <value>en/</value>
-    <comment>URI</comment>
+  <data name="To" xml:space="preserve">
+    <value>à</value>
   </data>
   <data name="To start using this app, please read and agree to the following:" xml:space="preserve">
     <value>Pour commencer à utiliser cette application, veuillez lire et accepter les modalités et conditions suivants:</value>
   </data>
-  <data name="Refresh the list" xml:space="preserve">
-    <value>Rafraîchir la liste</value>
-  </data>
-  <data name="Guide for Employees" xml:space="preserve">
-    <value>Guide du milieu de travail en modèle hybride</value>
-  </data>
-  <data name="guide-for-employees" xml:space="preserve">
-    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-525314</value>
-    <comment>URL</comment>
-  </data>
-  <data name="Error Message" xml:space="preserve">
-    <value>Une erreur s'est produite. Si le problème persiste, s'il vous plait &lt;a target="_blank" href="https://web-sh-01.partners.collab.gc.ca/cds-sd/fr/billet-it/Creer-It"&gt;contacter l'équipe de la TI&lt;/a&gt;.</value>
-  </data>
-  <data name="Error Title" xml:space="preserve">
-    <value>Erreur</value>
-  </data>
-  <data name="Reload" xml:space="preserve">
-    <value>Recharger</value>
-  </data>
-  <data name="30 Victoria Street" xml:space="preserve">
-    <value>30, rue Victoria</value>
-  </data>
-  <data name="4th floor" xml:space="preserve">
-    <value>4e étage</value>
-  </data>
-  <data name="655 Bay Street, Suite 404" xml:space="preserve">
-    <value>655, rue Bay, bureau 404</value>
-  </data>
-  <data name="7th floor" xml:space="preserve">
-    <value>7e étage</value>
-  </data>
-  <data name="8th floor" xml:space="preserve">
-    <value>8e étage</value>
-  </data>
-  <data name="floor-plans-edit" xml:space="preserve">
-    <value>fr/gerer-les-plans-d-etages/{0}</value>
-    <comment>URI</comment>
-  </data>
-  <data name="floor-plans-map" xml:space="preserve">
-    <value>fr/plans-d-etages/carte/{0}</value>
-    <comment>URI</comment>
-  </data>
-  <data name="Manage Floor Plans" xml:space="preserve">
-    <value>Gestion des plans d'étages</value>
-  </data>
-  <data name="requests-for-my-colleagues" xml:space="preserve">
-    <value>fr/demandes-pour-mes-collegues</value>
-    <comment>URI</comment>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="Workstation" xml:space="preserve">
     <value>Poste de travail</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Modifier</value>
+  <data name="FloorEmergencyOfficer" xml:space="preserve">
+    <value>Responsable d’évacuation d’étage</value>
   </data>
-  <data name="Requests for My Colleagues" xml:space="preserve">
-    <value>Demandes pour mes collègues</value>
+  <data name="FirstAidAttendant" xml:space="preserve">
+    <value>Secouriste Qualifié</value>
   </data>
-  <data name="Submit Request" xml:space="preserve">
-    <value>Soumettre une demande</value>
-  </data>
-  <data name="floor-plans-manage" xml:space="preserve">
-    <value>fr/plans-d-etages/gestion</value>
-    <comment>URI</comment>
-  </data>
-  <data name="result-workstation-already-booked" xml:space="preserve">
-    <value>Le poste de travail que vous avez choisi est déjà réservé. S'il vous plait, en choisir un autre.</value>
-  </data>
-  <data name="Instructions on Booking Workspace" xml:space="preserve">
-    <value>Instructions sur la façon de réserver un poste de travail</value>
-  </data>
-  <data name="Instructions-on-Booking-Workspace" xml:space="preserve">
-    <value>https://officium/_layouts/15/OPC.Officium/Utilities/OfficiumIDLookup.aspx?id=7777-6-528986</value>
-    <comment>URl</comment>
+  <data name="MentalHealthTraining" xml:space="preserve">
+    <value>Formation à la santé mentale</value>
   </data>
 </root>
