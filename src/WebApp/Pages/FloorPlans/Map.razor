@@ -38,7 +38,6 @@ else
             {
                 <div class="card text-white bg-dark mb-3">
                     <h5 class="card-header">@_selectedAccessRequest.Workspace.Name</h5>
-                    <h5 class="card-header">Test</h5>
                     <div class="card-body">
                         <h5 class="card-title">@_selectedAccessRequest.Employee.FullName</h5>
                         <p class="card-text">
@@ -71,25 +70,28 @@ else
                         @if (_selectedAccessRequest.FirstAidAttendant || _selectedAccessRequest.FloorEmergencyOfficer || _selectedAccessRequest.MentalHealthTraining) 
                         {
                             <p class="card-text">
-                                <span class="font-weight-bold text-muted">Roles</span>
+                                <span class="font-weight-bold text-muted">@Localizer["Roles"]</span>
                                 <br>
                                 @if (_selectedAccessRequest.FirstAidAttendant)
                                 {
-                                    <span class="test">
+                                    <span class="nowrap">
+                                        <img src="/img/floorplan/first_aid_attendant_icon.svg" width="20" height="20" />
                                         @Localizer["FirstAidAttendant"]
                                     </span>
                                     <br>
                                 }
                                 @if (_selectedAccessRequest.FloorEmergencyOfficer)
                                 {
-                                    <span class="test">
+                                    <span class="nowrap">
+                                        <img src="/img/floorplan/floor_emergency_officer_icon.svg" width="20" height="20" />
                                         @Localizer["FloorEmergencyOfficer"]
                                     </span>
                                     <br>
                                 }
                                 @if (_selectedAccessRequest.MentalHealthTraining)
                                 {
-                                    <span class="test">
+                                    <span class="nowrap">
+                                        <img src="/img/floorplan/mental_health_training_icon.svg" width="20" height="20" />
                                         @Localizer["MentalHealthTraining"]
                                     </span>
                                     <br>
