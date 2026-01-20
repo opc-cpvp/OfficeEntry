@@ -66,6 +66,37 @@ else
                                 @_selectedAccessRequest.EndTime.ToString("HH:mm")
                             </span>
                         </p>
+                        @if (_selectedAccessRequest.FirstAidAttendant || _selectedAccessRequest.FloorEmergencyOfficer || _selectedAccessRequest.MentalHealthTraining) 
+                        {
+                            <p class="card-text">
+                                <span class="font-weight-bold text-muted">@Localizer["Roles"]</span>
+                                <br>
+                                @if (_selectedAccessRequest.FirstAidAttendant)
+                                {
+                                    <span class="nowrap">
+                                        <img src="/img/floorplan/first_aid_attendant_icon.svg" class="icons"/>
+                                        @Localizer["FirstAidAttendant"]
+                                    </span>
+                                    <br />
+                                }
+                                @if (_selectedAccessRequest.FloorEmergencyOfficer)
+                                {
+                                    <span class="nowrap">
+                                        <img src="/img/floorplan/floor_emergency_officer_icon.svg" class="icons" />
+                                        @Localizer["FloorEmergencyOfficer"]
+                                    </span>
+                                    <br />
+                                }
+                                @if (_selectedAccessRequest.MentalHealthTraining)
+                                {
+                                    <span class="nowrap">
+                                        <img src="/img/floorplan/mental_health_training_icon.svg" class="icons" />
+                                        @Localizer["MentalHealthTraining"]
+                                    </span>
+                                    <br />
+                                }
+                            </p>
+                        }
                     </div>
                 </div>
             }

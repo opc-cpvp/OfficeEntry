@@ -31,3 +31,10 @@
 .close-button:hover {
     color: black;
 }
+
+
+.icons {
+    filter: brightness(0) saturate(100%) invert(45%) sepia(6%) saturate(671%) hue-rotate(167deg) brightness(98%) contrast(93%);
+    width: 20px;
+    height: 20px;
+}

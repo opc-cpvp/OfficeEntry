@@ -463,6 +463,26 @@ namespace OfficeEntry.Plugins
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_mentalhealthtraining")]
+		public System.Nullable<bool> gc_mentalhealthtraining
+		{
+			[System.Diagnostics.DebuggerNonUserCode()]
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("gc_mentalhealthtraining");
+			}
+			[System.Diagnostics.DebuggerNonUserCode()]
+			set
+			{
+				this.OnPropertyChanging("gc_mentalhealthtraining");
+				this.SetAttributeValue("gc_mentalhealthtraining", value);
+				this.OnPropertyChanged("gc_mentalhealthtraining");
+			}
+		}
+		
+		/// <summary>
 		/// The name of the custom entity.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_name")]
@@ -479,26 +499,6 @@ namespace OfficeEntry.Plugins
 				this.OnPropertyChanging("gc_name");
 				this.SetAttributeValue("gc_name", value);
 				this.OnPropertyChanged("gc_name");
-			}
-		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("gc_office")]
-		public Microsoft.Xrm.Sdk.EntityReference gc_office
-		{
-			[System.Diagnostics.DebuggerNonUserCode()]
-			get
-			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("gc_office");
-			}
-			[System.Diagnostics.DebuggerNonUserCode()]
-			set
-			{
-				this.OnPropertyChanging("gc_office");
-				this.SetAttributeValue("gc_office", value);
-				this.OnPropertyChanged("gc_office");
 			}
 		}
 		

@@ -21,6 +21,7 @@
           <cell name="gc_delegate" width="100" />
           <cell name="gc_firstaidattendant" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="gc_flooremergencyofficer" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="gc_mentalhealthtraining" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="gc_approvalstatus" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="createdon" width="100" />
         </row>
@@ -45,6 +46,7 @@
           <attribute name="gc_firstaidattendant" />
           <attribute name="createdon" />
           <attribute name="gc_dayofweek" />
+          <attribute name="gc_mentalhealthtraining" />
           <attribute name="gc_accessrequestid" />
         </entity>
       </fetch>

@@ -138,7 +138,7 @@
                         <control id="gc_details" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="gc_details" disabled="false" uniqueid="{e382bea9-7555-65a2-4803-c424a1b08d45}" />
                       </cell>
                     </row>
-                    <row />
+                    <row></row>
                     <row />
                     <row />
                     <row />

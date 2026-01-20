@@ -357,7 +357,16 @@
   <data name="Workstation" xml:space="preserve">
     <value>Poste de travail</value>
   </data>
-  <data name="Today's Requests" xml:space="preserve">
-    <value>Demandes d'aujourd'hui</value>
+  <data name="FloorEmergencyOfficer" xml:space="preserve">
+    <value>Agent de secours d’étage </value>
+  </data>
+  <data name="FirstAidAttendant" xml:space="preserve">
+    <value>Secouriste</value>
+  </data>
+  <data name="MentalHealthTraining" xml:space="preserve">
+    <value>Formation en santé mentale</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Rôles</value>
   </data>
 </root>

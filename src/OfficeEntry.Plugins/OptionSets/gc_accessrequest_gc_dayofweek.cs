@@ -9,29 +9,29 @@
 
 namespace OfficeEntry.Plugins
 {
-
+	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	public enum gc_accessrequest_gc_dayofweek
 	{
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Friday = 948160005,
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Monday = 948160001,
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Saturday = 948160006,
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Sunday = 948160000,
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Thursday = 948160004,
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Tuesday = 948160002,
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Wednesday = 948160003,
 	}

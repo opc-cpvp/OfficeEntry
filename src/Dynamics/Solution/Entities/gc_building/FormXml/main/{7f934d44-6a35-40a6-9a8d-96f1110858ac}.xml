@@ -198,6 +198,45 @@
                     <row />
                   </rows>
                 </section>
+                <section name="section_mentalhealthtraining" showlabel="true" showbar="true" locklevel="0" id="{99776018-eb57-6aad-278b-24e3123b5491}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Mental Health Training" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{45d23e19-9ba1-c418-cd93-246c6522e2ad}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="Mental Health Training" languagecode="1033" />
+                          <label description="Contacts" languagecode="1036" />
+                        </labels>
+                        <control id="subgrid_mentalhealthtraining" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{dd37a560-cc72-6b8b-3cc8-5da0ea4901c6}">
+                          <parameters>
+                            <ViewId>{00000000-0000-0000-00AA-000010001004}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>gc_building_contact_mentalhealthtraining</RelationshipName>
+                            <TargetEntityType>contact</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{00000000-0000-0000-00AA-000010001004},{00000000-0000-0000-00AA-000010001003}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <VisualizationId>{E365462F-1DB9-46A8-928D-BEAB1A7A2375}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>false</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
               </sections>
             </column>
             <column width="50%">

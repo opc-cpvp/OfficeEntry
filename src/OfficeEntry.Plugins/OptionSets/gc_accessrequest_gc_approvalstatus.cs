@@ -9,20 +9,20 @@
 
 namespace OfficeEntry.Plugins
 {
-
+	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	public enum gc_accessrequest_gc_approvalstatus
 	{
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Approved = 948160001,
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Cancelled = 948160003,
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Declined = 948160002,
-
+		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Pending = 948160000,
 	}

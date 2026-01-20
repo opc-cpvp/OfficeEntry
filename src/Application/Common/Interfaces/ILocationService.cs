@@ -15,5 +15,6 @@ public interface ILocationService
     Task UpdateFloorPlan(FloorPlan floorPlan);
     Task<IEnumerable<Contact>> GetFirstAidAttendantsAsync(Guid buildingId);
     Task<IEnumerable<Contact>> GetFloorEmergencyOfficersAsync(Guid buildingId);
+    Task<IEnumerable<Contact>> GetMentalHealthTrainingAsync(Guid buildingId);
     Task<IEnumerable<Contact>> GetContactsForBuildingByRole(Guid buildingId, EmployeeRoleType roleType);
 }

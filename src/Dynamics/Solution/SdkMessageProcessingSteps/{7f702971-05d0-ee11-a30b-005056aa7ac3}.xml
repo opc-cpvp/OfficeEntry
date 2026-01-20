@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SdkMessageProcessingStep Name="OfficeEntry.Plugins.AccessRequestPlugin: Create of gc_accessrequest" SdkMessageProcessingStepId="{e0d9c9bf-60e9-ea11-a2e4-005056aa7ac3}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SdkMessageProcessingStep Name="OfficeEntry.Plugins.AccessRequestPlugin: Create of gc_accessrequest" SdkMessageProcessingStepId="{7f702971-05d0-ee11-a30b-005056aa7ac3}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <PluginTypeName>OfficeEntry.Plugins.AccessRequestPlugin, OfficeEntry.Plugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=472c6a8b46ad30c2</PluginTypeName>
   <PrimaryEntity>gc_accessrequest</PrimaryEntity>
   <AsyncAutoDelete>0</AsyncAutoDelete>

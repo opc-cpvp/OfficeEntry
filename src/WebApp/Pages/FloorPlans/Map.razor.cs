@@ -106,6 +106,7 @@ public sealed partial class Map
                 var isTaken = accessRequest is not null;
                 var isFirstAidAttendant = accessRequest?.FirstAidAttendant ?? false;
                 var isFloorEmergencyOfficer = accessRequest?.FloorEmergencyOfficer ?? false;
+                var isMentalHealthTraining = accessRequest?.MentalHealthTraining ?? false;
                 var tooltip = isTaken ? employeeFullName : workspaceDescription;
 
                 return new
@@ -118,6 +119,7 @@ public sealed partial class Map
                     Taken = isTaken,
                     IsFirstAidAttendant = isFirstAidAttendant,
                     IsFloorEmergencyOfficer = isFloorEmergencyOfficer,
+                    IsMentalHealthTraining = isMentalHealthTraining,
                     EmployeeFullName = tooltip,
                 };
             });
