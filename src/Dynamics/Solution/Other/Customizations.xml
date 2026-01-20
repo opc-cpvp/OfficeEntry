@@ -11,6 +11,7 @@
   <optionsets />
   <Dashboards />
   <SolutionPluginAssemblies />
+  <SdkMessageProcessingSteps />
   <Languages>
     <Language>1033</Language>
     <Language>1036</Language>

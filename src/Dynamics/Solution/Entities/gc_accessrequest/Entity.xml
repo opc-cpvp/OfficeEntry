@@ -1604,7 +1604,7 @@
       <IsDocumentRecommendationsEnabled>0</IsDocumentRecommendationsEnabled>
       <IsBPFEntity>0</IsBPFEntity>
       <OwnershipTypeMask>UserOwned</OwnershipTypeMask>
-      <IsAuditEnabled>1</IsAuditEnabled>
+      <IsAuditEnabled>0</IsAuditEnabled>
       <IsActivity>0</IsActivity>
       <ActivityTypeMask></ActivityTypeMask>
       <IsActivityParty>1</IsActivityParty>
