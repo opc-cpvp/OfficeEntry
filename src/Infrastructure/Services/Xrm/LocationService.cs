@@ -199,14 +199,14 @@ public class LocationService : ILocationService
 
     public async Task<IEnumerable<Contact>> GetMentalHealthTrainingAsync(Guid buildingId)
     {
-        var MentalHealthTraining = await _client
+        var mentalHealthTraining = await _client
             .For<gc_building>()
             .Key(buildingId)
             .NavigateTo(x => x.gc_building_contact_mentalhealthtraining)
             .Filter(x => x.statecode == (int)Entities.StateCode.Active)
             .FindEntriesAsync();
 
-        return MentalHealthTraining.Select(contact.Convert);
+        return mentalHealthTraining.Select(contact.Convert);
     }
 
     public async Task<IEnumerable<Contact>> GetContactsForBuildingByRole(Guid buildingId, EmployeeRoleType roleType)
