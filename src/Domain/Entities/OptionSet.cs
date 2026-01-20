@@ -1,6 +1,9 @@
-﻿namespace OfficeEntry.Domain.Entities;
+﻿using MemoryPack;
 
-public class OptionSet
+namespace OfficeEntry.Domain.Entities;
+
+[MemoryPackable]
+public partial class OptionSet
 {
     public int Key { get; set; }
     public string Value { get; set; }

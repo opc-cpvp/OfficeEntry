@@ -3,6 +3,7 @@ using MediatR;
 using OfficeEntry.Application.Locations.Commands.UpdateFloorPlan;
 using OfficeEntry.Application.Locations.Queries.GetFloorPlan;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.WebApp.Store.FloorPlanUseCases.Edit;
 

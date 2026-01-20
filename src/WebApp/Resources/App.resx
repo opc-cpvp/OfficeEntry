@@ -357,4 +357,7 @@
   <data name="Workstation" xml:space="preserve">
     <value>Workstation</value>
   </data>
+  <data name="Today's Requests" xml:space="preserve">
+    <value>Today's Requests</value>
+  </data>
 </root>

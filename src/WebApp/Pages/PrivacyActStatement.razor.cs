@@ -7,6 +7,7 @@ using OfficeEntry.Application.User.Commands.UpdatePrivacyStatement;
 using OfficeEntry.WebApp.Shared;
 using System.Text.Json;
 using OfficeEntry.WebApp.Store.TermsAndConditionsUseCase;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.WebApp.Pages;
 

@@ -1,8 +1,10 @@
 ﻿using Destructurama.Attributed;
+using MemoryPack;
 
 namespace OfficeEntry.Domain.Entities;
 
-public class FloorPlan
+[MemoryPackable]
+public partial class FloorPlan
 {
     public Guid Id { get; set; }
     public string Name { get; set; }

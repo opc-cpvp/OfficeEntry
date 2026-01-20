@@ -1,15 +1,15 @@
-﻿using MediatR;
+﻿using MagicOnion;
+using MagicOnion.Server;
+using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
-using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.Application.Locations.Commands.UpdateFloorPlan;
 
-public record UpdateFloorPlanCommand : IRequest
-{
-    public FloorPlan FloorPlan { get; init; }
-}
-
-public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateFloorPlanCommand>
+public class UpdateAccessRequestCommandHandler :
+    ServiceBase<IUpdateFloorPlanCommandService>,
+    IUpdateFloorPlanCommandService,
+    IRequestHandler<UpdateFloorPlanCommand>
 {
     private readonly ILocationService _locationService;
 
@@ -21,7 +21,10 @@ public class UpdateAccessRequestCommandHandler : IRequestHandler<UpdateFloorPlan
     public async Task Handle(UpdateFloorPlanCommand request, CancellationToken cancellationToken)
     {
         await _locationService.UpdateFloorPlan(request.FloorPlan);
+    }
 
-        return;
+    public async UnaryResult HandleAsync(UpdateFloorPlanCommand request)
+    {
+        await Handle(request, CancellationToken.None);
     }
 }

@@ -1,6 +1,9 @@
-﻿namespace OfficeEntry.Domain.Entities
+﻿using MemoryPack;
+
+namespace OfficeEntry.Domain.Entities
 {
-    public class FloorPlanCapacity
+    [MemoryPackable]
+    public partial class FloorPlanCapacity
     {
         // Represents the total capacity of approved requests for a given floor plan
         public int CurrentCapacity { get; init; }

@@ -1,19 +1,17 @@
-﻿using MediatR;
+﻿using MagicOnion;
+using MagicOnion.Server;
+using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.Application.User.Queries.GetMyTermsAndConditions;
 
-public record GetTermsAndConditionsQuery : IRequest<TermsAndConditions>
-{
-    public static readonly GetTermsAndConditionsQuery Instance = new();
+public class GetTermsAndConditionsQueryHandler
+    : ServiceBase<IGetTermsAndConditionsQueryService>,
+    IGetTermsAndConditionsQueryService,
+    IRequestHandler<GetTermsAndConditionsQuery, TermsAndConditions>
 
-    private GetTermsAndConditionsQuery()
-    {
-    }
-}
-
-public class GetTermsAndConditionsQueryHandler : IRequestHandler<GetTermsAndConditionsQuery, TermsAndConditions>
 {
     private readonly ICurrentUserService _currentUserService;
     private readonly ITermsAndConditionsService _termsAndConditionsService;
@@ -28,5 +26,10 @@ public class GetTermsAndConditionsQueryHandler : IRequestHandler<GetTermsAndCond
     {
         var username = _currentUserService.UserId;
         return await _termsAndConditionsService.GetTermsAndConditionsFor(username);
+    }
+
+    public async UnaryResult<TermsAndConditions> HandleAsync(GetTermsAndConditionsQuery request)
+    {
+        return await Handle(request, new CancellationToken());
     }
 }

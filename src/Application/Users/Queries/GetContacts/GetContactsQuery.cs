@@ -1,18 +1,16 @@
-﻿using MediatR;
+﻿using MagicOnion;
+using MagicOnion.Server;
+using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.Application.Users.Queries.GetContactsRequests;
 
-public record GetContactsQuery : IRequest<IEnumerable<Domain.Entities.Contact>>
-{
-    public static readonly GetContactsQuery Instance = new();
-
-    private GetContactsQuery()
-    {
-    }
-}
-
-public class GetContactsQueryHandler : IRequestHandler<GetContactsQuery, IEnumerable<Domain.Entities.Contact>>
+public class GetContactsQueryHandler :
+    ServiceBase<IGetContactsQueryService>,
+    IGetContactsQueryService,
+    IRequestHandler<GetContactsQuery, IEnumerable<Domain.Entities.Contact>>
 {
     private readonly ICurrentUserService _currentUserService;
     private readonly IUserService _userService;
@@ -34,5 +32,10 @@ public class GetContactsQueryHandler : IRequestHandler<GetContactsQuery, IEnumer
         }
 
         return result.Contacts;
+    }
+
+    public async UnaryResult<Contact[]> HandleAsync(GetContactsQuery request)
+    {
+        return [.. await Handle(request, CancellationToken.None)];
     }
 }

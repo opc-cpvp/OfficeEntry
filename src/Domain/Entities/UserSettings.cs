@@ -1,6 +1,9 @@
-﻿namespace OfficeEntry.Domain.Entities;
+﻿using MemoryPack;
 
-public class UserSettings
+namespace OfficeEntry.Domain.Entities;
+
+[MemoryPackable]
+public partial class UserSettings
 {
     public Guid Id { get; set; }
     public DateTime? HealthSafety { get; set; }
