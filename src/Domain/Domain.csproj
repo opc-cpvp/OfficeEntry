@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>OfficeEntry.Domain</RootNamespace>
     <AssemblyName>OfficeEntry.Domain</AssemblyName>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Destructurama.Attributed" Version="4.0.0" />
+    <PackageReference Include="MagicOnion.Serialization.MemoryPack" Version="7.0.4-preview" />
+    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
   </ItemGroup>
 
 </Project>

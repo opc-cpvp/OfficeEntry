@@ -1,19 +1,18 @@
-﻿using MediatR;
+﻿using MagicOnion;
+using MagicOnion.Server;
+using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
-using OfficeEntry.Application.Common.Models;
+using OfficeEntry.Domain.Common;
 using OfficeEntry.Domain.Enums;
+using OfficeEntry.Domain.Services;
+using OfficeEntry.Domain.ViewModels;
 
 namespace OfficeEntry.Application.Locations.Queries.GetAvailableWorkspaces;
 
-public record GetAvailableWorkspacesQuery : IRequest<IEnumerable<AvailableWorkspaceViewModel>>
-{
-    public string Locale { get; init; }
-    public Guid FloorPlanId { get; init; }
-    public DateTime StartTime { get; init; }
-    public DateTime EndTime { get; init; }
-}
-
-public class GetAvailableWorkspacesQueryHandler : IRequestHandler<GetAvailableWorkspacesQuery, IEnumerable<AvailableWorkspaceViewModel>>
+public class GetAvailableWorkspacesQueryHandler :
+    ServiceBase<IGetAvailableWorkspacesQueryService>,
+    IGetAvailableWorkspacesQueryService,
+    IRequestHandler<GetAvailableWorkspacesQuery, IEnumerable<AvailableWorkspaceViewModel>>
 {
     private readonly IAccessRequestService _accessRequestService;
     private readonly ILocationService _locationService;
@@ -52,5 +51,10 @@ public class GetAvailableWorkspacesQueryHandler : IRequestHandler<GetAvailableWo
             });
 
         return availableWorkspaces;
+    }
+
+    public async UnaryResult<Domain.ViewModels.AvailableWorkspaceViewModel[]> HandleAsync(GetAvailableWorkspacesQuery request)
+    {
+        return [.. await Handle(request, CancellationToken.None)];
     }
 }

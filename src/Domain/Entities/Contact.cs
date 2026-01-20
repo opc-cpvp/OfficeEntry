@@ -1,6 +1,9 @@
-﻿namespace OfficeEntry.Domain.Entities;
+﻿using MemoryPack;
 
-public class Contact
+namespace OfficeEntry.Domain.Entities;
+
+[MemoryPackable]
+public partial class Contact
 {
     public Guid Id { get; set; }
     public string FirstName { get; set; }

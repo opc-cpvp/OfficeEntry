@@ -1,18 +1,16 @@
-﻿using MediatR;
+﻿using MagicOnion;
+using MagicOnion.Server;
+using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequests;
 
-public record GetAccessRequestsQuery : IRequest<IEnumerable<Domain.Entities.AccessRequest>>
-{
-    public static readonly GetAccessRequestsQuery Instance = new();
-
-    private GetAccessRequestsQuery()
-    {
-    }
-}
-
-public class GetAccessRequestsQueryHandler : IRequestHandler<GetAccessRequestsQuery, IEnumerable<Domain.Entities.AccessRequest>>
+public class GetAccessRequestsQueryHandler :
+    ServiceBase<IGetAccessRequestsQueryService>,
+    IGetAccessRequestsQueryService,
+    IRequestHandler<GetAccessRequestsQuery, IEnumerable<Domain.Entities.AccessRequest>>    
 {
     private readonly ICurrentUserService _currentUserService;
     private readonly IAccessRequestService _accessRequestService;
@@ -36,8 +34,15 @@ public class GetAccessRequestsQueryHandler : IRequestHandler<GetAccessRequestsQu
         {
         }
 
-        return result.AccessRequests
+        var orderedAccessRequests = result.AccessRequests
             .OrderByDescending(x => x.StartTime)
             .ThenBy(x => x.GetStatusOrder());
+
+        return orderedAccessRequests;
+    }
+
+    public async UnaryResult<AccessRequest[]> HandleAsync(GetAccessRequestsQuery request)
+    {
+        return [.. await Handle(request, new CancellationToken())];
     }
 }

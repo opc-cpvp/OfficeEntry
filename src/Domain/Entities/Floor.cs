@@ -1,6 +1,9 @@
-﻿namespace OfficeEntry.Domain.Entities;
+﻿using MemoryPack;
 
-public class Floor
+namespace OfficeEntry.Domain.Entities;
+
+[MemoryPackable]
+public partial class Floor
 {
     public Guid Id { get; set; }
     public Guid BuildingId { get; set; }

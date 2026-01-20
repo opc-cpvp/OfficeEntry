@@ -2,6 +2,7 @@
 using MediatR;
 using OfficeEntry.Application.AccessRequests.Queries.GetDelegateAccessRequests;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.WebApp.Store.DelegateAccessRequestsUseCase;
 

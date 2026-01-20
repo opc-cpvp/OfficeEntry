@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using OfficeEntry.Application.User.Commands.UpdateHealthAndSafetyStatement;
+using OfficeEntry.Domain.Services;
 using OfficeEntry.WebApp.Shared;
 using OfficeEntry.WebApp.Store.TermsAndConditionsUseCase;
 using System.Text.Json;

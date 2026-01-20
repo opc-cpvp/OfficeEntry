@@ -1,17 +1,17 @@
-﻿using MediatR;
+﻿using MagicOnion;
+using MagicOnion.Server;
+using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
 using OfficeEntry.Domain.Entities;
+using OfficeEntry.Domain.Services;
 using System.Collections.Immutable;
 
 namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequestPerFloorPlan;
 
-public record GetAccessRequestPerFloorPlanQuery : IRequest<ImmutableArray<AccessRequest>>
-{
-    public Guid FloorPlanId { get; init; }
-    public DateOnly Date { get; init; }
-}
-
-public class GetAccessRequestPerFloorPlanQueryHandler : IRequestHandler<GetAccessRequestPerFloorPlanQuery, ImmutableArray<AccessRequest>>
+public class GetAccessRequestPerFloorPlanQueryHandler : 
+    ServiceBase<IGetAccessRequestPerFloorPlanQueryService>,
+    IGetAccessRequestPerFloorPlanQueryService,
+    IRequestHandler<GetAccessRequestPerFloorPlanQuery, ImmutableArray<AccessRequest>>
 {
     private readonly IAccessRequestService _accessRequestService;
 
@@ -25,5 +25,10 @@ public class GetAccessRequestPerFloorPlanQueryHandler : IRequestHandler<GetAcces
         var accessRequests = await _accessRequestService.GetApprovedOrPendingAccessRequestsByFloorPlan(request.FloorPlanId, request.Date);
 
         return accessRequests.ToImmutableArray();
+    }
+
+    public async UnaryResult<AccessRequest[]> HandleAsync(GetAccessRequestPerFloorPlanQuery request)
+    {
+        return [.. await Handle(request, new CancellationToken())];
     }
 }

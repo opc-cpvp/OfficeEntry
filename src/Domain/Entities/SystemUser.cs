@@ -1,6 +1,9 @@
-﻿namespace OfficeEntry.Domain.Entities
+﻿using MemoryPack;
+
+namespace OfficeEntry.Domain.Entities
 {
-    public class SystemUser
+    [MemoryPackable]
+    public partial class SystemUser
     {
         public Guid Id { get; set; }
         public string DomainName { get; set; }

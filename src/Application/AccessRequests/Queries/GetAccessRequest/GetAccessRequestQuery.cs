@@ -1,18 +1,24 @@
-﻿using MediatR;
+﻿using MagicOnion;
+using MagicOnion.Server;
+using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.Entities;
 using OfficeEntry.Domain.Enums;
-
+using OfficeEntry.Domain.Services;
+using OfficeEntry.Domain.ViewModels;
 using static OfficeEntry.Domain.Entities.AccessRequest;
 
 namespace OfficeEntry.Application.AccessRequests.Queries.GetAccessRequest;
 
-public record GetAccessRequestQuery : IRequest<AccessRequestViewModel>
-{
-    public Guid AccessRequestId { get; init; }
-    public string Locale { get; init; }
-}
+//public record GetAccessRequestQuery : IRequest<AccessRequestViewModel>
+//{
+//    public Guid AccessRequestId { get; init; }
+//    public string Locale { get; init; }
+//}
 
-public class GetAccessRequestQueryHandler : IRequestHandler<GetAccessRequestQuery, AccessRequestViewModel>
+public class GetAccessRequestQueryHandler : ServiceBase<IGetAccessRequestQueryService>,
+    IGetAccessRequestQueryService,
+    IRequestHandler<GetAccessRequestQuery, AccessRequestViewModel>
 {
     private readonly ICurrentUserService _currentUserService;
     private readonly IAccessRequestService _accessRequestService;
@@ -66,5 +72,10 @@ public class GetAccessRequestQueryHandler : IRequestHandler<GetAccessRequestQuer
             Workspace = result.AccessRequest.Workspace?.Name,
             Status = (ApprovalStatus)result.AccessRequest.Status.Key
         };
+    }
+
+    public async UnaryResult<AccessRequestViewModel> HandleAsync(GetAccessRequestQuery request)
+    {
+        return await Handle(request, new CancellationToken());
     }
 }

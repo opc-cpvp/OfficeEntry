@@ -1,6 +1,9 @@
-﻿namespace OfficeEntry.Domain.Entities;
+﻿using MemoryPack;
 
-public class AccessRequest
+namespace OfficeEntry.Domain.Entities;
+
+[MemoryPackable]
+public partial class AccessRequest
 {
     public Guid Id { get; set; }
     public DateTime CreatedOn { get; set; }

@@ -1,14 +1,15 @@
-﻿using MediatR;
+﻿using MagicOnion;
+using MagicOnion.Server;
+using MediatR;
 using OfficeEntry.Application.Common.Interfaces;
+using OfficeEntry.Domain.Services;
 
 namespace OfficeEntry.Application.User.Commands.UpdateHealthAndSafetyStatement;
 
-public record UpdateHealthAndSafetyMeasuresStatementCommand : IRequest
-{
-    public bool IsHealthAndSafetyMeasuresAccepted { get; init; }
-}
-
-public class UpdateHealthAndSafetyMeasuresStatementCommandHandler : IRequestHandler<UpdateHealthAndSafetyMeasuresStatementCommand>
+public class UpdateHealthAndSafetyMeasuresStatementCommandHandler :
+    ServiceBase<IUpdateHealthAndSafetyMeasuresStatementCommandService>,
+    IUpdateHealthAndSafetyMeasuresStatementCommandService,
+    IRequestHandler<UpdateHealthAndSafetyMeasuresStatementCommand>
 {
     private readonly ICurrentUserService _currentUserService;
     private readonly ITermsAndConditionsService _termsAndConditionsService;
@@ -26,5 +27,10 @@ public class UpdateHealthAndSafetyMeasuresStatementCommandHandler : IRequestHand
         await _termsAndConditionsService.SetHealthAndSafetyMeasuresFor(username, request.IsHealthAndSafetyMeasuresAccepted);
 
         return;
+    }
+
+    public async UnaryResult HandleAsync(UpdateHealthAndSafetyMeasuresStatementCommand request)
+    {
+        await Handle(request, CancellationToken.None);
     }
 }

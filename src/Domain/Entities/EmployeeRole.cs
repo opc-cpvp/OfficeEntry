@@ -1,8 +1,10 @@
-﻿using OfficeEntry.Domain.Enums;
+﻿using MemoryPack;
+using OfficeEntry.Domain.Enums;
 
 namespace OfficeEntry.Domain.Entities
 {
-    public class EmployeeRole
+    [MemoryPackable]
+    public partial class EmployeeRole
     {
         public EmployeeRoleType RoleType { get; set; }
         public string FrenchName { get; set; }

@@ -1,8 +1,10 @@
-﻿using System.Dynamic;
+﻿using MemoryPack;
+using System.Dynamic;
 
 namespace OfficeEntry.Domain.Entities;
 
-public class Workspace
+[MemoryPackable]
+public partial class Workspace
 {
     public Guid Id { get; set; }
     public string EnglishDescription { get; set; }
