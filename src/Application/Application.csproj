@@ -14,7 +14,7 @@
     <PackageReference Include="FluentValidation" Version="12.0.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
     <PackageReference Include="MagicOnion.Server" Version="7.0.4" />
-    <PackageReference Include="MagicOnion.Abstractions" Version="7.0.4" />
+    <PackageReference Include="MagicOnion.Abstractions" Version="7.0.9" />
     <PackageReference Include="MediatR" Version="12.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
     <PackageReference Include="Polly" Version="8.5.2" />
