@@ -33,7 +33,7 @@
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="9.0.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Simple.OData.Client" Version="6.0.1" />
-    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="9.0.5" />
+    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="10.0.2" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
 
     <!--We need to explicitly include these references for Simple.OData.Client to work correctly in .NET 7.0-->
