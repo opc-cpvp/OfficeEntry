@@ -78,6 +78,9 @@ public sealed class MapJsInterop : IAsyncDisposable, IMapJsInterop
 
     public async ValueTask DisposeAsync()
     {
+        if (_disposed)
+            return;
+
         if (_moduleTask.IsValueCreated)
         {
             var module = await _moduleTask.Value;
