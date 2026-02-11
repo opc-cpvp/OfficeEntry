@@ -11,8 +11,8 @@
   <ItemGroup>
     <!--<PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />-->
-    <PackageReference Include="FluentValidation" Version="12.0.0" />
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
     <PackageReference Include="MagicOnion.Server" Version="7.0.4" />
     <PackageReference Include="MagicOnion.Abstractions" Version="7.0.4" />
     <PackageReference Include="MediatR" Version="12.5.0" />
