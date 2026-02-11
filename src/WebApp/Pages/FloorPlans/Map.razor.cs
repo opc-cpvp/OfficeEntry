@@ -54,26 +54,17 @@ public sealed partial class Map
 
     public bool SurveyCompleted { get; set; }
 
-    protected override Task OnParametersSetAsync()
+    protected override async Task OnParametersSetAsync()
     {
         // Invalidate the DTO and reload the Map
         FloorPlanDto = null;
         _selectedAccessRequest = null;
         Dispatcher.Dispatch(new GetMapAction(FloorPlanId, _selectedDate));
-
-        return base.OnParametersSetAsync();
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnInitializedAsync()
     {
-        if (!firstRender)
-        {
-            return;
-        }
-
-        _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery());
-
-        await MapJsInterop.Register(this);
+        await base.OnInitializedAsync();
 
         SubscribeToAction<GetMapResultAction>(async x =>
         {
@@ -82,6 +73,10 @@ public sealed partial class Map
 
             await UpdateCanvas();
         });
+
+        _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery());
+
+        await MapJsInterop.Register(this);
     }
 
     private async Task UpdateCanvas()
