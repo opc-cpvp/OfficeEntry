@@ -75,6 +75,14 @@ public sealed partial class Map
         });
 
         _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery());
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
 
         await MapJsInterop.Register(this);
     }
@@ -152,6 +160,8 @@ public sealed partial class Map
 
     protected override async ValueTask DisposeAsyncCore(bool disposing)
     {
+        await base.DisposeAsyncCore(disposing);
+
         if (disposing)
         {
             if (MapJsInterop is MapJsInterop js)
@@ -159,8 +169,6 @@ public sealed partial class Map
                 await js.DisposeAsync();
             }
         }
-
-        await base.DisposeAsyncCore(disposing);
     }
 
     // TODO: rename method to something like `OccupiedWorkspaceLookup`
