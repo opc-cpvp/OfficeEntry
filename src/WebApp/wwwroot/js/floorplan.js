@@ -169,6 +169,7 @@ const firstAidAttendantImage = new Image();
 const floorEmergencyOfficerImage = new Image();
 const mentalHealthTrainingImage = new Image();
 const multipleRolesImage = new Image();
+const bugImage = new Image();
 const userImage = new Image();
 
 const floorplan = new Image();
@@ -318,10 +319,13 @@ function Draw(deltaTime) {
         .forEach(circle => {
             const roles = [circle.IsFirstAidAttendant, circle.IsFloorEmergencyOfficer, circle.IsMentalHealthTraining]
             const hasMultipleRoles = roles.filter((role) => role === true).length > 1;
+            const hasBug = circle.Hovering && circle.EmployeeFullName.includes("Jonathan Thomassin");
+
             const iconImage = hasMultipleRoles  ? multipleRolesImage
                 : circle.IsFirstAidAttendant ? firstAidAttendantImage
                 : circle.IsFloorEmergencyOfficer ? floorEmergencyOfficerImage
                 : circle.IsMentalHealthTraining ? mentalHealthTrainingImage
+                : hasBug ? bugImage
                 : userImage;
 
             const degrees = 315;
@@ -426,6 +430,7 @@ export async function start(imagedata, circlesJson) {
     floorEmergencyOfficerImage.src = '/img/floorplan/floor_emergency_officer_icon.svg';
     mentalHealthTrainingImage.src = '/img/floorplan/mental_health_training_icon.svg';
     multipleRolesImage.src = '/img/floorplan/multiple_roles_icon.svg';
+    bugImage.src = '/img/floorplan/bug_icon.svg';
     userImage.src = '/img/floorplan/user_icon.svg';
 
     canvas.width = floorplan.width;
