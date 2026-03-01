@@ -2,41 +2,18 @@
 
 version: 2
 updates:
-
-#Source
   - package-ecosystem: "nuget"
-    directory: "/src/Application"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/src/Domain"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/src/Infrastructure"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/src/OfficeEntry.Plugins"
+    directories: 
+      - "/src/Application"
+      - "/src/Domain"
+      - "/src/Infrastructure"
+      - "/src/OfficeEntry.Plugins"
+      - "/src/WebApp"
+      - "/tests/Application.UnitTests"
+      - "/tests/Domain.UnitTests"
+      - "/tests/Infrastructure.IntegrationTests"
     schedule:
       interval: "daily"
     ignore:
       - dependency-name: "Microsoft.CrmSdk.CoreAssemblies"
-  - package-ecosystem: "nuget"
-    directory: "/src/WebApp"
-    schedule:
-      interval: "daily"
-
-# Tests
-  - package-ecosystem: "nuget"
-    directory: "/tests/Application.UnitTests"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/tests/Domain.UnitTests"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "nuget"
-    directory: "/tests/Infrastructure.IntegrationTests"
-    schedule:
-      interval: "daily"
+    open-pull-requests-limit: 0
