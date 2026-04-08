@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2025-10-22T13:27:45.5087992Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2026-04-08T18:29:54.7742668Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -362,6 +362,15 @@
         <field name="gc_englishdescription" value="Curved monitor" />
         <field name="gc_frenchdescription" value="Moniteur courb&amp;#233;" />
         <field name="gc_floorplanid" value="55bd04c4-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 7th floor" />
+      </record>
+      <record id="fd21cdf2-cca4-453c-b35d-28685c5cb6af">
+        <field name="gc_x" value="363" />
+        <field name="gc_workspaceid" value="fd21cdf2-cca4-453c-b35d-28685c5cb6af" />
+        <field name="gc_y" value="777" />
+        <field name="gc_name" value="C-06" />
+        <field name="gc_englishdescription" value="Focus Room" />
+        <field name="gc_frenchdescription" value="Salle de r&amp;#233;flexion" />
+        <field name="gc_floorplanid" value="13f51add-7430-ed11-a2fd-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="655 Bay Street,  Suite 404 - 4th floor" />
       </record>
       <record id="a0923146-f869-423e-acd8-28cfb3337dd1">
         <field name="gc_x" value="416" />
