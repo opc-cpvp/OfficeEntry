@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2026-04-28T13:31:07.6533151Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2026-04-28T14:27:30.0261054Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -3081,12 +3081,6 @@
         <field name="gc_workspaceid" value="aaa1af74-df79-4c71-8b6f-e8e63f5d2ab8" />
         <field name="gc_y" value="334" />
         <field name="gc_name" value="1" />
-        <field name="gc_floorplanid" value="26d6252e-a839-f111-a31a-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
-      </record>
-      <record id="311ce932-8255-467d-ae2f-ea86cb221b1f">
-        <field name="gc_x" value="716" />
-        <field name="gc_workspaceid" value="311ce932-8255-467d-ae2f-ea86cb221b1f" />
-        <field name="gc_y" value="980" />
         <field name="gc_floorplanid" value="26d6252e-a839-f111-a31a-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="f7810eca-af55-49fe-9a73-eacfae532975">
