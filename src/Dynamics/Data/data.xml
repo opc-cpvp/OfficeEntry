@@ -1,5 +1,5 @@
 
-<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2026-04-28T14:27:30.0261054Z">
+<entities xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" timestamp="2026-04-29T17:59:24.6052593Z">
   <entity name="gc_building" displayname="Building">
     <records>
       <record id="0663dbac-ddaf-ea11-a2e3-005056aa7ac3">
@@ -639,7 +639,7 @@
         <field name="gc_x" value="1263" />
         <field name="gc_workspaceid" value="6a0b86ad-af71-4a45-bec3-2a3131f1a03a" />
         <field name="gc_y" value="76" />
-        <field name="gc_name" value="133" />
+        <field name="gc_name" value="113" />
         <field name="gc_englishdescription" value="Executive Secretariat Only" />
         <field name="gc_frenchdescription" value="Secr&amp;#233;tariat ex&amp;#233;cutif seulement" />
         <field name="gc_floorplanid" value="26d6252e-a839-f111-a31a-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
@@ -1170,7 +1170,7 @@
         <field name="gc_y" value="600" />
         <field name="gc_name" value="832" />
         <field name="gc_englishdescription" value="Focus Room" />
-        <field name="gc_frenchdescription" value="Salle de r&amp;#233;flexion" />
+        <field name="gc_frenchdescription" value="Salle de concentration" />
         <field name="gc_floorplanid" value="26d6252e-a839-f111-a31a-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="e20217a8-8440-4077-8240-56f27f45f6b7">
@@ -1294,7 +1294,7 @@
         <field name="gc_y" value="552" />
         <field name="gc_name" value="831" />
         <field name="gc_englishdescription" value="Focus Room" />
-        <field name="gc_frenchdescription" value="Salle de r&amp;#233;flexion" />
+        <field name="gc_frenchdescription" value="Salle de concentration" />
         <field name="gc_floorplanid" value="26d6252e-a839-f111-a31a-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="96a3b1c5-e03c-4bc7-99db-63bc0e7818af">
@@ -1328,7 +1328,7 @@
         <field name="gc_y" value="577" />
         <field name="gc_name" value="834" />
         <field name="gc_englishdescription" value="Focus Room" />
-        <field name="gc_frenchdescription" value="Salle de r&amp;#233;flexion" />
+        <field name="gc_frenchdescription" value="Salle de concentration" />
         <field name="gc_floorplanid" value="26d6252e-a839-f111-a31a-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="d9cbe1f3-2286-455c-ba6b-6686557b6284">
@@ -1658,7 +1658,7 @@
         <field name="gc_y" value="189" />
         <field name="gc_name" value="870" />
         <field name="gc_englishdescription" value="Focus Room" />
-        <field name="gc_frenchdescription" value="Salle de r&amp;#233;flexion" />
+        <field name="gc_frenchdescription" value="Salle de concentration" />
         <field name="gc_floorplanid" value="26d6252e-a839-f111-a31a-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="329b5458-0050-47ef-a029-7d0c146135cb">
@@ -2461,7 +2461,7 @@
         <field name="gc_y" value="656" />
         <field name="gc_name" value="833" />
         <field name="gc_englishdescription" value="Focus Room" />
-        <field name="gc_frenchdescription" value="Salle de r&amp;#233;flexion" />
+        <field name="gc_frenchdescription" value="Salle de concentration" />
         <field name="gc_floorplanid" value="26d6252e-a839-f111-a31a-005056aa7ac3" lookupentity="gc_floorplan" lookupentityname="30 Victoria Street - 8th floor" />
       </record>
       <record id="0ad893a5-8686-4aa7-b49f-b43e41a0ce8f">
