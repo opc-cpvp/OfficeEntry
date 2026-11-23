@@ -279,7 +279,7 @@ public sealed partial class Map
             {
                 _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery());
 
-                await mySurvey.SetValueAsync("numberOfDaysAllowed", _isContactFirstResponder ? "35" : "21");
+                await mySurvey.SetValueAsync("numberOfDaysAllowed", _isContactFirstResponder ? "35" : "28");
                 StateHasChanged();
                 return;
             }
@@ -291,7 +291,7 @@ public sealed partial class Map
 
             _isContactFirstResponder = await Mediator.Send(new GetIsContactFirstResponderQuery() { UserId = otherIndividualName });
 
-            await mySurvey.SetValueAsync("numberOfDaysAllowed", _isContactFirstResponder ? "35" : "21");
+            await mySurvey.SetValueAsync("numberOfDaysAllowed", _isContactFirstResponder ? "35" : "28");
             StateHasChanged();
             return;
         }
